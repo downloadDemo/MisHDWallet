@@ -1,0 +1,100 @@
+//
+//  PrefixHeader.pch
+//  TaiYiToken
+//
+//  Created by admin on 2018/8/13.
+//  Copyright © 2018年 admin. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+#import<objc/runtime.h>
+
+
+#define MAS_SHORTHAND_GLOBALS
+#import <Masonry.h>
+#import <AFNetworking.h>
+#import <YYKit.h>
+#import <MJRefresh.h>
+#import <MBProgressHUD.h>
+
+#import "JVFloatLabeledTextField.h"
+
+
+#import "NSObject+Parse.h"
+#import "UIScrollView+Refresh.h"
+#import "UIView+HUD.h"
+#import "NSString+URLString.h"
+#import "UIImage+BaseToImage.h"
+#import "NetAPI.h"
+#import "NetManager.h"
+#import "AMSaveFile.h"
+#import "SAMKeyChain.h"
+#import "SAMKeyChainEasy.h"
+
+
+#import "SDWebImage/UIImageView+WebCache.h"
+#import "SDWebImage/UIButton+WebCache.h"
+#import "SDWebImageManager.h"
+#import "SDImageCache.h"
+
+
+
+
+#import "Constant.h"
+
+#define RGB(r,g,b) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1];
+#define kRGBA(r,g,b,a) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a];
+#define ScreenWidth [[UIScreen mainScreen] bounds].size.width
+#define ScreenHeight [[UIScreen mainScreen] bounds].size.heigh
+#define WS(weakSelf) __weak __typeof(&*self)weakSelf = self;
+#define LRRandomColor [UIColor colorWithRed:arc4random_uniform(256)/255.0 green:arc4random_uniform(256)/255.0 blue:arc4random_uniform(256)/255.0 alpha:1.0]
+#define PRODUCT_BUNDLE_ID @"com.adbest.AdMoProduct"
+
+
+//获取temp
+#define kPathTemp NSTemporaryDirectory()
+//获取沙盒 Document
+#define kPathDocument [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject]
+//获取沙盒 Cache
+#define kPathCache [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) firstObject]
+
+/**
+ *  导入系统文件
+ */
+#import <Foundation/Foundation.h>
+
+
+/**
+ *  导入自定义文件
+ */
+
+#import "UIColor+SNFoundation.h"
+#import "UIColor+AppConfigColor.h"
+#import "NSDate+ExFoundation.h"
+#import "NSDictionary+ExFoundation.h"
+#import "UIImage+ExFoundation.h"
+#import "NSMutableAttributedString+ExFoundation.h"
+#import "RegularExpression.h"
+#import "NSString+Hash.h"
+#import "NSString+Extention.h"
+#import "UITextView+Placeholder.h"
+#import "NSObject+Extension.h"
+
+
+/**
+ *  导入第三方库文件
+ */
+
+
+#import "SDWebImageManager.h"
+#import "UIButton+WebCache.h"
+
+#import "SGQRCode.h"
+
+
+
+#import "DAConfig.h"
+#import "NSBundle+DAUtils.h"
+#endif /* PrefixHeader_pch */
