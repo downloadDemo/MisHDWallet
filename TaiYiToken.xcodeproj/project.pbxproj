@@ -1,0 +1,582 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		84D0E42321211AAB004E65AD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D0E42221211AAB004E65AD /* AppDelegate.m */; };
+		84D0E42621211AAB004E65AD /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D0E42521211AAB004E65AD /* ViewController.m */; };
+		84D0E42921211AAB004E65AD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84D0E42721211AAB004E65AD /* Main.storyboard */; };
+		84D0E42B21211AAF004E65AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84D0E42A21211AAF004E65AD /* Assets.xcassets */; };
+		84D0E42E21211AAF004E65AD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84D0E42C21211AAF004E65AD /* LaunchScreen.storyboard */; };
+		84D0E43121211AAF004E65AD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D0E43021211AAF004E65AD /* main.m */; };
+		84D0E43B21211AAF004E65AD /* TaiYiTokenTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D0E43A21211AAF004E65AD /* TaiYiTokenTests.m */; };
+		84D0E44621211AAF004E65AD /* TaiYiTokenUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D0E44521211AAF004E65AD /* TaiYiTokenUITests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		84D0E43721211AAF004E65AD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 84D0E41621211AAB004E65AD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 84D0E41D21211AAB004E65AD;
+			remoteInfo = TaiYiToken;
+		};
+		84D0E44221211AAF004E65AD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 84D0E41621211AAB004E65AD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 84D0E41D21211AAB004E65AD;
+			remoteInfo = TaiYiToken;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		84D0E41E21211AAB004E65AD /* TaiYiToken.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaiYiToken.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		84D0E42121211AAB004E65AD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		84D0E42221211AAB004E65AD /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		84D0E42421211AAB004E65AD /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		84D0E42521211AAB004E65AD /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		84D0E42821211AAB004E65AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		84D0E42A21211AAF004E65AD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		84D0E42D21211AAF004E65AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		84D0E42F21211AAF004E65AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		84D0E43021211AAF004E65AD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		84D0E43621211AAF004E65AD /* TaiYiTokenTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TaiYiTokenTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		84D0E43A21211AAF004E65AD /* TaiYiTokenTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaiYiTokenTests.m; sourceTree = "<group>"; };
+		84D0E43C21211AAF004E65AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		84D0E44121211AAF004E65AD /* TaiYiTokenUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TaiYiTokenUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		84D0E44521211AAF004E65AD /* TaiYiTokenUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaiYiTokenUITests.m; sourceTree = "<group>"; };
+		84D0E44721211AAF004E65AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		84D0E41B21211AAB004E65AD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		84D0E43321211AAF004E65AD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		84D0E43E21211AAF004E65AD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		84D0E41521211AAB004E65AD = {
+			isa = PBXGroup;
+			children = (
+				84D0E42021211AAB004E65AD /* TaiYiToken */,
+				84D0E43921211AAF004E65AD /* TaiYiTokenTests */,
+				84D0E44421211AAF004E65AD /* TaiYiTokenUITests */,
+				84D0E41F21211AAB004E65AD /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		84D0E41F21211AAB004E65AD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				84D0E41E21211AAB004E65AD /* TaiYiToken.app */,
+				84D0E43621211AAF004E65AD /* TaiYiTokenTests.xctest */,
+				84D0E44121211AAF004E65AD /* TaiYiTokenUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		84D0E42021211AAB004E65AD /* TaiYiToken */ = {
+			isa = PBXGroup;
+			children = (
+				84D0E42121211AAB004E65AD /* AppDelegate.h */,
+				84D0E42221211AAB004E65AD /* AppDelegate.m */,
+				84D0E42421211AAB004E65AD /* ViewController.h */,
+				84D0E42521211AAB004E65AD /* ViewController.m */,
+				84D0E42721211AAB004E65AD /* Main.storyboard */,
+				84D0E42A21211AAF004E65AD /* Assets.xcassets */,
+				84D0E42C21211AAF004E65AD /* LaunchScreen.storyboard */,
+				84D0E42F21211AAF004E65AD /* Info.plist */,
+				84D0E43021211AAF004E65AD /* main.m */,
+			);
+			path = TaiYiToken;
+			sourceTree = "<group>";
+		};
+		84D0E43921211AAF004E65AD /* TaiYiTokenTests */ = {
+			isa = PBXGroup;
+			children = (
+				84D0E43A21211AAF004E65AD /* TaiYiTokenTests.m */,
+				84D0E43C21211AAF004E65AD /* Info.plist */,
+			);
+			path = TaiYiTokenTests;
+			sourceTree = "<group>";
+		};
+		84D0E44421211AAF004E65AD /* TaiYiTokenUITests */ = {
+			isa = PBXGroup;
+			children = (
+				84D0E44521211AAF004E65AD /* TaiYiTokenUITests.m */,
+				84D0E44721211AAF004E65AD /* Info.plist */,
+			);
+			path = TaiYiTokenUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		84D0E41D21211AAB004E65AD /* TaiYiToken */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 84D0E44A21211AAF004E65AD /* Build configuration list for PBXNativeTarget "TaiYiToken" */;
+			buildPhases = (
+				84D0E41A21211AAB004E65AD /* Sources */,
+				84D0E41B21211AAB004E65AD /* Frameworks */,
+				84D0E41C21211AAB004E65AD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TaiYiToken;
+			productName = TaiYiToken;
+			productReference = 84D0E41E21211AAB004E65AD /* TaiYiToken.app */;
+			productType = "com.apple.product-type.application";
+		};
+		84D0E43521211AAF004E65AD /* TaiYiTokenTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 84D0E44D21211AAF004E65AD /* Build configuration list for PBXNativeTarget "TaiYiTokenTests" */;
+			buildPhases = (
+				84D0E43221211AAF004E65AD /* Sources */,
+				84D0E43321211AAF004E65AD /* Frameworks */,
+				84D0E43421211AAF004E65AD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				84D0E43821211AAF004E65AD /* PBXTargetDependency */,
+			);
+			name = TaiYiTokenTests;
+			productName = TaiYiTokenTests;
+			productReference = 84D0E43621211AAF004E65AD /* TaiYiTokenTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		84D0E44021211AAF004E65AD /* TaiYiTokenUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 84D0E45021211AAF004E65AD /* Build configuration list for PBXNativeTarget "TaiYiTokenUITests" */;
+			buildPhases = (
+				84D0E43D21211AAF004E65AD /* Sources */,
+				84D0E43E21211AAF004E65AD /* Frameworks */,
+				84D0E43F21211AAF004E65AD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				84D0E44321211AAF004E65AD /* PBXTargetDependency */,
+			);
+			name = TaiYiTokenUITests;
+			productName = TaiYiTokenUITests;
+			productReference = 84D0E44121211AAF004E65AD /* TaiYiTokenUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		84D0E41621211AAB004E65AD /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0940;
+				ORGANIZATIONNAME = admin;
+				TargetAttributes = {
+					84D0E41D21211AAB004E65AD = {
+						CreatedOnToolsVersion = 9.4;
+					};
+					84D0E43521211AAF004E65AD = {
+						CreatedOnToolsVersion = 9.4;
+						TestTargetID = 84D0E41D21211AAB004E65AD;
+					};
+					84D0E44021211AAF004E65AD = {
+						CreatedOnToolsVersion = 9.4;
+						TestTargetID = 84D0E41D21211AAB004E65AD;
+					};
+				};
+			};
+			buildConfigurationList = 84D0E41921211AAB004E65AD /* Build configuration list for PBXProject "TaiYiToken" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 84D0E41521211AAB004E65AD;
+			productRefGroup = 84D0E41F21211AAB004E65AD /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				84D0E41D21211AAB004E65AD /* TaiYiToken */,
+				84D0E43521211AAF004E65AD /* TaiYiTokenTests */,
+				84D0E44021211AAF004E65AD /* TaiYiTokenUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		84D0E41C21211AAB004E65AD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84D0E42E21211AAF004E65AD /* LaunchScreen.storyboard in Resources */,
+				84D0E42B21211AAF004E65AD /* Assets.xcassets in Resources */,
+				84D0E42921211AAB004E65AD /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		84D0E43421211AAF004E65AD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		84D0E43F21211AAF004E65AD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		84D0E41A21211AAB004E65AD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84D0E42621211AAB004E65AD /* ViewController.m in Sources */,
+				84D0E43121211AAF004E65AD /* main.m in Sources */,
+				84D0E42321211AAB004E65AD /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		84D0E43221211AAF004E65AD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84D0E43B21211AAF004E65AD /* TaiYiTokenTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		84D0E43D21211AAF004E65AD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84D0E44621211AAF004E65AD /* TaiYiTokenUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		84D0E43821211AAF004E65AD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 84D0E41D21211AAB004E65AD /* TaiYiToken */;
+			targetProxy = 84D0E43721211AAF004E65AD /* PBXContainerItemProxy */;
+		};
+		84D0E44321211AAF004E65AD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 84D0E41D21211AAB004E65AD /* TaiYiToken */;
+			targetProxy = 84D0E44221211AAF004E65AD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		84D0E42721211AAB004E65AD /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				84D0E42821211AAB004E65AD /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		84D0E42C21211AAF004E65AD /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				84D0E42D21211AAF004E65AD /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		84D0E44821211AAF004E65AD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		84D0E44921211AAF004E65AD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		84D0E44B21211AAF004E65AD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HJRFHP993U;
+				INFOPLIST_FILE = TaiYiToken/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.taiyi.taiyitoken.TaiYiToken;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		84D0E44C21211AAF004E65AD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HJRFHP993U;
+				INFOPLIST_FILE = TaiYiToken/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.taiyi.taiyitoken.TaiYiToken;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		84D0E44E21211AAF004E65AD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HJRFHP993U;
+				INFOPLIST_FILE = TaiYiTokenTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.taiyi.taiyitoken.TaiYiTokenTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TaiYiToken.app/TaiYiToken";
+			};
+			name = Debug;
+		};
+		84D0E44F21211AAF004E65AD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HJRFHP993U;
+				INFOPLIST_FILE = TaiYiTokenTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.taiyi.taiyitoken.TaiYiTokenTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TaiYiToken.app/TaiYiToken";
+			};
+			name = Release;
+		};
+		84D0E45121211AAF004E65AD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HJRFHP993U;
+				INFOPLIST_FILE = TaiYiTokenUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.taiyi.taiyitoken.TaiYiTokenUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = TaiYiToken;
+			};
+			name = Debug;
+		};
+		84D0E45221211AAF004E65AD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HJRFHP993U;
+				INFOPLIST_FILE = TaiYiTokenUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.taiyi.taiyitoken.TaiYiTokenUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = TaiYiToken;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		84D0E41921211AAB004E65AD /* Build configuration list for PBXProject "TaiYiToken" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				84D0E44821211AAF004E65AD /* Debug */,
+				84D0E44921211AAF004E65AD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		84D0E44A21211AAF004E65AD /* Build configuration list for PBXNativeTarget "TaiYiToken" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				84D0E44B21211AAF004E65AD /* Debug */,
+				84D0E44C21211AAF004E65AD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		84D0E44D21211AAF004E65AD /* Build configuration list for PBXNativeTarget "TaiYiTokenTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				84D0E44E21211AAF004E65AD /* Debug */,
+				84D0E44F21211AAF004E65AD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		84D0E45021211AAF004E65AD /* Build configuration list for PBXNativeTarget "TaiYiTokenUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				84D0E45121211AAF004E65AD /* Debug */,
+				84D0E45221211AAF004E65AD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 84D0E41621211AAB004E65AD /* Project object */;
+}
