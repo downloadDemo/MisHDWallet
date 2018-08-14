@@ -8,6 +8,10 @@
 
 #ifndef Constant_h
 #define Constant_h
+/**
+ *  window object
+ */
+#define WINDOW [[[UIApplication sharedApplication] delegate] window]
 
 
 /**

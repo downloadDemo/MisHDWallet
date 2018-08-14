@@ -12,9 +12,9 @@
 
 
 #pragma mark - 随机生成一个文件名
-- (NSString *)randomFileName:(NSString *)externName{
-    return [NSString stringWithFormat: @"%@%@.%@",self, [[NSDate date] stringFormate: @"yyyyMMddHHmmssSSS"], externName];
-}
+//- (NSString *)randomFileName:(NSString *)externName{
+//    return [NSString stringWithFormat: @"%@%@.%@",self, [[NSDate date] stringFormate: @"yyyyMMddHHmmssSSS"], externName];
+//}
 
 + (NSString *)firstCharactorWithString:(NSString *)string{
     if (string.length > 0) {

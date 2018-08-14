@@ -71,7 +71,7 @@
 }
 // 黑色, 0.3 alpha
 +(UIColor *)textBlackColorWithAlpha3{
-    return RGBA(0, 0, 0, 0.3);
+    return kRGBA(0, 0, 0, 0.3);
     
 }
 
@@ -97,7 +97,7 @@
 }
 
 + (UIColor *)textBlueColor{
-    return RGB(71, 201, 246);
+    return RGB(71, 170, 256);
 }
 
 #pragma mark - The default line gray color

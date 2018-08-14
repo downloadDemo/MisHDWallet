@@ -7,7 +7,8 @@
 //
 
 #import "AppDelegate.h"
-
+#import "CustomizedTabBarController.h"
+#import "SwitchAccountVc.h"
 @interface AppDelegate ()
 
 @end
@@ -17,6 +18,23 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"ifHasAccount"]) {
+        CustomizedTabBarController *csVC = [CustomizedTabBarController sharedCustomizedTabBarController];
+        self.window.rootViewController = csVC;
+    }else{
+        
+        SwitchAccountVc *switchvc = [SwitchAccountVc new];
+        UINavigationController *navivc = [[UINavigationController alloc]initWithRootViewController:switchvc];
+        [navivc.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+        navivc.navigationBar.shadowImage = [UIImage new];
+        navivc.navigationBar.translucent = YES;
+        navivc.navigationBar.alpha = 0;
+        self.window.rootViewController = navivc;
+    }
+    
+   
+
+    [self.window makeKeyAndVisible];
     
     return YES;
 }
