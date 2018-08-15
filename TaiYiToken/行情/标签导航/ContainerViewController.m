@@ -1,11 +1,12 @@
 
 #import "ContainerViewController.h"
 #import "SelfChooseVC.h"
+#import "MarketVC.h"
 @interface ContainerViewController ()<UIScrollViewDelegate>{
     SelfChooseVC *aVC;
-    SelfChooseVC *bVC;
-    SelfChooseVC *cVC;
-    SelfChooseVC *dVC;
+    MarketVC *bVC;
+    MarketVC *cVC;
+    MarketVC *dVC;
     
     UIScrollView *mainScrollView;
     UIView *navView;
@@ -30,23 +31,26 @@
     }
     return aVC;
 }
--(SelfChooseVC *)bVC{
+-(MarketVC *)bVC{
     if (bVC==nil) {
-        bVC = [[SelfChooseVC alloc]init];
+        bVC = [[MarketVC alloc]init];
+        bVC.indexName = @"b";
         [self addChildViewController:bVC];
     }
     return bVC;
 }
--(SelfChooseVC *)cVC{
+-(MarketVC *)cVC{
     if (cVC==nil) {
-        cVC = [[SelfChooseVC alloc]init];
+        cVC = [[MarketVC alloc]init];
+        cVC.indexName = @"c";
         [self addChildViewController:cVC];
     }
     return cVC;
 }
--(SelfChooseVC *)dVC{
+-(MarketVC *)dVC{
     if (dVC==nil) {
-        dVC = [[SelfChooseVC alloc]init];
+        dVC = [[MarketVC alloc]init];
+        dVC.indexName = @"d";
         [self addChildViewController:dVC];
     }
     return dVC;
@@ -95,8 +99,9 @@
     [cBtn setTitle:@"涨跌" forState:UIControlStateNormal];
     cBtn.tag = 3;
     //
-    UIImageView *iv1 = [UIImageView new];
-    iv1.image = [UIImage imageNamed:@"ico_up_default"];
+    UIButton *iv1 = [UIButton buttonWithType:UIButtonTypeCustom];
+    [iv1 setImage:[UIImage imageNamed:@"ico_up_default"] forState:UIControlStateNormal];
+    
     [cBtn addSubview:iv1];
     [iv1 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(-4);
@@ -104,8 +109,8 @@
         make.width.equalTo(7);
         make.height.equalTo(5);
     }];
-    UIImageView *iv2 = [UIImageView new];
-    iv2.image = [UIImage imageNamed:@"ico_down_default"];
+    UIButton *iv2 = [UIButton buttonWithType:UIButtonTypeCustom];
+    [iv1 setImage:[UIImage imageNamed:@"ico_down_default"] forState:UIControlStateNormal];
     [cBtn addSubview:iv2];
     [iv2 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(4);
@@ -145,8 +150,7 @@
         make.left.right.equalTo(0);
         make.height.equalTo(40);
     }];
-    
- 
+
 }
 
 - (void)viewDidLoad {

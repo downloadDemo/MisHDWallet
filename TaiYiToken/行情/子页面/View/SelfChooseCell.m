@@ -114,7 +114,6 @@
             make.width.equalTo(100);
             make.height.equalTo(20);
         }];
-        
     }
     return _ratelabel;
 }

@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface MarketVC : UIViewController
+@property(nonatomic)NSString *indexName;
 
 @end

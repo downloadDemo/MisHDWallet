@@ -20,9 +20,9 @@
         [self.contentView addSubview:_namelabel];
         [_namelabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(16);
-            make.top.equalTo(16);
+            make.top.equalTo(8);
             make.width.equalTo(90);
-            make.height.equalTo(20);
+            make.height.equalTo(12);
         }];
         
     }
@@ -39,7 +39,7 @@
         [self.contentView addSubview:_coinNamelabel];
         [_coinNamelabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(16);
-            make.top.equalTo(16);
+            make.top.equalTo(20);
             make.width.equalTo(90);
             make.height.equalTo(20);
         }];
@@ -77,7 +77,7 @@
         [self addSubview:_pricelabel];
         [_pricelabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(160);
-            make.top.equalTo(16);
+            make.centerY.equalTo(0);
             make.width.equalTo(100);
             make.height.equalTo(20);
         }];
@@ -91,12 +91,12 @@
         _ratelabel = [[UILabel alloc] init];
         _ratelabel.textColor = [UIColor textOrangeColor];
         _ratelabel.font = [UIFont boldSystemFontOfSize:15];
-        _ratelabel.textAlignment = NSTextAlignmentCenter;
+        _ratelabel.textAlignment = NSTextAlignmentRight;
         self.backgroundColor = [UIColor clearColor];
         _ratelabel.numberOfLines = 1;
         [self addSubview:_ratelabel];
         [_ratelabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.equalTo(-16);
+            make.right.equalTo(-10);
             make.centerY.equalTo(0);
             make.width.equalTo(100);
             make.height.equalTo(20);
