@@ -28,10 +28,25 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    
+    _titlelb = [UILabel new];
+    _titlelb.textColor = [UIColor whiteColor];
+    _titlelb.textAlignment = NSTextAlignmentCenter;
+    _titlelb.font = [UIFont systemFontOfSize:17 weight:0];
+    [self.view addSubview:_titlelb];
+    [_titlelb mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(0);
+        make.top.equalTo(30);
+        make.height.equalTo(28);
+        make.width.equalTo(100);
+    }];
+    
     //self.interactivePopGestureRecognizer.delegate = self;
     self.navigationBar.translucent = NO;
-    self.navigationBar.barTintColor = kRGBA(40, 40, 40, 1.0);
-   
+    self.navigationBar.barTintColor = [UIColor textBlueColor];
+    [self.navigationBar setTintColor:[UIColor whiteColor]];
+    
     UIBarButtonItem *playItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemPlay target:self action:@selector(play)];
     //barMetrics:横竖屏区别
     [playItem setBackgroundImage:[UIImage imageNamed:@"ButtonListHighlighted"] forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];

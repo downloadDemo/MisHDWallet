@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface CustomizedNavigationController : UINavigationController
-
+@property(nonatomic)UILabel *titlelb;
 @end

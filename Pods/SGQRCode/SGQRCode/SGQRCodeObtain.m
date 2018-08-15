@@ -13,14 +13,13 @@
 
 #import "SGQRCodeObtain.h"
 #import "SGQRCodeObtainConfigure.h"
-#import "UIImage+SGQRCode.h"
 #import <AVFoundation/AVFoundation.h>
 #import <Photos/Photos.h>
 
 @interface SGQRCodeObtain () <AVCaptureMetadataOutputObjectsDelegate, AVCaptureVideoDataOutputSampleBufferDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 @property (nonatomic, weak) UIViewController *controller;
 @property (nonatomic, strong) SGQRCodeObtainConfigure *configure;
-@property (nonatomic, strong) AVCaptureSession *session;
+@property (nonatomic, strong) AVCaptureSession *captureSession;
 @property (nonatomic, copy) SGQRCodeObtainScanResultBlock scanResultBlock;
 @property (nonatomic, copy) SGQRCodeObtainScanBrightnessBlock scanBrightnessBlock;
 @property (nonatomic, copy) SGQRCodeObtainAlbumDidCancelImagePickerControllerBlock albumDidCancelImagePickerControllerBlock;
@@ -61,42 +60,63 @@
     
     // 设置扫描范围（每一个取值0～1，以屏幕右上角为坐标原点）
     // 注：微信二维码的扫描范围是整个屏幕，这里并没有做处理（可不用设置）
-    // metadataOutput.rectOfInterest = CGRectMake(0.05, 0.2, 0.7, 0.6);
     if (configure.rectOfInterest.origin.x == 0 && configure.rectOfInterest.origin.y == 0 && configure.rectOfInterest.size.width == 0 && configure.rectOfInterest.size.height == 0) {
     } else {
         metadataOutput.rectOfInterest = configure.rectOfInterest;
     }
 
-    // 3、创建会话对象
-    _session = [[AVCaptureSession alloc] init];
-    // 设置会话采集率
-    _session.sessionPreset = configure.sessionPreset;
+    // 3、设置会话采集率
+    self.captureSession.sessionPreset = configure.sessionPreset;
     
     // 4(1)、添加捕获元数据输出流到会话对象
-    [_session addOutput:metadataOutput];
+    [_captureSession addOutput:metadataOutput];
     // 4(2)、添加捕获输出流到会话对象；构成识了别光线强弱
     if (configure.sampleBufferDelegate == YES) {
         AVCaptureVideoDataOutput *videoDataOutput = [[AVCaptureVideoDataOutput alloc] init];
         [videoDataOutput setSampleBufferDelegate:self queue:dispatch_get_main_queue()];
-        [_session addOutput:videoDataOutput];
+        [_captureSession addOutput:videoDataOutput];
     }
     // 4(3)、添加捕获设备输入流到会话对象
-    [_session addInput:deviceInput];
+    [_captureSession addInput:deviceInput];
     
     // 5、设置数据输出类型，需要将数据输出添加到会话后，才能指定元数据类型，否则会报错
     metadataOutput.metadataObjectTypes = configure.metadataObjectTypes;
     
     // 6、预览图层
-    AVCaptureVideoPreviewLayer *videoPreviewLayer = [AVCaptureVideoPreviewLayer layerWithSession:_session];
+    AVCaptureVideoPreviewLayer *videoPreviewLayer = [AVCaptureVideoPreviewLayer layerWithSession:_captureSession];
     // 保持纵横比，填充层边界
     videoPreviewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
     videoPreviewLayer.frame = controller.view.frame;
     [controller.view.layer insertSublayer:videoPreviewLayer atIndex:0];
-    
-    // 7、启动会话
-    [_session startRunning];
 }
-#pragma mark - - - AVCaptureMetadataOutputObjectsDelegate
+
+- (AVCaptureSession *)captureSession {
+    if (!_captureSession) {
+        _captureSession = [[AVCaptureSession alloc] init];
+    }
+    return _captureSession;
+}
+
+- (void)startRunningWithBefore:(void (^)(void))before completion:(void (^)(void))completion {
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        if (before) {
+            before();
+        }
+        [self.captureSession startRunning];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (completion) {
+                completion();
+            }
+        });
+    });
+}
+- (void)stopRunning {
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        [self.captureSession stopRunning];
+    });
+}
+
+#pragma mark - - AVCaptureMetadataOutputObjectsDelegate 的方法
 - (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputMetadataObjects:(NSArray *)metadataObjects fromConnection:(AVCaptureConnection *)connection {
     NSString *resultString = nil;
     if (metadataObjects != nil && metadataObjects.count > 0) {
@@ -107,7 +127,7 @@
         }
     }
 }
-#pragma mark - - - AVCaptureVideoDataOutputSampleBufferDelegate的方法
+#pragma mark - - AVCaptureVideoDataOutputSampleBufferDelegate 的方法
 - (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection {
     CFDictionaryRef metadataDict = CMCopyDictionaryOfAttachments(NULL,sampleBuffer, kCMAttachmentMode_ShouldPropagate);
     NSDictionary *metadata = [[NSMutableDictionary alloc] initWithDictionary:(__bridge NSDictionary*)metadataDict];
@@ -124,13 +144,6 @@
 }
 - (void)setBlockWithQRCodeObtainScanBrightness:(SGQRCodeObtainScanBrightnessBlock)block {
     _scanBrightnessBlock = block;
-}
-
-- (void)startRunning {
-    [_session startRunning];
-}
-- (void)stopRunning {
-    [_session stopRunning];
 }
 
 - (void)playSoundName:(NSString *)name {
@@ -151,12 +164,10 @@ void soundCompleteCallback(SystemSoundID soundID, void *clientData){
     if (controller == nil && _controller == nil) {
         @throw [NSException exceptionWithName:@"SGQRCode" reason:@"SGQRCodeObtain 中 establishAuthorizationQRCodeObtainAlbumWithController: 方法的 controller 参数不能为空" userInfo:nil];
     }
-    
     if (_controller == nil) {
         _controller = controller;
     }
     
-    // 1、 获取摄像设备
     AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
     if (device) {
         // 判断授权状态
@@ -218,20 +229,18 @@ void soundCompleteCallback(SystemSoundID soundID, void *clientData){
     [_controller presentViewController:imagePicker animated:YES completion:nil];
 }
 
+#pragma mark - - UIImagePickerControllerDelegate 的方法
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     [_controller dismissViewControllerAnimated:YES completion:nil];
     if (_albumDidCancelImagePickerControllerBlock) {
         _albumDidCancelImagePickerControllerBlock(self);
     }
 }
-
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
-    // 对选取照片的处理，如果选取的图片尺寸过大，则压缩选取图片，否则不作处理
-    UIImage *image = [UIImage SG_imageSizeWithScreenImage:info[UIImagePickerControllerOriginalImage]];
-    // CIDetector(CIDetector 可用于人脸识别)进行图片解析，从而使我们可以便捷的从相册中获取到二维码
-    // 声明一个 CIDetector，并设定识别类型 CIDetectorTypeQRCode
+    UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    // 创建 CIDetector，并设定识别类型：CIDetectorTypeQRCode
     CIDetector *detector = [CIDetector detectorOfType:CIDetectorTypeQRCode context:nil options:@{CIDetectorAccuracy: CIDetectorAccuracyHigh}];
-    // 取得识别结果
+    // 获取识别结果
     NSArray *features = [detector featuresInImage:[CIImage imageWithCGImage:image.CGImage]];
     if (features.count == 0) {
         [_controller dismissViewControllerAnimated:YES completion:^{
@@ -240,7 +249,6 @@ void soundCompleteCallback(SystemSoundID soundID, void *clientData){
             }
         }];
         return;
-        
     } else {
         for (int index = 0; index < [features count]; index ++) {
             CIQRCodeFeature *feature = [features objectAtIndex:index];

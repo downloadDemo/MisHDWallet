@@ -10,4 +10,5 @@
 
 @interface CustomizedTabBarController : UITabBarController
 +(CustomizedTabBarController*)sharedCustomizedTabBarController;
+
 @end

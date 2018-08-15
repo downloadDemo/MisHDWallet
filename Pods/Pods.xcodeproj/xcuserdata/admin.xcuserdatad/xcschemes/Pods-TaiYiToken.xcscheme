@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1C13A56DF337135791E9B3205C7F1DAB"
+               BlueprintIdentifier = "D12E1BBD744D843B9005F90C4C9B83C7"
                BlueprintName = "Pods-TaiYiToken"
                ReferencedContainer = "container:Pods.xcodeproj"
                BuildableName = "libPods-TaiYiToken.a">

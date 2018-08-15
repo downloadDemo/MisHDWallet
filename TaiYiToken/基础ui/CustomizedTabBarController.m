@@ -10,7 +10,7 @@
 #import "CustomTabBar.h"
 #import "CustomizedNavigationController.h"
 
-
+#import "ContainerViewController.h"
 
 @interface CustomizedTabBarController ()<CustomTabBarDelegate>
 @property(nonatomic)double anglesec;
@@ -52,20 +52,22 @@ static CustomizedTabBarController* _customizedTabBarController;
     UIViewController *manVC = [UIViewController new];
     manVC.view.backgroundColor = kRGBA(220, 220, 220, 1);
     CustomizedNavigationController *manNaVC = [[CustomizedNavigationController alloc] initWithRootViewController:manVC];
-  
    
 
-    UIViewController *manVC1 = [UIViewController new];
+    ContainerViewController *manVC1 = [ContainerViewController new];
     manVC1.view.backgroundColor = kRGBA(220, 220, 220, 1);
     CustomizedNavigationController *manNaVC1 = [[CustomizedNavigationController alloc] initWithRootViewController:manVC1];
+    [manNaVC1.titlelb setText:@"行情"];
 
     UIViewController *manVC11 = [UIViewController new];
     manVC11.view.backgroundColor = kRGBA(220, 220, 220, 1);
     CustomizedNavigationController *manNaVC11 = [[CustomizedNavigationController alloc] initWithRootViewController:manVC11];
-  
+    [manNaVC11.titlelb setText:@"应用"];
+    
     UIViewController *manVC111 = [UIViewController new];
     manVC111.view.backgroundColor = kRGBA(220, 220, 220, 1);
     CustomizedNavigationController *manNaVC111 = [[CustomizedNavigationController alloc] initWithRootViewController:manVC111];
+    [manNaVC111.titlelb setText:@"我的"];
     
     self.viewControllers = @[manNaVC,manNaVC1,manNaVC11,manNaVC111];
     self.selectedIndex = 0;

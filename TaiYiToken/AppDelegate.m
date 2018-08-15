@@ -18,7 +18,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"ifHasAccount"]) {
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"ifHasAccount"]) {
         CustomizedTabBarController *csVC = [CustomizedTabBarController sharedCustomizedTabBarController];
         self.window.rootViewController = csVC;
     }else{
