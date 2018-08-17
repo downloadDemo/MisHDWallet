@@ -33,7 +33,7 @@
     _titlelb = [UILabel new];
     _titlelb.textColor = [UIColor whiteColor];
     _titlelb.textAlignment = NSTextAlignmentCenter;
-    _titlelb.font = [UIFont systemFontOfSize:17 weight:0];
+    _titlelb.font = [UIFont systemFontOfSize:18 weight:0];
     [self.view addSubview:_titlelb];
     [_titlelb mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(0);
@@ -44,7 +44,7 @@
     
     //self.interactivePopGestureRecognizer.delegate = self;
     self.navigationBar.translucent = NO;
-    self.navigationBar.barTintColor = [UIColor textBlueColor];
+    self.navigationBar.barTintColor = [UIColor backBlueColorA];
     [self.navigationBar setTintColor:[UIColor whiteColor]];
     
     UIBarButtonItem *playItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemPlay target:self action:@selector(play)];

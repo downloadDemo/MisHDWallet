@@ -14,5 +14,6 @@
 @property(nonatomic)UIButton *dayBtn;
 @property(nonatomic)UIButton *weekBtn;
 @property(nonatomic)UIButton *monthBtn;
+@property(nonatomic)NSArray *btnArray;
 -(void)initButtonsViewWidth:(CGFloat)width Height:(CGFloat)height;
 @end

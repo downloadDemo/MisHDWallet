@@ -14,9 +14,9 @@
 @property(nonatomic,strong) UIButton *backBtn;
 @property(nonatomic,strong)NSMutableArray<KLinePointModel*> *KLinePointArray;
 @property(nonatomic,strong)CandleStickChartView *chartView;
-@property(nonatomic)NSMutableArray *timeArray;
 @property(nonatomic)DataView *dataView;
 @property(nonatomic)ButtonsView *buttonsView;
+
 @end
 
 @implementation MarketDetailVC
@@ -94,6 +94,7 @@
     self.buttonsView = [ButtonsView new];
     self.buttonsView.layer.borderWidth = 1;
     self.buttonsView.layer.borderColor = [UIColor grayColor].CGColor;
+    
     [self.view addSubview:self.buttonsView];
     [_buttonsView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(15);
@@ -102,13 +103,59 @@
         make.height.equalTo(20);
     }];
     [self.buttonsView initButtonsViewWidth:ScreenWidth - 30 Height:20];
-   
+    int i = 0;
+    [self.buttonsView.oneMinuteBtn setSelected:YES];//默认
+    for (UIButton *btn in self.buttonsView.btnArray) {
+        btn.tag = i;
+        i++;
+        [btn addTarget:self action:@selector(switchBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    }
+}
+
+-(void)switchBtnClick:(UIButton*)button{
+    for (UIButton *btn in self.buttonsView.btnArray) {
+        if(btn.tag != button.tag){
+            [btn setSelected:NO];
+        }
+    }
+    [button setSelected:YES];
+    
+    //修改数据
+    
+}
+-(void)RequestKLineData{
+    NSString *symbol = [self.model.symbol componentsSeparatedByString:@"/"].firstObject;
+    [NetManager GETKLineWthType:@"m" Symbol:symbol completionHandler:^(id responseObj, NSError *error) {
+        if (!error) {
+            
+            NSNumber* code =(NSNumber*)responseObj[@"code"];
+            long codex = code.longValue;
+            if (codex == 0) {
+                NSArray *arr = responseObj[@"result"];
+                if (arr == nil) {
+                    return ;
+                }
+                [self.KLinePointArray removeAllObjects];
+              
+                for (id obj in arr) {
+                    KLinePointModel *data = [KLinePointModel parse:obj];
+                    [self.KLinePointArray addObject:data];
+                }
+                [self CreateCubeline];
+            }else{
+                [self.view showMsg:responseObj[@"message"]];
+            }
+            
+        }else{
+            [self.view showMsg:error.description];
+        }
+    }];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     self.KLinePointArray = [NSMutableArray new];
-    self.timeArray = [NSMutableArray new];
+
     [self initUI];
     //test
     id responseObj = @{ @"code": @0,
@@ -173,7 +220,6 @@
             return ;
         }
         [self.KLinePointArray removeAllObjects];
-         [self.timeArray removeAllObjects];
         for (id obj in arr) {
             KLinePointModel *data = [KLinePointModel parse:obj];
 
@@ -227,12 +273,7 @@
 }
 - (NSString * _Nonnull)stringForValue:(double)value axis:(ChartAxisBase * _Nullable)axis{
    
-    //按4小时
-    /*1h一小时
-     6h六小时
-     w一周
-     m一月
-     d一天*/
+    
     KLinePointModel *model = self.KLinePointArray[(int)value];
     
     NSString *hourTimestart = [[model.startTime componentsSeparatedByString:@" "].lastObject componentsSeparatedByString:@":"].firstObject;
@@ -241,7 +282,6 @@
     NSString *yearMonthDay = [model.startTime  componentsSeparatedByString:@" "].firstObject;
     NSString *monthDay =[NSString stringWithFormat:@"%@-%@",[yearMonthDay componentsSeparatedByString:@"-"][1],[yearMonthDay componentsSeparatedByString:@"-"][2]];
     double avgTime = 0;
-    
     
     avgTime = hourTimestart.doubleValue + 2;
     

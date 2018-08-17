@@ -101,7 +101,7 @@
     if(_openlabel == nil) {
         _openlabel = [[UILabel alloc] init];
         _openlabel.textColor = [UIColor blackColor];
-        _openlabel.font = [UIFont boldSystemFontOfSize:15];
+        _openlabel.font = [UIFont boldSystemFontOfSize:13];
         _openlabel.textAlignment = NSTextAlignmentCenter;
         _openlabel.numberOfLines = 1;
         [self addSubview:_openlabel];
@@ -114,7 +114,7 @@
         
         UILabel *textlb = [[UILabel alloc] init];
         textlb.textColor = [UIColor textGrayColor];
-        textlb.font = [UIFont systemFontOfSize:15];
+        textlb.font = [UIFont systemFontOfSize:13];
         textlb.textAlignment = NSTextAlignmentCenter;
         textlb.text = @"开盘";
         textlb.numberOfLines = 1;
@@ -133,7 +133,7 @@
     if(_highlabel == nil) {
         _highlabel = [[UILabel alloc] init];
         _highlabel.textColor = [UIColor blackColor];
-        _highlabel.font = [UIFont boldSystemFontOfSize:15];
+        _highlabel.font = [UIFont boldSystemFontOfSize:13];
         _highlabel.textAlignment = NSTextAlignmentCenter;
         _highlabel.numberOfLines = 1;
         [self addSubview:_highlabel];
@@ -146,7 +146,7 @@
         
         UILabel *textlb = [[UILabel alloc] init];
         textlb.textColor = [UIColor textGrayColor];
-        textlb.font = [UIFont systemFontOfSize:15];
+        textlb.font = [UIFont systemFontOfSize:13];
         textlb.textAlignment = NSTextAlignmentCenter;
         textlb.text = @"最高";
         textlb.numberOfLines = 1;
@@ -164,7 +164,7 @@
     if(_lowlabel == nil) {
         _lowlabel = [[UILabel alloc] init];
         _lowlabel.textColor = [UIColor blackColor];
-        _lowlabel.font = [UIFont boldSystemFontOfSize:15];
+        _lowlabel.font = [UIFont boldSystemFontOfSize:13];
         _lowlabel.textAlignment = NSTextAlignmentCenter;
         _lowlabel.numberOfLines = 1;
         [self addSubview:_lowlabel];
@@ -177,7 +177,7 @@
         
         UILabel *textlb = [[UILabel alloc] init];
         textlb.textColor = [UIColor textGrayColor];
-        textlb.font = [UIFont systemFontOfSize:15];
+        textlb.font = [UIFont systemFontOfSize:13];
         textlb.textAlignment = NSTextAlignmentCenter;
         textlb.text = @"最低";
         textlb.numberOfLines = 1;
@@ -195,7 +195,7 @@
     if(_volumelabel == nil) {
         _volumelabel = [[UILabel alloc] init];
         _volumelabel.textColor = [UIColor blackColor];
-        _volumelabel.font = [UIFont boldSystemFontOfSize:15];
+        _volumelabel.font = [UIFont boldSystemFontOfSize:13];
         _volumelabel.textAlignment = NSTextAlignmentCenter;
         _volumelabel.numberOfLines = 1;
         [self addSubview:_volumelabel];
@@ -208,7 +208,7 @@
         
         UILabel *textlb = [[UILabel alloc] init];
         textlb.textColor = [UIColor textGrayColor];
-        textlb.font = [UIFont systemFontOfSize:15];
+        textlb.font = [UIFont systemFontOfSize:13];
         textlb.textAlignment = NSTextAlignmentCenter;
         textlb.text = @"成交量";
         textlb.numberOfLines = 1;
