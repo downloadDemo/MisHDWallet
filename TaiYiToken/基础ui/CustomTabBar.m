@@ -67,8 +67,9 @@
     switch ((int)(btn.selected)) {
         case 0:
             btn.selected = YES;
-            [btn.lb setTextColor:[UIColor blueColor]];
+            [btn.lb setTextColor:RGB(100, 100, 255)];
             [btn.iv setImage:self.imageHelight];
+            btn.tintColor = [UIColor backBlueColorA];
             break;
         case 1:
             btn.selected = NO;

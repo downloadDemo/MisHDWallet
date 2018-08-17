@@ -369,8 +369,8 @@
 		843ECA04212162B6002D5C2A /* Hash */ = {
 			isa = PBXGroup;
 			children = (
-				843ECA05212162B6002D5C2A /* NSString+Hash.m */,
 				843ECA06212162B6002D5C2A /* NSString+Hash.h */,
+				843ECA05212162B6002D5C2A /* NSString+Hash.m */,
 			);
 			path = Hash;
 			sourceTree = "<group>";
