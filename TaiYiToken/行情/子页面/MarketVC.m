@@ -199,8 +199,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     MarketDetailVC *detailVC = [MarketDetailVC new];
-    detailVC.model =  self.modelarray != nil? nil : self.modelarray[indexPath.row];
-    [self presentViewController:detailVC animated:YES completion:nil];
+    detailVC.model =  self.modelarray == nil? nil : self.modelarray[indexPath.row];
+    [self.navigationController pushViewController:detailVC animated:YES];
 }
 
 

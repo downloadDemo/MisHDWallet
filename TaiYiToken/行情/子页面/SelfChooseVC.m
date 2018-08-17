@@ -125,8 +125,8 @@
 #pragma tableView delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     MarketDetailVC *detailVC = [MarketDetailVC new];
-    detailVC.model =  self.modelarray != nil? nil : self.modelarray[indexPath.row];
-    [self presentViewController:detailVC animated:YES completion:nil];
+    detailVC.model =  self.modelarray == nil? nil : self.modelarray[indexPath.row];
+    [self.navigationController pushViewController:detailVC animated:YES];
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
@@ -181,7 +181,7 @@
     [cell.coinNamelabel setText:model.symbol];
     [cell.marketValuelabel setText:[NSString stringWithFormat:@"市值：%.2f",model.marketValue]];
     [cell.pricelabel setText:[NSString stringWithFormat:@"%.3f",model.lastPrice]];
-    [cell.rmblabel setText:[NSString stringWithFormat:@"Rmb:%.2f",model.rmb]];
+    [cell.rmblabel setText:[NSString stringWithFormat:@"￥:%.2f",model.rmb]];
     [cell.ratelabel setText:[NSString stringWithFormat:@"%.2f%%",model.priceChangePercent]];
     
     return cell;

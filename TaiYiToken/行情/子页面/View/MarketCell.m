@@ -15,7 +15,6 @@
         _namelabel.textColor = [UIColor grayColor];
         _namelabel.font = [UIFont systemFontOfSize:10];
         _namelabel.textAlignment = NSTextAlignmentLeft;
-        self.backgroundColor = [UIColor clearColor];
         _namelabel.numberOfLines = 1;
         [self.contentView addSubview:_namelabel];
         [_namelabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -26,7 +25,7 @@
         }];
         
     }
-    return _coinNamelabel;
+    return _namelabel;
 }
 - (UILabel *)coinNamelabel {
     if(_coinNamelabel == nil) {
@@ -34,7 +33,6 @@
         _coinNamelabel.textColor = [UIColor blackColor];
         _coinNamelabel.font = [UIFont boldSystemFontOfSize:15];
         _coinNamelabel.textAlignment = NSTextAlignmentLeft;
-        self.backgroundColor = [UIColor clearColor];
         _coinNamelabel.numberOfLines = 1;
         [self.contentView addSubview:_coinNamelabel];
         [_coinNamelabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -53,7 +51,6 @@
         _marketValuelabel.textColor = [UIColor grayColor];
         _marketValuelabel.font = [UIFont systemFontOfSize:10];
         _marketValuelabel.textAlignment = NSTextAlignmentLeft;
-        self.backgroundColor = [UIColor clearColor];
         _marketValuelabel.numberOfLines = 1;
         [self addSubview:_marketValuelabel];
         [_marketValuelabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -72,7 +69,6 @@
         _pricelabel.textColor = [UIColor blackColor];
         _pricelabel.font = [UIFont boldSystemFontOfSize:15];
         _pricelabel.textAlignment = NSTextAlignmentLeft;
-        self.backgroundColor = [UIColor clearColor];
         _pricelabel.numberOfLines = 1;
         [self addSubview:_pricelabel];
         [_pricelabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -92,7 +88,6 @@
         _ratelabel.textColor = [UIColor textOrangeColor];
         _ratelabel.font = [UIFont boldSystemFontOfSize:15];
         _ratelabel.textAlignment = NSTextAlignmentRight;
-        self.backgroundColor = [UIColor clearColor];
         _ratelabel.numberOfLines = 1;
         [self addSubview:_ratelabel];
         [_ratelabel mas_makeConstraints:^(MASConstraintMaker *make) {

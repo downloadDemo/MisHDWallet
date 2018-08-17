@@ -8,20 +8,108 @@
 
 #import "MarketDetailVC.h"
 #import "KLinePointModel.h"
-
+#import "DataView.h"
+#import "ButtonsView.h"
 @interface MarketDetailVC ()<ChartViewDelegate,IChartAxisValueFormatter>
+@property(nonatomic,strong) UIButton *backBtn;
 @property(nonatomic,strong)NSMutableArray<KLinePointModel*> *KLinePointArray;
 @property(nonatomic,strong)CandleStickChartView *chartView;
 @property(nonatomic)NSMutableArray *timeArray;
+@property(nonatomic)DataView *dataView;
+@property(nonatomic)ButtonsView *buttonsView;
 @end
 
 @implementation MarketDetailVC
+-(void)viewWillAppear:(BOOL)animated{
+    self.navigationController.navigationBar.hidden = YES;
+    self.navigationController.hidesBottomBarWhenPushed = YES;
+    
+}
+-(void)viewWillDisappear:(BOOL)animated{
+    self.navigationController.navigationBar.hidden = NO;
+    self.navigationController.hidesBottomBarWhenPushed = NO;
+   
+}
+- (void)popAction{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
+
+-(void)initUI{
+   
+    UIImageView *topBackgroundImageView = [UIImageView new];
+   
+    UIImage *backImage = [[UIImage alloc]createImageWithSize:CGSizeMake(ScreenWidth - 34, 45) gradientColors:@[(id)[UIColor backBlueColorA],(id)[UIColor backBlueColorB]] percentage:@[@(0.2),@(1)] gradientType:GradientFromTopToBottom];
+    [topBackgroundImageView setImage:backImage];
+    [self.view addSubview:topBackgroundImageView];
+    [topBackgroundImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.top.equalTo(0);
+        make.height.equalTo(160);
+    }];
+    UIView *shadowView = [UIView new];
+    shadowView.layer.shadowColor = [UIColor grayColor].CGColor;
+    shadowView.layer.shadowOffset = CGSizeMake(3, 3);
+    shadowView.layer.shadowOpacity = 1;
+    shadowView.layer.shadowRadius = 5.0;
+    shadowView.layer.cornerRadius = 5.0;
+    shadowView.clipsToBounds = NO;
+    [self.view addSubview:shadowView];
+    [shadowView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(10);
+        make.right.equalTo(-10);
+        make.top.equalTo(80);
+        make.height.equalTo(130);
+    }];
+    _dataView = [DataView new];
+    _dataView.backgroundColor = [UIColor whiteColor];
+    [shadowView addSubview:_dataView];
+    [_dataView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(0);
+    }];
+
+    _dataView.namelabel.text = [self.model.symbol componentsSeparatedByString:@"/"].firstObject;
+    _dataView.dollarlabel.text = [NSString stringWithFormat:@"$%.2f",self.model.dollar];
+    _dataView.rmblabel.text = [NSString stringWithFormat:@"≈ ￥%.2f",self.model.rmb];
+    _dataView.ratelabel.text = [NSString stringWithFormat:@"%.2f%%",self.model.priceChangePercent];
+    _dataView.openlabel.text = [NSString stringWithFormat:@"%.4f",self.model.openPrice];
+    _dataView.highlabel.text = [NSString stringWithFormat:@"%.4f",self.model.highPrice];
+    _dataView.lowlabel.text = [NSString stringWithFormat:@"%.4f",self.model.lowPrice];
+    _dataView.volumelabel.text = [NSString stringWithFormat:@"%.4f",self.model.quoteVolume];
+    
+    _backBtn = [UIButton buttonWithType:UIButtonTypeSystem];
+    _backBtn.backgroundColor = [UIColor clearColor];
+    [_backBtn.imageView setContentMode:UIViewContentModeScaleAspectFit];
+    [_backBtn setImage:[UIImage imageNamed:@"ico_right_arrow"] forState:UIControlStateNormal];
+    _backBtn.tintColor = RGB(255, 255, 255);
+    [_backBtn addTarget:self action:@selector(popAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_backBtn];
+    _backBtn.userInteractionEnabled = YES;
+    [_backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(30);
+        make.height.equalTo(25);
+        make.left.equalTo(10);
+        make.width.equalTo(30);
+    }];
+    
+    self.buttonsView = [ButtonsView new];
+    self.buttonsView.layer.borderWidth = 1;
+    self.buttonsView.layer.borderColor = [UIColor grayColor].CGColor;
+    [self.view addSubview:self.buttonsView];
+    [_buttonsView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(15);
+        make.right.equalTo(-15);
+        make.top.equalTo(shadowView.mas_bottom).equalTo(15);
+        make.height.equalTo(20);
+    }];
+    [self.buttonsView initButtonsViewWidth:ScreenWidth - 30 Height:20];
+   
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     self.KLinePointArray = [NSMutableArray new];
     self.timeArray = [NSMutableArray new];
+    [self initUI];
     //test
     id responseObj = @{ @"code": @0,
                      @"message": @"成功",
@@ -106,7 +194,7 @@
     [_chartView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(10);
         make.right.equalTo(-10);
-        make.top.equalTo(100);
+        make.top.equalTo(260);
         make.height.equalTo(300);
     }];
     _chartView.delegate = self;

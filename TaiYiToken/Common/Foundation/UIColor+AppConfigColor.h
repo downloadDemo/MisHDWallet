@@ -113,4 +113,6 @@
 
 + (UIColor *)textGreenColor;
 + (UIColor *)textBlueColor;
++ (UIColor *)backBlueColorA;
++ (UIColor *)backBlueColorB;
 @end

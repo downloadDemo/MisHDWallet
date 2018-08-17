@@ -100,6 +100,12 @@
     return RGB(71, 170, 256);
 }
 
++ (UIColor *)backBlueColorA{
+    return RGB(200, 200, 256);
+}
++ (UIColor *)backBlueColorB{
+    return RGB(190, 170, 256);
+}
 #pragma mark - The default line gray color
 +(UIColor *)lineGrayColor{
     return HEX_RGB(0xE0E0E0);

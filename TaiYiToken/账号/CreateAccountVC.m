@@ -24,11 +24,10 @@
 -(void)viewWillAppear:(BOOL)animated{
     self.navigationController.navigationBar.hidden = YES;
     self.navigationController.hidesBottomBarWhenPushed = YES;
-  
 }
 -(void)viewWillDisappear:(BOOL)animated{
- 
-
+    self.navigationController.navigationBar.hidden = NO;
+    self.navigationController.hidesBottomBarWhenPushed = NO;
 }
 - (void)popAction{
     [self.navigationController popViewControllerAnimated:YES];
@@ -175,7 +174,7 @@
     [_remindView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.bottom.equalTo(0);
     }];
-    [_remindView initRemainViewWithTitle:@"备份钱包" message:@"  没有妥善备份就无法保障资产安全。删除程序或钱包后， 您需要备份文件恢复钱包。"];
+    [_remindView initRemainViewWithTitle:@"备份钱包" message:@"  没有妥善备份就无法保障资产安全。删除程序或钱包后，您需要备份文件恢复钱包。"];
     [_remindView.quitBtn addTarget:self action:@selector(quitRemindView) forControlEvents:UIControlEventTouchUpInside];
     
 }
