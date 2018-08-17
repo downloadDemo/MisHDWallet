@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate+Custom.h"
-#import <AFNetworkActivityIndicatorManager.h>
+#import "AFNetworkActivityIndicatorManager.h"
 @implementation AppDelegate (Custom)
 -(void)configClobalSystem{
     //图片的统一配置

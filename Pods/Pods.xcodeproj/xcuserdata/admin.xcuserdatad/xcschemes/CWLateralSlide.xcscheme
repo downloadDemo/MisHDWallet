@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "12C25EE3320CCBEA93A3E43F993DFB3D"
+               BlueprintIdentifier = "EFB9EE00EDE10B20B0985E8CE9BC1F2C"
                BlueprintName = "CWLateralSlide"
                ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "libCWLateralSlide.a">
+               BuildableName = "CWLateralSlide.framework">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

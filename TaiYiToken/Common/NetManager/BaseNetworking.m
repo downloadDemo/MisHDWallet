@@ -10,12 +10,13 @@
 
 + (id)GET:(NSString *)path parameters:(NSDictionary *)parameters completionHandler:(void (^)(id, NSError *))completionHandler{
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
     
-    AFSecurityPolicy *securityPolicy = [[AFSecurityPolicy alloc] init];
-    [securityPolicy setAllowInvalidCertificates:YES];
-
-    [manager setSecurityPolicy:securityPolicy];
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+//    AFSecurityPolicy *securityPolicy = [[AFSecurityPolicy alloc] init];
+//    [securityPolicy setAllowInvalidCertificates:YES];
+//
+//    [manager setSecurityPolicy:securityPolicy];
+//    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html", @"application/json", @"text/json", @"text/javascript", @"text/plain", nil];
     return [manager GET:path parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {

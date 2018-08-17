@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "CurrencyModel.h"
 @interface SelfChooseVC : UIViewController
-
+@property(nonatomic)NSMutableArray <CurrencyModel*> *modelarray;
+@property(nonatomic)UITableView *tableView;
 @end

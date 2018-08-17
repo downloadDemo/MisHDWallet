@@ -7,10 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6835662A083F28548D8CB4D4 /* libPods-TaiYiToken.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E845F0E59056F75D4A102964 /* libPods-TaiYiToken.a */; };
 		8428A53F2123FE76003E1DD8 /* CurrencyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8428A53E2123FE76003E1DD8 /* CurrencyModel.m */; };
 		8428A542212422EC003E1DD8 /* MarketVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8428A541212422EC003E1DD8 /* MarketVC.m */; };
 		8428A54521242323003E1DD8 /* MarketCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8428A54421242323003E1DD8 /* MarketCell.m */; };
+		8428A548212544F2003E1DD8 /* MarketDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8428A547212544F2003E1DD8 /* MarketDetailVC.m */; };
+		8428A54E21255333003E1DD8 /* KLinePointModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8428A54D21255333003E1DD8 /* KLinePointModel.m */; };
 		843EC9DA21212271002D5C2A /* NSObject+Parse.m in Sources */ = {isa = PBXBuildFile; fileRef = 843EC9CF21212266002D5C2A /* NSObject+Parse.m */; };
 		843EC9DB21212271002D5C2A /* UIScrollView+Refresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 843EC9D021212267002D5C2A /* UIScrollView+Refresh.m */; };
 		843EC9DC21212271002D5C2A /* UIView+HUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 843EC9D221212268002D5C2A /* UIView+HUD.m */; };
@@ -41,29 +42,6 @@
 		8481805F2123B2630007DCF9 /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 8481805A2123B2620007DCF9 /* Base64.m */; };
 		848180602123B2630007DCF9 /* NSData+CommonCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = 8481805B2123B2620007DCF9 /* NSData+CommonCrypto.m */; };
 		848180612123B2630007DCF9 /* PBKDF2.m in Sources */ = {isa = PBXBuildFile; fileRef = 8481805C2123B2620007DCF9 /* PBKDF2.m */; };
-		848180A12123C64D0007DCF9 /* Y_StockChartGlobalVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = 848180672123C64C0007DCF9 /* Y_StockChartGlobalVariable.m */; };
-		848180A22123C64D0007DCF9 /* UIColor+Y_StockChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 8481806C2123C64C0007DCF9 /* UIColor+Y_StockChart.m */; };
-		848180A32123C64D0007DCF9 /* Y_StockChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8481806D2123C64C0007DCF9 /* Y_StockChartView.m */; };
-		848180A42123C64D0007DCF9 /* Y_KLineMAView.m in Sources */ = {isa = PBXBuildFile; fileRef = 848180712123C64C0007DCF9 /* Y_KLineMAView.m */; };
-		848180A52123C64D0007DCF9 /* Y_KLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 848180722123C64C0007DCF9 /* Y_KLineView.m */; };
-		848180A62123C64D0007DCF9 /* Y_StockChartRightYView.m in Sources */ = {isa = PBXBuildFile; fileRef = 848180742123C64C0007DCF9 /* Y_StockChartRightYView.m */; };
-		848180A72123C64D0007DCF9 /* Y_VolumeMAView.m in Sources */ = {isa = PBXBuildFile; fileRef = 848180782123C64C0007DCF9 /* Y_VolumeMAView.m */; };
-		848180A82123C64D0007DCF9 /* Y_KLineAccessoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8481807A2123C64C0007DCF9 /* Y_KLineAccessoryView.m */; };
-		848180A92123C64D0007DCF9 /* Y_KLineAccessory.m in Sources */ = {isa = PBXBuildFile; fileRef = 8481807D2123C64C0007DCF9 /* Y_KLineAccessory.m */; };
-		848180AA2123C64D0007DCF9 /* Y_AccessoryMAView.m in Sources */ = {isa = PBXBuildFile; fileRef = 848180802123C64C0007DCF9 /* Y_AccessoryMAView.m */; };
-		848180AB2123C64D0007DCF9 /* Y_KLinePositionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 848180842123C64C0007DCF9 /* Y_KLinePositionModel.m */; };
-		848180AC2123C64D0007DCF9 /* MA-EMA-MACD介绍.md in Resources */ = {isa = PBXBuildFile; fileRef = 848180852123C64C0007DCF9 /* MA-EMA-MACD介绍.md */; };
-		848180AD2123C64D0007DCF9 /* Y_KLineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8481808A2123C64C0007DCF9 /* Y_KLineModel.m */; };
-		848180AE2123C64D0007DCF9 /* 指标公式.md in Resources */ = {isa = PBXBuildFile; fileRef = 8481808B2123C64C0007DCF9 /* 指标公式.md */; };
-		848180AF2123C64D0007DCF9 /* Y_KLineGroupModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8481808C2123C64C0007DCF9 /* Y_KLineGroupModel.m */; };
-		848180B02123C64D0007DCF9 /* KDJ介绍.md in Resources */ = {isa = PBXBuildFile; fileRef = 8481808D2123C64C0007DCF9 /* KDJ介绍.md */; };
-		848180B12123C64D0007DCF9 /* Y_KLineVolumePositionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8481808E2123C64C0007DCF9 /* Y_KLineVolumePositionModel.m */; };
-		848180B22123C64D0007DCF9 /* Y_KLineVolumeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 848180912123C64C0007DCF9 /* Y_KLineVolumeView.m */; };
-		848180B32123C64D0007DCF9 /* Y_KLineVolume.m in Sources */ = {isa = PBXBuildFile; fileRef = 848180932123C64C0007DCF9 /* Y_KLineVolume.m */; };
-		848180B42123C64D0007DCF9 /* Y_KLineMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 848180972123C64C0007DCF9 /* Y_KLineMainView.m */; };
-		848180B52123C64D0007DCF9 /* Y_MALine.m in Sources */ = {isa = PBXBuildFile; fileRef = 8481809B2123C64C0007DCF9 /* Y_MALine.m */; };
-		848180B62123C64D0007DCF9 /* Y_KLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 8481809C2123C64C0007DCF9 /* Y_KLine.m */; };
-		848180B72123C64D0007DCF9 /* Y_StockChartSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8481809F2123C64C0007DCF9 /* Y_StockChartSegmentView.m */; };
 		848180BB2123C72A0007DCF9 /* ContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 848180B92123C72A0007DCF9 /* ContainerViewController.m */; };
 		848180C02123CE9F0007DCF9 /* SelfChooseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 848180BF2123CE9F0007DCF9 /* SelfChooseVC.m */; };
 		848180C32123CF750007DCF9 /* SelfChooseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 848180C22123CF750007DCF9 /* SelfChooseCell.m */; };
@@ -84,6 +62,7 @@
 		84D0E43121211AAF004E65AD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D0E43021211AAF004E65AD /* main.m */; };
 		84D0E43B21211AAF004E65AD /* TaiYiTokenTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D0E43A21211AAF004E65AD /* TaiYiTokenTests.m */; };
 		84D0E44621211AAF004E65AD /* TaiYiTokenUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D0E44521211AAF004E65AD /* TaiYiTokenUITests.m */; };
+		BE7C9A82449AF67BFD03B98C /* Pods_TaiYiToken.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 658D0728D169E0A4426035F5 /* Pods_TaiYiToken.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,12 +83,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		658D0728D169E0A4426035F5 /* Pods_TaiYiToken.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TaiYiToken.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8428A53D2123FE76003E1DD8 /* CurrencyModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CurrencyModel.h; sourceTree = "<group>"; };
 		8428A53E2123FE76003E1DD8 /* CurrencyModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CurrencyModel.m; sourceTree = "<group>"; };
 		8428A540212422EC003E1DD8 /* MarketVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MarketVC.h; sourceTree = "<group>"; };
 		8428A541212422EC003E1DD8 /* MarketVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MarketVC.m; sourceTree = "<group>"; };
 		8428A54321242323003E1DD8 /* MarketCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MarketCell.h; sourceTree = "<group>"; };
 		8428A54421242323003E1DD8 /* MarketCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MarketCell.m; sourceTree = "<group>"; };
+		8428A546212544F2003E1DD8 /* MarketDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MarketDetailVC.h; sourceTree = "<group>"; };
+		8428A547212544F2003E1DD8 /* MarketDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MarketDetailVC.m; sourceTree = "<group>"; };
+		8428A54C21255333003E1DD8 /* KLinePointModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KLinePointModel.h; sourceTree = "<group>"; };
+		8428A54D21255333003E1DD8 /* KLinePointModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KLinePointModel.m; sourceTree = "<group>"; };
 		843EC9C721212170002D5C2A /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		843EC9CE21212266002D5C2A /* NSString+URLString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+URLString.h"; sourceTree = "<group>"; };
 		843EC9CF21212266002D5C2A /* NSObject+Parse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Parse.m"; sourceTree = "<group>"; };
@@ -173,50 +157,6 @@
 		8481805A2123B2620007DCF9 /* Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64.m; sourceTree = "<group>"; };
 		8481805B2123B2620007DCF9 /* NSData+CommonCrypto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+CommonCrypto.m"; sourceTree = "<group>"; };
 		8481805C2123B2620007DCF9 /* PBKDF2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBKDF2.m; sourceTree = "<group>"; };
-		848180632123C64C0007DCF9 /* Y_StockChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Y_StockChartView.h; sourceTree = "<group>"; };
-		848180662123C64C0007DCF9 /* Y_StockChartGlobalVariable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Y_StockChartGlobalVariable.h; sourceTree = "<group>"; };
-		848180672123C64C0007DCF9 /* Y_StockChartGlobalVariable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Y_StockChartGlobalVariable.m; sourceTree = "<group>"; };
-		848180692123C64C0007DCF9 /* Y_StockChartConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Y_StockChartConstant.h; sourceTree = "<group>"; };
-		8481806B2123C64C0007DCF9 /* UIColor+Y_StockChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Y_StockChart.h"; sourceTree = "<group>"; };
-		8481806C2123C64C0007DCF9 /* UIColor+Y_StockChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Y_StockChart.m"; sourceTree = "<group>"; };
-		8481806D2123C64C0007DCF9 /* Y_StockChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Y_StockChartView.m; sourceTree = "<group>"; };
-		848180702123C64C0007DCF9 /* Y_KLineMAView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Y_KLineMAView.h; sourceTree = "<group>"; };
-		848180712123C64C0007DCF9 /* Y_KLineMAView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Y_KLineMAView.m; sourceTree = "<group>"; };
-		848180722123C64C0007DCF9 /* Y_KLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Y_KLineView.m; sourceTree = "<group>"; };
-		848180742123C64C0007DCF9 /* Y_StockChartRightYView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Y_StockChartRightYView.m; sourceTree = "<group>"; };
-		848180752123C64C0007DCF9 /* Y_StockChartRightYView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Y_StockChartRightYView.h; sourceTree = "<group>"; };
-		848180772123C64C0007DCF9 /* Y_VolumeMAView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Y_VolumeMAView.h; sourceTree = "<group>"; };
-		848180782123C64C0007DCF9 /* Y_VolumeMAView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Y_VolumeMAView.m; sourceTree = "<group>"; };
-		8481807A2123C64C0007DCF9 /* Y_KLineAccessoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Y_KLineAccessoryView.m; sourceTree = "<group>"; };
-		8481807C2123C64C0007DCF9 /* Y_KLineAccessory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Y_KLineAccessory.h; sourceTree = "<group>"; };
-		8481807D2123C64C0007DCF9 /* Y_KLineAccessory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Y_KLineAccessory.m; sourceTree = "<group>"; };
-		8481807E2123C64C0007DCF9 /* Y_KLineAccessoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Y_KLineAccessoryView.h; sourceTree = "<group>"; };
-		848180802123C64C0007DCF9 /* Y_AccessoryMAView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Y_AccessoryMAView.m; sourceTree = "<group>"; };
-		848180812123C64C0007DCF9 /* Y_AccessoryMAView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Y_AccessoryMAView.h; sourceTree = "<group>"; };
-		848180842123C64C0007DCF9 /* Y_KLinePositionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Y_KLinePositionModel.m; sourceTree = "<group>"; };
-		848180852123C64C0007DCF9 /* MA-EMA-MACD介绍.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "MA-EMA-MACD介绍.md"; sourceTree = "<group>"; };
-		848180862123C64C0007DCF9 /* Y_KLineModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Y_KLineModel.h; sourceTree = "<group>"; };
-		848180872123C64C0007DCF9 /* Y_KLineGroupModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Y_KLineGroupModel.h; sourceTree = "<group>"; };
-		848180882123C64C0007DCF9 /* Y_KLineVolumePositionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Y_KLineVolumePositionModel.h; sourceTree = "<group>"; };
-		848180892123C64C0007DCF9 /* Y_KLinePositionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Y_KLinePositionModel.h; sourceTree = "<group>"; };
-		8481808A2123C64C0007DCF9 /* Y_KLineModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Y_KLineModel.m; sourceTree = "<group>"; };
-		8481808B2123C64C0007DCF9 /* 指标公式.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "指标公式.md"; sourceTree = "<group>"; };
-		8481808C2123C64C0007DCF9 /* Y_KLineGroupModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Y_KLineGroupModel.m; sourceTree = "<group>"; };
-		8481808D2123C64C0007DCF9 /* KDJ介绍.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "KDJ介绍.md"; sourceTree = "<group>"; };
-		8481808E2123C64C0007DCF9 /* Y_KLineVolumePositionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Y_KLineVolumePositionModel.m; sourceTree = "<group>"; };
-		8481808F2123C64C0007DCF9 /* Y_KLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Y_KLineView.h; sourceTree = "<group>"; };
-		848180912123C64C0007DCF9 /* Y_KLineVolumeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Y_KLineVolumeView.m; sourceTree = "<group>"; };
-		848180932123C64C0007DCF9 /* Y_KLineVolume.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Y_KLineVolume.m; sourceTree = "<group>"; };
-		848180942123C64C0007DCF9 /* Y_KLineVolume.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Y_KLineVolume.h; sourceTree = "<group>"; };
-		848180952123C64C0007DCF9 /* Y_KLineVolumeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Y_KLineVolumeView.h; sourceTree = "<group>"; };
-		848180972123C64C0007DCF9 /* Y_KLineMainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Y_KLineMainView.m; sourceTree = "<group>"; };
-		848180992123C64C0007DCF9 /* Y_MALine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Y_MALine.h; sourceTree = "<group>"; };
-		8481809A2123C64C0007DCF9 /* Y_KLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Y_KLine.h; sourceTree = "<group>"; };
-		8481809B2123C64C0007DCF9 /* Y_MALine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Y_MALine.m; sourceTree = "<group>"; };
-		8481809C2123C64C0007DCF9 /* Y_KLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Y_KLine.m; sourceTree = "<group>"; };
-		8481809D2123C64C0007DCF9 /* Y_KLineMainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Y_KLineMainView.h; sourceTree = "<group>"; };
-		8481809F2123C64C0007DCF9 /* Y_StockChartSegmentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Y_StockChartSegmentView.m; sourceTree = "<group>"; };
-		848180A02123C64C0007DCF9 /* Y_StockChartSegmentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Y_StockChartSegmentView.h; sourceTree = "<group>"; };
 		848180B92123C72A0007DCF9 /* ContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContainerViewController.m; sourceTree = "<group>"; };
 		848180BA2123C72A0007DCF9 /* ContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContainerViewController.h; sourceTree = "<group>"; };
 		848180BE2123CE9F0007DCF9 /* SelfChooseVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelfChooseVC.h; sourceTree = "<group>"; };
@@ -258,7 +198,6 @@
 		84D0E44521211AAF004E65AD /* TaiYiTokenUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaiYiTokenUITests.m; sourceTree = "<group>"; };
 		84D0E44721211AAF004E65AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8B1D65BC8D952F047398FF96 /* Pods-TaiYiToken.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaiYiToken.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TaiYiToken/Pods-TaiYiToken.debug.xcconfig"; sourceTree = "<group>"; };
-		E845F0E59056F75D4A102964 /* libPods-TaiYiToken.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TaiYiToken.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF792ABEA2562F62BD93C320 /* Pods-TaiYiToken.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaiYiToken.release.xcconfig"; path = "Pods/Target Support Files/Pods-TaiYiToken/Pods-TaiYiToken.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -267,7 +206,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6835662A083F28548D8CB4D4 /* libPods-TaiYiToken.a in Frameworks */,
+				BE7C9A82449AF67BFD03B98C /* Pods_TaiYiToken.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,7 +230,7 @@
 		6AC5FF18C18AADA88B0CA162 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				E845F0E59056F75D4A102964 /* libPods-TaiYiToken.a */,
+				658D0728D169E0A4426035F5 /* Pods_TaiYiToken.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -301,6 +240,8 @@
 			children = (
 				8428A53D2123FE76003E1DD8 /* CurrencyModel.h */,
 				8428A53E2123FE76003E1DD8 /* CurrencyModel.m */,
+				8428A54C21255333003E1DD8 /* KLinePointModel.h */,
+				8428A54D21255333003E1DD8 /* KLinePointModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -331,7 +272,6 @@
 				8428A53C2123FE45003E1DD8 /* Model */,
 				848180B82123C72A0007DCF9 /* 标签导航 */,
 				848180BC2123CDAB0007DCF9 /* 子页面 */,
-				848180622123C64C0007DCF9 /* BTC_K线图 */,
 			);
 			path = "行情";
 			sourceTree = "<group>";
@@ -495,201 +435,6 @@
 			path = AESCrypt;
 			sourceTree = "<group>";
 		};
-		848180622123C64C0007DCF9 /* BTC_K线图 */ = {
-			isa = PBXGroup;
-			children = (
-				8481806E2123C64C0007DCF9 /* KLine */,
-				848180642123C64C0007DCF9 /* Config */,
-				848180632123C64C0007DCF9 /* Y_StockChartView.h */,
-				8481806D2123C64C0007DCF9 /* Y_StockChartView.m */,
-			);
-			path = "BTC_K线图";
-			sourceTree = "<group>";
-		};
-		848180642123C64C0007DCF9 /* Config */ = {
-			isa = PBXGroup;
-			children = (
-				848180652123C64C0007DCF9 /* GlobalVariable */,
-				848180682123C64C0007DCF9 /* Constant */,
-				8481806A2123C64C0007DCF9 /* Theme */,
-			);
-			path = Config;
-			sourceTree = "<group>";
-		};
-		848180652123C64C0007DCF9 /* GlobalVariable */ = {
-			isa = PBXGroup;
-			children = (
-				848180662123C64C0007DCF9 /* Y_StockChartGlobalVariable.h */,
-				848180672123C64C0007DCF9 /* Y_StockChartGlobalVariable.m */,
-			);
-			path = GlobalVariable;
-			sourceTree = "<group>";
-		};
-		848180682123C64C0007DCF9 /* Constant */ = {
-			isa = PBXGroup;
-			children = (
-				848180692123C64C0007DCF9 /* Y_StockChartConstant.h */,
-			);
-			path = Constant;
-			sourceTree = "<group>";
-		};
-		8481806A2123C64C0007DCF9 /* Theme */ = {
-			isa = PBXGroup;
-			children = (
-				8481806B2123C64C0007DCF9 /* UIColor+Y_StockChart.h */,
-				8481806C2123C64C0007DCF9 /* UIColor+Y_StockChart.m */,
-			);
-			path = Theme;
-			sourceTree = "<group>";
-		};
-		8481806E2123C64C0007DCF9 /* KLine */ = {
-			isa = PBXGroup;
-			children = (
-				8481806F2123C64C0007DCF9 /* KLine_MAView */,
-				848180722123C64C0007DCF9 /* Y_KLineView.m */,
-				848180732123C64C0007DCF9 /* PriceView */,
-				848180762123C64C0007DCF9 /* Volume_MAView */,
-				848180792123C64C0007DCF9 /* AccessoryView */,
-				8481807F2123C64C0007DCF9 /* Accessory_MAView */,
-				848180822123C64C0007DCF9 /* Model */,
-				8481808F2123C64C0007DCF9 /* Y_KLineView.h */,
-				848180902123C64C0007DCF9 /* VolumeView */,
-				848180962123C64C0007DCF9 /* MainKLineView */,
-				8481809E2123C64C0007DCF9 /* SegmentView */,
-			);
-			path = KLine;
-			sourceTree = "<group>";
-		};
-		8481806F2123C64C0007DCF9 /* KLine_MAView */ = {
-			isa = PBXGroup;
-			children = (
-				848180702123C64C0007DCF9 /* Y_KLineMAView.h */,
-				848180712123C64C0007DCF9 /* Y_KLineMAView.m */,
-			);
-			path = KLine_MAView;
-			sourceTree = "<group>";
-		};
-		848180732123C64C0007DCF9 /* PriceView */ = {
-			isa = PBXGroup;
-			children = (
-				848180742123C64C0007DCF9 /* Y_StockChartRightYView.m */,
-				848180752123C64C0007DCF9 /* Y_StockChartRightYView.h */,
-			);
-			path = PriceView;
-			sourceTree = "<group>";
-		};
-		848180762123C64C0007DCF9 /* Volume_MAView */ = {
-			isa = PBXGroup;
-			children = (
-				848180772123C64C0007DCF9 /* Y_VolumeMAView.h */,
-				848180782123C64C0007DCF9 /* Y_VolumeMAView.m */,
-			);
-			path = Volume_MAView;
-			sourceTree = "<group>";
-		};
-		848180792123C64C0007DCF9 /* AccessoryView */ = {
-			isa = PBXGroup;
-			children = (
-				8481807A2123C64C0007DCF9 /* Y_KLineAccessoryView.m */,
-				8481807B2123C64C0007DCF9 /* Line */,
-				8481807E2123C64C0007DCF9 /* Y_KLineAccessoryView.h */,
-			);
-			path = AccessoryView;
-			sourceTree = "<group>";
-		};
-		8481807B2123C64C0007DCF9 /* Line */ = {
-			isa = PBXGroup;
-			children = (
-				8481807C2123C64C0007DCF9 /* Y_KLineAccessory.h */,
-				8481807D2123C64C0007DCF9 /* Y_KLineAccessory.m */,
-			);
-			path = Line;
-			sourceTree = "<group>";
-		};
-		8481807F2123C64C0007DCF9 /* Accessory_MAView */ = {
-			isa = PBXGroup;
-			children = (
-				848180802123C64C0007DCF9 /* Y_AccessoryMAView.m */,
-				848180812123C64C0007DCF9 /* Y_AccessoryMAView.h */,
-			);
-			path = Accessory_MAView;
-			sourceTree = "<group>";
-		};
-		848180822123C64C0007DCF9 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				848180832123C64C0007DCF9 /* KLineModel */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		848180832123C64C0007DCF9 /* KLineModel */ = {
-			isa = PBXGroup;
-			children = (
-				848180842123C64C0007DCF9 /* Y_KLinePositionModel.m */,
-				848180852123C64C0007DCF9 /* MA-EMA-MACD介绍.md */,
-				848180862123C64C0007DCF9 /* Y_KLineModel.h */,
-				848180872123C64C0007DCF9 /* Y_KLineGroupModel.h */,
-				848180882123C64C0007DCF9 /* Y_KLineVolumePositionModel.h */,
-				848180892123C64C0007DCF9 /* Y_KLinePositionModel.h */,
-				8481808A2123C64C0007DCF9 /* Y_KLineModel.m */,
-				8481808B2123C64C0007DCF9 /* 指标公式.md */,
-				8481808C2123C64C0007DCF9 /* Y_KLineGroupModel.m */,
-				8481808D2123C64C0007DCF9 /* KDJ介绍.md */,
-				8481808E2123C64C0007DCF9 /* Y_KLineVolumePositionModel.m */,
-			);
-			path = KLineModel;
-			sourceTree = "<group>";
-		};
-		848180902123C64C0007DCF9 /* VolumeView */ = {
-			isa = PBXGroup;
-			children = (
-				848180912123C64C0007DCF9 /* Y_KLineVolumeView.m */,
-				848180922123C64C0007DCF9 /* Line */,
-				848180952123C64C0007DCF9 /* Y_KLineVolumeView.h */,
-			);
-			path = VolumeView;
-			sourceTree = "<group>";
-		};
-		848180922123C64C0007DCF9 /* Line */ = {
-			isa = PBXGroup;
-			children = (
-				848180932123C64C0007DCF9 /* Y_KLineVolume.m */,
-				848180942123C64C0007DCF9 /* Y_KLineVolume.h */,
-			);
-			path = Line;
-			sourceTree = "<group>";
-		};
-		848180962123C64C0007DCF9 /* MainKLineView */ = {
-			isa = PBXGroup;
-			children = (
-				848180972123C64C0007DCF9 /* Y_KLineMainView.m */,
-				848180982123C64C0007DCF9 /* Line */,
-				8481809D2123C64C0007DCF9 /* Y_KLineMainView.h */,
-			);
-			path = MainKLineView;
-			sourceTree = "<group>";
-		};
-		848180982123C64C0007DCF9 /* Line */ = {
-			isa = PBXGroup;
-			children = (
-				848180992123C64C0007DCF9 /* Y_MALine.h */,
-				8481809A2123C64C0007DCF9 /* Y_KLine.h */,
-				8481809B2123C64C0007DCF9 /* Y_MALine.m */,
-				8481809C2123C64C0007DCF9 /* Y_KLine.m */,
-			);
-			path = Line;
-			sourceTree = "<group>";
-		};
-		8481809E2123C64C0007DCF9 /* SegmentView */ = {
-			isa = PBXGroup;
-			children = (
-				8481809F2123C64C0007DCF9 /* Y_StockChartSegmentView.m */,
-				848180A02123C64C0007DCF9 /* Y_StockChartSegmentView.h */,
-			);
-			path = SegmentView;
-			sourceTree = "<group>";
-		};
 		848180B82123C72A0007DCF9 /* 标签导航 */ = {
 			isa = PBXGroup;
 			children = (
@@ -715,6 +460,8 @@
 		848180BD2123CE750007DCF9 /* 详情 */ = {
 			isa = PBXGroup;
 			children = (
+				8428A546212544F2003E1DD8 /* MarketDetailVC.h */,
+				8428A547212544F2003E1DD8 /* MarketDetailVC.m */,
 			);
 			path = "详情";
 			sourceTree = "<group>";
@@ -837,7 +584,7 @@
 				84D0E41A21211AAB004E65AD /* Sources */,
 				84D0E41B21211AAB004E65AD /* Frameworks */,
 				84D0E41C21211AAB004E65AD /* Resources */,
-				1F4A53415F4A3786D9884403 /* [CP] Copy Pods Resources */,
+				A4D1A357CB719E2D95222ED1 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -934,9 +681,6 @@
 				84D0E42E21211AAF004E65AD /* LaunchScreen.storyboard in Resources */,
 				84B0A94C21227892002EFA0A /* Assets.xcassets in Resources */,
 				84D0E42921211AAB004E65AD /* Main.storyboard in Resources */,
-				848180AE2123C64D0007DCF9 /* 指标公式.md in Resources */,
-				848180B02123C64D0007DCF9 /* KDJ介绍.md in Resources */,
-				848180AC2123C64D0007DCF9 /* MA-EMA-MACD介绍.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -957,28 +701,44 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1F4A53415F4A3786D9884403 /* [CP] Copy Pods Resources */ = {
+		A4D1A357CB719E2D95222ED1 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-TaiYiToken/Pods-TaiYiToken-resources.sh",
-				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
-				"${PODS_ROOT}/PYSearch/PYSearch/PYSearch.bundle",
-				"${PODS_ROOT}/SAMKeychain/Support/SAMKeychain.bundle",
-				"${PODS_ROOT}/SGQRCode/SGQRCode/SGQRCode.bundle",
+				"${SRCROOT}/Pods/Target Support Files/Pods-TaiYiToken/Pods-TaiYiToken-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/CWLateralSlide/CWLateralSlide.framework",
+				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
+				"${BUILT_PRODUCTS_DIR}/JVFloatLabeledTextField/JVFloatLabeledTextField.framework",
+				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
+				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
+				"${BUILT_PRODUCTS_DIR}/PYSearch/PYSearch.framework",
+				"${BUILT_PRODUCTS_DIR}/SAMKeychain/SAMKeychain.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SGQRCode/SGQRCode.framework",
+				"${BUILT_PRODUCTS_DIR}/YYKit/YYKit.framework",
 			);
-			name = "[CP] Copy Pods Resources";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/PYSearch.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SAMKeychain.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SGQRCode.bundle",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CWLateralSlide.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JVFloatLabeledTextField.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PYSearch.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SAMKeychain.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SGQRCode.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TaiYiToken/Pods-TaiYiToken-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TaiYiToken/Pods-TaiYiToken-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E45B4675BD3680EE5CF43C14 /* [CP] Check Pods Manifest.lock */ = {
@@ -1006,42 +766,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8428A54E21255333003E1DD8 /* KLinePointModel.m in Sources */,
 				843EC9DC21212271002D5C2A /* UIView+HUD.m in Sources */,
-				848180B32123C64D0007DCF9 /* Y_KLineVolume.m in Sources */,
 				848180BB2123C72A0007DCF9 /* ContainerViewController.m in Sources */,
-				848180B72123C64D0007DCF9 /* Y_StockChartSegmentView.m in Sources */,
 				843EC9EC212122A7002D5C2A /* NetManager.m in Sources */,
 				843EC9DD21212271002D5C2A /* UIImage+BaseToImage.m in Sources */,
-				848180A62123C64D0007DCF9 /* Y_StockChartRightYView.m in Sources */,
-				848180B42123C64D0007DCF9 /* Y_KLineMainView.m in Sources */,
 				84D0E42621211AAB004E65AD /* ViewController.m in Sources */,
 				84B0A95021228BE9002EFA0A /* SwitchAccountVc.m in Sources */,
 				843ECA2C212162FB002D5C2A /* NSString+Extention.m in Sources */,
 				84B0A9642122CD7B002EFA0A /* RemindView.m in Sources */,
 				843ECA3921216320002D5C2A /* UIView+frameAdjust.m in Sources */,
-				848180B52123C64D0007DCF9 /* Y_MALine.m in Sources */,
 				843ECA3B21216320002D5C2A /* UIColor+Util.m in Sources */,
-				848180B22123C64D0007DCF9 /* Y_KLineVolumeView.m in Sources */,
 				843ECA29212162FB002D5C2A /* NSDictionary+ExFoundation.m in Sources */,
 				843EC9DA21212271002D5C2A /* NSObject+Parse.m in Sources */,
-				848180A22123C64D0007DCF9 /* UIColor+Y_StockChart.m in Sources */,
-				848180AF2123C64D0007DCF9 /* Y_KLineGroupModel.m in Sources */,
 				843ECA28212162FB002D5C2A /* NSObject+Extension.m in Sources */,
 				8428A542212422EC003E1DD8 /* MarketVC.m in Sources */,
 				84B0A9492122736B002EFA0A /* CustomizedNavigationController.m in Sources */,
-				848180A92123C64D0007DCF9 /* Y_KLineAccessory.m in Sources */,
-				848180A12123C64D0007DCF9 /* Y_StockChartGlobalVariable.m in Sources */,
 				843ECA24212162FB002D5C2A /* UITextView+Placeholder.m in Sources */,
 				8481805E2123B2630007DCF9 /* NSObject+Extension.m in Sources */,
-				848180AA2123C64D0007DCF9 /* Y_AccessoryMAView.m in Sources */,
 				843EC9ED212122A7002D5C2A /* BaseNetworking.m in Sources */,
 				8481805F2123B2630007DCF9 /* Base64.m in Sources */,
 				843EC9DE21212271002D5C2A /* NSString+URLString.m in Sources */,
-				848180B12123C64D0007DCF9 /* Y_KLineVolumePositionModel.m in Sources */,
 				848180C32123CF750007DCF9 /* SelfChooseCell.m in Sources */,
 				843ECA2A212162FB002D5C2A /* NSMutableAttributedString+ExFoundation.m in Sources */,
-				848180A32123C64D0007DCF9 /* Y_StockChartView.m in Sources */,
-				848180AD2123C64D0007DCF9 /* Y_KLineModel.m in Sources */,
 				843ECA27212162FB002D5C2A /* NSDate+ExFoundation.m in Sources */,
 				84B0A9572122ABD5002EFA0A /* CreateAccountVC.m in Sources */,
 				843EC9E52121228B002D5C2A /* SAMKeyChainEasy.m in Sources */,
@@ -1050,19 +797,15 @@
 				84B0A9602122C184002EFA0A /* UIImage+Gradient.m in Sources */,
 				843ECA312121630A002D5C2A /* RegularExpression.m in Sources */,
 				8481805D2123B2630007DCF9 /* AESCrypt.m in Sources */,
-				848180AB2123C64D0007DCF9 /* Y_KLinePositionModel.m in Sources */,
-				848180A42123C64D0007DCF9 /* Y_KLineMAView.m in Sources */,
-				848180A72123C64D0007DCF9 /* Y_VolumeMAView.m in Sources */,
 				843EC9E62121228B002D5C2A /* AMSaveFile.m in Sources */,
 				843EC9DF21212271002D5C2A /* AppDelegate+Custom.m in Sources */,
 				848180C02123CE9F0007DCF9 /* SelfChooseVC.m in Sources */,
+				8428A548212544F2003E1DD8 /* MarketDetailVC.m in Sources */,
 				84D0E43121211AAF004E65AD /* main.m in Sources */,
 				843ECA26212162FB002D5C2A /* NSData+Hash.m in Sources */,
 				84B0A95F2122C184002EFA0A /* UIButton+Gradient.m in Sources */,
 				843ECA2B212162FB002D5C2A /* UIColor+SNFoundation.m in Sources */,
-				848180A82123C64D0007DCF9 /* Y_KLineAccessoryView.m in Sources */,
 				84D0E42321211AAB004E65AD /* AppDelegate.m in Sources */,
-				848180A52123C64D0007DCF9 /* Y_KLineView.m in Sources */,
 				84B0A95A2122B87B002EFA0A /* UIColor+PGHex.m in Sources */,
 				848180602123B2630007DCF9 /* NSData+CommonCrypto.m in Sources */,
 				848180612123B2630007DCF9 /* PBKDF2.m in Sources */,
@@ -1070,7 +813,6 @@
 				843ECA07212162B7002D5C2A /* NSString+Hash.m in Sources */,
 				84B0A9482122736B002EFA0A /* CustomizedTabBarController.m in Sources */,
 				843EC9DB21212271002D5C2A /* UIScrollView+Refresh.m in Sources */,
-				848180B62123C64D0007DCF9 /* Y_KLine.m in Sources */,
 				843ECA25212162FB002D5C2A /* UIColor+AppConfigColor.m in Sources */,
 				843ECA2D212162FB002D5C2A /* UIImage+ExFoundation.m in Sources */,
 				84B0A94A2122736B002EFA0A /* CustomTabBar.m in Sources */,

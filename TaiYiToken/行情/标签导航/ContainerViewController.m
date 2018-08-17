@@ -2,14 +2,14 @@
 #import "ContainerViewController.h"
 #import "SelfChooseVC.h"
 #import "MarketVC.h"
+#import "CurrencyModel.h"
 @interface ContainerViewController ()<UIScrollViewDelegate>{
-    SelfChooseVC *aVC;
+    
     MarketVC *bVC;
     MarketVC *cVC;
     MarketVC *dVC;
     
     UIScrollView *mainScrollView;
-    UIView *navView;
     UILabel *sliderLabel;
     UIButton *aBtn;
     UIButton *bBtn;
@@ -17,6 +17,16 @@
     UIButton *dBtn;
 }
 
+@property(nonatomic,strong)SelfChooseVC *aVC;
+@property(nonatomic,strong)MarketVC *bVC;
+@property(nonatomic,strong)MarketVC *cVC;
+@property(nonatomic,strong)MarketVC *dVC;
+@property(nonatomic)NSMutableArray <CurrencyModel*> *modelarray;
+@property(nonatomic)NSNotification *iv1Response;
+@property(nonatomic)NSNotification *iv2Response;
+@property(nonatomic)UIButton *iv1;
+@property(nonatomic)UIButton *iv2;
+@property(nonatomic)BOOL isFirstClickcBtn;
 @end
 
 
@@ -25,35 +35,36 @@
 #pragma mark 懒加载VC
 
 -(SelfChooseVC *)aVC{
-    if (aVC==nil) {
-        aVC = [[SelfChooseVC alloc]init];
-        [self addChildViewController:aVC];
+    if (_aVC==nil) {
+        _aVC = [[SelfChooseVC alloc]init];
+        [self addChildViewController:_aVC];
     }
-    return aVC;
+    return _aVC;
 }
 -(MarketVC *)bVC{
-    if (bVC==nil) {
-        bVC = [[MarketVC alloc]init];
-        bVC.indexName = @"b";
-        [self addChildViewController:bVC];
+    if (_bVC==nil) {
+        _bVC = [[MarketVC alloc]init];
+        _bVC.indexName = @"b";
+        [self addChildViewController:_bVC];
     }
-    return bVC;
+    return _bVC;
 }
 -(MarketVC *)cVC{
-    if (cVC==nil) {
-        cVC = [[MarketVC alloc]init];
-        cVC.indexName = @"c";
-        [self addChildViewController:cVC];
+    if (_cVC==nil) {
+        _cVC = [[MarketVC alloc]init];
+        _cVC.indexName = @"c";
+        
+        [self addChildViewController:_cVC];
     }
-    return cVC;
+    return _cVC;
 }
 -(MarketVC *)dVC{
-    if (dVC==nil) {
-        dVC = [[MarketVC alloc]init];
-        dVC.indexName = @"d";
-        [self addChildViewController:dVC];
+    if (_dVC==nil) {
+        _dVC = [[MarketVC alloc]init];
+        _dVC.indexName = @"d";
+        [self addChildViewController:_dVC];
     }
-    return dVC;
+    return _dVC;
 }
 
 
@@ -62,10 +73,10 @@
 -(void)initUI{
     
    
-    navView = [UIView new];
-    [self.view addSubview:navView];
+    _navView = [UIView new];
+    [self.view addSubview:_navView];
     
-    navView.backgroundColor = [UIColor whiteColor];
+    _navView.backgroundColor = [UIColor whiteColor];
     aBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [aBtn setTitleColor:[UIColor textBlueColor] forState:UIControlStateSelected];
     [aBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -76,7 +87,7 @@
     [aBtn setTitle:@"自选" forState:UIControlStateNormal];
     aBtn.tag = 1;
     aBtn.selected = YES;
-    [navView addSubview:aBtn];
+    [_navView addSubview:aBtn];
     
     bBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     bBtn.frame = CGRectMake(aBtn.frame.origin.x+aBtn.frame.size.width, aBtn.frame.origin.y, kScreenWidth/4, 35);
@@ -87,7 +98,7 @@
     [bBtn addTarget:self action:@selector(sliderAction:) forControlEvents:UIControlEventTouchUpInside];
     [bBtn setTitle:@"市值" forState:UIControlStateNormal];
     bBtn.tag = 2;
-    [navView addSubview:bBtn];
+    [_navView addSubview:bBtn];
     
     cBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     cBtn.frame = CGRectMake(bBtn.frame.origin.x+bBtn.frame.size.width, bBtn.frame.origin.y, kScreenWidth/4, 35);
@@ -96,31 +107,37 @@
     
     cBtn.titleLabel.font = [UIFont systemFontOfSize:15];
     [cBtn addTarget:self action:@selector(sliderAction:) forControlEvents:UIControlEventTouchUpInside];
-    [cBtn setTitle:@"涨跌" forState:UIControlStateNormal];
+    [cBtn addTarget:self action:@selector(switchAction) forControlEvents:UIControlEventTouchUpInside];
+    [cBtn setTitle:@"涨幅" forState:UIControlStateNormal];
     cBtn.tag = 3;
     //
-    UIButton *iv1 = [UIButton buttonWithType:UIButtonTypeCustom];
-    [iv1 setImage:[UIImage imageNamed:@"ico_up_default"] forState:UIControlStateNormal];
-    
-    [cBtn addSubview:iv1];
-    [iv1 mas_makeConstraints:^(MASConstraintMaker *make) {
+    _iv1 = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_iv1 setImage:[UIImage imageNamed:@"ico_up_default"] forState:UIControlStateNormal];
+    [_iv1 setImage:[UIImage imageNamed:@"ico_up_select"] forState:UIControlStateSelected];
+   // [_iv1 addTarget:self action:@selector(iv1click) forControlEvents:UIControlEventTouchUpInside];
+    [self.iv1 setSelected:YES];
+    [cBtn addSubview:_iv1];
+    [_iv1 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(-4);
-        make.right.equalTo(-23);
-        make.width.equalTo(7);
-        make.height.equalTo(5);
+        make.right.equalTo(-22);
+        make.width.equalTo(10);
+        make.height.equalTo(6);
     }];
-    UIButton *iv2 = [UIButton buttonWithType:UIButtonTypeCustom];
-    [iv1 setImage:[UIImage imageNamed:@"ico_down_default"] forState:UIControlStateNormal];
-    [cBtn addSubview:iv2];
-    [iv2 mas_makeConstraints:^(MASConstraintMaker *make) {
+    _iv2 = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_iv2 setImage:[UIImage imageNamed:@"ico_down_default"] forState:UIControlStateNormal];
+    [_iv2 setImage:[UIImage imageNamed:@"ico_down_select"] forState:UIControlStateSelected];
+    //[_iv2 addTarget:self action:@selector(iv2click) forControlEvents:UIControlEventTouchUpInside];
+    [self.iv2 setSelected:NO];
+    [cBtn addSubview:_iv2];
+    [_iv2 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(4);
-        make.right.equalTo(-23);
-        make.width.equalTo(7);
-        make.height.equalTo(5);
+        make.right.equalTo(-22);
+        make.width.equalTo(10);
+        make.height.equalTo(6);
     }];
     
     //
-    [navView addSubview:cBtn];
+    [_navView addSubview:cBtn];
     
     
     dBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -132,12 +149,12 @@
     [dBtn addTarget:self action:@selector(sliderAction:) forControlEvents:UIControlEventTouchUpInside];
     [dBtn setTitle:@"成交(24h)" forState:UIControlStateNormal];
     dBtn.tag = 4;
-    [navView addSubview:dBtn];
+    [_navView addSubview:dBtn];
     
     
     sliderLabel = [UILabel new];
     sliderLabel.backgroundColor = [UIColor textBlueColor];
-    [navView addSubview:sliderLabel];
+    [_navView addSubview:sliderLabel];
     [sliderLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(28);
         make.left.equalTo(kScreenWidth/8 - 25);
@@ -145,13 +162,32 @@
         make.height.equalTo(2);
     }];
     
-    [navView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_navView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(0);
         make.left.right.equalTo(0);
         make.height.equalTo(40);
     }];
-
+    _cVC.navView = self.view;
+    _isFirstClickcBtn = YES;
 }
+-(void)switchAction{
+    if (_isFirstClickcBtn == YES) {
+        _isFirstClickcBtn = NO;
+        return;
+    }
+    if (self.iv1.selected == YES&&self.iv2.selected == NO) {
+        [self.iv1 setSelected:NO];
+        [self.iv2 setSelected:YES];
+        [cBtn setTitle:@"跌幅" forState:UIControlStateNormal];
+        [[NSNotificationCenter defaultCenter] postNotification:self.iv1Response];
+    }else{
+        [[NSNotificationCenter defaultCenter] postNotification:self.iv2Response];
+        [cBtn setTitle:@"涨幅" forState:UIControlStateNormal];
+        [self.iv1 setSelected:YES];
+        [self.iv2 setSelected:NO];
+    }
+}
+
 
 - (void)viewDidLoad {
     self.view.backgroundColor = [UIColor whiteColor];
@@ -160,9 +196,10 @@
     [self setMainSrollView];
     //设置默认
     [self sliderWithTag:self.currentIndex+1];
-
+    self.iv1Response = [NSNotification notificationWithName:@"iv1" object:nil];
+    self.iv2Response = [NSNotification notificationWithName:@"iv2" object:nil];
 }
-#pragma mark
+
 #pragma mark 初始化srollView
 -(void)setMainSrollView{
     mainScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 40, kScreenWidth, self.view.frame.size.height)];
@@ -248,13 +285,13 @@
     int index_ = contentOffSetX/kScreenWidth;
     [self sliderWithTag:index_+1];
 }
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
--(void)dealloc{
-    
-}
+
 
 @end
