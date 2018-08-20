@@ -18,11 +18,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"ifHasAccount"]) {
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"ifHasAccount"]) {
         CustomizedTabBarController *csVC = [CustomizedTabBarController sharedCustomizedTabBarController];
         self.window.rootViewController = csVC;
     }else{
-        
+        //没账号创建或导入
         SwitchAccountVc *switchvc = [SwitchAccountVc new];
         UINavigationController *navivc = [[UINavigationController alloc]initWithRootViewController:switchvc];
         [navivc.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];

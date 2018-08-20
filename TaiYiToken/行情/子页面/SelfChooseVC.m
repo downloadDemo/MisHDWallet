@@ -12,60 +12,74 @@
 #import "MarketDetailVC.h"
 @interface SelfChooseVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong)dispatch_source_t time;
+
 @end
 
 @implementation SelfChooseVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.modelarray = [NSMutableArray array];
-
-    /*测试数据*/
-    NSDictionary* responseObj = @{
-                                  @"code": @0,
-                                  @"message": @"成功",
-                                  @"result": @[
-                                          @{
-                                              @"symbol": @"ETH/BTC",
-                                              @"priceChangePercent": @0.42,
-                                              @"lastPrice": @0.044485,
-                                              @"dollar": @280.82535,
-                                              @"quoteVolume": @9879.707,
-                                              @"rmb": @1933.6509,
-                                              @"marketValue": @0,
-                                              @"openPrice": @0.044299,
-                                              @"highPrice": @0.046369,
-                                              @"lowPrice": @0.041941,
-                                              @"circulation": @0,
-                                              @"describe": @"",
-                                              @"turnover": @0
-                                              },
-                                          @{
-                                              @"symbol": @"LTC/BTC",
-                                              @"priceChangePercent": @1.52,
-                                              @"lastPrice": @0.008747,
-                                              @"dollar": @55.21815,
-                                              @"quoteVolume": @1578.4524,
-                                              @"rmb": @380.2101,
-                                              @"marketValue": @0,
-                                              @"openPrice": @0.008616,
-                                              @"highPrice": @0.009012,
-                                              @"lowPrice": @0.008445,
-                                              @"circulation": @0,
-                                              @"describe": @"",
-                                              @"turnover": @0
-                                              }]};
-    NSArray *arr = responseObj[@"result"];
-    for (id obj in arr) {
-        CurrencyModel *currency = [CurrencyModel parse:obj];
-        [self.modelarray addObject:currency];
+    
+    if(self.ifShouldRequest == NO){
+         [self.tableView reloadData];
+    }else{
+        self.modelarray = [NSMutableArray array];
+        
+        /*测试数据*/
+        NSDictionary* responseObj = @{
+                                      @"code": @0,
+                                      @"message": @"成功",
+                                      @"result": @[
+                                              @{
+                                                  @"symbol": @"ETH/BTC",
+                                                  @"priceChangePercent": @0.42,
+                                                  @"lastPrice": @0.044485,
+                                                  @"dollar": @280.82535,
+                                                  @"quoteVolume": @9879.707,
+                                                  @"rmb": @1933.6509,
+                                                  @"marketValue": @0,
+                                                  @"openPrice": @0.044299,
+                                                  @"highPrice": @0.046369,
+                                                  @"lowPrice": @0.041941,
+                                                  @"circulation": @0,
+                                                  @"describe": @"",
+                                                  @"turnover": @0
+                                                  },
+                                              @{
+                                                  @"symbol": @"LTC/BTC",
+                                                  @"priceChangePercent": @1.52,
+                                                  @"lastPrice": @0.008747,
+                                                  @"dollar": @55.21815,
+                                                  @"quoteVolume": @1578.4524,
+                                                  @"rmb": @380.2101,
+                                                  @"marketValue": @0,
+                                                  @"openPrice": @0.008616,
+                                                  @"highPrice": @0.009012,
+                                                  @"lowPrice": @0.008445,
+                                                  @"circulation": @0,
+                                                  @"describe": @"",
+                                                  @"turnover": @0
+                                                  }]};
+        NSArray *arr = responseObj[@"result"];
+        for (id obj in arr) {
+            CurrencyModel *currency = [CurrencyModel parse:obj];
+            [self.modelarray addObject:currency];
+        }
+        
+        [self.tableView reloadData];
+        
     }
     
-    [self.tableView reloadData];   
+  
+    
+
 }
 
 //请求数据
 -(void)GetData{
+    if(self.ifShouldRequest == NO){
+        return;
+    }
     // NSLog(@"sssss   ****%@",self.indexName);
     [NetManager GETCurrencyListcompletionHandler:^(id responseObj, NSError *error) {
         if (!error) {
@@ -108,8 +122,9 @@
     dispatch_source_set_timer(self.time, start, interval, 0);
     //设置回调
     dispatch_source_set_event_handler(self.time, ^{
-        [self GetData];
-      
+        if(self.ifShouldRequest == YES){
+            [self GetData];
+        }
     });
     //由于定时器默认是暂停的所以我们启动一下
     //启动定时器
@@ -200,11 +215,20 @@
         _tableView.tableFooterView = view;
         [_tableView registerClass:[SelfChooseCell class] forCellReuseIdentifier:@"SelfChooseCell"];
         [self.view addSubview:_tableView];
-        [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(0);
-            make.left.right.equalTo(0);
-            make.bottom.equalTo(-49);
-        }];
+        if(_ifShouldRequest == NO){
+            [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(0);
+                make.left.right.equalTo(0);
+                make.bottom.equalTo(0);
+            }];
+        }else{
+            [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(0);
+                make.left.right.equalTo(0);
+                make.bottom.equalTo(-49);
+            }];
+        }
+       
     }
     return _tableView;
 }

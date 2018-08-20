@@ -9,6 +9,7 @@
 #import "CreateAccountVC.h"
 #import "UIButton+Gradient.h"
 #import "RemindView.h"
+#import "CreateMnemonicVC.h"
 @interface CreateAccountVC ()
 @property(nonatomic,strong)UILabel *headlabel;
 @property(nonatomic,strong) JVFloatLabeledTextField *accountTextField;
@@ -166,7 +167,7 @@
     [self.view addSubview:_shadowView];
     [_shadowView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.center.equalTo(0);
-        make.width.equalTo(ScreenWidth-40);
+        make.width.equalTo(ScreenWidth-100);
         make.height.equalTo(190);
     }];
     _remindView = [RemindView new];
@@ -186,6 +187,9 @@
 -(void)quitRemindView{
     [_shadowView removeFromSuperview];
     [_remindView removeFromSuperview];
+    CreateMnemonicVC *cmvc = [CreateMnemonicVC new];
+    [self.navigationController pushViewController:cmvc animated:YES];
+    
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

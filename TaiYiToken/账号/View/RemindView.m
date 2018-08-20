@@ -49,7 +49,7 @@
     _quitBtn.backgroundColor = [UIColor whiteColor];
     _quitBtn.tintColor = [UIColor textBlueColor];
     _quitBtn.titleLabel.font = [UIFont systemFontOfSize:16];
-    [_quitBtn setTitle:@"确定" forState:UIControlStateNormal];
+    [_quitBtn setTitle:@"备份助记词" forState:UIControlStateNormal];
     [self addSubview:_quitBtn];
     _quitBtn.userInteractionEnabled = YES;
     [_quitBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -62,7 +62,8 @@
     [self addSubview:line];
     [line mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(-39);
-        make.left.right.equalTo(0);
+        make.left.equalTo(5);
+        make.right.equalTo(-5);
         make.height.equalTo(1);
     }];
     UIView *line1 = [UIView new];
@@ -70,8 +71,8 @@
     [self addSubview:line1];
     [line1 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(50);
-        make.left.equalTo(0);
-        make.right.equalTo(0);
+        make.left.equalTo(5);
+        make.right.equalTo(-5);
         make.height.equalTo(1);
     }];
 }

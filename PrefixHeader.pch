@@ -93,5 +93,5 @@
 
 #import "SGQRCode.h"
 #import <Charts/Charts-Swift.h>
-
+#import "PYSearch.h"
 #endif /* PrefixHeader_pch */

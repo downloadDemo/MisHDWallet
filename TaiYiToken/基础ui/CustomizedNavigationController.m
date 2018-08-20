@@ -44,7 +44,7 @@
     
     //self.interactivePopGestureRecognizer.delegate = self;
     self.navigationBar.translucent = NO;
-    self.navigationBar.barTintColor = [UIColor backBlueColorA];
+    self.navigationBar.barTintColor = [UIColor backBlueColorB];
     [self.navigationBar setTintColor:[UIColor whiteColor]];
     
     UIBarButtonItem *playItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemPlay target:self action:@selector(play)];
@@ -55,7 +55,6 @@
     
     self.navigationItem.rightBarButtonItem = playItem;
 
-    
 
 }
 //设置状态条的样式

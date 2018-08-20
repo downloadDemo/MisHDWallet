@@ -3,12 +3,8 @@
 #import "SelfChooseVC.h"
 #import "MarketVC.h"
 #import "CurrencyModel.h"
+#import "CurrencyModel.h"
 @interface ContainerViewController ()<UIScrollViewDelegate>{
-    
-    MarketVC *bVC;
-    MarketVC *cVC;
-    MarketVC *dVC;
-    
     UIScrollView *mainScrollView;
     UILabel *sliderLabel;
     UIButton *aBtn;
@@ -27,6 +23,7 @@
 @property(nonatomic)UIButton *iv1;
 @property(nonatomic)UIButton *iv2;
 @property(nonatomic)BOOL isFirstClickcBtn;
+
 @end
 
 
@@ -37,6 +34,7 @@
 -(SelfChooseVC *)aVC{
     if (_aVC==nil) {
         _aVC = [[SelfChooseVC alloc]init];
+        _aVC.ifShouldRequest = YES;
         [self addChildViewController:_aVC];
     }
     return _aVC;
@@ -169,7 +167,50 @@
     }];
     _cVC.navView = self.view;
     _isFirstClickcBtn = YES;
+    
+
+    //*******rightitem******//
+    UIButton *rightbtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [rightbtn setImage:[UIImage imageNamed:@"ico_market_search"] forState:UIControlStateHighlighted];
+    [rightbtn setImage:[UIImage imageNamed:@"ico_market_search"] forState:UIControlStateNormal];
+    [rightbtn addTarget:self action:@selector(searchAction) forControlEvents:UIControlEventTouchUpInside];
+    rightbtn.frame = CGRectMake(0, 0, 30, 40);
+    UIBarButtonItem *rightitem = [[UIBarButtonItem alloc]initWithCustomView:rightbtn];
+    
+    //调整导航栏按钮在导航栏上的位置FixedSpace 占位用
+    UIBarButtonItem *spaceitem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    spaceitem.width = -10;
+    self.navigationItem.rightBarButtonItems = @[rightitem,spaceitem];
 }
+
+-(void)searchAction{
+    // 1. 创建热门搜索数组
+    NSArray *hotSeaches = @[@"BTC"];
+    // 2. 创建搜索控制器
+    
+    PYSearchViewController *searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:hotSeaches searchBarPlaceholder:@"搜索编程语言" didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
+        // 开始(点击)搜索时执行以下代码
+         // 如：跳转到指定控制器
+        self.modelarray = self.aVC.modelarray == nil?[NSMutableArray new]:[self.aVC.modelarray mutableCopy];
+        NSMutableArray *arr = [NSMutableArray new];
+        arr = [self.modelarray mutableCopy];
+        for (CurrencyModel *model in self.modelarray) {
+            if(![model.symbol containsString:searchText]){
+                [arr removeObject:model];
+            }
+        }
+        SelfChooseVC *svc = [[SelfChooseVC alloc] init];
+        svc.modelarray = [arr mutableCopy];
+        svc.ifShouldRequest = NO;
+        [searchViewController.navigationController pushViewController:svc animated:YES];
+        
+        
+    }];
+    // 3. 跳转到搜索控制器
+    CustomizedNavigationController *nav = [[CustomizedNavigationController alloc] initWithRootViewController:searchViewController];
+    [self presentViewController:nav  animated:NO completion:nil];
+}
+
 -(void)switchAction{
     if (_isFirstClickcBtn == YES) {
         _isFirstClickcBtn = NO;
@@ -191,6 +232,7 @@
 
 - (void)viewDidLoad {
     self.view.backgroundColor = [UIColor whiteColor];
+    self.modelarray = [NSMutableArray new];
     [super viewDidLoad];
     [self initUI];
     [self setMainSrollView];
@@ -198,6 +240,7 @@
     [self sliderWithTag:self.currentIndex+1];
     self.iv1Response = [NSNotification notificationWithName:@"iv1" object:nil];
     self.iv2Response = [NSNotification notificationWithName:@"iv2" object:nil];
+  
 }
 
 #pragma mark 初始化srollView

@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "CurrencyModel.h"
+#import "CustomizedNavigationController.h"
 @interface SelfChooseVC : UIViewController
 @property(nonatomic)NSMutableArray <CurrencyModel*> *modelarray;
 @property(nonatomic)UITableView *tableView;
+@property(nonatomic, weak)CustomizedNavigationController *nvc;
+@property(nonatomic)BOOL ifShouldRequest;//当是搜索页面时 不请求数据 NO
 @end
