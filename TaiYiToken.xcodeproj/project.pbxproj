@@ -39,6 +39,7 @@
 		843ECA3921216320002D5C2A /* UIView+frameAdjust.m in Sources */ = {isa = PBXBuildFile; fileRef = 843ECA342121631F002D5C2A /* UIView+frameAdjust.m */; };
 		843ECA3B21216320002D5C2A /* UIColor+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 843ECA362121631F002D5C2A /* UIColor+Util.m */; };
 		84748845212AAAD70077AC0F /* VerifyMnemonicVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84748844212AAAD70077AC0F /* VerifyMnemonicVC.m */; };
+		84748848212BC2EC0077AC0F /* UserInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84748847212BC2EC0077AC0F /* UserInfoVC.m */; };
 		8481805D2123B2630007DCF9 /* AESCrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = 848180552123B2620007DCF9 /* AESCrypt.m */; };
 		8481805E2123B2630007DCF9 /* NSObject+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 848180582123B2620007DCF9 /* NSObject+Extension.m */; };
 		8481805F2123B2630007DCF9 /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 8481805A2123B2620007DCF9 /* Base64.m */; };
@@ -74,6 +75,7 @@
 		84D0E43121211AAF004E65AD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D0E43021211AAF004E65AD /* main.m */; };
 		84D0E43B21211AAF004E65AD /* TaiYiTokenTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D0E43A21211AAF004E65AD /* TaiYiTokenTests.m */; };
 		84D0E44621211AAF004E65AD /* TaiYiTokenUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D0E44521211AAF004E65AD /* TaiYiTokenUITests.m */; };
+		84FA0821212BE3AF00DCFC0C /* CreateAll.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FA0820212BE3AF00DCFC0C /* CreateAll.m */; };
 		BE7C9A82449AF67BFD03B98C /* Pods_TaiYiToken.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 658D0728D169E0A4426035F5 /* Pods_TaiYiToken.framework */; };
 /* End PBXBuildFile section */
 
@@ -163,6 +165,8 @@
 		843ECA372121631F002D5C2A /* UIView+frameAdjust.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+frameAdjust.h"; sourceTree = "<group>"; };
 		84748843212AAAD70077AC0F /* VerifyMnemonicVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VerifyMnemonicVC.h; sourceTree = "<group>"; };
 		84748844212AAAD70077AC0F /* VerifyMnemonicVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VerifyMnemonicVC.m; sourceTree = "<group>"; };
+		84748846212BC2EC0077AC0F /* UserInfoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserInfoVC.h; sourceTree = "<group>"; };
+		84748847212BC2EC0077AC0F /* UserInfoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserInfoVC.m; sourceTree = "<group>"; };
 		848180532123B2620007DCF9 /* NSObject+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Extension.h"; sourceTree = "<group>"; };
 		848180542123B2620007DCF9 /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64.h; sourceTree = "<group>"; };
 		848180552123B2620007DCF9 /* AESCrypt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AESCrypt.m; sourceTree = "<group>"; };
@@ -229,6 +233,8 @@
 		84D0E44121211AAF004E65AD /* TaiYiTokenUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TaiYiTokenUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		84D0E44521211AAF004E65AD /* TaiYiTokenUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaiYiTokenUITests.m; sourceTree = "<group>"; };
 		84D0E44721211AAF004E65AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		84FA081F212BE3AF00DCFC0C /* CreateAll.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateAll.h; sourceTree = "<group>"; };
+		84FA0820212BE3AF00DCFC0C /* CreateAll.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateAll.m; sourceTree = "<group>"; };
 		8B1D65BC8D952F047398FF96 /* Pods-TaiYiToken.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaiYiToken.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TaiYiToken/Pods-TaiYiToken.debug.xcconfig"; sourceTree = "<group>"; };
 		EF792ABEA2562F62BD93C320 /* Pods-TaiYiToken.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaiYiToken.release.xcconfig"; path = "Pods/Target Support Files/Pods-TaiYiToken/Pods-TaiYiToken.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -324,6 +330,8 @@
 		843EC9C421212102002D5C2A /* 我的 */ = {
 			isa = PBXGroup;
 			children = (
+				84748846212BC2EC0077AC0F /* UserInfoVC.h */,
+				84748847212BC2EC0077AC0F /* UserInfoVC.m */,
 			);
 			path = "我的";
 			sourceTree = "<group>";
@@ -557,6 +565,8 @@
 				84C8E7D2212A971C00627445 /* NYMnemonic.h */,
 				84C8E7D3212A971C00627445 /* NYMnemonic.m */,
 				84C8E7D0212A95EC00627445 /* english.txt */,
+				84FA081F212BE3AF00DCFC0C /* CreateAll.h */,
+				84FA0820212BE3AF00DCFC0C /* CreateAll.m */,
 			);
 			path = "助记词";
 			sourceTree = "<group>";
@@ -837,6 +847,7 @@
 				843EC9DD21212271002D5C2A /* UIImage+BaseToImage.m in Sources */,
 				84D0E42621211AAB004E65AD /* ViewController.m in Sources */,
 				84B0A95021228BE9002EFA0A /* SwitchAccountVc.m in Sources */,
+				84FA0821212BE3AF00DCFC0C /* CreateAll.m in Sources */,
 				843ECA2C212162FB002D5C2A /* NSString+Extention.m in Sources */,
 				84B0A9642122CD7B002EFA0A /* RemindView.m in Sources */,
 				843ECA3921216320002D5C2A /* UIView+frameAdjust.m in Sources */,
@@ -886,6 +897,7 @@
 				843EC9DB21212271002D5C2A /* UIScrollView+Refresh.m in Sources */,
 				843ECA25212162FB002D5C2A /* UIColor+AppConfigColor.m in Sources */,
 				843ECA2D212162FB002D5C2A /* UIImage+ExFoundation.m in Sources */,
+				84748848212BC2EC0077AC0F /* UserInfoVC.m in Sources */,
 				84BDD1702126B3DF0039FE09 /* ButtonsView.m in Sources */,
 				84B0A94A2122736B002EFA0A /* CustomTabBar.m in Sources */,
 			);
@@ -1047,6 +1059,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1062,13 +1075,15 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/PrefixHeader.pch";
 				INFOPLIST_FILE = TaiYiToken/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.taiyi.TaiYiToken;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1082,13 +1097,15 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/PrefixHeader.pch";
 				INFOPLIST_FILE = TaiYiToken/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.taiyi.TaiYiToken;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

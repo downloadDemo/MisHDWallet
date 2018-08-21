@@ -11,7 +11,7 @@
 #import "CustomizedNavigationController.h"
 
 #import "ContainerViewController.h"
-
+#import "UserInfoVC.h"
 @interface CustomizedTabBarController ()<CustomTabBarDelegate>
 @property(nonatomic)double anglesec;
 @property(nonatomic)double angle;
@@ -64,7 +64,7 @@ static CustomizedTabBarController* _customizedTabBarController;
     CustomizedNavigationController *manNaVC11 = [[CustomizedNavigationController alloc] initWithRootViewController:manVC11];
     [manNaVC11.titlelb setText:@"应用"];
     
-    UIViewController *manVC111 = [UIViewController new];
+    UserInfoVC *manVC111 = [UserInfoVC new];
     manVC111.view.backgroundColor = kRGBA(220, 220, 220, 1);
     CustomizedNavigationController *manNaVC111 = [[CustomizedNavigationController alloc] initWithRootViewController:manVC111];
     [manNaVC111.titlelb setText:@"我的"];

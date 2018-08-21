@@ -30,7 +30,7 @@
 #import <Foundation/Foundation.h>
 
 @interface AESCrypt : NSObject
-
+//加解密用
 + (NSString *)encrypt:(NSString *)message password:(NSString *)password;
 + (NSString *)decrypt:(NSString *)base64EncodedString password:(NSString *)password;
 

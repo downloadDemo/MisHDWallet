@@ -69,7 +69,7 @@
         [words addObject: lines[wordNumber]];
     }
 
-    return [words componentsJoinedByString:@"   "];
+    return [words componentsJoinedByString:@" "];
 }
 
 + (NSString *)deterministicSeedStringFromMnemonicString:(NSString *)mnemonic

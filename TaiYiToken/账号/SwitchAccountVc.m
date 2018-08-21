@@ -13,10 +13,31 @@
 @property(nonatomic)UIButton *importBtn;
 @property(nonatomic)UIImageView *backImageView;
 @property(nonatomic)CreateAccountVC *cvc;
+@property(nonatomic)UIButton *quitBtn;
 @end
 
 @implementation SwitchAccountVc
+-(void)viewWillDisappear:(BOOL)animated{
+    [_quitBtn removeFromSuperview];
+}
+-(void)viewWillAppear:(BOOL)animated{
+    _quitBtn = [UIButton buttonWithType:UIButtonTypeSystem];
+    _quitBtn.backgroundColor = [UIColor clearColor];
+    _quitBtn.layer.cornerRadius = 13;
+    _quitBtn.layer.masksToBounds = YES;
 
+    _quitBtn.backgroundColor = kRGBA(255, 255, 255, 1);
+    _quitBtn.tintColor = RGB(0, 0, 0);
+    [_quitBtn setImage:[UIImage imageNamed:@"IconOfflineCancel"] forState:UIControlStateNormal];
+    [_quitBtn addTarget:self action:@selector(quit) forControlEvents:UIControlEventTouchUpInside];
+    [self.navigationController.view addSubview:_quitBtn];
+    _quitBtn.userInteractionEnabled = YES;
+    [_quitBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(25);
+        make.height.width.equalTo(26);
+        make.left.equalTo(20);
+    }];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -61,6 +82,13 @@
         make.height.equalTo(40);
         make.left.equalTo(40);
         make.right.equalTo(-40);
+    }];
+    
+  
+}
+-(void)quit{
+    [self dismissViewControllerAnimated:YES completion:^{
+       
     }];
 }
 -(void)createAccount{

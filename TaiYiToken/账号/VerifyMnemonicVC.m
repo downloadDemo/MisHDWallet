@@ -8,16 +8,16 @@
 
 #import "VerifyMnemonicVC.h"
 #import "CFFlowButtonView.h"
+#import "PBKDF2.h"
+#import "CreateAll.h"
 @interface VerifyMnemonicVC ()
 @property(nonatomic,strong) UIButton *backBtn;
 @property(nonatomic)NSMutableArray *mnemonicArray;
 @property(nonatomic,strong)CFFlowButtonView *optionButtonView;//
 @property(nonatomic,strong)CFFlowButtonView *selectedButtonView;
-@property(nonatomic)NSMutableDictionary  *optionbuttonListSelect;//下方选择
-@property(nonatomic)NSMutableDictionary  *optionbuttonListDeselect;//下方选择
-@property(nonatomic)NSMutableDictionary  *buttonListSelect;//上方已选
-@property(nonatomic)NSMutableDictionary  *buttonListDeselect;//上方已选
+@property(nonatomic)NSMutableDictionary  *optionbuttonListSelect;//下方选择,只用于初始化
 @property(nonatomic,strong) UIButton *nextBtn;
+@property(nonatomic,strong)UILabel *headlabel;
 @end
 
 @implementation VerifyMnemonicVC
@@ -37,8 +37,9 @@
     self.view.backgroundColor = [UIColor whiteColor];
     self.mnemonicArray = [NSMutableArray new];
     self.optionbuttonListSelect = [NSMutableDictionary new];
-    //将助记词字符串分割为单词
-    self.mnemonicArray = [[self.mnemonic componentsSeparatedByString:@"   "] mutableCopy];
+    //将助记词字符串分割为单词,因使用dic初始化optionView时通过枚举已经打乱了顺序 故无需专门打破顺序
+    self.mnemonicArray = [[self.mnemonic componentsSeparatedByString:@" "] mutableCopy];
+
     
     _backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _backBtn.backgroundColor = [UIColor clearColor];
@@ -56,24 +57,86 @@
     
     _nextBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _nextBtn.backgroundColor = [UIColor textBlueColor];
-    [_nextBtn gradientButtonWithSize:CGSizeMake(ScreenWidth, 35) colorArray:@[RGB(150, 160, 240),RGB(170, 170, 240)] percentageArray:@[@(0.3),@(1)] gradientType:GradientFromLeftTopToRightBottom];
-    [_nextBtn setTitle:@"下一步" forState:UIControlStateNormal];
+    [_nextBtn gradientButtonWithSize:CGSizeMake(ScreenWidth, 49) colorArray:@[RGB(150, 160, 240),RGB(170, 170, 240)] percentageArray:@[@(0.3),@(1)] gradientType:GradientFromLeftTopToRightBottom];
+    [_nextBtn setTitle:@"完成" forState:UIControlStateNormal];
     [_nextBtn addTarget:self action:@selector(nextAction) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_nextBtn];
     _nextBtn.userInteractionEnabled = YES;
     [_nextBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(0);
-        make.height.equalTo(35);
+        make.height.equalTo(49);
         make.left.equalTo(0);
         make.right.equalTo(0);
     }];
     
+    
+    _headlabel = [[UILabel alloc] init];
+    _headlabel.textColor = [UIColor blackColor];
+    _headlabel.font = [UIFont systemFontOfSize:16];
+    _headlabel.text = @"确认助记词";
+    _headlabel.textAlignment = NSTextAlignmentLeft;
+    _headlabel.numberOfLines = 1;
+    [self.view addSubview:_headlabel];
+    [_headlabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(50);
+        make.top.equalTo(30);
+        make.right.equalTo(-16);
+        make.height.equalTo(25);
+    }];
+
+    UILabel *remindlabel = [[UILabel alloc] init];
+    remindlabel.textColor = [UIColor textGrayColor];
+    remindlabel.font = [UIFont systemFontOfSize:13];
+    remindlabel.text = @"请按顺序点击助记词，以确认您正确备份";
+    remindlabel.textAlignment = NSTextAlignmentCenter;
+    remindlabel.numberOfLines = 1;
+    [self.view addSubview:remindlabel];
+    [remindlabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(10);
+        make.top.equalTo(70);
+        make.right.equalTo(-10);
+        make.height.equalTo(20);
+    }];
+    //
     [self initOptionsView];
     
 }
 -(void)nextAction{
-  
+    //test
+    [self CreatePrivateKey];
+    
+    
+//    if (self.selectedButtonView.buttonList == nil||self.selectedButtonView.buttonList.count < 12) {
+//        [self.view showMsg:@"请按顺序选择所有单词！"];
+//    }
+//    for (NSInteger i = 0; i < self.mnemonicArray.count; i++) {
+//        UIButton *btn = self.selectedButtonView.buttonList[i];
+//        if (![btn.titleLabel.text isEqualToString:self.mnemonicArray[i]]) {
+//            [self.view showMsg:@"顺序错误，请重新选择！"];
+//            return;
+//        }
+//    }
+//
+//    [self dismissViewControllerAnimated:YES completion:^{
+//        [self.view showMsg:@"备份完成！"];
+//    }];
+//
+    
 }
+
+-(void)CreatePrivateKey{
+    NSString *pass = [[NSUserDefaults standardUserDefaults] objectForKey:@"password"];
+    //512位种子
+    NSString *seed = [CreateAll CreateSeedByMnemonic:self.mnemonic AndPassword:pass];
+    NSLog(@"l = %ld",seed.length);
+   //512位种子 长度为128字符 64Byte
+    /*根种子通过不可逆HMAC-SHA512算法推算出512位的哈希串，左256位是主私钥Master Private Key (m)，右256位是主链码Master Chain Code；链码chain code作为推导下级密钥的熵。*/
+    NSMutableArray *array = [CreateAll CreateMasterPrivateKeyBySeed:seed Password:pass];
+    NSString *masterPrivateKey = array[0];
+    NSString *masterChainCode = array[1];
+    
+}
+
 
 -(NSMutableArray*)DicToArray:(NSMutableDictionary*)dic{
     __block NSMutableArray *array = [NSMutableArray new];
@@ -147,7 +210,6 @@
         [mBtn addTarget:self action:@selector(selectAction:) forControlEvents:UIControlEventTouchUpInside];
         mBtn.userInteractionEnabled = YES;
         [self.optionbuttonListSelect setObject:mBtn forKey:mstr];
-        [self.buttonListDeselect setObject:mBtn forKey:mstr];
     }
     
     [self optionButtonView];
@@ -174,13 +236,7 @@
         
         _selectedButtonView = [[CFFlowButtonView alloc] initWithButtonList:nil];
         _selectedButtonView.backgroundColor = [UIColor whiteColor];
-//        [self.view addSubview:_selectedButtonView];
-//        [_selectedButtonView mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.left.equalTo(10);
-//            make.right.equalTo(-10);
-//            make.top.equalTo(100);
-//            make.height.equalTo(150);
-//        }];
+
         [shadowView addSubview:_selectedButtonView];
         [_selectedButtonView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(0);

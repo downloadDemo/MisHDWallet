@@ -78,14 +78,14 @@
     
     _nextBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _nextBtn.backgroundColor = [UIColor textBlueColor];
-    [_nextBtn gradientButtonWithSize:CGSizeMake(ScreenWidth, 35) colorArray:@[RGB(150, 160, 240),RGB(170, 170, 240)] percentageArray:@[@(0.3),@(1)] gradientType:GradientFromLeftTopToRightBottom];
+    [_nextBtn gradientButtonWithSize:CGSizeMake(ScreenWidth, 49) colorArray:@[RGB(150, 160, 240),RGB(170, 170, 240)] percentageArray:@[@(0.3),@(1)] gradientType:GradientFromLeftTopToRightBottom];
     [_nextBtn setTitle:@"下一步" forState:UIControlStateNormal];
     [_nextBtn addTarget:self action:@selector(nextAction) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_nextBtn];
     _nextBtn.userInteractionEnabled = YES;
     [_nextBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(0);
-        make.height.equalTo(35);
+        make.height.equalTo(49);
         make.left.equalTo(0);
         make.right.equalTo(0);
     }];
@@ -95,21 +95,33 @@
 }
 -(void)CreateMnemonic{
     self.mnemonic = [NYMnemonic generateMnemonicString:@128 language:@"english"];
-    UILabel *mnemonicLabel = [UILabel new];
-    mnemonicLabel.layer.borderColor = [UIColor grayColor].CGColor;
-    mnemonicLabel.layer.borderWidth = 1;
-    mnemonicLabel.textColor = [UIColor textBlackColor];
-    mnemonicLabel.font = [UIFont systemFontOfSize:17];
-    mnemonicLabel.text = self.mnemonic;
-    mnemonicLabel.textAlignment = NSTextAlignmentLeft;
-    mnemonicLabel.numberOfLines = 0;
-    [self.view addSubview:mnemonicLabel];
-    [mnemonicLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    UIView *shadowView = [UIView new];
+    shadowView.layer.shadowColor = [UIColor grayColor].CGColor;
+    shadowView.layer.shadowOffset = CGSizeMake(0, 0);
+    shadowView.layer.shadowOpacity = 1;
+    shadowView.layer.shadowRadius = 3.0;
+    shadowView.layer.cornerRadius = 3.0;
+    shadowView.clipsToBounds = NO;
+    [self.view addSubview:shadowView];
+    [shadowView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(20);
         make.top.equalTo(100);
         make.right.equalTo(-20);
         make.height.equalTo(100);
     }];
+    
+    
+    UITextView *mnemonicTextView = [UITextView new];
+    mnemonicTextView.textColor = [UIColor textBlackColor];
+    mnemonicTextView.font = [UIFont systemFontOfSize:17];
+    mnemonicTextView.text = self.mnemonic;
+    mnemonicTextView.textAlignment = NSTextAlignmentNatural;
+    mnemonicTextView.userInteractionEnabled = NO;
+    [shadowView addSubview:mnemonicTextView];
+    [mnemonicTextView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(0);
+    }];
+    
 }
 -(void)nextAction{
     VerifyMnemonicVC *vmvc = [VerifyMnemonicVC new];

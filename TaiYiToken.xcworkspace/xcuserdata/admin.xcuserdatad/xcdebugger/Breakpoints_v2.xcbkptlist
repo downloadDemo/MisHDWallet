@@ -131,7 +131,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TaiYiToken/&#x8d26;&#x53f7;/View/CFFlowButtonView.m"
-            timestampString = "556511408.428803"
+            timestampString = "556517803.704043"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "29"
@@ -147,7 +147,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TaiYiToken/&#x8d26;&#x53f7;/View/CFFlowButtonView.m"
-            timestampString = "556511408.42935"
+            timestampString = "556517803.70479"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "30"
@@ -163,7 +163,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TaiYiToken/&#x8d26;&#x53f7;/View/CFFlowButtonView.m"
-            timestampString = "556511408.429474"
+            timestampString = "556517803.704945"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "51"
@@ -179,7 +179,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TaiYiToken/&#x8d26;&#x53f7;/View/CFFlowButtonView.m"
-            timestampString = "556511408.429566"
+            timestampString = "556517803.705124"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "48"
@@ -195,7 +195,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TaiYiToken/&#x8d26;&#x53f7;/View/CFFlowButtonView.m"
-            timestampString = "556511408.429664"
+            timestampString = "556517803.7053289"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "59"
@@ -211,7 +211,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TaiYiToken/&#x8d26;&#x53f7;/View/CFFlowButtonView.m"
-            timestampString = "556511408.429738"
+            timestampString = "556517803.705451"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "68"
@@ -274,12 +274,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TaiYiToken/&#x8d26;&#x53f7;/View/CFFlowButtonView.m"
-            timestampString = "556511408.429803"
+            timestampString = "556517803.705568"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "47"
             endingLineNumber = "47"
             landmarkName = "-layoutSubviews"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TaiYiToken/&#x8d26;&#x53f7;/&#x52a9;&#x8bb0;&#x8bcd;/NYMnemonic.m"
+            timestampString = "556534313.176191"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "97"
+            endingLineNumber = "97"
+            landmarkName = "+deterministicSeedStringFromMnemonicString:passphrase:language:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

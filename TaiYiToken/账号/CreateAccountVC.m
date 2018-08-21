@@ -23,6 +23,11 @@
 
 @implementation CreateAccountVC
 -(void)viewWillAppear:(BOOL)animated{
+    self.view.backgroundColor = [UIColor whiteColor];
+    self.accountTextField.backgroundColor =[UIColor whiteColor];
+    self.passwordTextField.backgroundColor = [UIColor whiteColor];
+    self.repasswordTextField.backgroundColor = [UIColor whiteColor];
+    self.createBtn.alpha = 1.0;
     self.navigationController.navigationBar.hidden = YES;
     self.navigationController.hidesBottomBarWhenPushed = YES;
 }
@@ -155,6 +160,10 @@
         return;
     }
 
+    [[NSUserDefaults standardUserDefaults] setObject:self.accountTextField.text forKey:@"account"];
+    [[NSUserDefaults standardUserDefaults] setObject:self.passwordTextField.text forKey:@"password"];
+    
+    
     _shadowView = [UIView new];
     _shadowView.layer.shadowColor = [UIColor grayColor].CGColor;
     _shadowView.layer.shadowOffset = CGSizeMake(5, 5);
@@ -166,8 +175,15 @@
     [_shadowView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.center.equalTo(0);
         make.width.equalTo(ScreenWidth-100);
-        make.height.equalTo(190);
+        make.height.equalTo(140);
     }];
+
+    self.view.backgroundColor = [UIColor lightGrayColor];
+    self.accountTextField.backgroundColor =[UIColor lightGrayColor];
+    self.passwordTextField.backgroundColor = [UIColor lightGrayColor];
+    self.repasswordTextField.backgroundColor = [UIColor lightGrayColor];
+    self.createBtn.alpha = 0.6;
+    
     _remindView = [RemindView new];
     [_shadowView addSubview:_remindView];
     [_remindView mas_makeConstraints:^(MASConstraintMaker *make) {

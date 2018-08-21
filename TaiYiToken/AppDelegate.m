@@ -17,19 +17,15 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
+    CustomizedTabBarController *csVC = [CustomizedTabBarController sharedCustomizedTabBarController];
+    self.window.rootViewController = csVC;
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"ifHasAccount"]) {
-        CustomizedTabBarController *csVC = [CustomizedTabBarController sharedCustomizedTabBarController];
-        self.window.rootViewController = csVC;
+        
     }else{
         //没账号创建或导入
-        SwitchAccountVc *switchvc = [SwitchAccountVc new];
-        UINavigationController *navivc = [[UINavigationController alloc]initWithRootViewController:switchvc];
-        [navivc.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
-        navivc.navigationBar.shadowImage = [UIImage new];
-        navivc.navigationBar.translucent = YES;
-        navivc.navigationBar.alpha = 0;
-        self.window.rootViewController = navivc;
+    
+      
+        //self.window.rootViewController = navivc;
     }
     
    
