@@ -78,6 +78,7 @@
     
     _nextBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _nextBtn.backgroundColor = [UIColor textBlueColor];
+    [_nextBtn gradientButtonWithSize:CGSizeMake(ScreenWidth, 35) colorArray:@[RGB(150, 160, 240),RGB(170, 170, 240)] percentageArray:@[@(0.3),@(1)] gradientType:GradientFromLeftTopToRightBottom];
     [_nextBtn setTitle:@"下一步" forState:UIControlStateNormal];
     [_nextBtn addTarget:self action:@selector(nextAction) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_nextBtn];
@@ -100,7 +101,7 @@
     mnemonicLabel.textColor = [UIColor textBlackColor];
     mnemonicLabel.font = [UIFont systemFontOfSize:17];
     mnemonicLabel.text = self.mnemonic;
-    mnemonicLabel.textAlignment = NSTextAlignmentCenter;
+    mnemonicLabel.textAlignment = NSTextAlignmentLeft;
     mnemonicLabel.numberOfLines = 0;
     [self.view addSubview:mnemonicLabel];
     [mnemonicLabel mas_makeConstraints:^(MASConstraintMaker *make) {

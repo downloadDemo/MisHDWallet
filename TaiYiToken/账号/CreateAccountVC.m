@@ -125,15 +125,13 @@
     _createBtn.titleLabel.font = [UIFont systemFontOfSize:16];
     _createBtn.layer.cornerRadius = 4;
     _createBtn.clipsToBounds = YES;
-    [_createBtn gradientButtonWithSize:CGSizeMake(ScreenWidth - 34, 45) colorArray:@[(id)[UIColor textBlueColor],(id)[UIColor blueColor]] percentageArray:@[@(0.2),@(1)] gradientType:GradientFromLeftToRight];
-
+    [_createBtn gradientButtonWithSize:CGSizeMake(ScreenWidth - 34, 45) colorArray:@[RGB(150, 160, 240),RGB(170, 170, 240)] percentageArray:@[@(0.3),@(1)] gradientType:GradientFromLeftTopToRightBottom];
     [_createBtn setTitle:@"创建" forState:UIControlStateNormal];
     [_createBtn addTarget:self action:@selector(createAccount) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_createBtn];
     _createBtn.userInteractionEnabled = YES;
     [_createBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(30);
-        make.centerX.equalTo(0);
         make.height.equalTo(45);
         make.left.equalTo(17);
         make.right.equalTo(-16);

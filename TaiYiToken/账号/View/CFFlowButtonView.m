@@ -18,7 +18,9 @@
 }
 
 - (void)layoutSubviews {
-    self.backgroundColor = [UIColor backBlueColorA];
+   
+    //更新时先移除之前的旧button,不然会覆盖
+   [self removeAllSubviews];
    if (_buttonList == nil||_buttonList.count == 0) {
         return;
     }
@@ -26,42 +28,45 @@
     NSMutableArray *oldButtons = [NSMutableArray array];
     // 对第一个Button进行设置
     UIButton *button0 = self.buttonList[0];
+    button0.frame = CGRectMake(10, 10, button0.titleLabel.text.length*15, 23);
     [self addSubview:button0];
-    [button0 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.top.equalTo(10);
-        make.width.equalTo(button0.titleLabel.text.length*15);
-        make.height.equalTo(20);
-    }];
+//    [button0 mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.top.equalTo(10);
+//        make.width.equalTo(button0.titleLabel.text.length*15);
+//        make.height.equalTo(20);
+//    }];
     
     [oldButtons addObject:button0];
     
     
-
+    CGFloat currentHeight = 10;
     for (int i = 1; i < self.buttonList.count; i++) {
         UIButton *button = self.buttonList[i];
         UIButton *lastButton = self.buttonList[i - 1];
         CGFloat sumWidth = lastButton.x+lastButton.width+10+button.width+10;
-        if (sumWidth > self.width) {//换行
+        CGRect rect = lastButton.frame;
+        if (sumWidth > self.frame.size.width) {//换行
+            currentHeight += 33;//+23+10
+            button.frame = CGRectMake(10, currentHeight, button.titleLabel.text.length*15, 23);
             [self addSubview:button];
-            [button mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.left.equalTo(10);
-                make.top.equalTo(lastButton.mas_top).equalTo(lastButton.height+10);
-                make.width.equalTo(button.titleLabel.text.length*15);
-                make.height.equalTo(20);
-            }];
+//            [button mas_makeConstraints:^(MASConstraintMaker *make) {
+//                make.left.equalTo(10);
+//                make.top.equalTo(rect.origin.y).equalTo(20+10);
+//                make.width.equalTo(button.titleLabel.text.length*15);
+//                make.height.equalTo(20);
+//            }];
             
         }else{
+            button.frame = CGRectMake(rect.origin.x +rect.size.width + 10, currentHeight, button.titleLabel.text.length*15, 23);
             [self addSubview:button];
-            [button mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.left.equalTo(lastButton.mas_right).equalTo(10);
-                make.top.equalTo(lastButton.mas_top);
-                make.width.equalTo(button.titleLabel.text.length*15);
-                make.height.equalTo(20);
-            }];
+//            [button mas_makeConstraints:^(MASConstraintMaker *make) {
+//                make.left.equalTo(rect.origin.x).equalTo(rect.size.width + 10);
+//                make.top.equalTo(rect.origin.y);
+//                make.width.equalTo(button.titleLabel.text.length*15);
+//                make.height.equalTo(20);
+//            }];
         }
-        [oldButtons addObject:button];
-
-        
+      
     }
     
 

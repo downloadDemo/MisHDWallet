@@ -17,6 +17,7 @@
 @property(nonatomic)NSMutableDictionary  *optionbuttonListDeselect;//下方选择
 @property(nonatomic)NSMutableDictionary  *buttonListSelect;//上方已选
 @property(nonatomic)NSMutableDictionary  *buttonListDeselect;//上方已选
+@property(nonatomic,strong) UIButton *nextBtn;
 @end
 
 @implementation VerifyMnemonicVC
@@ -36,9 +37,6 @@
     self.view.backgroundColor = [UIColor whiteColor];
     self.mnemonicArray = [NSMutableArray new];
     self.optionbuttonListSelect = [NSMutableDictionary new];
-    self.optionbuttonListDeselect = [NSMutableDictionary new];
-    self.buttonListSelect = [NSMutableDictionary new];
-    self.buttonListDeselect = [NSMutableDictionary new];
     //将助记词字符串分割为单词
     self.mnemonicArray = [[self.mnemonic componentsSeparatedByString:@"   "] mutableCopy];
     
@@ -56,10 +54,26 @@
         make.width.equalTo(30);
     }];
     
+    _nextBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _nextBtn.backgroundColor = [UIColor textBlueColor];
+    [_nextBtn gradientButtonWithSize:CGSizeMake(ScreenWidth, 35) colorArray:@[RGB(150, 160, 240),RGB(170, 170, 240)] percentageArray:@[@(0.3),@(1)] gradientType:GradientFromLeftTopToRightBottom];
+    [_nextBtn setTitle:@"下一步" forState:UIControlStateNormal];
+    [_nextBtn addTarget:self action:@selector(nextAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_nextBtn];
+    _nextBtn.userInteractionEnabled = YES;
+    [_nextBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(0);
+        make.height.equalTo(35);
+        make.left.equalTo(0);
+        make.right.equalTo(0);
+    }];
+    
     [self initOptionsView];
     
 }
-
+-(void)nextAction{
+  
+}
 
 -(NSMutableArray*)DicToArray:(NSMutableDictionary*)dic{
     __block NSMutableArray *array = [NSMutableArray new];
@@ -69,58 +83,66 @@
     return array;
 }
 -(void)selectAction:(UIButton *)button{
+    [button setSelected:NO];
     
     if (button.tag == 0) {//0 表示点击下面 1 点击上面
         //删除下面的
-         [self.optionButtonView.buttonList removeObject:button];
+        UIButton *btn = [UIButton new];
+        for (btn in self.optionButtonView.buttonList) {
+            if ([btn.titleLabel.text isEqualToString:button.titleLabel.text]) {
+                break;
+            }
+        }
+        
+        [self.optionButtonView.buttonList removeObject:btn];
         
         //增加上面的
         NSString *mstr = button.titleLabel.text;
         UIButton *mBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        mBtn.backgroundColor = [UIColor textOrangeColor];
+        [mBtn gradientButtonWithSize:CGSizeMake(mstr.length*15, 23) colorArray:@[(id)[UIColor textOrangeColor],(id)[UIColor orangeColor]] percentageArray:@[@(0.2),@(1)] gradientType:GradientFromLeftTopToRightBottom];
         mBtn.tag = 1;
-        mBtn.frame = CGRectMake(0, 0, mstr.length*15, 20);
-        mBtn.backgroundColor = [UIColor textBlueColor];
+        [mBtn.titleLabel setFont:[UIFont systemFontOfSize:15]];
+        
         [mBtn setTitle:mstr forState:UIControlStateNormal];
         [mBtn addTarget:self action:@selector(selectAction:) forControlEvents:UIControlEventTouchUpInside];
         mBtn.userInteractionEnabled = YES;
-        [self.selectedButtonView.buttonList addObject:button];
+        [self.selectedButtonView.buttonList addObject:mBtn];
     }else{
         //删除上面的
-        [self.selectedButtonView.buttonList removeObject:button];
+        UIButton *btn = [UIButton new];
+        for (btn in self.selectedButtonView.buttonList) {
+            if ([btn.titleLabel.text isEqualToString:button.titleLabel.text]) {
+                break;
+            }
+        }
+        [self.selectedButtonView.buttonList removeObject:btn];
         
         //增加下面的
         NSString *mstr = button.titleLabel.text;
         UIButton *mBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        mBtn.backgroundColor = [UIColor textBlueColor];
-        mBtn.tag = 1;
-        mBtn.frame = CGRectMake(0, 0, mstr.length*15, 20);
-        mBtn.backgroundColor = [UIColor textBlueColor];
+        [mBtn.titleLabel setFont:[UIFont systemFontOfSize:15]];
+        [mBtn gradientButtonWithSize:CGSizeMake(mstr.length*15, 23) colorArray:@[RGB(160, 180, 240),RGB(170, 170, 240)] percentageArray:@[@(0.3),@(1)] gradientType:GradientFromLeftTopToRightBottom];
+        mBtn.tag = 0;
+        
+        
         [mBtn setTitle:mstr forState:UIControlStateNormal];
         [mBtn addTarget:self action:@selector(selectAction:) forControlEvents:UIControlEventTouchUpInside];
         mBtn.userInteractionEnabled = YES;
-        [self.optionButtonView.buttonList addObject:button];
+        [self.optionButtonView.buttonList addObject:mBtn];
     }
-    
+    //重绘
     [self.optionButtonView layoutSubviews];
     [self.selectedButtonView layoutSubviews];
 }
--(void)deselectAction:(UIButton *)button{
 
-   // [button setSelected:NO];
-//    button.backgroundColor = [UIColor textBlueColor];
-//    [self.selectedButtonView.buttonList removeObject:button];
-//    [self.optionButtonView.buttonList addObject:button];
-//    [self.selectedButtonView layoutSubviews];
-//    [self.optionButtonView layoutSubviews];
-}
 -(void)initOptionsView{
     for (NSInteger i = 0; i<self.mnemonicArray.count; i++) {
         NSString *mstr = self.mnemonicArray[i];
         UIButton *mBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         mBtn.tag = 0;
-        mBtn.frame = CGRectMake(0, 0, mstr.length*15, 20);
-        mBtn.backgroundColor = [UIColor textBlueColor];
+        mBtn.frame = CGRectMake(0, 0, mstr.length*15, 23);
+        [mBtn.titleLabel setFont:[UIFont systemFontOfSize:15]];
+        [mBtn gradientButtonWithSize:CGSizeMake(mstr.length*15, 23) colorArray:@[RGB(150, 160, 240),RGB(170, 170, 240)] percentageArray:@[@(0.3),@(1)] gradientType:GradientFromLeftTopToRightBottom];
         [mBtn setTitle:mstr forState:UIControlStateNormal];
         [mBtn addTarget:self action:@selector(selectAction:) forControlEvents:UIControlEventTouchUpInside];
         mBtn.userInteractionEnabled = YES;
@@ -134,13 +156,34 @@
 }
 -(CFFlowButtonView *)selectedButtonView{
     if (_selectedButtonView == nil) {
-        _selectedButtonView = [[CFFlowButtonView alloc] initWithButtonList:self.buttonListSelect];
-        [self.view addSubview:_selectedButtonView];
-        [_selectedButtonView mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        UIView *shadowView = [UIView new];
+        shadowView.layer.shadowColor = [UIColor grayColor].CGColor;
+        shadowView.layer.shadowOffset = CGSizeMake(0, 0);
+        shadowView.layer.shadowOpacity = 1;
+        shadowView.layer.shadowRadius = 3.0;
+        shadowView.layer.cornerRadius = 3.0;
+        shadowView.clipsToBounds = NO;
+        [self.view addSubview:shadowView];
+        [shadowView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(10);
             make.right.equalTo(-10);
             make.top.equalTo(100);
             make.height.equalTo(150);
+        }];
+        
+        _selectedButtonView = [[CFFlowButtonView alloc] initWithButtonList:nil];
+        _selectedButtonView.backgroundColor = [UIColor whiteColor];
+//        [self.view addSubview:_selectedButtonView];
+//        [_selectedButtonView mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.left.equalTo(10);
+//            make.right.equalTo(-10);
+//            make.top.equalTo(100);
+//            make.height.equalTo(150);
+//        }];
+        [shadowView addSubview:_selectedButtonView];
+        [_selectedButtonView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(0);
         }];
     }
     return _selectedButtonView;
