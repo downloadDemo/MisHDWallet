@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7319E3BCA3A7F0C6BA70BF65EAC8186C"
+               BlueprintIdentifier = "349355B94867CB6FEE7595441F2DE054"
                BuildableName = "Pods_TaiYiToken.framework"
                BlueprintName = "Pods-TaiYiToken"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7319E3BCA3A7F0C6BA70BF65EAC8186C"
+            BlueprintIdentifier = "349355B94867CB6FEE7595441F2DE054"
             BuildableName = "Pods_TaiYiToken.framework"
             BlueprintName = "Pods-TaiYiToken"
             ReferencedContainer = "container:Pods.xcodeproj">

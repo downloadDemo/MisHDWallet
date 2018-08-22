@@ -8,7 +8,7 @@
 
 #import "VerifyMnemonicVC.h"
 #import "CFFlowButtonView.h"
-#import "PBKDF2.h"
+//#import "PBKDF2.h"
 #import "CreateAll.h"
 @interface VerifyMnemonicVC ()
 @property(nonatomic,strong) UIButton *backBtn;
@@ -135,6 +135,8 @@
     NSString *masterPrivateKey = array[0];
     NSString *masterChainCode = array[1];
     
+    //test
+    [CreateAll CreatePublicKeyWithPrivateKey:masterPrivateKey Seed:seed];
 }
 
 

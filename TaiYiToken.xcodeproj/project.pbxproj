@@ -60,6 +60,12 @@
 		84B0A9642122CD7B002EFA0A /* RemindView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B0A9632122CD7B002EFA0A /* RemindView.m */; };
 		84BDD16D21269D5B0039FE09 /* DataView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84BDD16C21269D5B0039FE09 /* DataView.m */; };
 		84BDD1702126B3DF0039FE09 /* ButtonsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84BDD16F2126B3DF0039FE09 /* ButtonsView.m */; };
+		84C0DF26212CFF3800BCC91D /* BRKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C0DF24212CFF3700BCC91D /* BRKey.m */; };
+		84C0DF2A212CFF7700BCC91D /* NSString+Bitcoin.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C0DF29212CFF7700BCC91D /* NSString+Bitcoin.m */; };
+		84C0DF2D212CFF8500BCC91D /* NSData+Bitcoin.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C0DF2C212CFF8500BCC91D /* NSData+Bitcoin.m */; };
+		84C0DF30212CFF9100BCC91D /* NSMutableData+Bitcoin.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C0DF2E212CFF9000BCC91D /* NSMutableData+Bitcoin.m */; };
+		84C0DF33212D4F1E00BCC91D /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 84C0DF32212D4F1E00BCC91D /* libiconv.tbd */; };
+		84C0DF36212D604200BCC91D /* BRBIP32Sequence.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C0DF34212D604100BCC91D /* BRBIP32Sequence.m */; };
 		84C8E7D1212A95EC00627445 /* english.txt in Resources */ = {isa = PBXBuildFile; fileRef = 84C8E7D0212A95EC00627445 /* english.txt */; };
 		84C8E7D4212A971C00627445 /* NYMnemonic.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C8E7D3212A971C00627445 /* NYMnemonic.m */; };
 		84C8E7D6212A975B00627445 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84C8E7D5212A975B00627445 /* CoreGraphics.framework */; };
@@ -206,6 +212,18 @@
 		84BDD16C21269D5B0039FE09 /* DataView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DataView.m; sourceTree = "<group>"; };
 		84BDD16E2126B3DF0039FE09 /* ButtonsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ButtonsView.h; sourceTree = "<group>"; };
 		84BDD16F2126B3DF0039FE09 /* ButtonsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ButtonsView.m; sourceTree = "<group>"; };
+		84C0DF24212CFF3700BCC91D /* BRKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRKey.m; sourceTree = "<group>"; };
+		84C0DF25212CFF3700BCC91D /* BRKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRKey.h; sourceTree = "<group>"; };
+		84C0DF28212CFF7600BCC91D /* NSString+Bitcoin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Bitcoin.h"; sourceTree = "<group>"; };
+		84C0DF29212CFF7700BCC91D /* NSString+Bitcoin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Bitcoin.m"; sourceTree = "<group>"; };
+		84C0DF2B212CFF8400BCC91D /* NSData+Bitcoin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Bitcoin.h"; sourceTree = "<group>"; };
+		84C0DF2C212CFF8500BCC91D /* NSData+Bitcoin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Bitcoin.m"; sourceTree = "<group>"; };
+		84C0DF2E212CFF9000BCC91D /* NSMutableData+Bitcoin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableData+Bitcoin.m"; sourceTree = "<group>"; };
+		84C0DF2F212CFF9100BCC91D /* NSMutableData+Bitcoin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableData+Bitcoin.h"; sourceTree = "<group>"; };
+		84C0DF32212D4F1E00BCC91D /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
+		84C0DF34212D604100BCC91D /* BRBIP32Sequence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRBIP32Sequence.m; sourceTree = "<group>"; };
+		84C0DF35212D604100BCC91D /* BRBIP32Sequence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRBIP32Sequence.h; sourceTree = "<group>"; };
+		84C0DF37212D60D100BCC91D /* BRKeySequence.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BRKeySequence.h; sourceTree = "<group>"; };
 		84C8E7D0212A95EC00627445 /* english.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = english.txt; sourceTree = "<group>"; };
 		84C8E7D2212A971C00627445 /* NYMnemonic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NYMnemonic.h; sourceTree = "<group>"; };
 		84C8E7D3212A971C00627445 /* NYMnemonic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NYMnemonic.m; sourceTree = "<group>"; };
@@ -244,6 +262,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84C0DF33212D4F1E00BCC91D /* libiconv.tbd in Frameworks */,
 				84C8E7DA212A976800627445 /* Foundation.framework in Frameworks */,
 				84C8E7D8212A976100627445 /* UIKit.framework in Frameworks */,
 				84C8E7D6212A975B00627445 /* CoreGraphics.framework in Frameworks */,
@@ -271,6 +290,7 @@
 		6AC5FF18C18AADA88B0CA162 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				84C0DF32212D4F1E00BCC91D /* libiconv.tbd */,
 				84C8E7D9212A976800627445 /* Foundation.framework */,
 				84C8E7D7212A976100627445 /* UIKit.framework */,
 				84C8E7D5212A975B00627445 /* CoreGraphics.framework */,
@@ -559,9 +579,28 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		84C0DF27212CFF6100BCC91D /* category */ = {
+			isa = PBXGroup;
+			children = (
+				84C0DF28212CFF7600BCC91D /* NSString+Bitcoin.h */,
+				84C0DF29212CFF7700BCC91D /* NSString+Bitcoin.m */,
+				84C0DF2B212CFF8400BCC91D /* NSData+Bitcoin.h */,
+				84C0DF2C212CFF8500BCC91D /* NSData+Bitcoin.m */,
+				84C0DF2F212CFF9100BCC91D /* NSMutableData+Bitcoin.h */,
+				84C0DF2E212CFF9000BCC91D /* NSMutableData+Bitcoin.m */,
+				84C0DF35212D604100BCC91D /* BRBIP32Sequence.h */,
+				84C0DF34212D604100BCC91D /* BRBIP32Sequence.m */,
+				84C0DF37212D60D100BCC91D /* BRKeySequence.h */,
+			);
+			path = category;
+			sourceTree = "<group>";
+		};
 		84C8E7CF212A95D000627445 /* 助记词 */ = {
 			isa = PBXGroup;
 			children = (
+				84C0DF27212CFF6100BCC91D /* category */,
+				84C0DF25212CFF3700BCC91D /* BRKey.h */,
+				84C0DF24212CFF3700BCC91D /* BRKey.m */,
 				84C8E7D2212A971C00627445 /* NYMnemonic.h */,
 				84C8E7D3212A971C00627445 /* NYMnemonic.m */,
 				84C8E7D0212A95EC00627445 /* english.txt */,
@@ -794,6 +833,7 @@
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SGQRCode/SGQRCode.framework",
 				"${BUILT_PRODUCTS_DIR}/YYKit/YYKit.framework",
+				"${BUILT_PRODUCTS_DIR}/secp256k1_ios/secp256k1_ios.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -809,6 +849,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SGQRCode.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/secp256k1_ios.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -850,12 +891,14 @@
 				84FA0821212BE3AF00DCFC0C /* CreateAll.m in Sources */,
 				843ECA2C212162FB002D5C2A /* NSString+Extention.m in Sources */,
 				84B0A9642122CD7B002EFA0A /* RemindView.m in Sources */,
+				84C0DF30212CFF9100BCC91D /* NSMutableData+Bitcoin.m in Sources */,
 				843ECA3921216320002D5C2A /* UIView+frameAdjust.m in Sources */,
 				843ECA3B21216320002D5C2A /* UIColor+Util.m in Sources */,
 				843ECA29212162FB002D5C2A /* NSDictionary+ExFoundation.m in Sources */,
 				843EC9DA21212271002D5C2A /* NSObject+Parse.m in Sources */,
 				843ECA28212162FB002D5C2A /* NSObject+Extension.m in Sources */,
 				84C8E7DD212A99FD00627445 /* CreateMnemonicVC.m in Sources */,
+				84C0DF36212D604200BCC91D /* BRBIP32Sequence.m in Sources */,
 				8428A542212422EC003E1DD8 /* MarketVC.m in Sources */,
 				84B0A9492122736B002EFA0A /* CustomizedNavigationController.m in Sources */,
 				843ECA24212162FB002D5C2A /* UITextView+Placeholder.m in Sources */,
@@ -872,6 +915,7 @@
 				8428A54521242323003E1DD8 /* MarketCell.m in Sources */,
 				8428A53F2123FE76003E1DD8 /* CurrencyModel.m in Sources */,
 				84B0A9602122C184002EFA0A /* UIImage+Gradient.m in Sources */,
+				84C0DF2A212CFF7700BCC91D /* NSString+Bitcoin.m in Sources */,
 				843ECA312121630A002D5C2A /* RegularExpression.m in Sources */,
 				8481805D2123B2630007DCF9 /* AESCrypt.m in Sources */,
 				843EC9E62121228B002D5C2A /* AMSaveFile.m in Sources */,
@@ -883,11 +927,13 @@
 				84D0E43121211AAF004E65AD /* main.m in Sources */,
 				84C8E7E0212A9FEF00627445 /* UIView+Extension.m in Sources */,
 				843ECA26212162FB002D5C2A /* NSData+Hash.m in Sources */,
+				84C0DF26212CFF3800BCC91D /* BRKey.m in Sources */,
 				84B0A95F2122C184002EFA0A /* UIButton+Gradient.m in Sources */,
 				843ECA2B212162FB002D5C2A /* UIColor+SNFoundation.m in Sources */,
 				84BDD16D21269D5B0039FE09 /* DataView.m in Sources */,
 				84D0E42321211AAB004E65AD /* AppDelegate.m in Sources */,
 				84B0A95A2122B87B002EFA0A /* UIColor+PGHex.m in Sources */,
+				84C0DF2D212CFF8500BCC91D /* NSData+Bitcoin.m in Sources */,
 				848180602123B2630007DCF9 /* NSData+CommonCrypto.m in Sources */,
 				848180612123B2630007DCF9 /* PBKDF2.m in Sources */,
 				842C1097212A4A7E00E466C5 /* DataPointView.m in Sources */,
@@ -1059,7 +1105,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};

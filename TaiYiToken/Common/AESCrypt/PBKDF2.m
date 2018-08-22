@@ -15,7 +15,7 @@ NSString* const kSHA1 = @"sh2a1";
 const int DEFAULT_SALT_LENGTH = 20;
 static NSString* delimiter = @"$";
 
-@implementation PBKDF2
+@implementation PBKDF2x
 
 + (NSData *)pbkdf2:(NSString *)password salt:(NSString *) s count:(int) c kLen:(int) l withAlgo:(NSString *)algo
 {

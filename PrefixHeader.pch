@@ -94,4 +94,12 @@
 #import "SGQRCode.h"
 #import <Charts/Charts-Swift.h>
 #import "PYSearch.h"
+
+
+/*
+ 椭圆算法 由私钥生成公钥
+ */
+#import "secp256k1.h"
+#import "secp256k1_ecdh.h"
+#import "secp256k1_recovery.h"
 #endif /* PrefixHeader_pch */

@@ -21,5 +21,5 @@ target 'TaiYiToken' do
    use_frameworks!
    pod 'Charts'
    pod 'PYSearch'
-
+   pod 'secp256k1_ios'
 end

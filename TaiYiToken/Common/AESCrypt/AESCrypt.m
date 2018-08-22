@@ -53,9 +53,9 @@ const int KEY_LENGTH = 32;
 }
 
 + (NSString *)encryptData:(NSData *)data password:(NSString *)password {
-    NSString *salt = [PBKDF2 rand_str:SALT_LEN];
+    NSString *salt = [PBKDF2x rand_str:SALT_LEN];
 //    NSString *salt = @"GNEbwYQ6wBDSp32bXIYnzRnpgQd2KYdI";
-    NSData *derivedKey = [PBKDF2 pbkdf2:password salt:salt count:ITERATIONS kLen:KEY_LENGTH withAlgo:kSHA1];
+    NSData *derivedKey = [PBKDF2x pbkdf2:password salt:salt count:ITERATIONS kLen:KEY_LENGTH withAlgo:kSHA1];
     NSLog(@"%@", salt);
 //    [NSObject out_Hex:derivedKey.bytes andLength:derivedKey.length];
     NSData *encryptedData = [data AES256EncryptedDataUsingKey:derivedKey error:nil];
@@ -73,7 +73,7 @@ const int KEY_LENGTH = 32;
 //    NSData *encryptedData = [NSData dataWithBase64EncodedString:[base64EncodedString substringFromIndex:SALT_LEN]];
     
     NSData *encryptedData = [NSObject convertHexStrToData:[base64EncodedString substringFromIndex:SALT_LEN]];
-    NSData *derivedKey = [PBKDF2 pbkdf2:password salt:salt count:ITERATIONS kLen:KEY_LENGTH withAlgo:kSHA1];
+    NSData *derivedKey = [PBKDF2x pbkdf2:password salt:salt count:ITERATIONS kLen:KEY_LENGTH withAlgo:kSHA1];
     NSData *decryptedData = [encryptedData decryptedAES256DataUsingKey:derivedKey error:nil];
     return decryptedData;
 }

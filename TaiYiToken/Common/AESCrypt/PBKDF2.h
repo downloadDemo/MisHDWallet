@@ -13,7 +13,7 @@ extern NSString* const kSHA1;
 //extern NSString* const kSHA256;
 //extern NSString* const kSHA512;
 
-@interface PBKDF2 : NSObject
+@interface PBKDF2x : NSObject
 
 + (NSData *)pbkdf2:(NSString *)password salt:(NSString *) s count:(int) c kLen:(int) l withAlgo:(NSString *) algo;
 + (NSData *)pbkdf2:(NSString *)password salt:(NSString *) s count:(int) c kLen:(int) l;
