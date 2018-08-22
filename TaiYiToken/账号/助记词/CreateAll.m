@@ -171,11 +171,12 @@ static int custom_nonce_function_rfc6979(unsigned char *nonce32, const unsigned 
     NSLog(@"privateKey = %@",BTCPublicKey.privateKey);
     NSLog(@"address = %@",BTCPublicKey.address);
     BRBIP32Sequence *seq = [BRBIP32Sequence new];
-    NSData *mpk = [seq masterPublicKeyFromSeed:seed.hexToData];
+    NSData *mpk = [seq masterPublicKeyFromSeed:privateKey.hexToData];
     
-    NSLog(@"pub *** %@",[NSString hexWithData:mpk]);
-    
-    
+    NSLog(@"pub *** %@ ， %ld",[NSString hexWithData:mpk],[NSString hexWithData:mpk].length);
+    NSString *a = @"04a34b99f22c790c4e36b2b3c2c35a36db06226e41c692fc82b8b56ac1c540c5bd5b8dec5235a0fa8722476c7709c02559e3aa73aa03918ba2d492eea75abea235";
+    NSLog(@"\n%ld",a.length);
+    //04a34b99f22c790c4e36b2b3c2c35a36db06226e41c692fc82b8b56ac1c540c5bd5b8dec5235a0fa8722476c7709c02559e3aa73aa03918ba2d492eea75abea235
  
    // [CreateAll CreatePubKey:@"S6c56bnXQiBjk9mqSYE7ykVQ7NzrRy"];
     return  [NSString hexWithData:mpk];

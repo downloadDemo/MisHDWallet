@@ -25,7 +25,6 @@
 		843EC9ED212122A7002D5C2A /* BaseNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 843EC9E9212122A6002D5C2A /* BaseNetworking.m */; };
 		843ECA07212162B7002D5C2A /* NSString+Hash.m in Sources */ = {isa = PBXBuildFile; fileRef = 843ECA05212162B6002D5C2A /* NSString+Hash.m */; };
 		843ECA23212162FB002D5C2A /* CALayer+XibConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 843ECA0F212162FB002D5C2A /* CALayer+XibConfiguration.m */; };
-		843ECA24212162FB002D5C2A /* UITextView+Placeholder.m in Sources */ = {isa = PBXBuildFile; fileRef = 843ECA12212162FB002D5C2A /* UITextView+Placeholder.m */; };
 		843ECA25212162FB002D5C2A /* UIColor+AppConfigColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 843ECA14212162FB002D5C2A /* UIColor+AppConfigColor.m */; };
 		843ECA26212162FB002D5C2A /* NSData+Hash.m in Sources */ = {isa = PBXBuildFile; fileRef = 843ECA15212162FB002D5C2A /* NSData+Hash.m */; };
 		843ECA27212162FB002D5C2A /* NSDate+ExFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = 843ECA17212162FB002D5C2A /* NSDate+ExFoundation.m */; };
@@ -146,7 +145,6 @@
 		843ECA0F212162FB002D5C2A /* CALayer+XibConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+XibConfiguration.m"; sourceTree = "<group>"; };
 		843ECA10212162FB002D5C2A /* UIColor+SNFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+SNFoundation.h"; sourceTree = "<group>"; };
 		843ECA11212162FB002D5C2A /* NSMutableAttributedString+ExFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableAttributedString+ExFoundation.h"; sourceTree = "<group>"; };
-		843ECA12212162FB002D5C2A /* UITextView+Placeholder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+Placeholder.m"; sourceTree = "<group>"; };
 		843ECA13212162FB002D5C2A /* NSString+Extention.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Extention.h"; sourceTree = "<group>"; };
 		843ECA14212162FB002D5C2A /* UIColor+AppConfigColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+AppConfigColor.m"; sourceTree = "<group>"; };
 		843ECA15212162FB002D5C2A /* NSData+Hash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Hash.m"; sourceTree = "<group>"; };
@@ -155,7 +153,6 @@
 		843ECA18212162FB002D5C2A /* NSObject+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Extension.m"; sourceTree = "<group>"; };
 		843ECA19212162FB002D5C2A /* CALayer+XibConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+XibConfiguration.h"; sourceTree = "<group>"; };
 		843ECA1A212162FB002D5C2A /* NSDictionary+ExFoundation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+ExFoundation.m"; sourceTree = "<group>"; };
-		843ECA1B212162FB002D5C2A /* UITextView+Placeholder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+Placeholder.h"; sourceTree = "<group>"; };
 		843ECA1C212162FB002D5C2A /* NSMutableAttributedString+ExFoundation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableAttributedString+ExFoundation.m"; sourceTree = "<group>"; };
 		843ECA1D212162FB002D5C2A /* UIColor+SNFoundation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+SNFoundation.m"; sourceTree = "<group>"; };
 		843ECA1E212162FB002D5C2A /* NSData+Hash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Hash.h"; sourceTree = "<group>"; };
@@ -445,7 +442,6 @@
 				843ECA0F212162FB002D5C2A /* CALayer+XibConfiguration.m */,
 				843ECA10212162FB002D5C2A /* UIColor+SNFoundation.h */,
 				843ECA11212162FB002D5C2A /* NSMutableAttributedString+ExFoundation.h */,
-				843ECA12212162FB002D5C2A /* UITextView+Placeholder.m */,
 				843ECA13212162FB002D5C2A /* NSString+Extention.h */,
 				843ECA1F212162FB002D5C2A /* UIColor+AppConfigColor.h */,
 				843ECA14212162FB002D5C2A /* UIColor+AppConfigColor.m */,
@@ -455,7 +451,6 @@
 				843ECA18212162FB002D5C2A /* NSObject+Extension.m */,
 				843ECA19212162FB002D5C2A /* CALayer+XibConfiguration.h */,
 				843ECA1A212162FB002D5C2A /* NSDictionary+ExFoundation.m */,
-				843ECA1B212162FB002D5C2A /* UITextView+Placeholder.h */,
 				843ECA1C212162FB002D5C2A /* NSMutableAttributedString+ExFoundation.m */,
 				843ECA1D212162FB002D5C2A /* UIColor+SNFoundation.m */,
 				843ECA1E212162FB002D5C2A /* NSData+Hash.h */,
@@ -901,7 +896,6 @@
 				84C0DF36212D604200BCC91D /* BRBIP32Sequence.m in Sources */,
 				8428A542212422EC003E1DD8 /* MarketVC.m in Sources */,
 				84B0A9492122736B002EFA0A /* CustomizedNavigationController.m in Sources */,
-				843ECA24212162FB002D5C2A /* UITextView+Placeholder.m in Sources */,
 				8481805E2123B2630007DCF9 /* NSObject+Extension.m in Sources */,
 				843EC9ED212122A7002D5C2A /* BaseNetworking.m in Sources */,
 				8481805F2123B2630007DCF9 /* Base64.m in Sources */,
@@ -1117,7 +1111,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = HJRFHP993U;
+				DEVELOPMENT_TEAM = WX9MM6TM2J;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/PrefixHeader.pch";
 				INFOPLIST_FILE = TaiYiToken/Info.plist;
@@ -1139,7 +1133,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = HJRFHP993U;
+				DEVELOPMENT_TEAM = WX9MM6TM2J;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/PrefixHeader.pch";
 				INFOPLIST_FILE = TaiYiToken/Info.plist;

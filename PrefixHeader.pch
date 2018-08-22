@@ -79,7 +79,7 @@
 #import "RegularExpression.h"
 #import "NSString+Hash.h"
 #import "NSString+Extention.h"
-#import "UITextView+Placeholder.h"
+
 #import "NSObject+Extension.h"
 
 
