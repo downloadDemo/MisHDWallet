@@ -19,6 +19,7 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
+
 #import "NYMnemonic.h"
 
 @implementation NYMnemonic
@@ -75,15 +76,16 @@
 + (NSString *)deterministicSeedStringFromMnemonicString:(NSString *)mnemonic
                                              passphrase:(NSString *)passphrase
                                                language:(NSString *)language {
-
+   
     NSData *data = [mnemonic dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
     NSString *dataString = [[NSString alloc] initWithData: data encoding: NSASCIIStringEncoding];
     NSData *normalized = [dataString dataUsingEncoding: NSASCIIStringEncoding allowLossyConversion: NO];
-
+   
     NSData *saltData =
       [[@"mnemonic" stringByAppendingString: [[NSString alloc] initWithData:[passphrase dataUsingEncoding: NSASCIIStringEncoding
                                                        allowLossyConversion:YES]
                                      encoding:NSASCIIStringEncoding]]
+     
        dataUsingEncoding: NSASCIIStringEncoding
        allowLossyConversion: NO];
 

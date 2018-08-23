@@ -19,117 +19,6 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "TaiYiToken/&#x884c;&#x60c5;/BTC_K&#x7ebf;&#x56fe;/Y_StockChartViewController.m"
-            timestampString = "556098490.953408"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "117"
-            endingLineNumber = "117"
-            landmarkName = "-reloadData"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[Y_StockChartViewController reloadData]"
-                  moduleName = "TaiYiToken"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/admin/Desktop/%E6%B3%B0%E4%B8%80%E9%92%B1%E5%8C%85/TaiYiToken/TaiYiToken/%E8%A1%8C%E6%83%85/BTC_K%E7%BA%BF%E5%9B%BE/Y_StockChartViewController.m"
-                  timestampString = "556098241.0235831"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "117"
-                  endingLineNumber = "117"
-                  offsetFromSymbolStart = "236">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__40-[Y_StockChartViewController reloadData]_block_invoke"
-                  moduleName = "TaiYiToken"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/admin/Desktop/%E6%B3%B0%E4%B8%80%E9%92%B1%E5%8C%85/TaiYiToken/TaiYiToken/%E8%A1%8C%E6%83%85/BTC_K%E7%BA%BF%E5%9B%BE/Y_StockChartViewController.m"
-                  timestampString = "556098241.0293961"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "118"
-                  endingLineNumber = "118"
-                  offsetFromSymbolStart = "116">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__destroy_helper_block_"
-                  moduleName = "TaiYiToken"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/admin/Desktop/%E6%B3%B0%E4%B8%80%E9%92%B1%E5%8C%85/TaiYiToken/TaiYiToken/%E8%A1%8C%E6%83%85/BTC_K%E7%BA%BF%E5%9B%BE/Y_StockChartViewController.m"
-                  timestampString = "556098241.033355"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "117"
-                  endingLineNumber = "117"
-                  offsetFromSymbolStart = "20">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TaiYiToken/&#x884c;&#x60c5;/BTC_K&#x7ebf;&#x56fe;/Y_StockChartViewController.m"
-            timestampString = "556098490.956211"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "123"
-            endingLineNumber = "123"
-            landmarkName = "-reloadData"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TaiYiToken/&#x884c;&#x60c5;/BTC_K&#x7ebf;&#x56fe;/Y_StockChartViewController.m"
-            timestampString = "556098490.957216"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "121"
-            endingLineNumber = "121"
-            landmarkName = "-reloadData"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TaiYiToken/&#x884c;&#x60c5;/BTC_K&#x7ebf;&#x56fe;/Y_StockChartViewController.m"
-            timestampString = "556098490.95909"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "118"
-            endingLineNumber = "118"
-            landmarkName = "-reloadData"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "TaiYiToken/&#x8d26;&#x53f7;/View/CFFlowButtonView.m"
             timestampString = "556517803.704043"
             startingColumnNumber = "9223372036854775807"
@@ -290,11 +179,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TaiYiToken/&#x8d26;&#x53f7;/&#x52a9;&#x8bb0;&#x8bcd;/NYMnemonic.m"
-            timestampString = "556534313.176191"
+            timestampString = "556710376.422991"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "97"
-            endingLineNumber = "97"
+            startingLineNumber = "99"
+            endingLineNumber = "99"
             landmarkName = "+deterministicSeedStringFromMnemonicString:passphrase:language:"
             landmarkType = "7">
          </BreakpointContent>
@@ -306,13 +195,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TaiYiToken/&#x8d26;&#x53f7;/&#x52a9;&#x8bb0;&#x8bcd;/CreateAll.m"
-            timestampString = "556621603.50249"
+            timestampString = "556710376.4236341"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "215"
-            endingLineNumber = "215"
-            landmarkName = "+CreatePubKey:"
-            landmarkType = "7">
+            startingLineNumber = "161"
+            endingLineNumber = "161">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -322,13 +209,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TaiYiToken/&#x8d26;&#x53f7;/&#x52a9;&#x8bb0;&#x8bcd;/CreateAll.m"
-            timestampString = "556621603.503634"
+            timestampString = "556710376.4242001"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "209"
-            endingLineNumber = "209"
-            landmarkName = "+CreatePubKey:"
-            landmarkType = "7">
+            startingLineNumber = "161"
+            endingLineNumber = "161">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -338,13 +223,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TaiYiToken/&#x8d26;&#x53f7;/&#x52a9;&#x8bb0;&#x8bcd;/CreateAll.m"
-            timestampString = "556621603.504267"
+            timestampString = "556710376.424422"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "206"
-            endingLineNumber = "206"
-            landmarkName = "+CreatePubKey:"
-            landmarkType = "7">
+            startingLineNumber = "161"
+            endingLineNumber = "161">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -354,13 +237,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TaiYiToken/&#x8d26;&#x53f7;/&#x52a9;&#x8bb0;&#x8bcd;/CreateAll.m"
-            timestampString = "556621603.504825"
+            timestampString = "556710376.424561"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "203"
-            endingLineNumber = "203"
-            landmarkName = "+CreatePubKey:"
-            landmarkType = "7">
+            startingLineNumber = "161"
+            endingLineNumber = "161">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -370,12 +251,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TaiYiToken/&#x8d26;&#x53f7;/&#x52a9;&#x8bb0;&#x8bcd;/BRKey.m"
-            timestampString = "556621603.5057909"
+            timestampString = "556695246.067893"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "179"
             endingLineNumber = "179"
-            landmarkName = "-publicKey"
+            landmarkName = "-initWithPublicKey:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -386,12 +267,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TaiYiToken/&#x8d26;&#x53f7;/&#x52a9;&#x8bb0;&#x8bcd;/BRKey.m"
-            timestampString = "556621603.505947"
+            timestampString = "556695246.07148"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "182"
             endingLineNumber = "182"
-            landmarkName = "-publicKey"
+            landmarkName = "-initWithPublicKey:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -402,12 +283,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TaiYiToken/&#x8d26;&#x53f7;/&#x52a9;&#x8bb0;&#x8bcd;/BRKey.m"
-            timestampString = "556621603.506054"
+            timestampString = "556695246.072095"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "184"
             endingLineNumber = "184"
-            landmarkName = "-publicKey"
+            landmarkName = "-initWithPublicKey:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -418,60 +299,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TaiYiToken/&#x8d26;&#x53f7;/&#x52a9;&#x8bb0;&#x8bcd;/BRKey.m"
-            timestampString = "556621603.50618"
+            timestampString = "556695246.072805"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "186"
             endingLineNumber = "186"
-            landmarkName = "-publicKey"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TaiYiToken/&#x8d26;&#x53f7;/&#x52a9;&#x8bb0;&#x8bcd;/BRKey.m"
-            timestampString = "556621603.506297"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "187"
-            endingLineNumber = "187"
-            landmarkName = "-publicKey"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TaiYiToken/&#x8d26;&#x53f7;/&#x52a9;&#x8bb0;&#x8bcd;/BRKey.m"
-            timestampString = "556621603.506408"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "189"
-            endingLineNumber = "189"
-            landmarkName = "-publicKey"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TaiYiToken/&#x8d26;&#x53f7;/&#x52a9;&#x8bb0;&#x8bcd;/CreateAll.m"
-            timestampString = "556621603.506523"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "226"
-            endingLineNumber = "226"
-            landmarkName = "CreateAll"
+            landmarkName = "BRKey"
             landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
@@ -481,13 +314,29 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "TaiYiToken/&#x8d26;&#x53f7;/&#x52a9;&#x8bb0;&#x8bcd;/CreateAll.m"
-            timestampString = "556621603.50728"
+            filePath = "TaiYiToken/&#x8d26;&#x53f7;/&#x52a9;&#x8bb0;&#x8bcd;/BRKey.m"
+            timestampString = "556695246.073184"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "225"
-            endingLineNumber = "225"
-            landmarkName = "+CreatePubKey:"
+            startingLineNumber = "187"
+            endingLineNumber = "187"
+            landmarkName = "-initWithCompactSig:andMessageDigest:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TaiYiToken/&#x8d26;&#x53f7;/&#x52a9;&#x8bb0;&#x8bcd;/BRKey.m"
+            timestampString = "556695246.0735281"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "189"
+            endingLineNumber = "189"
+            landmarkName = "-initWithCompactSig:andMessageDigest:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -498,13 +347,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TaiYiToken/&#x8d26;&#x53f7;/&#x52a9;&#x8bb0;&#x8bcd;/CreateAll.m"
-            timestampString = "556621603.508294"
+            timestampString = "556710376.425148"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "218"
-            endingLineNumber = "218"
-            landmarkName = "+CreatePubKey:"
-            landmarkType = "7">
+            startingLineNumber = "161"
+            endingLineNumber = "161">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -514,13 +361,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TaiYiToken/&#x8d26;&#x53f7;/&#x52a9;&#x8bb0;&#x8bcd;/CreateAll.m"
-            timestampString = "556621603.5092469"
+            timestampString = "556710376.425427"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "219"
-            endingLineNumber = "219"
-            landmarkName = "+CreatePubKey:"
-            landmarkType = "7">
+            startingLineNumber = "161"
+            endingLineNumber = "161">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -530,13 +375,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TaiYiToken/&#x8d26;&#x53f7;/&#x52a9;&#x8bb0;&#x8bcd;/CreateAll.m"
-            timestampString = "556621603.510218"
+            timestampString = "556710376.425621"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "221"
-            endingLineNumber = "221"
-            landmarkName = "+CreatePubKey:"
-            landmarkType = "7">
+            startingLineNumber = "161"
+            endingLineNumber = "161">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -546,13 +389,39 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TaiYiToken/&#x8d26;&#x53f7;/&#x52a9;&#x8bb0;&#x8bcd;/CreateAll.m"
-            timestampString = "556621603.511135"
+            timestampString = "556710376.425791"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "211"
-            endingLineNumber = "211"
-            landmarkName = "+CreatePubKey:"
-            landmarkType = "7">
+            startingLineNumber = "161"
+            endingLineNumber = "161">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TaiYiToken/&#x8d26;&#x53f7;/&#x52a9;&#x8bb0;&#x8bcd;/CreateAll.m"
+            timestampString = "556710376.425962"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "161"
+            endingLineNumber = "161">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TaiYiToken/&#x8d26;&#x53f7;/&#x52a9;&#x8bb0;&#x8bcd;/CreateAll.m"
+            timestampString = "556710376.426077"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "161"
+            endingLineNumber = "161">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

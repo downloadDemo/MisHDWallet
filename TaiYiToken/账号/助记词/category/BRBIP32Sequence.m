@@ -126,6 +126,18 @@ static NSString *serialize(uint8_t depth, uint32_t fingerprint, uint32_t child, 
 
 @implementation BRBIP32Sequence
 
+-(NSData *)CreatePrivateKeyFromSeed:(NSData *)seed Pass:(NSData *)pass{
+    UInt512 I;
+    //根据seed计算私钥+主链码
+    HMAC(&I, SHA512, sizeof(UInt512), BIP32_SEED_KEY, strlen(BIP32_SEED_KEY), seed.bytes, seed.length);
+    
+    UInt256 secret = *(UInt256 *)&I, chain = *(UInt256 *)&I.u8[sizeof(UInt256)];
+    NSMutableData *secretdata = [NSMutableData secureData];
+    [secretdata appendBytes:&secret length:sizeof(secret)];
+    return secretdata;
+}
+
+
 // MARK: - BRKeySequence
 
 // master public key format is: 4 byte parent fingerprint || 32 byte chain code || 33 byte compressed public key
@@ -140,18 +152,19 @@ static NSString *serialize(uint8_t depth, uint32_t fingerprint, uint32_t child, 
     HMAC(&I, SHA512, sizeof(UInt512), BIP32_SEED_KEY, strlen(BIP32_SEED_KEY), seed.bytes, seed.length);
 
     UInt256 secret = *(UInt256 *)&I, chain = *(UInt256 *)&I.u8[sizeof(UInt256)];
-//将私钥进行SHA256,RMD160两个运算后，取4byte结果加在mpk最前面
+    
+   //将私钥进行SHA256,RMD160两个运算后，取4byte结果加在mpk最前面 4bytes
     [mpk appendBytes:[BRKey keyWithSecret:secret compressed:YES].hash160.u32 length:4];
     //椭圆算法计算公钥
     CKDpriv(&secret, &chain, 0 | BIP32_HARD); // account 0H
-   //36bytes
+   //32bytes
     [mpk appendBytes:&chain length:sizeof(chain)];
-    //将公钥加在最后
+    //将公钥加在最后 33bytes
     [mpk appendData:[BRKey keyWithSecret:secret compressed:YES].publicKey];
    //69bytes = 65 + 4
     return mpk;
 }
-
+//internal
 - (NSData *)publicKey:(uint32_t)n internal:(BOOL)internal masterPublicKey:(NSData *)masterPublicKey
 {
     if (masterPublicKey.length < 4 + sizeof(UInt256) + sizeof(BRECPoint)) return nil;
