@@ -125,11 +125,9 @@
     NSString *prikeyseq32 = [NSString hexWithData:[seq CreatePrivateKeyFromSeed:seed.hexToData Pass:password.hexToData]];
     NSLog(@"prikeyseq32 = %@",prikeyseq32);
 
-   //*************************比特币地址+私钥
-    NSString *privKey = [seq bitIdPrivateKey:0 forURI:@"http://bitid.bitcoin.blue/callback" fromSeed:seed.hexToData];
-    NSString *addr = [BRKey keyWithPrivateKey:privKey].address;
+   
     
-    NSLog(@"\n\n\n test privKey = %@ \n addr =  %@",privKey,addr);
+   
     
     
     return array;
@@ -138,19 +136,31 @@
 //secp256k1 主私钥生成主公钥
 +(NSString *)CreatePublicKeyWithPrivateKey:(NSString *)privateKey Seed:(NSString *)seed{
 
- 
+   //*********BIP32SequenceMasterPublicKeyFromSeed
     BRBIP32Sequence *seq = [BRBIP32Sequence new];
     NSData *mpk = [seq masterPublicKeyFromSeed:seed.hexToData];
     NSString *mpkstr = [NSString hexWithData:mpk];
     //mpk前4位为较验位
-    NSLog(@"master pub *** %@ ， %ld",mpkstr,mpkstr.length);
+    NSLog(@"\n\n\n *****  \n master pub  %@ ， %ld",mpkstr,mpkstr.length);
     
+    //***********BIP32SequencePublicKey
     NSData *pubFromMasterPubkey = [seq publicKey:0 internal:NO masterPublicKey:mpk];
 
-    NSLog(@" pubFromMasterPubkey *** = %@", [NSString hexWithData:pubFromMasterPubkey]);
-    ///
+    NSLog(@"\n ******* pubFromMasterPubkey = %@", [NSString hexWithData:pubFromMasterPubkey]);
+   
     
+    //**********BIP32SequenceBitIdPrivateKey
+    NSString *privKey = [seq bitIdPrivateKey:0 forURI:@"http://bitid.bitcoin.blue/callback" fromSeed:seed.hexToData];
+    NSString *addr = [BRKey keyWithPrivateKey:privKey].address;
+    NSLog(@"\n ********** privKey = %@ \n ******* addr =  %@",privKey,addr);
     
+    //**********BIP32SequenceSerializedPrivateMasterFromSeed
+    NSString *xprv = [seq serializedPrivateMasterFromSeed:seed.hexToData];
+    NSLog(@"\n ******* xpriv = %@", xprv);
+    
+    //*********BIP32SequenceSerializedMasterPublicKey
+    NSString *xpub = [seq serializedMasterPublicKey:mpk];
+    NSLog(@"\n ****** xpub = %@", xpub);
     
     return  mpkstr;
 }
