@@ -82,6 +82,9 @@
  */
 //password 用于做盐
 +(NSString *)CreateSeedByMnemonic:(NSString *)mnemonic AndPassword:(NSString *)password{
+  //  mnemonic = @"aspect miss merit train crucial require ladder help enforce wealth spawn weird";
+    mnemonic = @"breeze eternal fiction junior ethics lumber chaos squirrel code jar snack broccoli";
+    password = @"";
     NSLog(@"mnemonic = %@",mnemonic);
     //passphrase作用是位移 助记词只要反向位移password位移的值就能生成正确的私钥
     NSString *seed = [NYMnemonic deterministicSeedStringFromMnemonicString:mnemonic
@@ -120,12 +123,13 @@
     [array addObject:masterChainCode];
     NSLog(@"a = %@ b= %@",masterPrivateKey,masterChainCode);
     
+    
+    
+    
     ////**********************输出生成主公钥过程中的私钥
     BRBIP32Sequence *seq = [BRBIP32Sequence new];
     NSString *prikeyseq32 = [NSString hexWithData:[seq CreatePrivateKeyFromSeed:seed.hexToData Pass:password.hexToData]];
     NSLog(@"prikeyseq32 = %@",prikeyseq32);
-
-   
     
    
     
@@ -149,15 +153,38 @@
     NSLog(@"\n ******* pubFromMasterPubkey = %@ *******\n", [NSString hexWithData:pubFromMasterPubkey]);
    
     
-    //**********BIP32SequenceBitIdPrivateKey
-    NSString *privKey = [seq bitIdPrivateKey:0 forURI:@"http://bitid.bitcoin.blue/callback" fromSeed:seed.hexToData];
-    NSString *addr = [BRKey keyWithPrivateKey:privKey].address;
-    NSLog(@"\n ********** privKey = %@ \n ******* addr =  %@ *******\n",privKey,addr);
+    //**********BIP32SequenceBitIdPrivateKey ($ bitcoin $)
+//    NSString *privKey = [seq bitIdPrivateKey:0 forURI:@"http://bitid.bitcoin.blue/callback" fromSeed:seed.hexToData];
+//    NSString *addr = [BRKey keyWithPrivateKey:privKey].address;
+//    NSLog(@"\n ********** privKey = %@ \n ******* addr =  %@ *******\n",privKey,addr);
     
+    
+    /*
+     *** bitcoin生成 ***
+     生成一个助记词（参见 BIP39）
+     该助记词使用 PBKDF2 转化为种子（参见 BIP39）
+     种子用于使用 HMAC-SHA512 生成根私钥（参见BIP32）(xprv)
+     从该根私钥，导出子私钥（参见BIP32），其中节点布局由BIP44设置
+     
+     ****
+     包含私钥的扩展密钥用以推导子私钥，从子私钥又可推导对应的公钥和比特币地址
+     包含公钥的扩展密钥用以推导子公钥
+     扩展密钥使用 Base58Check 算法加上特定的前缀编码，编码得到的包含私钥的前缀为 xprv, 包含公钥的扩展密钥前缀为 xpub，相比比特币的公私钥，扩展密钥编码之后得到的长度为 512 或 513 位
+     ****
+     目前通过Mnemonic正确生成xprv：
+     Mnemonic :breeze eternal fiction junior ethics lumber chaos squirrel code jar snack broccoli
+     xprv:xprv9s21ZrQH143K4LCv8FcJWzDPFsMPWXHtzXzbGVqTYwh4kqCgchKJDMiLCbv88He5KEQt8LpPcAoc88CdxY5MzHm9K4DBRhbALB7dcEfPGyw
+     
+     地址和generate还不对
+     
+     
+     */
     //**********BIP32SequenceSerializedPrivateMasterFromSeed
     NSString *xprv = [seq serializedPrivateMasterFromSeed:seed.hexToData];
     NSLog(@"\n ******* xpriv = %@ *******\n", xprv);
-    
+    NSString *privKey = [seq bitIdPrivateKey:1 forURI:@"http://bitid.bitcoin.blue/callback" fromSeed:seed.hexToData];
+    NSString *addr = [BRKey keyWithPrivateKey:privKey].address;
+    NSLog(@"\n ********** privKey = %@ \n ******* addr =  %@ *******\n",privKey,addr);
     //*********BIP32SequenceSerializedMasterPublicKey
     NSString *xpub = [seq serializedMasterPublicKey:mpk];
     NSLog(@"\n ****** xpub = %@ *******\n", xpub);
