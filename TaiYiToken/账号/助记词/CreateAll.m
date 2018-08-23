@@ -141,26 +141,26 @@
     NSData *mpk = [seq masterPublicKeyFromSeed:seed.hexToData];
     NSString *mpkstr = [NSString hexWithData:mpk];
     //mpk前4位为较验位
-    NSLog(@"\n\n\n *****  \n master pub  %@ ， %ld",mpkstr,mpkstr.length);
+    NSLog(@"\n\n\n *****  \n master pub  %@ ， %ld *******\n",mpkstr,mpkstr.length);
     
     //***********BIP32SequencePublicKey
     NSData *pubFromMasterPubkey = [seq publicKey:0 internal:NO masterPublicKey:mpk];
 
-    NSLog(@"\n ******* pubFromMasterPubkey = %@", [NSString hexWithData:pubFromMasterPubkey]);
+    NSLog(@"\n ******* pubFromMasterPubkey = %@ *******\n", [NSString hexWithData:pubFromMasterPubkey]);
    
     
     //**********BIP32SequenceBitIdPrivateKey
     NSString *privKey = [seq bitIdPrivateKey:0 forURI:@"http://bitid.bitcoin.blue/callback" fromSeed:seed.hexToData];
     NSString *addr = [BRKey keyWithPrivateKey:privKey].address;
-    NSLog(@"\n ********** privKey = %@ \n ******* addr =  %@",privKey,addr);
+    NSLog(@"\n ********** privKey = %@ \n ******* addr =  %@ *******\n",privKey,addr);
     
     //**********BIP32SequenceSerializedPrivateMasterFromSeed
     NSString *xprv = [seq serializedPrivateMasterFromSeed:seed.hexToData];
-    NSLog(@"\n ******* xpriv = %@", xprv);
+    NSLog(@"\n ******* xpriv = %@ *******\n", xprv);
     
     //*********BIP32SequenceSerializedMasterPublicKey
     NSString *xpub = [seq serializedMasterPublicKey:mpk];
-    NSLog(@"\n ****** xpub = %@", xpub);
+    NSLog(@"\n ****** xpub = %@ *******\n", xpub);
     
     return  mpkstr;
 }
