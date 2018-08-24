@@ -102,8 +102,8 @@
     
 }
 -(void)nextAction{
-    //test
-    [self CreatePrivateKey];
+   
+    [self CreateWallet];
     
     
 //    if (self.selectedButtonView.buttonList == nil||self.selectedButtonView.buttonList.count < 12) {
@@ -124,19 +124,15 @@
     
 }
 
--(void)CreatePrivateKey{
-    NSString *pass = [[NSUserDefaults standardUserDefaults] objectForKey:@"password"];
+-(void)CreateWallet{
+    NSString *password = [[NSUserDefaults standardUserDefaults] objectForKey:@"password"];
     //512位种子
-    NSString *seed = [CreateAll CreateSeedByMnemonic:self.mnemonic AndPassword:pass];
-    NSLog(@"l = %ld",seed.length);
+    NSString *seed = [CreateAll CreateSeedByMnemonic:self.mnemonic AndPassword:password];
+    [CreateAll CreatePublicKeyWithSeed:seed];
    //512位种子 长度为128字符 64Byte
-    /*根种子通过不可逆HMAC-SHA512算法推算出512位的哈希串，左256位是主私钥Master Private Key (m)，右256位是主链码Master Chain Code；链码chain code作为推导下级密钥的熵。*/
-    NSMutableArray *array = [CreateAll CreateMasterPrivateKeyBySeed:seed Password:pass];
-    NSString *masterPrivateKey = array[0];
-    NSString *masterChainCode = array[1];
     
-    //test
-    [CreateAll CreatePublicKeyWithPrivateKey:masterPrivateKey Seed:seed];
+    
+   
 }
 
 
