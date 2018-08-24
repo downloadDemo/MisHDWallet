@@ -111,7 +111,7 @@ static void SHA256Compress(uint32_t *r, uint32_t *x)
     r[0] += a, r[1] += b, r[2] += c, r[3] += d, r[4] += e, r[5] += f, r[6] += g, r[7] += h;
 }
 
-void SHA256(void *md, const void *data, size_t len)
+void xSHA256(void *md, const void *data, size_t len)
 {
     size_t i;
     uint32_t x[16], buf[] = { 0x6a09e667, 0xbb67ae85, 0x3c6ef372, 0xa54ff53a,
@@ -176,7 +176,7 @@ static void SHA512Compress(uint64_t *r, uint64_t *x)
     r[0] += a, r[1] += b, r[2] += c, r[3] += d, r[4] += e, r[5] += f, r[6] += g, r[7] += h;
 }
 
-void SHA512(void *md, const void *data, size_t len)
+void xSHA512(void *md, const void *data, size_t len)
 {
     size_t i;
     uint64_t x[16], buf[] = { 0x6a09e667f3bcc908, 0xbb67ae8584caa73b, 0x3c6ef372fe94f82b, 0xa54ff53a5f1d36f1,
@@ -334,7 +334,7 @@ void MD5(void *md, const void *data, size_t len)
 // HMAC(key, data) = hash((key xor opad) || hash((key xor ipad) || data))
 // opad = 0x5c5c5c...5c5c
 // ipad = 0x363636...3636
-void HMAC(void *md, void (*hash)(void *, const void *, size_t), size_t hlen, const void *key, size_t klen,
+void xHMAC(void *md, void (*hash)(void *, const void *, size_t), size_t hlen, const void *key, size_t klen,
           const void *data, size_t dlen)
 {
     size_t blen = (hlen > 32) ? 128 : 64;
@@ -372,11 +372,11 @@ void PBKDf2(void *dk, size_t dklen, void (*hash)(void *, const void *, size_t), 
     
     for (i = 0; i < (dklen + hlen - 1)/hlen; i++) {
         *(uint32_t *)(s + slen) = CFSwapInt32HostToBig(i + 1);
-        HMAC(U, hash, hlen, pw, pwlen, s, sizeof(s)); // U1 = hmac_hash(pw, salt || INT32_BE(i))
+        xHMAC(U, hash, hlen, pw, pwlen, s, sizeof(s)); // U1 = hmac_hash(pw, salt || INT32_BE(i))
         memcpy(T, U, sizeof(U));
 
         for (unsigned r = 1; r < rounds; r++) {
-            HMAC(U, hash, hlen, pw, pwlen, U, sizeof(U)); // Urounds = hmac_hash(pw, Urounds-1)
+            xHMAC(U, hash, hlen, pw, pwlen, U, sizeof(U)); // Urounds = hmac_hash(pw, Urounds-1)
             for (j = 0; j < hlen/4; j++) ((uint32_t *)T)[j] ^= ((uint32_t *)U)[j]; // Ti = U1 xor U2 xor ... xor Urounds
         }
 
@@ -629,7 +629,7 @@ size_t chacha20Poly1305AEADDecrypt(void *out, size_t outLen, const void *key32, 
 {
     UInt256 sha256;
     
-    SHA256(&sha256, self.bytes, self.length);
+    xSHA256(&sha256, self.bytes, self.length);
     return sha256;
 }
 
@@ -637,8 +637,8 @@ size_t chacha20Poly1305AEADDecrypt(void *out, size_t outLen, const void *key32, 
 {
     UInt256 sha256;
     
-    SHA256(&sha256, self.bytes, self.length);
-    SHA256(&sha256, &sha256, sizeof(sha256));
+    xSHA256(&sha256, self.bytes, self.length);
+    xSHA256(&sha256, &sha256, sizeof(sha256));
     return sha256;
 }
 
@@ -646,7 +646,7 @@ size_t chacha20Poly1305AEADDecrypt(void *out, size_t outLen, const void *key32, 
 {
     UInt512 sha512;
     
-    SHA512(&sha512, self.bytes, self.length);
+    xSHA512(&sha512, self.bytes, self.length);
     return sha512;
 }
 
@@ -663,7 +663,7 @@ size_t chacha20Poly1305AEADDecrypt(void *out, size_t outLen, const void *key32, 
     UInt256 sha256;
     UInt160 rmd160;
     
-    SHA256(&sha256, self.bytes, self.length);
+    xSHA256(&sha256, self.bytes, self.length);
     RMD160(&rmd160, &sha256, sizeof(sha256));
     return rmd160;
 }

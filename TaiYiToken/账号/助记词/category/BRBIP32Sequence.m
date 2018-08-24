@@ -41,9 +41,9 @@
 // CKDpriv((kpar, cpar), i) -> (ki, ci) computes a child extended private key from the parent extended private key:
 //
 // - Check whether i >= 2^31 (whether the child is a hardened key).
-//     - If so (hardened child): let I = HMAC-SHA512(Key = cpar, Data = 0x00 || ser256(kpar) || ser32(i)).
+//     - If so (hardened child): let I = xHMAC-SHA512(Key = cpar, Data = 0x00 || ser256(kpar) || ser32(i)).
 //       (Note: The 0x00 pads the private key to make it 33 bytes long.)
-//     - If not (normal child): let I = HMAC-SHA512(Key = cpar, Data = serP(point(kpar)) || ser32(i)).
+//     - If not (normal child): let I = xHMAC-SHA512(Key = cpar, Data = serP(point(kpar)) || ser32(i)).
 // - Split I into two 32-byte sequences, IL and IR.
 // - The returned child key ki is parse256(IL) + kpar (mod n).
 // - The returned chain code ci is IR.
@@ -63,7 +63,7 @@ static void CKDpriv(UInt256 *k, UInt256 *c, uint32_t i)
 
     *(uint32_t *)&buf[sizeof(BRECPoint)] = CFSwapInt32HostToBig(i);
 
-    HMAC(&I, SHA512, sizeof(UInt512), c, sizeof(*c), buf, sizeof(buf)); // I = HMAC-SHA512(c, k|P(k) || i)
+    xHMAC(&I, xSHA512, sizeof(UInt512), c, sizeof(*c), buf, sizeof(buf)); // I = HMAC-SHA512(c, k|P(k) || i)
     
     BRSecp256k1ModAdd(k, (UInt256 *)&I); // k = IL + k (mod n)
     *c = *(UInt256 *)&I.u8[sizeof(UInt256)]; // c = IR
@@ -96,7 +96,7 @@ static void CKDpub(BRECPoint *K, UInt256 *c, uint32_t i)
     *(BRECPoint *)buf = *K;
     *(uint32_t *)&buf[sizeof(*K)] = CFSwapInt32HostToBig(i);
 
-    HMAC(&I, SHA512, sizeof(UInt512), c, sizeof(*c), buf, sizeof(buf)); // I = HMAC-SHA512(c, P(K) || i)
+    xHMAC(&I, xSHA512, sizeof(UInt512), c, sizeof(*c), buf, sizeof(buf)); // I = HMAC-SHA512(c, P(K) || i)
     
     *c = *(UInt256 *)&I.u8[sizeof(UInt256)]; // c = IR
     BRSecp256k1PointAdd(K, (UInt256 *)&I); // K = P(IL) + K
@@ -129,7 +129,7 @@ static NSString *serialize(uint8_t depth, uint32_t fingerprint, uint32_t child, 
 -(NSData *)CreatePrivateKeyFromSeed:(NSData *)seed Pass:(NSData *)pass{
     UInt512 I;
     //根据seed计算私钥+主链码
-    HMAC(&I, SHA512, sizeof(UInt512), BIP32_SEED_KEY, strlen(BIP32_SEED_KEY), seed.bytes, seed.length);
+    xHMAC(&I, xSHA512, sizeof(UInt512), BIP32_SEED_KEY, strlen(BIP32_SEED_KEY), seed.bytes, seed.length);
     
     UInt256 secret = *(UInt256 *)&I, chain = *(UInt256 *)&I.u8[sizeof(UInt256)];
     NSMutableData *secretdata = [NSMutableData secureData];
@@ -149,7 +149,7 @@ static NSString *serialize(uint8_t depth, uint32_t fingerprint, uint32_t child, 
     NSMutableData *mpk = [NSMutableData secureData];
     UInt512 I;
 //根据seed计算私钥+主链码
-    HMAC(&I, SHA512, sizeof(UInt512), BIP32_SEED_KEY, strlen(BIP32_SEED_KEY), seed.bytes, seed.length);
+    xHMAC(&I, xSHA512, sizeof(UInt512), BIP32_SEED_KEY, strlen(BIP32_SEED_KEY), seed.bytes, seed.length);
 
     UInt256 secret = *(UInt256 *)&I, chain = *(UInt256 *)&I.u8[sizeof(UInt256)];
     
@@ -191,7 +191,7 @@ static NSString *serialize(uint8_t depth, uint32_t fingerprint, uint32_t child, 
     NSMutableArray *a = [NSMutableArray arrayWithCapacity:n.count];
     UInt512 I;
     
-    HMAC(&I, SHA512, sizeof(UInt512), BIP32_SEED_KEY, strlen(BIP32_SEED_KEY), seed.bytes, seed.length);
+    xHMAC(&I, xSHA512, sizeof(UInt512), BIP32_SEED_KEY, strlen(BIP32_SEED_KEY), seed.bytes, seed.length);
     
     UInt256 secret = *(UInt256 *)&I, chain = *(UInt256 *)&I.u8[sizeof(UInt256)];
     uint8_t version = BITCOIN_PRIVKEY;
@@ -226,7 +226,7 @@ static NSString *serialize(uint8_t depth, uint32_t fingerprint, uint32_t child, 
     
     UInt512 I;
     
-    HMAC(&I, SHA512, sizeof(UInt512), BIP32_SEED_KEY, strlen(BIP32_SEED_KEY), seed.bytes, seed.length);
+    xHMAC(&I, xSHA512, sizeof(UInt512), BIP32_SEED_KEY, strlen(BIP32_SEED_KEY), seed.bytes, seed.length);
     
     UInt256 secret = *(UInt256 *)&I, chain = *(UInt256 *)&I.u8[sizeof(UInt256)];
     uint8_t version = BITCOIN_PRIVKEY;
@@ -259,7 +259,7 @@ static NSString *serialize(uint8_t depth, uint32_t fingerprint, uint32_t child, 
     UInt256 hash = data.SHA256;
     UInt512 I;
     
-    HMAC(&I, SHA512, sizeof(UInt512), BIP32_SEED_KEY, strlen(BIP32_SEED_KEY), seed.bytes, seed.length);
+    xHMAC(&I, xSHA512, sizeof(UInt512), BIP32_SEED_KEY, strlen(BIP32_SEED_KEY), seed.bytes, seed.length);
     
     UInt256 secret = *(UInt256 *)&I, chain = *(UInt256 *)&I.u8[sizeof(UInt256)];
     uint8_t version = BITCOIN_PRIVKEY;
@@ -290,7 +290,7 @@ static NSString *serialize(uint8_t depth, uint32_t fingerprint, uint32_t child, 
 
     UInt512 I;
 
-    HMAC(&I, SHA512, sizeof(UInt512), BIP32_SEED_KEY, strlen(BIP32_SEED_KEY), seed.bytes, seed.length);
+    xHMAC(&I, xSHA512, sizeof(UInt512), BIP32_SEED_KEY, strlen(BIP32_SEED_KEY), seed.bytes, seed.length);
 
     UInt256 secret = *(UInt256 *)&I, chain = *(UInt256 *)&I.u8[sizeof(UInt256)];
 

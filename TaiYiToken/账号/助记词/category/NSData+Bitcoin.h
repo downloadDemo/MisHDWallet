@@ -96,11 +96,11 @@ typedef union _UInt128 {
 #define OP_CHECKSIG    0xac
 
 void SHA1(void *_Nonnull md, const void *_Nonnull data, size_t len);
-void SHA256(void *_Nonnull md, const void *_Nonnull data, size_t len);
-void SHA512(void *_Nonnull md, const void *_Nonnull data, size_t len);
+void xSHA256(void *_Nonnull md, const void *_Nonnull data, size_t len);
+void xSHA512(void *_Nonnull md, const void *_Nonnull data, size_t len);
 void RMD160(void *_Nonnull md, const void *_Nonnull data, size_t len);
 void MD5(void *_Nonnull md, const void *_Nonnull data, size_t len);
-void HMAC(void *_Nonnull md, void (*_Nonnull hash)(void *_Nonnull , const void *_Nonnull , size_t), size_t hlen,
+void xHMAC(void *_Nonnull md, void (*_Nonnull hash)(void *_Nonnull , const void *_Nonnull , size_t), size_t hlen,
           const void *_Nonnull key, size_t klen, const void *_Nonnull data, size_t dlen);
 void PBKDf2(void *_Nonnull dk, size_t dklen, void (*_Nonnull hash)(void *_Nonnull , const void *_Nonnull , size_t),
             size_t hlen, const void *_Nonnull pw, size_t pwlen, const void *_Nonnull salt, size_t slen,

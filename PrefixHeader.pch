@@ -102,4 +102,10 @@
 #import "secp256k1.h"
 #import "secp256k1_ecdh.h"
 #import "secp256k1_recovery.h"
+/*
+ CoreBitcoin
+ */
+#import <CoreBitcoin/CoreBitcoin.h>
+
+
 #endif /* PrefixHeader_pch */
