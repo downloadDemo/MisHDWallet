@@ -99,10 +99,7 @@
 
 /**
  *  加密方式,MAC算法: HmacSHA256
- *
- *  @param plaintext 要加密的文本
- *  @param key       秘钥
- *
+    plaintext 要加密的文本 key       秘钥
  *  @return 加密后的字符串
  
  首先是从根种子生成主密钥 (master key) 和主链码 (master chain code)
@@ -174,25 +171,67 @@
      目前通过Mnemonic正确生成xprv：
      Mnemonic :breeze eternal fiction junior ethics lumber chaos squirrel code jar snack broccoli
      xprv:xprv9s21ZrQH143K4LCv8FcJWzDPFsMPWXHtzXzbGVqTYwh4kqCgchKJDMiLCbv88He5KEQt8LpPcAoc88CdxY5MzHm9K4DBRhbALB7dcEfPGyw
-     
-     地址和generate还不对
-     
+
      
      */
     //**********BIP32SequenceSerializedPrivateMasterFromSeed
     NSString *xprv = [seq serializedPrivateMasterFromSeed:seed.hexToData];
     NSLog(@"\n ******* xpriv = %@ *******\n", xprv);
-    NSString *privKey = [seq bitIdPrivateKey:1 forURI:@"http://bitid.bitcoin.blue/callback" fromSeed:seed.hexToData];
-    NSString *addr = [BRKey keyWithPrivateKey:privKey].address;
-    NSLog(@"\n ********** privKey = %@ \n ******* addr =  %@ *******\n",privKey,addr);
-    //*********BIP32SequenceSerializedMasterPublicKey
+   
+    //*********BIP32SequenceSerializedMasterPublicKey 对应的是"m/0'" (hardened child #0 of the root key)
     NSString *xpub = [seq serializedMasterPublicKey:mpk];
     NSLog(@"\n ****** xpub = %@ *******\n", xpub);
     
+    //test
+    [CreateAll CreateBTCKeychainBySeed:seed Xprv:xprv Xpub:xpub];
+    
     return  mpkstr;
 }
-
-
-
+/*
+ seed , ExtendKey = xprv||xpub
+ ******************************************
+// ⽬前有三种货币被定义：Bitcoin is m/44'/0'、Bitcoin Testnet is m/44'/1'，以及Litecoin is
+ m/44'/2'。
+ // The following paths are valid:
+ //
+ // "" (root key)
+ // "m" (root key)
+ // "/" (root key)
+ // "m/0'" (hardened child #0 of the root key)
+ // "/0'" (hardened child #0 of the root key)
+ // "0'" (hardened child #0 of the root key)
+ // "m/44'/1'/2'" (BIP44 testnet account #2)
+ // "/44'/1'/2'" (BIP44 testnet account #2)
+ // "44'/1'/2'" (BIP44 testnet account #2)
+ //
+ // The following paths are invalid:
+ //
+ // "m / 0 / 1" (contains spaces)
+ // "m/b/c" (alphabetical characters instead of numerical indexes)
+ // "m/1.2^3" (contains illegal characters)
+ */
++(void)CreateBTCKeychainBySeed:(NSString *)seed Xprv:(NSString*)xprv Xpub:(NSString*)xpub{
+    // Initializes master keychain from a seed
+    BTCKeychain *masterchain = [[BTCKeychain alloc]initWithSeed:seed.hexToData];
+    
+    BTCKeychain *btckeychainxprv = [[BTCKeychain alloc]initWithExtendedKey:xprv];
+    
+    
+    NSString *extendedPublicKeyroot  = [btckeychainxprv derivedKeychainWithPath:@""].extendedPublicKey;
+    NSString *extendedPublicKeym0  = [btckeychainxprv derivedKeychainWithPath:@"m/0'"].extendedPrivateKey;
+     NSString *extendedPublicKeym44  = [btckeychainxprv derivedKeychainWithPath:@"m/44'/0'/0'/0"].extendedPrivateKey;
+    BOOL isequal = [[btckeychainxprv derivedKeychainWithPath:@""].extendedPublicKey isEqual:btckeychainxprv.extendedPublicKey];
+    NSLog(@"\n %d \n ****extendpub = %@ ***\n %@ *****\n\n %@ \n %@ \n",isequal,extendedPublicKeyroot,btckeychainxprv.extendedPublicKey,extendedPublicKeym0,extendedPublicKeym44);
+    
+    //分别生成地址
+    
+    //第一个地址和私钥
+    //compressedPublicKeyAddress0 = 16UZrzsDdeEnq95HSWhcW8RSdqpG4vJQeX        地址
+    //privateKeyAddress= L5Y7u1iYyyQS39UaSyCVD223HYEQLARFVQgY3SyqzrmQnHrfPV7d 私钥
+    BTCKey* key = [[btckeychainxprv derivedKeychainWithPath:@"m/44'/0'/0'/0"] keyAtIndex:0];
+    NSLog(@"\n   privateKeyAddress= %@\n compressedPublicKeyAddress0 = %@\n  \n",key.privateKeyAddress.string,key.compressedPublicKeyAddress.string);
+    
+   
+}
 
 @end
