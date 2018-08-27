@@ -93,7 +93,7 @@
 #import "UIButton+WebCache.h"
 
 #import "SGQRCode.h"
-#import <Charts/Charts-Swift.h>
+//#import <Charts/Charts-Swift.h>
 #import "PYSearch.h"
 
 
@@ -106,7 +106,9 @@
 /*
  CoreBitcoin
  */
+
 #import <CoreBitcoin/CoreBitcoin.h>
+#import <CoreBitcoin/CoreBitcoin+Categories.h>
 
 
 #endif /* PrefixHeader_pch */

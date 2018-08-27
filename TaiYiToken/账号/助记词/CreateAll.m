@@ -104,7 +104,7 @@
     return  mpkstr;
 }
 /*
- seed , ExtendKey = xprv||xpub
+ xprv,index,coinTYpe
  ******************************************
 // ⽬前有三种货币被定义：Bitcoin is m/44'/0'、Bitcoin Testnet is m/44'/1'，以及Litecoin is
  m/44'/2'。
@@ -118,7 +118,7 @@
  // "/44'/1'/2'" (BIP44 testnet account #2)
  // "44'/1'/2'" (BIP44 testnet account #2)
  */
-+(BTCKey *)CreateBTCKeychainByXprv:(NSString*)xprv index:(UInt32)index CoinType:(CoinType)coinTYpe{
++(BTCKey *)CreateBTCKeychainByXprv:(NSString*)xprv index:(UInt32)index CoinType:(CoinType)coinType{
     // Initializes master keychain from a seed
    // BTCKeychain *masterchain = [[BTCKeychain alloc]initWithSeed:seed.hexToData];
     
@@ -126,13 +126,13 @@
  
     
     //Account Extendedm/44'/60'/0'/0
-    NSString *AccountPath = [NSString stringWithFormat:@"m/44'/%d'/0'",coinTYpe];
+    NSString *AccountPath = [NSString stringWithFormat:@"m/44'/%d'/0'",coinType];
     NSLog(@"\n\n path = %@\n\n",AccountPath);
     NSString *AccountExtendedPrivateKey  =  [btckeychainxprv derivedKeychainWithPath:AccountPath].extendedPrivateKey;
     NSString *AccountExtendedPublicKey  = [btckeychainxprv derivedKeychainWithPath:AccountPath].extendedPublicKey;
     NSLog(@"\n *** Account Extended ***\n pri = %@ \n pub = %@",AccountExtendedPrivateKey,AccountExtendedPublicKey);
    // BIP32 Extended
-    NSString *BIP32Path = [NSString stringWithFormat:@"m/44'/%d'/0'/0",coinTYpe];
+    NSString *BIP32Path = [NSString stringWithFormat:@"m/44'/%d'/0'/0",coinType];
     NSString *BIP32ExtendedPrivateKey = [btckeychainxprv derivedKeychainWithPath:BIP32Path].extendedPrivateKey;
     NSString *BIP32ExtendedPublicKey = [btckeychainxprv derivedKeychainWithPath:BIP32Path].extendedPublicKey;
     NSLog(@"\n *** BIP32 Extended ***\n pri = %@ \n pub = %@",BIP32ExtendedPrivateKey,BIP32ExtendedPublicKey);
@@ -140,11 +140,11 @@
    
     
     //第一个地址和私钥m/44'/0'/0'/0  m/44'/60'/0'/0
-    //compressedPublicKeyAddress = 16UZrzsDdeEnq95HSWhcW8RSdqpG4vJQeX                          地址
-    //privateKey = L5Y7u1iYyyQS39UaSyCVD223HYEQLARFVQgY3SyqzrmQnHrfPV7d                        私钥
-    //compressedPublicKey = 02c1cfd635ffc3a3b78ec76248d1fbba50f0e40cba89613d51ff2a177dea51844a 公钥
-     BTCKey* key = [[btckeychainxprv derivedKeychainWithPath:BIP32Path] keyAtIndex:index];
-    if(coinTYpe == BTC){
+    //compressedPublicKeyAddress = 16UZrzsDdeEnq95HSWhcW8RSdqpG4vJQeX                          BTC地址
+    //privateKey = L5Y7u1iYyyQS39UaSyCVD223HYEQLARFVQgY3SyqzrmQnHrfPV7d                        BTC私钥
+    //compressedPublicKey = 02c1cfd635ffc3a3b78ec76248d1fbba50f0e40cba89613d51ff2a177dea51844a BTC公钥
+    BTCKey* key = [[btckeychainxprv derivedKeychainWithPath:BIP32Path] keyAtIndex:index];
+    if(coinType == BTC){
         NSString *compressedPublicKeyAddress = key.compressedPublicKeyAddress.string;
         NSString *privateKey = key.privateKeyAddress.string;
         NSString *compressedPublicKey = [NSString hexWithData:key.compressedPublicKey];
@@ -153,9 +153,19 @@
     }else{
         
         NSString *compressedPublicKeyAddress = [NSString hexWithData:key.compressedPublicKeyAddress.data];//错误
-       
-       
         
+        NSString *uncompressedPublicKeyAddress = [NSString hexWithData:key.uncompressedPublicKeyAddress.data];
+        NSString *address = [NSString hexWithData:key.address.data];
+        NSString *addressTestnet = [NSString hexWithData:key.addressTestnet.data];
+        NSString *privateKeyAddressTestnet = [NSString hexWithData:key.privateKeyAddressTestnet.data];
+        
+        NSLog(@"\n\n\n**************\n");
+        NSLog(@"compressedPublicKeyAddress = %@",compressedPublicKeyAddress);
+        NSLog(@"uncompressedPublicKeyAddress = %@",uncompressedPublicKeyAddress);
+        NSLog(@"address = %@",address);
+        NSLog(@"addressTestnet = %@",addressTestnet);
+        NSLog(@"privateKeyAddressTestnet = %@",privateKeyAddressTestnet);
+        NSLog(@"\n**************\n\n\n");
         NSString *privateKey = [NSString hexWithData:key.privateKeyAddress.data];
         NSString *compressedPublicKey = [NSString hexWithData:key.compressedPublicKey];
         NSLog(@"\n   privateKey= %@\n Address = %@\n  PublicKey = %@\n",privateKey,compressedPublicKeyAddress, compressedPublicKey);

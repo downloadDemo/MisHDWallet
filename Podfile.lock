@@ -14,14 +14,16 @@ PODS:
   - AFNetworking/Serialization (3.2.1)
   - AFNetworking/UIKit (3.2.1):
     - AFNetworking/NSURLSession
-  - Charts (3.1.1):
-    - Charts/Core (= 3.1.1)
-  - Charts/Core (3.1.1)
+  - CoreBitcoin (0.6.8.1):
+    - ISO8601DateFormatter
+    - OpenSSL-Universal (= 1.0.1.16)
   - CWLateralSlide (1.6.3)
+  - ISO8601DateFormatter (0.8)
   - JVFloatLabeledTextField (1.2.1)
   - Masonry (1.1.0)
   - MBProgressHUD (1.1.0)
   - MJRefresh (3.1.15.6)
+  - OpenSSL-Universal (1.0.1.16)
   - PYSearch (0.9.0)
   - SAMKeychain (1.5.3)
   - SDWebImage (4.4.2):
@@ -35,7 +37,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking
-  - Charts
+  - CoreBitcoin (from `https://raw.github.com/oleganza/CoreBitcoin/master/CoreBitcoin.podspec`)
   - CWLateralSlide (~> 1.6.1)
   - JVFloatLabeledTextField
   - Masonry
@@ -51,12 +53,13 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - AFNetworking
-    - Charts
     - CWLateralSlide
+    - ISO8601DateFormatter
     - JVFloatLabeledTextField
     - Masonry
     - MBProgressHUD
     - MJRefresh
+    - OpenSSL-Universal
     - PYSearch
     - SAMKeychain
     - SDWebImage
@@ -64,14 +67,20 @@ SPEC REPOS:
     - SGQRCode
     - YYKit
 
+EXTERNAL SOURCES:
+  CoreBitcoin:
+    :podspec: https://raw.github.com/oleganza/CoreBitcoin/master/CoreBitcoin.podspec
+
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
-  Charts: 90a4d61da0f6e06684c591e3bcab11940fe61736
+  CoreBitcoin: 4ac6f6a61e543f08399c2fe57496d4fdcbaf74f9
   CWLateralSlide: 1b9a848873b93de45cfefe6389765b12aa70982c
+  ISO8601DateFormatter: 4551b6ce4f83185425f583b0b3feb3c7b59b942c
   JVFloatLabeledTextField: cfc44e3c4d493b2ed92ede8035e8e89c2912ba64
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
   MJRefresh: 0efa19656679d70a0f47cbe76e56c2271fe53a97
+  OpenSSL-Universal: 85ef63bf81d0741b03c8719cd29685c37c59518d
   PYSearch: 55175e6046e2e1b5236a90c780351988e914a015
   SAMKeychain: 483e1c9f32984d50ca961e26818a534283b4cd5c
   SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
@@ -79,6 +88,6 @@ SPEC CHECKSUMS:
   SGQRCode: 3ee00e1c325408aa8f165b0ef791cd511876a527
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: 72faa19e9d6f5d5a7a08df1ab0e05eff6562a87c
+PODFILE CHECKSUM: f73a8003515f8ecf9f8db87c8bd9782e63fa54f0
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.6.0.beta.1

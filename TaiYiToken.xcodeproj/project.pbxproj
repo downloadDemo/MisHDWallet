@@ -7,6 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0415BD982131BC850022DEB7 /* UIColor+YYStockTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 0415BD542131BC850022DEB7 /* UIColor+YYStockTheme.m */; };
+		0415BD992131BC850022DEB7 /* YYStockVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = 0415BD592131BC850022DEB7 /* YYStockVariable.m */; };
+		0415BD9A2131BC850022DEB7 /* YYTopBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0415BD5D2131BC850022DEB7 /* YYTopBarView.m */; };
+		0415BD9B2131BC850022DEB7 /* YYStock.m in Sources */ = {isa = PBXBuildFile; fileRef = 0415BD602131BC850022DEB7 /* YYStock.m */; };
+		0415BD9C2131BC850022DEB7 /* YYLinePositionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0415BD672131BC850022DEB7 /* YYLinePositionModel.m */; };
+		0415BD9D2131BC850022DEB7 /* YYVolumePositionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0415BD6A2131BC850022DEB7 /* YYVolumePositionModel.m */; };
+		0415BD9E2131BC850022DEB7 /* YYStockView_TimeLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 0415BD6D2131BC850022DEB7 /* YYStockView_TimeLine.m */; };
+		0415BD9F2131BC850022DEB7 /* YYFiveRecordTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0415BD712131BC850022DEB7 /* YYFiveRecordTableViewCell.m */; };
+		0415BDA02131BC850022DEB7 /* YYFiveRecordTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0415BD732131BC850022DEB7 /* YYFiveRecordTableViewCell.xib */; };
+		0415BDA12131BC850022DEB7 /* YYFiveRecordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0415BD742131BC850022DEB7 /* YYFiveRecordView.m */; };
+		0415BDA22131BC850022DEB7 /* YYTimeLineMaskView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0415BD782131BC850022DEB7 /* YYTimeLineMaskView.m */; };
+		0415BDA32131BC850022DEB7 /* YYTimeLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0415BD7A2131BC850022DEB7 /* YYTimeLineView.m */; };
+		0415BDA42131BC850022DEB7 /* YYTimeLineVolumeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0415BD7D2131BC850022DEB7 /* YYTimeLineVolumeView.m */; };
+		0415BDA52131BC850022DEB7 /* YYStockView_Kline.m in Sources */ = {isa = PBXBuildFile; fileRef = 0415BD802131BC850022DEB7 /* YYStockView_Kline.m */; };
+		0415BDA62131BC850022DEB7 /* YYStockScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0415BD832131BC850022DEB7 /* YYStockScrollView.m */; };
+		0415BDA72131BC850022DEB7 /* YYStockViewMaskView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0415BD862131BC850022DEB7 /* YYStockViewMaskView.m */; };
+		0415BDA82131BC850022DEB7 /* YYKlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0415BD8A2131BC850022DEB7 /* YYKlineView.m */; };
+		0415BDA92131BC850022DEB7 /* YYKline.m in Sources */ = {isa = PBXBuildFile; fileRef = 0415BD8D2131BC850022DEB7 /* YYKline.m */; };
+		0415BDAA2131BC850022DEB7 /* MAline.m in Sources */ = {isa = PBXBuildFile; fileRef = 0415BD8F2131BC850022DEB7 /* MAline.m */; };
+		0415BDAB2131BC850022DEB7 /* YYKlineMaskView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0415BD922131BC850022DEB7 /* YYKlineMaskView.m */; };
+		0415BDAC2131BC850022DEB7 /* YYKlineVolumeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0415BD952131BC850022DEB7 /* YYKlineVolumeView.m */; };
 		8428A53F2123FE76003E1DD8 /* CurrencyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8428A53E2123FE76003E1DD8 /* CurrencyModel.m */; };
 		8428A542212422EC003E1DD8 /* MarketVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8428A541212422EC003E1DD8 /* MarketVC.m */; };
 		8428A54521242323003E1DD8 /* MarketCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8428A54421242323003E1DD8 /* MarketCell.m */; };
@@ -39,7 +60,6 @@
 		843ECA3B21216320002D5C2A /* UIColor+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 843ECA362121631F002D5C2A /* UIColor+Util.m */; };
 		84748845212AAAD70077AC0F /* VerifyMnemonicVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84748844212AAAD70077AC0F /* VerifyMnemonicVC.m */; };
 		84748848212BC2EC0077AC0F /* UserInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84748847212BC2EC0077AC0F /* UserInfoVC.m */; };
-		847BC600212FA412000B02AC /* CoreBitcoin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 847BC5FF212FA411000B02AC /* CoreBitcoin.framework */; };
 		8481805D2123B2630007DCF9 /* AESCrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = 848180552123B2620007DCF9 /* AESCrypt.m */; };
 		8481805E2123B2630007DCF9 /* NSObject+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 848180582123B2620007DCF9 /* NSObject+Extension.m */; };
 		8481805F2123B2630007DCF9 /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 8481805A2123B2620007DCF9 /* Base64.m */; };
@@ -82,7 +102,7 @@
 		84D0E43B21211AAF004E65AD /* TaiYiTokenTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D0E43A21211AAF004E65AD /* TaiYiTokenTests.m */; };
 		84D0E44621211AAF004E65AD /* TaiYiTokenUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D0E44521211AAF004E65AD /* TaiYiTokenUITests.m */; };
 		84FA0821212BE3AF00DCFC0C /* CreateAll.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FA0820212BE3AF00DCFC0C /* CreateAll.m */; };
-		BE7C9A82449AF67BFD03B98C /* Pods_TaiYiToken.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 658D0728D169E0A4426035F5 /* Pods_TaiYiToken.framework */; };
+		9FBB700D2810CB0FA9D45A94 /* libPods-TaiYiToken.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E9748ED3D2B5C2D4D7CCFB04 /* libPods-TaiYiToken.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,7 +123,51 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		658D0728D169E0A4426035F5 /* Pods_TaiYiToken.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TaiYiToken.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0415BD542131BC850022DEB7 /* UIColor+YYStockTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+YYStockTheme.m"; sourceTree = "<group>"; };
+		0415BD552131BC850022DEB7 /* UIColor+YYStockTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+YYStockTheme.h"; sourceTree = "<group>"; };
+		0415BD572131BC850022DEB7 /* YYStockConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYStockConstant.h; sourceTree = "<group>"; };
+		0415BD592131BC850022DEB7 /* YYStockVariable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYStockVariable.m; sourceTree = "<group>"; };
+		0415BD5A2131BC850022DEB7 /* YYStockVariable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYStockVariable.h; sourceTree = "<group>"; };
+		0415BD5D2131BC850022DEB7 /* YYTopBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYTopBarView.m; sourceTree = "<group>"; };
+		0415BD5E2131BC850022DEB7 /* YYTopBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYTopBarView.h; sourceTree = "<group>"; };
+		0415BD602131BC850022DEB7 /* YYStock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYStock.m; sourceTree = "<group>"; };
+		0415BD632131BC850022DEB7 /* YYStockTimeLineProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYStockTimeLineProtocol.h; sourceTree = "<group>"; };
+		0415BD642131BC850022DEB7 /* YYStockFiveRecordProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYStockFiveRecordProtocol.h; sourceTree = "<group>"; };
+		0415BD652131BC850022DEB7 /* YYStockDataProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYStockDataProtocol.h; sourceTree = "<group>"; };
+		0415BD672131BC850022DEB7 /* YYLinePositionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYLinePositionModel.m; sourceTree = "<group>"; };
+		0415BD682131BC850022DEB7 /* YYLinePositionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYLinePositionModel.h; sourceTree = "<group>"; };
+		0415BD6A2131BC850022DEB7 /* YYVolumePositionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYVolumePositionModel.m; sourceTree = "<group>"; };
+		0415BD6B2131BC850022DEB7 /* YYVolumePositionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYVolumePositionModel.h; sourceTree = "<group>"; };
+		0415BD6D2131BC850022DEB7 /* YYStockView_TimeLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYStockView_TimeLine.m; sourceTree = "<group>"; };
+		0415BD6E2131BC850022DEB7 /* YYStockView_Kline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYStockView_Kline.h; sourceTree = "<group>"; };
+		0415BD712131BC850022DEB7 /* YYFiveRecordTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYFiveRecordTableViewCell.m; sourceTree = "<group>"; };
+		0415BD722131BC850022DEB7 /* YYFiveRecordView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYFiveRecordView.h; sourceTree = "<group>"; };
+		0415BD732131BC850022DEB7 /* YYFiveRecordTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YYFiveRecordTableViewCell.xib; sourceTree = "<group>"; };
+		0415BD742131BC850022DEB7 /* YYFiveRecordView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYFiveRecordView.m; sourceTree = "<group>"; };
+		0415BD752131BC850022DEB7 /* YYFiveRecordTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYFiveRecordTableViewCell.h; sourceTree = "<group>"; };
+		0415BD772131BC850022DEB7 /* YYTimeLineMaskView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYTimeLineMaskView.h; sourceTree = "<group>"; };
+		0415BD782131BC850022DEB7 /* YYTimeLineMaskView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYTimeLineMaskView.m; sourceTree = "<group>"; };
+		0415BD7A2131BC850022DEB7 /* YYTimeLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYTimeLineView.m; sourceTree = "<group>"; };
+		0415BD7B2131BC850022DEB7 /* YYTimeLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYTimeLineView.h; sourceTree = "<group>"; };
+		0415BD7D2131BC850022DEB7 /* YYTimeLineVolumeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYTimeLineVolumeView.m; sourceTree = "<group>"; };
+		0415BD7E2131BC850022DEB7 /* YYTimeLineVolumeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYTimeLineVolumeView.h; sourceTree = "<group>"; };
+		0415BD7F2131BC850022DEB7 /* YYStockView_TimeLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYStockView_TimeLine.h; sourceTree = "<group>"; };
+		0415BD802131BC850022DEB7 /* YYStockView_Kline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYStockView_Kline.m; sourceTree = "<group>"; };
+		0415BD822131BC850022DEB7 /* YYStockScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYStockScrollView.h; sourceTree = "<group>"; };
+		0415BD832131BC850022DEB7 /* YYStockScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYStockScrollView.m; sourceTree = "<group>"; };
+		0415BD852131BC850022DEB7 /* YYStockViewMaskView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYStockViewMaskView.h; sourceTree = "<group>"; };
+		0415BD862131BC850022DEB7 /* YYStockViewMaskView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYStockViewMaskView.m; sourceTree = "<group>"; };
+		0415BD892131BC850022DEB7 /* YYKlineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYKlineView.h; sourceTree = "<group>"; };
+		0415BD8A2131BC850022DEB7 /* YYKlineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYKlineView.m; sourceTree = "<group>"; };
+		0415BD8C2131BC850022DEB7 /* YYKline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYKline.h; sourceTree = "<group>"; };
+		0415BD8D2131BC850022DEB7 /* YYKline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYKline.m; sourceTree = "<group>"; };
+		0415BD8F2131BC850022DEB7 /* MAline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAline.m; sourceTree = "<group>"; };
+		0415BD902131BC850022DEB7 /* MAline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAline.h; sourceTree = "<group>"; };
+		0415BD922131BC850022DEB7 /* YYKlineMaskView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYKlineMaskView.m; sourceTree = "<group>"; };
+		0415BD932131BC850022DEB7 /* YYKlineMaskView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYKlineMaskView.h; sourceTree = "<group>"; };
+		0415BD952131BC850022DEB7 /* YYKlineVolumeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYKlineVolumeView.m; sourceTree = "<group>"; };
+		0415BD962131BC850022DEB7 /* YYKlineVolumeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYKlineVolumeView.h; sourceTree = "<group>"; };
+		0415BD972131BC850022DEB7 /* YYStock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYStock.h; sourceTree = "<group>"; };
 		8428A53D2123FE76003E1DD8 /* CurrencyModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CurrencyModel.h; sourceTree = "<group>"; };
 		8428A53E2123FE76003E1DD8 /* CurrencyModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CurrencyModel.m; sourceTree = "<group>"; };
 		8428A540212422EC003E1DD8 /* MarketVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MarketVC.h; sourceTree = "<group>"; };
@@ -171,7 +235,6 @@
 		84748844212AAAD70077AC0F /* VerifyMnemonicVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VerifyMnemonicVC.m; sourceTree = "<group>"; };
 		84748846212BC2EC0077AC0F /* UserInfoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserInfoVC.h; sourceTree = "<group>"; };
 		84748847212BC2EC0077AC0F /* UserInfoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserInfoVC.m; sourceTree = "<group>"; };
-		847BC5FF212FA411000B02AC /* CoreBitcoin.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CoreBitcoin.framework; sourceTree = "<group>"; };
 		848180532123B2620007DCF9 /* NSObject+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Extension.h"; sourceTree = "<group>"; };
 		848180542123B2620007DCF9 /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64.h; sourceTree = "<group>"; };
 		848180552123B2620007DCF9 /* AESCrypt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AESCrypt.m; sourceTree = "<group>"; };
@@ -253,6 +316,7 @@
 		84FA081F212BE3AF00DCFC0C /* CreateAll.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateAll.h; sourceTree = "<group>"; };
 		84FA0820212BE3AF00DCFC0C /* CreateAll.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateAll.m; sourceTree = "<group>"; };
 		8B1D65BC8D952F047398FF96 /* Pods-TaiYiToken.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaiYiToken.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TaiYiToken/Pods-TaiYiToken.debug.xcconfig"; sourceTree = "<group>"; };
+		E9748ED3D2B5C2D4D7CCFB04 /* libPods-TaiYiToken.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TaiYiToken.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF792ABEA2562F62BD93C320 /* Pods-TaiYiToken.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaiYiToken.release.xcconfig"; path = "Pods/Target Support Files/Pods-TaiYiToken/Pods-TaiYiToken.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -261,12 +325,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				847BC600212FA412000B02AC /* CoreBitcoin.framework in Frameworks */,
 				84C0DF33212D4F1E00BCC91D /* libiconv.tbd in Frameworks */,
 				84C8E7DA212A976800627445 /* Foundation.framework in Frameworks */,
 				84C8E7D8212A976100627445 /* UIKit.framework in Frameworks */,
 				84C8E7D6212A975B00627445 /* CoreGraphics.framework in Frameworks */,
-				BE7C9A82449AF67BFD03B98C /* Pods_TaiYiToken.framework in Frameworks */,
+				9FBB700D2810CB0FA9D45A94 /* libPods-TaiYiToken.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,15 +350,266 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0415BD512131BC850022DEB7 /* YYStock */ = {
+			isa = PBXGroup;
+			children = (
+				0415BD522131BC850022DEB7 /* Config[主题+定义] */,
+				0415BD5B2131BC850022DEB7 /* Packages */,
+				0415BD5F2131BC850022DEB7 /* Stock */,
+			);
+			path = YYStock;
+			sourceTree = "<group>";
+		};
+		0415BD522131BC850022DEB7 /* Config[主题+定义] */ = {
+			isa = PBXGroup;
+			children = (
+				0415BD532131BC850022DEB7 /* Theme[主题] */,
+				0415BD562131BC850022DEB7 /* Constant[常量定义] */,
+				0415BD582131BC850022DEB7 /* Variable[变量] */,
+			);
+			path = "Config[主题+定义]";
+			sourceTree = "<group>";
+		};
+		0415BD532131BC850022DEB7 /* Theme[主题] */ = {
+			isa = PBXGroup;
+			children = (
+				0415BD542131BC850022DEB7 /* UIColor+YYStockTheme.m */,
+				0415BD552131BC850022DEB7 /* UIColor+YYStockTheme.h */,
+			);
+			path = "Theme[主题]";
+			sourceTree = "<group>";
+		};
+		0415BD562131BC850022DEB7 /* Constant[常量定义] */ = {
+			isa = PBXGroup;
+			children = (
+				0415BD572131BC850022DEB7 /* YYStockConstant.h */,
+			);
+			path = "Constant[常量定义]";
+			sourceTree = "<group>";
+		};
+		0415BD582131BC850022DEB7 /* Variable[变量] */ = {
+			isa = PBXGroup;
+			children = (
+				0415BD592131BC850022DEB7 /* YYStockVariable.m */,
+				0415BD5A2131BC850022DEB7 /* YYStockVariable.h */,
+			);
+			path = "Variable[变量]";
+			sourceTree = "<group>";
+		};
+		0415BD5B2131BC850022DEB7 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				0415BD5C2131BC850022DEB7 /* YYTopBar */,
+			);
+			path = Packages;
+			sourceTree = "<group>";
+		};
+		0415BD5C2131BC850022DEB7 /* YYTopBar */ = {
+			isa = PBXGroup;
+			children = (
+				0415BD5D2131BC850022DEB7 /* YYTopBarView.m */,
+				0415BD5E2131BC850022DEB7 /* YYTopBarView.h */,
+			);
+			path = YYTopBar;
+			sourceTree = "<group>";
+		};
+		0415BD5F2131BC850022DEB7 /* Stock */ = {
+			isa = PBXGroup;
+			children = (
+				0415BD602131BC850022DEB7 /* YYStock.m */,
+				0415BD612131BC850022DEB7 /* StockModel */,
+				0415BD6C2131BC850022DEB7 /* StockView */,
+				0415BD972131BC850022DEB7 /* YYStock.h */,
+			);
+			path = Stock;
+			sourceTree = "<group>";
+		};
+		0415BD612131BC850022DEB7 /* StockModel */ = {
+			isa = PBXGroup;
+			children = (
+				0415BD622131BC850022DEB7 /* StockDataProtocol */,
+				0415BD662131BC850022DEB7 /* StockLinePositionModel */,
+				0415BD692131BC850022DEB7 /* StockVolumePositionModel */,
+			);
+			path = StockModel;
+			sourceTree = "<group>";
+		};
+		0415BD622131BC850022DEB7 /* StockDataProtocol */ = {
+			isa = PBXGroup;
+			children = (
+				0415BD632131BC850022DEB7 /* YYStockTimeLineProtocol.h */,
+				0415BD642131BC850022DEB7 /* YYStockFiveRecordProtocol.h */,
+				0415BD652131BC850022DEB7 /* YYStockDataProtocol.h */,
+			);
+			path = StockDataProtocol;
+			sourceTree = "<group>";
+		};
+		0415BD662131BC850022DEB7 /* StockLinePositionModel */ = {
+			isa = PBXGroup;
+			children = (
+				0415BD672131BC850022DEB7 /* YYLinePositionModel.m */,
+				0415BD682131BC850022DEB7 /* YYLinePositionModel.h */,
+			);
+			path = StockLinePositionModel;
+			sourceTree = "<group>";
+		};
+		0415BD692131BC850022DEB7 /* StockVolumePositionModel */ = {
+			isa = PBXGroup;
+			children = (
+				0415BD6A2131BC850022DEB7 /* YYVolumePositionModel.m */,
+				0415BD6B2131BC850022DEB7 /* YYVolumePositionModel.h */,
+			);
+			path = StockVolumePositionModel;
+			sourceTree = "<group>";
+		};
+		0415BD6C2131BC850022DEB7 /* StockView */ = {
+			isa = PBXGroup;
+			children = (
+				0415BD6D2131BC850022DEB7 /* YYStockView_TimeLine.m */,
+				0415BD6E2131BC850022DEB7 /* YYStockView_Kline.h */,
+				0415BD6F2131BC850022DEB7 /* TimeLine[分时图] */,
+				0415BD7F2131BC850022DEB7 /* YYStockView_TimeLine.h */,
+				0415BD802131BC850022DEB7 /* YYStockView_Kline.m */,
+				0415BD812131BC850022DEB7 /* StockScrollview[画背景线] */,
+				0415BD842131BC850022DEB7 /* MaskView[TopBar遮罩] */,
+				0415BD872131BC850022DEB7 /* LineView[K线图] */,
+			);
+			path = StockView;
+			sourceTree = "<group>";
+		};
+		0415BD6F2131BC850022DEB7 /* TimeLine[分时图] */ = {
+			isa = PBXGroup;
+			children = (
+				0415BD702131BC850022DEB7 /* FiveRecordView[五档] */,
+				0415BD762131BC850022DEB7 /* MaskView[遮罩] */,
+				0415BD792131BC850022DEB7 /* TimeLineView[分时图] */,
+				0415BD7C2131BC850022DEB7 /* VolumeView[成交量] */,
+			);
+			path = "TimeLine[分时图]";
+			sourceTree = "<group>";
+		};
+		0415BD702131BC850022DEB7 /* FiveRecordView[五档] */ = {
+			isa = PBXGroup;
+			children = (
+				0415BD712131BC850022DEB7 /* YYFiveRecordTableViewCell.m */,
+				0415BD722131BC850022DEB7 /* YYFiveRecordView.h */,
+				0415BD732131BC850022DEB7 /* YYFiveRecordTableViewCell.xib */,
+				0415BD742131BC850022DEB7 /* YYFiveRecordView.m */,
+				0415BD752131BC850022DEB7 /* YYFiveRecordTableViewCell.h */,
+			);
+			path = "FiveRecordView[五档]";
+			sourceTree = "<group>";
+		};
+		0415BD762131BC850022DEB7 /* MaskView[遮罩] */ = {
+			isa = PBXGroup;
+			children = (
+				0415BD772131BC850022DEB7 /* YYTimeLineMaskView.h */,
+				0415BD782131BC850022DEB7 /* YYTimeLineMaskView.m */,
+			);
+			path = "MaskView[遮罩]";
+			sourceTree = "<group>";
+		};
+		0415BD792131BC850022DEB7 /* TimeLineView[分时图] */ = {
+			isa = PBXGroup;
+			children = (
+				0415BD7A2131BC850022DEB7 /* YYTimeLineView.m */,
+				0415BD7B2131BC850022DEB7 /* YYTimeLineView.h */,
+			);
+			path = "TimeLineView[分时图]";
+			sourceTree = "<group>";
+		};
+		0415BD7C2131BC850022DEB7 /* VolumeView[成交量] */ = {
+			isa = PBXGroup;
+			children = (
+				0415BD7D2131BC850022DEB7 /* YYTimeLineVolumeView.m */,
+				0415BD7E2131BC850022DEB7 /* YYTimeLineVolumeView.h */,
+			);
+			path = "VolumeView[成交量]";
+			sourceTree = "<group>";
+		};
+		0415BD812131BC850022DEB7 /* StockScrollview[画背景线] */ = {
+			isa = PBXGroup;
+			children = (
+				0415BD822131BC850022DEB7 /* YYStockScrollView.h */,
+				0415BD832131BC850022DEB7 /* YYStockScrollView.m */,
+			);
+			path = "StockScrollview[画背景线]";
+			sourceTree = "<group>";
+		};
+		0415BD842131BC850022DEB7 /* MaskView[TopBar遮罩] */ = {
+			isa = PBXGroup;
+			children = (
+				0415BD852131BC850022DEB7 /* YYStockViewMaskView.h */,
+				0415BD862131BC850022DEB7 /* YYStockViewMaskView.m */,
+			);
+			path = "MaskView[TopBar遮罩]";
+			sourceTree = "<group>";
+		};
+		0415BD872131BC850022DEB7 /* LineView[K线图] */ = {
+			isa = PBXGroup;
+			children = (
+				0415BD882131BC850022DEB7 /* KlineView[K线上部分] */,
+				0415BD912131BC850022DEB7 /* MaskView[遮罩] */,
+				0415BD942131BC850022DEB7 /* VolumeView[成交量] */,
+			);
+			path = "LineView[K线图]";
+			sourceTree = "<group>";
+		};
+		0415BD882131BC850022DEB7 /* KlineView[K线上部分] */ = {
+			isa = PBXGroup;
+			children = (
+				0415BD892131BC850022DEB7 /* YYKlineView.h */,
+				0415BD8A2131BC850022DEB7 /* YYKlineView.m */,
+				0415BD8B2131BC850022DEB7 /* Kline */,
+				0415BD8E2131BC850022DEB7 /* MAline */,
+			);
+			path = "KlineView[K线上部分]";
+			sourceTree = "<group>";
+		};
+		0415BD8B2131BC850022DEB7 /* Kline */ = {
+			isa = PBXGroup;
+			children = (
+				0415BD8C2131BC850022DEB7 /* YYKline.h */,
+				0415BD8D2131BC850022DEB7 /* YYKline.m */,
+			);
+			path = Kline;
+			sourceTree = "<group>";
+		};
+		0415BD8E2131BC850022DEB7 /* MAline */ = {
+			isa = PBXGroup;
+			children = (
+				0415BD8F2131BC850022DEB7 /* MAline.m */,
+				0415BD902131BC850022DEB7 /* MAline.h */,
+			);
+			path = MAline;
+			sourceTree = "<group>";
+		};
+		0415BD912131BC850022DEB7 /* MaskView[遮罩] */ = {
+			isa = PBXGroup;
+			children = (
+				0415BD922131BC850022DEB7 /* YYKlineMaskView.m */,
+				0415BD932131BC850022DEB7 /* YYKlineMaskView.h */,
+			);
+			path = "MaskView[遮罩]";
+			sourceTree = "<group>";
+		};
+		0415BD942131BC850022DEB7 /* VolumeView[成交量] */ = {
+			isa = PBXGroup;
+			children = (
+				0415BD952131BC850022DEB7 /* YYKlineVolumeView.m */,
+				0415BD962131BC850022DEB7 /* YYKlineVolumeView.h */,
+			);
+			path = "VolumeView[成交量]";
+			sourceTree = "<group>";
+		};
 		6AC5FF18C18AADA88B0CA162 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				847BC5FF212FA411000B02AC /* CoreBitcoin.framework */,
 				84C0DF32212D4F1E00BCC91D /* libiconv.tbd */,
 				84C8E7D9212A976800627445 /* Foundation.framework */,
 				84C8E7D7212A976100627445 /* UIKit.framework */,
 				84C8E7D5212A975B00627445 /* CoreGraphics.framework */,
-				658D0728D169E0A4426035F5 /* Pods_TaiYiToken.framework */,
+				E9748ED3D2B5C2D4D7CCFB04 /* libPods-TaiYiToken.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -334,6 +648,7 @@
 		843EC9C2212120F0002D5C2A /* 行情 */ = {
 			isa = PBXGroup;
 			children = (
+				0415BD512131BC850022DEB7 /* YYStock */,
 				8428A53C2123FE45003E1DD8 /* Model */,
 				848180B82123C72A0007DCF9 /* 标签导航 */,
 				848180BC2123CDAB0007DCF9 /* 子页面 */,
@@ -695,7 +1010,7 @@
 				84D0E41A21211AAB004E65AD /* Sources */,
 				84D0E41B21211AAB004E65AD /* Frameworks */,
 				84D0E41C21211AAB004E65AD /* Resources */,
-				A4D1A357CB719E2D95222ED1 /* [CP] Embed Pods Frameworks */,
+				425D3CEFA2F51C95D8DC9BFE /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -790,6 +1105,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				84D0E42E21211AAF004E65AD /* LaunchScreen.storyboard in Resources */,
+				0415BDA02131BC850022DEB7 /* YYFiveRecordTableViewCell.xib in Resources */,
 				84B0A94C21227892002EFA0A /* Assets.xcassets in Resources */,
 				84D0E42921211AAB004E65AD /* Main.storyboard in Resources */,
 				84C8E7D1212A95EC00627445 /* english.txt in Resources */,
@@ -813,46 +1129,28 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		A4D1A357CB719E2D95222ED1 /* [CP] Embed Pods Frameworks */ = {
+		425D3CEFA2F51C95D8DC9BFE /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-TaiYiToken/Pods-TaiYiToken-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
-				"${BUILT_PRODUCTS_DIR}/CWLateralSlide/CWLateralSlide.framework",
-				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
-				"${BUILT_PRODUCTS_DIR}/JVFloatLabeledTextField/JVFloatLabeledTextField.framework",
-				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
-				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
-				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
-				"${BUILT_PRODUCTS_DIR}/PYSearch/PYSearch.framework",
-				"${BUILT_PRODUCTS_DIR}/SAMKeychain/SAMKeychain.framework",
-				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
-				"${BUILT_PRODUCTS_DIR}/SGQRCode/SGQRCode.framework",
-				"${BUILT_PRODUCTS_DIR}/YYKit/YYKit.framework",
-				"${BUILT_PRODUCTS_DIR}/secp256k1_ios/secp256k1_ios.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-TaiYiToken/Pods-TaiYiToken-resources.sh",
+				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
+				"${PODS_ROOT}/PYSearch/PYSearch/PYSearch.bundle",
+				"${PODS_ROOT}/SAMKeychain/Support/SAMKeychain.bundle",
+				"${PODS_ROOT}/SGQRCode/SGQRCode/SGQRCode.bundle",
 			);
-			name = "[CP] Embed Pods Frameworks";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CWLateralSlide.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JVFloatLabeledTextField.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PYSearch.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SAMKeychain.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SGQRCode.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/secp256k1_ios.framework",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/PYSearch.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SAMKeychain.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SGQRCode.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TaiYiToken/Pods-TaiYiToken-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TaiYiToken/Pods-TaiYiToken-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E45B4675BD3680EE5CF43C14 /* [CP] Check Pods Manifest.lock */ = {
@@ -889,9 +1187,12 @@
 				84B0A95021228BE9002EFA0A /* SwitchAccountVc.m in Sources */,
 				84FA0821212BE3AF00DCFC0C /* CreateAll.m in Sources */,
 				843ECA2C212162FB002D5C2A /* NSString+Extention.m in Sources */,
+				0415BDA52131BC850022DEB7 /* YYStockView_Kline.m in Sources */,
 				84B0A9642122CD7B002EFA0A /* RemindView.m in Sources */,
 				84C0DF30212CFF9100BCC91D /* NSMutableData+Bitcoin.m in Sources */,
+				0415BD9A2131BC850022DEB7 /* YYTopBarView.m in Sources */,
 				843ECA3921216320002D5C2A /* UIView+frameAdjust.m in Sources */,
+				0415BDAC2131BC850022DEB7 /* YYKlineVolumeView.m in Sources */,
 				843ECA3B21216320002D5C2A /* UIColor+Util.m in Sources */,
 				843ECA29212162FB002D5C2A /* NSDictionary+ExFoundation.m in Sources */,
 				843EC9DA21212271002D5C2A /* NSObject+Parse.m in Sources */,
@@ -902,16 +1203,24 @@
 				84B0A9492122736B002EFA0A /* CustomizedNavigationController.m in Sources */,
 				8481805E2123B2630007DCF9 /* NSObject+Extension.m in Sources */,
 				843EC9ED212122A7002D5C2A /* BaseNetworking.m in Sources */,
+				0415BDA82131BC850022DEB7 /* YYKlineView.m in Sources */,
+				0415BDAB2131BC850022DEB7 /* YYKlineMaskView.m in Sources */,
 				8481805F2123B2630007DCF9 /* Base64.m in Sources */,
 				84748845212AAAD70077AC0F /* VerifyMnemonicVC.m in Sources */,
 				843EC9DE21212271002D5C2A /* NSString+URLString.m in Sources */,
 				848180C32123CF750007DCF9 /* SelfChooseCell.m in Sources */,
+				0415BD9C2131BC850022DEB7 /* YYLinePositionModel.m in Sources */,
 				843ECA2A212162FB002D5C2A /* NSMutableAttributedString+ExFoundation.m in Sources */,
 				843ECA27212162FB002D5C2A /* NSDate+ExFoundation.m in Sources */,
+				0415BDA12131BC850022DEB7 /* YYFiveRecordView.m in Sources */,
+				0415BDAA2131BC850022DEB7 /* MAline.m in Sources */,
+				0415BD992131BC850022DEB7 /* YYStockVariable.m in Sources */,
+				0415BD9E2131BC850022DEB7 /* YYStockView_TimeLine.m in Sources */,
 				84B0A9572122ABD5002EFA0A /* CreateAccountVC.m in Sources */,
 				843EC9E52121228B002D5C2A /* SAMKeyChainEasy.m in Sources */,
 				8428A54521242323003E1DD8 /* MarketCell.m in Sources */,
 				8428A53F2123FE76003E1DD8 /* CurrencyModel.m in Sources */,
+				0415BDA72131BC850022DEB7 /* YYStockViewMaskView.m in Sources */,
 				84B0A9602122C184002EFA0A /* UIImage+Gradient.m in Sources */,
 				84C0DF2A212CFF7700BCC91D /* NSString+Bitcoin.m in Sources */,
 				843ECA312121630A002D5C2A /* RegularExpression.m in Sources */,
@@ -919,20 +1228,27 @@
 				843EC9E62121228B002D5C2A /* AMSaveFile.m in Sources */,
 				84C8E7D4212A971C00627445 /* NYMnemonic.m in Sources */,
 				843EC9DF21212271002D5C2A /* AppDelegate+Custom.m in Sources */,
+				0415BD982131BC850022DEB7 /* UIColor+YYStockTheme.m in Sources */,
 				84C8E7E3212A9FFD00627445 /* CFFlowButtonView.m in Sources */,
 				848180C02123CE9F0007DCF9 /* SelfChooseVC.m in Sources */,
+				0415BDA92131BC850022DEB7 /* YYKline.m in Sources */,
 				8428A548212544F2003E1DD8 /* MarketDetailVC.m in Sources */,
 				84D0E43121211AAF004E65AD /* main.m in Sources */,
+				0415BDA32131BC850022DEB7 /* YYTimeLineView.m in Sources */,
+				0415BD9B2131BC850022DEB7 /* YYStock.m in Sources */,
 				84C8E7E0212A9FEF00627445 /* UIView+Extension.m in Sources */,
 				843ECA26212162FB002D5C2A /* NSData+Hash.m in Sources */,
+				0415BDA62131BC850022DEB7 /* YYStockScrollView.m in Sources */,
 				84C0DF26212CFF3800BCC91D /* BRKey.m in Sources */,
 				84B0A95F2122C184002EFA0A /* UIButton+Gradient.m in Sources */,
 				843ECA2B212162FB002D5C2A /* UIColor+SNFoundation.m in Sources */,
 				84BDD16D21269D5B0039FE09 /* DataView.m in Sources */,
 				84D0E42321211AAB004E65AD /* AppDelegate.m in Sources */,
 				84B0A95A2122B87B002EFA0A /* UIColor+PGHex.m in Sources */,
+				0415BD9D2131BC850022DEB7 /* YYVolumePositionModel.m in Sources */,
 				84C0DF2D212CFF8500BCC91D /* NSData+Bitcoin.m in Sources */,
 				848180602123B2630007DCF9 /* NSData+CommonCrypto.m in Sources */,
+				0415BD9F2131BC850022DEB7 /* YYFiveRecordTableViewCell.m in Sources */,
 				848180612123B2630007DCF9 /* PBKDF2.m in Sources */,
 				842C1097212A4A7E00E466C5 /* DataPointView.m in Sources */,
 				843ECA23212162FB002D5C2A /* CALayer+XibConfiguration.m in Sources */,
@@ -943,7 +1259,9 @@
 				843ECA2D212162FB002D5C2A /* UIImage+ExFoundation.m in Sources */,
 				84748848212BC2EC0077AC0F /* UserInfoVC.m in Sources */,
 				84BDD1702126B3DF0039FE09 /* ButtonsView.m in Sources */,
+				0415BDA42131BC850022DEB7 /* YYTimeLineVolumeView.m in Sources */,
 				84B0A94A2122736B002EFA0A /* CustomTabBar.m in Sources */,
+				0415BDA22131BC850022DEB7 /* YYTimeLineMaskView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1115,7 +1433,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = HJRFHP993U;
+				DEVELOPMENT_TEAM = WX9MM6TM2J;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1133,7 +1451,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.taiyi.TaiYiToken;
+				PRODUCT_BUNDLE_IDENTIFIER = com.taiyi.pagani;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1146,7 +1464,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = HJRFHP993U;
+				DEVELOPMENT_TEAM = WX9MM6TM2J;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1164,7 +1482,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.taiyi.TaiYiToken;
+				PRODUCT_BUNDLE_IDENTIFIER = com.taiyi.pagani;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;

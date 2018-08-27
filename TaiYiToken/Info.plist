@@ -20,8 +20,21 @@
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>Camera Usage Description </key>
+	<string>App需要访问您的相机，以扫描二维码</string>
+	<key>Contacts Usage Description</key>
+	<string>App需要访问您的联系人</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>Microphone Usage Description</key>
+	<string>App需要访问您的麦克风</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
+	<key>Photo Library Usage Description </key>
+	<string>App需要访问您的相册</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -43,18 +56,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>NSAppTransportSecurity</key>
-	<dict>
-		<key>NSAllowsArbitraryLoads</key>
-		<true/>
-	</dict>
-	<key>Photo Library Usage Description </key>
-	<string>App需要访问您的相册</string>
-	<key>Camera Usage Description </key>
-	<string>App需要访问您的相机，以扫描二维码</string>
-	<key>Microphone Usage Description</key>
-	<string>App需要访问您的麦克风</string>
-	<key>Contacts Usage Description</key>
-	<string>App需要访问您的联系人</string>
 </dict>
 </plist>

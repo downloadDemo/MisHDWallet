@@ -18,8 +18,10 @@ target 'TaiYiToken' do
    #侧滑抽屉
    pod 'CWLateralSlide', '~> 1.6.1'
 
-   use_frameworks!
-   pod 'Charts'
+  # use_frameworks!
+   #pod 'Charts'
    pod 'PYSearch'
    pod 'secp256k1_ios'
+
+   pod 'CoreBitcoin', :podspec => 'https://raw.github.com/oleganza/CoreBitcoin/master/CoreBitcoin.podspec'
 end

@@ -625,7 +625,7 @@ size_t chacha20Poly1305AEADDecrypt(void *out, size_t outLen, const void *key32, 
     return sha1;
 }
 
-- (UInt256)SHA256
+- (UInt256)mSHA256
 {
     UInt256 sha256;
     

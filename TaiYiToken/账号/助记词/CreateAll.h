@@ -36,7 +36,7 @@ typedef enum {
 +(NSString *)CreatePublicKeyWithSeed:(NSString *)seed;
 
 //由扩展私钥xprv生成第index个比特币秘钥对及地址
-+(BTCKey *)CreateBTCKeychainByXprv:(NSString*)xprv index:(UInt32)index CoinType:(CoinType)coinTYpe;
++(BTCKey *)CreateBTCKeychainByXprv:(NSString*)xprv index:(UInt32)index CoinType:(CoinType)coinType;
 
 
 

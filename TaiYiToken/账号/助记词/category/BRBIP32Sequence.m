@@ -256,7 +256,7 @@ static NSString *serialize(uint8_t depth, uint32_t fingerprint, uint32_t child, 
     [data appendUInt32:n];
     [data appendBytes:uri.UTF8String length:len];
 
-    UInt256 hash = data.SHA256;
+    UInt256 hash = data.mSHA256;
     UInt512 I;
     
     xHMAC(&I, xSHA512, sizeof(UInt512), BIP32_SEED_KEY, strlen(BIP32_SEED_KEY), seed.bytes, seed.length);
