@@ -128,7 +128,7 @@
     NSString *password = [[NSUserDefaults standardUserDefaults] objectForKey:@"password"];
     //512位种子
     NSString *seed = [CreateAll CreateSeedByMnemonic:self.mnemonic AndPassword:password];
-    [CreateAll CreatePublicKeyWithSeed:seed];
+    [CreateAll CreateWalletWithSeed:seed];
    //512位种子 长度为128字符 64Byte
     
     

@@ -81,51 +81,46 @@
     return seed;
 }
 
-
-//扩展主公私钥生成
-+(NSString *)CreatePublicKeyWithSeed:(NSString *)seed{
-
+//扩展主公钥生成
++(NSString *)CreateMasterPublicKeyWithSeed:(NSString *)seed{
     BRBIP32Sequence *seq = [BRBIP32Sequence new];
     NSData *mpk = [seq masterPublicKeyFromSeed:seed.hexToData];
-    NSString *mpkstr = [NSString hexWithData:mpk];
     //mpk前4位为较验位
-   // NSLog(@"\n\n\n *****  \n master pub  %@ ， %ld *******\n",mpkstr,mpkstr.length);
-   
-    //**********BIP32SequenceSerializedPrivateMasterFromSeed
-    NSString *xprv = [seq serializedPrivateMasterFromSeed:seed.hexToData];
-    NSLog(@"\n ******* xpriv = %@ *******\n", xprv);
-   
-    //*********BIP32SequenceSerializedMasterPublicKey 对应的是"m/0'" (hardened child #0 of the root key)
-    NSString *xpub = [seq serializedMasterPublicKey:mpk];
-    NSLog(@"\n ****** xpub = %@ *******\n", xpub);
-    
-    [CreateAll CreateBTCKeychainByXprv:xprv index:0 CoinType:BTC];
-    [CreateAll CreateBTCKeychainByXprv:xprv index:0 CoinType:ETH];
+    NSString *mpkstr = [NSString hexWithData:mpk];
     return  mpkstr;
 }
+
+//扩展账号私钥生成
++(NSString *)CreateExtendPrivateKeyWithSeed:(NSString *)seed{
+
+    BRBIP32Sequence *seq = [BRBIP32Sequence new];
+    //**********BIP32SequenceSerializedPrivateMasterFromSeed
+    NSString *xprv = [seq serializedPrivateMasterFromSeed:seed.hexToData];
+    return  xprv;
+}
+
+//扩展账号公钥生成
++(NSString *)CreateExtendPublicWithSeed:(NSString *)seed{
+    BRBIP32Sequence *seq = [BRBIP32Sequence new];
+    NSData *mpk = [seq masterPublicKeyFromSeed:seed.hexToData];
+  //*********BIP32SequenceSerializedMasterPublicKey 对应的是"m/0'" (hardened child #0 of the root key)
+    NSString *xpub = [seq serializedMasterPublicKey:mpk];
+    return  xpub;
+}
 /*
- xprv,index,coinTYpe
- ******************************************
-// ⽬前有三种货币被定义：Bitcoin is m/44'/0'、Bitcoin Testnet is m/44'/1'，以及Litecoin is
- m/44'/2'。
- // "" (root key)
- // "m" (root key)
- // "/" (root key)
- // "m/0'" (hardened child #0 of the root key)
- // "/0'" (hardened child #0 of the root key)
- // "0'" (hardened child #0 of the root key)
- // "m/44'/1'/2'" (BIP44 testnet account #2)
- // "/44'/1'/2'" (BIP44 testnet account #2)
- // "44'/1'/2'" (BIP44 testnet account #2)
+ 由扩展私钥生成钱包，指定钱包索引，币种两个参数
+ xprv,index,coinType
  */
-+(BTCKey *)CreateBTCKeychainByXprv:(NSString*)xprv index:(UInt32)index CoinType:(CoinType)coinType{
++(MissionWallet *)CreateBTCKeychainByXprv:(NSString*)xprv index:(UInt32)index CoinType:(CoinType)coinType{
     // Initializes master keychain from a seed
    // BTCKeychain *masterchain = [[BTCKeychain alloc]initWithSeed:seed.hexToData];
+    //创建钱包
+    MissionWallet *wallet = [MissionWallet new];
+    wallet.coinType = coinType;
     
     BTCKeychain *btckeychainxprv = [[BTCKeychain alloc]initWithExtendedKey:xprv];
- 
     
-    //Account Extendedm/44'/60'/0'/0
+    //Account Extendedm
     NSString *AccountPath = [NSString stringWithFormat:@"m/44'/%d'/0'",coinType];
     NSLog(@"\n\n path = %@\n\n",AccountPath);
     NSString *AccountExtendedPrivateKey  =  [btckeychainxprv derivedKeychainWithPath:AccountPath].extendedPrivateKey;
@@ -137,40 +132,34 @@
     NSString *BIP32ExtendedPublicKey = [btckeychainxprv derivedKeychainWithPath:BIP32Path].extendedPublicKey;
     NSLog(@"\n *** BIP32 Extended ***\n pri = %@ \n pub = %@",BIP32ExtendedPrivateKey,BIP32ExtendedPublicKey);
     
-   
+    wallet.AccountExtendedPrivateKey = AccountExtendedPrivateKey;
+    wallet.AccountExtendedPublicKey = AccountExtendedPublicKey;
+    wallet.BIP32ExtendedPrivateKey = BIP32ExtendedPrivateKey;
+    wallet.BIP32ExtendedPublicKey = BIP32ExtendedPublicKey;
+    
     
     //第一个地址和私钥m/44'/0'/0'/0  m/44'/60'/0'/0
-    //compressedPublicKeyAddress = 16UZrzsDdeEnq95HSWhcW8RSdqpG4vJQeX                          BTC地址
-    //privateKey = L5Y7u1iYyyQS39UaSyCVD223HYEQLARFVQgY3SyqzrmQnHrfPV7d                        BTC私钥
-    //compressedPublicKey = 02c1cfd635ffc3a3b78ec76248d1fbba50f0e40cba89613d51ff2a177dea51844a BTC公钥
     BTCKey* key = [[btckeychainxprv derivedKeychainWithPath:BIP32Path] keyAtIndex:index];
     if(coinType == BTC){
         NSString *compressedPublicKeyAddress = key.compressedPublicKeyAddress.string;
         NSString *privateKey = key.privateKeyAddress.string;
         NSString *compressedPublicKey = [NSString hexWithData:key.compressedPublicKey];
-        NSLog(@"\n   privateKey= %@\n Address = %@\n  PublicKey = %@\n",privateKey,compressedPublicKeyAddress, compressedPublicKey);
+        wallet.privateKey = privateKey;
+        wallet.publicKey = compressedPublicKey;
+        wallet.address = compressedPublicKeyAddress;
+        NSLog(@"\n BTC  privateKey= %@\n Address = %@\n  PublicKey = %@\n",privateKey,compressedPublicKeyAddress, compressedPublicKey);
         
     }else{
-        
-        NSString *compressedPublicKeyAddress = [NSString hexWithData:key.compressedPublicKeyAddress.data];//错误
-        
-        NSString *uncompressedPublicKeyAddress = [NSString hexWithData:key.uncompressedPublicKeyAddress.data];
-        NSString *address = [NSString hexWithData:key.address.data];
-        NSString *addressTestnet = [NSString hexWithData:key.addressTestnet.data];
-        NSString *privateKeyAddressTestnet = [NSString hexWithData:key.privateKeyAddressTestnet.data];
-        
-        NSLog(@"\n\n\n**************\n");
-        NSLog(@"compressedPublicKeyAddress = %@",compressedPublicKeyAddress);
-        NSLog(@"uncompressedPublicKeyAddress = %@",uncompressedPublicKeyAddress);
-        NSLog(@"address = %@",address);
-        NSLog(@"addressTestnet = %@",addressTestnet);
-        NSLog(@"privateKeyAddressTestnet = %@",privateKeyAddressTestnet);
-        NSLog(@"\n**************\n\n\n");
+        Account *account = [Account accountWithPrivateKey:key.privateKeyAddress.data];
         NSString *privateKey = [NSString hexWithData:key.privateKeyAddress.data];
         NSString *compressedPublicKey = [NSString hexWithData:key.compressedPublicKey];
-        NSLog(@"\n   privateKey= %@\n Address = %@\n  PublicKey = %@\n",privateKey,compressedPublicKeyAddress, compressedPublicKey);
+        wallet.privateKey = privateKey;
+        wallet.publicKey = compressedPublicKey;
+        wallet.address = account.address.checksumAddress;
+        NSLog(@"\n ETH  privateKey= %@\n Address = %@\n  PublicKey = %@\n",privateKey,account.address.checksumAddress, compressedPublicKey);
     }
-    return key;
+    
+    return wallet;
 }
 
 @end

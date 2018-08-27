@@ -62,7 +62,7 @@ static const UniChar base58chars[] = {
     i = 0;
     while (i < sizeof(buf) && buf[i] == 0) i++; // skip leading zeroes
 
-    CFMutableStringRef s = CFStringCreateMutable(SecureAllocator(), z + sizeof(buf) - i);
+    CFMutableStringRef s = CFStringCreateMutable(xSecureAllocator(), z + sizeof(buf) - i);
     
     while (z-- > 0) CFStringAppendCharacters(s, &base58chars[0], 1);
     while (i < sizeof(buf)) CFStringAppendCharacters(s, &base58chars[buf[i++]], 1);
@@ -85,7 +85,7 @@ static const UniChar base58chars[] = {
     if (! d) return nil;
     
     const uint8_t *bytes = d.bytes;
-    NSMutableString *hex = CFBridgingRelease(CFStringCreateMutable(SecureAllocator(), d.length*2));
+    NSMutableString *hex = CFBridgingRelease(CFStringCreateMutable(xSecureAllocator(), d.length*2));
     
     for (NSUInteger i = 0; i < d.length; i++) {
         [hex appendFormat:@"%02x", bytes[i]];
@@ -245,7 +245,7 @@ static const UniChar base58chars[] = {
     
     if (d.length < 4) return nil;
 
-    NSData *data = CFBridgingRelease(CFDataCreate(SecureAllocator(), d.bytes, d.length - 4));
+    NSData *data = CFBridgingRelease(CFDataCreate(xSecureAllocator(), d.bytes, d.length - 4));
 
     // verify checksum
     if (*(uint32_t *)((const uint8_t *)d.bytes + d.length - 4) != data.SHA256_2.u32[0]) return nil;

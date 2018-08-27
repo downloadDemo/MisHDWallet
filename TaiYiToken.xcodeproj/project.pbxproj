@@ -60,6 +60,8 @@
 		843ECA3B21216320002D5C2A /* UIColor+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 843ECA362121631F002D5C2A /* UIColor+Util.m */; };
 		84748845212AAAD70077AC0F /* VerifyMnemonicVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84748844212AAAD70077AC0F /* VerifyMnemonicVC.m */; };
 		84748848212BC2EC0077AC0F /* UserInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84748847212BC2EC0077AC0F /* UserInfoVC.m */; };
+		847BC6052133D5C9000B02AC /* ethers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 847BC6042133D5C9000B02AC /* ethers.framework */; };
+		847BC6092133E001000B02AC /* MissionWallet.m in Sources */ = {isa = PBXBuildFile; fileRef = 847BC6082133E001000B02AC /* MissionWallet.m */; };
 		8481805D2123B2630007DCF9 /* AESCrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = 848180552123B2620007DCF9 /* AESCrypt.m */; };
 		8481805E2123B2630007DCF9 /* NSObject+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 848180582123B2620007DCF9 /* NSObject+Extension.m */; };
 		8481805F2123B2630007DCF9 /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 8481805A2123B2620007DCF9 /* Base64.m */; };
@@ -235,6 +237,9 @@
 		84748844212AAAD70077AC0F /* VerifyMnemonicVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VerifyMnemonicVC.m; sourceTree = "<group>"; };
 		84748846212BC2EC0077AC0F /* UserInfoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserInfoVC.h; sourceTree = "<group>"; };
 		84748847212BC2EC0077AC0F /* UserInfoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserInfoVC.m; sourceTree = "<group>"; };
+		847BC6042133D5C9000B02AC /* ethers.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ethers.framework; path = TaiYiToken/ethers.framework; sourceTree = "<group>"; };
+		847BC6072133E001000B02AC /* MissionWallet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MissionWallet.h; sourceTree = "<group>"; };
+		847BC6082133E001000B02AC /* MissionWallet.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MissionWallet.m; sourceTree = "<group>"; };
 		848180532123B2620007DCF9 /* NSObject+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Extension.h"; sourceTree = "<group>"; };
 		848180542123B2620007DCF9 /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64.h; sourceTree = "<group>"; };
 		848180552123B2620007DCF9 /* AESCrypt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AESCrypt.m; sourceTree = "<group>"; };
@@ -325,6 +330,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				847BC6052133D5C9000B02AC /* ethers.framework in Frameworks */,
 				84C0DF33212D4F1E00BCC91D /* libiconv.tbd in Frameworks */,
 				84C8E7DA212A976800627445 /* Foundation.framework in Frameworks */,
 				84C8E7D8212A976100627445 /* UIKit.framework in Frameworks */,
@@ -605,6 +611,7 @@
 		6AC5FF18C18AADA88B0CA162 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				847BC6042133D5C9000B02AC /* ethers.framework */,
 				84C0DF32212D4F1E00BCC91D /* libiconv.tbd */,
 				84C8E7D9212A976800627445 /* Foundation.framework */,
 				84C8E7D7212A976100627445 /* UIKit.framework */,
@@ -800,6 +807,15 @@
 			path = CQMarqueeView;
 			sourceTree = "<group>";
 		};
+		847BC6062133DFD2000B02AC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				847BC6072133E001000B02AC /* MissionWallet.h */,
+				847BC6082133E001000B02AC /* MissionWallet.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		848180522123B2620007DCF9 /* AESCrypt */ = {
 			isa = PBXGroup;
 			children = (
@@ -868,7 +884,7 @@
 		84B0A94D21228B94002EFA0A /* 账号 */ = {
 			isa = PBXGroup;
 			children = (
-				84C8E7CF212A95D000627445 /* 助记词 */,
+				84C8E7CF212A95D000627445 /* Wallet */,
 				84B0A9612122CCD5002EFA0A /* View */,
 				84B0A9552122ABD5002EFA0A /* CreateAccountVC.h */,
 				84B0A9562122ABD5002EFA0A /* CreateAccountVC.m */,
@@ -909,9 +925,10 @@
 			path = category;
 			sourceTree = "<group>";
 		};
-		84C8E7CF212A95D000627445 /* 助记词 */ = {
+		84C8E7CF212A95D000627445 /* Wallet */ = {
 			isa = PBXGroup;
 			children = (
+				847BC6062133DFD2000B02AC /* Model */,
 				84C0DF27212CFF6100BCC91D /* category */,
 				84C0DF25212CFF3700BCC91D /* BRKey.h */,
 				84C0DF24212CFF3700BCC91D /* BRKey.m */,
@@ -921,7 +938,7 @@
 				84FA081F212BE3AF00DCFC0C /* CreateAll.h */,
 				84FA0820212BE3AF00DCFC0C /* CreateAll.m */,
 			);
-			path = "助记词";
+			path = Wallet;
 			sourceTree = "<group>";
 		};
 		84D0E41521211AAB004E65AD = {
@@ -1244,6 +1261,7 @@
 				843ECA2B212162FB002D5C2A /* UIColor+SNFoundation.m in Sources */,
 				84BDD16D21269D5B0039FE09 /* DataView.m in Sources */,
 				84D0E42321211AAB004E65AD /* AppDelegate.m in Sources */,
+				847BC6092133E001000B02AC /* MissionWallet.m in Sources */,
 				84B0A95A2122B87B002EFA0A /* UIColor+PGHex.m in Sources */,
 				0415BD9D2131BC850022DEB7 /* YYVolumePositionModel.m in Sources */,
 				84C0DF2D212CFF8500BCC91D /* NSData+Bitcoin.m in Sources */,
@@ -1433,11 +1451,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = WX9MM6TM2J;
+				DEVELOPMENT_TEAM = HJRFHP993U;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/TaiYiToken",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/PrefixHeader.pch";
@@ -1464,11 +1483,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = WX9MM6TM2J;
+				DEVELOPMENT_TEAM = HJRFHP993U;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/TaiYiToken",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/PrefixHeader.pch";

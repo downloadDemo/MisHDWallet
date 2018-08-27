@@ -80,7 +80,6 @@
 #import "RegularExpression.h"
 #import "NSString+Hash.h"
 #import "NSString+Extention.h"
-
 #import "NSObject+Extension.h"
 
 
@@ -96,6 +95,7 @@
 //#import <Charts/Charts-Swift.h>
 #import "PYSearch.h"
 
+#import "MissionWallet.h"
 
 /*
  椭圆算法 由私钥生成公钥
@@ -109,6 +109,7 @@
 
 #import <CoreBitcoin/CoreBitcoin.h>
 #import <CoreBitcoin/CoreBitcoin+Categories.h>
-
+/* ETH */
+@import ethers;
 
 #endif /* PrefixHeader_pch */

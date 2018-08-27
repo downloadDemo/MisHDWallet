@@ -72,5 +72,8 @@
 #define TABBAR_HEIGHT ([[UIApplication sharedApplication] statusBarFrame].size.height>20?83:49)
 #define NAVIGATIONBAR_HEIGHT (STATUSBAR_HEIGHT + kNavBarHeight)
 #define kIs_iPhoneX (SCREEN_WIDTH == 375.f && SCREEN_HEIGHT == 812.f)
-
+typedef enum {
+    BTC = 0,
+    ETH = 60
+}CoinType;
 #endif /* Constant_h */

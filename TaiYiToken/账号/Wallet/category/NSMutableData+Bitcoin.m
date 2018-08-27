@@ -64,7 +64,7 @@ static void *secureReallocate(void *ptr, CFIndex newsize, CFOptionFlags hint, vo
 }
 
 // Since iOS does not page memory to storage, all we need to do is cleanse allocated memory prior to deallocation.
-CFAllocatorRef SecureAllocator()
+CFAllocatorRef xSecureAllocator()
 {
     static CFAllocatorRef alloc = NULL;
     static dispatch_once_t onceToken = 0;
@@ -93,7 +93,7 @@ CFAllocatorRef SecureAllocator()
 
 + (NSMutableData *)secureDataWithCapacity:(NSUInteger)aNumItems
 {
-    return CFBridgingRelease(CFDataCreateMutable(SecureAllocator(), aNumItems));
+    return CFBridgingRelease(CFDataCreateMutable(xSecureAllocator(), aNumItems));
 }
 
 + (NSMutableData *)secureDataWithLength:(NSUInteger)length
@@ -106,7 +106,7 @@ CFAllocatorRef SecureAllocator()
 
 + (NSMutableData *)secureDataWithData:(NSData *)data
 {
-    return CFBridgingRelease(CFDataCreateMutableCopy(SecureAllocator(), 0, (CFDataRef)data));
+    return CFBridgingRelease(CFDataCreateMutableCopy(xSecureAllocator(), 0, (CFDataRef)data));
 }
 
 + (size_t)sizeOfVarInt:(uint64_t)i

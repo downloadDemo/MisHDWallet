@@ -23,20 +23,23 @@
  
  */
 #import <Foundation/Foundation.h>
-typedef enum {
-    BTC = 0,
-    ETH = 60
-}CoinType;
+
 @interface CreateAll : NSObject
 
-//由助记词生成种子
+//由助记词生成种子  seed
 +(NSString *)CreateSeedByMnemonic:(NSString *)mnemonic AndPassword:(NSString *)password;
 
-//secp256k1 私钥生成公钥
-+(NSString *)CreatePublicKeyWithSeed:(NSString *)seed;
+//扩展主公钥生成    mpk
++(NSString *)CreateMasterPublicKeyWithSeed:(NSString *)seed;
+//扩展账号私钥生成  xprv
++(NSString *)CreateExtendPrivateKeyWithSeed:(NSString *)seed;
+//扩展账号公钥生成  xpub
++(NSString *)CreateExtendPublicWithSeed:(NSString *)seed;
 
-//由扩展私钥xprv生成第index个比特币秘钥对及地址
-+(BTCKey *)CreateBTCKeychainByXprv:(NSString*)xprv index:(UInt32)index CoinType:(CoinType)coinType;
+
+//创建钱包
+//由扩展私钥xprv生成第index个秘钥对及地址
++(MissionWallet *)CreateBTCKeychainByXprv:(NSString*)xprv index:(UInt32)index CoinType:(CoinType)coinType;
 
 
 

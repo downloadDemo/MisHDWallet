@@ -33,7 +33,7 @@
 
 CF_IMPLICIT_BRIDGING_ENABLED
 
-CFAllocatorRef SecureAllocator();
+CFAllocatorRef xSecureAllocator();
 
 CF_IMPLICIT_BRIDGING_DISABLED
 

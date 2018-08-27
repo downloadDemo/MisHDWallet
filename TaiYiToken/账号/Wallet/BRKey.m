@@ -147,7 +147,7 @@ int BRSecp256k1PointMul(BRECPoint *p, const UInt256 *i)
     if ((privateKey.length == 30 || privateKey.length == 22) && [privateKey characterAtIndex:0] == 'S') {
         if (! [privateKey isValidBitcoinPrivateKey]) return nil;
         
-        _seckey = [CFBridgingRelease(CFStringCreateExternalRepresentation(SecureAllocator(), (CFStringRef)privateKey,
+        _seckey = [CFBridgingRelease(CFStringCreateExternalRepresentation(xSecureAllocator(), (CFStringRef)privateKey,
                                                                           kCFStringEncodingUTF8, 0)) mSHA256];
         _compressed = NO;
         return self;
