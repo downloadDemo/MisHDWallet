@@ -27,7 +27,10 @@
 @interface CreateAll : NSObject
 
 //由助记词生成种子  seed
-+(NSString *)CreateSeedByMnemonic:(NSString *)mnemonic AndPassword:(NSString *)password;
++(NSString *)CreateSeedByMnemonic:(NSString *)mnemonic Password:(NSString *)password;
+
+//根据mnemonic生成keystore,用于恢复账号，备份私钥，导出助记词等
++(void)CreateKeyStoreByMnemonic:(NSString *)mnemonic Password:(NSString *)password  callback: (void (^)(Account *account, NSError *NSError))callback;
 
 //扩展主公钥生成    mpk
 +(NSString *)CreateMasterPublicKeyWithSeed:(NSString *)seed;
@@ -39,7 +42,7 @@
 
 //创建钱包
 //由扩展私钥xprv生成第index个秘钥对及地址
-+(MissionWallet *)CreateBTCKeychainByXprv:(NSString*)xprv index:(UInt32)index CoinType:(CoinType)coinType;
++(MissionWallet *)CreateWalletByXprv:(NSString*)xprv index:(UInt32)index CoinType:(CoinType)coinType;
 
 
 

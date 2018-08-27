@@ -127,8 +127,10 @@
 -(void)CreateWallet{
     NSString *password = [[NSUserDefaults standardUserDefaults] objectForKey:@"password"];
     //512位种子
-    NSString *seed = [CreateAll CreateSeedByMnemonic:self.mnemonic AndPassword:password];
-    [CreateAll CreateWalletWithSeed:seed];
+    NSString *seed = [CreateAll CreateSeedByMnemonic:self.mnemonic Password:password];
+    NSString *xprv = [CreateAll CreateExtendPrivateKeyWithSeed:seed];
+    MissionWallet *wallet = [CreateAll CreateWalletByXprv:xprv index:0 CoinType:BTC];
+    MissionWallet *wallet1 = [CreateAll CreateWalletByXprv:xprv index:0 CoinType:ETH];
    //512位种子 长度为128字符 64Byte
     
     

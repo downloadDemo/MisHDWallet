@@ -69,7 +69,7 @@
  其中，PRF是一个伪随机函数，例如HASH_HMAC函数，它会输出长度为hLen的结果；Password是用来生成密钥的原文密码；Salt是一个加密用的盐值；c是进行重复计算的次数；dkLen是期望得到的密钥的长度；
  DK是最后产生的密钥。
  */
-+(NSString *)CreateSeedByMnemonic:(NSString *)mnemonic AndPassword:(NSString *)password{
++(NSString *)CreateSeedByMnemonic:(NSString *)mnemonic Password:(NSString *)password{
     mnemonic = @"breeze eternal fiction junior ethics lumber chaos squirrel code jar snack broccoli";
     password = @"";//不用其作盐
     NSLog(@"mnemonic = %@",mnemonic);
@@ -78,7 +78,33 @@
                                                                 passphrase:password
                                                                 language:@"english"];
     NSLog(@"seed = %@",seed);
+    
+    [CreateAll CreateKeyStoreByMnemonic:mnemonic Password:password callback:^(Account *account, NSError *NSError) {
+        NSLog(@"**** finished ! ****");
+    }];
+    
     return seed;
+}
+/*
+ 根据mnemonic生成keystore,用于恢复账号，备份私钥，导出助记词等
+ */
++(void)CreateKeyStoreByMnemonic:(NSString *)mnemonic Password:(NSString *)password  callback: (void (^)(Account *account, NSError *NSError))callback{
+    Account *account = [Account accountWithMnemonicPhrase:mnemonic];
+    [account encryptSecretStorageJSON:password callback:^(NSString *json) {
+        NSLog(@"\n keystore(json) = %@",json);
+        [Account decryptSecretStorageJSON:json password:password callback:^(Account *decryptedAccount, NSError *error) {
+            
+            if (![account.address isEqual:decryptedAccount.address]) {
+                NSLog(@"Failed");
+            }else{
+                NSLog(@"\n\n\n**account** = %@ \n\n %@ \n\n\n",decryptedAccount.address,decryptedAccount.mnemonicPhrase);
+                //按密码保存keystore
+                [[NSUserDefaults standardUserDefaults] setObject:@"keystore" forKey:password];
+            }
+            callback(decryptedAccount,error);
+
+        }];
+    }];
 }
 
 //扩展主公钥生成
@@ -111,7 +137,7 @@
  由扩展私钥生成钱包，指定钱包索引，币种两个参数
  xprv,index,coinType
  */
-+(MissionWallet *)CreateBTCKeychainByXprv:(NSString*)xprv index:(UInt32)index CoinType:(CoinType)coinType{
++(MissionWallet *)CreateWalletByXprv:(NSString*)xprv index:(UInt32)index CoinType:(CoinType)coinType{
     // Initializes master keychain from a seed
    // BTCKeychain *masterchain = [[BTCKeychain alloc]initWithSeed:seed.hexToData];
     //创建钱包
