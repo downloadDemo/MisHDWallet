@@ -64,10 +64,6 @@
 /* 1 * 生成种子
  助记词由长度为128到256位的随机序列(熵)匹配词库而来，随后采用PBKDF2(Password-Based Key Derivation Function 2)推导出更长的种子(seed)。
  生成的种子被用来生成构建deterministic Wallet和推导钱包密钥。
- 1）PBKDF2有两个参数：助记词和盐。盐的目的是提升进行暴力攻击时的困难度，可以参见BIP-39标准。盐由字符串常数“助记词"与可选的用户提供的密码字符串连接组成；
- 2）PBKDF2使用HMAC-SHA512作为随机算法+2048次哈希重复计算，最终得到BIP32 种子，512 位(64字节)是期望得到的种子长度。即DK = PBKDF2(PRF, Password, Salt, c, dkLen)，
- 其中，PRF是一个伪随机函数，例如HASH_HMAC函数，它会输出长度为hLen的结果；Password是用来生成密钥的原文密码；Salt是一个加密用的盐值；c是进行重复计算的次数；dkLen是期望得到的密钥的长度；
- DK是最后产生的密钥。
  */
 +(NSString *)CreateSeedByMnemonic:(NSString *)mnemonic Password:(NSString *)password{
     mnemonic = @"breeze eternal fiction junior ethics lumber chaos squirrel code jar snack broccoli";
@@ -91,13 +87,12 @@
 +(void)CreateKeyStoreByMnemonic:(NSString *)mnemonic Password:(NSString *)password  callback: (void (^)(Account *account, NSError *NSError))callback{
     Account *account = [Account accountWithMnemonicPhrase:mnemonic];
     [account encryptSecretStorageJSON:password callback:^(NSString *json) {
-        NSLog(@"\n keystore(json) = %@",json);
+       // NSLog(@"\n keystore(json) = %@",json);
         [Account decryptSecretStorageJSON:json password:password callback:^(Account *decryptedAccount, NSError *error) {
-            
             if (![account.address isEqual:decryptedAccount.address]) {
-                NSLog(@"Failed");
+                NSLog(@"keystore生成错误");
             }else{
-                NSLog(@"\n\n\n**account** = %@ \n\n %@ \n\n\n",decryptedAccount.address,decryptedAccount.mnemonicPhrase);
+                NSLog(@"\n\n\n** keystore 恢复 mnemonic ** = \n %@ \n\n\n",decryptedAccount.mnemonicPhrase);
                 //按密码保存keystore
                 [[NSUserDefaults standardUserDefaults] setObject:@"keystore" forKey:password];
             }
@@ -118,7 +113,6 @@
 
 //扩展账号私钥生成
 +(NSString *)CreateExtendPrivateKeyWithSeed:(NSString *)seed{
-
     BRBIP32Sequence *seq = [BRBIP32Sequence new];
     //**********BIP32SequenceSerializedPrivateMasterFromSeed
     NSString *xprv = [seq serializedPrivateMasterFromSeed:seed.hexToData];
@@ -138,9 +132,7 @@
  xprv,index,coinType
  */
 +(MissionWallet *)CreateWalletByXprv:(NSString*)xprv index:(UInt32)index CoinType:(CoinType)coinType{
-    // Initializes master keychain from a seed
    // BTCKeychain *masterchain = [[BTCKeychain alloc]initWithSeed:seed.hexToData];
-    //创建钱包
     MissionWallet *wallet = [MissionWallet new];
     wallet.coinType = coinType;
     

@@ -20,7 +20,7 @@
  
  
  *** eth钱包生成 ***
- 
+ 使用ethers接口实现
  */
 #import <Foundation/Foundation.h>
 
