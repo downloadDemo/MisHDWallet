@@ -42,7 +42,7 @@
 
 //创建钱包
 //由扩展私钥xprv生成第index个秘钥对及地址
-+(MissionWallet *)CreateWalletByXprv:(NSString*)xprv index:(UInt32)index CoinType:(CoinType)coinType;
+-(MissionWallet *)CreateWalletByXprv:(NSString*)xprv index:(UInt32)index CoinType:(CoinType)coinType;
 
 
 

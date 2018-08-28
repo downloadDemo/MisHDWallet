@@ -129,8 +129,8 @@
     //512位种子
     NSString *seed = [CreateAll CreateSeedByMnemonic:self.mnemonic Password:password];
     NSString *xprv = [CreateAll CreateExtendPrivateKeyWithSeed:seed];
-    MissionWallet *walletBTC = [CreateAll CreateWalletByXprv:xprv index:0 CoinType:BTC];
-    MissionWallet *walletETH = [CreateAll CreateWalletByXprv:xprv index:0 CoinType:ETH];
+    MissionWallet *walletBTC = [[CreateAll new] CreateWalletByXprv:xprv index:0 CoinType:BTC];
+    MissionWallet *walletETH = [[CreateAll new] CreateWalletByXprv:xprv index:0 CoinType:ETH];
    //512位种子 长度为128字符 64Byte
     
     

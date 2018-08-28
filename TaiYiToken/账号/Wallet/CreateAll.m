@@ -99,7 +99,7 @@
  由扩展私钥生成钱包，指定钱包索引，币种两个参数
  xprv,index,coinType
  */
-+(MissionWallet *)CreateWalletByXprv:(NSString*)xprv index:(UInt32)index CoinType:(CoinType)coinType{
+-(MissionWallet *)CreateWalletByXprv:(NSString*)xprv index:(UInt32)index CoinType:(CoinType)coinType{
    // BTCKeychain *masterchain = [[BTCKeychain alloc]initWithSeed:seed.hexToData];
     MissionWallet *wallet = [MissionWallet new];
     wallet.coinType = coinType;

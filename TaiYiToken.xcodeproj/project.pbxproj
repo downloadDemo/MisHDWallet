@@ -32,7 +32,6 @@
 		8428A542212422EC003E1DD8 /* MarketVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8428A541212422EC003E1DD8 /* MarketVC.m */; };
 		8428A54521242323003E1DD8 /* MarketCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8428A54421242323003E1DD8 /* MarketCell.m */; };
 		8428A548212544F2003E1DD8 /* MarketDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8428A547212544F2003E1DD8 /* MarketDetailVC.m */; };
-		8428A54E21255333003E1DD8 /* KLinePointModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8428A54D21255333003E1DD8 /* KLinePointModel.m */; };
 		842C1097212A4A7E00E466C5 /* DataPointView.m in Sources */ = {isa = PBXBuildFile; fileRef = 842C1096212A4A7E00E466C5 /* DataPointView.m */; };
 		843EC9DA21212271002D5C2A /* NSObject+Parse.m in Sources */ = {isa = PBXBuildFile; fileRef = 843EC9CF21212266002D5C2A /* NSObject+Parse.m */; };
 		843EC9DB21212271002D5C2A /* UIScrollView+Refresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 843EC9D021212267002D5C2A /* UIScrollView+Refresh.m */; };
@@ -1189,7 +1188,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8428A54E21255333003E1DD8 /* KLinePointModel.m in Sources */,
 				843EC9DC21212271002D5C2A /* UIView+HUD.m in Sources */,
 				848180BB2123C72A0007DCF9 /* ContainerViewController.m in Sources */,
 				843EC9EC212122A7002D5C2A /* NetManager.m in Sources */,

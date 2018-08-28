@@ -110,6 +110,6 @@
 #import <CoreBitcoin/CoreBitcoin.h>
 #import <CoreBitcoin/CoreBitcoin+Categories.h>
 /* ETH */
-@import ethers;
-//#import "ethers.h"
+#import <ethers/ethers.h>
+#import <ethers/Account.h>
 #endif /* PrefixHeader_pch */
