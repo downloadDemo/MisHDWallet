@@ -60,6 +60,11 @@
 			<key>orderHint</key>
 			<integer>5</integer>
 		</dict>
+		<key>OpenSSL-Universal.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>16</integer>
+		</dict>
 		<key>PYSearch.xcscheme</key>
 		<dict>
 			<key>isShown</key>

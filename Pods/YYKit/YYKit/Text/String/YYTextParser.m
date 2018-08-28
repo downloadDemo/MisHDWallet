@@ -196,19 +196,19 @@
         NSRange r = result.range;
         NSRange linebreak = [str rangeOfString:@"\n" options:0 range:result.range locale:nil];
         if (linebreak.location != NSNotFound) {
-            [text setColor:_headerTextColor range:NSMakeRange(r.location, linebreak.location - r.location)];
-            [text setFont:_headerFonts[1] range:NSMakeRange(r.location, linebreak.location - r.location + 1)];
-            [text setColor:_controlTextColor range:NSMakeRange(linebreak.location + linebreak.length, r.location + r.length - linebreak.location - linebreak.length)];
+            [text setColor:self->_headerTextColor range:NSMakeRange(r.location, linebreak.location - r.location)];
+            [text setFont:self->_headerFonts[1] range:NSMakeRange(r.location, linebreak.location - r.location + 1)];
+            [text setColor:self->_controlTextColor range:NSMakeRange(linebreak.location + linebreak.length, r.location + r.length - linebreak.location - linebreak.length)];
         }
     }];
     
     [_regexBreakline enumerateMatchesInString:str options:0 range:NSMakeRange(0, str.length) usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
-        [text setColor:_controlTextColor range:result.range];
+        [text setColor:self->_controlTextColor range:result.range];
     }];
     
     [_regexEmphasis enumerateMatchesInString:str options:0 range:NSMakeRange(0, str.length) usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
         NSRange r = result.range;
-        [text setColor:_controlTextColor range:NSMakeRange(r.location, 1)];
+        [text setColor:self->_controlTextColor range:NSMakeRange(r.location, 1)];
         [text setColor:_controlTextColor range:NSMakeRange(r.location + r.length - 1, 1)];
         [text setFont:_italicFont range:NSMakeRange(r.location + 1, r.length - 2)];
     }];
