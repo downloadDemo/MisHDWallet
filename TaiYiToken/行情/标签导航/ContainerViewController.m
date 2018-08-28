@@ -1,9 +1,8 @@
-
+#import "CustomizedNavigationController.h"
 #import "ContainerViewController.h"
-#import "SelfChooseVC.h"
 #import "MarketVC.h"
-#import "CurrencyModel.h"
-#import "CurrencyModel.h"
+
+
 @interface ContainerViewController ()<UIScrollViewDelegate>{
     UIScrollView *mainScrollView;
     UILabel *sliderLabel;
@@ -11,19 +10,16 @@
     UIButton *bBtn;
     UIButton *cBtn;
     UIButton *dBtn;
+    UIButton *eBtn;
 }
 
-@property(nonatomic,strong)SelfChooseVC *aVC;
+@property(nonatomic,strong)MarketVC *aVC;
 @property(nonatomic,strong)MarketVC *bVC;
 @property(nonatomic,strong)MarketVC *cVC;
 @property(nonatomic,strong)MarketVC *dVC;
-@property(nonatomic)NSMutableArray <CurrencyModel*> *modelarray;
-@property(nonatomic)NSNotification *iv1Response;
-@property(nonatomic)NSNotification *iv2Response;
-@property(nonatomic)UIButton *iv1;
-@property(nonatomic)UIButton *iv2;
-@property(nonatomic)BOOL isFirstClickcBtn;
+@property(nonatomic,strong)MarketVC *eVC;
 
+@property(nonatomic,strong)MarketVC *searchVC;
 @end
 
 
@@ -31,10 +27,11 @@
 #pragma mark
 #pragma mark 懒加载VC
 
--(SelfChooseVC *)aVC{
+-(MarketVC *)aVC{
     if (_aVC==nil) {
-        _aVC = [[SelfChooseVC alloc]init];
-        _aVC.ifShouldRequest = YES;
+        _aVC = [[MarketVC alloc]init];
+        _aVC.indexName = @"a";
+        _aVC.ifNeedRequestData = YES;
         [self addChildViewController:_aVC];
     }
     return _aVC;
@@ -43,6 +40,7 @@
     if (_bVC==nil) {
         _bVC = [[MarketVC alloc]init];
         _bVC.indexName = @"b";
+        _bVC.ifNeedRequestData = YES;
         [self addChildViewController:_bVC];
     }
     return _bVC;
@@ -51,7 +49,7 @@
     if (_cVC==nil) {
         _cVC = [[MarketVC alloc]init];
         _cVC.indexName = @"c";
-        
+        _cVC.ifNeedRequestData = YES;
         [self addChildViewController:_cVC];
     }
     return _cVC;
@@ -60,12 +58,30 @@
     if (_dVC==nil) {
         _dVC = [[MarketVC alloc]init];
         _dVC.indexName = @"d";
+        _dVC.ifNeedRequestData = YES;
         [self addChildViewController:_dVC];
     }
     return _dVC;
 }
-
-
+-(MarketVC *)eVC{
+    if (_eVC==nil) {
+        _eVC = [[MarketVC alloc]init];
+        _eVC.indexName = @"e";
+        _eVC.ifNeedRequestData = YES;
+        [self addChildViewController:_eVC];
+    }
+    return _eVC;
+}
+-(MarketVC *)searchVC{
+    if (_searchVC==nil) {
+        _searchVC = [[MarketVC alloc]init];
+        _searchVC.indexName = @"search";
+        _searchVC.ifNeedRequestData = NO;
+        _searchVC.modelarray = [NSMutableArray new];
+        [self addChildViewController:_eVC];
+    }
+    return _searchVC;
+}
 #pragma mark 
 #pragma mark 初始化三个UIButton和一个滑动的silderLabel，三个btn放到一个UIView（navView）上面。
 -(void)initUI{
@@ -79,7 +95,7 @@
     [aBtn setTitleColor:[UIColor textBlueColor] forState:UIControlStateSelected];
     [aBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     
-    aBtn.frame = CGRectMake(0, 0, kScreenWidth/4, 35);
+    aBtn.frame = CGRectMake(0, 0, kScreenWidth/5, 35);
     aBtn.titleLabel.font = [UIFont systemFontOfSize:15];
     [aBtn addTarget:self action:@selector(sliderAction:) forControlEvents:UIControlEventTouchUpInside];
     [aBtn setTitle:@"自选" forState:UIControlStateNormal];
@@ -88,66 +104,51 @@
     [_navView addSubview:aBtn];
     
     bBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    bBtn.frame = CGRectMake(aBtn.frame.origin.x+aBtn.frame.size.width, aBtn.frame.origin.y, kScreenWidth/4, 35);
+    bBtn.frame = CGRectMake(aBtn.frame.origin.x+aBtn.frame.size.width, aBtn.frame.origin.y, kScreenWidth/5, 35);
     [bBtn setTitleColor:[UIColor textBlueColor] forState:UIControlStateSelected];
     [bBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     
     bBtn.titleLabel.font = [UIFont systemFontOfSize:15];
     [bBtn addTarget:self action:@selector(sliderAction:) forControlEvents:UIControlEventTouchUpInside];
-    [bBtn setTitle:@"市值" forState:UIControlStateNormal];
+    [bBtn setTitle:@"BTC" forState:UIControlStateNormal];
     bBtn.tag = 2;
     [_navView addSubview:bBtn];
     
     cBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    cBtn.frame = CGRectMake(bBtn.frame.origin.x+bBtn.frame.size.width, bBtn.frame.origin.y, kScreenWidth/4, 35);
+    cBtn.frame = CGRectMake(bBtn.frame.origin.x+bBtn.frame.size.width, bBtn.frame.origin.y, kScreenWidth/5, 35);
     [cBtn setTitleColor:[UIColor textBlueColor] forState:UIControlStateSelected];
     [cBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     
     cBtn.titleLabel.font = [UIFont systemFontOfSize:15];
     [cBtn addTarget:self action:@selector(sliderAction:) forControlEvents:UIControlEventTouchUpInside];
-    [cBtn addTarget:self action:@selector(switchAction) forControlEvents:UIControlEventTouchUpInside];
-    [cBtn setTitle:@"涨幅" forState:UIControlStateNormal];
+    [cBtn setTitle:@"ETH" forState:UIControlStateNormal];
     cBtn.tag = 3;
-    //
-    _iv1 = [UIButton buttonWithType:UIButtonTypeCustom];
-    [_iv1 setImage:[UIImage imageNamed:@"ico_up_default"] forState:UIControlStateNormal];
-    [_iv1 setImage:[UIImage imageNamed:@"ico_up_select"] forState:UIControlStateSelected];
-   // [_iv1 addTarget:self action:@selector(iv1click) forControlEvents:UIControlEventTouchUpInside];
-    [self.iv1 setSelected:YES];
-    [cBtn addSubview:_iv1];
-    [_iv1 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(-4);
-        make.right.equalTo(-22);
-        make.width.equalTo(10);
-        make.height.equalTo(6);
-    }];
-    _iv2 = [UIButton buttonWithType:UIButtonTypeCustom];
-    [_iv2 setImage:[UIImage imageNamed:@"ico_down_default"] forState:UIControlStateNormal];
-    [_iv2 setImage:[UIImage imageNamed:@"ico_down_select"] forState:UIControlStateSelected];
-    //[_iv2 addTarget:self action:@selector(iv2click) forControlEvents:UIControlEventTouchUpInside];
-    [self.iv2 setSelected:NO];
-    [cBtn addSubview:_iv2];
-    [_iv2 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(4);
-        make.right.equalTo(-22);
-        make.width.equalTo(10);
-        make.height.equalTo(6);
-    }];
-    
-    //
-    [_navView addSubview:cBtn];
+    [_navView addSubview:cBtn];    
     
     
     dBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    dBtn.frame = CGRectMake(cBtn.frame.origin.x+cBtn.frame.size.width, cBtn.frame.origin.y, kScreenWidth/4, 38);
+    dBtn.frame = CGRectMake(cBtn.frame.origin.x+cBtn.frame.size.width, cBtn.frame.origin.y, kScreenWidth/5, 38);
     [dBtn setTitleColor:[UIColor textBlueColor] forState:UIControlStateSelected];
     [dBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     
     dBtn.titleLabel.font = [UIFont systemFontOfSize:15];
     [dBtn addTarget:self action:@selector(sliderAction:) forControlEvents:UIControlEventTouchUpInside];
-    [dBtn setTitle:@"成交(24h)" forState:UIControlStateNormal];
+    [dBtn setTitle:@"HT" forState:UIControlStateNormal];
     dBtn.tag = 4;
     [_navView addSubview:dBtn];
+    
+    
+    eBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    eBtn.frame = CGRectMake(dBtn.frame.origin.x+dBtn.frame.size.width, dBtn.frame.origin.y, kScreenWidth/5, 38);
+    [eBtn setTitleColor:[UIColor textBlueColor] forState:UIControlStateSelected];
+    [eBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    
+    eBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+    [eBtn addTarget:self action:@selector(sliderAction:) forControlEvents:UIControlEventTouchUpInside];
+    [eBtn setTitle:@"USDT" forState:UIControlStateNormal];
+    eBtn.tag = 5;
+    [_navView addSubview:eBtn];
+    
     
     
     sliderLabel = [UILabel new];
@@ -155,8 +156,8 @@
     [_navView addSubview:sliderLabel];
     [sliderLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(28);
-        make.left.equalTo(kScreenWidth/8 - 25);
-        make.width.equalTo(50);
+        make.left.equalTo(kScreenWidth/10 - 15);
+        make.width.equalTo(30);
         make.height.equalTo(2);
     }];
     
@@ -165,8 +166,8 @@
         make.left.right.equalTo(0);
         make.height.equalTo(40);
     }];
-    _cVC.navView = self.view;
-    _isFirstClickcBtn = YES;
+//    _cVC.navView = self.view;
+//    _isFirstClickcBtn = YES;
     
 
     //*******rightitem******//
@@ -187,59 +188,56 @@
     // 1. 创建热门搜索数组
     NSArray *hotSeaches = @[@"BTC"];
     // 2. 创建搜索控制器
-    
-    PYSearchViewController *searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:hotSeaches searchBarPlaceholder:@"搜索编程语言" didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
+    self.currency = self.bVC.currency == nil?[CurrencyModel new]:self.bVC.currency;
+    __block NSMutableArray *arrx = [NSMutableArray new];
+    __block NSMutableArray *arr = [NSMutableArray new];
+    __block NSMutableArray *arrcopy = [NSMutableArray new];
+    self.currency = self.bVC.currency == nil?[CurrencyModel new]:self.bVC.currency;
+    [arrx addObjectsFromArray:[self.currency.btcMarket mutableCopy]];
+    [arrx addObjectsFromArray:[self.currency.ethMarket mutableCopy]];
+    [arrx addObjectsFromArray:[self.currency.htMarket mutableCopy]];
+    [arrx addObjectsFromArray:[self.currency.usdtMarket mutableCopy]];
+   
+    self.searchVC.ifNeedRequestData = NO;
+   
+    PYSearchViewController *searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:hotSeaches searchBarPlaceholder:@"搜索交易对" didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
         // 开始(点击)搜索时执行以下代码
+//        [arr removeAllObjects];
+//        [arrcopy removeAllObjects];
+        arr = [arrx mutableCopy];
+        arrcopy = [arr copy];
+        self.searchVC.ifNeedRequestData = NO;
          // 如：跳转到指定控制器
-        self.modelarray = self.aVC.modelarray == nil?[NSMutableArray new]:[self.aVC.modelarray mutableCopy];
-        NSMutableArray *arr = [NSMutableArray new];
-        arr = [self.modelarray mutableCopy];
-        for (CurrencyModel *model in self.modelarray) {
-            if(![model.symbol containsString:searchText]){
-                [arr removeObject:model];
+        [self.searchVC.modelarray removeAllObjects];
+        [self.searchVC.tableView reloadData];
+        for (SymbolModel *dic in arrcopy) {
+            SymbolModel *model = [SymbolModel parse:dic];
+            NSString *symbol = model.symbol;
+            if(![symbol containsString:searchText]){
+                [arr removeObject:dic];
             }
         }
-        SelfChooseVC *svc = [[SelfChooseVC alloc] init];
-        svc.modelarray = [arr mutableCopy];
-        svc.ifShouldRequest = NO;
-        [searchViewController.navigationController pushViewController:svc animated:YES];
         
-        
+        self.searchVC.modelarray = [arr mutableCopy];
+        [self.searchVC.tableView reloadData];
+        [searchViewController.navigationController pushViewController:self.searchVC animated:YES];
     }];
     // 3. 跳转到搜索控制器
     CustomizedNavigationController *nav = [[CustomizedNavigationController alloc] initWithRootViewController:searchViewController];
     [self presentViewController:nav  animated:NO completion:nil];
 }
 
--(void)switchAction{
-    if (_isFirstClickcBtn == YES) {
-        _isFirstClickcBtn = NO;
-        return;
-    }
-    if (self.iv1.selected == YES&&self.iv2.selected == NO) {
-        [self.iv1 setSelected:NO];
-        [self.iv2 setSelected:YES];
-        [cBtn setTitle:@"跌幅" forState:UIControlStateNormal];
-        [[NSNotificationCenter defaultCenter] postNotification:self.iv1Response];
-    }else{
-        [[NSNotificationCenter defaultCenter] postNotification:self.iv2Response];
-        [cBtn setTitle:@"涨幅" forState:UIControlStateNormal];
-        [self.iv1 setSelected:YES];
-        [self.iv2 setSelected:NO];
-    }
-}
+
 
 
 - (void)viewDidLoad {
     self.view.backgroundColor = [UIColor whiteColor];
-    self.modelarray = [NSMutableArray new];
+    self.currency = [CurrencyModel new];
     [super viewDidLoad];
     [self initUI];
     [self setMainSrollView];
     //设置默认
     [self sliderWithTag:self.currentIndex+1];
-    self.iv1Response = [NSNotification notificationWithName:@"iv1" object:nil];
-    self.iv2Response = [NSNotification notificationWithName:@"iv2" object:nil];
   
 }
 
@@ -253,7 +251,7 @@
     mainScrollView.showsVerticalScrollIndicator = NO;
     [self.view addSubview:mainScrollView];
     
-    NSArray *views = @[self.aVC.view,self.bVC.view,self.cVC.view,self.dVC.view];
+    NSArray *views = @[self.aVC.view,self.bVC.view,self.cVC.view,self.dVC.view,self.eVC.view];
     for (NSInteger i = 0; i<views.count; i++) {
         //把vc的view依次贴到mainScrollView上面
         UIView *pageView = [[UIView alloc]initWithFrame:CGRectMake(kScreenWidth*i, 0, mainScrollView.frame.size.width, mainScrollView.frame.size.height-100)];
@@ -273,6 +271,8 @@
         return cBtn;
     }else if (tag==4){
         return dBtn;
+    }else if (tag==5){
+        return eBtn;
     }else{
         return nil;
     }
@@ -294,11 +294,12 @@
     bBtn.selected = NO;
     cBtn.selected = NO;
     dBtn.selected = NO;
+    eBtn.selected = NO;
     UIButton *sender = [self buttonWithTag:tag];
     sender.selected = YES;
     //动画
     [UIView animateWithDuration:0.1 animations:^{
-       self->sliderLabel.frame = CGRectMake(sender.frame.origin.x + kScreenWidth/8 - 25, self->sliderLabel.frame.origin.y, 50, 2);
+       self->sliderLabel.frame = CGRectMake(sender.frame.origin.x + kScreenWidth/10 - 15, self->sliderLabel.frame.origin.y, 30, 2);
         
     } completion:^(BOOL finished) {
        
@@ -310,6 +311,7 @@
     bBtn.selected = NO;
     cBtn.selected = NO;
     dBtn.selected = NO;
+    eBtn.selected = NO;
     UIButton *sender = [self buttonWithTag:tag];
     sender.selected = YES;
     //动画
@@ -318,9 +320,9 @@
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     //实时计算当前位置,实现和titleView上的按钮的联动
     CGFloat contentOffSetX = scrollView.contentOffset.x;
-    CGFloat X = contentOffSetX * (2*kScreenWidth/4)/kScreenWidth/2;
+    CGFloat X = contentOffSetX * (2*kScreenWidth/5)/kScreenWidth/2;
     CGRect frame = sliderLabel.frame;
-    frame.origin.x = X+kScreenWidth/8 - 25;
+    frame.origin.x = X+kScreenWidth/10 - 15;
     sliderLabel.frame = frame;
 }
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{

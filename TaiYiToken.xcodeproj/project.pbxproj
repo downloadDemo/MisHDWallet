@@ -68,8 +68,6 @@
 		848180602123B2630007DCF9 /* NSData+CommonCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = 8481805B2123B2620007DCF9 /* NSData+CommonCrypto.m */; };
 		848180612123B2630007DCF9 /* PBKDF2.m in Sources */ = {isa = PBXBuildFile; fileRef = 8481805C2123B2620007DCF9 /* PBKDF2.m */; };
 		848180BB2123C72A0007DCF9 /* ContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 848180B92123C72A0007DCF9 /* ContainerViewController.m */; };
-		848180C02123CE9F0007DCF9 /* SelfChooseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 848180BF2123CE9F0007DCF9 /* SelfChooseVC.m */; };
-		848180C32123CF750007DCF9 /* SelfChooseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 848180C22123CF750007DCF9 /* SelfChooseCell.m */; };
 		84B0A9482122736B002EFA0A /* CustomizedTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B0A94321227369002EFA0A /* CustomizedTabBarController.m */; };
 		84B0A9492122736B002EFA0A /* CustomizedNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B0A9442122736A002EFA0A /* CustomizedNavigationController.m */; };
 		84B0A94A2122736B002EFA0A /* CustomTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B0A9462122736A002EFA0A /* CustomTabBar.m */; };
@@ -252,10 +250,6 @@
 		8481805C2123B2620007DCF9 /* PBKDF2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBKDF2.m; sourceTree = "<group>"; };
 		848180B92123C72A0007DCF9 /* ContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContainerViewController.m; sourceTree = "<group>"; };
 		848180BA2123C72A0007DCF9 /* ContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContainerViewController.h; sourceTree = "<group>"; };
-		848180BE2123CE9F0007DCF9 /* SelfChooseVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelfChooseVC.h; sourceTree = "<group>"; };
-		848180BF2123CE9F0007DCF9 /* SelfChooseVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelfChooseVC.m; sourceTree = "<group>"; };
-		848180C12123CF750007DCF9 /* SelfChooseCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelfChooseCell.h; sourceTree = "<group>"; };
-		848180C22123CF750007DCF9 /* SelfChooseCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelfChooseCell.m; sourceTree = "<group>"; };
 		84B0A94221227369002EFA0A /* CustomizedNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomizedNavigationController.h; sourceTree = "<group>"; };
 		84B0A94321227369002EFA0A /* CustomizedTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomizedTabBarController.m; sourceTree = "<group>"; };
 		84B0A9442122736A002EFA0A /* CustomizedNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomizedNavigationController.m; sourceTree = "<group>"; };
@@ -847,8 +841,6 @@
 			children = (
 				848180C42123CF800007DCF9 /* View */,
 				848180BD2123CE750007DCF9 /* 详情 */,
-				848180BE2123CE9F0007DCF9 /* SelfChooseVC.h */,
-				848180BF2123CE9F0007DCF9 /* SelfChooseVC.m */,
 				8428A540212422EC003E1DD8 /* MarketVC.h */,
 				8428A541212422EC003E1DD8 /* MarketVC.m */,
 			);
@@ -867,8 +859,6 @@
 		848180C42123CF800007DCF9 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				848180C12123CF750007DCF9 /* SelfChooseCell.h */,
-				848180C22123CF750007DCF9 /* SelfChooseCell.m */,
 				8428A54321242323003E1DD8 /* MarketCell.h */,
 				8428A54421242323003E1DD8 /* MarketCell.m */,
 				84BDD16B21269D5A0039FE09 /* DataView.h */,
@@ -1225,7 +1215,6 @@
 				8481805F2123B2630007DCF9 /* Base64.m in Sources */,
 				84748845212AAAD70077AC0F /* VerifyMnemonicVC.m in Sources */,
 				843EC9DE21212271002D5C2A /* NSString+URLString.m in Sources */,
-				848180C32123CF750007DCF9 /* SelfChooseCell.m in Sources */,
 				0415BD9C2131BC850022DEB7 /* YYLinePositionModel.m in Sources */,
 				843ECA2A212162FB002D5C2A /* NSMutableAttributedString+ExFoundation.m in Sources */,
 				843ECA27212162FB002D5C2A /* NSDate+ExFoundation.m in Sources */,
@@ -1247,7 +1236,6 @@
 				843EC9DF21212271002D5C2A /* AppDelegate+Custom.m in Sources */,
 				0415BD982131BC850022DEB7 /* UIColor+YYStockTheme.m in Sources */,
 				84C8E7E3212A9FFD00627445 /* CFFlowButtonView.m in Sources */,
-				848180C02123CE9F0007DCF9 /* SelfChooseVC.m in Sources */,
 				0415BDA92131BC850022DEB7 /* YYKline.m in Sources */,
 				8428A548212544F2003E1DD8 /* MarketDetailVC.m in Sources */,
 				84D0E43121211AAF004E65AD /* main.m in Sources */,
@@ -1451,7 +1439,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = HJRFHP993U;
+				DEVELOPMENT_TEAM = WX9MM6TM2J;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1483,7 +1471,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = HJRFHP993U;
+				DEVELOPMENT_TEAM = WX9MM6TM2J;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

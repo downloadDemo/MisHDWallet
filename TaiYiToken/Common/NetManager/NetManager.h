@@ -4,8 +4,8 @@
 
 
 #import "BaseNetworking.h"
-
+#import "Constant.h"
 @interface NetManager : BaseNetworking
-+(id)GETCurrencyListcompletionHandler:(void (^)(id responseObj, NSError *))handler;
-+(void)GETKLineWthType:(NSString*)type Symbol:(NSString*)symbol completionHandler:(void (^)(id responseObj, NSError *error))handler;
++(id)GETCurrencyListWithMySymbol:(NSString *)mySymbol  completionHandler:(void (^)(id responseObj, NSError *error))handler;
++(void)GETKLineWthkSearchSymbol:(NSString*)symbol LineType:(KLineType)kLineType searchNum:(NSInteger)searchNum completionHandler:(void (^)(id responseObj, NSError *error))handler;
 @end

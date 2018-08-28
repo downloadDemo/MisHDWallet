@@ -69,15 +69,15 @@
         make.edges.equalTo(0);
     }];
 
-    _dataView.namelabel.text = [self.model.symbol componentsSeparatedByString:@"/"].firstObject;
-    _dataView.dollarlabel.text = [NSString stringWithFormat:@"$%.2f",self.model.dollar];
-    _dataView.rmblabel.text = [NSString stringWithFormat:@"≈ ￥%.2f",self.model.rmb];
-    _dataView.ratelabel.text = [NSString stringWithFormat:@"%.2f%%",self.model.priceChangePercent];
-    _dataView.openlabel.text = [NSString stringWithFormat:@"%.4f",self.model.openPrice];
-    _dataView.highlabel.text = [NSString stringWithFormat:@"%.4f",self.model.highPrice];
-    _dataView.lowlabel.text = [NSString stringWithFormat:@"%.4f",self.model.lowPrice];
-    _dataView.volumelabel.text = [NSString stringWithFormat:@"%.4f",self.model.quoteVolume];
-    
+//    _dataView.namelabel.text = [self.model.symbol componentsSeparatedByString:@"/"].firstObject;
+//    _dataView.dollarlabel.text = [NSString stringWithFormat:@"$%.2f",self.model.dollar];
+//    _dataView.rmblabel.text = [NSString stringWithFormat:@"≈ ￥%.2f",self.model.rmb];
+//    _dataView.ratelabel.text = [NSString stringWithFormat:@"%.2f%%",self.model.priceChangePercent];
+//    _dataView.openlabel.text = [NSString stringWithFormat:@"%.4f",self.model.openPrice];
+//    _dataView.highlabel.text = [NSString stringWithFormat:@"%.4f",self.model.highPrice];
+//    _dataView.lowlabel.text = [NSString stringWithFormat:@"%.4f",self.model.lowPrice];
+//    _dataView.volumelabel.text = [NSString stringWithFormat:@"%.4f",self.model.quoteVolume];
+//
     _backBtn = [UIButton buttonWithType:UIButtonTypeSystem];
     _backBtn.backgroundColor = [UIColor clearColor];
     [_backBtn.imageView setContentMode:UIViewContentModeScaleAspectFit];
@@ -123,32 +123,32 @@
     
 }
 -(void)RequestKLineData{
-    NSString *symbol = [self.model.symbol componentsSeparatedByString:@"/"].firstObject;
-    [NetManager GETKLineWthType:@"m" Symbol:symbol completionHandler:^(id responseObj, NSError *error) {
-        if (!error) {
-            
-            NSNumber* code =(NSNumber*)responseObj[@"code"];
-            long codex = code.longValue;
-            if (codex == 0) {
-                NSArray *arr = responseObj[@"result"];
-                if (arr == nil) {
-                    return ;
-                }
-              //  [self.KLinePointArray removeAllObjects];
-              
-                for (id obj in arr) {
-                  //  KLinePointModel *data = [KLinePointModel parse:obj];
-                  //  [self.KLinePointArray addObject:data];
-                }
-              //  [self CreateCubeline];
-            }else{
-                [self.view showMsg:responseObj[@"message"]];
-            }
-            
-        }else{
-            [self.view showMsg:error.description];
-        }
-    }];
+//    NSString *symbol = [self.model.symbol componentsSeparatedByString:@"/"].firstObject;
+//    [NetManager GETKLineWthType:@"m" Symbol:symbol completionHandler:^(id responseObj, NSError *error) {
+//        if (!error) {
+//            
+//            NSNumber* code =(NSNumber*)responseObj[@"code"];
+//            long codex = code.longValue;
+//            if (codex == 0) {
+//                NSArray *arr = responseObj[@"result"];
+//                if (arr == nil) {
+//                    return ;
+//                }
+//              //  [self.KLinePointArray removeAllObjects];
+//              
+//                for (id obj in arr) {
+//                  //  KLinePointModel *data = [KLinePointModel parse:obj];
+//                  //  [self.KLinePointArray addObject:data];
+//                }
+//              //  [self CreateCubeline];
+//            }else{
+//                [self.view showMsg:responseObj[@"message"]];
+//            }
+//            
+//        }else{
+//            [self.view showMsg:error.description];
+//        }
+//    }];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];

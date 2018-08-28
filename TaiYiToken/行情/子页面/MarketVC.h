@@ -11,7 +11,9 @@
 #import "ContainerViewController.h"
 @interface MarketVC : UIViewController
 @property(nonatomic)NSString *indexName;
-@property(nonatomic)NSMutableArray <CurrencyModel*> *modelarray;
+@property(nonatomic)CurrencyModel *currency;
+@property (nonatomic, strong) NSMutableArray <SymbolModel *>* modelarray;
 @property(nonatomic)UITableView *tableView;
 @property(nonatomic,strong)UIView *navView;;
+@property(nonatomic)BOOL ifNeedRequestData;
 @end

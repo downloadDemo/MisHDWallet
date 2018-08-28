@@ -23,8 +23,7 @@
         
     }else{
         //没账号创建或导入
-    
-      
+
         //self.window.rootViewController = navivc;
     }
     

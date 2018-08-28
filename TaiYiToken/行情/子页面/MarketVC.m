@@ -13,7 +13,12 @@
 @property (nonatomic, strong)dispatch_source_t time;
 @property(nonatomic)UIButton *iv1;
 @property(nonatomic)UIButton *iv2;
-@property(nonatomic)BOOL Add;
+@property(nonatomic)UIButton *iv3;
+@property(nonatomic)UIButton *iv4;
+@property(nonatomic)UIButton *priceBtn;
+@property(nonatomic)UIButton *rateBtn;
+@property(nonatomic)BOOL rateSortAdd;
+@property(nonatomic)BOOL priceSortAdd;
 @end
 
 @implementation MarketVC
@@ -21,7 +26,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.modelarray = [NSMutableArray array];
+    self.rateSortAdd = NO;
+    self.priceSortAdd = NO;
+   
     UIView *headView = [UIView new];
     headView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:headView];
@@ -44,33 +51,34 @@
         make.height.equalTo(30);
     }];
     
-    UILabel *blabel = [[UILabel alloc] init];
-    blabel.textColor = [UIColor grayColor];
-    blabel.font = [UIFont systemFontOfSize:15];
-    blabel.textAlignment = NSTextAlignmentLeft;
-    blabel.numberOfLines = 1;
-    blabel.text = @"最新价格";
-    [headView addSubview:blabel];
-    [blabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    _priceBtn = [UIButton buttonWithType:UIButtonTypeSystem];
+    [_priceBtn setTitle:@"最新价" forState:UIControlStateNormal];
+    [_priceBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    _priceBtn.titleLabel.textAlignment = NSTextAlignmentLeft;
+    _priceBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+    [_priceBtn addTarget:self action:@selector(switchActionPriceBtn) forControlEvents:UIControlEventTouchUpInside];
+    [headView addSubview:_priceBtn];
+    [_priceBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(0);
         make.left.equalTo(ScreenWidth/2-10);
         make.width.equalTo(100);
         make.height.equalTo(30);
     }];
     
-    UILabel *clabel = [[UILabel alloc] init];
-    clabel.textColor = [UIColor grayColor];
-    clabel.font = [UIFont systemFontOfSize:15];
-    clabel.textAlignment = NSTextAlignmentRight;
-    clabel.numberOfLines = 1;
-    clabel.text = [self.indexName isEqualToString:@"d"]?@"成交量":@"24H 涨跌";
-    [headView addSubview:clabel];
-    [clabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    _rateBtn = [UIButton buttonWithType:UIButtonTypeSystem];
+    [_rateBtn setTitle:@"涨跌幅" forState:UIControlStateNormal];
+    [_rateBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    _rateBtn.titleLabel.textAlignment = NSTextAlignmentRight;
+    _rateBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+    [_rateBtn addTarget:self action:@selector(switchActionRateBtn) forControlEvents:UIControlEventTouchUpInside];
+    [headView addSubview:_rateBtn];
+    [_rateBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(0);
         make.right.equalTo(-16);
         make.width.equalTo(100);
         make.height.equalTo(30);
     }];
+  
     
     UIView *lineView = [UIView new];
     lineView.backgroundColor = [UIColor lightGrayColor];
@@ -80,41 +88,144 @@
         make.height.equalTo(1);
     }];
   
-    if ([self.indexName isEqualToString:@"c"]) {
-        //涨跌排序
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(iv1Click) name:@"iv1" object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(iv2Click) name:@"iv2" object:nil];
-        self.Add = YES;
-    }
+    [self initSortButtons];
     [self.tableView reloadData];
   
 }
-
--(void)iv1Click{
-    [self sortingForBubblingAdd:NO];
-    self.Add = NO;
-    NSLog(@"iv1");
+-(void)initSortButtons{
+    /*
+     最新价按钮
+     */
+    _iv1 = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_iv1 setImage:[UIImage imageNamed:@"ico_up_default"] forState:UIControlStateNormal];
+    [_iv1 setImage:[UIImage imageNamed:@"ico_up_select"] forState:UIControlStateSelected];
+    [self.iv1 setSelected:NO];
+    [_priceBtn addSubview:_iv1];
+    [_iv1 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(-4);
+        make.right.equalTo(-17);
+        make.width.equalTo(10);
+        make.height.equalTo(6);
+    }];
+    _iv2 = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_iv2 setImage:[UIImage imageNamed:@"ico_down_default"] forState:UIControlStateNormal];
+    [_iv2 setImage:[UIImage imageNamed:@"ico_down_select"] forState:UIControlStateSelected];
+    [self.iv2 setSelected:NO];
+    [_priceBtn addSubview:_iv2];
+    [_iv2 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(4);
+        make.right.equalTo(-17);
+        make.width.equalTo(10);
+        make.height.equalTo(6);
+    }];
+    
+    /*
+     涨跌按钮
+     */
+    _iv3 = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_iv3 setImage:[UIImage imageNamed:@"ico_up_default"] forState:UIControlStateNormal];
+    [_iv3 setImage:[UIImage imageNamed:@"ico_up_select"] forState:UIControlStateSelected];
+    [self.iv3 setSelected:NO];
+    [_rateBtn addSubview:_iv3];
+    [_iv3 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(-4);
+        make.right.equalTo(-17);
+        make.width.equalTo(10);
+        make.height.equalTo(6);
+    }];
+    _iv4 = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_iv4 setImage:[UIImage imageNamed:@"ico_down_default"] forState:UIControlStateNormal];
+    [_iv4 setImage:[UIImage imageNamed:@"ico_down_select"] forState:UIControlStateSelected];
+    [self.iv4 setSelected:NO];
+    [_rateBtn addSubview:_iv4];
+    [_iv4 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(4);
+        make.right.equalTo(-17);
+        make.width.equalTo(10);
+        make.height.equalTo(6);
+    }];
 }
--(void)iv2Click{
-    [self sortingForBubblingAdd:YES];
-    self.Add = YES;
-    NSLog(@"iv2");
+-(void)switchActionRateBtn{
+    self.rateSortAdd = YES;
+    self.priceSortAdd = NO;
+    [self.iv1 setSelected:NO];
+    [self.iv2 setSelected:NO];
+    if (self.iv3.selected == YES&&self.iv4.selected == NO) {
+        [self.iv3 setSelected:NO];
+        [self.iv4 setSelected:YES];
+        [_rateBtn setTitle:@"跌幅" forState:UIControlStateNormal];
+        [self sortingForRateAdd:NO];
+    }else{
+        [_rateBtn setTitle:@"涨幅" forState:UIControlStateNormal];
+        [self.iv3 setSelected:YES];
+        [self.iv4 setSelected:NO];
+        [self sortingForRateAdd:YES];
+    }
 }
--(void)sortingForBubblingAdd:(BOOL)add{
+-(void)switchActionPriceBtn{
+    self.rateSortAdd = NO;
+    self.priceSortAdd = YES;
+    [_rateBtn setTitle:@"涨跌幅" forState:UIControlStateNormal];
+    [self.iv3 setSelected:NO];
+    [self.iv4 setSelected:NO];
+    
+    if (self.iv1.selected == YES&&self.iv2.selected == NO) {
+        [self.iv1 setSelected:NO];
+        [self.iv2 setSelected:YES];
+        [self sortingForPriceAdd:NO];
+    }else{
+        [self.iv1 setSelected:YES];
+        [self.iv2 setSelected:NO];
+        [self sortingForPriceAdd:YES];
+    }
+}
+/* 涨跌排序 */
+-(void)sortingForRateAdd:(BOOL)add{
     if (self.modelarray == nil || self.modelarray.count == 0) {
         return;
     }
     for (int i=0; i<=self.modelarray.count-1; i++) {
         for (int j=0; j<self.modelarray.count-1-i; j++) {
+            SymbolModel *modelj = [SymbolModel parse:self.modelarray[j]];
+            SymbolModel *modelj1 = [SymbolModel parse:self.modelarray[j+1]];
              if (add == YES) {//降序
-            if (((CurrencyModel*)self.modelarray[j]).priceChangePercent < ((CurrencyModel*)self.modelarray[j+1]).priceChangePercent) {
-                CurrencyModel* temp = self.modelarray[j];
+                 
+            if (modelj.priceChange < modelj1.priceChange) {
+                SymbolModel* temp = self.modelarray[j];
                 self.modelarray[j]= self.modelarray[j+1];
                 self.modelarray[j+1] = temp;
             }
             }else{//升序
-                if (((CurrencyModel*)self.modelarray[j]).priceChangePercent > ((CurrencyModel*)self.modelarray[j+1]).priceChangePercent) {
-                    CurrencyModel* temp = self.modelarray[j];
+                if (modelj.priceChange > modelj1.priceChange) {
+                    SymbolModel* temp = self.modelarray[j];
+                    self.modelarray[j]= self.modelarray[j+1];
+                    self.modelarray[j+1] = temp;
+                }
+            }
+        }
+    }
+    [self.tableView reloadData];
+}
+
+/* 涨跌排序 */
+-(void)sortingForPriceAdd:(BOOL)add{
+    if (self.modelarray == nil || self.modelarray.count == 0) {
+        return;
+    }
+    for (int i=0; i<=self.modelarray.count-1; i++) {
+        for (int j=0; j<self.modelarray.count-1-i; j++) {
+            SymbolModel *modelj = [SymbolModel parse:self.modelarray[j]];
+            SymbolModel *modelj1 = [SymbolModel parse:self.modelarray[j+1]];
+            if (add == YES) {//降序
+                
+                if (modelj.rmbClosePrice < modelj1.rmbClosePrice) {
+                    SymbolModel* temp = self.modelarray[j];
+                    self.modelarray[j]= self.modelarray[j+1];
+                    self.modelarray[j+1] = temp;
+                }
+            }else{//升序
+                if (modelj.rmbClosePrice > modelj1.rmbClosePrice) {
+                    SymbolModel* temp = self.modelarray[j];
                     self.modelarray[j]= self.modelarray[j+1];
                     self.modelarray[j+1] = temp;
                 }
@@ -125,70 +236,84 @@
 }
 
 
-
-
 //请求数据
 -(void)GetData{
-  
-    [NetManager GETCurrencyListcompletionHandler:^(id responseObj, NSError *error) {
+    
+    NSString *mysymbol = [[NSUserDefaults standardUserDefaults] objectForKey:@"MySymbol"];
+    [NetManager GETCurrencyListWithMySymbol:mysymbol completionHandler:^(id responseObj, NSError *error) {
         if (!error) {
             
             NSNumber* code =(NSNumber*)responseObj[@"code"];
             long codex = code.longValue;
             if (codex == 0) {
-                NSArray *arr = responseObj[@"result"];
-                if (arr == nil) {
+                NSDictionary *result = responseObj[@"result"];
+                if (result == nil) {
                     return ;
                 }
-                [self.modelarray removeAllObjects];
-                for (id obj in arr) {
-                    CurrencyModel *currency = [CurrencyModel parse:obj];
-                    [self.modelarray addObject:currency];
+                //[self.modelarray removeAllObjects];
+                CurrencyModel *currency = [CurrencyModel parse:result];
+                self.currency = currency;
+                if([self.indexName isEqualToString:@"a"]){
+                    self.modelarray = currency.myMarket;
+                }else if ([self.indexName isEqualToString:@"b"]){
+                    self.modelarray = currency.btcMarket;
+                }else if ([self.indexName isEqualToString:@"c"]){
+                    self.modelarray = currency.ethMarket;
+                }else if ([self.indexName isEqualToString:@"d"]){
+                    self.modelarray = currency.htMarket;
+                }else if ([self.indexName isEqualToString:@"e"]){
+                    self.modelarray = currency.usdtMarket;
                 }
-                if ([self.indexName isEqualToString:@"c"]) {
-                    if (self.Add == YES) {
-                        [self sortingForBubblingAdd:YES];
-                    }else{
-                        [self sortingForBubblingAdd:NO];
-                    }
-                    [self sortingForBubblingAdd:YES];
+                if(self.priceSortAdd == YES){
+                    [self sortingForPriceAdd:YES];
+                }
+                if(self.rateSortAdd == YES){
+                    [self sortingForRateAdd:YES];
                 }
                 dispatch_async(dispatch_get_main_queue(), ^{
-                     [self.tableView reloadData];
+                    [self.tableView reloadData];
                 });
-               
+                
             }else{
                 [self.view showMsg:responseObj[@"message"]];
             }
+            
         }else{
             
         }
     }];
+   
 }
 
 -(void)viewDidAppear:(BOOL)animated{
+    if([self.indexName isEqualToString:@"search"]||self.ifNeedRequestData == YES){
+        //获得队列
+        dispatch_queue_t queue = dispatch_get_global_queue(0, 0);
+        //创建一个定时器
+        self.time = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
+        //设置开始时间
+        dispatch_time_t start = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC));
+        //设置时间间隔
+        uint64_t interval = (uint64_t)(5.0* NSEC_PER_SEC);
+        //设置定时器
+        dispatch_source_set_timer(self.time, start, interval, 0);
+        //设置回调
+        dispatch_source_set_event_handler(self.time, ^{
+             [self GetData];
+        });
+        //由于定时器默认是暂停的所以我们启动一下
+        //启动定时器
+        dispatch_resume(self.time);
+       
+    }else{
+        [self.tableView reloadData];
+    }
    
-    //获得队列
-    dispatch_queue_t queue = dispatch_get_global_queue(0, 0);
-    //创建一个定时器
-    self.time = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
-    //设置开始时间
-    dispatch_time_t start = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC));
-    //设置时间间隔
-    uint64_t interval = (uint64_t)(5.0* NSEC_PER_SEC);
-    //设置定时器
-    dispatch_source_set_timer(self.time, start, interval, 0);
-    //设置回调
-    dispatch_source_set_event_handler(self.time, ^{
-         [self GetData];
-        //dispatch_cancel(self.time);
-    });
-    //由于定时器默认是暂停的所以我们启动一下
-    //启动定时器
-    dispatch_resume(self.time);
 }
 -(void)viewWillDisappear:(BOOL)animated{
-    dispatch_cancel(self.time);
+    if([self.indexName isEqualToString:@"search"]||self.ifNeedRequestData == YES){
+        dispatch_cancel(self.time);
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -199,7 +324,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     MarketDetailVC *detailVC = [MarketDetailVC new];
-    detailVC.model =  self.modelarray == nil? nil : self.modelarray[indexPath.row];
+   // detailVC.model =  self.modelarray == nil? nil : self.modelarray[indexPath.row];
     [self.navigationController pushViewController:detailVC animated:YES];
 }
 
@@ -236,15 +361,20 @@
     if (cell == nil) {
         cell = [MarketCell new];
     }
-    CurrencyModel *model = self.modelarray[indexPath.row];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    [cell.namelabel setText:[NSString stringWithFormat:@"#%ld",indexPath.row]];
-    [cell.coinNamelabel setText:model.symbol];
-    [cell.marketValuelabel setText:[NSString stringWithFormat:@"市值：%.2f",model.marketValue]];
-    [cell.pricelabel setText:[NSString stringWithFormat:@"￥%.3f",model.rmb]];
-    [cell.ratelabel setTextColor:[self.indexName isEqualToString:@"d"]?[UIColor blackColor]:[UIColor textOrangeColor]];
-    [cell.ratelabel setText:[self.indexName isEqualToString:@"d"]?[NSString stringWithFormat:@"%.2f",model.quoteVolume]:[NSString stringWithFormat:@"%.2f%%",model.priceChangePercent]];
+    if(indexPath.row>self.modelarray.count - 1||indexPath.row<0){
+        return nil;
+    }
+    SymbolModel *modeldic = self.modelarray[indexPath.row];
+    SymbolModel *model = [SymbolModel parse:modeldic];
     
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    NSString *name = [NSString stringWithFormat:@"%@",model.symbolName == NULL?@"":model.symbolName];
+    [cell.namelabel setText:name];
+    [cell.coinNamelabel setText:model.symbol];
+    [cell.marketValuelabel setText:[NSString stringWithFormat:@"%.2f",model.rmbClosePrice]];
+    [cell.pricelabel setText:[NSString stringWithFormat:@"￥%.3f",model.closePrice]];
+    [cell.rateBtn setTitle:[NSString stringWithFormat:@"%.2f%%",model.priceChange] forState:UIControlStateNormal];
+
     return cell;
 }
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -264,14 +394,13 @@
         [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(30);
             make.left.right.equalTo(0);
-            make.bottom.equalTo(-49);
+            make.bottom.equalTo(0);
         }];
     }
     return _tableView;
 }
 -(void)dealloc {
-    if ([self.indexName isEqualToString:@"c"]) {
-         [[NSNotificationCenter defaultCenter] removeObserver:self];
-    }
+
 }
+
 @end

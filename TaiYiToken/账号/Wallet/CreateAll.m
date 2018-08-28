@@ -25,40 +25,6 @@
 #import "BRBIP32Sequence.h"
 #import <iconv.h>
 
-
-
-@implementation NSData (NSData_hexadecimalString)
-
-- (NSString *)hexString {
-    const unsigned char *dataBuffer = (const unsigned char *)[self bytes];
-    if (!dataBuffer) return [NSString string];
-    
-    NSUInteger          dataLength  = [self length];
-    NSMutableString     *hexString  = [NSMutableString stringWithCapacity:(dataLength * 2)];
-    
-    for (int i = 0; i < dataLength; ++i)
-    [hexString appendString:[NSString stringWithFormat:@"%02lx", (unsigned long)dataBuffer[i]]];
-    
-    return [NSString stringWithString:hexString];
-}
-
-
-@end
-
-@implementation NSString (Hex)
-
-+ (NSString*) hexStringWithData: (unsigned char*) data ofLength: (NSUInteger) len
-{
-    NSMutableString *tmp = [NSMutableString string];
-    for (NSUInteger i=0; i<len; i++)
-    [tmp appendFormat:@"%02x", data[i]];
-    return [NSString stringWithString:tmp];
-}
-
-@end
-
-
-
 @implementation CreateAll
 
 /* 1 * 生成种子
@@ -111,11 +77,12 @@
     return  mpkstr;
 }
 
-//扩展账号私钥生成
+//扩展账号私钥生成  BIP32 Root Key
 +(NSString *)CreateExtendPrivateKeyWithSeed:(NSString *)seed{
     BRBIP32Sequence *seq = [BRBIP32Sequence new];
     //**********BIP32SequenceSerializedPrivateMasterFromSeed
     NSString *xprv = [seq serializedPrivateMasterFromSeed:seed.hexToData];
+    NSLog(@"xprv = %@",xprv);
     return  xprv;
 }
 
@@ -125,6 +92,7 @@
     NSData *mpk = [seq masterPublicKeyFromSeed:seed.hexToData];
   //*********BIP32SequenceSerializedMasterPublicKey 对应的是"m/0'" (hardened child #0 of the root key)
     NSString *xpub = [seq serializedMasterPublicKey:mpk];
+    NSLog(@"xpub = %@",xpub);
     return  xpub;
 }
 /*

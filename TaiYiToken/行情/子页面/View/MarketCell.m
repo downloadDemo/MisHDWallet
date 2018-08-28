@@ -19,7 +19,7 @@
         [self.contentView addSubview:_namelabel];
         [_namelabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(16);
-            make.top.equalTo(8);
+            make.centerY.equalTo(-10);
             make.width.equalTo(90);
             make.height.equalTo(12);
         }];
@@ -31,14 +31,14 @@
     if(_coinNamelabel == nil) {
         _coinNamelabel = [[UILabel alloc] init];
         _coinNamelabel.textColor = [UIColor blackColor];
-        _coinNamelabel.font = [UIFont boldSystemFontOfSize:15];
+        _coinNamelabel.font = [UIFont boldSystemFontOfSize:16];
         _coinNamelabel.textAlignment = NSTextAlignmentLeft;
         _coinNamelabel.numberOfLines = 1;
         [self.contentView addSubview:_coinNamelabel];
         [_coinNamelabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(16);
-            make.top.equalTo(20);
-            make.width.equalTo(90);
+            make.centerY.equalTo(5);
+            make.width.equalTo(130);
             make.height.equalTo(20);
         }];
         
@@ -54,8 +54,8 @@
         _marketValuelabel.numberOfLines = 1;
         [self addSubview:_marketValuelabel];
         [_marketValuelabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(16);
-            make.top.equalTo(self.coinNamelabel.mas_bottom).equalTo(5);
+            make.left.equalTo(160);
+            make.centerY.equalTo(8);
             make.width.equalTo(100);
             make.height.equalTo(20);
         }];
@@ -67,13 +67,13 @@
     if(_pricelabel == nil) {
         _pricelabel = [[UILabel alloc] init];
         _pricelabel.textColor = [UIColor blackColor];
-        _pricelabel.font = [UIFont boldSystemFontOfSize:15];
+        _pricelabel.font = [UIFont boldSystemFontOfSize:13];
         _pricelabel.textAlignment = NSTextAlignmentLeft;
         _pricelabel.numberOfLines = 1;
         [self addSubview:_pricelabel];
         [_pricelabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(160);
-            make.centerY.equalTo(0);
+            make.centerY.equalTo(-6);
             make.width.equalTo(100);
             make.height.equalTo(20);
         }];
@@ -82,25 +82,24 @@
     return _pricelabel;
 }
 
-- (UILabel *)ratelabel {
-    if(_ratelabel == nil) {
-        _ratelabel = [[UILabel alloc] init];
-        _ratelabel.textColor = [UIColor textOrangeColor];
-        _ratelabel.font = [UIFont boldSystemFontOfSize:15];
-        _ratelabel.textAlignment = NSTextAlignmentRight;
-        _ratelabel.numberOfLines = 1;
-        [self addSubview:_ratelabel];
-        [_ratelabel mas_makeConstraints:^(MASConstraintMaker *make) {
+
+-(UIButton *)rateBtn{
+    if(_rateBtn == nil){
+        _rateBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _rateBtn.backgroundColor = RGB(255, 130, 130);
+        _rateBtn.tintColor = [UIColor textWhiteColor];
+        _rateBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+        [self addSubview:_rateBtn];
+        _rateBtn.userInteractionEnabled = YES;
+        [_rateBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.equalTo(-10);
             make.centerY.equalTo(0);
-            make.width.equalTo(100);
-            make.height.equalTo(20);
+            make.width.equalTo(90);
+            make.height.equalTo(26);
         }];
-        
     }
-    return _ratelabel;
+    return _rateBtn;
 }
-
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
