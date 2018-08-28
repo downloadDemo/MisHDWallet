@@ -60,8 +60,10 @@
 		843ECA3B21216320002D5C2A /* UIColor+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 843ECA362121631F002D5C2A /* UIColor+Util.m */; };
 		84748845212AAAD70077AC0F /* VerifyMnemonicVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84748844212AAAD70077AC0F /* VerifyMnemonicVC.m */; };
 		84748848212BC2EC0077AC0F /* UserInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84748847212BC2EC0077AC0F /* UserInfoVC.m */; };
-		847BC6052133D5C9000B02AC /* ethers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 847BC6042133D5C9000B02AC /* ethers.framework */; };
 		847BC6092133E001000B02AC /* MissionWallet.m in Sources */ = {isa = PBXBuildFile; fileRef = 847BC6082133E001000B02AC /* MissionWallet.m */; };
+		847BC60B21355289000B02AC /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 847BC60A21355288000B02AC /* libstdc++.tbd */; };
+		847BC60C21355613000B02AC /* libPods-TaiYiToken.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E9748ED3D2B5C2D4D7CCFB04 /* libPods-TaiYiToken.a */; };
+		847BC6A921355BA5000B02AC /* ethers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 847BC6A821355BA4000B02AC /* ethers.framework */; };
 		8481805D2123B2630007DCF9 /* AESCrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = 848180552123B2620007DCF9 /* AESCrypt.m */; };
 		8481805E2123B2630007DCF9 /* NSObject+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 848180582123B2620007DCF9 /* NSObject+Extension.m */; };
 		8481805F2123B2630007DCF9 /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 8481805A2123B2620007DCF9 /* Base64.m */; };
@@ -102,7 +104,6 @@
 		84D0E43B21211AAF004E65AD /* TaiYiTokenTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D0E43A21211AAF004E65AD /* TaiYiTokenTests.m */; };
 		84D0E44621211AAF004E65AD /* TaiYiTokenUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D0E44521211AAF004E65AD /* TaiYiTokenUITests.m */; };
 		84FA0821212BE3AF00DCFC0C /* CreateAll.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FA0820212BE3AF00DCFC0C /* CreateAll.m */; };
-		9FBB700D2810CB0FA9D45A94 /* libPods-TaiYiToken.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E9748ED3D2B5C2D4D7CCFB04 /* libPods-TaiYiToken.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -235,9 +236,10 @@
 		84748844212AAAD70077AC0F /* VerifyMnemonicVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VerifyMnemonicVC.m; sourceTree = "<group>"; };
 		84748846212BC2EC0077AC0F /* UserInfoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserInfoVC.h; sourceTree = "<group>"; };
 		84748847212BC2EC0077AC0F /* UserInfoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserInfoVC.m; sourceTree = "<group>"; };
-		847BC6042133D5C9000B02AC /* ethers.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ethers.framework; path = TaiYiToken/ethers.framework; sourceTree = "<group>"; };
 		847BC6072133E001000B02AC /* MissionWallet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MissionWallet.h; sourceTree = "<group>"; };
 		847BC6082133E001000B02AC /* MissionWallet.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MissionWallet.m; sourceTree = "<group>"; };
+		847BC60A21355288000B02AC /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
+		847BC6A821355BA4000B02AC /* ethers.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ethers.framework; path = TaiYiToken/ethers.framework; sourceTree = "<group>"; };
 		848180532123B2620007DCF9 /* NSObject+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Extension.h"; sourceTree = "<group>"; };
 		848180542123B2620007DCF9 /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64.h; sourceTree = "<group>"; };
 		848180552123B2620007DCF9 /* AESCrypt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AESCrypt.m; sourceTree = "<group>"; };
@@ -324,12 +326,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				847BC6052133D5C9000B02AC /* ethers.framework in Frameworks */,
+				847BC6A921355BA5000B02AC /* ethers.framework in Frameworks */,
+				847BC60C21355613000B02AC /* libPods-TaiYiToken.a in Frameworks */,
+				847BC60B21355289000B02AC /* libstdc++.tbd in Frameworks */,
 				84C0DF33212D4F1E00BCC91D /* libiconv.tbd in Frameworks */,
 				84C8E7DA212A976800627445 /* Foundation.framework in Frameworks */,
 				84C8E7D8212A976100627445 /* UIKit.framework in Frameworks */,
 				84C8E7D6212A975B00627445 /* CoreGraphics.framework in Frameworks */,
-				9FBB700D2810CB0FA9D45A94 /* libPods-TaiYiToken.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -605,7 +608,8 @@
 		6AC5FF18C18AADA88B0CA162 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				847BC6042133D5C9000B02AC /* ethers.framework */,
+				847BC6A821355BA4000B02AC /* ethers.framework */,
+				847BC60A21355288000B02AC /* libstdc++.tbd */,
 				84C0DF32212D4F1E00BCC91D /* libiconv.tbd */,
 				84C8E7D9212A976800627445 /* Foundation.framework */,
 				84C8E7D7212A976100627445 /* UIKit.framework */,
@@ -1357,6 +1361,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -1376,7 +1381,12 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"$(inherited)",
+				);
 				SDKROOT = iphoneos;
+				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Debug;
 		};
@@ -1415,6 +1425,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -1427,9 +1438,14 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"$(inherited)",
+				);
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Release;
 		};
@@ -1458,6 +1474,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.taiyi.pagani;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -1490,6 +1507,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.taiyi.pagani;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;

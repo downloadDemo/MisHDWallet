@@ -44,7 +44,7 @@
     
     //self.interactivePopGestureRecognizer.delegate = self;
     self.navigationBar.translucent = NO;
-    self.navigationBar.barTintColor = [UIColor backBlueColorB];
+    self.navigationBar.barTintColor = [UIColor colorWithHexString:@"#5091FF"];
     [self.navigationBar setTintColor:[UIColor whiteColor]];
     
     UIBarButtonItem *playItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemPlay target:self action:@selector(play)];

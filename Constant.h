@@ -79,15 +79,12 @@ typedef enum {
 
 
 typedef enum {
-    ONE_MIN = 0,
     FIVE_MIN = 1,
     FIFTEEN_MIN = 2,
-    THIRTY_MIN = 3,
     ONE_HOUR = 4,
     ONE_DAY = 5,
     ONE_WEEK = 6,
     ONE_MON = 7,
-    ONE_YEAR = 8
 }KLineType;
 
 #endif /* Constant_h */

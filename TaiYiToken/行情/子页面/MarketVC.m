@@ -60,7 +60,7 @@
     [headView addSubview:_priceBtn];
     [_priceBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(0);
-        make.left.equalTo(ScreenWidth/2-10);
+        make.left.equalTo(ScreenWidth/2-20);
         make.width.equalTo(100);
         make.height.equalTo(30);
     }];
@@ -74,7 +74,7 @@
     [headView addSubview:_rateBtn];
     [_rateBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(0);
-        make.right.equalTo(-16);
+        make.right.equalTo(0);
         make.width.equalTo(100);
         make.height.equalTo(30);
     }];
@@ -103,7 +103,7 @@
     [_priceBtn addSubview:_iv1];
     [_iv1 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(-4);
-        make.right.equalTo(-17);
+        make.right.equalTo(-10);
         make.width.equalTo(10);
         make.height.equalTo(6);
     }];
@@ -114,7 +114,7 @@
     [_priceBtn addSubview:_iv2];
     [_iv2 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(4);
-        make.right.equalTo(-17);
+        make.right.equalTo(-10);
         make.width.equalTo(10);
         make.height.equalTo(6);
     }];
@@ -129,7 +129,7 @@
     [_rateBtn addSubview:_iv3];
     [_iv3 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(-4);
-        make.right.equalTo(-17);
+        make.right.equalTo(-10);
         make.width.equalTo(10);
         make.height.equalTo(6);
     }];
@@ -140,7 +140,7 @@
     [_rateBtn addSubview:_iv4];
     [_iv4 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(4);
-        make.right.equalTo(-17);
+        make.right.equalTo(-10);
         make.width.equalTo(10);
         make.height.equalTo(6);
     }];
@@ -238,8 +238,8 @@
 
 //请求数据
 -(void)GetData{
-    
-    NSString *mysymbol = [[NSUserDefaults standardUserDefaults] objectForKey:@"MySymbol"];
+    NSString *mysymbol =@"ETH/BTC,ETH/USDT";
+  //  NSString *mysymbol = [[NSUserDefaults standardUserDefaults] objectForKey:@"MySymbol"];
     [NetManager GETCurrencyListWithMySymbol:mysymbol completionHandler:^(id responseObj, NSError *error) {
         if (!error) {
             
@@ -292,9 +292,9 @@
         //创建一个定时器
         self.time = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
         //设置开始时间
-        dispatch_time_t start = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC));
+        dispatch_time_t start = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10.0 * NSEC_PER_SEC));
         //设置时间间隔
-        uint64_t interval = (uint64_t)(5.0* NSEC_PER_SEC);
+        uint64_t interval = (uint64_t)(10.0* NSEC_PER_SEC);
         //设置定时器
         dispatch_source_set_timer(self.time, start, interval, 0);
         //设置回调

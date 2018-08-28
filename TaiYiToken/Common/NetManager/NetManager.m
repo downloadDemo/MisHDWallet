@@ -21,6 +21,7 @@
         !handler ?:handler(repsonseObj,error);
     }];
 }
+//获取交易对详情
 +(void)GETKLineWthkSearchSymbol:(NSString*)symbol LineType:(KLineType)kLineType searchNum:(NSInteger)searchNum completionHandler:(void (^)(id responseObj, NSError *error))handler{
     NSString *path = [NSString stringWithFormat:@"%@%@",BASE_URL,@"/getSymbolInfo"];
     NSDictionary *params = @{@"searchSymbol":symbol == nil?@"":symbol,

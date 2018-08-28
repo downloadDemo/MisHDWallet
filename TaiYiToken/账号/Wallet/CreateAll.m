@@ -23,7 +23,7 @@
 #import "NSData+Bitcoin.h"
 #import "NSMutableData+Bitcoin.h"
 #import "BRBIP32Sequence.h"
-#import <iconv.h>
+//#import <iconv.h>
 
 @implementation CreateAll
 

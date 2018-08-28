@@ -111,5 +111,5 @@
 #import <CoreBitcoin/CoreBitcoin+Categories.h>
 /* ETH */
 @import ethers;
-
+//#import "ethers.h"
 #endif /* PrefixHeader_pch */

@@ -19,7 +19,7 @@
         [self.contentView addSubview:_namelabel];
         [_namelabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(16);
-            make.centerY.equalTo(-10);
+            make.centerY.equalTo(-11);
             make.width.equalTo(90);
             make.height.equalTo(12);
         }];
@@ -37,7 +37,7 @@
         [self.contentView addSubview:_coinNamelabel];
         [_coinNamelabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(16);
-            make.centerY.equalTo(5);
+            make.centerY.equalTo(4);
             make.width.equalTo(130);
             make.height.equalTo(20);
         }];
@@ -50,11 +50,11 @@
         _marketValuelabel = [[UILabel alloc] init];
         _marketValuelabel.textColor = [UIColor grayColor];
         _marketValuelabel.font = [UIFont systemFontOfSize:10];
-        _marketValuelabel.textAlignment = NSTextAlignmentLeft;
+        _marketValuelabel.textAlignment = NSTextAlignmentRight;
         _marketValuelabel.numberOfLines = 1;
         [self addSubview:_marketValuelabel];
         [_marketValuelabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(160);
+            make.left.equalTo(140);
             make.centerY.equalTo(8);
             make.width.equalTo(100);
             make.height.equalTo(20);
@@ -68,11 +68,11 @@
         _pricelabel = [[UILabel alloc] init];
         _pricelabel.textColor = [UIColor blackColor];
         _pricelabel.font = [UIFont boldSystemFontOfSize:13];
-        _pricelabel.textAlignment = NSTextAlignmentLeft;
+        _pricelabel.textAlignment = NSTextAlignmentRight;
         _pricelabel.numberOfLines = 1;
         [self addSubview:_pricelabel];
         [_pricelabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(160);
+            make.left.equalTo(140);
             make.centerY.equalTo(-6);
             make.width.equalTo(100);
             make.height.equalTo(20);
