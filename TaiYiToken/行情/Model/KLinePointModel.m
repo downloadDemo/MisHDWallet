@@ -53,10 +53,18 @@
 }
 @end
 @implementation CoinBaseInfo
-
+- (void)setValue:(id)value forKey:(NSString *)key{
+    if (value == NULL || value == [NSNull null]) {
+        [self setValue:nil forKey:key];
+    }
+}
 @end
 @implementation klineData
-
+- (void)setValue:(id)value forKey:(NSString *)key{
+    if (value == NULL || value == [NSNull null]) {
+        [self setValue:nil forKey:key];
+    }
+}
 @end
 @implementation SymbolInfo
 

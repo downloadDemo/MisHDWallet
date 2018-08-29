@@ -58,6 +58,9 @@
 		843ECA312121630A002D5C2A /* RegularExpression.m in Sources */ = {isa = PBXBuildFile; fileRef = 843ECA302121630A002D5C2A /* RegularExpression.m */; };
 		843ECA3921216320002D5C2A /* UIView+frameAdjust.m in Sources */ = {isa = PBXBuildFile; fileRef = 843ECA342121631F002D5C2A /* UIView+frameAdjust.m */; };
 		843ECA3B21216320002D5C2A /* UIColor+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 843ECA362121631F002D5C2A /* UIColor+Util.m */; };
+		8460C7B02136A446002E4B2F /* YYLineDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8460C7AB2136A446002E4B2F /* YYLineDataModel.m */; };
+		8460C7B12136A446002E4B2F /* YYTimeLineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8460C7AD2136A446002E4B2F /* YYTimeLineModel.m */; };
+		8460C7B22136A446002E4B2F /* YYFiveRecordModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8460C7AF2136A446002E4B2F /* YYFiveRecordModel.m */; };
 		84748845212AAAD70077AC0F /* VerifyMnemonicVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84748844212AAAD70077AC0F /* VerifyMnemonicVC.m */; };
 		84748848212BC2EC0077AC0F /* UserInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84748847212BC2EC0077AC0F /* UserInfoVC.m */; };
 		847BC6092133E001000B02AC /* MissionWallet.m in Sources */ = {isa = PBXBuildFile; fileRef = 847BC6082133E001000B02AC /* MissionWallet.m */; };
@@ -233,6 +236,12 @@
 		843ECA342121631F002D5C2A /* UIView+frameAdjust.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+frameAdjust.m"; sourceTree = "<group>"; };
 		843ECA362121631F002D5C2A /* UIColor+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Util.m"; sourceTree = "<group>"; };
 		843ECA372121631F002D5C2A /* UIView+frameAdjust.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+frameAdjust.h"; sourceTree = "<group>"; };
+		8460C7AA2136A446002E4B2F /* YYTimeLineModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYTimeLineModel.h; sourceTree = "<group>"; };
+		8460C7AB2136A446002E4B2F /* YYLineDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYLineDataModel.m; sourceTree = "<group>"; };
+		8460C7AC2136A446002E4B2F /* YYFiveRecordModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYFiveRecordModel.h; sourceTree = "<group>"; };
+		8460C7AD2136A446002E4B2F /* YYTimeLineModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYTimeLineModel.m; sourceTree = "<group>"; };
+		8460C7AE2136A446002E4B2F /* YYLineDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYLineDataModel.h; sourceTree = "<group>"; };
+		8460C7AF2136A446002E4B2F /* YYFiveRecordModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYFiveRecordModel.m; sourceTree = "<group>"; };
 		84748843212AAAD70077AC0F /* VerifyMnemonicVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VerifyMnemonicVC.h; sourceTree = "<group>"; };
 		84748844212AAAD70077AC0F /* VerifyMnemonicVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VerifyMnemonicVC.m; sourceTree = "<group>"; };
 		84748846212BC2EC0077AC0F /* UserInfoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserInfoVC.h; sourceTree = "<group>"; };
@@ -355,6 +364,7 @@
 		0415BD512131BC850022DEB7 /* YYStock */ = {
 			isa = PBXGroup;
 			children = (
+				8460C7A92136A446002E4B2F /* StockDataModel */,
 				0415BD522131BC850022DEB7 /* Config[主题+定义] */,
 				0415BD5B2131BC850022DEB7 /* Packages */,
 				0415BD5F2131BC850022DEB7 /* Stock */,
@@ -804,6 +814,19 @@
 			path = CQMarqueeView;
 			sourceTree = "<group>";
 		};
+		8460C7A92136A446002E4B2F /* StockDataModel */ = {
+			isa = PBXGroup;
+			children = (
+				8460C7AA2136A446002E4B2F /* YYTimeLineModel.h */,
+				8460C7AD2136A446002E4B2F /* YYTimeLineModel.m */,
+				8460C7AE2136A446002E4B2F /* YYLineDataModel.h */,
+				8460C7AB2136A446002E4B2F /* YYLineDataModel.m */,
+				8460C7AC2136A446002E4B2F /* YYFiveRecordModel.h */,
+				8460C7AF2136A446002E4B2F /* YYFiveRecordModel.m */,
+			);
+			path = StockDataModel;
+			sourceTree = "<group>";
+		};
 		847BC6062133DFD2000B02AC /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -1216,6 +1239,7 @@
 				84B0A9642122CD7B002EFA0A /* RemindView.m in Sources */,
 				84C0DF30212CFF9100BCC91D /* NSMutableData+Bitcoin.m in Sources */,
 				0415BD9A2131BC850022DEB7 /* YYTopBarView.m in Sources */,
+				8460C7B12136A446002E4B2F /* YYTimeLineModel.m in Sources */,
 				843ECA3921216320002D5C2A /* UIView+frameAdjust.m in Sources */,
 				0415BDAC2131BC850022DEB7 /* YYKlineVolumeView.m in Sources */,
 				843ECA3B21216320002D5C2A /* UIColor+Util.m in Sources */,
@@ -1244,6 +1268,7 @@
 				843EC9E52121228B002D5C2A /* SAMKeyChainEasy.m in Sources */,
 				8428A54521242323003E1DD8 /* MarketCell.m in Sources */,
 				8428A53F2123FE76003E1DD8 /* CurrencyModel.m in Sources */,
+				8460C7B22136A446002E4B2F /* YYFiveRecordModel.m in Sources */,
 				0415BDA72131BC850022DEB7 /* YYStockViewMaskView.m in Sources */,
 				84B0A9602122C184002EFA0A /* UIImage+Gradient.m in Sources */,
 				84C0DF2A212CFF7700BCC91D /* NSString+Bitcoin.m in Sources */,
@@ -1268,6 +1293,7 @@
 				84BDD16D21269D5B0039FE09 /* DataView.m in Sources */,
 				84D0E42321211AAB004E65AD /* AppDelegate.m in Sources */,
 				847BC6092133E001000B02AC /* MissionWallet.m in Sources */,
+				8460C7B02136A446002E4B2F /* YYLineDataModel.m in Sources */,
 				84B0A95A2122B87B002EFA0A /* UIColor+PGHex.m in Sources */,
 				0415BD9D2131BC850022DEB7 /* YYVolumePositionModel.m in Sources */,
 				84C0DF2D212CFF8500BCC91D /* NSData+Bitcoin.m in Sources */,

@@ -53,7 +53,11 @@
 }
 @end
 @implementation SymbolModel
-
+- (void)setValue:(id)value forKey:(NSString *)key{
+    if (value == NULL || value == [NSNull null]) {
+        [self setValue:nil forKey:key];
+    }
+}
 @end
 
 
