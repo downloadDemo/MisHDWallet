@@ -69,6 +69,7 @@
 		848180602123B2630007DCF9 /* NSData+CommonCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = 8481805B2123B2620007DCF9 /* NSData+CommonCrypto.m */; };
 		848180612123B2630007DCF9 /* PBKDF2.m in Sources */ = {isa = PBXBuildFile; fileRef = 8481805C2123B2620007DCF9 /* PBKDF2.m */; };
 		848180BB2123C72A0007DCF9 /* ContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 848180B92123C72A0007DCF9 /* ContainerViewController.m */; };
+		84A9FF5721368830006F9D1B /* KLinePointModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8428A54D21255333003E1DD8 /* KLinePointModel.m */; };
 		84B0A9482122736B002EFA0A /* CustomizedTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B0A94321227369002EFA0A /* CustomizedTabBarController.m */; };
 		84B0A9492122736B002EFA0A /* CustomizedNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B0A9442122736A002EFA0A /* CustomizedNavigationController.m */; };
 		84B0A94A2122736B002EFA0A /* CustomTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B0A9462122736A002EFA0A /* CustomTabBar.m */; };
@@ -1202,6 +1203,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84A9FF5721368830006F9D1B /* KLinePointModel.m in Sources */,
 				843EC9DC21212271002D5C2A /* UIView+HUD.m in Sources */,
 				848180BB2123C72A0007DCF9 /* ContainerViewController.m in Sources */,
 				843EC9EC212122A7002D5C2A /* NetManager.m in Sources */,
@@ -1394,7 +1396,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"$(inherited)",
@@ -1491,7 +1493,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.taiyi.pagani;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;

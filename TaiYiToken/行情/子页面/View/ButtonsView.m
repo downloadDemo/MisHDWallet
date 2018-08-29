@@ -7,7 +7,7 @@
 //
 
 #import "ButtonsView.h"
-#define BtnColor RGB(250, 250, 250)
+#define BtnColor RGB(256, 256, 256)
 #define SelectColor [UIColor textBlueColor]
 #define DeSelectColor [UIColor textGrayColor]
 @implementation ButtonsView
@@ -24,10 +24,10 @@
     _FIVEMINBtn.backgroundColor = BtnColor;
     _FIVEMINBtn.tintColor = [UIColor blackColor];
     _FIVEMINBtn.titleLabel.font = [UIFont systemFontOfSize:13];
+    _FIVEMINBtn.tag = 1;
     [_FIVEMINBtn setTitleColor:SelectColor forState:UIControlStateSelected];
     [_FIVEMINBtn setTitleColor:DeSelectColor forState:UIControlStateNormal];
     [_FIVEMINBtn setTitle:@"5分" forState:UIControlStateNormal];
-    [_FIVEMINBtn setTitle:@"1分钟" forState:UIControlStateSelected];
     [self addSubview:_FIVEMINBtn];
     _FIVEMINBtn.userInteractionEnabled = YES;
     [_FIVEMINBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -39,6 +39,7 @@
     _FIFTEENMINBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _FIFTEENMINBtn.backgroundColor = BtnColor;
     _FIFTEENMINBtn.tintColor = [UIColor blackColor];
+    _FIFTEENMINBtn.tag = 2;
     _FIFTEENMINBtn.titleLabel.font = [UIFont systemFontOfSize:13];
     [_FIFTEENMINBtn setTitleColor:SelectColor forState:UIControlStateSelected];
     [_FIFTEENMINBtn setTitleColor:DeSelectColor forState:UIControlStateNormal];
@@ -55,7 +56,7 @@
     _ONEHOURBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _ONEHOURBtn.backgroundColor = BtnColor;
     _ONEHOURBtn.tintColor = [UIColor blackColor];
-
+    _ONEHOURBtn.tag = 4;
     _ONEHOURBtn.titleLabel.font = [UIFont systemFontOfSize:13];
     [_ONEHOURBtn setTitle:@"1时" forState:UIControlStateNormal];
     [_ONEHOURBtn setTitleColor:SelectColor forState:UIControlStateSelected];
@@ -72,8 +73,7 @@
     _ONEDAYBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _ONEDAYBtn.backgroundColor = BtnColor;
     _ONEDAYBtn.tintColor = [UIColor blackColor];
-//    _ONEHOURBtn.layer.borderColor = [UIColor grayColor].CGColor;
-//    _ONEHOURBtn.layer.borderWidth = 1;
+    _ONEDAYBtn.tag = 5;
     _ONEDAYBtn.titleLabel.font = [UIFont systemFontOfSize:13];
     [_ONEDAYBtn setTitle:@"日" forState:UIControlStateNormal];
     [_ONEDAYBtn setTitleColor:SelectColor forState:UIControlStateSelected];
@@ -90,8 +90,7 @@
     _ONEWEEKBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _ONEWEEKBtn.backgroundColor = BtnColor;
     _ONEWEEKBtn.tintColor = [UIColor blackColor];
-//    _ONEWEEKBtn.layer.borderColor = [UIColor grayColor].CGColor;
-//    _ONEWEEKBtn.layer.borderWidth = 1;
+    _ONEWEEKBtn.tag = 6;
     _ONEWEEKBtn.titleLabel.font = [UIFont systemFontOfSize:13];
     [_ONEWEEKBtn setTitle:@"周" forState:UIControlStateNormal];
     [_ONEWEEKBtn setTitleColor:SelectColor forState:UIControlStateSelected];
@@ -108,8 +107,7 @@
     _ONEMONBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _ONEMONBtn.backgroundColor = BtnColor;
     _ONEMONBtn.tintColor = [UIColor blackColor];
-    //    _ONEWEEKBtn.layer.borderColor = [UIColor grayColor].CGColor;
-    //    _ONEWEEKBtn.layer.borderWidth = 1;
+    _ONEMONBtn.tag = 7;
     _ONEMONBtn.titleLabel.font = [UIFont systemFontOfSize:13];
     [_ONEMONBtn setTitle:@"月" forState:UIControlStateNormal];
     [_ONEMONBtn setTitleColor:SelectColor forState:UIControlStateSelected];

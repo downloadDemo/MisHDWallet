@@ -7,9 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-@class CoinBaseInfo;
-@class SymbolInfo;
-@class klineData;
+@class CoinBaseInfo,SymbolInfo,klineData;
+
 @interface KLinePointModel : NSObject
 /*
  {  "symbolInfo":
