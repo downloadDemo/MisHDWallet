@@ -9,11 +9,22 @@
 #import <UIKit/UIKit.h>
 
 @interface ButtonsView : UIView
-@property(nonatomic)UIButton *oneMinuteBtn;
-@property(nonatomic)UIButton *sixMinuteBtn;
-@property(nonatomic)UIButton *dayBtn;
-@property(nonatomic)UIButton *weekBtn;
-@property(nonatomic)UIButton *monthBtn;
+/*typedef enum {
+ FIVE_MIN = 1,
+ FIFTEEN_MIN = 2,
+ ONE_HOUR = 4,
+ ONE_DAY = 5,
+ ONE_WEEK = 6,
+ ONE_MON = 7,
+ }KLineType;*/
+
+
+@property(nonatomic)UIButton *FIVEMINBtn;
+@property(nonatomic)UIButton *FIFTEENMINBtn;
+@property(nonatomic)UIButton *ONEHOURBtn;
+@property(nonatomic)UIButton *ONEDAYBtn;
+@property(nonatomic)UIButton *ONEWEEKBtn;
+@property(nonatomic)UIButton *ONEMONBtn;
 @property(nonatomic)NSArray *btnArray;
 -(void)initButtonsViewWidth:(CGFloat)width Height:(CGFloat)height;
 @end

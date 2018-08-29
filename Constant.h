@@ -87,4 +87,8 @@ typedef enum {
     ONE_MON = 7,
 }KLineType;
 
+#define BTNRISECOLOR [UIColor colorWithHexString:@"#E53A32"]
+#define BTNFALLCOLOR [UIColor colorWithHexString:@"#26B13D"]
+
+
 #endif /* Constant_h */

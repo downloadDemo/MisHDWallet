@@ -34,10 +34,10 @@
     _titlelb.textColor = [UIColor whiteColor];
     _titlelb.textAlignment = NSTextAlignmentCenter;
     _titlelb.font = [UIFont systemFontOfSize:18 weight:0];
-    [self.view addSubview:_titlelb];
+    [self.navigationBar addSubview:_titlelb];
     [_titlelb mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(0);
-        make.top.equalTo(30);
+        make.top.equalTo(10);
         make.height.equalTo(28);
         make.width.equalTo(100);
     }];

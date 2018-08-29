@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "CurrencyModel.h"
+#import "KLinePointModel.h"
 @interface MarketDetailVC : UIViewController
-@property(nonatomic)CurrencyModel *model;
+@property(nonatomic)SymbolModel *symbolmodel;
+@property(nonatomic,copy)NSString *mysymbol;
 @end

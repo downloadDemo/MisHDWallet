@@ -88,13 +88,13 @@
         _rateBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _rateBtn.backgroundColor = RGB(255, 130, 130);
         _rateBtn.tintColor = [UIColor textWhiteColor];
-        _rateBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+        _rateBtn.titleLabel.font = [UIFont systemFontOfSize:13];
         [self addSubview:_rateBtn];
         _rateBtn.userInteractionEnabled = YES;
         [_rateBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.equalTo(-10);
             make.centerY.equalTo(0);
-            make.width.equalTo(90);
+            make.width.equalTo(100);
             make.height.equalTo(26);
         }];
     }

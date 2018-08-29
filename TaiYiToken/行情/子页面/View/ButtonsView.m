@@ -11,93 +11,119 @@
 #define SelectColor [UIColor textBlueColor]
 #define DeSelectColor [UIColor textGrayColor]
 @implementation ButtonsView
--(void)initButtonsViewWidth:(CGFloat)width Height:(CGFloat)height{
-    _oneMinuteBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _oneMinuteBtn.backgroundColor = BtnColor;
-    _oneMinuteBtn.tintColor = [UIColor blackColor];
-    _oneMinuteBtn.titleLabel.font = [UIFont systemFontOfSize:13];
-    [_oneMinuteBtn setTitleColor:SelectColor forState:UIControlStateSelected];
-    [_oneMinuteBtn setTitleColor:DeSelectColor forState:UIControlStateNormal];
-    [_oneMinuteBtn setTitle:@"1分钟" forState:UIControlStateNormal];
-    [_oneMinuteBtn setTitle:@"1分钟" forState:UIControlStateSelected];
-    [self addSubview:_oneMinuteBtn];
-    _oneMinuteBtn.userInteractionEnabled = YES;
-    [_oneMinuteBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.top.equalTo(0);
-        make.width.equalTo(width/5);
-        make.height.equalTo(height);
-    }];
-    
-    _sixMinuteBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _sixMinuteBtn.backgroundColor = BtnColor;
-    _sixMinuteBtn.tintColor = [UIColor blackColor];
-    _sixMinuteBtn.titleLabel.font = [UIFont systemFontOfSize:13];
-    [_sixMinuteBtn setTitleColor:SelectColor forState:UIControlStateSelected];
-    [_sixMinuteBtn setTitleColor:DeSelectColor forState:UIControlStateNormal];
-    [_sixMinuteBtn setTitle:@"6分钟" forState:UIControlStateNormal];
-    [self addSubview:_sixMinuteBtn];
-    _sixMinuteBtn.userInteractionEnabled = YES;
-    [_sixMinuteBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(0);
-        make.left.equalTo(width/5);
-        make.width.equalTo(width/5);
-        make.height.equalTo(height);
-    }];
-    
-    _dayBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _dayBtn.backgroundColor = BtnColor;
-    _dayBtn.tintColor = [UIColor blackColor];
 
-    _dayBtn.titleLabel.font = [UIFont systemFontOfSize:13];
-    [_dayBtn setTitle:@"日" forState:UIControlStateNormal];
-    [_dayBtn setTitleColor:SelectColor forState:UIControlStateSelected];
-    [_dayBtn setTitleColor:DeSelectColor forState:UIControlStateNormal];
-    [self addSubview:_dayBtn];
-    _dayBtn.userInteractionEnabled = YES;
-    [_dayBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(0);
-        make.left.equalTo(width/5*2);
+//@property(nonatomic)UIButton *FIVEMINBtn;
+//@property(nonatomic)UIButton *FIFTEENMINBtn;
+//@property(nonatomic)UIButton *ONEHOURBtn;
+//@property(nonatomic)UIButton *ONEDAYBtn;
+//@property(nonatomic)UIButton *ONEWEEKBtn;
+//@property(nonatomic)UIButton *ONEMONBtn;
+
+-(void)initButtonsViewWidth:(CGFloat)width Height:(CGFloat)height{
+    _FIVEMINBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _FIVEMINBtn.backgroundColor = BtnColor;
+    _FIVEMINBtn.tintColor = [UIColor blackColor];
+    _FIVEMINBtn.titleLabel.font = [UIFont systemFontOfSize:13];
+    [_FIVEMINBtn setTitleColor:SelectColor forState:UIControlStateSelected];
+    [_FIVEMINBtn setTitleColor:DeSelectColor forState:UIControlStateNormal];
+    [_FIVEMINBtn setTitle:@"5分" forState:UIControlStateNormal];
+    [_FIVEMINBtn setTitle:@"1分钟" forState:UIControlStateSelected];
+    [self addSubview:_FIVEMINBtn];
+    _FIVEMINBtn.userInteractionEnabled = YES;
+    [_FIVEMINBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.top.equalTo(0);
+        make.width.equalTo(width/6);
+        make.height.equalTo(height);
+    }];
+    
+    _FIFTEENMINBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _FIFTEENMINBtn.backgroundColor = BtnColor;
+    _FIFTEENMINBtn.tintColor = [UIColor blackColor];
+    _FIFTEENMINBtn.titleLabel.font = [UIFont systemFontOfSize:13];
+    [_FIFTEENMINBtn setTitleColor:SelectColor forState:UIControlStateSelected];
+    [_FIFTEENMINBtn setTitleColor:DeSelectColor forState:UIControlStateNormal];
+    [_FIFTEENMINBtn setTitle:@"15分" forState:UIControlStateNormal];
+    [self addSubview:_FIFTEENMINBtn];
+    _FIFTEENMINBtn.userInteractionEnabled = YES;
+    [_FIFTEENMINBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(0);
+        make.left.equalTo(width/6);
         make.width.equalTo(width/5);
         make.height.equalTo(height);
     }];
     
-    _weekBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _weekBtn.backgroundColor = BtnColor;
-    _weekBtn.tintColor = [UIColor blackColor];
-//    _weekBtn.layer.borderColor = [UIColor grayColor].CGColor;
-//    _weekBtn.layer.borderWidth = 1;
-    _weekBtn.titleLabel.font = [UIFont systemFontOfSize:13];
-    [_weekBtn setTitle:@"周" forState:UIControlStateNormal];
-    [_weekBtn setTitleColor:SelectColor forState:UIControlStateSelected];
-    [_weekBtn setTitleColor:DeSelectColor forState:UIControlStateNormal];
-    [self addSubview:_weekBtn];
-    _weekBtn.userInteractionEnabled = YES;
-    [_weekBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+    _ONEHOURBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _ONEHOURBtn.backgroundColor = BtnColor;
+    _ONEHOURBtn.tintColor = [UIColor blackColor];
+
+    _ONEHOURBtn.titleLabel.font = [UIFont systemFontOfSize:13];
+    [_ONEHOURBtn setTitle:@"1时" forState:UIControlStateNormal];
+    [_ONEHOURBtn setTitleColor:SelectColor forState:UIControlStateSelected];
+    [_ONEHOURBtn setTitleColor:DeSelectColor forState:UIControlStateNormal];
+    [self addSubview:_ONEHOURBtn];
+    _ONEHOURBtn.userInteractionEnabled = YES;
+    [_ONEHOURBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(0);
-        make.left.equalTo(width/5*3);
+        make.left.equalTo(width/6*2);
         make.width.equalTo(width/5);
         make.height.equalTo(height);
     }];
     
-    _monthBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _monthBtn.backgroundColor = BtnColor;
-    _monthBtn.tintColor = [UIColor blackColor];
-//    _monthBtn.layer.borderColor = [UIColor grayColor].CGColor;
-//    _monthBtn.layer.borderWidth = 1;
-    _monthBtn.titleLabel.font = [UIFont systemFontOfSize:13];
-    [_monthBtn setTitle:@"月" forState:UIControlStateNormal];
-    [_monthBtn setTitleColor:SelectColor forState:UIControlStateSelected];
-    [_monthBtn setTitleColor:DeSelectColor forState:UIControlStateNormal];
-    [self addSubview:_monthBtn];
-    _monthBtn.userInteractionEnabled = YES;
-    [_monthBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+    _ONEDAYBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _ONEDAYBtn.backgroundColor = BtnColor;
+    _ONEDAYBtn.tintColor = [UIColor blackColor];
+//    _ONEHOURBtn.layer.borderColor = [UIColor grayColor].CGColor;
+//    _ONEHOURBtn.layer.borderWidth = 1;
+    _ONEDAYBtn.titleLabel.font = [UIFont systemFontOfSize:13];
+    [_ONEDAYBtn setTitle:@"日" forState:UIControlStateNormal];
+    [_ONEDAYBtn setTitleColor:SelectColor forState:UIControlStateSelected];
+    [_ONEDAYBtn setTitleColor:DeSelectColor forState:UIControlStateNormal];
+    [self addSubview:_ONEDAYBtn];
+    _ONEDAYBtn.userInteractionEnabled = YES;
+    [_ONEDAYBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(0);
-        make.left.equalTo(width/5*4);
+        make.left.equalTo(width/6*3);
         make.width.equalTo(width/5);
         make.height.equalTo(height);
     }];
     
-    self.btnArray = [NSArray arrayWithObjects:_oneMinuteBtn,_sixMinuteBtn,_dayBtn,_weekBtn,_monthBtn, nil];
+    _ONEWEEKBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _ONEWEEKBtn.backgroundColor = BtnColor;
+    _ONEWEEKBtn.tintColor = [UIColor blackColor];
+//    _ONEWEEKBtn.layer.borderColor = [UIColor grayColor].CGColor;
+//    _ONEWEEKBtn.layer.borderWidth = 1;
+    _ONEWEEKBtn.titleLabel.font = [UIFont systemFontOfSize:13];
+    [_ONEWEEKBtn setTitle:@"周" forState:UIControlStateNormal];
+    [_ONEWEEKBtn setTitleColor:SelectColor forState:UIControlStateSelected];
+    [_ONEWEEKBtn setTitleColor:DeSelectColor forState:UIControlStateNormal];
+    [self addSubview:_ONEWEEKBtn];
+    _ONEWEEKBtn.userInteractionEnabled = YES;
+    [_ONEWEEKBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(0);
+        make.left.equalTo(width/6*4);
+        make.width.equalTo(width/5);
+        make.height.equalTo(height);
+    }];
+    
+    _ONEMONBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _ONEMONBtn.backgroundColor = BtnColor;
+    _ONEMONBtn.tintColor = [UIColor blackColor];
+    //    _ONEWEEKBtn.layer.borderColor = [UIColor grayColor].CGColor;
+    //    _ONEWEEKBtn.layer.borderWidth = 1;
+    _ONEMONBtn.titleLabel.font = [UIFont systemFontOfSize:13];
+    [_ONEMONBtn setTitle:@"月" forState:UIControlStateNormal];
+    [_ONEMONBtn setTitleColor:SelectColor forState:UIControlStateSelected];
+    [_ONEMONBtn setTitleColor:DeSelectColor forState:UIControlStateNormal];
+    [self addSubview:_ONEMONBtn];
+    _ONEMONBtn.userInteractionEnabled = YES;
+    [_ONEMONBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(0);
+        make.left.equalTo(width/6*5);
+        make.width.equalTo(width/5);
+        make.height.equalTo(height);
+    }];
+    
+    self.btnArray = [NSArray arrayWithObjects:_FIVEMINBtn,_FIFTEENMINBtn,_ONEHOURBtn,_ONEDAYBtn,_ONEWEEKBtn, _ONEMONBtn,nil];
 }
 
 

@@ -9,15 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface DataView : UIView
-@property(nonatomic,strong)UIImageView *iconImageView;
-@property(nonatomic,strong)UILabel *namelabel;//BTC
+
 @property(nonatomic,strong)UILabel *dollarlabel;
 @property(nonatomic,strong)UILabel *rmblabel;
-@property(nonatomic,strong)UILabel *ratelabel;//+2.46%
-
-@property(nonatomic,strong)UILabel *openlabel;//
-@property(nonatomic,strong)UILabel *highlabel;//
-@property(nonatomic,strong)UILabel *lowlabel;//
-@property(nonatomic,strong)UILabel *volumelabel;//
-
+@property(nonatomic,strong)UILabel *ratelabel;
+@property(nonatomic,strong)UILabel *marketpricelabel;//市值￥1,945亿
 @end

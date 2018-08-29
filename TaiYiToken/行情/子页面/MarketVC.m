@@ -19,16 +19,26 @@
 @property(nonatomic)UIButton *rateBtn;
 @property(nonatomic)BOOL rateSortAdd;
 @property(nonatomic)BOOL priceSortAdd;
+@property(nonatomic)float TimeInterval;
+//标记cell的rateBtn显示的数据，0 - priceChange/1 - amount
+@property(nonatomic)int dataChoose;
+
+//自选
+@property(nonatomic)NSString *mysymbol;
 @end
 
 @implementation MarketVC
-
+-(void)viewWillAppear:(BOOL)animated{
+   
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.mysymbol = @"";
     self.rateSortAdd = NO;
     self.priceSortAdd = NO;
-   
+    self.dataChoose = 0;
+    self.TimeInterval = 5.0;
     UIView *headView = [UIView new];
     headView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:headView];
@@ -153,10 +163,8 @@
     if (self.iv3.selected == YES&&self.iv4.selected == NO) {
         [self.iv3 setSelected:NO];
         [self.iv4 setSelected:YES];
-        [_rateBtn setTitle:@"跌幅" forState:UIControlStateNormal];
         [self sortingForRateAdd:NO];
     }else{
-        [_rateBtn setTitle:@"涨幅" forState:UIControlStateNormal];
         [self.iv3 setSelected:YES];
         [self.iv4 setSelected:NO];
         [self sortingForRateAdd:YES];
@@ -165,7 +173,6 @@
 -(void)switchActionPriceBtn{
     self.rateSortAdd = NO;
     self.priceSortAdd = YES;
-    [_rateBtn setTitle:@"涨跌幅" forState:UIControlStateNormal];
     [self.iv3 setSelected:NO];
     [self.iv4 setSelected:NO];
     
@@ -188,18 +195,33 @@
         for (int j=0; j<self.modelarray.count-1-i; j++) {
             SymbolModel *modelj = [SymbolModel parse:self.modelarray[j]];
             SymbolModel *modelj1 = [SymbolModel parse:self.modelarray[j+1]];
-             if (add == YES) {//降序
-                 
-            if (modelj.priceChange < modelj1.priceChange) {
-                SymbolModel* temp = self.modelarray[j];
-                self.modelarray[j]= self.modelarray[j+1];
-                self.modelarray[j+1] = temp;
-            }
-            }else{//升序
-                if (modelj.priceChange > modelj1.priceChange) {
-                    SymbolModel* temp = self.modelarray[j];
-                    self.modelarray[j]= self.modelarray[j+1];
-                    self.modelarray[j+1] = temp;
+            if (self.dataChoose == 0) {
+                if (add == YES) {//降序
+                    if (modelj.priceChange < modelj1.priceChange) {
+                        SymbolModel* temp = self.modelarray[j];
+                        self.modelarray[j]= self.modelarray[j+1];
+                        self.modelarray[j+1] = temp;
+                    }
+                }else{//升序
+                    if (modelj.priceChange > modelj1.priceChange) {
+                        SymbolModel* temp = self.modelarray[j];
+                        self.modelarray[j]= self.modelarray[j+1];
+                        self.modelarray[j+1] = temp;
+                    }
+                }
+            }else{//self.dataChoose == 1
+                if (add == YES) {//降序
+                    if (modelj.amount < modelj1.amount) {
+                        SymbolModel* temp = self.modelarray[j];
+                        self.modelarray[j]= self.modelarray[j+1];
+                        self.modelarray[j+1] = temp;
+                    }
+                }else{//升序
+                    if (modelj.amount > modelj1.amount) {
+                        SymbolModel* temp = self.modelarray[j];
+                        self.modelarray[j]= self.modelarray[j+1];
+                        self.modelarray[j+1] = temp;
+                    }
                 }
             }
         }
@@ -238,14 +260,16 @@
 
 //请求数据
 -(void)GetData{
-    NSString *mysymbol =@"ETH/BTC,ETH/USDT";
-  //  NSString *mysymbol = [[NSUserDefaults standardUserDefaults] objectForKey:@"MySymbol"];
-    [NetManager GETCurrencyListWithMySymbol:mysymbol completionHandler:^(id responseObj, NSError *error) {
+    if([self.indexName isEqualToString:@"a"]){
+        _mysymbol = [[NSUserDefaults standardUserDefaults] objectForKey:@"MySymbol"];
+    }
+    [NetManager GETCurrencyListWithMySymbol:self.mysymbol completionHandler:^(id responseObj, NSError *error) {
         if (!error) {
             
             NSNumber* code =(NSNumber*)responseObj[@"code"];
             long codex = code.longValue;
             if (codex == 0) {
+                self.TimeInterval = 5.0;//请求正确，请求间隔恢复为5.0
                 NSDictionary *result = responseObj[@"result"];
                 if (result == nil) {
                     return ;
@@ -265,10 +289,18 @@
                     self.modelarray = currency.usdtMarket;
                 }
                 if(self.priceSortAdd == YES){
-                    [self sortingForPriceAdd:YES];
+                    if (self.iv1.selected == YES&&self.iv2.selected == NO) {
+                        [self sortingForPriceAdd:YES];
+                    }else{
+                        [self sortingForPriceAdd:NO];
+                    }
                 }
                 if(self.rateSortAdd == YES){
-                    [self sortingForRateAdd:YES];
+                    if (self.iv3.selected == YES&&self.iv4.selected == NO) {
+                        [self sortingForRateAdd:YES];
+                    }else{
+                        [self sortingForRateAdd:NO];
+                    }
                 }
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self.tableView reloadData];
@@ -276,10 +308,11 @@
                 
             }else{
                 [self.view showMsg:responseObj[@"message"]];
+                self.TimeInterval += 10.0;//请求出错，延长请求间隔
             }
             
         }else{
-            
+            self.TimeInterval += 10.0;//请求出错，延长请求间隔
         }
     }];
    
@@ -292,9 +325,9 @@
         //创建一个定时器
         self.time = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
         //设置开始时间
-        dispatch_time_t start = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10.0 * NSEC_PER_SEC));
+        dispatch_time_t start = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC));
         //设置时间间隔
-        uint64_t interval = (uint64_t)(10.0* NSEC_PER_SEC);
+        uint64_t interval = (uint64_t)(self.TimeInterval* NSEC_PER_SEC);
         //设置定时器
         dispatch_source_set_timer(self.time, start, interval, 0);
         //设置回调
@@ -318,13 +351,16 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [self.modelarray removeAllObjects];
 }
 #pragma tableView delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     MarketDetailVC *detailVC = [MarketDetailVC new];
-   // detailVC.model =  self.modelarray == nil? nil : self.modelarray[indexPath.row];
+    SymbolModel *modeldic = self.modelarray[indexPath.row];
+    SymbolModel *model = [SymbolModel parse:modeldic];
+    detailVC.symbolmodel =  model;
+    detailVC.mysymbol = self.mysymbol;
     [self.navigationController pushViewController:detailVC animated:YES];
 }
 
@@ -354,7 +390,17 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.modelarray == nil?0:self.modelarray.count;
 }
-
+-(void)LookOtherDataOfCell:(UIButton *)btn{
+    self.dataChoose = self.dataChoose == 0? 1 : 0;
+    if(self.dataChoose == 0){
+        [self.rateBtn setTitle:@"涨跌幅" forState:UIControlStateNormal];
+        
+        [self.tableView reloadData];
+    }else{
+        [self.rateBtn setTitle:@"成交量" forState:UIControlStateNormal];
+        [self.tableView reloadData];
+    }
+}
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     MarketCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MarketCell"];
@@ -371,10 +417,16 @@
     NSString *name = [NSString stringWithFormat:@"%@",model.symbolName == NULL?@"":model.symbolName];
     [cell.namelabel setText:name];
     [cell.coinNamelabel setText:model.symbol];
-    [cell.marketValuelabel setText:[NSString stringWithFormat:@"%.2f",model.rmbClosePrice]];
-    [cell.pricelabel setText:[NSString stringWithFormat:@"￥%.3f",model.closePrice]];
-    [cell.rateBtn setTitle:[NSString stringWithFormat:@"%.2f%%",model.priceChange] forState:UIControlStateNormal];
-
+    [cell.marketValuelabel setText:[NSString stringWithFormat:@"￥%.2f",model.rmbClosePrice]];
+    [cell.pricelabel setText:[NSString stringWithFormat:@"%.3f",model.closePrice]];
+    if (self.dataChoose == 0) {
+         [cell.rateBtn setTitle:model.priceChange >0 ?[NSString stringWithFormat:@"+%.2f%%",model.priceChange]:[NSString stringWithFormat:@"%.2f%%",model.priceChange] forState:UIControlStateNormal];
+    }else{
+         [cell.rateBtn setTitle:[NSString stringWithFormat:@"%.0f",model.amount] forState:UIControlStateNormal];
+    }
+    [cell.rateBtn setBackgroundColor:[UIColor colorWithHexString:@"#DBDBDB"]];
+    [cell.rateBtn setBackgroundColor:model.priceChange > 0?BTNRISECOLOR : BTNFALLCOLOR];
+    [cell.rateBtn addTarget:self action:@selector(LookOtherDataOfCell:) forControlEvents:UIControlEventTouchUpInside];
     return cell;
 }
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{

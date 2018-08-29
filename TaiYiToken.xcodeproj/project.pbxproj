@@ -606,6 +606,7 @@
 		6AC5FF18C18AADA88B0CA162 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0415BDBD213586C70022DEB7 /* ethers.framework */,
 				847BC60A21355288000B02AC /* libstdc++.tbd */,
 				84C0DF32212D4F1E00BCC91D /* libiconv.tbd */,
 				84C8E7D9212A976800627445 /* Foundation.framework */,
@@ -935,7 +936,6 @@
 		84D0E41521211AAB004E65AD = {
 			isa = PBXGroup;
 			children = (
-				0415BDBD213586C70022DEB7 /* ethers.framework */,
 				843EC9EE212122DA002D5C2A /* NetAPI.h */,
 				843EC9F821215D59002D5C2A /* Constant.h */,
 				843EC9C721212170002D5C2A /* PrefixHeader.pch */,

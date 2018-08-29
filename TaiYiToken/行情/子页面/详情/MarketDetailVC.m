@@ -19,15 +19,39 @@
 @property(nonatomic)DataView *dataView;
 @property(nonatomic)ButtonsView *buttonsView;
 @property(nonatomic,strong)DataPointView *dataSelectView;
+@property(nonatomic,strong)UIView *headBackgroundView;
+@property(nonatomic,strong)UIButton *collectBtn;
+
+
 @end
 
 @implementation MarketDetailVC
 -(void)viewWillAppear:(BOOL)animated{
     self.navigationController.navigationBar.hidden = YES;
     self.navigationController.hidesBottomBarWhenPushed = YES;
+    if ([_mysymbol containsString:self.symbolmodel.symbol]) {
+        [self.collectBtn setSelected:YES];
+    }else{
+        [self.collectBtn setSelected:NO];
+    }
     
 }
 -(void)viewWillDisappear:(BOOL)animated{
+    //离开页面时 存储
+  
+    _mysymbol = [[NSUserDefaults standardUserDefaults] objectForKey:@"MySymbol"];
+    if (_mysymbol == nil) {
+        _mysymbol = @"";    //qqq,
+    }
+    if (self.collectBtn.selected == YES) {
+        _mysymbol = [NSString stringWithFormat:@"%@%@,",_mysymbol,self.symbolmodel.symbol];
+    }else{
+        NSString *str = [NSString stringWithFormat:@"%@,",self.symbolmodel.symbol];
+        NSString *forestr = [_mysymbol componentsSeparatedByString:str].firstObject;
+        NSString *laststr = [_mysymbol componentsSeparatedByString:str].lastObject;
+        _mysymbol = [NSString stringWithFormat:@"%@%@",forestr,laststr];
+    }
+    [[NSUserDefaults standardUserDefaults] setObject:_mysymbol forKey:@"MySymbol"];
     self.navigationController.navigationBar.hidden = NO;
     self.navigationController.hidesBottomBarWhenPushed = NO;
    
@@ -38,46 +62,65 @@
 
 
 -(void)initUI{
-   
-    UIImageView *topBackgroundImageView = [UIImageView new];
-   
-    UIImage *backImage = [[UIImage alloc]createImageWithSize:CGSizeMake(ScreenWidth - 34, 45) gradientColors:@[(id)[UIColor backBlueColorA],(id)[UIColor backBlueColorB]] percentage:@[@(0.2),@(1)] gradientType:GradientFromTopToBottom];
-    [topBackgroundImageView setImage:backImage];
-    [self.view addSubview:topBackgroundImageView];
-    [topBackgroundImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+    //头部背景
+    _headBackgroundView = [UIView new];
+    _headBackgroundView.backgroundColor = [UIColor colorWithHexString:@"#5091FF"];
+    [self.view addSubview:_headBackgroundView];
+    [_headBackgroundView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.equalTo(0);
-        make.height.equalTo(160);
-    }];
-    UIView *shadowView = [UIView new];
-    shadowView.layer.shadowColor = [UIColor grayColor].CGColor;
-    shadowView.layer.shadowOffset = CGSizeMake(3, 3);
-    shadowView.layer.shadowOpacity = 1;
-    shadowView.layer.shadowRadius = 3.0;
-    shadowView.layer.cornerRadius = 3.0;
-    shadowView.clipsToBounds = NO;
-    [self.view addSubview:shadowView];
-    [shadowView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(10);
-        make.right.equalTo(-10);
-        make.top.equalTo(80);
         make.height.equalTo(130);
     }];
+    UILabel *symbolLabel = [UILabel new];
+    symbolLabel.font = [UIFont boldSystemFontOfSize:18];
+    symbolLabel.text = self.symbolmodel.symbol;
+    symbolLabel.textColor = [UIColor textWhiteColor];
+    symbolLabel.textAlignment = NSTextAlignmentCenter;
+    [_headBackgroundView addSubview:symbolLabel];
+    [symbolLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(0);
+        make.centerY.equalTo(-15);
+    }];
+    UILabel *symbolNameLabel = [UILabel new];
+    symbolNameLabel.font = [UIFont systemFontOfSize:10];
+    symbolNameLabel.textColor = [UIColor textWhiteColor];
+    symbolNameLabel.text = self.symbolmodel.symbolName;
+    symbolNameLabel.textAlignment = NSTextAlignmentCenter;
+    [_headBackgroundView addSubview:symbolNameLabel];
+    [symbolNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(0);
+        make.centerY.equalTo(5);
+    }];
+  
+    _collectBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+
+    [_collectBtn setImage:[UIImage imageNamed:@"ico_focus_default"] forState:UIControlStateNormal];
+    [_collectBtn setImage:[UIImage imageNamed:@"ico_focus_select"] forState:UIControlStateSelected];
+    [_collectBtn addTarget:self action:@selector(collectToMySymbol) forControlEvents:UIControlEventTouchUpInside];
+    [_headBackgroundView addSubview:_collectBtn];
+    [_collectBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(-20);
+        make.centerY.equalTo(5);
+        make.width.height.equalTo(30);
+    }];
+    
+    
+    //基本数据
     _dataView = [DataView new];
     _dataView.backgroundColor = [UIColor whiteColor];
-    [shadowView addSubview:_dataView];
+    [self.view addSubview:_dataView];
     [_dataView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(0);
+        make.left.equalTo(0);
+        make.right.equalTo(0);
+        make.top.equalTo(80);
+        make.height.equalTo(100);
     }];
+    
+    _dataView.dollarlabel.text = [NSString stringWithFormat:@"%.2f", self.symbolmodel.dollarClosePrice];
+    _dataView.rmblabel.text = [NSString stringWithFormat:@"≈￥%.2f",self.symbolmodel.rmbClosePrice];
+    _dataView.ratelabel.text = self.symbolmodel.priceChange > 0? [NSString stringWithFormat:@"+%.2f",self.symbolmodel.priceChange]: [NSString stringWithFormat:@"%.2f",self.symbolmodel.priceChange];
+    _dataView.marketpricelabel.text = [NSString stringWithFormat:@"市值￥  24h交易量%.2f  换手率",self.symbolmodel.amount];
+    
 
-//    _dataView.namelabel.text = [self.model.symbol componentsSeparatedByString:@"/"].firstObject;
-//    _dataView.dollarlabel.text = [NSString stringWithFormat:@"$%.2f",self.model.dollar];
-//    _dataView.rmblabel.text = [NSString stringWithFormat:@"≈ ￥%.2f",self.model.rmb];
-//    _dataView.ratelabel.text = [NSString stringWithFormat:@"%.2f%%",self.model.priceChangePercent];
-//    _dataView.openlabel.text = [NSString stringWithFormat:@"%.4f",self.model.openPrice];
-//    _dataView.highlabel.text = [NSString stringWithFormat:@"%.4f",self.model.highPrice];
-//    _dataView.lowlabel.text = [NSString stringWithFormat:@"%.4f",self.model.lowPrice];
-//    _dataView.volumelabel.text = [NSString stringWithFormat:@"%.4f",self.model.quoteVolume];
-//
     _backBtn = [UIButton buttonWithType:UIButtonTypeSystem];
     _backBtn.backgroundColor = [UIColor clearColor];
     [_backBtn.imageView setContentMode:UIViewContentModeScaleAspectFit];
@@ -98,12 +141,12 @@
     [_buttonsView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(15);
         make.right.equalTo(-15);
-        make.top.equalTo(shadowView.mas_bottom).equalTo(15);
+        make.top.equalTo(self.dataView.mas_bottom).equalTo(15);
         make.height.equalTo(35);
     }];
     [self.buttonsView initButtonsViewWidth:ScreenWidth - 30 Height:35];
     int i = 0;
-    [self.buttonsView.oneMinuteBtn setSelected:YES];//默认
+    [self.buttonsView.FIVEMINBtn setSelected:YES];//默认
     for (UIButton *btn in self.buttonsView.btnArray) {
         btn.tag = i;
         i++;
@@ -111,6 +154,21 @@
     }
 }
 
+
+
+/*
+ 加入/移除 自选
+ */
+-(void)collectToMySymbol{
+    if (_collectBtn.selected == YES) {
+        [_collectBtn setSelected:NO];
+    }else{
+        [_collectBtn setSelected:YES];
+    }
+}
+/*
+选择k线图时间
+ */
 -(void)switchBtnClick:(UIButton*)button{
     for (UIButton *btn in self.buttonsView.btnArray) {
         if(btn.tag != button.tag){
@@ -190,145 +248,11 @@
     }];
    
 }
-//-(void)CreateCubeline{
-//    self.chartView  = [[CandleStickChartView alloc] init];
-//    [self.view addSubview:_chartView];
-//    [_chartView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.equalTo(10);
-//        make.right.equalTo(-10);
-//        make.top.equalTo(270);
-//        make.height.equalTo(300);
-//    }];
-//    _chartView.delegate = self;
-//
-//    _chartView.chartDescription.enabled = NO;
-//
-//    _chartView.maxVisibleCount = 60;
-//    _chartView.pinchZoomEnabled = NO;
-//    _chartView.drawGridBackgroundEnabled = NO;
-//
-//    ChartXAxis *xAxis = _chartView.xAxis;
-//    xAxis.labelPosition = XAxisLabelPositionBottom;
-//    xAxis.drawGridLinesEnabled = NO;
-//    xAxis.valueFormatter = self;
-//    xAxis.labelCount = self.KLinePointArray.count;
-//    xAxis.labelRotationAngle = 30.0;
-//
-//    ChartYAxis *leftAxis = _chartView.leftAxis;
-//    leftAxis.labelCount = 7;
-//    leftAxis.drawGridLinesEnabled = NO;
-//    leftAxis.drawAxisLineEnabled = NO;
-//
-//    ChartYAxis *rightAxis = _chartView.rightAxis;
-//    rightAxis.enabled = NO;
-//
-//    _chartView.legend.enabled = NO;
-//    [self updateChartData];
-//
-//
-//}
-//- (NSString * _Nonnull)stringForValue:(double)value axis:(ChartAxisBase * _Nullable)axis{
-//   
-//    
-//    KLinePointModel *model = self.KLinePointArray[(int)value];
-//    
-//    NSString *hourTimestart = [[model.startTime componentsSeparatedByString:@" "].lastObject componentsSeparatedByString:@":"].firstObject;
-//   
-//    NSString *dayStart =  [[model.startTime componentsSeparatedByString:@"-"].lastObject componentsSeparatedByString:@" "].firstObject;
-//    NSString *yearMonthDay = [model.startTime  componentsSeparatedByString:@" "].firstObject;
-//    NSString *monthDay =[NSString stringWithFormat:@"%@-%@",[yearMonthDay componentsSeparatedByString:@"-"][1],[yearMonthDay componentsSeparatedByString:@"-"][2]];
-//    double avgTime = 0;
-//    
-//    avgTime = hourTimestart.doubleValue + 2;
-//    
-//
-//    return [NSString stringWithFormat:@"%.0f:00",avgTime];
-//
-//   
-//}
 
-
-//- (void)updateChartData
-//{
-//    NSMutableArray *yVals1 = [[NSMutableArray alloc] init];
-//
-//    if(self.KLinePointArray != nil && self.KLinePointArray.count >0){
-//        for (int i = 0; i < self.KLinePointArray.count; i++) {
-//            //startTime 时间段的开始时间
-//            //high最高价*
-//            //low最低价*
-//            //open开始价
-//            //close结束价
-//            //volume交易量
-//            //endTime时间段的结束时间
-////            @"startTime": @"2018-07-16 16:00:00",
-////            @"high": @"0.07175000",
-////            @"low": @"0.07100100",
-////            @"open": @"0.07109000",
-////            @"close": @"0.07140100",
-////            @"volume": @"19245.02600000",
-////            @"endTime": @"2018-07-16 19:59:59"
-//            KLinePointModel *model = self.KLinePointArray[i];
-//
-//            NSString *hourTimestart = [[model.startTime componentsSeparatedByString:@" "].lastObject componentsSeparatedByString:@":"].firstObject;
-//            NSString *hourTimeend = [[model.endTime componentsSeparatedByString:@" "].lastObject componentsSeparatedByString:@":"].firstObject;
-//            double avgTime = (hourTimestart.doubleValue + hourTimeend.doubleValue)*0.5;
-//            double mult = 0.0;
-//            double val = 0 + mult;
-//            double high = model.high.doubleValue;
-//            double low = model.low.doubleValue;
-//            double open = model.open.doubleValue;
-//            double close = model.close.doubleValue;
-//            BOOL even = i % 2 == 0;
-//            [yVals1 addObject:[[CandleChartDataEntry alloc] initWithX:i shadowH:val + high shadowL:val - low open:even ? val + open : val - open close:even ? val - close : val + close icon: [UIImage imageNamed:@"icon"]]];
-//        }
-//    }
-//
-//
-//    CandleChartDataSet *set1 = [[CandleChartDataSet alloc] initWithValues:yVals1 label:@"Data Set"];
-//    set1.axisDependency = AxisDependencyLeft;
-//    [set1 setColor:[UIColor colorWithWhite:80/255.f alpha:1.f]];
-//
-//    set1.drawIconsEnabled = NO;
-//
-//    set1.shadowColor = UIColor.darkGrayColor;
-//    set1.shadowWidth = 0.7;
-//    set1.decreasingColor = UIColor.redColor;
-//    set1.decreasingFilled = YES;
-//    set1.increasingColor = [UIColor colorWithRed:122/255.f green:242/255.f blue:84/255.f alpha:1.f];
-//    set1.increasingFilled = NO;
-//    set1.neutralColor = UIColor.blueColor;
-//
-//    CandleChartData *data = [[CandleChartData alloc] initWithDataSet:set1];
-//
-//    _chartView.data = data;
-//}
-//#pragma mark - ChartViewDelegate
-//
-//- (void)chartValueSelected:(ChartViewBase * __nonnull)chartView entry:(ChartDataEntry * __nonnull)entry highlight:(ChartHighlight * __nonnull)highlight
-//{
-//
-//   [_dataSelectView initDataPointView];
-//    KLinePointModel *model = self.KLinePointArray[(NSInteger)entry.x];
-//
-//    _dataSelectView.highLabel.text = [NSString stringWithFormat:@"高:%.2f",model.high.doubleValue];
-//    _dataSelectView.lowLabel.text = [NSString stringWithFormat:@"低:%.2f",model.low.doubleValue];
-//    _dataSelectView.openLabel.text = [NSString stringWithFormat:@"开:%.2f",model.open.doubleValue];
-//    _dataSelectView.closeLabel.text = [NSString stringWithFormat:@"收:%.2f",model.close.doubleValue];
-//    _dataSelectView.volumeLabel.text = [NSString stringWithFormat:@"交易量:%.2f",model.volume.doubleValue];
-//
-//    NSLog(@"chartValueSelected ** %@ \n",entry);
-//}
-//
-//- (void)chartValueNothingSelected:(ChartViewBase * __nonnull)chartView
-//{
-//    NSLog(@"chartValue Nothing Selected");
-//}
-//
-//- (void)didReceiveMemoryWarning {
-//    [super didReceiveMemoryWarning];
-//    // Dispose of any resources that can be recreated.
-//}
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
 
 
 
