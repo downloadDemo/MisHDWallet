@@ -90,11 +90,11 @@
         CGPoint lowPoint = CGPointMake(xPosition, ABS(maxY - (model.Low.floatValue - minValue)/unitValue));
         CGPoint openPoint = CGPointMake(xPosition, ABS(maxY - (model.Open.floatValue - minValue)/unitValue));
         CGFloat closePointY = ABS(maxY - (model.Close.floatValue - minValue)/unitValue);
-        
+      
         //格式化openPoint和closePointY
         if(ABS(closePointY - openPoint.y) < YYStockLineMinThick) {
-            NSLog(@"%f",closePointY);
-            NSLog(@"%f",openPoint.y);
+//            NSLog(@"closePointY %f",closePointY);
+//            NSLog(@"openPoint.y %f",openPoint.y);
 //            if (openPoint.y == closePointY) {
 //                
 //            }

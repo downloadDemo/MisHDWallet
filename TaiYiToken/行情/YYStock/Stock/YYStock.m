@@ -59,6 +59,7 @@
         make.top.left.right.equalTo(self.mainView);
         make.height.equalTo(@YYStockTopBarViewHeight);
     }];
+    _topBarView.hidden = YES;
     _topBarView.delegate = self;
 }
 
@@ -86,7 +87,7 @@
         } else {
             stockView =  [[YYStockView_Kline alloc]initWithLineModels:[self.dataSource YYStock:self stockDatasOfIndex:i]];
             ((YYStockView_Kline *)stockView).delegate = self;
-            stockView.hidden = YES;
+            stockView.hidden = NO;
         }
         stockView.backgroundColor = [UIColor YYStock_bgColor];
         [self.containerView addSubview:stockView];

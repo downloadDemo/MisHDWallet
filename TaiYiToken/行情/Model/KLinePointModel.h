@@ -41,6 +41,7 @@
 @property (nonatomic, strong) CoinBaseInfo * coinBaseInfo;
 @property (nonatomic, strong) NSMutableArray <klineData *> * klineData;
 @property (nonatomic, copy) NSString * rmbMarketValue;
+@property (nonatomic, strong) NSString * dollarMarketValue;
 @property (nonatomic, strong) SymbolInfo * symbolInfo;
 @end
 

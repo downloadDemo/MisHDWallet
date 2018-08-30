@@ -14,8 +14,10 @@
 #import "YYStockVariable.h"
 #import "UIColor+YYStockTheme.h"
 #import "YYLineDataModel.h"
-@interface MarketDetailVC ()<UIScrollViewDelegate,UIScrollViewAccessibilityDelegate,YYStockDataSource>
-//
+#import "MarketDetailTextCell.h"
+#import "MarketDetailTextViewCell.h"
+@interface MarketDetailVC ()<UIScrollViewDelegate,UIScrollViewAccessibilityDelegate,YYStockDataSource,UITableViewDelegate,UITableViewDataSource>
+/*** 上方行情基础信息，K线图选择按钮  ***/
 @property(nonatomic,strong)UIScrollView *scrollView;
 @property(nonatomic,strong)UIView *bridgeContentView;
 @property(nonatomic,strong) UIButton *backBtn;
@@ -34,6 +36,10 @@
 @property (copy, nonatomic) NSArray *stockTopBarTitleArray;
 
 @property(nonatomic,copy)NSMutableArray <YYLineDataModel*> *linedataarray;
+/**** 下方项目介绍  ****/
+@property(nonatomic,strong)UITableView *tableView;
+@property (strong, nonatomic)NSMutableArray *leftarray;
+@property (strong, nonatomic)NSMutableArray *rightarray;
 @end
 
 @implementation MarketDetailVC
@@ -47,14 +53,16 @@
     if (_mysymbol == nil) {
         _mysymbol = @"";    //qqq,
     }
-    if (self.collectBtn.selected == YES) {
+    if (self.collectBtn.selected == YES && ![_mysymbol containsString:self.symbolmodel.symbol]) {
         _mysymbol = [NSString stringWithFormat:@"%@,%@",self.symbolmodel.symbol,_mysymbol];
-    }else{
+    }else if(self.collectBtn.selected == NO && [_mysymbol containsString:self.symbolmodel.symbol]){
         NSString *str = [NSString stringWithFormat:@"%@,",self.symbolmodel.symbol];
         NSString *forestr = [_mysymbol componentsSeparatedByString:str].firstObject;
         NSString *laststr = [_mysymbol componentsSeparatedByString:str].lastObject;
         _mysymbol = [NSString stringWithFormat:@"%@%@",forestr,laststr];
     }
+    
+    NSLog(@"mysymbol = *** %@",_mysymbol);
     [[NSUserDefaults standardUserDefaults] setObject:_mysymbol forKey:@"MySymbol"];
     self.navigationController.navigationBar.hidden = NO;
     self.navigationController.hidesBottomBarWhenPushed = NO;
@@ -171,10 +179,10 @@
     [self initHead];
     [self scrollView];
     _bridgeContentView = [UIView new];
-    [_scrollView addSubview:_bridgeContentView];
+    [self.scrollView addSubview:_bridgeContentView];
     [_bridgeContentView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.scrollView);
-        make.width.height.equalTo(self.scrollView);
+        make.width.height.equalTo(self.scrollView.contentSize);
     }];
     [self initUI];
     
@@ -188,6 +196,7 @@
         make.height.equalTo(15);
     }];
     [self RequestKLineData];
+    [self initStockView];
 }
 -(UIScrollView *)scrollView{
     if (_scrollView == nil) {
@@ -196,9 +205,9 @@
         _scrollView.showsVerticalScrollIndicator = NO;
         _scrollView.showsHorizontalScrollIndicator = NO;
         _scrollView.scrollEnabled = YES;
-        _scrollView.contentSize = CGSizeMake(ScreenWidth, ScreenHeight + 300);
+        _scrollView.contentSize = CGSizeMake(ScreenWidth, ScreenHeight + 250);
         _scrollView.delegate =self;
-        // _scrollView.scrollsToTop = YES;
+        _scrollView.scrollsToTop = YES;
         //  _scrollView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
         [self.view addSubview:_scrollView];
         [_scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -228,91 +237,117 @@
     [button setSelected:YES];
     self.linetype = (int)button.tag;
     //修改数据
-    
+    [self RequestKLineData];
 }
 
 - (void)initStockView {
-    [YYStockVariable setStockLineWidthArray:@[@6,@6,@6,@6]];
+  
     self.stockContainerView = [UIView new];
     self.stockContainerView.backgroundColor = [UIColor whiteColor];
     [self.bridgeContentView addSubview:_stockContainerView];
     [_stockContainerView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.dataSelectView.mas_bottom).equalTo(5);
         make.left.right.equalTo(0);
-        make.height.equalTo(150);
+        make.height.equalTo(300);
     }];
     
     
-    YYStock *stock = [[YYStock alloc]initWithFrame:self.stockContainerView.frame dataSource:self];
+  
+    [YYStockVariable setStockLineWidthArray:@[@6,@6,@6,@6]];
+    
+    YYStock *stock = [[YYStock alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, 300) dataSource:self];
     _stock = stock;
-    [self.stockContainerView addSubview:stock.mainView];
+    [_stockContainerView addSubview:stock.mainView];
     [stock.mainView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.stockContainerView);
+         make.edges.equalTo(self.stockContainerView);
     }];
-   
-    
-}
 
--(void)CreateKline{
-    
+     [self.stock.containerView.subviews setValue:@1 forKeyPath:@"userInteractionEnabled"];
 }
 
 
 
+
+//解析KlineData数组
 -(void)parseKlineData:(NSMutableArray *)kLineDataArray{
+ 
+    
     NSMutableArray <klineData*> *parsearray = [NSMutableArray new];
+    NSMutableArray <YYLineDataModel *> *array = [NSMutableArray new];
     self.linedataarray = [NSMutableArray new];
+    YYLineDataModel *premodel = [YYLineDataModel new];
+    int i1 = 0;
+    int i2 = 1;
     for (NSDictionary *dic in kLineDataArray) {
         klineData *data = [klineData parse:dic];
         [parsearray addObject:data];
-        YYLineDataModel *model = [YYLineDataModel new];
-        model.Close = [NSNumber numberWithFloat:data.rmbClosePrice];
-        model.Open = [NSNumber numberWithFloat:data.rmbOpenPrice];
-        model.Low = [NSNumber numberWithFloat:data.rmbLowPrice];
-        model.High = [NSNumber numberWithFloat:data.rmbHighPrice];
-        model.Volume =data.rmbVol;
-        [self.linedataarray addObject:model];
+       // YYLineDataModel *model = [YYLineDataModel new];
+        if (i1==3) {
+            i1 = 0;
+        }
+        if (i2 == 10) {
+            i2 = 0;
+        }
+
+       
+        NSDictionary *dicmodel= @{ @"amount" : [NSNumber numberWithFloat:data.rmbAmount == 0?0:data.rmbAmount],
+                                   @"close" : [NSNumber numberWithFloat:data.rmbClosePrice == 0?0:data.rmbClosePrice],
+                                   @"day" : [NSString stringWithFormat:@"201808%d%d",i1,i2],
+                                   @"high" : [NSNumber numberWithFloat:data.rmbHighPrice == 0?0:data.rmbHighPrice],
+                                   @"id" : [NSNumber randomStringWithLength:5],
+                                   @"low" : [NSNumber numberWithFloat:data.rmbLowPrice == 0?0:data.rmbLowPrice],
+                                   @"open" : [NSNumber numberWithFloat:data.rmbOpenPrice == 0?0:data.rmbOpenPrice],
+                                   @"volume" :[NSNumber numberWithFloat:data.rmbVol == 0?0:data.rmbVol],
+                                   @"zqdm" : @111};
+        i1++;
+        i2++;
+     
+        YYLineDataModel *model = [[YYLineDataModel alloc]initWithDict:dicmodel];
+        model.preDataModel = premodel;
+        premodel = model;
+        [array addObject:model];
+        
+        ////
+        [model updateMA:nil index:0];
     }
     self.klineDataarray = [parsearray mutableCopy];
-    /*
-     NSDictionary * _dict;
-     NSString *Close;
-     NSString *Open;
-     NSString *Low;
-     NSString *High;
-     NSString *Volume;
-     NSNumber *MA5;
-     NSNumber *MA10;
-     NSNumber *MA20;
-     
-     ////////
-     //开盘价
-     @property (nonatomic, assign) CGFloat rmbOpenPrice;
-     //收盘价
-     @property (nonatomic, assign) CGFloat rmbClosePrice;
-     //最高价
-     @property (nonatomic, assign) CGFloat rmbHighPrice;
-     //最低价
-     @property (nonatomic, assign) CGFloat rmbLowPrice;
-     //成交量
-     @property (nonatomic, assign) CGFloat rmbAmount;
-     //成交额
-     @property (nonatomic, assign) CGFloat rmbVol;
-     //成交笔数
-     @property (nonatomic, assign) NSInteger count;
-     //5点线
-     @property (nonatomic, assign) CGFloat rmbFiveData;
-     //15点线
-     @property (nonatomic, assign) CGFloat rmbFifteenData;
-     //30点线
-     @property (nonatomic, assign) CGFloat rmbThirtyData;
-     */
+    self.linedataarray = [array mutableCopy];
+    [self.stockDatadict setObject:array forKey:@"5minutes"];
+    
+    
+    
+    
+    [self.stock.mainView layoutSubviews];
+    [self.stock draw];
    
-    
-    
 }
+
+/*******************************************股票数据源代理*********************************************/
+-(NSArray <NSString *> *) titleItemsOfStock:(YYStock *)stock {
+    return self.stockTopBarTitleArray;
+}
+
+-(NSArray *) YYStock:(YYStock *)stock stockDatasOfIndex:(NSInteger)index {
+    return self.stockDatadict[self.stockDataKeyArray[index]];
+}
+
+-(YYStockType)stockTypeOfIndex:(NSInteger)index {
+    return YYStockTypeLine;
+}
+
+- (id<YYStockFiveRecordProtocol>)fiveRecordModelOfIndex:(NSInteger)index {
+    return nil;
+}
+//
+- (BOOL)isShowfiveRecordModelOfIndex:(NSInteger)index {
+    return NO;
+}
+
+
+//请求数据
 -(void)RequestKLineData{
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
         [NetManager GETKLineWthkSearchSymbol:self.symbolmodel.symbol LineType:self.linetype searchNum:100 completionHandler:^(id responseObj, NSError *error) {
             if (!error) {
                 
@@ -328,7 +363,7 @@
                     [self parseKlineData:klinemodel.klineData];
                     self.rmbMarketValue = klinemodel.rmbMarketValue;
                     self.symbolInfo = [SymbolInfo parse:klinemodel.symbolInfo];
-                    
+                    [self CreateTableView];
                 }else{
                     [self.view showMsg:responseObj[@"message"]];
                 }
@@ -339,6 +374,165 @@
         }];
     });
 }
+/*******************************************getter*********************************************/
+- (NSMutableDictionary *)stockDatadict {
+    if (!_stockDatadict) {
+        _stockDatadict = [NSMutableDictionary dictionary];
+    }
+    return _stockDatadict;
+}
+
+- (NSArray *)stockDataKeyArray {
+    if (!_stockDataKeyArray) {
+        _stockDataKeyArray = @[@"5minutes"];
+    }
+    return _stockDataKeyArray;
+}
+
+- (NSArray *)stockTopBarTitleArray {
+    if (!_stockTopBarTitleArray) {
+        _stockTopBarTitleArray = @[@"5分"];
+    }
+    return _stockTopBarTitleArray;
+}
+
+- (NSString *)getToday {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = @"yyyyMMdd";
+    return [dateFormatter stringFromDate:[NSDate date]];
+}
+
+
+
+/***************************    下方项目介绍      **********************************/
+
+-(void)CreateTableView{
+    NSMutableArray *leftarray = [NSMutableArray new];
+    leftarray = [@[@"发行时间",@"流通总量",@"众筹价格",@"全名",@"白皮书地址",@"区块查询",@"官网",@"发行总量"] mutableCopy];
+    NSMutableArray *rightarray = [NSMutableArray new];
+    [rightarray addObject:self.coinBaseInfo.publishTime == nil?@"":self.coinBaseInfo.publishTime];
+    [rightarray addObject:self.coinBaseInfo.circulateVolume == nil?@"":self.coinBaseInfo.circulateVolume];
+    [rightarray addObject:self.coinBaseInfo.crowdfundingPrice == nil?@"":self.coinBaseInfo.crowdfundingPrice];
+    [rightarray addObject:self.coinBaseInfo.fullName == nil?@"":self.coinBaseInfo.fullName];
+    [rightarray addObject:self.coinBaseInfo.whitePaper == nil?@"":self.coinBaseInfo.whitePaper];
+    [rightarray addObject:self.coinBaseInfo.blockQuery == nil?@"":self.coinBaseInfo.blockQuery];
+    [rightarray addObject:self.coinBaseInfo.officialWebsite == nil?@"":self.coinBaseInfo.officialWebsite];
+    [rightarray addObject:self.coinBaseInfo.publishVolume == nil?@"":self.coinBaseInfo.publishVolume];
+    
+    self.leftarray = [leftarray mutableCopy];
+    self.rightarray = [rightarray mutableCopy];
+    
+    [self tableView];
+}
+
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    return nil;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 0;
+}
+
+-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    return nil;
+}
+
+
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 30;
+}
+- (float) heightForString:(UITextView *)textView andWidth:(float)width{
+    CGSize sizeToFit = [textView sizeThatFits:CGSizeMake(width, MAXFLOAT)];
+    return sizeToFit.height;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == 1) {
+        UITextView *textview = [[UITextView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, 60)];
+        textview.font = [UIFont systemFontOfSize:15];
+        textview.text = self.coinBaseInfo.summary;
+        return  [self heightForString:textview andWidth:ScreenWidth];
+    }
+    return UITableViewAutomaticDimension;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 0;
+}
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 1;
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 9;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.row == 0) {
+        MarketDetailTextCell  *cell = [tableView dequeueReusableCellWithIdentifier:@"MarketDetailTextCell"];
+        if (cell == nil) {
+            cell = [MarketDetailTextCell new];
+        }
+        cell.leftLabel.text = @"项目介绍";
+        cell.leftLabel.font = [UIFont boldSystemFontOfSize:16];
+        cell.leftLabel.textColor = [UIColor textBlackColor];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
+    }else if (indexPath.row == 1) {
+        MarketDetailTextViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MarketDetailTextViewCell"];
+        if (cell == nil) {
+            cell = [MarketDetailTextViewCell new];
+        }
+        [cell.celltextView setText:self.coinBaseInfo.summary == nil?@"":self.coinBaseInfo.summary];
+
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
+    }else{
+        MarketDetailTextCell  *cell = [tableView dequeueReusableCellWithIdentifier:@"MarketDetailTextCell"];
+        if (cell == nil) {
+            cell = [MarketDetailTextCell new];
+        }
+        if (indexPath.row - 2 < self.rightarray.count - 1) {
+            [cell.leftLabel setText:self.leftarray[indexPath.row - 2]];
+            [cell.rightLabel setText:self.rightarray[indexPath.row - 2]];
+        }
+        cell.leftLabel.textColor = [UIColor grayColor];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.leftLabel.font = [UIFont systemFontOfSize:15];
+        return cell;
+    }
+    
+}
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    cell.separatorInset = UIEdgeInsetsZero;
+    cell.layoutMargins  = UIEdgeInsetsZero;
+    cell.preservesSuperviewLayoutMargins = NO;
+}
+
+
+
+
+-(UITableView *)tableView{
+    if (!_tableView) {
+        _tableView = [UITableView new];
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+        _tableView.showsVerticalScrollIndicator = NO;
+        UIView *view = [[UIView alloc] init];
+        _tableView.tableFooterView = view;
+        [_tableView registerClass:[MarketDetailTextCell class] forCellReuseIdentifier:@"MarketDetailTextCell"];
+        [_tableView registerClass:[MarketDetailTextViewCell class] forCellReuseIdentifier:@"MarketDetailTextViewCell"];
+        [self.bridgeContentView addSubview:_tableView];
+        [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.stockContainerView.mas_bottom).equalTo(5);
+            make.left.right.equalTo(0);
+            make.bottom.equalTo(0);
+        }];
+        
+    }
+    return _tableView;
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

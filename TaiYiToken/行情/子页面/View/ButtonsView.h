@@ -9,16 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface ButtonsView : UIView
-/*typedef enum {
- FIVE_MIN = 1,
- FIFTEEN_MIN = 2,
- ONE_HOUR = 4,
- ONE_DAY = 5,
- ONE_WEEK = 6,
- ONE_MON = 7,
- }KLineType;*/
-
-
 @property(nonatomic)UIButton *FIVEMINBtn;
 @property(nonatomic)UIButton *FIFTEENMINBtn;
 @property(nonatomic)UIButton *ONEHOURBtn;

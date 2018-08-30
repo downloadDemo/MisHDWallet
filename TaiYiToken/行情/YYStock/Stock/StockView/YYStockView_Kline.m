@@ -133,8 +133,8 @@
     _kLineView.backgroundColor = [UIColor clearColor];
     [_stockScrollView.contentView addSubview:_kLineView];
     [_kLineView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.right.equalTo(_stockScrollView.contentView);
-        make.height.equalTo(_stockScrollView.contentView).multipliedBy([YYStockVariable lineMainViewRadio]);
+        make.top.left.right.equalTo(self->_stockScrollView.contentView);
+        make.height.equalTo(self->_stockScrollView.contentView).multipliedBy([YYStockVariable lineMainViewRadio]);
     }];
     
     //加载VolumeView
@@ -143,8 +143,8 @@
     _volumeView.parentScrollView = _stockScrollView;
     [_stockScrollView.contentView addSubview:_volumeView];
     [_volumeView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.bottom.equalTo(_stockScrollView.contentView);
-        make.height.equalTo(_stockScrollView.contentView).multipliedBy([YYStockVariable volumeViewRadio]);
+        make.left.right.bottom.equalTo(self->_stockScrollView.contentView);
+        make.height.equalTo(self->_stockScrollView.contentView).multipliedBy([YYStockVariable volumeViewRadio]);
     }];
 
 }

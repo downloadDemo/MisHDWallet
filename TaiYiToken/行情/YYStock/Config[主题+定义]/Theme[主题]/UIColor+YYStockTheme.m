@@ -8,9 +8,9 @@
 
 @implementation UIColor (YYStockTheme)
 
-+ (UIColor *)colorWithHex:(UInt32)hex {
-    return [UIColor colorWithHex:hex alpha:1.f];
-}
+//+ (UIColor *)colorWithHex:(UInt32)hex {
+//    return [UIColor colorWithHex:hex alpha:1.f];
+//}
 
 + (UIColor *)colorWithHex:(UInt32)hex alpha:(CGFloat)alpha {
     int r = (hex >> 16) & 0xFF;
@@ -29,21 +29,21 @@
  *  整体背景颜色
  */
 +(UIColor *)YYStock_bgColor {
-    return [UIColor colorWithHex:0xffffff];
+    return [UIColor whiteColor];
 }
 
 /**
  *  K线图背景辅助线颜色
  */
 +(UIColor *)YYStock_bgLineColor {
-    return [UIColor colorWithHex:0xEDEDED];
+    return RGB(240, 240, 240);
 }
 
 /**
  *  主文字颜色
  */
 +(UIColor *)YYStock_textColor {
-    return [UIColor colorWithHex:0xAFAFB3];
+    return RGB(100, 100, 100);
 }
 
 
@@ -51,84 +51,84 @@
  *  MA5线颜色
  */
 +(UIColor *)YYStock_MA5LineColor {
-    return [UIColor colorWithHex:0xFEB911];
+    return RGB(255, 200, 100);
 }
 
 /**
  *  MA10线颜色
  */
 +(UIColor *)YYStock_MA10LineColor {
-    return [UIColor colorWithHex:0x60CFFF];
+    return RGB(100, 220, 255);
 }
 
 /**
  *  MA20线颜色
  */
 +(UIColor *)YYStock_MA20LineColor {
-    return [UIColor colorWithHex:0xF184F5];
+    return RGB(100, 255, 180);
 }
 
 /**
  *  长按线颜色
  */
 +(UIColor *)YYStock_selectedLineColor {
-    return [UIColor colorWithHex:0xACAAA9];
+    return RGB(180, 200, 230);
 }
 
 /**
  *  长按出现的圆点的颜色
  */
 +(UIColor *)YYStock_selectedPointColor {
-    return [UIColor YYStock_increaseColor                                                                                  ];
+    return RGB(255, 235, 230);
 }
 
 /**
  *  长按出现的方块背景颜色
  */
 +(UIColor *)YYStock_selectedRectBgColor {
-    return [UIColor colorWithHex:0x659EE0];
+    return RGB(220, 220, 220);
 }
 
 /**
  *  长按出现的方块文字颜色
  */
 +(UIColor *)YYStock_selectedRectTextColor {
-    return [UIColor colorWithHex:0xffffff];
+    return RGB(0, 0, 0);
 }
 
 /**
  *  分时线颜色
  */
 +(UIColor *)YYStock_TimeLineColor {
-    return [UIColor colorWithHex:0x60CFFF];
+    return RGB(255, 255, 200);
 }
 
 /**
  *  分时均线颜色
  */
 +(UIColor *)YYStock_averageTimeLineColor {
-    return [UIColor colorWithHex:0x60CFFF];
+    return RGB(255, 0, 255);
 }
 
 /**
  *  分时线下方背景色
  */
 +(UIColor *)YYStock_timeLineBgColor {
-    return [UIColor colorWithHex:0x60CFFF alpha:0.1f];
+    return RGB(230, 230, 230);
 }
 
 /**
  *  涨的颜色
  */
 +(UIColor *)YYStock_increaseColor {
-    return [UIColor colorWithHex:0xE74C3C];
+    return RGB(255, 100, 100);
 }
 
 /**
  *  跌的颜色
  */
 +(UIColor *)YYStock_decreaseColor {
-    return [UIColor colorWithHex:0x41CB47];
+    return RGB(100, 255, 100);
 }
 
 
@@ -138,21 +138,21 @@
  *  顶部TopBar文字默认颜色
  */
 +(UIColor *)YYStock_topBarNormalTextColor {
-    return [UIColor colorWithHex:0xAFAFB3];
+    return RGB(255, 180, 180);
 }
 
 /**
  *  顶部TopBar文字选中颜色
  */
 +(UIColor *)YYStock_topBarSelectedTextColor {
-    return [UIColor colorWithHex:0x4A90E2];
+    return RGB(255, 220, 220);
 }
 
 /**
  *  顶部TopBar选中块辅助线颜色
  */
 +(UIColor *)YYStock_topBarSelectedLineColor {
-    return [UIColor colorWithHex:0x4A90E2];
+    return RGB(190, 190, 190);
 }
 
 @end

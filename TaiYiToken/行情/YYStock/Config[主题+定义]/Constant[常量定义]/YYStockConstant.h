@@ -67,7 +67,7 @@
 /**
  *  TopBar的高度
  */
-#define YYStockTopBarViewHeight 40
+#define YYStockTopBarViewHeight 2
 
 /**
  *  TopBar的按钮宽度

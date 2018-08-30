@@ -34,6 +34,8 @@
 		8428A54521242323003E1DD8 /* MarketCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8428A54421242323003E1DD8 /* MarketCell.m */; };
 		8428A548212544F2003E1DD8 /* MarketDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8428A547212544F2003E1DD8 /* MarketDetailVC.m */; };
 		842C1097212A4A7E00E466C5 /* DataPointView.m in Sources */ = {isa = PBXBuildFile; fileRef = 842C1096212A4A7E00E466C5 /* DataPointView.m */; };
+		842FEDEC2137DB600075716E /* MarketDetailTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 842FEDEB2137DB600075716E /* MarketDetailTextCell.m */; };
+		842FEDEF2137DEDA0075716E /* MarketDetailTextViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 842FEDEE2137DEDA0075716E /* MarketDetailTextViewCell.m */; };
 		843EC9DA21212271002D5C2A /* NSObject+Parse.m in Sources */ = {isa = PBXBuildFile; fileRef = 843EC9CF21212266002D5C2A /* NSObject+Parse.m */; };
 		843EC9DB21212271002D5C2A /* UIScrollView+Refresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 843EC9D021212267002D5C2A /* UIScrollView+Refresh.m */; };
 		843EC9DC21212271002D5C2A /* UIView+HUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 843EC9D221212268002D5C2A /* UIView+HUD.m */; };
@@ -185,6 +187,10 @@
 		8428A54D21255333003E1DD8 /* KLinePointModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KLinePointModel.m; sourceTree = "<group>"; };
 		842C1095212A4A7E00E466C5 /* DataPointView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataPointView.h; sourceTree = "<group>"; };
 		842C1096212A4A7E00E466C5 /* DataPointView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DataPointView.m; sourceTree = "<group>"; };
+		842FEDEA2137DB600075716E /* MarketDetailTextCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MarketDetailTextCell.h; sourceTree = "<group>"; };
+		842FEDEB2137DB600075716E /* MarketDetailTextCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MarketDetailTextCell.m; sourceTree = "<group>"; };
+		842FEDED2137DEDA0075716E /* MarketDetailTextViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MarketDetailTextViewCell.h; sourceTree = "<group>"; };
+		842FEDEE2137DEDA0075716E /* MarketDetailTextViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MarketDetailTextViewCell.m; sourceTree = "<group>"; };
 		843EC9C721212170002D5C2A /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		843EC9CE21212266002D5C2A /* NSString+URLString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+URLString.h"; sourceTree = "<group>"; };
 		843EC9CF21212266002D5C2A /* NSObject+Parse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Parse.m"; sourceTree = "<group>"; };
@@ -893,6 +899,10 @@
 				84BDD16F2126B3DF0039FE09 /* ButtonsView.m */,
 				842C1095212A4A7E00E466C5 /* DataPointView.h */,
 				842C1096212A4A7E00E466C5 /* DataPointView.m */,
+				842FEDEA2137DB600075716E /* MarketDetailTextCell.h */,
+				842FEDEB2137DB600075716E /* MarketDetailTextCell.m */,
+				842FEDED2137DEDA0075716E /* MarketDetailTextViewCell.h */,
+				842FEDEE2137DEDA0075716E /* MarketDetailTextViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1262,6 +1272,7 @@
 				843ECA27212162FB002D5C2A /* NSDate+ExFoundation.m in Sources */,
 				0415BDA12131BC850022DEB7 /* YYFiveRecordView.m in Sources */,
 				0415BDAA2131BC850022DEB7 /* MAline.m in Sources */,
+				842FEDEF2137DEDA0075716E /* MarketDetailTextViewCell.m in Sources */,
 				0415BD992131BC850022DEB7 /* YYStockVariable.m in Sources */,
 				0415BD9E2131BC850022DEB7 /* YYStockView_TimeLine.m in Sources */,
 				84B0A9572122ABD5002EFA0A /* CreateAccountVC.m in Sources */,
@@ -1290,6 +1301,7 @@
 				84C0DF26212CFF3800BCC91D /* BRKey.m in Sources */,
 				84B0A95F2122C184002EFA0A /* UIButton+Gradient.m in Sources */,
 				843ECA2B212162FB002D5C2A /* UIColor+SNFoundation.m in Sources */,
+				842FEDEC2137DB600075716E /* MarketDetailTextCell.m in Sources */,
 				84BDD16D21269D5B0039FE09 /* DataView.m in Sources */,
 				84D0E42321211AAB004E65AD /* AppDelegate.m in Sources */,
 				847BC6092133E001000B02AC /* MissionWallet.m in Sources */,

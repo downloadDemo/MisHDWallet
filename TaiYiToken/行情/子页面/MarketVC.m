@@ -263,6 +263,7 @@
     if([self.indexName isEqualToString:@"a"]){
         _mysymbol = [[NSUserDefaults standardUserDefaults] objectForKey:@"MySymbol"];
     }
+   //  [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"MySymbol"];
     [NetManager GETCurrencyListWithMySymbol:self.mysymbol completionHandler:^(id responseObj, NSError *error) {
         if (!error) {
             
