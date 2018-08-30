@@ -423,6 +423,13 @@
     self.rightarray = [rightarray mutableCopy];
     
     [self tableView];
+    UITextView *textview = [[UITextView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, 60)];
+    textview.font = [UIFont systemFontOfSize:15];
+    textview.text = self.coinBaseInfo.summary;
+    float newheight = self.bridgeContentView.height;
+    CGSize oldFrame = self.scrollView.contentSize;
+    [self.scrollView setContentSize:CGSizeMake(oldFrame.width, newheight)];
+    [self.scrollView layoutSubviews];
 }
 
 
