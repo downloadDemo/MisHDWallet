@@ -127,22 +127,22 @@
 
 -(void)CreateWallet{
     NSString *password = [[NSUserDefaults standardUserDefaults] objectForKey:@"password"];
-    //512位种子
+    //512位种子 长度为128字符 64Byte
     NSString *seed = [CreateAll CreateSeedByMnemonic:self.mnemonic Password:password];
     NSString *xprv = [CreateAll CreateExtendPrivateKeyWithSeed:seed];
     MissionWallet *walletBTC = [[CreateAll new] CreateWalletByXprv:xprv index:0 CoinType:BTC];
     MissionWallet *walletETH = [[CreateAll new] CreateWalletByXprv:xprv index:0 CoinType:ETH];
-    //512位种子 长度为128字符 64Byte
+    //生成地址二维码
     UIImage *BTCQRCodeImage = [BTCQRCode imageForString:walletBTC.address size:CGSizeMake(180, 180) scale:1.0];
     UIImage *ETHQRCodeImage = [BTCQRCode imageForString:walletETH.address size:CGSizeMake(180, 180) scale:1.0];
-    UIImageView *imaView = [UIImageView new];
-    imaView.image  = ETHQRCodeImage;
-    [self.view addSubview:imaView];
-    [imaView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(0);
-        make.centerY.equalTo(60);
-        make.width.height.equalTo(180);
-    }];
+//    UIImageView *imaView = [UIImageView new];
+//    imaView.image  = ETHQRCodeImage;
+//    [self.view addSubview:imaView];
+//    [imaView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.centerX.equalTo(0);
+//        make.centerY.equalTo(60);
+//        make.width.height.equalTo(180);
+//    }];
     
     
 }
