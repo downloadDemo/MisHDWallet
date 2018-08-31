@@ -32,12 +32,11 @@
  生成的种子被用来生成构建deterministic Wallet和推导钱包密钥。
  */
 +(NSString *)CreateSeedByMnemonic:(NSString *)mnemonic Password:(NSString *)password{
-    mnemonic = @"breeze eternal fiction junior ethics lumber chaos squirrel code jar snack broccoli";
-    password = @"";//不用其作盐
-    NSLog(@"mnemonic = %@",mnemonic);
+//    mnemonic = @"breeze eternal fiction junior ethics lumber chaos squirrel code jar snack broccoli";
+//    NSLog(@"mnemonic = %@",mnemonic);
     //passphrase作用是位移 助记词只要反向位移password位移的值就能生成正确的私钥
     NSString *seed = [NYMnemonic deterministicSeedStringFromMnemonicString:mnemonic
-                                                                passphrase:password
+                                                                passphrase:@""
                                                                 language:@"english"];
     NSLog(@"seed = %@",seed);
     
@@ -53,7 +52,7 @@
 +(void)CreateKeyStoreByMnemonic:(NSString *)mnemonic Password:(NSString *)password  callback: (void (^)(Account *account, NSError *NSError))callback{
     Account *account = [Account accountWithMnemonicPhrase:mnemonic];
     [account encryptSecretStorageJSON:password callback:^(NSString *json) {
-       // NSLog(@"\n keystore(json) = %@",json);
+        NSLog(@"\n keystore(json) = %@",json);
         [Account decryptSecretStorageJSON:json password:password callback:^(Account *decryptedAccount, NSError *error) {
             if (![account.address isEqual:decryptedAccount.address]) {
                 NSLog(@"keystore生成错误");
