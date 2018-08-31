@@ -2,8 +2,8 @@
 //  WebVC.m
 //  TaiYiToken
 //
-//  Created by admin on 2018/8/31.
-//  Copyright © 2018年 admin. All rights reserved.
+//  Created by Frued on 2018/8/31.
+//  Copyright © 2018年 Frued. All rights reserved.
 //
 
 #import "WebVC.h"
@@ -69,13 +69,11 @@
 - (UIWebView *)webView {
     if(_webView == nil) {
         _webView = [[UIWebView alloc] init];
-        CGFloat width = [UIScreen mainScreen].bounds.size.width;
-        _webView = [[UIWebView alloc]init];
         _webView.delegate = self;
         _webView.scrollView.bounces = NO;
         _webView.scrollView.showsVerticalScrollIndicator = NO;
         _webView.scrollView.showsHorizontalScrollIndicator = NO;
-        _webView.scrollView.scrollEnabled = NO;
+        _webView.scrollView.scrollEnabled = YES;
         [_webView sizeToFit];
         _webView.backgroundColor = [UIColor whiteColor];
         [self.view addSubview:_webView];

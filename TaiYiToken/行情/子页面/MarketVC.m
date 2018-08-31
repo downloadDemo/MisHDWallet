@@ -2,8 +2,8 @@
 //  MarketVC.m
 //  TaiYiToken
 //
-//  Created by admin on 2018/8/15.
-//  Copyright © 2018年 admin. All rights reserved.
+//  Created by Frued on 2018/8/15.
+//  Copyright © 2018年 Frued. All rights reserved.
 //
 
 #import "MarketVC.h"
@@ -25,11 +25,21 @@
 
 //自选
 @property(nonatomic)NSString *mysymbol;
+@property(nonatomic)NSMutableArray <SymbolModel *>*deleteArray;
 @end
 
 @implementation MarketVC
 -(void)viewWillAppear:(BOOL)animated{
-   
+    if (self.indexName == SELF_CHOOSE) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(EditMYSymbol) name:@"EditMYSymbol" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ExitEditMySymbol) name:@"ExitEditMySymbol" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(DeleteSelectMySymbol) name:@"DeleteSelectMySymbol" object:nil];
+    }
+    if(self.indexName == SEARCH_CHOOSE){
+        if (self.modelarray == nil || self.modelarray.count == 0) {
+            [self.view showMsg:@"暂无数据"];
+        }
+    }
 }
 
 - (void)viewDidLoad {
@@ -39,6 +49,7 @@
     self.priceSortAdd = NO;
     self.dataChoose = 0;
     self.TimeInterval = 5.0;
+    self.deleteArray = [NSMutableArray array];
     UIView *headView = [UIView new];
     headView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:headView];
@@ -97,10 +108,12 @@
         make.left.right.bottom.equalTo(0);
         make.height.equalTo(1);
     }];
-  
+   
+    
     [self initSortButtons];
     [self.tableView reloadData];
-  
+    
+   
 }
 -(void)initSortButtons{
     /*
@@ -186,6 +199,11 @@
         [self sortingForPriceAdd:YES];
     }
 }
+-(void)SwapModelFromIndex:(int)i ToIndex:(int)j{
+    SymbolModel* temp = self.modelarray[i];
+    self.modelarray[i]= self.modelarray[j];
+    self.modelarray[j] = temp;
+}
 /* 涨跌排序 */
 -(void)sortingForRateAdd:(BOOL)add{
     if (self.modelarray == nil || self.modelarray.count == 0) {
@@ -198,29 +216,21 @@
             if (self.dataChoose == 0) {
                 if (add == YES) {//降序
                     if (modelj.priceChange < modelj1.priceChange) {
-                        SymbolModel* temp = self.modelarray[j];
-                        self.modelarray[j]= self.modelarray[j+1];
-                        self.modelarray[j+1] = temp;
+                        [self SwapModelFromIndex:j ToIndex:j+1];
                     }
                 }else{//升序
                     if (modelj.priceChange > modelj1.priceChange) {
-                        SymbolModel* temp = self.modelarray[j];
-                        self.modelarray[j]= self.modelarray[j+1];
-                        self.modelarray[j+1] = temp;
+                       [self SwapModelFromIndex:j ToIndex:j+1];
                     }
                 }
             }else{//self.dataChoose == 1
                 if (add == YES) {//降序
                     if (modelj.amount < modelj1.amount) {
-                        SymbolModel* temp = self.modelarray[j];
-                        self.modelarray[j]= self.modelarray[j+1];
-                        self.modelarray[j+1] = temp;
+                       [self SwapModelFromIndex:j ToIndex:j+1];
                     }
                 }else{//升序
                     if (modelj.amount > modelj1.amount) {
-                        SymbolModel* temp = self.modelarray[j];
-                        self.modelarray[j]= self.modelarray[j+1];
-                        self.modelarray[j+1] = temp;
+                        [self SwapModelFromIndex:j ToIndex:j+1];
                     }
                 }
             }
@@ -239,17 +249,12 @@
             SymbolModel *modelj = [SymbolModel parse:self.modelarray[j]];
             SymbolModel *modelj1 = [SymbolModel parse:self.modelarray[j+1]];
             if (add == YES) {//降序
-                
                 if (modelj.rmbClosePrice < modelj1.rmbClosePrice) {
-                    SymbolModel* temp = self.modelarray[j];
-                    self.modelarray[j]= self.modelarray[j+1];
-                    self.modelarray[j+1] = temp;
+                    [self SwapModelFromIndex:j ToIndex:j+1];
                 }
             }else{//升序
                 if (modelj.rmbClosePrice > modelj1.rmbClosePrice) {
-                    SymbolModel* temp = self.modelarray[j];
-                    self.modelarray[j]= self.modelarray[j+1];
-                    self.modelarray[j+1] = temp;
+                   [self SwapModelFromIndex:j ToIndex:j+1];
                 }
             }
         }
@@ -260,7 +265,7 @@
 
 //请求数据
 -(void)GetData{
-    if([self.indexName isEqualToString:@"a"]){
+    if(self.indexName == SELF_CHOOSE){
         _mysymbol = [[NSUserDefaults standardUserDefaults] objectForKey:@"MySymbol"];
     }
    //  [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"MySymbol"];
@@ -278,15 +283,15 @@
                 //[self.modelarray removeAllObjects];
                 CurrencyModel *currency = [CurrencyModel parse:result];
                 self.currency = currency;
-                if([self.indexName isEqualToString:@"a"]){
+                if(self.indexName == SELF_CHOOSE){
                     self.modelarray = currency.myMarket;
-                }else if ([self.indexName isEqualToString:@"b"]){
+                }else if (self.indexName == BTC_CHOOSE){
                     self.modelarray = currency.btcMarket;
-                }else if ([self.indexName isEqualToString:@"c"]){
+                }else if (self.indexName == ETH_CHOOSE){
                     self.modelarray = currency.ethMarket;
-                }else if ([self.indexName isEqualToString:@"d"]){
+                }else if (self.indexName == HT_CHOOSE){
                     self.modelarray = currency.htMarket;
-                }else if ([self.indexName isEqualToString:@"e"]){
+                }else if (self.indexName == USDT_CHOOSE){
                     self.modelarray = currency.usdtMarket;
                 }
                 if(self.priceSortAdd == YES){
@@ -318,34 +323,35 @@
     }];
    
 }
-
+-(void)InitTimerRequest{
+    //获得队列
+    dispatch_queue_t queue = dispatch_get_global_queue(0, 0);
+    //创建一个定时器
+    self.time = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
+    //设置开始时间
+    dispatch_time_t start = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC));
+    //设置时间间隔
+    uint64_t interval = (uint64_t)(self.TimeInterval* NSEC_PER_SEC);
+    //设置定时器
+    dispatch_source_set_timer(self.time, start, interval, 0);
+    //设置回调
+    dispatch_source_set_event_handler(self.time, ^{
+        [self GetData];
+    });
+    //由于定时器默认是暂停的所以我们启动一下
+    //启动定时器
+    dispatch_resume(self.time);
+}
 -(void)viewDidAppear:(BOOL)animated{
-    if([self.indexName isEqualToString:@"search"]||self.ifNeedRequestData == YES){
-        //获得队列
-        dispatch_queue_t queue = dispatch_get_global_queue(0, 0);
-        //创建一个定时器
-        self.time = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
-        //设置开始时间
-        dispatch_time_t start = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC));
-        //设置时间间隔
-        uint64_t interval = (uint64_t)(self.TimeInterval* NSEC_PER_SEC);
-        //设置定时器
-        dispatch_source_set_timer(self.time, start, interval, 0);
-        //设置回调
-        dispatch_source_set_event_handler(self.time, ^{
-             [self GetData];
-        });
-        //由于定时器默认是暂停的所以我们启动一下
-        //启动定时器
-        dispatch_resume(self.time);
-       
+    if(self.ifNeedRequestData == YES){
+        [self InitTimerRequest];
     }else{
         [self.tableView reloadData];
     }
    
 }
 -(void)viewWillDisappear:(BOOL)animated{
-    if([self.indexName isEqualToString:@"search"]||self.ifNeedRequestData == YES){
+    if(self.ifNeedRequestData == YES){
         dispatch_cancel(self.time);
     }
 }
@@ -355,14 +361,72 @@
     [self.modelarray removeAllObjects];
 }
 #pragma tableView delegate
+//********************编辑
+-(void)EditMYSymbol{
+    //开始编辑 停止数据请求
+    dispatch_cancel(self.time);
+    [self.tableView setEditing:YES animated:YES];
+}
+-(void)ExitEditMySymbol{
+    //结束编辑 重新请求数据
+    [self InitTimerRequest];
+    [self.tableView setEditing:NO animated:YES];
+    [self.deleteArray removeAllObjects];
+}
+-(void)DeleteSelectMySymbol{
+    //结束编辑 重新请求数据
+    [self InitTimerRequest];
+    [self.tableView setEditing:NO animated:YES];
+    if (self.deleteArray.count > 0) {
+        [self DeleteMySymbolFromUserDefaults];
+        [self.modelarray removeObjectsInArray:self.deleteArray];
+        [self.deleteArray removeAllObjects];
+        [self.tableView reloadData];
+    }
+}
 
+
+
+-(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return UITableViewCellEditingStyleDelete|UITableViewCellEditingStyleInsert;
+}
+-(void)DeleteMySymbolFromUserDefaults{
+    NSString *mysymbol = [[NSUserDefaults standardUserDefaults] objectForKey:@"MySymbol"];
+    if (mysymbol == nil) {
+        mysymbol = @"";
+    }
+    for (SymbolModel *dicmodel in self.deleteArray) {
+        SymbolModel *model = [SymbolModel parse:dicmodel];
+        
+        if([mysymbol containsString:model.symbol]){
+            NSString *str = [NSString stringWithFormat:@"%@,",model.symbol];
+            NSString *forestr = [mysymbol componentsSeparatedByString:str].firstObject;
+            NSString *laststr = [mysymbol componentsSeparatedByString:str].lastObject;
+            mysymbol = [NSString stringWithFormat:@"%@%@",forestr,laststr];
+        }
+    }
+  [[NSUserDefaults standardUserDefaults] setObject:mysymbol forKey:@"MySymbol"];
+}
+//********************编辑
+-(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (tableView.isEditing) {
+        [self.deleteArray removeObject:self.modelarray[indexPath.row]];
+        NSLog(@"\n deselect %ld ",self.deleteArray.count);
+    }
+}
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    MarketDetailVC *detailVC = [MarketDetailVC new];
-    SymbolModel *modeldic = self.modelarray[indexPath.row];
-    SymbolModel *model = [SymbolModel parse:modeldic];
-    detailVC.symbolmodel =  model;
-    detailVC.mysymbol = self.mysymbol;
-    [self.navigationController pushViewController:detailVC animated:YES];
+    
+    if (tableView.isEditing) {
+        [self.deleteArray addObject:self.modelarray[indexPath.row]];
+         NSLog(@"\n deselect %ld",self.deleteArray.count);
+    }else{
+        MarketDetailVC *detailVC = [MarketDetailVC new];
+        SymbolModel *modeldic = self.modelarray[indexPath.row];
+        SymbolModel *model = [SymbolModel parse:modeldic];
+        detailVC.symbolmodel =  model;
+        detailVC.mysymbol = self.mysymbol;
+        [self.navigationController pushViewController:detailVC animated:YES];
+    }
 }
 
 
@@ -413,13 +477,12 @@
     }
     SymbolModel *modeldic = self.modelarray[indexPath.row];
     SymbolModel *model = [SymbolModel parse:modeldic];
-    
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+   
     NSString *name = [NSString stringWithFormat:@"%@",model.symbolName == NULL?@"":model.symbolName];
     [cell.namelabel setText:name];
     [cell.coinNamelabel setText:model.symbol];
     [cell.marketValuelabel setText:[NSString stringWithFormat:@"￥%.2f",model.rmbClosePrice]];
-    [cell.pricelabel setText:[NSString stringWithFormat:@"%.3f",model.closePrice]];
+    [cell.pricelabel setText:[NSString stringWithFormat:@"%.6f",model.closePrice]];
     if (self.dataChoose == 0) {
          [cell.rateBtn setTitle:model.priceChange >0 ?[NSString stringWithFormat:@"+%.2f%%",model.priceChange]:[NSString stringWithFormat:@"%.2f%%",model.priceChange] forState:UIControlStateNormal];
     }else{
@@ -428,6 +491,13 @@
     [cell.rateBtn setBackgroundColor:[UIColor colorWithHexString:@"#DBDBDB"]];
     [cell.rateBtn setBackgroundColor:model.priceChange > 0?BTNRISECOLOR : BTNFALLCOLOR];
     [cell.rateBtn addTarget:self action:@selector(LookOtherDataOfCell:) forControlEvents:UIControlEventTouchUpInside];
+    if (self.indexName == SELF_CHOOSE) {
+        UIView *bcView = [UIView new];
+        bcView.backgroundColor = [UIColor clearColor];
+        cell.selectedBackgroundView = bcView;
+    }else{
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
     return cell;
 }
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -442,6 +512,13 @@
         _tableView.delegate = self;
         UIView *view = [[UIView alloc] init];
         _tableView.tableFooterView = view;
+        
+        if (self.indexName == SELF_CHOOSE) {
+            // 编辑模式下是否可以选中
+            _tableView.allowsSelectionDuringEditing = YES;
+            // 编辑模式下是否可以多选
+            _tableView.allowsMultipleSelectionDuringEditing = YES;
+        }
         [_tableView registerClass:[MarketCell class] forCellReuseIdentifier:@"MarketCell"];
         [self.view addSubview:_tableView];
         [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -453,7 +530,9 @@
     return _tableView;
 }
 -(void)dealloc {
-
+    if (self.indexName == SELF_CHOOSE) {
+        [[NSNotificationCenter defaultCenter]removeObserver:self];
+    }
 }
 
 @end

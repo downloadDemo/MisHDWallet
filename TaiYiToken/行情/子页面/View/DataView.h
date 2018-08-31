@@ -2,8 +2,8 @@
 //  DataView.h
 //  TaiYiToken
 //
-//  Created by admin on 2018/8/17.
-//  Copyright © 2018年 admin. All rights reserved.
+//  Created by Frued on 2018/8/17.
+//  Copyright © 2018年 Frued. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

@@ -2,8 +2,8 @@
 //  MarketCell.m
 //  TaiYiToken
 //
-//  Created by admin on 2018/8/15.
-//  Copyright © 2018年 admin. All rights reserved.
+//  Created by Frued on 2018/8/15.
+//  Copyright © 2018年 Frued. All rights reserved.
 //
 
 #import "MarketCell.h"
@@ -87,10 +87,9 @@
     if(_rateBtn == nil){
         _rateBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _rateBtn.backgroundColor = RGB(255, 130, 130);
-        _rateBtn.tintColor = [UIColor textWhiteColor];
         _rateBtn.titleLabel.font = [UIFont systemFontOfSize:13];
-        [self addSubview:_rateBtn];
         _rateBtn.userInteractionEnabled = YES;
+        [self.contentView addSubview:_rateBtn];
         [_rateBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.equalTo(-10);
             make.centerY.equalTo(0);

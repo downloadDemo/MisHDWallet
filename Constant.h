@@ -2,8 +2,8 @@
 //  Constant.h
 //  TaiYiToken
 //
-//  Created by admin on 2018/8/13.
-//  Copyright © 2018年 admin. All rights reserved.
+//  Created by Frued on 2018/8/13.
+//  Copyright © 2018年 Frued. All rights reserved.
 //
 
 #ifndef Constant_h
@@ -87,6 +87,14 @@ typedef enum {
     ONE_MON = 7,
 }KLineType;
 
+typedef enum {
+    SELF_CHOOSE = 0,
+    BTC_CHOOSE = 1,
+    ETH_CHOOSE = 2,
+    HT_CHOOSE = 3,
+    USDT_CHOOSE = 4,
+    SEARCH_CHOOSE = 5,
+}MarketSelectType;
 #define BTNRISECOLOR [UIColor colorWithHexString:@"#E53A32"]
 #define BTNFALLCOLOR [UIColor colorWithHexString:@"#26B13D"]
 

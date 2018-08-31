@@ -20,6 +20,14 @@
 @property(nonatomic,strong)MarketVC *eVC;
 
 @property(nonatomic,strong)MarketVC *searchVC;
+/*
+ 编辑自选
+ */
+@property(nonatomic)UIButton *editMySymbolBtn;
+@property(nonatomic)UIButton *exitEditBtn;
+@property(nonatomic)UIButton *deleteMySymbolBtn;
+@property(nonatomic,strong)NSArray *editingItemArray;
+@property(nonatomic,strong)NSArray *normalItemArray;
 @end
 
 
@@ -30,7 +38,7 @@
 -(MarketVC *)aVC{
     if (_aVC==nil) {
         _aVC = [[MarketVC alloc]init];
-        _aVC.indexName = @"a";
+        _aVC.indexName = SELF_CHOOSE;
         _aVC.ifNeedRequestData = YES;
         [self addChildViewController:_aVC];
     }
@@ -39,7 +47,7 @@
 -(MarketVC *)bVC{
     if (_bVC==nil) {
         _bVC = [[MarketVC alloc]init];
-        _bVC.indexName = @"b";
+        _bVC.indexName = BTC_CHOOSE;
         _bVC.ifNeedRequestData = YES;
         [self addChildViewController:_bVC];
     }
@@ -48,7 +56,7 @@
 -(MarketVC *)cVC{
     if (_cVC==nil) {
         _cVC = [[MarketVC alloc]init];
-        _cVC.indexName = @"c";
+        _cVC.indexName = ETH_CHOOSE;
         _cVC.ifNeedRequestData = YES;
         [self addChildViewController:_cVC];
     }
@@ -57,7 +65,7 @@
 -(MarketVC *)dVC{
     if (_dVC==nil) {
         _dVC = [[MarketVC alloc]init];
-        _dVC.indexName = @"d";
+        _dVC.indexName = HT_CHOOSE;
         _dVC.ifNeedRequestData = YES;
         [self addChildViewController:_dVC];
     }
@@ -66,7 +74,7 @@
 -(MarketVC *)eVC{
     if (_eVC==nil) {
         _eVC = [[MarketVC alloc]init];
-        _eVC.indexName = @"e";
+        _eVC.indexName = USDT_CHOOSE;
         _eVC.ifNeedRequestData = YES;
         [self addChildViewController:_eVC];
     }
@@ -75,7 +83,7 @@
 -(MarketVC *)searchVC{
     if (_searchVC==nil) {
         _searchVC = [[MarketVC alloc]init];
-        _searchVC.indexName = @"search";
+        _searchVC.indexName = SEARCH_CHOOSE;
         _searchVC.ifNeedRequestData = NO;
         _searchVC.modelarray = [NSMutableArray new];
         [self addChildViewController:_eVC];
@@ -166,10 +174,8 @@
         make.left.right.equalTo(0);
         make.height.equalTo(40);
     }];
-//    _cVC.navView = self.view;
-//    _isFirstClickcBtn = YES;
-    
 
+    
     //*******rightitem******//
     UIButton *rightbtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [rightbtn setImage:[UIImage imageNamed:@"ico_market_search"] forState:UIControlStateHighlighted];
@@ -182,11 +188,15 @@
     UIBarButtonItem *spaceitem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
     spaceitem.width = -10;
     self.navigationItem.rightBarButtonItems = @[rightitem,spaceitem];
+    
+    
+    //左边编辑按钮
+    [self editMySymbolBtn];
 }
 
 -(void)searchAction{
     // 1. 创建热门搜索数组
-    NSArray *hotSeaches = @[@"BTC"];
+    NSArray *hotSeaches = @[@"BTC",@"ETH"];
     // 2. 创建搜索控制器
     self.currency = self.bVC.currency == nil?[CurrencyModel new]:self.bVC.currency;
     __block NSMutableArray *arrx = [NSMutableArray new];
@@ -238,9 +248,11 @@
     [self setMainSrollView];
     //设置默认
     [self sliderWithTag:self.currentIndex+1];
-  
+   
 }
-
+-(void)EditBtnClicked{
+    
+}
 #pragma mark 初始化srollView
 -(void)setMainSrollView{
     mainScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 40, kScreenWidth, self.view.frame.size.height)];
@@ -287,7 +299,90 @@
     } completion:^(BOOL finished) {
         
     }];
+    
+    
 }
+
+/*
+ 点击编辑按钮，发送通知
+ */
+-(UIButton *)editMySymbolBtn{
+    if (_editMySymbolBtn == nil) {
+        _editMySymbolBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_editMySymbolBtn setTitle:@"编辑" forState:UIControlStateNormal];
+        [_editMySymbolBtn.titleLabel setFont:[UIFont systemFontOfSize:14]];
+        [_editMySymbolBtn setTintColor:[UIColor textWhiteColor]];
+        [_editMySymbolBtn addTarget:self action:@selector(editMySymbolAction) forControlEvents:UIControlEventTouchUpInside];
+        _editMySymbolBtn.frame = CGRectMake(0, 0, 40, 40);
+        UIBarButtonItem *leftitem = [[UIBarButtonItem alloc]initWithCustomView:_editMySymbolBtn];
+        _editMySymbolBtn.hidden = NO;
+        //调整导航栏按钮在导航栏上的位置FixedSpace 占位用
+        UIBarButtonItem *spaceitem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+        spaceitem.width = -10;
+        self.navigationItem.leftBarButtonItems = @[spaceitem,leftitem];
+        self.normalItemArray = @[spaceitem,leftitem];
+    }
+    return _editMySymbolBtn;
+}
+
+-(void)CreateEditingBtn{
+    if (_exitEditBtn == nil) {
+        _exitEditBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_exitEditBtn setTitle:@"取消" forState:UIControlStateNormal];
+        [_exitEditBtn.titleLabel setFont:[UIFont systemFontOfSize:14]];
+        [_exitEditBtn setTintColor:[UIColor textWhiteColor]];
+        [_exitEditBtn addTarget:self action:@selector(exitEditBtnAction) forControlEvents:UIControlEventTouchUpInside];
+        _exitEditBtn.frame = CGRectMake(0, 0, 40, 40);
+       
+    }
+    if(_deleteMySymbolBtn == nil){
+        _deleteMySymbolBtn.hidden = NO;
+        _deleteMySymbolBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_deleteMySymbolBtn setTitle:@"删除" forState:UIControlStateNormal];
+        [_deleteMySymbolBtn.titleLabel setFont:[UIFont systemFontOfSize:14]];
+        [_deleteMySymbolBtn setTintColor:[UIColor textWhiteColor]];
+        [_deleteMySymbolBtn addTarget:self action:@selector(deleteMySymbolBtnAction) forControlEvents:UIControlEventTouchUpInside];
+        _deleteMySymbolBtn.frame = CGRectMake(0, 0, 40, 40);
+        _deleteMySymbolBtn.hidden = NO;
+    }
+    UIBarButtonItem *leftitem1 = [[UIBarButtonItem alloc]initWithCustomView:_exitEditBtn];
+    UIBarButtonItem *leftitem2 = [[UIBarButtonItem alloc]initWithCustomView:_deleteMySymbolBtn];
+    //调整导航栏按钮在导航栏上的位置FixedSpace 占位用
+    UIBarButtonItem *spaceitem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    spaceitem.width = -10;
+    self.editingItemArray = @[leftitem1,leftitem2];;
+}
+//开始编辑
+-(void)editMySymbolAction{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"EditMYSymbol" object:self userInfo:nil];
+    [self.editMySymbolBtn setHidden:YES];
+    if(self.exitEditBtn == nil||self.deleteMySymbolBtn == nil){
+        [self CreateEditingBtn];
+    }
+    [self.exitEditBtn setHidden:NO];                  
+    [self.deleteMySymbolBtn setHidden:NO];
+    self.navigationItem.leftBarButtonItems = self.editingItemArray;
+}
+//取消编辑
+-(void)exitEditBtnAction{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"ExitEditMySymbol" object:self userInfo:nil];
+    [self.editMySymbolBtn setHidden:NO];
+    [self.exitEditBtn setHidden:YES];
+    [self.deleteMySymbolBtn setHidden:YES];
+    self.navigationItem.leftBarButtonItems = self.normalItemArray;
+}
+//删除选中
+-(void)deleteMySymbolBtnAction{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"DeleteSelectMySymbol" object:self userInfo:nil];
+    [self.editMySymbolBtn setHidden:NO];
+    [self.exitEditBtn setHidden:YES];
+    [self.deleteMySymbolBtn setHidden:YES];
+    self.navigationItem.leftBarButtonItems = self.normalItemArray;
+}
+
+
+
+
 -(void)sliderAnimationWithTag:(NSInteger)tag{
     self.currentIndex = tag;
     aBtn.selected = NO;
@@ -304,6 +399,19 @@
     } completion:^(BOOL finished) {
        
     }];
+    /*
+     编辑按钮只在自选页显示
+     */
+    if(self.currentIndex - 1 == SELF_CHOOSE ){
+        [self.editMySymbolBtn setHidden:NO];
+        [self.exitEditBtn setHidden:YES];
+        [self.deleteMySymbolBtn setHidden:YES];
+        self.navigationItem.leftBarButtonItems = self.normalItemArray;
+    }else{
+        [self.editMySymbolBtn setHidden:YES];
+        [self.exitEditBtn setHidden:YES];
+        [self.deleteMySymbolBtn setHidden:YES];
+    }
 }
 -(void)sliderWithTag:(NSInteger)tag{
     self.currentIndex = tag;
