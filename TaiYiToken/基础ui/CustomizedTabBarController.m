@@ -130,7 +130,6 @@ static CustomizedTabBarController* _customizedTabBarController;
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (UIView *)vi {

@@ -22,10 +22,6 @@
 }
 -(void)viewWillAppear:(BOOL)animated{
     _quitBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-    _quitBtn.backgroundColor = [UIColor clearColor];
-    _quitBtn.layer.cornerRadius = 13;
-    _quitBtn.layer.masksToBounds = YES;
-
     _quitBtn.backgroundColor = kRGBA(255, 255, 255, 1);
     _quitBtn.tintColor = RGB(0, 0, 0);
     [_quitBtn setImage:[UIImage imageNamed:@"IconOfflineCancel"] forState:UIControlStateNormal];
@@ -40,26 +36,30 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.view.backgroundColor = [UIColor whiteColor];
     _backImageView = [UIImageView new];
-    _backImageView.image = [UIImage imageNamed:@"backImg"];
+    _backImageView.image = [UIImage imageNamed:@"picture"];
+    _backImageView.contentMode = UIViewContentModeScaleAspectFit;
     [self.view addSubview:_backImageView];
     [_backImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(0);
+        make.centerX.equalTo(0);
+        make.centerY.equalTo(-80);
+        make.width.height.equalTo(200);
     }];
     
     _createBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-    _createBtn.backgroundColor = RGB(100, 100, 255);
+    _createBtn.backgroundColor = [UIColor clearColor];
     _createBtn.tintColor = [UIColor whiteColor];
     _createBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     _createBtn.layer.cornerRadius = 20;
     _createBtn.clipsToBounds = YES;
     [_createBtn setTitle:@"创建账号" forState:UIControlStateNormal];
+    [_createBtn gradientButtonWithSize:CGSizeMake(ScreenWidth, 49) colorArray:@[RGB(150, 160, 240),RGB(170, 170, 240)] percentageArray:@[@(0.3),@(1)] gradientType:GradientFromLeftTopToRightBottom];
     [_createBtn addTarget:self action:@selector(createAccount) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_createBtn];
     _createBtn.userInteractionEnabled = YES;
     [_createBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(30);
+        make.centerY.equalTo(60);
         make.centerX.equalTo(0);
         make.height.equalTo(40);
         make.left.equalTo(40);
@@ -77,13 +77,23 @@
     [self.view addSubview:_importBtn];
     _importBtn.userInteractionEnabled = YES;
     [_importBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(100);
+        make.centerY.equalTo(130);
         make.centerX.equalTo(0);
         make.height.equalTo(40);
         make.left.equalTo(40);
         make.right.equalTo(-40);
     }];
     
+    UIImageView *bottomImageView = [UIImageView new];
+    bottomImageView.image = [UIImage imageNamed:@"logo "];
+    bottomImageView.contentMode = UIViewContentModeScaleAspectFit;
+    [self.view addSubview:bottomImageView];
+    [bottomImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(0);
+        make.bottom.equalTo(-43);
+        make.width.equalTo(60);
+        make.height.equalTo(30);
+    }];
   
 }
 -(void)quit{
@@ -92,16 +102,16 @@
     }];
 }
 -(void)createAccount{
-    _createBtn.backgroundColor = RGB(100, 100, 255);
-    _importBtn.backgroundColor = [UIColor clearColor];
+    [_createBtn gradientButtonWithSize:CGSizeMake(ScreenWidth, 49) colorArray:@[RGB(150, 160, 240),RGB(170, 170, 240)] percentageArray:@[@(0.3),@(1)] gradientType:GradientFromLeftTopToRightBottom];
+    [_importBtn setBackgroundImage:[UIImage imageWithColor:[UIColor whiteColor]] forState:UIControlStateNormal];
     _createBtn.tintColor = [UIColor whiteColor];
     _importBtn.tintColor = [UIColor textBlueColor];
     _cvc = [CreateAccountVC new];
     [self.navigationController pushViewController:_cvc animated:YES];
 }
 -(void)importAccount{
-    _createBtn.backgroundColor = [UIColor clearColor];
-    _importBtn.backgroundColor = RGB(100, 100, 255);
+    [_createBtn setBackgroundImage:[UIImage imageWithColor:[UIColor whiteColor]] forState:UIControlStateNormal];
+    [_importBtn gradientButtonWithSize:CGSizeMake(ScreenWidth, 49) colorArray:@[RGB(150, 160, 240),RGB(170, 170, 240)] percentageArray:@[@(0.3),@(1)] gradientType:GradientFromLeftTopToRightBottom];
     _createBtn.tintColor = [UIColor textBlueColor];
     _importBtn.tintColor = [UIColor whiteColor];
 }

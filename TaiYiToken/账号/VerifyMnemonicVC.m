@@ -10,6 +10,7 @@
 #import "CFFlowButtonView.h"
 //#import "PBKDF2.h"
 #import "CreateAll.h"
+
 @interface VerifyMnemonicVC ()
 @property(nonatomic,strong) UIButton *backBtn;
 @property(nonatomic)NSMutableArray *mnemonicArray;
@@ -132,7 +133,18 @@
     MissionWallet *walletBTC = [[CreateAll new] CreateWalletByXprv:xprv index:0 CoinType:BTC];
     MissionWallet *walletETH = [[CreateAll new] CreateWalletByXprv:xprv index:0 CoinType:ETH];
     //512位种子 长度为128字符 64Byte
-  
+    UIImage *BTCQRCodeImage = [BTCQRCode imageForString:walletBTC.address size:CGSizeMake(180, 180) scale:1.0];
+    UIImage *ETHQRCodeImage = [BTCQRCode imageForString:walletETH.address size:CGSizeMake(180, 180) scale:1.0];
+    UIImageView *imaView = [UIImageView new];
+    imaView.image  = ETHQRCodeImage;
+    [self.view addSubview:imaView];
+    [imaView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(0);
+        make.centerY.equalTo(60);
+        make.width.height.equalTo(180);
+    }];
+    
+    
 }
 
 

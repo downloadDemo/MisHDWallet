@@ -37,6 +37,7 @@
 		842FEDEC2137DB600075716E /* MarketDetailTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 842FEDEB2137DB600075716E /* MarketDetailTextCell.m */; };
 		842FEDEF2137DEDA0075716E /* MarketDetailTextViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 842FEDEE2137DEDA0075716E /* MarketDetailTextViewCell.m */; };
 		842FEDF22138D8770075716E /* WebVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 842FEDF12138D8770075716E /* WebVC.m */; };
+		842FEDF421392DB90075716E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 842FEDF321392DB90075716E /* Images.xcassets */; };
 		843EC9DA21212271002D5C2A /* NSObject+Parse.m in Sources */ = {isa = PBXBuildFile; fileRef = 843EC9CF21212266002D5C2A /* NSObject+Parse.m */; };
 		843EC9DB21212271002D5C2A /* UIScrollView+Refresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 843EC9D021212267002D5C2A /* UIScrollView+Refresh.m */; };
 		843EC9DC21212271002D5C2A /* UIView+HUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 843EC9D221212268002D5C2A /* UIView+HUD.m */; };
@@ -194,6 +195,7 @@
 		842FEDEE2137DEDA0075716E /* MarketDetailTextViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MarketDetailTextViewCell.m; sourceTree = "<group>"; };
 		842FEDF02138D8770075716E /* WebVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebVC.h; sourceTree = "<group>"; };
 		842FEDF12138D8770075716E /* WebVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebVC.m; sourceTree = "<group>"; };
+		842FEDF321392DB90075716E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		843EC9C721212170002D5C2A /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		843EC9CE21212266002D5C2A /* NSString+URLString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+URLString.h"; sourceTree = "<group>"; };
 		843EC9CF21212266002D5C2A /* NSObject+Parse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Parse.m"; sourceTree = "<group>"; };
@@ -1016,6 +1018,7 @@
 				84D0E42C21211AAF004E65AD /* LaunchScreen.storyboard */,
 				84D0E42F21211AAF004E65AD /* Info.plist */,
 				84D0E43021211AAF004E65AD /* main.m */,
+				842FEDF321392DB90075716E /* Images.xcassets */,
 			);
 			path = TaiYiToken;
 			sourceTree = "<group>";
@@ -1155,6 +1158,7 @@
 			files = (
 				0415BDBE213586C70022DEB7 /* ethers.framework in Resources */,
 				84D0E42E21211AAF004E65AD /* LaunchScreen.storyboard in Resources */,
+				842FEDF421392DB90075716E /* Images.xcassets in Resources */,
 				0415BDA02131BC850022DEB7 /* YYFiveRecordTableViewCell.xib in Resources */,
 				84B0A94C21227892002EFA0A /* Assets.xcassets in Resources */,
 				84D0E42921211AAB004E65AD /* Main.storyboard in Resources */,
@@ -1517,6 +1521,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WX9MM6TM2J;
 				ENABLE_BITCODE = NO;
@@ -1552,6 +1557,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WX9MM6TM2J;
 				ENABLE_BITCODE = NO;
