@@ -148,7 +148,10 @@
             _maskView.backgroundColor = [UIColor clearColor];
             [self.mainView addSubview:_maskView];
             [_maskView mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.edges.equalTo(self.topBarView);
+                make.top.equalTo(-33);
+                make.left.equalTo(-80);
+                make.right.equalTo(0);
+                make.height.equalTo(40);
             }];
         } else {
             self.maskView.hidden = NO;

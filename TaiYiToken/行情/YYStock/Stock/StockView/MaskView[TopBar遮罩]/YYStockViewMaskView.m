@@ -127,7 +127,7 @@
     
     attribute = @{NSFontAttributeName:[UIFont systemFontOfSize:13],NSForegroundColorAttributeName:[UIColor YYStock_textColor]};
     
-    CGFloat gap = 75;
+    CGFloat gap = 60;
     [self.drawKlineDescTexts enumerateObjectsUsingBlock:^(NSString *  _Nonnull drawText, NSUInteger idx, BOOL * _Nonnull stop) {
         CGRect textRect = [self rectOfNSString:drawText attribute:attribute];
         CGRect drawRect = CGRectMake(90 + gap * idx , (rect.size.height - textRect.size.height)/2.f, textRect.size.width, textRect.size.height);
@@ -143,9 +143,9 @@
     
     //绘制选中成交量
     drawText = @"成交量：";
-    attribute = @{NSFontAttributeName:[UIFont systemFontOfSize:13],NSForegroundColorAttributeName:[UIColor YYStock_textColor]};
+    attribute = @{NSFontAttributeName:[UIFont systemFontOfSize:12],NSForegroundColorAttributeName:[UIColor YYStock_textColor]};
     textRect = [self rectOfNSString:drawText attribute:attribute];
-    drawRect = CGRectMake(90 + 300 , (rect.size.height - textRect.size.height)/2.f, textRect.size.width, textRect.size.height);
+    drawRect = CGRectMake(90 + 245 , (rect.size.height - textRect.size.height)/2.f, textRect.size.width, textRect.size.height);
     [drawText drawInRect:drawRect withAttributes:attribute];
     
     
@@ -157,15 +157,15 @@
         //尝试转为亿手
         CGFloat yVolume = wVolume/10000.f;
         if (yVolume > 1) {
-            drawText = [NSString stringWithFormat:@"%.2f  亿手",yVolume];
+            drawText = [NSString stringWithFormat:@"%.2f  亿元",yVolume];
         } else {
-            drawText = [NSString stringWithFormat:@"%.2f  万手",wVolume];
+            drawText = [NSString stringWithFormat:@"%.2f  万元",wVolume];
         }
     } else {
-        drawText = [NSString stringWithFormat:@"%.2f  手",volume];
+        drawText = [NSString stringWithFormat:@"%.2f  元",volume];
     }
     textRect = [self rectOfNSString:drawText attribute:attribute];
-    drawRect = CGRectMake(90 + 350 , (rect.size.height - textRect.size.height)/2.f, textRect.size.width, textRect.size.height);
+    drawRect = CGRectMake(90 + 295 , (rect.size.height - textRect.size.height)/2.f, textRect.size.width, textRect.size.height);
     [drawText drawInRect:drawRect withAttributes:attribute];
 }
 

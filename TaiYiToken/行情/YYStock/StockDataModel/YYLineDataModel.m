@@ -30,19 +30,12 @@
 
 - (NSString *)Day {
     return self.showDay ? : @"";
-    
-    //    NSString *day = [_dict[@"day"] stringValue];
-    //    return [NSString stringWithFormat:@"%@-%@-%@",[day substringToIndex:4],[day substringWithRange:NSMakeRange(4, 2)],[day substringWithRange:NSMakeRange(6, 2)]];
-    //
-    //    if (self.parentDictArray.count % 5 == ([self.parentDictArray indexOfObject:_dict] + 1 )%5 ) {
-    //        return [NSString stringWithFormat:@"%@-%@-%@",[day substringToIndex:4],[day substringWithRange:NSMakeRange(4, 2)],[day substringWithRange:NSMakeRange(6, 2)]];
-    //    }
-    //    return @"";
 }
 
 - (NSString *)DayDatail {
-    NSString *day = [_dict[@"day"] stringValue];
-    return [NSString stringWithFormat:@"%@-%@-%@",[day substringToIndex:4],[day substringWithRange:NSMakeRange(4, 2)],[day substringWithRange:NSMakeRange(6, 2)]];
+    NSString *day = _dict[@"day"];
+    return @"";
+//    return [NSString stringWithFormat:@"%@-%@-%@",[day substringToIndex:4],[day substringWithRange:NSMakeRange(4, 2)],[day substringWithRange:NSMakeRange(6, 2)]];
 }
 
 - (id<YYLineDataModelProtocol>)preDataModel {

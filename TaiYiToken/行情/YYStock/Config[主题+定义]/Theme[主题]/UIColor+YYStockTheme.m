@@ -145,7 +145,7 @@
  *  顶部TopBar文字选中颜色
  */
 +(UIColor *)YYStock_topBarSelectedTextColor {
-    return RGB(255, 220, 220);
+    return RGB(100, 100, 100);
 }
 
 /**

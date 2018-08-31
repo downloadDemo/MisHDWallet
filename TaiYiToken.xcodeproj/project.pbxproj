@@ -434,10 +434,10 @@
 		0415BD5F2131BC850022DEB7 /* Stock */ = {
 			isa = PBXGroup;
 			children = (
-				0415BD602131BC850022DEB7 /* YYStock.m */,
 				0415BD612131BC850022DEB7 /* StockModel */,
 				0415BD6C2131BC850022DEB7 /* StockView */,
 				0415BD972131BC850022DEB7 /* YYStock.h */,
+				0415BD602131BC850022DEB7 /* YYStock.m */,
 			);
 			path = Stock;
 			sourceTree = "<group>";

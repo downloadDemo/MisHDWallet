@@ -270,8 +270,6 @@
 
 //解析KlineData数组
 -(void)parseKlineData:(NSMutableArray *)kLineDataArray{
- 
-    
     NSMutableArray <klineData*> *parsearray = [NSMutableArray new];
     NSMutableArray <YYLineDataModel *> *array = [NSMutableArray new];
     self.linedataarray = [NSMutableArray new];
@@ -484,6 +482,7 @@
         cell.leftLabel.font = [UIFont boldSystemFontOfSize:16];
         cell.leftLabel.textColor = [UIColor textBlackColor];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.rightLabel.text = @"";
         return cell;
     }else if (indexPath.row == 1) {
         MarketDetailTextViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MarketDetailTextViewCell"];
