@@ -16,6 +16,7 @@
 #import "YYLineDataModel.h"
 #import "MarketDetailTextCell.h"
 #import "MarketDetailTextViewCell.h"
+#import "WebVC.h"
 @interface MarketDetailVC ()<UIScrollViewDelegate,UIScrollViewAccessibilityDelegate,YYStockDataSource,UITableViewDelegate,UITableViewDataSource>
 /*** 上方行情基础信息，K线图选择按钮  ***/
 @property(nonatomic,strong)UIScrollView *scrollView;
@@ -407,14 +408,22 @@
 -(void)CreateTableView{
     NSMutableArray *leftarray = [NSMutableArray new];
     leftarray = [@[@"发行时间",@"流通总量",@"众筹价格",@"全名",@"白皮书地址",@"区块查询",@"官网",@"发行总量"] mutableCopy];
+    
+    NSString *whitepaperstring = self.coinBaseInfo.whitePaper == nil?@"":self.coinBaseInfo.whitePaper;
+    NSString *whitepaperurl = [[whitepaperstring componentsSeparatedByString:@"\">"].lastObject componentsSeparatedByString:@"</a>"].firstObject;
+    NSString *blockQuerystring = self.coinBaseInfo.blockQuery == nil?@"":self.coinBaseInfo.blockQuery;
+    NSString *blockQueryurl = [[blockQuerystring componentsSeparatedByString:@"\">"].lastObject componentsSeparatedByString:@"</a>"].firstObject;
+    NSString *officialWebsitestring = self.coinBaseInfo.officialWebsite == nil?@"":self.coinBaseInfo.officialWebsite;
+    NSString *officialWebsiteurl = [[officialWebsitestring componentsSeparatedByString:@"\">"].lastObject componentsSeparatedByString:@"</a>"].firstObject;
+    
     NSMutableArray *rightarray = [NSMutableArray new];
     [rightarray addObject:self.coinBaseInfo.publishTime == nil?@"":self.coinBaseInfo.publishTime];
     [rightarray addObject:self.coinBaseInfo.circulateVolume == nil?@"":self.coinBaseInfo.circulateVolume];
     [rightarray addObject:self.coinBaseInfo.crowdfundingPrice == nil?@"":self.coinBaseInfo.crowdfundingPrice];
     [rightarray addObject:self.coinBaseInfo.fullName == nil?@"":self.coinBaseInfo.fullName];
-    [rightarray addObject:self.coinBaseInfo.whitePaper == nil?@"":self.coinBaseInfo.whitePaper];
-    [rightarray addObject:self.coinBaseInfo.blockQuery == nil?@"":self.coinBaseInfo.blockQuery];
-    [rightarray addObject:self.coinBaseInfo.officialWebsite == nil?@"":self.coinBaseInfo.officialWebsite];
+    [rightarray addObject:whitepaperurl == nil?@"":whitepaperurl];
+    [rightarray addObject:blockQueryurl == nil?@"":blockQueryurl];
+    [rightarray addObject:officialWebsiteurl == nil?@"":officialWebsiteurl];
     [rightarray addObject:self.coinBaseInfo.publishVolume == nil?@"":self.coinBaseInfo.publishVolume];
     
     self.leftarray = [leftarray mutableCopy];
@@ -430,7 +439,17 @@
     [self.scrollView layoutSubviews];
 }
 
-
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.row >= 6) {
+        MarketDetailTextCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        if (![cell.rightLabel.text isEqualToString:@""]) {
+            WebVC *webvc = [WebVC new];
+            webvc.urlstring = cell.rightLabel.text;
+            [self.navigationController pushViewController:webvc animated:YES];
+        }
+        
+    }
+}
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     return nil;
 }

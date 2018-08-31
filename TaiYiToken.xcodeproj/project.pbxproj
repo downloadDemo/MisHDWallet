@@ -36,6 +36,7 @@
 		842C1097212A4A7E00E466C5 /* DataPointView.m in Sources */ = {isa = PBXBuildFile; fileRef = 842C1096212A4A7E00E466C5 /* DataPointView.m */; };
 		842FEDEC2137DB600075716E /* MarketDetailTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 842FEDEB2137DB600075716E /* MarketDetailTextCell.m */; };
 		842FEDEF2137DEDA0075716E /* MarketDetailTextViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 842FEDEE2137DEDA0075716E /* MarketDetailTextViewCell.m */; };
+		842FEDF22138D8770075716E /* WebVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 842FEDF12138D8770075716E /* WebVC.m */; };
 		843EC9DA21212271002D5C2A /* NSObject+Parse.m in Sources */ = {isa = PBXBuildFile; fileRef = 843EC9CF21212266002D5C2A /* NSObject+Parse.m */; };
 		843EC9DB21212271002D5C2A /* UIScrollView+Refresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 843EC9D021212267002D5C2A /* UIScrollView+Refresh.m */; };
 		843EC9DC21212271002D5C2A /* UIView+HUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 843EC9D221212268002D5C2A /* UIView+HUD.m */; };
@@ -191,6 +192,8 @@
 		842FEDEB2137DB600075716E /* MarketDetailTextCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MarketDetailTextCell.m; sourceTree = "<group>"; };
 		842FEDED2137DEDA0075716E /* MarketDetailTextViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MarketDetailTextViewCell.h; sourceTree = "<group>"; };
 		842FEDEE2137DEDA0075716E /* MarketDetailTextViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MarketDetailTextViewCell.m; sourceTree = "<group>"; };
+		842FEDF02138D8770075716E /* WebVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebVC.h; sourceTree = "<group>"; };
+		842FEDF12138D8770075716E /* WebVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebVC.m; sourceTree = "<group>"; };
 		843EC9C721212170002D5C2A /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		843EC9CE21212266002D5C2A /* NSString+URLString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+URLString.h"; sourceTree = "<group>"; };
 		843EC9CF21212266002D5C2A /* NSObject+Parse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Parse.m"; sourceTree = "<group>"; };
@@ -882,6 +885,8 @@
 		848180BD2123CE750007DCF9 /* 详情 */ = {
 			isa = PBXGroup;
 			children = (
+				842FEDF02138D8770075716E /* WebVC.h */,
+				842FEDF12138D8770075716E /* WebVC.m */,
 				8428A546212544F2003E1DD8 /* MarketDetailVC.h */,
 				8428A547212544F2003E1DD8 /* MarketDetailVC.m */,
 			);
@@ -1313,6 +1318,7 @@
 				0415BD9F2131BC850022DEB7 /* YYFiveRecordTableViewCell.m in Sources */,
 				848180612123B2630007DCF9 /* PBKDF2.m in Sources */,
 				842C1097212A4A7E00E466C5 /* DataPointView.m in Sources */,
+				842FEDF22138D8770075716E /* WebVC.m in Sources */,
 				843ECA23212162FB002D5C2A /* CALayer+XibConfiguration.m in Sources */,
 				843ECA07212162B7002D5C2A /* NSString+Hash.m in Sources */,
 				84B0A9482122736B002EFA0A /* CustomizedTabBarController.m in Sources */,
