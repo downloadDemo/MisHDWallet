@@ -12,6 +12,7 @@
 
 #import "ContainerViewController.h"
 #import "UserInfoVC.h"
+#import "HomePageVC.h"
 @interface CustomizedTabBarController ()<CustomTabBarDelegate>
 @property(nonatomic)double anglesec;
 @property(nonatomic)double angle;
@@ -49,23 +50,23 @@ static CustomizedTabBarController* _customizedTabBarController;
 
 - (void)loadViewController
 {
-    UIViewController *manVC = [UIViewController new];
-    manVC.view.backgroundColor = kRGBA(220, 220, 220, 1);
+    HomePageVC *manVC = [HomePageVC new];
+    manVC.view.backgroundColor = kRGBA(255, 255, 255, 1);
     CustomizedNavigationController *manNaVC = [[CustomizedNavigationController alloc] initWithRootViewController:manVC];
-   
+    
 
     ContainerViewController *manVC1 = [ContainerViewController new];
-    manVC1.view.backgroundColor = kRGBA(220, 220, 220, 1);
+    manVC1.view.backgroundColor = kRGBA(255, 255, 255, 1);
     CustomizedNavigationController *manNaVC1 = [[CustomizedNavigationController alloc] initWithRootViewController:manVC1];
     [manNaVC1.titlelb setText:@"行情"];
 
     UIViewController *manVC11 = [UIViewController new];
-    manVC11.view.backgroundColor = kRGBA(220, 220, 220, 1);
+    manVC11.view.backgroundColor = kRGBA(255, 255, 255, 1);
     CustomizedNavigationController *manNaVC11 = [[CustomizedNavigationController alloc] initWithRootViewController:manVC11];
     [manNaVC11.titlelb setText:@"应用"];
     
     UserInfoVC *manVC111 = [UserInfoVC new];
-    manVC111.view.backgroundColor = kRGBA(220, 220, 220, 1);
+    manVC111.view.backgroundColor = kRGBA(255, 255, 255, 1);
     CustomizedNavigationController *manNaVC111 = [[CustomizedNavigationController alloc] initWithRootViewController:manVC111];
     [manNaVC111.titlelb setText:@"我的"];
     
@@ -78,8 +79,8 @@ static CustomizedTabBarController* _customizedTabBarController;
 
 - (void)setupTabBar
 {
-    NSArray *titleArr = @[@"钱包",@"行情",@"应用",@"我的"];
-    NSArray *imageArr = @[@"hp_asset_default",@"hp_market_default",@"apps_default",@"own_default"];
+    NSArray *titleArr = @[@"首页",@"行情",@"应用",@"我的"];
+    NSArray *imageArr = @[@"wallet_default",@"hp_market_default",@"apps_default",@"own_default"];
     NSArray *imageHelightArr = @[@"hp_asset_select",@"hp_market_select",@"apps_select",@"own_select"];
     for (int i = 0 ; i < 4; i++) {
         CGFloat width = [UIScreen mainScreen].bounds.size.width/4.0;

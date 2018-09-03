@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+/*
+ 提示弹窗
+ */
 @interface RemindView : UIView
 @property(nonatomic)UILabel *titleLabel;
 @property(nonatomic)UILabel *messageLabel;

@@ -106,23 +106,24 @@
    
     [self CreateWallet];
     
-    
-//    if (self.selectedButtonView.buttonList == nil||self.selectedButtonView.buttonList.count < 12) {
-//        [self.view showMsg:@"请按顺序选择所有单词！"];
-//    }
-//    for (NSInteger i = 0; i < self.mnemonicArray.count; i++) {
-//        UIButton *btn = self.selectedButtonView.buttonList[i];
-//        if (![btn.titleLabel.text isEqualToString:self.mnemonicArray[i]]) {
-//            [self.view showMsg:@"顺序错误，请重新选择！"];
-//            return;
-//        }
-//    }
-//
-//    [self dismissViewControllerAnimated:YES completion:^{
-//        [self.view showMsg:@"备份完成！"];
-//    }];
-//
-    
+    if (self.selectedButtonView.buttonList == nil||self.selectedButtonView.buttonList.count < 12) {
+        [self.view showMsg:@"请按顺序选择所有单词！"];
+    }
+    for (NSInteger i = 0; i < self.mnemonicArray.count; i++) {
+        UIButton *btn = self.selectedButtonView.buttonList[i];
+        if (![btn.titleLabel.text isEqualToString:self.mnemonicArray[i]]) {
+            [self.view showMsg:@"顺序错误，请重新选择！"];
+            return;
+        }
+    }
+
+    [self dismissViewControllerAnimated:YES completion:^{
+        [self.view showMsg:@"正在创建钱包..."];
+        [self.view showHUD];
+        [self CreateWallet];
+        [self.view hideHUD];
+
+    }];
 }
 
 -(void)CreateWallet{
@@ -132,19 +133,18 @@
     NSString *xprv = [CreateAll CreateExtendPrivateKeyWithSeed:seed];
     MissionWallet *walletBTC = [[CreateAll new] CreateWalletByXprv:xprv index:0 CoinType:BTC];
     MissionWallet *walletETH = [[CreateAll new] CreateWalletByXprv:xprv index:0 CoinType:ETH];
-    //生成地址二维码
-    UIImage *BTCQRCodeImage = [BTCQRCode imageForString:walletBTC.address size:CGSizeMake(180, 180) scale:1.0];
-    UIImage *ETHQRCodeImage = [BTCQRCode imageForString:walletETH.address size:CGSizeMake(180, 180) scale:1.0];
-//    UIImageView *imaView = [UIImageView new];
-//    imaView.image  = ETHQRCodeImage;
-//    [self.view addSubview:imaView];
-//    [imaView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.centerX.equalTo(0);
-//        make.centerY.equalTo(60);
-//        make.width.height.equalTo(180);
-//    }];
+//    //生成地址二维码
+//    UIImage *BTCQRCodeImage = [BTCQRCode imageForString:walletBTC.address size:CGSizeMake(180, 180) scale:1.0];
+//    UIImage *ETHQRCodeImage = [BTCQRCode imageForString:walletETH.address size:CGSizeMake(180, 180) scale:1.0];
+    //创建完成 清除密码
+    [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"password"];
     
+    NSData *walletBTCdata = [NSKeyedArchiver archivedDataWithRootObject:walletBTC];
+    [[NSUserDefaults standardUserDefaults] setObject:walletBTCdata forKey:@"walletBTC"];
+    NSData *walletETHdata = [NSKeyedArchiver archivedDataWithRootObject:walletETH];
+    [[NSUserDefaults standardUserDefaults] setObject:walletETHdata forKey:@"walletETH"];
     
+    [[NSUserDefaults standardUserDefaults]  setBool:YES forKey:@"ifHasAccount"];
 }
 
 

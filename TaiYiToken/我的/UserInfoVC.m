@@ -7,9 +7,9 @@
 //
 
 #import "UserInfoVC.h"
-#import "SwitchAccountVc.h"
+
 @interface UserInfoVC ()
-@property(nonatomic)UIButton *btn;
+
 @end
 
 @implementation UserInfoVC
@@ -17,32 +17,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _btn = [UIButton new];
-    _btn.backgroundColor = [UIColor whiteColor];
-    [_btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [_btn addTarget:self action:@selector(click) forControlEvents:UIControlEventTouchUpInside];
-    [_btn setTitle:@"click" forState:UIControlStateNormal];
-    [self.view addSubview:_btn];
-    [_btn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.equalTo(0);
-        make.top.equalTo(10);
-        make.height.equalTo(30);
-    }];
+  
     
     
 }
--(void)click{
-    SwitchAccountVc *switchvc = [SwitchAccountVc new];
-    UINavigationController *navivc = [[UINavigationController alloc]initWithRootViewController:switchvc];
-    [navivc.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
-    navivc.navigationBar.shadowImage = [UIImage new];
-    navivc.navigationBar.translucent = YES;
-    navivc.navigationBar.alpha = 0;
-    
-    [self presentViewController:navivc animated:YES completion:^{
-        
-    }];
-}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

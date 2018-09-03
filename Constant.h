@@ -95,6 +95,11 @@ typedef enum {
     USDT_CHOOSE = 4,
     SEARCH_CHOOSE = 5,
 }MarketSelectType;
+
+typedef enum : NSUInteger {
+    BTCAPIChain,
+    BTCAPIBlockchain,
+} BTCAPI;
 #define BTNRISECOLOR [UIColor colorWithHexString:@"#E53A32"]
 #define BTNFALLCOLOR [UIColor colorWithHexString:@"#26B13D"]
 

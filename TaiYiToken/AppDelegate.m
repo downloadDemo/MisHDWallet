@@ -22,14 +22,6 @@
     
     CustomizedTabBarController *csVC = [CustomizedTabBarController sharedCustomizedTabBarController];
     self.window.rootViewController = csVC;
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"ifHasAccount"]) {
-        //有账号
-        
-    }else{
-        //没账号创建或导入
-
-    }
-
     [self.window makeKeyAndVisible];
     
     return YES;

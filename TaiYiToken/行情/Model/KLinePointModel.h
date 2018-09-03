@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 @class CoinBaseInfo,SymbolInfo,klineData;
 
-@interface KLinePointModel : NSObject
+@interface KLinePointModel : NSObject<NSCoding>
 /*
  {  "symbolInfo":
            {"symbol":"EOS/ETH","symbolName":null,"openPrice":0.01877499,"rmbOpenPrice":36.67,"dollarOpenPrice":5.35,"closePrice":0.01879188,"rmbClosePrice":36.70,"dollarClosePrice":5.36,"highPrice":0.018995,"rmbHighPrice":37.10,"dollarHighPrice":5.41,"lowPrice":0.018628,"rmbLowPrice":36.38,"dollarLowPrice":5.31,"amount":2524934.77,"count":12233,"vol":47014.455058591055,"rmbVol":91814016.67,"dollarVol":13401940.56,"priceChange":0.09},

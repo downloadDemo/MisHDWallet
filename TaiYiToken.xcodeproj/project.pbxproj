@@ -38,6 +38,9 @@
 		842FEDEF2137DEDA0075716E /* MarketDetailTextViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 842FEDEE2137DEDA0075716E /* MarketDetailTextViewCell.m */; };
 		842FEDF22138D8770075716E /* WebVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 842FEDF12138D8770075716E /* WebVC.m */; };
 		842FEDF421392DB90075716E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 842FEDF321392DB90075716E /* Images.xcassets */; };
+		842FEDFA213CD39A0075716E /* HomePageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 842FEDF9213CD3990075716E /* HomePageVC.m */; };
+		842FEDFE213CDE2A0075716E /* WalletCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 842FEDFD213CDE2A0075716E /* WalletCell.m */; };
+		842FEE08213D13780075716E /* WalletListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 842FEE07213D13780075716E /* WalletListCell.m */; };
 		843EC9DA21212271002D5C2A /* NSObject+Parse.m in Sources */ = {isa = PBXBuildFile; fileRef = 843EC9CF21212266002D5C2A /* NSObject+Parse.m */; };
 		843EC9DB21212271002D5C2A /* UIScrollView+Refresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 843EC9D021212267002D5C2A /* UIScrollView+Refresh.m */; };
 		843EC9DC21212271002D5C2A /* UIView+HUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 843EC9D221212268002D5C2A /* UIView+HUD.m */; };
@@ -196,6 +199,12 @@
 		842FEDF02138D8770075716E /* WebVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebVC.h; sourceTree = "<group>"; };
 		842FEDF12138D8770075716E /* WebVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebVC.m; sourceTree = "<group>"; };
 		842FEDF321392DB90075716E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		842FEDF8213CD3990075716E /* HomePageVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomePageVC.h; sourceTree = "<group>"; };
+		842FEDF9213CD3990075716E /* HomePageVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomePageVC.m; sourceTree = "<group>"; };
+		842FEDFC213CDE2A0075716E /* WalletCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WalletCell.h; sourceTree = "<group>"; };
+		842FEDFD213CDE2A0075716E /* WalletCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WalletCell.m; sourceTree = "<group>"; };
+		842FEE06213D13780075716E /* WalletListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WalletListCell.h; sourceTree = "<group>"; };
+		842FEE07213D13780075716E /* WalletListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WalletListCell.m; sourceTree = "<group>"; };
 		843EC9C721212170002D5C2A /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		843EC9CE21212266002D5C2A /* NSString+URLString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+URLString.h"; sourceTree = "<group>"; };
 		843EC9CF21212266002D5C2A /* NSObject+Parse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Parse.m"; sourceTree = "<group>"; };
@@ -650,14 +659,41 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		843EC9C0212120DA002D5C2A /* 钱包 */ = {
+		842FEDF6213CBD360075716E /* 注册账号 */ = {
 			isa = PBXGroup;
 			children = (
+				84B0A9552122ABD5002EFA0A /* CreateAccountVC.h */,
+				84B0A9562122ABD5002EFA0A /* CreateAccountVC.m */,
+				84C8E7DB212A99FD00627445 /* CreateMnemonicVC.h */,
+				84C8E7DC212A99FD00627445 /* CreateMnemonicVC.m */,
+				84748843212AAAD70077AC0F /* VerifyMnemonicVC.h */,
+				84748844212AAAD70077AC0F /* VerifyMnemonicVC.m */,
 			);
-			path = "钱包";
+			path = "注册账号";
 			sourceTree = "<group>";
 		};
-		843EC9C1212120E9002D5C2A /* 基础ui */ = {
+		842FEDF7213CD3770075716E /* 首页钱包 */ = {
+			isa = PBXGroup;
+			children = (
+				842FEDFB213CDE090075716E /* View */,
+				842FEDF8213CD3990075716E /* HomePageVC.h */,
+				842FEDF9213CD3990075716E /* HomePageVC.m */,
+			);
+			path = "首页钱包";
+			sourceTree = "<group>";
+		};
+		842FEDFB213CDE090075716E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				842FEDFC213CDE2A0075716E /* WalletCell.h */,
+				842FEDFD213CDE2A0075716E /* WalletCell.m */,
+				842FEE06213D13780075716E /* WalletListCell.h */,
+				842FEE07213D13780075716E /* WalletListCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		843EC9C1212120E9002D5C2A /* 导航控制 */ = {
 			isa = PBXGroup;
 			children = (
 				84B0A94221227369002EFA0A /* CustomizedNavigationController.h */,
@@ -667,7 +703,7 @@
 				84B0A9452122736A002EFA0A /* CustomTabBar.h */,
 				84B0A9462122736A002EFA0A /* CustomTabBar.m */,
 			);
-			path = "基础ui";
+			path = "导航控制";
 			sourceTree = "<group>";
 		};
 		843EC9C2212120F0002D5C2A /* 行情 */ = {
@@ -914,21 +950,17 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		84B0A94D21228B94002EFA0A /* 账号 */ = {
+		84B0A94D21228B94002EFA0A /* 首页 */ = {
 			isa = PBXGroup;
 			children = (
+				842FEDF7213CD3770075716E /* 首页钱包 */,
+				842FEDF6213CBD360075716E /* 注册账号 */,
 				84C8E7CF212A95D000627445 /* Wallet */,
 				84B0A9612122CCD5002EFA0A /* View */,
-				84B0A9552122ABD5002EFA0A /* CreateAccountVC.h */,
-				84B0A9562122ABD5002EFA0A /* CreateAccountVC.m */,
 				84B0A94E21228BE9002EFA0A /* SwitchAccountVc.h */,
 				84B0A94F21228BE9002EFA0A /* SwitchAccountVc.m */,
-				84C8E7DB212A99FD00627445 /* CreateMnemonicVC.h */,
-				84C8E7DC212A99FD00627445 /* CreateMnemonicVC.m */,
-				84748843212AAAD70077AC0F /* VerifyMnemonicVC.h */,
-				84748844212AAAD70077AC0F /* VerifyMnemonicVC.m */,
 			);
-			path = "账号";
+			path = "首页";
 			sourceTree = "<group>";
 		};
 		84B0A9612122CCD5002EFA0A /* View */ = {
@@ -1003,12 +1035,11 @@
 			isa = PBXGroup;
 			children = (
 				843EC9C52121212D002D5C2A /* Common */,
-				84B0A94D21228B94002EFA0A /* 账号 */,
-				843EC9C1212120E9002D5C2A /* 基础ui */,
-				843EC9C421212102002D5C2A /* 我的 */,
-				843EC9C3212120F9002D5C2A /* 应用 */,
+				843EC9C1212120E9002D5C2A /* 导航控制 */,
+				84B0A94D21228B94002EFA0A /* 首页 */,
 				843EC9C2212120F0002D5C2A /* 行情 */,
-				843EC9C0212120DA002D5C2A /* 钱包 */,
+				843EC9C3212120F9002D5C2A /* 应用 */,
+				843EC9C421212102002D5C2A /* 我的 */,
 				84D0E42121211AAB004E65AD /* AppDelegate.h */,
 				84D0E42221211AAB004E65AD /* AppDelegate.m */,
 				84D0E42421211AAB004E65AD /* ViewController.h */,
@@ -1277,9 +1308,11 @@
 				84748845212AAAD70077AC0F /* VerifyMnemonicVC.m in Sources */,
 				843EC9DE21212271002D5C2A /* NSString+URLString.m in Sources */,
 				0415BD9C2131BC850022DEB7 /* YYLinePositionModel.m in Sources */,
+				842FEDFA213CD39A0075716E /* HomePageVC.m in Sources */,
 				843ECA2A212162FB002D5C2A /* NSMutableAttributedString+ExFoundation.m in Sources */,
 				843ECA27212162FB002D5C2A /* NSDate+ExFoundation.m in Sources */,
 				0415BDA12131BC850022DEB7 /* YYFiveRecordView.m in Sources */,
+				842FEE08213D13780075716E /* WalletListCell.m in Sources */,
 				0415BDAA2131BC850022DEB7 /* MAline.m in Sources */,
 				842FEDEF2137DEDA0075716E /* MarketDetailTextViewCell.m in Sources */,
 				0415BD992131BC850022DEB7 /* YYStockVariable.m in Sources */,
@@ -1305,6 +1338,7 @@
 				0415BDA32131BC850022DEB7 /* YYTimeLineView.m in Sources */,
 				0415BD9B2131BC850022DEB7 /* YYStock.m in Sources */,
 				84C8E7E0212A9FEF00627445 /* UIView+Extension.m in Sources */,
+				842FEDFE213CDE2A0075716E /* WalletCell.m in Sources */,
 				843ECA26212162FB002D5C2A /* NSData+Hash.m in Sources */,
 				0415BDA62131BC850022DEB7 /* YYStockScrollView.m in Sources */,
 				84C0DF26212CFF3800BCC91D /* BRKey.m in Sources */,

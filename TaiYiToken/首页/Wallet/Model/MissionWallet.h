@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface MissionWallet : NSObject
+@interface MissionWallet : NSObject<NSCoding>
 /*
  BTC/ETH
  */
@@ -20,5 +20,6 @@
 @property(nonatomic,copy)NSString *privateKey;
 @property(nonatomic,copy)NSString *publicKey;
 @property(nonatomic,copy)NSString *address;
+
 @property(nonatomic,assign)CoinType coinType;
 @end

@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 @class SymbolModel;
-@interface CurrencyModel : NSObject
+@interface CurrencyModel : NSObject<NSCoding>
 @property (nonatomic, strong) NSMutableArray <SymbolModel *>* btcMarket;
 @property (nonatomic, strong) NSMutableArray <SymbolModel *>* ethMarket;
 @property (nonatomic, strong) NSMutableArray <SymbolModel *>* htMarket;
