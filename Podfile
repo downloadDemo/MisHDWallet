@@ -22,6 +22,6 @@ target 'TaiYiToken' do
    #pod 'Charts'
    pod 'PYSearch'
    pod 'secp256k1_ios'
-
+   
    pod 'CoreBitcoin', :podspec => 'https://raw.github.com/oleganza/CoreBitcoin/master/CoreBitcoin.podspec'
 end

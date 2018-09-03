@@ -11,7 +11,10 @@
 #import "WalletCell.h"
 #import "MissionWallet.h"
 #import "WalletListCell.h"
-@interface HomePageVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITableViewDelegate,UITableViewDataSource>
+#import <AVFoundation/AVFoundation.h>
+#import "WBQRCodeVC.h"
+#import "CustomizedNavigationController.h"
+@interface HomePageVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITableViewDelegate,UITableViewDataSource,UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property(nonatomic)UICollectionView *collectionview;
 @property(nonatomic)UITableView *tableView;
 @property(nonatomic)UIButton *walletBtn;
@@ -70,7 +73,7 @@
     [self.view addSubview:_walletBtn];
     [_walletBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(20);
-        make.top.equalTo(30);
+        make.top.equalTo(35);
         make.width.equalTo(16);
         make.height.equalTo(16);
     }];
@@ -81,7 +84,7 @@
     [self.view addSubview:_scanBtn];
     [_scanBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(-20);
-        make.top.equalTo(30);
+        make.top.equalTo(35);
         make.width.equalTo(16);
         make.height.equalTo(16);
     }];
@@ -111,20 +114,86 @@
 -(void)walletBtnAction{
     
 }
+//扫描二维码
 -(void)scanBtnAction{
-    
+    WBQRCodeVC *WBVC = [[WBQRCodeVC alloc] init];
+    [self QRCodeScanVC:WBVC];
+    [WBVC setGetQRCodeResult:^(NSString *string) {
+        NSLog(@"QRCode result = %@",string);
+    }];
 }
 //钱包cell按钮
--(void)QRCodeBtnAction{
-    
+-(void)QRCodeBtnAction:(UIButton *)btn{
+   
 }
 
--(void)detailBtnAction{
+-(void)detailBtnAction:(UIButton *)btn{
     
 }
--(void)addressBtnAction{
+-(void)addressBtnAction:(UIButton *)btn{
     
 }
+//扫码判断权限
+- (void)QRCodeScanVC:(UIViewController *)scanVC {
+    AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+    if (device) {
+        AVAuthorizationStatus status = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
+        switch (status) {
+            case AVAuthorizationStatusNotDetermined: {
+                [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
+                    if (granted) {
+                        dispatch_sync(dispatch_get_main_queue(), ^{
+                           // [self.navigationController pushViewController:scanVC animated:YES];
+                            UINavigationController *navisc = [[UINavigationController alloc]initWithRootViewController:scanVC];
+                            [self presentViewController:navisc animated:YES completion:^{
+                                
+                            }];
+                        });
+                        NSLog(@"用户第一次同意了访问相机权限 - - %@", [NSThread currentThread]);
+                    } else {
+                        NSLog(@"用户第一次拒绝了访问相机权限 - - %@", [NSThread currentThread]);
+                    }
+                }];
+                break;
+            }
+            case AVAuthorizationStatusAuthorized: {
+               // [self.navigationController pushViewController:scanVC animated:YES];
+                UINavigationController *navisc = [[UINavigationController alloc]initWithRootViewController:scanVC];
+                [self presentViewController:navisc animated:YES completion:^{
+                    
+                }];
+                break;
+            }
+            case AVAuthorizationStatusDenied: {
+                UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"请去-> [设置 - 隐私 - 相机 - SGQRCodeExample] 打开访问开关" preferredStyle:(UIAlertControllerStyleAlert)];
+                UIAlertAction *alertA = [UIAlertAction actionWithTitle:@"确定" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+                    
+                }];
+                
+                [alertC addAction:alertA];
+                [self presentViewController:alertC animated:YES completion:nil];
+                break;
+            }
+            case AVAuthorizationStatusRestricted: {
+                NSLog(@"因为系统原因, 无法访问相册");
+                break;
+            }
+                
+            default:
+                break;
+        }
+        return;
+    }
+    
+    UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"未检测到您的摄像头" preferredStyle:(UIAlertControllerStyleAlert)];
+    UIAlertAction *alertA = [UIAlertAction actionWithTitle:@"确定" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    
+    [alertC addAction:alertA];
+    [self presentViewController:alertC animated:YES completion:nil];
+}
+
 #pragma tableView
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
@@ -293,9 +362,12 @@
         address = [NSString stringWithFormat:@"%@...%@",str1,str2];
     }
     [cell.addressBtn setTitle:wallet.address.length > 20?address:wallet.address forState:UIControlStateNormal];
-    [cell.QRCodeBtn addTarget:self action:@selector(QRCodeBtnAction) forControlEvents:UIControlEventTouchUpOutside];
-    [cell.detailBtn addTarget:self action:@selector(detailBtnAction) forControlEvents:UIControlEventTouchUpOutside];
-    [cell.addressBtn addTarget:self action:@selector(addressBtnAction) forControlEvents:UIControlEventTouchUpOutside];
+    cell.QRCodeBtn.tag = indexPath.row;
+    cell.detailBtn.tag = indexPath.row;
+    cell.addressBtn.tag = indexPath.row;
+    [cell.QRCodeBtn addTarget:self action:@selector(QRCodeBtnAction:) forControlEvents:UIControlEventTouchUpOutside];
+    [cell.detailBtn addTarget:self action:@selector(detailBtnAction:) forControlEvents:UIControlEventTouchUpOutside];
+    [cell.addressBtn addTarget:self action:@selector(addressBtnAction:) forControlEvents:UIControlEventTouchUpOutside];
     return cell;
 }
 

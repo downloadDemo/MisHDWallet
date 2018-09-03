@@ -41,6 +41,11 @@
 		842FEDFA213CD39A0075716E /* HomePageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 842FEDF9213CD3990075716E /* HomePageVC.m */; };
 		842FEDFE213CDE2A0075716E /* WalletCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 842FEDFD213CDE2A0075716E /* WalletCell.m */; };
 		842FEE08213D13780075716E /* WalletListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 842FEE07213D13780075716E /* WalletListCell.m */; };
+		842FEE0A213D22860075716E /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 842FEE09213D22850075716E /* AVFoundation.framework */; };
+		842FEE14213D26030075716E /* WBQRCodeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 842FEE0E213D26030075716E /* WBQRCodeVC.m */; };
+		842FEE15213D26030075716E /* ScanSuccessJumpVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 842FEE12213D26030075716E /* ScanSuccessJumpVC.m */; };
+		842FEE2B213D27470075716E /* SGWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 842FEE2A213D27470075716E /* SGWebView.m */; };
+		842FEE2E213D27BE0075716E /* MBProgressHUD+SGQRCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 842FEE2D213D27BE0075716E /* MBProgressHUD+SGQRCode.m */; };
 		843EC9DA21212271002D5C2A /* NSObject+Parse.m in Sources */ = {isa = PBXBuildFile; fileRef = 843EC9CF21212266002D5C2A /* NSObject+Parse.m */; };
 		843EC9DB21212271002D5C2A /* UIScrollView+Refresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 843EC9D021212267002D5C2A /* UIScrollView+Refresh.m */; };
 		843EC9DC21212271002D5C2A /* UIView+HUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 843EC9D221212268002D5C2A /* UIView+HUD.m */; };
@@ -205,6 +210,15 @@
 		842FEDFD213CDE2A0075716E /* WalletCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WalletCell.m; sourceTree = "<group>"; };
 		842FEE06213D13780075716E /* WalletListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WalletListCell.h; sourceTree = "<group>"; };
 		842FEE07213D13780075716E /* WalletListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WalletListCell.m; sourceTree = "<group>"; };
+		842FEE09213D22850075716E /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		842FEE0E213D26030075716E /* WBQRCodeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBQRCodeVC.m; sourceTree = "<group>"; };
+		842FEE0F213D26030075716E /* ScanSuccessJumpVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScanSuccessJumpVC.h; sourceTree = "<group>"; };
+		842FEE11213D26030075716E /* WBQRCodeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBQRCodeVC.h; sourceTree = "<group>"; };
+		842FEE12213D26030075716E /* ScanSuccessJumpVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScanSuccessJumpVC.m; sourceTree = "<group>"; };
+		842FEE29213D27470075716E /* SGWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGWebView.h; sourceTree = "<group>"; };
+		842FEE2A213D27470075716E /* SGWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGWebView.m; sourceTree = "<group>"; };
+		842FEE2C213D27BE0075716E /* MBProgressHUD+SGQRCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+SGQRCode.h"; sourceTree = "<group>"; };
+		842FEE2D213D27BE0075716E /* MBProgressHUD+SGQRCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+SGQRCode.m"; sourceTree = "<group>"; };
 		843EC9C721212170002D5C2A /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		843EC9CE21212266002D5C2A /* NSString+URLString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+URLString.h"; sourceTree = "<group>"; };
 		843EC9CF21212266002D5C2A /* NSObject+Parse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Parse.m"; sourceTree = "<group>"; };
@@ -355,6 +369,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				842FEE0A213D22860075716E /* AVFoundation.framework in Frameworks */,
 				847BC60C21355613000B02AC /* libPods-TaiYiToken.a in Frameworks */,
 				847BC60B21355289000B02AC /* libstdc++.tbd in Frameworks */,
 				84C0DF33212D4F1E00BCC91D /* libiconv.tbd in Frameworks */,
@@ -637,6 +652,7 @@
 		6AC5FF18C18AADA88B0CA162 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				842FEE09213D22850075716E /* AVFoundation.framework */,
 				0415BDBD213586C70022DEB7 /* ethers.framework */,
 				847BC60A21355288000B02AC /* libstdc++.tbd */,
 				84C0DF32212D4F1E00BCC91D /* libiconv.tbd */,
@@ -675,6 +691,7 @@
 		842FEDF7213CD3770075716E /* 首页钱包 */ = {
 			isa = PBXGroup;
 			children = (
+				842FEE0B213D25E80075716E /* 扫码 */,
 				842FEDFB213CDE090075716E /* View */,
 				842FEDF8213CD3990075716E /* HomePageVC.h */,
 				842FEDF9213CD3990075716E /* HomePageVC.m */,
@@ -691,6 +708,29 @@
 				842FEE07213D13780075716E /* WalletListCell.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		842FEE0B213D25E80075716E /* 扫码 */ = {
+			isa = PBXGroup;
+			children = (
+				842FEE0C213D26030075716E /* Controller */,
+			);
+			path = "扫码";
+			sourceTree = "<group>";
+		};
+		842FEE0C213D26030075716E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				842FEE11213D26030075716E /* WBQRCodeVC.h */,
+				842FEE0E213D26030075716E /* WBQRCodeVC.m */,
+				842FEE29213D27470075716E /* SGWebView.h */,
+				842FEE2A213D27470075716E /* SGWebView.m */,
+				842FEE2C213D27BE0075716E /* MBProgressHUD+SGQRCode.h */,
+				842FEE2D213D27BE0075716E /* MBProgressHUD+SGQRCode.m */,
+				842FEE0F213D26030075716E /* ScanSuccessJumpVC.h */,
+				842FEE12213D26030075716E /* ScanSuccessJumpVC.m */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		843EC9C1212120E9002D5C2A /* 导航控制 */ = {
@@ -1283,9 +1323,11 @@
 				843EC9DD21212271002D5C2A /* UIImage+BaseToImage.m in Sources */,
 				84D0E42621211AAB004E65AD /* ViewController.m in Sources */,
 				84B0A95021228BE9002EFA0A /* SwitchAccountVc.m in Sources */,
+				842FEE14213D26030075716E /* WBQRCodeVC.m in Sources */,
 				84FA0821212BE3AF00DCFC0C /* CreateAll.m in Sources */,
 				843ECA2C212162FB002D5C2A /* NSString+Extention.m in Sources */,
 				0415BDA52131BC850022DEB7 /* YYStockView_Kline.m in Sources */,
+				842FEE15213D26030075716E /* ScanSuccessJumpVC.m in Sources */,
 				84B0A9642122CD7B002EFA0A /* RemindView.m in Sources */,
 				84C0DF30212CFF9100BCC91D /* NSMutableData+Bitcoin.m in Sources */,
 				0415BD9A2131BC850022DEB7 /* YYTopBarView.m in Sources */,
@@ -1351,6 +1393,7 @@
 				8460C7B02136A446002E4B2F /* YYLineDataModel.m in Sources */,
 				84B0A95A2122B87B002EFA0A /* UIColor+PGHex.m in Sources */,
 				0415BD9D2131BC850022DEB7 /* YYVolumePositionModel.m in Sources */,
+				842FEE2E213D27BE0075716E /* MBProgressHUD+SGQRCode.m in Sources */,
 				84C0DF2D212CFF8500BCC91D /* NSData+Bitcoin.m in Sources */,
 				848180602123B2630007DCF9 /* NSData+CommonCrypto.m in Sources */,
 				0415BD9F2131BC850022DEB7 /* YYFiveRecordTableViewCell.m in Sources */,
@@ -1362,6 +1405,7 @@
 				84B0A9482122736B002EFA0A /* CustomizedTabBarController.m in Sources */,
 				843EC9DB21212271002D5C2A /* UIScrollView+Refresh.m in Sources */,
 				843ECA25212162FB002D5C2A /* UIColor+AppConfigColor.m in Sources */,
+				842FEE2B213D27470075716E /* SGWebView.m in Sources */,
 				843ECA2D212162FB002D5C2A /* UIImage+ExFoundation.m in Sources */,
 				84748848212BC2EC0077AC0F /* UserInfoVC.m in Sources */,
 				84BDD1702126B3DF0039FE09 /* ButtonsView.m in Sources */,
