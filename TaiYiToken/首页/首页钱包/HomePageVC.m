@@ -14,6 +14,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import "WBQRCodeVC.h"
 #import "CustomizedNavigationController.h"
+#import "ReceiptQRCodeVC.h"
 @interface HomePageVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITableViewDelegate,UITableViewDataSource,UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property(nonatomic)UICollectionView *collectionview;
 @property(nonatomic)UITableView *tableView;
@@ -122,16 +123,26 @@
         NSLog(@"QRCode result = %@",string);
     }];
 }
-//钱包cell按钮
+/*
+ 钱包cell按钮
+ */
+//点击进入收款码界面
 -(void)QRCodeBtnAction:(UIButton *)btn{
-   
+    ReceiptQRCodeVC *revc = [ReceiptQRCodeVC new];
+    revc.wallet = btn.tag == 0 ? [self.walletDic objectForKey:@"walletBTC"]:[self.walletDic objectForKey:@"walletETH"];
+    [self.navigationController pushViewController:revc animated:YES];
 }
-
+//点击进入钱包详情
 -(void)detailBtnAction:(UIButton *)btn{
-    
+    NSLog(@"detailBtn %ld",btn.tag);
 }
+//点击复制地址
 -(void)addressBtnAction:(UIButton *)btn{
-    
+    MissionWallet *wallet = btn.tag == 0 ? [self.walletDic objectForKey:@"walletBTC"]:[self.walletDic objectForKey:@"walletETH"];
+    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+    pasteboard.string = wallet.address;
+    [self.view showMsg:@"地址已复制"];
+    NSLog(@"addressBtn %ld %@",btn.tag,pasteboard.string);
 }
 //扫码判断权限
 - (void)QRCodeScanVC:(UIViewController *)scanVC {
@@ -365,9 +376,10 @@
     cell.QRCodeBtn.tag = indexPath.row;
     cell.detailBtn.tag = indexPath.row;
     cell.addressBtn.tag = indexPath.row;
-    [cell.QRCodeBtn addTarget:self action:@selector(QRCodeBtnAction:) forControlEvents:UIControlEventTouchUpOutside];
-    [cell.detailBtn addTarget:self action:@selector(detailBtnAction:) forControlEvents:UIControlEventTouchUpOutside];
-    [cell.addressBtn addTarget:self action:@selector(addressBtnAction:) forControlEvents:UIControlEventTouchUpOutside];
+    
+    [cell.QRCodeBtn addTarget:self action:@selector(QRCodeBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.detailBtn addTarget:self action:@selector(detailBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.addressBtn addTarget:self action:@selector(addressBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     return cell;
 }
 

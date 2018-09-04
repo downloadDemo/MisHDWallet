@@ -108,7 +108,9 @@
     
     if (self.selectedButtonView.buttonList == nil||self.selectedButtonView.buttonList.count < 12) {
         [self.view showMsg:@"请按顺序选择所有单词！"];
+        return;
     }
+   
     for (NSInteger i = 0; i < self.mnemonicArray.count; i++) {
         UIButton *btn = self.selectedButtonView.buttonList[i];
         if (![btn.titleLabel.text isEqualToString:self.mnemonicArray[i]]) {
@@ -131,16 +133,17 @@
     //512位种子 长度为128字符 64Byte
     NSString *seed = [CreateAll CreateSeedByMnemonic:self.mnemonic Password:password];
     NSString *xprv = [CreateAll CreateExtendPrivateKeyWithSeed:seed];
-    MissionWallet *walletBTC = [[CreateAll new] CreateWalletByXprv:xprv index:0 CoinType:BTC];
-    MissionWallet *walletETH = [[CreateAll new] CreateWalletByXprv:xprv index:0 CoinType:ETH];
-//    //生成地址二维码
-//    UIImage *BTCQRCodeImage = [BTCQRCode imageForString:walletBTC.address size:CGSizeMake(180, 180) scale:1.0];
-//    UIImage *ETHQRCodeImage = [BTCQRCode imageForString:walletETH.address size:CGSizeMake(180, 180) scale:1.0];
+    MissionWallet *walletBTC = [CreateAll CreateWalletByXprv:xprv index:0 CoinType:BTC];
+    MissionWallet *walletBTC2 = [CreateAll CreateWalletByXprv:xprv index:1 CoinType:BTC];
+    MissionWallet *walletETH = [CreateAll CreateWalletByXprv:xprv index:0 CoinType:ETH];
+
     //创建完成 清除密码
     [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"password"];
     
     NSData *walletBTCdata = [NSKeyedArchiver archivedDataWithRootObject:walletBTC];
     [[NSUserDefaults standardUserDefaults] setObject:walletBTCdata forKey:@"walletBTC"];
+    NSData *walletBTCdata2 = [NSKeyedArchiver archivedDataWithRootObject:walletBTC2];
+    [[NSUserDefaults standardUserDefaults] setObject:walletBTCdata2 forKey:@"walletBTC2"];
     NSData *walletETHdata = [NSKeyedArchiver archivedDataWithRootObject:walletETH];
     [[NSUserDefaults standardUserDefaults] setObject:walletETHdata forKey:@"walletETH"];
     

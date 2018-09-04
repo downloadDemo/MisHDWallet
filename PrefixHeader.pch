@@ -97,6 +97,7 @@
 
 #import "MissionWallet.h"
 
+#import "CreateAll.h"
 /*
  椭圆算法 由私钥生成公钥
  */

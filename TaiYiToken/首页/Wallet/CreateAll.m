@@ -34,14 +34,13 @@
 +(NSString *)CreateSeedByMnemonic:(NSString *)mnemonic Password:(NSString *)password{
     mnemonic = @"breeze eternal fiction junior ethics lumber chaos squirrel code jar snack broccoli";
 //    NSLog(@"mnemonic = %@",mnemonic);
-    //passphrase作用是位移 助记词只要反向位移password位移的值就能生成正确的私钥
     NSString *seed = [NYMnemonic deterministicSeedStringFromMnemonicString:mnemonic
                                                                 passphrase:@""
                                                                 language:@"english"];
     NSLog(@"seed = %@",seed);
     
     [CreateAll CreateKeyStoreByMnemonic:mnemonic Password:password callback:^(Account *account, NSError *error) {
-       // NSLog(@"**** finished ! ****");
+        NSLog(@"**** CreateKeyStoreByMnemonic finished ! ****");
     }];
     
     return seed;
@@ -98,7 +97,7 @@
  由扩展私钥生成钱包，指定钱包索引，币种两个参数
  xprv,index,coinType
  */
--(MissionWallet *)CreateWalletByXprv:(NSString*)xprv index:(UInt32)index CoinType:(CoinType)coinType{
++(MissionWallet *)CreateWalletByXprv:(NSString*)xprv index:(UInt32)index CoinType:(CoinType)coinType{
    // BTCKeychain *masterchain = [[BTCKeychain alloc]initWithSeed:seed.hexToData];
     MissionWallet *wallet = [MissionWallet new];
     wallet.coinType = coinType;
@@ -154,7 +153,24 @@
         callback(decryptedAccount,error);
     }];
 }
+//生成地址二维码
++(UIImage *)CreateQRCodeForAddress:(NSString *)address{
+    if (address == nil || [address isEqualToString:@""]) {
+        return nil;
+    }
+    UIImage *QRCodeImage = [BTCQRCode imageForString:address size:CGSizeMake(180, 180) scale:1.0];
+    return QRCodeImage;
+}
 
+//清空所有钱包，退出账号
++(void)RemoveAllWallet{
+    [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"walletBTC"];
+    [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"walletBTC2"];
+    [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"walletETH"];
+    [[NSUserDefaults standardUserDefaults]  setBool:NO forKey:@"ifHasAccount"];
+    [[NSUserDefaults standardUserDefaults]  setBool:NO forKey:@"keystore"];
+}
+/***********************************/
 
 +(void)GetBitcoinWalletBalanceForAddress:(NSString *)address{
     

@@ -45,7 +45,8 @@
 -(UIButton *)QRCodeBtn{
     if (!_QRCodeBtn) {
         _QRCodeBtn = [UIButton buttonWithType: UIButtonTypeCustom];
-        [self.contentView addSubview:_QRCodeBtn];
+        _QRCodeBtn.userInteractionEnabled = YES;
+        [self.contentView  addSubview:_QRCodeBtn];
         [_QRCodeBtn setBackgroundImage:[UIImage imageNamed:@"wallet_code"] forState:UIControlStateNormal];
         [_QRCodeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(26);
@@ -59,10 +60,11 @@
 -(UIButton *)addressBtn{
     if (!_addressBtn) {
         _addressBtn = [UIButton buttonWithType: UIButtonTypeCustom];
+        _addressBtn.userInteractionEnabled = YES;
         _addressBtn.titleLabel.textColor = [UIColor textWhiteColor];
         _addressBtn.titleLabel.textAlignment = NSTextAlignmentRight;
         _addressBtn.titleLabel.font = [UIFont systemFontOfSize:10];
-        [self.contentView addSubview:_addressBtn];
+        [self.contentView  addSubview:_addressBtn];
         [_addressBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.equalTo(0);
             make.bottom.equalTo(-20);
@@ -85,6 +87,7 @@
 -(UIButton *)detailBtn{
     if (!_detailBtn) {
         _detailBtn = [UIButton buttonWithType: UIButtonTypeCustom];
+        _detailBtn.userInteractionEnabled = YES;
         [_detailBtn setBackgroundImage:[UIImage imageNamed:@"detail"] forState:UIControlStateNormal];
         _detailBtn.imageView.contentMode = UIViewContentModeCenter;
         [self.contentView addSubview:_detailBtn];
