@@ -115,4 +115,5 @@
 + (UIColor *)textBlueColor;
 + (UIColor *)backBlueColorA;
 + (UIColor *)backBlueColorB;
++ (UIColor *)textDarkColor;
 @end

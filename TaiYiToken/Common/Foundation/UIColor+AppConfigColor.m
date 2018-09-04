@@ -96,6 +96,12 @@
     return RGB(71, 201, 246);
 }
 
++ (UIColor *)textDarkColor{
+    //    return RGB(0, 221, 140);
+    return [UIColor colorWithHexString:@"#2B3041"];
+}
+
+
 + (UIColor *)textBlueColor{
     return RGB(71, 170, 256);
 }

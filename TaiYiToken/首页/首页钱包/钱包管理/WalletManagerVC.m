@@ -8,12 +8,14 @@
 
 #import "WalletManagerVC.h"
 #import "WalletManagerCell.h"
+#import "ExportWalletVC.h"
 @interface WalletManagerVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 @property(nonatomic)UICollectionView *collectionview;
 @property(nonatomic,strong) UIButton *backBtn;
+@property(nonatomic)UILabel *titleLabel;
 @property(nonatomic)UIButton *addAccountBtn;
 @property(nonatomic)UIButton *addWalletBtn;
-@property(nonatomic)UILabel *titleLabel;
+
 @end
 
 @implementation WalletManagerVC
@@ -122,7 +124,7 @@
     return 10;
 }
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
-    return UIEdgeInsetsMake(5, 25, 5, 25);
+    return UIEdgeInsetsMake(5, 10, 5, 10);
 }
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
     return CGSizeMake(1, 1);
@@ -170,9 +172,12 @@
     return cell;
 }
 
-//
+//导出钱包
 -(void)exportBtnAction:(UIButton *)btn{
-    
+    ExportWalletVC *evc = [ExportWalletVC new];
+    MissionWallet *wallet = self.walletArray[btn.tag];
+    evc.wallet = wallet;
+    [self.navigationController pushViewController:evc animated:YES];
 }
 
 
@@ -204,7 +209,8 @@
         _collectionview.showsHorizontalScrollIndicator = NO;
         [self.view addSubview:_collectionview];
         [_collectionview mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.right.equalTo(0);
+            make.left.equalTo(0);
+            make.width.equalTo(ScreenWidth);
             make.top.equalTo(64);
             make.bottom.equalTo(-40);
         }];

@@ -57,13 +57,13 @@
         _exportBtn = [UIButton buttonWithType: UIButtonTypeCustom];
         _exportBtn.titleLabel.textColor = [UIColor textWhiteColor];
         _exportBtn.titleLabel.textAlignment = NSTextAlignmentLeft;
-        _exportBtn.titleLabel.font = [UIFont systemFontOfSize:10];
+        _exportBtn.titleLabel.font = [UIFont systemFontOfSize:13];
         _exportBtn.userInteractionEnabled = YES;
         [_exportBtn setTitle:@"导出" forState:UIControlStateNormal];
         [self.contentView addSubview:_exportBtn];
         [_exportBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(20);
-            make.top.equalTo(self.addressBtn.mas_bottom).equalTo(5);
+            make.top.equalTo(self.addressBtn.mas_bottom).equalTo(20);
             make.width.equalTo(40);
             make.height.equalTo(20);
         }];

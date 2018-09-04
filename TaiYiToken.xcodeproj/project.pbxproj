@@ -50,6 +50,8 @@
 		842FEE48213E38510075716E /* MySwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 842FEE47213E38510075716E /* MySwitch.m */; };
 		842FEE4B213E51390075716E /* WalletManagerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 842FEE4A213E51390075716E /* WalletManagerVC.m */; };
 		842FEE4F213E52590075716E /* WalletManagerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 842FEE4E213E52590075716E /* WalletManagerCell.m */; };
+		842FEE55213E752C0075716E /* ExportWalletVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 842FEE54213E752C0075716E /* ExportWalletVC.m */; };
+		842FEE58213E75D60075716E /* ExportWalletCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 842FEE57213E75D60075716E /* ExportWalletCell.m */; };
 		843EC9DA21212271002D5C2A /* NSObject+Parse.m in Sources */ = {isa = PBXBuildFile; fileRef = 843EC9CF21212266002D5C2A /* NSObject+Parse.m */; };
 		843EC9DB21212271002D5C2A /* UIScrollView+Refresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 843EC9D021212267002D5C2A /* UIScrollView+Refresh.m */; };
 		843EC9DC21212271002D5C2A /* UIView+HUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 843EC9D221212268002D5C2A /* UIView+HUD.m */; };
@@ -231,6 +233,10 @@
 		842FEE4A213E51390075716E /* WalletManagerVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WalletManagerVC.m; sourceTree = "<group>"; };
 		842FEE4D213E52590075716E /* WalletManagerCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WalletManagerCell.h; sourceTree = "<group>"; };
 		842FEE4E213E52590075716E /* WalletManagerCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WalletManagerCell.m; sourceTree = "<group>"; };
+		842FEE53213E752C0075716E /* ExportWalletVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExportWalletVC.h; sourceTree = "<group>"; };
+		842FEE54213E752C0075716E /* ExportWalletVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExportWalletVC.m; sourceTree = "<group>"; };
+		842FEE56213E75D60075716E /* ExportWalletCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExportWalletCell.h; sourceTree = "<group>"; };
+		842FEE57213E75D60075716E /* ExportWalletCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExportWalletCell.m; sourceTree = "<group>"; };
 		843EC9C721212170002D5C2A /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		843EC9CE21212266002D5C2A /* NSString+URLString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+URLString.h"; sourceTree = "<group>"; };
 		843EC9CF21212266002D5C2A /* NSObject+Parse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Parse.m"; sourceTree = "<group>"; };
@@ -761,12 +767,32 @@
 		842FEE35213E1CF40075716E /* 钱包管理 */ = {
 			isa = PBXGroup;
 			children = (
-				842FEE4D213E52590075716E /* WalletManagerCell.h */,
-				842FEE4E213E52590075716E /* WalletManagerCell.m */,
+				842FEE52213E75040075716E /* View */,
+				842FEE51213E74C00075716E /* 导出 */,
 				842FEE49213E51390075716E /* WalletManagerVC.h */,
 				842FEE4A213E51390075716E /* WalletManagerVC.m */,
 			);
 			path = "钱包管理";
+			sourceTree = "<group>";
+		};
+		842FEE51213E74C00075716E /* 导出 */ = {
+			isa = PBXGroup;
+			children = (
+				842FEE53213E752C0075716E /* ExportWalletVC.h */,
+				842FEE54213E752C0075716E /* ExportWalletVC.m */,
+			);
+			path = "导出";
+			sourceTree = "<group>";
+		};
+		842FEE52213E75040075716E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				842FEE4D213E52590075716E /* WalletManagerCell.h */,
+				842FEE4E213E52590075716E /* WalletManagerCell.m */,
+				842FEE56213E75D60075716E /* ExportWalletCell.h */,
+				842FEE57213E75D60075716E /* ExportWalletCell.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		843EC9C1212120E9002D5C2A /* 导航控制 */ = {
@@ -1370,6 +1396,7 @@
 				0415BD9A2131BC850022DEB7 /* YYTopBarView.m in Sources */,
 				8460C7B12136A446002E4B2F /* YYTimeLineModel.m in Sources */,
 				843ECA3921216320002D5C2A /* UIView+frameAdjust.m in Sources */,
+				842FEE55213E752C0075716E /* ExportWalletVC.m in Sources */,
 				0415BDAC2131BC850022DEB7 /* YYKlineVolumeView.m in Sources */,
 				843ECA3B21216320002D5C2A /* UIColor+Util.m in Sources */,
 				843ECA29212162FB002D5C2A /* NSDictionary+ExFoundation.m in Sources */,
@@ -1449,6 +1476,7 @@
 				843ECA2D212162FB002D5C2A /* UIImage+ExFoundation.m in Sources */,
 				84748848212BC2EC0077AC0F /* UserInfoVC.m in Sources */,
 				84BDD1702126B3DF0039FE09 /* ButtonsView.m in Sources */,
+				842FEE58213E75D60075716E /* ExportWalletCell.m in Sources */,
 				0415BDA42131BC850022DEB7 /* YYTimeLineVolumeView.m in Sources */,
 				84B0A94A2122736B002EFA0A /* CustomTabBar.m in Sources */,
 				0415BDA22131BC850022DEB7 /* YYTimeLineMaskView.m in Sources */,
