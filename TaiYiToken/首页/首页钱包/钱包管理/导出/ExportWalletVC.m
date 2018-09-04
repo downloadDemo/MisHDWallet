@@ -8,11 +8,12 @@
 
 #import "ExportWalletVC.h"
 #import "ExportWalletCell.h"
+#import "InputPasswordView.h"
 @interface ExportWalletVC ()<UITableViewDelegate ,UITableViewDataSource>
 @property(nonatomic)UITableView *tableView;
 @property(nonatomic)NSArray *iconImageNameArray;
 @property(nonatomic)NSArray *titleArray;
-
+@property(nonatomic)InputPasswordView *ipview;
 @property(nonatomic,strong) UIButton *backBtn;
 @property(nonatomic)UILabel *titleLabel;
 @end
@@ -114,6 +115,34 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return 4;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    UIView *shadowView = [UIView new];
+    shadowView.layer.shadowColor = [UIColor grayColor].CGColor;
+    shadowView.layer.shadowOffset = CGSizeMake(0, 0);
+    shadowView.layer.shadowOpacity = 1;
+    shadowView.layer.shadowRadius = 3.0;
+    shadowView.layer.cornerRadius = 3.0;
+    shadowView.clipsToBounds = NO;
+    [self.tableView addSubview:shadowView];
+    [shadowView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.equalTo(0);
+        make.width.equalTo(300);
+        make.height.equalTo(120);
+    }];
+    _ipview = [InputPasswordView new];
+    [_ipview initUI];
+    [_ipview.confirmBtn addTarget:self action:@selector(confirmBtnAction) forControlEvents:UIControlEventTouchUpInside];
+    [shadowView addSubview:_ipview];
+    [_ipview mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(0);
+    }];
+}
+
+-(void)confirmBtnAction{
+    NSLog(@" 88 %@",self.ipview.passwordTextField.text);
+    [_ipview removeFromSuperview];
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{

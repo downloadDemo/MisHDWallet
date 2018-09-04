@@ -52,6 +52,9 @@
 		842FEE4F213E52590075716E /* WalletManagerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 842FEE4E213E52590075716E /* WalletManagerCell.m */; };
 		842FEE55213E752C0075716E /* ExportWalletVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 842FEE54213E752C0075716E /* ExportWalletVC.m */; };
 		842FEE58213E75D60075716E /* ExportWalletCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 842FEE57213E75D60075716E /* ExportWalletCell.m */; };
+		842FEE5B213E89940075716E /* ExportKeyStoreVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 842FEE5A213E89940075716E /* ExportKeyStoreVC.m */; };
+		842FEE5E213E8B0A0075716E /* InputPasswordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 842FEE5D213E8B0A0075716E /* InputPasswordVC.m */; };
+		842FEE61213E8E840075716E /* InputPasswordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 842FEE60213E8E840075716E /* InputPasswordView.m */; };
 		843EC9DA21212271002D5C2A /* NSObject+Parse.m in Sources */ = {isa = PBXBuildFile; fileRef = 843EC9CF21212266002D5C2A /* NSObject+Parse.m */; };
 		843EC9DB21212271002D5C2A /* UIScrollView+Refresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 843EC9D021212267002D5C2A /* UIScrollView+Refresh.m */; };
 		843EC9DC21212271002D5C2A /* UIView+HUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 843EC9D221212268002D5C2A /* UIView+HUD.m */; };
@@ -237,6 +240,12 @@
 		842FEE54213E752C0075716E /* ExportWalletVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExportWalletVC.m; sourceTree = "<group>"; };
 		842FEE56213E75D60075716E /* ExportWalletCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExportWalletCell.h; sourceTree = "<group>"; };
 		842FEE57213E75D60075716E /* ExportWalletCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExportWalletCell.m; sourceTree = "<group>"; };
+		842FEE59213E89940075716E /* ExportKeyStoreVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExportKeyStoreVC.h; sourceTree = "<group>"; };
+		842FEE5A213E89940075716E /* ExportKeyStoreVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExportKeyStoreVC.m; sourceTree = "<group>"; };
+		842FEE5C213E8B0A0075716E /* InputPasswordVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputPasswordVC.h; sourceTree = "<group>"; };
+		842FEE5D213E8B0A0075716E /* InputPasswordVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InputPasswordVC.m; sourceTree = "<group>"; };
+		842FEE5F213E8E840075716E /* InputPasswordView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputPasswordView.h; sourceTree = "<group>"; };
+		842FEE60213E8E840075716E /* InputPasswordView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InputPasswordView.m; sourceTree = "<group>"; };
 		843EC9C721212170002D5C2A /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		843EC9CE21212266002D5C2A /* NSString+URLString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+URLString.h"; sourceTree = "<group>"; };
 		843EC9CF21212266002D5C2A /* NSObject+Parse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Parse.m"; sourceTree = "<group>"; };
@@ -778,6 +787,8 @@
 		842FEE51213E74C00075716E /* 导出 */ = {
 			isa = PBXGroup;
 			children = (
+				842FEE59213E89940075716E /* ExportKeyStoreVC.h */,
+				842FEE5A213E89940075716E /* ExportKeyStoreVC.m */,
 				842FEE53213E752C0075716E /* ExportWalletVC.h */,
 				842FEE54213E752C0075716E /* ExportWalletVC.m */,
 			);
@@ -791,6 +802,10 @@
 				842FEE4E213E52590075716E /* WalletManagerCell.m */,
 				842FEE56213E75D60075716E /* ExportWalletCell.h */,
 				842FEE57213E75D60075716E /* ExportWalletCell.m */,
+				842FEE5C213E8B0A0075716E /* InputPasswordVC.h */,
+				842FEE5D213E8B0A0075716E /* InputPasswordVC.m */,
+				842FEE5F213E8E840075716E /* InputPasswordView.h */,
+				842FEE60213E8E840075716E /* InputPasswordView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1410,6 +1425,7 @@
 				843EC9ED212122A7002D5C2A /* BaseNetworking.m in Sources */,
 				0415BDA82131BC850022DEB7 /* YYKlineView.m in Sources */,
 				0415BDAB2131BC850022DEB7 /* YYKlineMaskView.m in Sources */,
+				842FEE5E213E8B0A0075716E /* InputPasswordVC.m in Sources */,
 				8481805F2123B2630007DCF9 /* Base64.m in Sources */,
 				84748845212AAAD70077AC0F /* VerifyMnemonicVC.m in Sources */,
 				843EC9DE21212271002D5C2A /* NSString+URLString.m in Sources */,
@@ -1458,12 +1474,14 @@
 				847BC6092133E001000B02AC /* MissionWallet.m in Sources */,
 				8460C7B02136A446002E4B2F /* YYLineDataModel.m in Sources */,
 				84B0A95A2122B87B002EFA0A /* UIColor+PGHex.m in Sources */,
+				842FEE5B213E89940075716E /* ExportKeyStoreVC.m in Sources */,
 				0415BD9D2131BC850022DEB7 /* YYVolumePositionModel.m in Sources */,
 				842FEE2E213D27BE0075716E /* MBProgressHUD+SGQRCode.m in Sources */,
 				84C0DF2D212CFF8500BCC91D /* NSData+Bitcoin.m in Sources */,
 				848180602123B2630007DCF9 /* NSData+CommonCrypto.m in Sources */,
 				0415BD9F2131BC850022DEB7 /* YYFiveRecordTableViewCell.m in Sources */,
 				848180612123B2630007DCF9 /* PBKDF2.m in Sources */,
+				842FEE61213E8E840075716E /* InputPasswordView.m in Sources */,
 				842C1097212A4A7E00E466C5 /* DataPointView.m in Sources */,
 				842FEDF22138D8770075716E /* WebVC.m in Sources */,
 				842FEE4B213E51390075716E /* WalletManagerVC.m in Sources */,
