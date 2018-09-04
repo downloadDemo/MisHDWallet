@@ -20,6 +20,8 @@
 @property(nonatomic,copy)NSString *privateKey;
 @property(nonatomic,copy)NSString *publicKey;
 @property(nonatomic,copy)NSString *address;
+//子钱包索引
+@property(nonatomic)int index;
 
 @property(nonatomic,assign)CoinType coinType;
 @end

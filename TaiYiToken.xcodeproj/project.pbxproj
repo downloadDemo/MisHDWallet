@@ -48,6 +48,8 @@
 		842FEE2E213D27BE0075716E /* MBProgressHUD+SGQRCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 842FEE2D213D27BE0075716E /* MBProgressHUD+SGQRCode.m */; };
 		842FEE38213E207A0075716E /* ReceiptQRCodeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 842FEE37213E207A0075716E /* ReceiptQRCodeVC.m */; };
 		842FEE48213E38510075716E /* MySwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 842FEE47213E38510075716E /* MySwitch.m */; };
+		842FEE4B213E51390075716E /* WalletManagerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 842FEE4A213E51390075716E /* WalletManagerVC.m */; };
+		842FEE4F213E52590075716E /* WalletManagerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 842FEE4E213E52590075716E /* WalletManagerCell.m */; };
 		843EC9DA21212271002D5C2A /* NSObject+Parse.m in Sources */ = {isa = PBXBuildFile; fileRef = 843EC9CF21212266002D5C2A /* NSObject+Parse.m */; };
 		843EC9DB21212271002D5C2A /* UIScrollView+Refresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 843EC9D021212267002D5C2A /* UIScrollView+Refresh.m */; };
 		843EC9DC21212271002D5C2A /* UIView+HUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 843EC9D221212268002D5C2A /* UIView+HUD.m */; };
@@ -225,6 +227,10 @@
 		842FEE37213E207A0075716E /* ReceiptQRCodeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReceiptQRCodeVC.m; sourceTree = "<group>"; };
 		842FEE46213E38510075716E /* MySwitch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MySwitch.h; sourceTree = "<group>"; };
 		842FEE47213E38510075716E /* MySwitch.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MySwitch.m; sourceTree = "<group>"; };
+		842FEE49213E51390075716E /* WalletManagerVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WalletManagerVC.h; sourceTree = "<group>"; };
+		842FEE4A213E51390075716E /* WalletManagerVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WalletManagerVC.m; sourceTree = "<group>"; };
+		842FEE4D213E52590075716E /* WalletManagerCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WalletManagerCell.h; sourceTree = "<group>"; };
+		842FEE4E213E52590075716E /* WalletManagerCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WalletManagerCell.m; sourceTree = "<group>"; };
 		843EC9C721212170002D5C2A /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		843EC9CE21212266002D5C2A /* NSString+URLString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+URLString.h"; sourceTree = "<group>"; };
 		843EC9CF21212266002D5C2A /* NSObject+Parse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Parse.m"; sourceTree = "<group>"; };
@@ -755,6 +761,10 @@
 		842FEE35213E1CF40075716E /* 钱包管理 */ = {
 			isa = PBXGroup;
 			children = (
+				842FEE4D213E52590075716E /* WalletManagerCell.h */,
+				842FEE4E213E52590075716E /* WalletManagerCell.m */,
+				842FEE49213E51390075716E /* WalletManagerVC.h */,
+				842FEE4A213E51390075716E /* WalletManagerVC.m */,
 			);
 			path = "钱包管理";
 			sourceTree = "<group>";
@@ -1404,6 +1414,7 @@
 				0415BDA92131BC850022DEB7 /* YYKline.m in Sources */,
 				8428A548212544F2003E1DD8 /* MarketDetailVC.m in Sources */,
 				84D0E43121211AAF004E65AD /* main.m in Sources */,
+				842FEE4F213E52590075716E /* WalletManagerCell.m in Sources */,
 				0415BDA32131BC850022DEB7 /* YYTimeLineView.m in Sources */,
 				0415BD9B2131BC850022DEB7 /* YYStock.m in Sources */,
 				84C8E7E0212A9FEF00627445 /* UIView+Extension.m in Sources */,
@@ -1428,6 +1439,7 @@
 				848180612123B2630007DCF9 /* PBKDF2.m in Sources */,
 				842C1097212A4A7E00E466C5 /* DataPointView.m in Sources */,
 				842FEDF22138D8770075716E /* WebVC.m in Sources */,
+				842FEE4B213E51390075716E /* WalletManagerVC.m in Sources */,
 				843ECA23212162FB002D5C2A /* CALayer+XibConfiguration.m in Sources */,
 				843ECA07212162B7002D5C2A /* NSString+Hash.m in Sources */,
 				84B0A9482122736B002EFA0A /* CustomizedTabBarController.m in Sources */,

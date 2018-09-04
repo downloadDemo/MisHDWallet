@@ -10,8 +10,9 @@
 #import "MySwitch.h"
 @interface ReceiptQRCodeVC ()<MySwitchDelegate>
 @property(nonatomic,strong) UIButton *backBtn;
+@property(nonatomic,strong) UIButton *shareBtn;
 @property(nonatomic)MySwitch *addressSwitch;
-@property(nonatomic,strong)UILabel *addressLabel;
+@property(nonatomic)UIButton *addressBtn;
 @property(nonatomic,strong)UIImageView *QRCodeiv;
 @end
 
@@ -25,7 +26,9 @@
 - (void)popAction{
     [self.navigationController popViewControllerAnimated:YES];
 }
-
+-(void)shareAction{
+    
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorWithHexString:@"#434343"];
@@ -48,6 +51,22 @@
         make.left.equalTo(10);
         make.width.equalTo(30);
     }];
+    
+    _shareBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _shareBtn.backgroundColor = [UIColor clearColor];
+    _shareBtn.tintColor = [UIColor whiteColor];
+    [_shareBtn.imageView setContentMode:UIViewContentModeScaleAspectFit];
+    [_shareBtn setImage:[UIImage imageNamed:@"ico_share"] forState:UIControlStateNormal];
+    [_shareBtn addTarget:self action:@selector(shareAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_shareBtn];
+    _shareBtn.userInteractionEnabled = YES;
+    [_shareBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(30);
+        make.height.equalTo(25);
+        make.right.equalTo(-10);
+        make.width.equalTo(30);
+    }];
+    
     
     
     UIImage *backImage = [[UIImage alloc]createImageWithSize:CGSizeMake(312, 155) gradientColors:@[[UIColor colorWithHexString:@"#4090F7"],[UIColor colorWithHexString:@"#57A8FF"]] percentage:@[@(0.3),@(1)] gradientType:GradientFromLeftTopToRightBottom];
@@ -133,30 +152,33 @@
         
        //
     }
-    _addressLabel = [UILabel new];
-    _addressLabel.font = [UIFont boldSystemFontOfSize:10];
-    _addressLabel.textColor = [UIColor textWhiteColor];
-    _addressLabel.textAlignment = NSTextAlignmentRight;
+    
+    _addressBtn = [UIButton buttonWithType: UIButtonTypeCustom];
+    _addressBtn.userInteractionEnabled = YES;
+    _addressBtn.titleLabel.textColor = [UIColor textWhiteColor];
+    _addressBtn.titleLabel.textAlignment = NSTextAlignmentRight;
+    _addressBtn.titleLabel.font = [UIFont systemFontOfSize:10];
+    [_addressBtn addTarget:self action:@selector(addressBtnAction) forControlEvents:UIControlEventTouchUpInside];
     NSString *address = @"";
     if(_wallet.address.length > 20){
         NSString *str1 = [_wallet.address substringToIndex:9];
         NSString *str2 = [_wallet.address substringFromIndex:_wallet.address.length - 10];
         address = [NSString stringWithFormat:@"%@...%@",str1,str2];
     }
-    _addressLabel.text =  address;
-    [iv addSubview:_addressLabel];
-    [_addressLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(-20);
+    [_addressBtn setTitle:address forState:UIControlStateNormal];
+    [iv addSubview:_addressBtn];
+    [_addressBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(-10);
         make.top.equalTo(121);
-        make.width.equalTo(160);
+        make.width.equalTo(140);
         make.height.equalTo(20);
     }];
     UIImageView *copyiv = [UIImageView new];
     copyiv.image = [UIImage imageNamed:@"ico_backups"];
     [iv addSubview:copyiv];
     [copyiv mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.addressLabel.mas_right).equalTo(3);
-        make.top.equalTo(121);
+        make.left.equalTo(self.addressBtn.mas_right).equalTo(0);
+        make.top.equalTo(125);
         make.width.equalTo(10);
         make.height.equalTo(12);
     }];
@@ -172,16 +194,38 @@
     }];
 
 }
+
+
+//点击复制地址
+-(void)addressBtnAction{
+    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+    if (_wallet.coinType == ETH || self.addressSwitch == nil) {
+        pasteboard.string = _wallet.address;
+    }else{
+        pasteboard.string = _addressSwitch.OnStatus == YES ? self.wallet.address : self.BTCWallet2.address;
+    }
+   [self.view showMsg:@"地址已复制"];
+}
+
 - (void)onStatusDelegate{
-    NSLog(@"*****");
     if (_addressSwitch.OnStatus == YES) {
         [_QRCodeiv setImage:[CreateAll CreateQRCodeForAddress:_wallet == nil? @"": _wallet.address]];
-        [_addressLabel setText:_wallet == nil? @"": _wallet.address];
-        NSLog(@"打开");
+        NSString *address = @"";
+        if(_wallet.address.length > 20){
+            NSString *str1 = [_wallet.address substringToIndex:9];
+            NSString *str2 = [_wallet.address substringFromIndex:_wallet.address.length - 10];
+            address = [NSString stringWithFormat:@"%@...%@",str1,str2];
+        }
+        [_addressBtn setTitle:address forState:UIControlStateNormal];
     }else{
         [_QRCodeiv setImage:[CreateAll CreateQRCodeForAddress:_BTCWallet2 == nil?@"":_BTCWallet2.address]];
-        [_addressLabel setText:_wallet == nil? @"": _BTCWallet2.address];
-        NSLog(@"关闭");
+        NSString *address = @"";
+        if(_BTCWallet2.address.length > 20){
+            NSString *str1 = [_BTCWallet2.address substringToIndex:9];
+            NSString *str2 = [_BTCWallet2.address substringFromIndex:_BTCWallet2.address.length - 10];
+            address = [NSString stringWithFormat:@"%@...%@",str1,str2];
+        }
+        [_addressBtn setTitle:address forState:UIControlStateNormal];
     }
 }
 

@@ -26,7 +26,9 @@
 //#import <iconv.h>
 
 @implementation CreateAll
-
+/*
+ *********************************************钱包生成/导入/恢复********************************************************
+ */
 /* 1 * 生成种子
  助记词由长度为128到256位的随机序列(熵)匹配词库而来，随后采用PBKDF2(Password-Based Key Derivation Function 2)推导出更长的种子(seed)。
  生成的种子被用来生成构建deterministic Wallet和推导钱包密钥。
@@ -131,6 +133,7 @@
         wallet.privateKey = privateKey;
         wallet.publicKey = compressedPublicKey;
         wallet.address = compressedPublicKeyAddress;
+        wallet.index = index;
         NSLog(@"\n BTC  privateKey= %@\n Address = %@\n  PublicKey = %@\n",privateKey,compressedPublicKeyAddress, compressedPublicKey);
         
     }else{
@@ -140,6 +143,7 @@
         wallet.privateKey = privateKey;
         wallet.publicKey = compressedPublicKey;
         wallet.address = account.address.checksumAddress;
+        wallet.index = index;
         NSLog(@"\n ETH  privateKey= %@\n Address = %@\n  PublicKey = %@\n",privateKey,account.address.checksumAddress, compressedPublicKey);
     }
     
@@ -153,6 +157,7 @@
         callback(decryptedAccount,error);
     }];
 }
+
 //生成地址二维码
 +(UIImage *)CreateQRCodeForAddress:(NSString *)address{
     if (address == nil || [address isEqualToString:@""]) {
@@ -162,6 +167,36 @@
     return QRCodeImage;
 }
 
+/*
+ ************************************************ 钱包导出 *********************************************************************
+ */
+//导出keystore
++(NSString *)ExportKeyStoreByPassword:(NSString *)password{
+    NSString *json = [[NSUserDefaults standardUserDefaults]  objectForKey:@"keystore"];
+    return json;
+}
+//导出助记词
++(void)ExportMnemonicByPassword:(NSString *)password  callback: (void (^)(NSString *mnemonic, NSError *error))callback{
+    NSString *json = [[NSUserDefaults standardUserDefaults]  objectForKey:@"keystore"];
+    [Account decryptSecretStorageJSON:json password:password callback:^(Account *decryptedAccount, NSError *error) {
+        callback(decryptedAccount.mnemonicPhrase,error);
+    }];
+}
+//导出私钥
++(void)ExportPrivateKeyByPassword:(NSString *)password CoinType:(CoinType)coinType index:(UInt32)index  callback: (void (^)(NSString *privateKey, NSError *error))callback{
+    NSString *json = [[NSUserDefaults standardUserDefaults]  objectForKey:@"keystore"];
+    [Account decryptSecretStorageJSON:json password:password callback:^(Account *decryptedAccount, NSError *error) {
+        NSString *seed = [CreateAll CreateSeedByMnemonic:decryptedAccount.mnemonicPhrase Password:password];
+        NSString *xprv = [CreateAll CreateExtendPrivateKeyWithSeed:seed];
+        MissionWallet *wallet = [CreateAll CreateWalletByXprv:xprv index:index CoinType:coinType];
+        callback(wallet.privateKey,error);
+    }];
+}
+
+
+/*
+ ********************************************** 钱包账号存取管理 *******************************************************************
+ */
 //清空所有钱包，退出账号
 +(void)RemoveAllWallet{
     [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"walletBTC"];
@@ -169,7 +204,37 @@
     [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"walletETH"];
     [[NSUserDefaults standardUserDefaults]  setBool:NO forKey:@"ifHasAccount"];
     [[NSUserDefaults standardUserDefaults]  setBool:NO forKey:@"keystore"];
+    NSArray *array = @[];
+    [[NSUserDefaults standardUserDefaults]  setObject:array forKey:@"walletArray"];
 }
+//取得所有钱包名称
++(NSArray *)GetWalletNameArray{
+   NSArray *walletarray = [[NSUserDefaults standardUserDefaults]  objectForKey:@"walletArray"];
+   return walletarray;
+}
+
+//根据钱包名称取钱包
++(MissionWallet *)GetMissionWalletByName:(NSString *)walletname{
+    NSData *walletdata =  [[NSUserDefaults standardUserDefaults] objectForKey:walletname];
+    if (walletdata == nil) {
+        return nil;
+    }
+    MissionWallet *wallet =  [NSKeyedUnarchiver unarchiveObjectWithData:walletdata];
+    return wallet;
+}
+
+//存储钱包
++(void)SaveWallet:(MissionWallet *)wallet Name:(NSString *)walletname{
+    //存钱包
+    NSData *walletdata = [NSKeyedArchiver archivedDataWithRootObject:wallet];
+    [[NSUserDefaults standardUserDefaults] setObject:walletdata forKey:walletname];
+    //更新钱包名数组
+    NSMutableArray *oldwalletarray = [[[NSUserDefaults standardUserDefaults]  objectForKey:@"walletArray"] mutableCopy];
+    [oldwalletarray addObject:walletname];
+    NSMutableArray *newwalletarray = [oldwalletarray mutableCopy];
+    [[NSUserDefaults standardUserDefaults]  setObject:newwalletarray forKey:@"walletArray"];
+}
+
 /***********************************/
 
 +(void)GetBitcoinWalletBalanceForAddress:(NSString *)address{

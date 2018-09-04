@@ -102,7 +102,6 @@
         //滑块关闭动画
         CABasicAnimation * ani = [CABasicAnimation animationWithKeyPath:@"position"];
         ani.toValue = [NSValue valueWithCGPoint:CGPointMake(_Width-_Height-_Gap, _CircleR+_Gap)];
-        NSLog(@"a");
         ani.removedOnCompletion = NO;
         ani.fillMode = kCAFillModeForwards;
         ani.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
@@ -121,7 +120,6 @@
         //滑块打开动画
         CABasicAnimation * ani = [CABasicAnimation animationWithKeyPath:@"position"];
         ani.toValue = [NSValue valueWithCGPoint:CGPointMake(_Width/2-_Height-_Gap, _CircleR+_Gap)];
-         NSLog(@"b");
         ani.removedOnCompletion = NO;
         ani.fillMode = kCAFillModeForwards;
         ani.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];

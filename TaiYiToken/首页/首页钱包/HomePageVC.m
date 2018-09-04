@@ -15,6 +15,7 @@
 #import "WBQRCodeVC.h"
 #import "CustomizedNavigationController.h"
 #import "ReceiptQRCodeVC.h"
+#import "WalletManagerVC.h"
 @interface HomePageVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITableViewDelegate,UITableViewDataSource,UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property(nonatomic)UICollectionView *collectionview;
 @property(nonatomic)UITableView *tableView;
@@ -33,10 +34,9 @@
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"ifHasAccount"] == YES) {
         self.walletDic = [NSMutableDictionary new];
         
-        NSData *walletBTCdata =  [[NSUserDefaults standardUserDefaults] objectForKey:@"walletBTC"];
-        MissionWallet *walletBTC =  [NSKeyedUnarchiver unarchiveObjectWithData:walletBTCdata];
-        NSData *walletETHdata =  [[NSUserDefaults standardUserDefaults] objectForKey:@"walletETH"];
-        MissionWallet *walletETH =  [NSKeyedUnarchiver unarchiveObjectWithData:walletETHdata];
+        MissionWallet *walletBTC = [CreateAll GetMissionWalletByName:@"walletBTC"];
+        MissionWallet *walletETH = [CreateAll GetMissionWalletByName:@"walletETH"];
+        
         [self.walletDic setObject:walletBTC forKey:@"walletBTC"];
         [self.walletDic setObject:walletETH forKey:@"walletETH"];
         [self.collectionview registerClass:[WalletCell class] forCellWithReuseIdentifier:@"walletcell"];
@@ -111,9 +111,20 @@
         
     }];
 }
-//上方按钮
+//点击进入钱包管理
 -(void)walletBtnAction{
-    
+    NSArray *walletarray = [CreateAll GetWalletNameArray];
+    NSMutableArray *array = [NSMutableArray array];
+    if (walletarray != nil) {
+        for (NSString *walletname in walletarray) {
+            MissionWallet *wallet = [CreateAll GetMissionWalletByName:walletname];
+            [array addObject:wallet];
+        }
+        WalletManagerVC *walletVC = [WalletManagerVC new];
+        walletVC.walletArray = [array mutableCopy];
+        [self.navigationController pushViewController:walletVC animated:YES];
+    }
+   
 }
 //扫描二维码
 -(void)scanBtnAction{
@@ -134,7 +145,8 @@
 }
 //点击进入钱包详情
 -(void)detailBtnAction:(UIButton *)btn{
-    NSLog(@"detailBtn %ld",btn.tag);
+    
+    
 }
 //点击复制地址
 -(void)addressBtnAction:(UIButton *)btn{

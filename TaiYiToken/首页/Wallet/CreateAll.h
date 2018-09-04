@@ -25,7 +25,9 @@
 #import <Foundation/Foundation.h>
 
 @interface CreateAll : NSObject
-
+/*
+ *********钱包生成/导入/恢复**********
+ */
 //由助记词生成种子  seed
 +(NSString *)CreateSeedByMnemonic:(NSString *)mnemonic Password:(NSString *)password;
 
@@ -47,7 +49,30 @@
 
 //生成地址二维码
 +(UIImage *)CreateQRCodeForAddress:(NSString *)address;
+/*
+ ************** 钱包导出 ***************
+ */
+//导出keystore
++(NSString *)ExportKeyStoreByPassword:(NSString *)password;
 
+//导出助记词
++(void)ExportMnemonicByPassword:(NSString *)password  callback: (void (^)(NSString *mnemonic, NSError *error))callback;
+
+//导出私钥
++(void)ExportPrivateKeyByPassword:(NSString *)password CoinType:(CoinType)coinType index:(UInt32)index  callback: (void (^)(NSString *privateKey, NSError *error))callback;
+
+/*
+ ***************钱包账号存取管理************
+ */
 //清空所有钱包，退出账号
 +(void)RemoveAllWallet;
+
+//取得所有钱包名称
++(NSArray *)GetWalletNameArray;
+
+//根据钱包名称取钱包
++(MissionWallet *)GetMissionWalletByName:(NSString *)walletname;
+
+//存储钱包
++(void)SaveWallet:(MissionWallet *)wallet Name:(NSString *)walletname;
 @end
