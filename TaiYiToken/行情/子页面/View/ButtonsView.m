@@ -12,13 +12,6 @@
 #define DeSelectColor [UIColor textGrayColor]
 @implementation ButtonsView
 
-//@property(nonatomic)UIButton *FIVEMINBtn;
-//@property(nonatomic)UIButton *FIFTEENMINBtn;
-//@property(nonatomic)UIButton *ONEHOURBtn;
-//@property(nonatomic)UIButton *ONEDAYBtn;
-//@property(nonatomic)UIButton *ONEWEEKBtn;
-//@property(nonatomic)UIButton *ONEMONBtn;
-
 -(void)initButtonsViewWidth:(CGFloat)width Height:(CGFloat)height{
     _FIVEMINBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _FIVEMINBtn.backgroundColor = BtnColor;

@@ -24,4 +24,5 @@
 @property(nonatomic)int index;
 
 @property(nonatomic,assign)CoinType coinType;
+
 @end

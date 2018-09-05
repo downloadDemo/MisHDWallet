@@ -53,7 +53,7 @@
  ************** 钱包导出 ***************
  */
 //导出keystore
-+(NSString *)ExportKeyStoreByPassword:(NSString *)password;
++(void)ExportKeyStoreByPassword:(NSString *)password  callback: (void (^)(NSString *address, NSError *error))callback;
 
 //导出助记词
 +(void)ExportMnemonicByPassword:(NSString *)password  callback: (void (^)(NSString *mnemonic, NSError *error))callback;
@@ -75,4 +75,13 @@
 
 //存储钱包
 +(void)SaveWallet:(MissionWallet *)wallet Name:(NSString *)walletname;
+
+//取存在本地的比特币钱包地址 @{address:index}
++(NSDictionary *)GetBTCAddressDic;
+
+//更新BTC钱包主地址
++(void)UpdateSelectedBTCAddress:(NSString *)address;
+
+//获取BTC钱包主地址
++(NSString *)GetSelectedBTCAddress;
 @end

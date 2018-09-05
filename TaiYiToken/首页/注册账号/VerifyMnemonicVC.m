@@ -135,20 +135,10 @@
     MissionWallet *walletBTC = [CreateAll CreateWalletByXprv:xprv index:0 CoinType:BTC];
     MissionWallet *walletBTC2 = [CreateAll CreateWalletByXprv:xprv index:1 CoinType:BTC];
     MissionWallet *walletETH = [CreateAll CreateWalletByXprv:xprv index:0 CoinType:ETH];
-
+    
     //创建完成 清除密码
     [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"password"];
-    
-//    NSData *walletBTCdata = [NSKeyedArchiver archivedDataWithRootObject:walletBTC];
-//    [[NSUserDefaults standardUserDefaults] setObject:walletBTCdata forKey:@"walletBTC"];
-//    NSData *walletBTCdata2 = [NSKeyedArchiver archivedDataWithRootObject:walletBTC2];
-//    [[NSUserDefaults standardUserDefaults] setObject:walletBTCdata2 forKey:@"walletBTC2"];
-//    NSData *walletETHdata = [NSKeyedArchiver archivedDataWithRootObject:walletETH];
-//    [[NSUserDefaults standardUserDefaults] setObject:walletETHdata forKey:@"walletETH"];
-//    
-//    NSArray *array = @[@"walletBTC",@"walletBTC2",@"walletETH"];
-//    [[NSUserDefaults standardUserDefaults]  setObject:array forKey:@"walletArray"];
-    
+
     [CreateAll SaveWallet:walletBTC Name:@"walletBTC"];
     [CreateAll SaveWallet:walletBTC2 Name:@"walletBTC2"];
     [CreateAll SaveWallet:walletETH Name:@"walletETH"];

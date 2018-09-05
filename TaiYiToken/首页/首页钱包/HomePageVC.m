@@ -16,6 +16,8 @@
 #import "CustomizedNavigationController.h"
 #import "ReceiptQRCodeVC.h"
 #import "WalletManagerVC.h"
+
+#import "Customlayout.h"
 @interface HomePageVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITableViewDelegate,UITableViewDataSource,UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property(nonatomic)UICollectionView *collectionview;
 @property(nonatomic)UITableView *tableView;
@@ -23,6 +25,7 @@
 @property(nonatomic)UIButton *scanBtn;
 @property(nonatomic)UILabel *titleLabel;
 @property(nonatomic)NSMutableDictionary *walletDic;
+@property(nonatomic)NSInteger selectedIndex;
 @end
 
 @implementation HomePageVC
@@ -95,6 +98,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initUI];
+    self.selectedIndex = 0;
 }
 
 
@@ -118,13 +122,15 @@
     if (walletarray != nil) {
         for (NSString *walletname in walletarray) {
             MissionWallet *wallet = [CreateAll GetMissionWalletByName:walletname];
-            [array addObject:wallet];
+            //只显示主钱包
+            if(wallet.index == 0){
+                 [array addObject:wallet];
+            }
         }
         WalletManagerVC *walletVC = [WalletManagerVC new];
         walletVC.walletArray = [array mutableCopy];
         [self.navigationController pushViewController:walletVC animated:YES];
     }
-   
 }
 //扫描二维码
 -(void)scanBtnAction{
@@ -145,7 +151,8 @@
 }
 //点击进入钱包详情
 -(void)detailBtnAction:(UIButton *)btn{
-    
+    //test
+    [CreateAll RemoveAllWallet];
     
 }
 //点击复制地址
@@ -242,7 +249,7 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 2;
+    return 1;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -251,7 +258,7 @@
         cell = [WalletListCell new];
     }
     MissionWallet *wallet = nil;
-    if (indexPath.row == 0) {//BTC
+    if (self.selectedIndex == 0) {//BTC
         wallet = [self.walletDic objectForKey:@"walletBTC"];
         [cell.iconImageView setImage:[UIImage imageNamed:@"ico_btc"]];
         cell.symbollb.text = @"BTC";
@@ -388,7 +395,9 @@
     cell.QRCodeBtn.tag = indexPath.row;
     cell.detailBtn.tag = indexPath.row;
     cell.addressBtn.tag = indexPath.row;
-    
+    UIView *view = [UIView new];
+    view.backgroundColor = [UIColor whiteColor];
+
     [cell.QRCodeBtn addTarget:self action:@selector(QRCodeBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     [cell.detailBtn addTarget:self action:@selector(detailBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     [cell.addressBtn addTarget:self action:@selector(addressBtnAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -396,11 +405,14 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    [self.collectionview selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionNone];
+    [self.collectionview selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
     //滚动到中间
     [self.collectionview scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
     [self.titleLabel setText: indexPath.row == 0?@"BTC_wallet":@"ETH_wallet"];
+    self.selectedIndex = indexPath.row;
+    [self.tableView reloadData];
 }
+
 
 #pragma lazy
 
@@ -424,7 +436,7 @@
 }
 -(UICollectionView *)collectionview{
     if (!_collectionview) {
-        UICollectionViewFlowLayout *layout = [UICollectionViewFlowLayout new];
+        Customlayout *layout = [Customlayout new];
         layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         _collectionview = [[UICollectionView alloc]initWithFrame:CGRectZero collectionViewLayout:layout];
         _collectionview.dataSource = self;

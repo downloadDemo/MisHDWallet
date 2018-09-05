@@ -113,8 +113,16 @@
     return RGB(190, 170, 256);
 }
 #pragma mark - The default line gray color
-+(UIColor *)lineGrayColor{
++ (UIColor *)lineGrayColor{
     return HEX_RGB(0xE0E0E0);
 }
+
++ (UIColor *)ExportBackgroundColor{
+   return [UIColor colorWithHexString:@"#F8F8F8"];
+}
++ (UIColor *)ExportAnnounceBackgroundColor{
+    return [UIColor colorWithHexString:@"#FFFBED"];
+}
+
 
 @end

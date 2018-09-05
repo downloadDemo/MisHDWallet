@@ -116,4 +116,6 @@
 + (UIColor *)backBlueColorA;
 + (UIColor *)backBlueColorB;
 + (UIColor *)textDarkColor;
++ (UIColor *)ExportBackgroundColor;
++ (UIColor *)ExportAnnounceBackgroundColor;
 @end

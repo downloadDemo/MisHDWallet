@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface ExportKeyStoreVC : UIViewController
-
+@property(nonatomic)NSString *keystore;
 @end

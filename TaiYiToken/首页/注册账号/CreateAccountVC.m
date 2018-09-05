@@ -171,6 +171,7 @@
     _shadowView.layer.shadowRadius = 5.0;
     _shadowView.layer.cornerRadius = 5.0;
     _shadowView.clipsToBounds = NO;
+    _shadowView.alpha = 0;
     [self.view addSubview:_shadowView];
     [_shadowView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.center.equalTo(0);
@@ -192,6 +193,12 @@
     [_remindView initRemainViewWithTitle:@"备份钱包" message:@"  没有妥善备份就无法保障资产安全。删除程序或钱包后，您需要备份文件恢复钱包。"];
     [_remindView.quitBtn addTarget:self action:@selector(quitRemindView) forControlEvents:UIControlEventTouchUpInside];
     
+    [UIView animateWithDuration:0.5 animations:^{
+        self.shadowView.alpha = 1;
+    } completion:^(BOOL finished) {
+        
+    }];
+    
 }
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
@@ -199,11 +206,15 @@
 }
 
 -(void)quitRemindView{
-    [_shadowView removeFromSuperview];
-    [_remindView removeFromSuperview];
+    
+    [UIView animateWithDuration:0.5 animations:^{
+        self.shadowView.alpha = 1;
+    } completion:^(BOOL finished) {
+        [self.shadowView removeFromSuperview];
+        [self.remindView removeFromSuperview];
+    }];
     CreateMnemonicVC *cmvc = [CreateMnemonicVC new];
     [self.navigationController pushViewController:cmvc animated:YES];
-    
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

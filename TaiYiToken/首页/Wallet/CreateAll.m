@@ -60,7 +60,7 @@
             }else{
                 NSLog(@"\n\n\n** keystore 恢复 mnemonic ** = \n %@ \n\n\n",decryptedAccount.mnemonicPhrase);
                 //按密码保存keystore
-                [[NSUserDefaults standardUserDefaults] setObject:@"keystore" forKey:password];
+                [[NSUserDefaults standardUserDefaults] setObject:json forKey:[NSString stringWithFormat:@"keystore%@",password]];
             }
             callback(decryptedAccount,error);
 
@@ -152,7 +152,11 @@
 
 //从keystore恢复账号
 +(void)RecoverAccountByPassword:(NSString *)password callback: (void (^)(Account *account, NSError *error))callback{
-    NSString *json = [[NSUserDefaults standardUserDefaults]  objectForKey:@"keystore"];
+    NSString *json = [[NSUserDefaults standardUserDefaults]  objectForKey:[NSString stringWithFormat:@"keystore%@",password]];
+    if (json == nil || json == [NSNull null]) {
+        callback(@"wrong password！",nil);
+        return;
+    }
     [Account decryptSecretStorageJSON:json password:password callback:^(Account *decryptedAccount, NSError *error) {
         callback(decryptedAccount,error);
     }];
@@ -171,20 +175,35 @@
  ************************************************ 钱包导出 *********************************************************************
  */
 //导出keystore
-+(NSString *)ExportKeyStoreByPassword:(NSString *)password{
-    NSString *json = [[NSUserDefaults standardUserDefaults]  objectForKey:@"keystore"];
-    return json;
++(void)ExportKeyStoreByPassword:(NSString *)password  callback: (void (^)(NSString *address, NSError *error))callback{
+    NSString *json = [[NSUserDefaults standardUserDefaults]  objectForKey:[NSString stringWithFormat:@"keystore%@",password]];
+    NSLog(@"json = %@",json);
+    if (json == nil || json == [NSNull null]) {
+        callback(@"wrong password！",nil);
+        return;
+    }
+    [Account decryptSecretStorageJSON:json password:password callback:^(Account *decryptedAccount, NSError *error) {
+        callback(decryptedAccount.address.checksumAddress,error);
+    }];
 }
 //导出助记词
 +(void)ExportMnemonicByPassword:(NSString *)password  callback: (void (^)(NSString *mnemonic, NSError *error))callback{
-    NSString *json = [[NSUserDefaults standardUserDefaults]  objectForKey:@"keystore"];
+    NSString *json = [[NSUserDefaults standardUserDefaults]  objectForKey:[NSString stringWithFormat:@"keystore%@",password]];
+    if (json == nil || json == [NSNull null]) {
+        callback(@"wrong password！",nil);
+        return;
+    }
     [Account decryptSecretStorageJSON:json password:password callback:^(Account *decryptedAccount, NSError *error) {
         callback(decryptedAccount.mnemonicPhrase,error);
     }];
 }
 //导出私钥
 +(void)ExportPrivateKeyByPassword:(NSString *)password CoinType:(CoinType)coinType index:(UInt32)index  callback: (void (^)(NSString *privateKey, NSError *error))callback{
-    NSString *json = [[NSUserDefaults standardUserDefaults]  objectForKey:@"keystore"];
+    NSString *json = [[NSUserDefaults standardUserDefaults]  objectForKey:[NSString stringWithFormat:@"keystore%@",password]];
+    if (json == nil || json == [NSNull null]) {
+        callback(@"wrong password！",nil);
+        return;
+    }
     [Account decryptSecretStorageJSON:json password:password callback:^(Account *decryptedAccount, NSError *error) {
         NSString *seed = [CreateAll CreateSeedByMnemonic:decryptedAccount.mnemonicPhrase Password:password];
         NSString *xprv = [CreateAll CreateExtendPrivateKeyWithSeed:seed];
@@ -198,13 +217,14 @@
  */
 //清空所有钱包，退出账号
 +(void)RemoveAllWallet{
-    [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"walletBTC"];
-    [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"walletBTC2"];
-    [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"walletETH"];
     [[NSUserDefaults standardUserDefaults]  setBool:NO forKey:@"ifHasAccount"];
-    [[NSUserDefaults standardUserDefaults]  setBool:NO forKey:@"keystore"];
+    NSArray *walletnamearray = [CreateAll GetWalletNameArray];
+    for (NSString *walletname in walletnamearray) {
+        [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:walletname];
+    }
     NSArray *array = @[];
     [[NSUserDefaults standardUserDefaults]  setObject:array forKey:@"walletArray"];
+    [[NSUserDefaults standardUserDefaults]  setObject:@{} forKey:@"BTCaddressdic"];
 }
 //取得所有钱包名称
 +(NSArray *)GetWalletNameArray{
@@ -222,7 +242,7 @@
     return wallet;
 }
 
-//存储钱包
+//存储钱包，只用于本地账号钱包 不用于导入钱包
 +(void)SaveWallet:(MissionWallet *)wallet Name:(NSString *)walletname{
     //存钱包
     NSData *walletdata = [NSKeyedArchiver archivedDataWithRootObject:wallet];
@@ -232,10 +252,43 @@
     [oldwalletarray addObject:walletname];
     NSMutableArray *newwalletarray = [oldwalletarray mutableCopy];
     [[NSUserDefaults standardUserDefaults]  setObject:newwalletarray forKey:@"walletArray"];
+    //如果是比特币钱包 存地址
+    if(wallet.coinType == BTC){
+        NSMutableDictionary *oldBTCaddressdic = [[[NSUserDefaults standardUserDefaults]  objectForKey:@"BTCaddressdic"] mutableCopy];
+        [oldBTCaddressdic setObject:wallet.address forKey:[NSString stringWithFormat:@"%d",wallet.index]];
+        NSMutableDictionary *newBTCaddressdic = [oldBTCaddressdic mutableCopy];
+        [[NSUserDefaults standardUserDefaults]  setObject:newBTCaddressdic forKey:@"BTCaddressdic"];
+    }
 }
+//取存在本地的比特币钱包地址 @{address:index}
++(NSDictionary *)GetBTCAddressDic{
+    NSMutableDictionary *BTCaddressdic = [[[NSUserDefaults standardUserDefaults]  objectForKey:@"BTCaddressdic"] mutableCopy];
+    if (BTCaddressdic == [NSNull null] || BTCaddressdic == nil) {
+        return nil;
+    }
+    return BTCaddressdic;
+}
+//更新BTC钱包主地址
++(void)UpdateSelectedBTCAddress:(NSString *)address{
+    [[NSUserDefaults standardUserDefaults] setObject:address forKey:@"SelectedBTCAddress"];
+}
+//获取BTC钱包主地址
++(NSString *)GetSelectedBTCAddress{
+    NSString *selectedAddress = [[NSUserDefaults standardUserDefaults]  objectForKey:@"SelectedBTCAddress"];
+    if (selectedAddress == [NSNull null] || selectedAddress == nil) {
+        return nil;
+    }
+    return selectedAddress;
+}
+/***********************************************************/
 
-/***********************************/
+/***********************************************************/
 
+/***********************************************************/
+
+/***********************************************************/
+
+/***********************************************************/
 +(void)GetBitcoinWalletBalanceForAddress:(NSString *)address{
     
 }

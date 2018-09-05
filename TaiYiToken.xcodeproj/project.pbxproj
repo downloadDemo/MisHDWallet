@@ -55,6 +55,12 @@
 		842FEE5B213E89940075716E /* ExportKeyStoreVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 842FEE5A213E89940075716E /* ExportKeyStoreVC.m */; };
 		842FEE5E213E8B0A0075716E /* InputPasswordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 842FEE5D213E8B0A0075716E /* InputPasswordVC.m */; };
 		842FEE61213E8E840075716E /* InputPasswordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 842FEE60213E8E840075716E /* InputPasswordView.m */; };
+		842FEE64213F5FF20075716E /* Customlayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 842FEE63213F5FF20075716E /* Customlayout.m */; };
+		842FEE67213F7EB00075716E /* ExportPrivateKeyOrMnemonicVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 842FEE66213F7EB00075716E /* ExportPrivateKeyOrMnemonicVC.m */; };
+		842FEE6A213F806C0075716E /* ExportWalletAddressVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 842FEE69213F806C0075716E /* ExportWalletAddressVC.m */; };
+		842FEE70213F84B90075716E /* SelectButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 842FEE6F213F84B90075716E /* SelectButtonView.m */; };
+		842FEE76213FBFF90075716E /* AnnounceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 842FEE75213FBFF90075716E /* AnnounceView.m */; };
+		842FEE79213FCFCA0075716E /* AddBTCAddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 842FEE78213FCFCA0075716E /* AddBTCAddressCell.m */; };
 		843EC9DA21212271002D5C2A /* NSObject+Parse.m in Sources */ = {isa = PBXBuildFile; fileRef = 843EC9CF21212266002D5C2A /* NSObject+Parse.m */; };
 		843EC9DB21212271002D5C2A /* UIScrollView+Refresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 843EC9D021212267002D5C2A /* UIScrollView+Refresh.m */; };
 		843EC9DC21212271002D5C2A /* UIView+HUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 843EC9D221212268002D5C2A /* UIView+HUD.m */; };
@@ -246,6 +252,18 @@
 		842FEE5D213E8B0A0075716E /* InputPasswordVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InputPasswordVC.m; sourceTree = "<group>"; };
 		842FEE5F213E8E840075716E /* InputPasswordView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputPasswordView.h; sourceTree = "<group>"; };
 		842FEE60213E8E840075716E /* InputPasswordView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InputPasswordView.m; sourceTree = "<group>"; };
+		842FEE62213F5FF20075716E /* Customlayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Customlayout.h; sourceTree = "<group>"; };
+		842FEE63213F5FF20075716E /* Customlayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Customlayout.m; sourceTree = "<group>"; };
+		842FEE65213F7EB00075716E /* ExportPrivateKeyOrMnemonicVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExportPrivateKeyOrMnemonicVC.h; sourceTree = "<group>"; };
+		842FEE66213F7EB00075716E /* ExportPrivateKeyOrMnemonicVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExportPrivateKeyOrMnemonicVC.m; sourceTree = "<group>"; };
+		842FEE68213F806C0075716E /* ExportWalletAddressVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExportWalletAddressVC.h; sourceTree = "<group>"; };
+		842FEE69213F806C0075716E /* ExportWalletAddressVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExportWalletAddressVC.m; sourceTree = "<group>"; };
+		842FEE6E213F84B90075716E /* SelectButtonView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectButtonView.h; sourceTree = "<group>"; };
+		842FEE6F213F84B90075716E /* SelectButtonView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectButtonView.m; sourceTree = "<group>"; };
+		842FEE74213FBFF90075716E /* AnnounceView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnnounceView.h; sourceTree = "<group>"; };
+		842FEE75213FBFF90075716E /* AnnounceView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnnounceView.m; sourceTree = "<group>"; };
+		842FEE77213FCFCA0075716E /* AddBTCAddressCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddBTCAddressCell.h; sourceTree = "<group>"; };
+		842FEE78213FCFCA0075716E /* AddBTCAddressCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddBTCAddressCell.m; sourceTree = "<group>"; };
 		843EC9C721212170002D5C2A /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		843EC9CE21212266002D5C2A /* NSString+URLString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+URLString.h"; sourceTree = "<group>"; };
 		843EC9CF21212266002D5C2A /* NSObject+Parse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Parse.m"; sourceTree = "<group>"; };
@@ -731,6 +749,8 @@
 		842FEDFB213CDE090075716E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				842FEE62213F5FF20075716E /* Customlayout.h */,
+				842FEE63213F5FF20075716E /* Customlayout.m */,
 				842FEDFC213CDE2A0075716E /* WalletCell.h */,
 				842FEDFD213CDE2A0075716E /* WalletCell.m */,
 				842FEE06213D13780075716E /* WalletListCell.h */,
@@ -787,6 +807,10 @@
 		842FEE51213E74C00075716E /* 导出 */ = {
 			isa = PBXGroup;
 			children = (
+				842FEE68213F806C0075716E /* ExportWalletAddressVC.h */,
+				842FEE69213F806C0075716E /* ExportWalletAddressVC.m */,
+				842FEE65213F7EB00075716E /* ExportPrivateKeyOrMnemonicVC.h */,
+				842FEE66213F7EB00075716E /* ExportPrivateKeyOrMnemonicVC.m */,
 				842FEE59213E89940075716E /* ExportKeyStoreVC.h */,
 				842FEE5A213E89940075716E /* ExportKeyStoreVC.m */,
 				842FEE53213E752C0075716E /* ExportWalletVC.h */,
@@ -806,6 +830,12 @@
 				842FEE5D213E8B0A0075716E /* InputPasswordVC.m */,
 				842FEE5F213E8E840075716E /* InputPasswordView.h */,
 				842FEE60213E8E840075716E /* InputPasswordView.m */,
+				842FEE6E213F84B90075716E /* SelectButtonView.h */,
+				842FEE6F213F84B90075716E /* SelectButtonView.m */,
+				842FEE74213FBFF90075716E /* AnnounceView.h */,
+				842FEE75213FBFF90075716E /* AnnounceView.m */,
+				842FEE77213FCFCA0075716E /* AddBTCAddressCell.h */,
+				842FEE78213FCFCA0075716E /* AddBTCAddressCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1396,6 +1426,7 @@
 				84A9FF5721368830006F9D1B /* KLinePointModel.m in Sources */,
 				843EC9DC21212271002D5C2A /* UIView+HUD.m in Sources */,
 				848180BB2123C72A0007DCF9 /* ContainerViewController.m in Sources */,
+				842FEE76213FBFF90075716E /* AnnounceView.m in Sources */,
 				842FEE48213E38510075716E /* MySwitch.m in Sources */,
 				843EC9EC212122A7002D5C2A /* NetManager.m in Sources */,
 				843EC9DD21212271002D5C2A /* UIImage+BaseToImage.m in Sources */,
@@ -1443,11 +1474,14 @@
 				843EC9E52121228B002D5C2A /* SAMKeyChainEasy.m in Sources */,
 				8428A54521242323003E1DD8 /* MarketCell.m in Sources */,
 				8428A53F2123FE76003E1DD8 /* CurrencyModel.m in Sources */,
+				842FEE64213F5FF20075716E /* Customlayout.m in Sources */,
 				8460C7B22136A446002E4B2F /* YYFiveRecordModel.m in Sources */,
 				0415BDA72131BC850022DEB7 /* YYStockViewMaskView.m in Sources */,
 				84B0A9602122C184002EFA0A /* UIImage+Gradient.m in Sources */,
 				84C0DF2A212CFF7700BCC91D /* NSString+Bitcoin.m in Sources */,
+				842FEE70213F84B90075716E /* SelectButtonView.m in Sources */,
 				843ECA312121630A002D5C2A /* RegularExpression.m in Sources */,
+				842FEE6A213F806C0075716E /* ExportWalletAddressVC.m in Sources */,
 				8481805D2123B2630007DCF9 /* AESCrypt.m in Sources */,
 				843EC9E62121228B002D5C2A /* AMSaveFile.m in Sources */,
 				84C8E7D4212A971C00627445 /* NYMnemonic.m in Sources */,
@@ -1473,6 +1507,7 @@
 				84D0E42321211AAB004E65AD /* AppDelegate.m in Sources */,
 				847BC6092133E001000B02AC /* MissionWallet.m in Sources */,
 				8460C7B02136A446002E4B2F /* YYLineDataModel.m in Sources */,
+				842FEE67213F7EB00075716E /* ExportPrivateKeyOrMnemonicVC.m in Sources */,
 				84B0A95A2122B87B002EFA0A /* UIColor+PGHex.m in Sources */,
 				842FEE5B213E89940075716E /* ExportKeyStoreVC.m in Sources */,
 				0415BD9D2131BC850022DEB7 /* YYVolumePositionModel.m in Sources */,
@@ -1488,6 +1523,7 @@
 				843ECA23212162FB002D5C2A /* CALayer+XibConfiguration.m in Sources */,
 				843ECA07212162B7002D5C2A /* NSString+Hash.m in Sources */,
 				84B0A9482122736B002EFA0A /* CustomizedTabBarController.m in Sources */,
+				842FEE79213FCFCA0075716E /* AddBTCAddressCell.m in Sources */,
 				843EC9DB21212271002D5C2A /* UIScrollView+Refresh.m in Sources */,
 				843ECA25212162FB002D5C2A /* UIColor+AppConfigColor.m in Sources */,
 				842FEE2B213D27470075716E /* SGWebView.m in Sources */,

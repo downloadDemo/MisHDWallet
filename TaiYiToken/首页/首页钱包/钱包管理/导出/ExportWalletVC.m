@@ -9,13 +9,19 @@
 #import "ExportWalletVC.h"
 #import "ExportWalletCell.h"
 #import "InputPasswordView.h"
+#import "ExportKeyStoreVC.h"
+#import "ExportPrivateKeyOrMnemonicVC.h"
+#import "ExportWalletAddressVC.h"
 @interface ExportWalletVC ()<UITableViewDelegate ,UITableViewDataSource>
 @property(nonatomic)UITableView *tableView;
 @property(nonatomic)NSArray *iconImageNameArray;
 @property(nonatomic)NSArray *titleArray;
+@property(nonatomic)UIView *shadowView;
 @property(nonatomic)InputPasswordView *ipview;
 @property(nonatomic,strong) UIButton *backBtn;
 @property(nonatomic)UILabel *titleLabel;
+@property(nonatomic)NSInteger selectedIndex;
+@property(nonatomic,copy)NSString *password;
 @end
 
 @implementation ExportWalletVC
@@ -37,6 +43,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initHeadView];
+    self.selectedIndex = -1;
     self.view.backgroundColor = [UIColor whiteColor];
     if (self.wallet.coinType == BTC) {
         self.iconImageNameArray = @[@"ico_wallet_adress",@"ico_export_pub",@"ico_password",@"ico_export_pub"];
@@ -49,6 +56,7 @@
 }
 
 -(void)initHeadView{
+ 
     _backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _backBtn.backgroundColor = [UIColor clearColor];
     _backBtn.tintColor = [UIColor whiteColor];
@@ -74,7 +82,7 @@
         title = [NSString stringWithFormat:@"ETH_wallet-%d 导出",self.wallet.index];
     }
     [_titleLabel setText:title];
-    _titleLabel.textAlignment = NSTextAlignmentCenter;
+    _titleLabel.textAlignment = NSTextAlignmentLeft;
     [self.view addSubview:_titleLabel];
     [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(33);
@@ -118,15 +126,33 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    UIView *shadowView = [UIView new];
-    shadowView.layer.shadowColor = [UIColor grayColor].CGColor;
-    shadowView.layer.shadowOffset = CGSizeMake(0, 0);
-    shadowView.layer.shadowOpacity = 1;
-    shadowView.layer.shadowRadius = 3.0;
-    shadowView.layer.cornerRadius = 3.0;
-    shadowView.clipsToBounds = NO;
-    [self.tableView addSubview:shadowView];
-    [shadowView mas_makeConstraints:^(MASConstraintMaker *make) {
+    
+    //比特币导出地址 不用密码
+    if (self.wallet.coinType == BTC && indexPath.row == 0) {
+        [self ExportAddress];
+        return;
+    }
+    //比特币切换地址类型 不用密码
+    if (self.wallet.coinType == BTC && indexPath.row == 1) {
+        [self ChangeBTCAddressType];
+        return;
+    }
+    //密码提示信息 不用密码
+    if (indexPath.row == 2) {
+        [self ExportPasswordHint];
+        return;
+    }
+    
+    _shadowView = [UIView new];
+    _shadowView.layer.shadowColor = [UIColor grayColor].CGColor;
+    _shadowView.layer.shadowOffset = CGSizeMake(0, 0);
+    _shadowView.layer.shadowOpacity = 1;
+    _shadowView.layer.shadowRadius = 3.0;
+    _shadowView.layer.cornerRadius = 3.0;
+    _shadowView.clipsToBounds = NO;
+    _shadowView.alpha = 0;
+    [self.tableView addSubview:_shadowView];
+    [_shadowView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.center.equalTo(0);
         make.width.equalTo(300);
         make.height.equalTo(120);
@@ -134,17 +160,124 @@
     _ipview = [InputPasswordView new];
     [_ipview initUI];
     [_ipview.confirmBtn addTarget:self action:@selector(confirmBtnAction) forControlEvents:UIControlEventTouchUpInside];
-    [shadowView addSubview:_ipview];
+    [_shadowView addSubview:_ipview];
     [_ipview mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(0);
+    }];
+    self.selectedIndex = indexPath.row;
+    [UIView animateWithDuration:0.5 animations:^{
+        self.shadowView.alpha = 1;
+    } completion:^(BOOL finished) {
+        
     }];
 }
 
 -(void)confirmBtnAction{
-    NSLog(@" 88 %@",self.ipview.passwordTextField.text);
-    [_ipview removeFromSuperview];
+    
+    [UIView animateWithDuration:0.5 animations:^{
+       self.shadowView.alpha = 0;
+    } completion:^(BOOL finished) {
+        self.password = self.ipview.passwordTextField.text;
+        [self.ipview removeFromSuperview];
+        [self GoToExportPage];
+    }];
+   
 }
-
+-(void)GoToExportPage{
+    if (self.selectedIndex == -1) {
+        return;
+    }
+    if (self.password == nil || [self.password isEqualToString:@""]) {
+        [self.view showMsg:@"请输入密码"];
+        return;
+    }
+   
+    //self.titleArray = @[@"钱包地址",@"切换地址类型",@"密码提示信息",@"导出助记词"];
+    //self.titleArray = @[@"导出Keystore",@"导出私钥",@"密码提示信息",@"导出助记词"];
+    switch (self.selectedIndex) {
+        case 0:
+            if (self.wallet.coinType == ETH) {
+                [self ExportKeyStore];
+            }
+            break;
+        case 1:
+            if (self.wallet.coinType == ETH) {
+                [self ExportPrivateKey];
+            }
+            break;
+//        case 2:
+//            [self ExportPasswordHint];
+//            break;
+        case 3:
+            [self ExportMnemonic];
+            break;
+        default:
+            break;
+    }
+}
+//导出地址 不验证密码
+-(void)ExportAddress{
+    ExportWalletAddressVC *wadvc = [ExportWalletAddressVC new];
+    wadvc.selectedAddress = [CreateAll GetSelectedBTCAddress];
+    [self.navigationController pushViewController:wadvc animated:YES];
+}
+//BTC = ETH 导出KeyStore
+-(void)ExportKeyStore{
+    
+    [self.view showHUD];
+    [CreateAll ExportKeyStoreByPassword:self.password callback:^(NSString *address, NSError *error) {
+        [self.view hideHUD];
+        if (!error) {
+            if ([self.wallet.address isEqualToString:address]) {
+                ExportKeyStoreVC *ekvc = [ExportKeyStoreVC new];
+                ekvc.keystore = [[NSUserDefaults standardUserDefaults]  objectForKey:[NSString stringWithFormat:@"keystore%@",self.password]];
+                [self.navigationController pushViewController:ekvc animated:YES];
+            } else if([address isEqualToString:@"wrong password！"]) {
+                [self.view showMsg:@"密码错误"];
+            }else{
+                [self.view showMsg:@"密码错误"];
+            }
+        }else{
+            [self.view showMsg:error.description];
+        }
+    }];
+}
+//导出私钥
+-(void)ExportPrivateKey{
+    [self.view showHUD];
+    [CreateAll ExportPrivateKeyByPassword:self.password CoinType:self.wallet.coinType index:self.wallet.index callback:^(NSString *privateKey, NSError *error) {
+        [self.view hideHUD];
+        if (!error) {
+            ExportPrivateKeyOrMnemonicVC *epmvc = [ExportPrivateKeyOrMnemonicVC new];
+            epmvc.exportString = privateKey;
+            [self.navigationController pushViewController:epmvc animated:YES];
+        }else{
+             [self.view showMsg:error.description];
+        }
+    }];
+}
+//BTC = ETH
+-(void)ExportMnemonic{
+    [self.view showHUD];
+    [CreateAll ExportMnemonicByPassword:self.password callback:^(NSString *mnemonic, NSError *error) {
+        [self.view hideHUD];
+        if (!error) {
+            ExportPrivateKeyOrMnemonicVC *epmvc = [ExportPrivateKeyOrMnemonicVC new];
+            epmvc.exportString = self.wallet.privateKey;
+            [self.navigationController pushViewController:epmvc animated:YES];
+        }else{
+            [self.view showMsg:error.description];
+        }
+    }];
+}
+//BTC = ETH 密码提示
+-(void)ExportPasswordHint{
+    
+}
+//切换BTC地址类型
+-(void)ChangeBTCAddressType{
+    
+}
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     ExportWalletCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ExportWalletCell" forIndexPath:indexPath];
     [cell.imageViewLeft setImage:[UIImage imageNamed:self.iconImageNameArray[indexPath.row]]];

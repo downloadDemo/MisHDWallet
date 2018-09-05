@@ -62,7 +62,7 @@
     _titleLabel.font = [UIFont boldSystemFontOfSize:17];
     _titleLabel.textColor = [UIColor textBlackColor];
     [_titleLabel setText:@"钱包管理"];
-    _titleLabel.textAlignment = NSTextAlignmentCenter;
+    _titleLabel.textAlignment = NSTextAlignmentLeft;
     [self.view addSubview:_titleLabel];
     [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(33);
