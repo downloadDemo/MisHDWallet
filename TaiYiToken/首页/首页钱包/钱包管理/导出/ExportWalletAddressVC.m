@@ -12,13 +12,11 @@
 @interface ExportWalletAddressVC ()<UITableViewDelegate ,UITableViewDataSource>
 @property(nonatomic,strong) UIButton *backBtn;
 @property(nonatomic)UILabel *titleLabel;
-
-@property(nonatomic)UITableView *tableView;
 @property(nonatomic)AnnounceView *announceView;
+@property(nonatomic)UITableView *tableView;
+
 @property(nonatomic)UIButton *addAddressBtn;
-//@property(nonatomic)NSDictionary *existAddressDic;
 @property(nonatomic)NSMutableArray *existAddressArray;
-//@property(nonatomic)NSMutableArray *existIndexArray;
 @property(nonatomic)NSIndexPath *selectedIndexPath;
 @end
 
@@ -91,16 +89,6 @@
 }
 -(void)loadExistAddress{
     self.existAddressArray = [self.wallet.addressarray mutableCopy];
-//    self.existAddressDic = [CreateAll GetBTCAddressDic];
-//    if (self.existAddressDic == nil) {
-//        return;
-//    }
-//    self.existAddressArray = [NSMutableArray new];
-//    self.existIndexArray = [NSMutableArray new];
-//    [self.existAddressDic enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
-//        [self.existAddressArray addObject:(NSString *)obj];
-//        [self.existIndexArray addObject:(NSString *)key];
-//    }];
 }
 
 -(void)initUI{

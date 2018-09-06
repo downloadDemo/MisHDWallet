@@ -131,7 +131,9 @@
     NSString *password = [[NSUserDefaults standardUserDefaults] objectForKey:@"password"];
     //512位种子 长度为128字符 64Byte
     NSString *seed = [CreateAll CreateSeedByMnemonic:self.mnemonic Password:password];
-    [CreateAll CreateKeyStoreByMnemonic:self.mnemonic Password:password callback:^(Account *account, NSError *error) {
+    //test
+    NSString *mnemonic = @"breeze eternal fiction junior ethics lumber chaos squirrel code jar snack broccoli";
+    [CreateAll CreateKeyStoreByMnemonic:mnemonic Password:password callback:^(Account *account, NSError *error) {
         NSLog(@"**** CreateKeyStoreByMnemonic finished ! ****");
     }];
     NSString *xprv = [CreateAll CreateExtendPrivateKeyWithSeed:seed];

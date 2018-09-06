@@ -251,6 +251,8 @@
         if (!error) {
             ExportPrivateKeyOrMnemonicVC *epmvc = [ExportPrivateKeyOrMnemonicVC new];
             epmvc.privateKey = privateKey;
+            epmvc.isExportPrivateKey = YES;
+            epmvc.isExportMnemonic = NO;
             [self.navigationController pushViewController:epmvc animated:YES];
         }else{
              [self.view showMsg:error.description];
@@ -265,6 +267,8 @@
         if (!error) {
             ExportPrivateKeyOrMnemonicVC *epmvc = [ExportPrivateKeyOrMnemonicVC new];
             epmvc.mnemonic = mnemonic;
+            epmvc.isExportPrivateKey = NO;
+            epmvc.isExportMnemonic = YES;
             [self.navigationController pushViewController:epmvc animated:YES];
         }else{
             [self.view showMsg:error.description];

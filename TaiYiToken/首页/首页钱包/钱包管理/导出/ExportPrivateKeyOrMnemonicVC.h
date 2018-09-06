@@ -11,4 +11,7 @@
 @interface ExportPrivateKeyOrMnemonicVC : UIViewController
 @property(nonatomic)NSString *privateKey;
 @property(nonatomic)NSString *mnemonic;
+
+@property(nonatomic)BOOL isExportPrivateKey;
+@property(nonatomic)BOOL isExportMnemonic;
 @end
