@@ -100,6 +100,11 @@ typedef enum : NSUInteger {
     BTCAPIChain,
     BTCAPIBlockchain,
 } BTCAPI;
+
+typedef enum : NSUInteger {
+    IMPORT_WALLET = 0,
+    LOCAL_WALLET = 1,
+} WALLET_TYPE;
 #define BTNRISECOLOR [UIColor colorWithHexString:@"#E53A32"]
 #define BTNFALLCOLOR [UIColor colorWithHexString:@"#26B13D"]
 

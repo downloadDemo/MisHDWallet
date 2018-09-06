@@ -71,6 +71,12 @@
 //生成地址二维码
 +(UIImage *)CreateQRCodeForAddress:(NSString *)address;
 /*
+ ************** 钱包导入 ***************
+ */
+//由私钥导入钱包
++(MissionWallet *)ImportWalletByPrivateKey:(NSString *)privateKey CoinType:(CoinType)coinType;
+
+/*
  ************** 钱包导出 ***************
  */
 //导出keystore
@@ -88,21 +94,17 @@
 //清空所有钱包，退出账号
 +(void)RemoveAllWallet;
 
-//取得所有钱包名称
+//取得所有钱包名称（包含导入）
 +(NSArray *)GetWalletNameArray;
+
+//取得所有导入的钱包名称
++(NSArray *)GetImportWalletNameArray;
 
 //根据钱包名称取钱包
 +(MissionWallet *)GetMissionWalletByName:(NSString *)walletname;
 
 //存储钱包
-+(void)SaveWallet:(MissionWallet *)wallet Name:(NSString *)walletname;
++(void)SaveWallet:(MissionWallet *)wallet Name:(NSString *)walletname WalletType:(WALLET_TYPE)walletType;
 
-//取存在本地的比特币钱包地址 @{address:index}
-+(NSDictionary *)GetBTCAddressDic;
 
-//更新BTC钱包主地址
-+(void)UpdateSelectedBTCAddress:(NSString *)address;
-
-//获取BTC钱包主地址
-+(NSString *)GetSelectedBTCAddress;
 @end

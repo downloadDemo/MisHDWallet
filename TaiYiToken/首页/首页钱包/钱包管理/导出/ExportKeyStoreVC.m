@@ -182,7 +182,7 @@
     _keystoreCopyBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
     _keystoreCopyBtn.titleLabel.font = [UIFont boldSystemFontOfSize:16];
     [_keystoreCopyBtn gradientButtonWithSize:CGSizeMake(ScreenWidth, 44) colorArray:@[[UIColor colorWithHexString:@"#4090F7"],[UIColor colorWithHexString:@"#57A8FF"]] percentageArray:@[@(0.3),@(1)] gradientType:GradientFromLeftTopToRightBottom];
-    _keystoreCopyBtn.tintColor = [UIColor textBlackColor];
+    _keystoreCopyBtn.tintColor = [UIColor textWhiteColor];
     _keystoreCopyBtn.userInteractionEnabled = YES;
     [_keystoreCopyBtn setTitle:@"复制Keystore" forState:UIControlStateNormal];
     [_keystoreCopyBtn addTarget:self action:@selector(copyKeyStore) forControlEvents:UIControlEventTouchUpInside];
@@ -195,7 +195,7 @@
 -(void)copyKeyStore{
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
     pasteboard.string = self.keystore;
-    [self.view showMsg:@"地址已复制"];
+    [self.view showMsg:@"Keystore已复制"];
 }
 
 

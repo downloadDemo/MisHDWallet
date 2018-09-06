@@ -218,7 +218,6 @@
 //导出地址 不验证密码
 -(void)ExportAddress{
     ExportWalletAddressVC *wadvc = [ExportWalletAddressVC new];
-    wadvc.selectedAddress = [CreateAll GetSelectedBTCAddress];
     wadvc.wallet = self.wallet;
     [self.navigationController pushViewController:wadvc animated:YES];
 }
@@ -259,7 +258,7 @@
         }
     }];
 }
-//BTC = ETH
+//导出Mnemonic
 -(void)ExportMnemonic{
     [self.view showHUD];
     [CreateAll ExportMnemonicByPassword:self.password callback:^(NSString *mnemonic, NSError *error) {

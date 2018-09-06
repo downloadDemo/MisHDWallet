@@ -20,11 +20,17 @@
 @property(nonatomic,copy)NSString *privateKey;
 @property(nonatomic,copy)NSString *publicKey;
 @property(nonatomic,copy)NSString *address;
+
+@property(nonatomic,copy)NSString *walletName;
 //子钱包索引
 @property(nonatomic)int index;
 
 @property(nonatomic,assign)CoinType coinType;
 //BTC存所有地址，ETH只有主地址address
 @property(nonatomic)NSMutableArray *addressarray;
+//当前选中的子地址
+@property(nonatomic,copy)NSString *selectedBTCAddress;
+//导入/本地生成
+@property(nonatomic)WALLET_TYPE walletType;
 
 @end

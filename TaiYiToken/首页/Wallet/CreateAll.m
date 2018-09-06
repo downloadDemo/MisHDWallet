@@ -93,6 +93,9 @@
 }
 
 
+
+
+
 /*
  由扩展私钥生成钱包，指定钱包索引，币种两个参数
  xprv,index,coinType
@@ -145,7 +148,9 @@
         wallet.index = index;
         NSLog(@"\n ETH  privateKey= %@\n Address = %@\n  PublicKey = %@\n",privateKey,account.address.checksumAddress, compressedPublicKey);
     }
-    
+    wallet.walletName = @"";
+    wallet.walletType = LOCAL_WALLET;//类型标记为本地生成
+    wallet.selectedBTCAddress = wallet.address;
     return wallet;
 }
 
@@ -168,6 +173,68 @@
     }
     UIImage *QRCodeImage = [BTCQRCode imageForString:address size:CGSizeMake(180, 180) scale:1.0];
     return QRCodeImage;
+}
+
+/*
+************************************  导入  **************************************************
+*/
+//由私钥导入钱包
++(MissionWallet *)ImportWalletByPrivateKey:(NSString *)privateKey CoinType:(CoinType)coinType{
+    BTCKey *key = [[BTCKey alloc]initWithPrivateKey:privateKey.dataValue];
+    
+    MissionWallet *wallet = [MissionWallet new];
+    wallet.coinType = coinType;
+    wallet.AccountExtendedPrivateKey = @"";
+    wallet.AccountExtendedPublicKey = @"";
+    wallet.BIP32ExtendedPrivateKey = @"";
+    wallet.BIP32ExtendedPublicKey = @"";
+    
+    wallet.privateKey = key.privateKeyAddress.string;;
+    wallet.publicKey = [NSString hexWithData:key.compressedPublicKey];
+    if (coinType == BTC) {
+        wallet.address = key.compressedPublicKeyAddress.string;
+    }else{
+        Account *account = [Account accountWithPrivateKey:key.privateKeyAddress.data];
+        wallet.address = account.address.checksumAddress;
+    }
+    wallet.addressarray = [@[wallet.address] mutableCopy];
+    wallet.index = 0;
+    
+    
+    wallet.walletType = IMPORT_WALLET;//类型标记为本地生成
+    wallet.selectedBTCAddress = wallet.address;
+    
+    //查询本地生成数组中是否已经存在
+    NSArray *namearray = [CreateAll GetWalletNameArray];
+    for (NSString *name in namearray) {
+        MissionWallet *miswallet = [CreateAll GetMissionWalletByName:name];
+        if ([wallet.address isEqualToString:miswallet.address]) {
+            return nil;
+        }
+    }
+    //查询本地导入数组中是否已经存在
+    NSInteger importindex = 0;
+    NSArray *importnamearray = [CreateAll GetImportWalletNameArray];
+    for (NSString *name in importnamearray) {
+        MissionWallet *miswallet = [CreateAll GetMissionWalletByName:name];
+        if ([wallet.address isEqualToString:miswallet.address]) {
+            return nil;
+        }else{
+            if (miswallet.coinType == wallet.coinType) {
+                importindex ++;//标记是第几个BTC/ETH钱包
+            }
+        }
+    }
+    
+    //本地不存在，存储
+    NSString *savewalletname = @"";
+    if (coinType == BTC) {
+        savewalletname = [NSString stringWithFormat:@"BTCWalletImported%ld",importindex];
+    }else{
+        savewalletname = [NSString stringWithFormat:@"ETHWalletImported%ld",importindex];
+    }
+    wallet.walletName = savewalletname;
+    return wallet;
 }
 
 /*
@@ -223,13 +290,20 @@
     }
     NSArray *array = @[];
     [[NSUserDefaults standardUserDefaults]  setObject:array forKey:@"walletArray"];
-    [[NSUserDefaults standardUserDefaults]  setObject:@{} forKey:@"BTCaddressdic"];
+    [[NSUserDefaults standardUserDefaults]  setObject:array forKey:@"importwalletArray"];
 }
-//取得所有钱包名称
+//取得所有钱包名称（不包含导入）
 +(NSArray *)GetWalletNameArray{
    NSArray *walletarray = [[NSUserDefaults standardUserDefaults]  objectForKey:@"walletArray"];
    return walletarray;
 }
+
+//取得所有导入的钱包名称
++(NSArray *)GetImportWalletNameArray{
+    NSArray *walletarray = [[NSUserDefaults standardUserDefaults]  objectForKey:@"importwalletArray"];
+    return walletarray;
+}
+
 
 //根据钱包名称取钱包
 +(MissionWallet *)GetMissionWalletByName:(NSString *)walletname{
@@ -241,32 +315,34 @@
     return wallet;
 }
 
-//存储钱包，只用于本地账号钱包 不用于导入钱包
-+(void)SaveWallet:(MissionWallet *)wallet Name:(NSString *)walletname{
+//存储钱包
++(void)SaveWallet:(MissionWallet *)wallet Name:(NSString *)walletname WalletType:(WALLET_TYPE)walletType{
+    wallet.walletName = walletname;
     //存钱包
     NSData *walletdata = [NSKeyedArchiver archivedDataWithRootObject:wallet];
     [[NSUserDefaults standardUserDefaults] setObject:walletdata forKey:walletname];
-    //更新钱包名数组
-    NSMutableArray *oldwalletarray = [[[NSUserDefaults standardUserDefaults]  objectForKey:@"walletArray"] mutableCopy];
-    if (![oldwalletarray containsObject:walletname]) {
-        [oldwalletarray addObject:walletname];
-        NSMutableArray *newwalletarray = [oldwalletarray mutableCopy];
-        [[NSUserDefaults standardUserDefaults]  setObject:newwalletarray forKey:@"walletArray"];
+    //存钱包名到钱包名数组
+    //如果是本地创建类型 存储到本地钱包名数组
+    if (walletType == LOCAL_WALLET) {
+        NSMutableArray *oldwalletarray = [[[NSUserDefaults standardUserDefaults]  objectForKey:@"walletArray"] mutableCopy];
+        if (![oldwalletarray containsObject:walletname]) {
+            [oldwalletarray addObject:walletname];
+            NSMutableArray *newwalletarray = [oldwalletarray mutableCopy];
+            [[NSUserDefaults standardUserDefaults]  setObject:newwalletarray forKey:@"walletArray"];
+        }
+    }
+    //如果是导入类型 存储到导入钱包名数组
+    if (walletType == IMPORT_WALLET) {
+        NSMutableArray *oldimportwalletarray = [[[NSUserDefaults standardUserDefaults]  objectForKey:@"importwalletArray"] mutableCopy];
+        if (![oldimportwalletarray containsObject:walletname]) {
+            [oldimportwalletarray addObject:walletname];
+            NSMutableArray *newimportwalletarray = [oldimportwalletarray mutableCopy];
+            [[NSUserDefaults standardUserDefaults]  setObject:newimportwalletarray forKey:@"importwalletArray"];
+        }
     }
 }
 
-//更新BTC钱包主地址
-+(void)UpdateSelectedBTCAddress:(NSString *)address{
-    [[NSUserDefaults standardUserDefaults] setObject:address forKey:@"SelectedBTCAddress"];
-}
-//获取BTC钱包主地址
-+(NSString *)GetSelectedBTCAddress{
-    NSString *selectedAddress = [[NSUserDefaults standardUserDefaults]  objectForKey:@"SelectedBTCAddress"];
-    if (selectedAddress == [NSNull null] || selectedAddress == nil) {
-        return nil;
-    }
-    return selectedAddress;
-}
+
 /***********************************************************/
 
 /***********************************************************/

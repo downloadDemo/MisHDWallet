@@ -10,6 +10,7 @@
 #import "AnnounceView.h"
 #import "AddBTCAddressCell.h"
 @interface ExportWalletAddressVC ()<UITableViewDelegate ,UITableViewDataSource>
+@property(nonatomic)NSString *selectedAddress;
 @property(nonatomic,strong) UIButton *backBtn;
 @property(nonatomic)UILabel *titleLabel;
 @property(nonatomic)AnnounceView *announceView;
@@ -32,7 +33,8 @@
     self.navigationController.navigationBar.hidden = NO;
     self.navigationController.hidesBottomBarWhenPushed = NO;
     //离开页面，更新选择的地址
-    [CreateAll UpdateSelectedBTCAddress:self.existAddressArray[self.selectedIndexPath.row]];
+    self.wallet.selectedBTCAddress = self.existAddressArray[self.selectedIndexPath.row];
+    [CreateAll SaveWallet:self.wallet Name:self.wallet.walletName WalletType:LOCAL_WALLET];
 }
 - (void)popAction{
     [self.navigationController popViewControllerAnimated:YES];
@@ -89,6 +91,7 @@
 }
 -(void)loadExistAddress{
     self.existAddressArray = [self.wallet.addressarray mutableCopy];
+    self.selectedAddress = [self.wallet.selectedBTCAddress isEqualToString:@""]?self.wallet.address:self.wallet.selectedBTCAddress;
 }
 
 -(void)initUI{
@@ -134,7 +137,7 @@
     UInt32 index = (UInt32) self.existAddressArray.count + 1;
     BTCKey *key = [CreateAll CreateBTCAddressAtIndex:index ExtendKey:self.wallet.BIP32ExtendedPublicKey];
     [self.wallet.addressarray addObject:key.compressedPublicKeyAddress.string];
-    [CreateAll SaveWallet:self.wallet Name:@"walletBTC"];
+    [CreateAll SaveWallet:self.wallet Name:@"walletBTC" WalletType:LOCAL_WALLET];
     [self.existAddressArray addObject:key.compressedPublicKeyAddress.string];
     [self.tableView reloadData];
     NSLog(@"add address = %@",key.compressedPublicKeyAddress.string);
@@ -195,7 +198,6 @@
     NSString *address = self.existAddressArray[indexPath.row];
     NSString *str1 = [address substringToIndex:9];
     NSString *str2 = [address substringFromIndex:address.length - 10];
-    self.selectedAddress = [CreateAll GetSelectedBTCAddress];
     if (self.selectedAddress != nil && [address isEqualToString:self.selectedAddress]) {
         [cell.selectBtn setSelected:YES];
         self.selectedIndexPath = indexPath;

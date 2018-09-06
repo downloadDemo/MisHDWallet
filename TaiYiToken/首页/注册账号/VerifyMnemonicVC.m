@@ -139,12 +139,11 @@
     NSString *xprv = [CreateAll CreateExtendPrivateKeyWithSeed:seed];
     MissionWallet *walletBTC = [CreateAll CreateWalletByXprv:xprv index:0 CoinType:BTC];
     MissionWallet *walletETH = [CreateAll CreateWalletByXprv:xprv index:0 CoinType:ETH];
-    
     //创建完成 清除密码
     [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"password"];
 
-    [CreateAll SaveWallet:walletBTC Name:@"walletBTC"];
-    [CreateAll SaveWallet:walletETH Name:@"walletETH"];
+    [CreateAll SaveWallet:walletBTC Name:@"walletBTC" WalletType:LOCAL_WALLET];
+    [CreateAll SaveWallet:walletETH Name:@"walletETH" WalletType:LOCAL_WALLET];
     
     [[NSUserDefaults standardUserDefaults]  setBool:YES forKey:@"ifHasAccount"];
 }
