@@ -10,4 +10,5 @@
 
 @interface ExportWalletAddressVC : UIViewController
 @property(nonatomic)NSString *selectedAddress;
+@property(nonatomic)MissionWallet *wallet;
 @end

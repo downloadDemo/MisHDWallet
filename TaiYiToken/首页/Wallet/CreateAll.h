@@ -23,7 +23,22 @@
  2.生成地址使用ethers接口实现
  */
 #import <Foundation/Foundation.h>
+#import "NYMnemonic.h"
 
+#import <CommonCrypto/CommonDigest.h>
+#import <CommonCrypto/CommonHMAC.h>
+
+
+#import "secp256k1.h"
+#import "secp256k1_ecdh.h"
+#import "secp256k1_recovery.h"
+#import "util.h"
+#import "BRKey.h"
+
+#import "NSString+Bitcoin.h"
+#import "NSData+Bitcoin.h"
+#import "NSMutableData+Bitcoin.h"
+#import "BRBIP32Sequence.h"
 @interface CreateAll : NSObject
 /*
  *********钱包生成/导入/恢复**********
@@ -36,6 +51,12 @@
 
 //扩展主公钥生成    mpk
 +(NSString *)CreateMasterPublicKeyWithSeed:(NSString *)seed;
+//取主公钥
++(NSData *)GetMasterPublicKey;
+
+//根据BIP32ExtendedPublicKey扩展公钥生成index索引的子BTCKey
++(BTCKey *)CreateBTCAddressAtIndex:(UInt32)index ExtendKey:(NSString *)extendedPublicKey;
+
 //扩展账号私钥生成  xprv
 +(NSString *)CreateExtendPrivateKeyWithSeed:(NSString *)seed;
 //扩展账号公钥生成  xpub

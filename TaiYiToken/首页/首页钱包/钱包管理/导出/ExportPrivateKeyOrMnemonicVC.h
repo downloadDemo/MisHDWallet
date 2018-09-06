@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface ExportPrivateKeyOrMnemonicVC : UIViewController
-@property(nonatomic)NSString *exportString;
+@property(nonatomic)NSString *privateKey;
+@property(nonatomic)NSString *mnemonic;
 @end

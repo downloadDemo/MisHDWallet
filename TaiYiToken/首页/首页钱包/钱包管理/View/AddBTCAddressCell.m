@@ -45,7 +45,6 @@
     if (!_selectBtn) {
         _selectBtn = [UIButton buttonWithType: UIButtonTypeCustom];
         [_selectBtn setImage:[UIImage imageNamed:@"ico_check_select"] forState:UIControlStateSelected];
-        [_selectBtn setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
         [self.contentView addSubview:_selectBtn];
         [_selectBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.equalTo(-10);

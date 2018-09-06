@@ -7,23 +7,6 @@
 //
 #import <Foundation/Foundation.h>
 #import "CreateAll.h"
-#import "NYMnemonic.h"
-
-#import <CommonCrypto/CommonDigest.h>
-#import <CommonCrypto/CommonHMAC.h>
-
-
-#import "secp256k1.h"
-#import "secp256k1_ecdh.h"
-#import "secp256k1_recovery.h"
-#import "util.h"
-#import "BRKey.h"
-
-#import "NSString+Bitcoin.h"
-#import "NSData+Bitcoin.h"
-#import "NSMutableData+Bitcoin.h"
-#import "BRBIP32Sequence.h"
-//#import <iconv.h>
 
 @implementation CreateAll
 /*
@@ -40,11 +23,6 @@
                                                                 passphrase:@""
                                                                 language:@"english"];
     NSLog(@"seed = %@",seed);
-    
-    [CreateAll CreateKeyStoreByMnemonic:mnemonic Password:password callback:^(Account *account, NSError *error) {
-        NSLog(@"**** CreateKeyStoreByMnemonic finished ! ****");
-    }];
-    
     return seed;
 }
 /*
@@ -72,16 +50,28 @@
 +(NSString *)CreateMasterPublicKeyWithSeed:(NSString *)seed{
     BRBIP32Sequence *seq = [BRBIP32Sequence new];
     NSData *mpk = [seq masterPublicKeyFromSeed:seed.hexToData];
+    [[NSUserDefaults standardUserDefaults] setObject:mpk forKey:@"masterPublicKey"];
     //mpk前4位为较验位
     NSString *mpkstr = [NSString hexWithData:mpk];
     return  mpkstr;
 }
+
+//取主公钥
++(NSData *)GetMasterPublicKey{
+    NSData *mpk = [[NSUserDefaults standardUserDefaults] objectForKey:@"masterPublicKey"];
+    if (mpk == nil || mpk == [NSNull null]) {
+        return nil;
+    }
+    return mpk;
+}
+
 
 //扩展账号私钥生成  BIP32 Root Key
 +(NSString *)CreateExtendPrivateKeyWithSeed:(NSString *)seed{
     BRBIP32Sequence *seq = [BRBIP32Sequence new];
     //**********BIP32SequenceSerializedPrivateMasterFromSeed
     NSString *xprv = [seq serializedPrivateMasterFromSeed:seed.hexToData];
+    
     NSLog(@"xprv = %@",xprv);
     return  xprv;
 }
@@ -95,6 +85,14 @@
     NSLog(@"xpub = %@",xpub);
     return  xpub;
 }
+//根据扩展公钥生成index索引的子BTCKey
++(BTCKey *)CreateBTCAddressAtIndex:(UInt32)index ExtendKey:(NSString *)extendedPublicKey{
+    BTCKeychain* pubchain = [[BTCKeychain alloc] initWithExtendedKey:extendedPublicKey];
+    BTCKey* key = [pubchain keyAtIndex:index];
+    return key;
+}
+
+
 /*
  由扩展私钥生成钱包，指定钱包索引，币种两个参数
  xprv,index,coinType
@@ -123,7 +121,6 @@
     wallet.BIP32ExtendedPrivateKey = BIP32ExtendedPrivateKey;
     wallet.BIP32ExtendedPublicKey = BIP32ExtendedPublicKey;
     
-    
     //第一个地址和私钥m/44'/0'/0'/0  m/44'/60'/0'/0
     BTCKey* key = [[btckeychainxprv derivedKeychainWithPath:BIP32Path] keyAtIndex:index];
     if(coinType == BTC){
@@ -133,6 +130,7 @@
         wallet.privateKey = privateKey;
         wallet.publicKey = compressedPublicKey;
         wallet.address = compressedPublicKeyAddress;
+        wallet.addressarray = [@[compressedPublicKeyAddress] mutableCopy];
         wallet.index = index;
         NSLog(@"\n BTC  privateKey= %@\n Address = %@\n  PublicKey = %@\n",privateKey,compressedPublicKeyAddress, compressedPublicKey);
         
@@ -143,6 +141,7 @@
         wallet.privateKey = privateKey;
         wallet.publicKey = compressedPublicKey;
         wallet.address = account.address.checksumAddress;
+        wallet.addressarray = [@[account.address.checksumAddress] mutableCopy];
         wallet.index = index;
         NSLog(@"\n ETH  privateKey= %@\n Address = %@\n  PublicKey = %@\n",privateKey,account.address.checksumAddress, compressedPublicKey);
     }
@@ -249,25 +248,13 @@
     [[NSUserDefaults standardUserDefaults] setObject:walletdata forKey:walletname];
     //更新钱包名数组
     NSMutableArray *oldwalletarray = [[[NSUserDefaults standardUserDefaults]  objectForKey:@"walletArray"] mutableCopy];
-    [oldwalletarray addObject:walletname];
-    NSMutableArray *newwalletarray = [oldwalletarray mutableCopy];
-    [[NSUserDefaults standardUserDefaults]  setObject:newwalletarray forKey:@"walletArray"];
-    //如果是比特币钱包 存地址
-    if(wallet.coinType == BTC){
-        NSMutableDictionary *oldBTCaddressdic = [[[NSUserDefaults standardUserDefaults]  objectForKey:@"BTCaddressdic"] mutableCopy];
-        [oldBTCaddressdic setObject:wallet.address forKey:[NSString stringWithFormat:@"%d",wallet.index]];
-        NSMutableDictionary *newBTCaddressdic = [oldBTCaddressdic mutableCopy];
-        [[NSUserDefaults standardUserDefaults]  setObject:newBTCaddressdic forKey:@"BTCaddressdic"];
+    if (![oldwalletarray containsObject:walletname]) {
+        [oldwalletarray addObject:walletname];
+        NSMutableArray *newwalletarray = [oldwalletarray mutableCopy];
+        [[NSUserDefaults standardUserDefaults]  setObject:newwalletarray forKey:@"walletArray"];
     }
 }
-//取存在本地的比特币钱包地址 @{address:index}
-+(NSDictionary *)GetBTCAddressDic{
-    NSMutableDictionary *BTCaddressdic = [[[NSUserDefaults standardUserDefaults]  objectForKey:@"BTCaddressdic"] mutableCopy];
-    if (BTCaddressdic == [NSNull null] || BTCaddressdic == nil) {
-        return nil;
-    }
-    return BTCaddressdic;
-}
+
 //更新BTC钱包主地址
 +(void)UpdateSelectedBTCAddress:(NSString *)address{
     [[NSUserDefaults standardUserDefaults] setObject:address forKey:@"SelectedBTCAddress"];

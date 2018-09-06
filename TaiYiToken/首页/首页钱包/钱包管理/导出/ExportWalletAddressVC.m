@@ -16,9 +16,9 @@
 @property(nonatomic)UITableView *tableView;
 @property(nonatomic)AnnounceView *announceView;
 @property(nonatomic)UIButton *addAddressBtn;
-@property(nonatomic)NSDictionary *existAddressDic;
+//@property(nonatomic)NSDictionary *existAddressDic;
 @property(nonatomic)NSMutableArray *existAddressArray;
-@property(nonatomic)NSMutableArray *existIndexArray;
+//@property(nonatomic)NSMutableArray *existIndexArray;
 @property(nonatomic)NSIndexPath *selectedIndexPath;
 @end
 
@@ -46,7 +46,7 @@
     [self initHeadView];
     [self initUI];
     [self loadExistAddress];
-    if (self.existAddressDic != nil) {
+    if (self.existAddressArray != nil) {
         [self tableView];
     }
 }
@@ -90,16 +90,17 @@
     
 }
 -(void)loadExistAddress{
-    self.existAddressDic = [CreateAll GetBTCAddressDic];
-    if (self.existAddressDic == nil) {
-        return;
-    }
-    self.existAddressArray = [NSMutableArray new];
-    self.existIndexArray = [NSMutableArray new];
-    [self.existAddressDic enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
-        [self.existAddressArray addObject:(NSString *)obj];
-        [self.existIndexArray addObject:(NSString *)key];
-    }];
+    self.existAddressArray = [self.wallet.addressarray mutableCopy];
+//    self.existAddressDic = [CreateAll GetBTCAddressDic];
+//    if (self.existAddressDic == nil) {
+//        return;
+//    }
+//    self.existAddressArray = [NSMutableArray new];
+//    self.existIndexArray = [NSMutableArray new];
+//    [self.existAddressDic enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+//        [self.existAddressArray addObject:(NSString *)obj];
+//        [self.existIndexArray addObject:(NSString *)key];
+//    }];
 }
 
 -(void)initUI{
@@ -142,7 +143,13 @@
     
 }
 -(void)addAddress{
-    
+    UInt32 index = (UInt32) self.existAddressArray.count + 1;
+    BTCKey *key = [CreateAll CreateBTCAddressAtIndex:index ExtendKey:self.wallet.BIP32ExtendedPublicKey];
+    [self.wallet.addressarray addObject:key.compressedPublicKeyAddress.string];
+    [CreateAll SaveWallet:self.wallet Name:@"walletBTC"];
+    [self.existAddressArray addObject:key.compressedPublicKeyAddress.string];
+    [self.tableView reloadData];
+    NSLog(@"add address = %@",key.compressedPublicKeyAddress.string);
 }
 
 
@@ -177,7 +184,7 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    for (int i = 0; i < self.existAddressArray.count - 1; i++) {
+    for (int i = 0; i < self.existAddressArray.count; i++) {
         if (i != indexPath.row) {
             AddBTCAddressCell *cell = [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:indexPath.section]];
             [cell.selectBtn setSelected:NO];
@@ -206,7 +213,7 @@
         self.selectedIndexPath = indexPath;
     }
     cell.addresslb.text = [NSString stringWithFormat:@"* %@...%@",str1,str2];
-    cell.xpubIndexlb.text = [NSString stringWithFormat:@"xpub 0/%@",self.existIndexArray[indexPath.row]];
+    cell.xpubIndexlb.text = [NSString stringWithFormat:@"xpub 0/%ld",indexPath.row];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }

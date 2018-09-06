@@ -24,5 +24,7 @@
 @property(nonatomic)int index;
 
 @property(nonatomic,assign)CoinType coinType;
+//BTC存所有地址，ETH只有主地址address
+@property(nonatomic)NSMutableArray *addressarray;
 
 @end

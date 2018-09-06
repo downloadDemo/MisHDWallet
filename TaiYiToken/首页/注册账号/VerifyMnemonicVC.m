@@ -131,16 +131,17 @@
     NSString *password = [[NSUserDefaults standardUserDefaults] objectForKey:@"password"];
     //512位种子 长度为128字符 64Byte
     NSString *seed = [CreateAll CreateSeedByMnemonic:self.mnemonic Password:password];
+    [CreateAll CreateKeyStoreByMnemonic:self.mnemonic Password:password callback:^(Account *account, NSError *error) {
+        NSLog(@"**** CreateKeyStoreByMnemonic finished ! ****");
+    }];
     NSString *xprv = [CreateAll CreateExtendPrivateKeyWithSeed:seed];
     MissionWallet *walletBTC = [CreateAll CreateWalletByXprv:xprv index:0 CoinType:BTC];
-    MissionWallet *walletBTC2 = [CreateAll CreateWalletByXprv:xprv index:1 CoinType:BTC];
     MissionWallet *walletETH = [CreateAll CreateWalletByXprv:xprv index:0 CoinType:ETH];
     
     //创建完成 清除密码
     [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"password"];
 
     [CreateAll SaveWallet:walletBTC Name:@"walletBTC"];
-    [CreateAll SaveWallet:walletBTC2 Name:@"walletBTC2"];
     [CreateAll SaveWallet:walletETH Name:@"walletETH"];
     
     [[NSUserDefaults standardUserDefaults]  setBool:YES forKey:@"ifHasAccount"];

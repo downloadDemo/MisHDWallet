@@ -219,6 +219,7 @@
 -(void)ExportAddress{
     ExportWalletAddressVC *wadvc = [ExportWalletAddressVC new];
     wadvc.selectedAddress = [CreateAll GetSelectedBTCAddress];
+    wadvc.wallet = self.wallet;
     [self.navigationController pushViewController:wadvc animated:YES];
 }
 //BTC = ETH 导出KeyStore
@@ -249,7 +250,7 @@
         [self.view hideHUD];
         if (!error) {
             ExportPrivateKeyOrMnemonicVC *epmvc = [ExportPrivateKeyOrMnemonicVC new];
-            epmvc.exportString = privateKey;
+            epmvc.privateKey = privateKey;
             [self.navigationController pushViewController:epmvc animated:YES];
         }else{
              [self.view showMsg:error.description];
@@ -263,7 +264,7 @@
         [self.view hideHUD];
         if (!error) {
             ExportPrivateKeyOrMnemonicVC *epmvc = [ExportPrivateKeyOrMnemonicVC new];
-            epmvc.exportString = self.wallet.privateKey;
+            epmvc.mnemonic = mnemonic;
             [self.navigationController pushViewController:epmvc animated:YES];
         }else{
             [self.view showMsg:error.description];
