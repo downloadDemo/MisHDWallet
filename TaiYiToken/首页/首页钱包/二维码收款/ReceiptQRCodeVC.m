@@ -130,8 +130,6 @@
     }];
     
     if (_wallet.coinType == BTC) {
-        NSData *walletBTCdata2 =  [[NSUserDefaults standardUserDefaults] objectForKey:@"walletBTC2"];
-        MissionWallet *walletBTC2 =  [NSKeyedUnarchiver unarchiveObjectWithData:walletBTCdata2];
         _addressSwitch=[[MySwitch alloc] initWithFrame:CGRectMake(0, 0, 144, 34) withGap:2.0];
         [_addressSwitch setBackgroundImage:[UIImage imageNamed:@"rectxx"]];
         [_addressSwitch setLeftBlockImage:[UIImage imageNamed:@"rectbtn"]];
@@ -217,18 +215,20 @@
         }
         [_addressBtn setTitle:address forState:UIControlStateNormal];
     }else{
-        if (_wallet.addressarray && _wallet.addressarray.count > 1) {
-            NSString *address2 = _wallet.addressarray[1];
-            [_QRCodeiv setImage:[CreateAll CreateQRCodeForAddress:address2]];
-            NSString *address = @"";
-            if(address2.length > 20){
-                NSString *str1 = [address2 substringToIndex:9];
-                NSString *str2 = [address2 substringFromIndex:address2.length - 10];
-                address = [NSString stringWithFormat:@"%@...%@",str1,str2];
-            }
-            [_addressBtn setTitle:address forState:UIControlStateNormal];
+        NSString *address2 = @"";
+        if ([_wallet.selectedBTCAddress isEqualToString:_wallet.address]&&_wallet.addressarray&&_wallet.addressarray.count>1) {
+            address2 = _wallet.addressarray[1];
+        }else{
+            address2 = _wallet.selectedBTCAddress;
         }
-       
+        [_QRCodeiv setImage:[CreateAll CreateQRCodeForAddress:address2]];
+        NSString *address = @"";
+        if(address2.length > 20){
+            NSString *str1 = [address2 substringToIndex:9];
+            NSString *str2 = [address2 substringFromIndex:address2.length - 10];
+            address = [NSString stringWithFormat:@"%@...%@",str1,str2];
+        }
+        [_addressBtn setTitle:address forState:UIControlStateNormal];
     }
 }
 
