@@ -61,6 +61,10 @@
 		842FEE70213F84B90075716E /* SelectButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 842FEE6F213F84B90075716E /* SelectButtonView.m */; };
 		842FEE76213FBFF90075716E /* AnnounceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 842FEE75213FBFF90075716E /* AnnounceView.m */; };
 		842FEE79213FCFCA0075716E /* AddBTCAddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 842FEE78213FCFCA0075716E /* AddBTCAddressCell.m */; };
+		842FEE7E2141106A0075716E /* ImportWalletSwitchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 842FEE7D214110690075716E /* ImportWalletSwitchVC.m */; };
+		842FEE8221411C9E0075716E /* ImportBTCWalletVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 842FEE8121411C9E0075716E /* ImportBTCWalletVC.m */; };
+		842FEE8621411D1A0075716E /* ControlBtnsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 842FEE8521411D1A0075716E /* ControlBtnsView.m */; };
+		842FEE892141286B0075716E /* SetPasswordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 842FEE882141286B0075716E /* SetPasswordView.m */; };
 		843EC9DA21212271002D5C2A /* NSObject+Parse.m in Sources */ = {isa = PBXBuildFile; fileRef = 843EC9CF21212266002D5C2A /* NSObject+Parse.m */; };
 		843EC9DB21212271002D5C2A /* UIScrollView+Refresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 843EC9D021212267002D5C2A /* UIScrollView+Refresh.m */; };
 		843EC9DC21212271002D5C2A /* UIView+HUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 843EC9D221212268002D5C2A /* UIView+HUD.m */; };
@@ -264,6 +268,14 @@
 		842FEE75213FBFF90075716E /* AnnounceView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnnounceView.m; sourceTree = "<group>"; };
 		842FEE77213FCFCA0075716E /* AddBTCAddressCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddBTCAddressCell.h; sourceTree = "<group>"; };
 		842FEE78213FCFCA0075716E /* AddBTCAddressCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddBTCAddressCell.m; sourceTree = "<group>"; };
+		842FEE7C214110690075716E /* ImportWalletSwitchVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImportWalletSwitchVC.h; sourceTree = "<group>"; };
+		842FEE7D214110690075716E /* ImportWalletSwitchVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImportWalletSwitchVC.m; sourceTree = "<group>"; };
+		842FEE8021411C9E0075716E /* ImportBTCWalletVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImportBTCWalletVC.h; sourceTree = "<group>"; };
+		842FEE8121411C9E0075716E /* ImportBTCWalletVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImportBTCWalletVC.m; sourceTree = "<group>"; };
+		842FEE8421411D1A0075716E /* ControlBtnsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ControlBtnsView.h; sourceTree = "<group>"; };
+		842FEE8521411D1A0075716E /* ControlBtnsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ControlBtnsView.m; sourceTree = "<group>"; };
+		842FEE872141286B0075716E /* SetPasswordView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SetPasswordView.h; sourceTree = "<group>"; };
+		842FEE882141286B0075716E /* SetPasswordView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SetPasswordView.m; sourceTree = "<group>"; };
 		843EC9C721212170002D5C2A /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		843EC9CE21212266002D5C2A /* NSString+URLString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+URLString.h"; sourceTree = "<group>"; };
 		843EC9CF21212266002D5C2A /* NSObject+Parse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Parse.m"; sourceTree = "<group>"; };
@@ -736,6 +748,7 @@
 		842FEDF7213CD3770075716E /* 首页钱包 */ = {
 			isa = PBXGroup;
 			children = (
+				842FEE7B214110200075716E /* 导入钱包 */,
 				842FEE35213E1CF40075716E /* 钱包管理 */,
 				842FEE34213E1CE20075716E /* 二维码收款 */,
 				842FEE0B213D25E80075716E /* 扫码 */,
@@ -836,6 +849,37 @@
 				842FEE75213FBFF90075716E /* AnnounceView.m */,
 				842FEE77213FCFCA0075716E /* AddBTCAddressCell.h */,
 				842FEE78213FCFCA0075716E /* AddBTCAddressCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		842FEE7B214110200075716E /* 导入钱包 */ = {
+			isa = PBXGroup;
+			children = (
+				842FEE8321411CBE0075716E /* View */,
+				842FEE7F214112170075716E /* 导入详情 */,
+				842FEE7C214110690075716E /* ImportWalletSwitchVC.h */,
+				842FEE7D214110690075716E /* ImportWalletSwitchVC.m */,
+			);
+			path = "导入钱包";
+			sourceTree = "<group>";
+		};
+		842FEE7F214112170075716E /* 导入详情 */ = {
+			isa = PBXGroup;
+			children = (
+				842FEE8021411C9E0075716E /* ImportBTCWalletVC.h */,
+				842FEE8121411C9E0075716E /* ImportBTCWalletVC.m */,
+			);
+			path = "导入详情";
+			sourceTree = "<group>";
+		};
+		842FEE8321411CBE0075716E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				842FEE8421411D1A0075716E /* ControlBtnsView.h */,
+				842FEE8521411D1A0075716E /* ControlBtnsView.m */,
+				842FEE872141286B0075716E /* SetPasswordView.h */,
+				842FEE882141286B0075716E /* SetPasswordView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1428,17 +1472,20 @@
 				848180BB2123C72A0007DCF9 /* ContainerViewController.m in Sources */,
 				842FEE76213FBFF90075716E /* AnnounceView.m in Sources */,
 				842FEE48213E38510075716E /* MySwitch.m in Sources */,
+				842FEE8621411D1A0075716E /* ControlBtnsView.m in Sources */,
 				843EC9EC212122A7002D5C2A /* NetManager.m in Sources */,
 				843EC9DD21212271002D5C2A /* UIImage+BaseToImage.m in Sources */,
 				84D0E42621211AAB004E65AD /* ViewController.m in Sources */,
 				84B0A95021228BE9002EFA0A /* SwitchAccountVc.m in Sources */,
 				842FEE14213D26030075716E /* WBQRCodeVC.m in Sources */,
 				84FA0821212BE3AF00DCFC0C /* CreateAll.m in Sources */,
+				842FEE892141286B0075716E /* SetPasswordView.m in Sources */,
 				843ECA2C212162FB002D5C2A /* NSString+Extention.m in Sources */,
 				0415BDA52131BC850022DEB7 /* YYStockView_Kline.m in Sources */,
 				842FEE15213D26030075716E /* ScanSuccessJumpVC.m in Sources */,
 				84B0A9642122CD7B002EFA0A /* RemindView.m in Sources */,
 				84C0DF30212CFF9100BCC91D /* NSMutableData+Bitcoin.m in Sources */,
+				842FEE7E2141106A0075716E /* ImportWalletSwitchVC.m in Sources */,
 				0415BD9A2131BC850022DEB7 /* YYTopBarView.m in Sources */,
 				8460C7B12136A446002E4B2F /* YYTimeLineModel.m in Sources */,
 				843ECA3921216320002D5C2A /* UIView+frameAdjust.m in Sources */,
@@ -1458,6 +1505,7 @@
 				0415BDAB2131BC850022DEB7 /* YYKlineMaskView.m in Sources */,
 				842FEE5E213E8B0A0075716E /* InputPasswordVC.m in Sources */,
 				8481805F2123B2630007DCF9 /* Base64.m in Sources */,
+				842FEE8221411C9E0075716E /* ImportBTCWalletVC.m in Sources */,
 				84748845212AAAD70077AC0F /* VerifyMnemonicVC.m in Sources */,
 				843EC9DE21212271002D5C2A /* NSString+URLString.m in Sources */,
 				0415BD9C2131BC850022DEB7 /* YYLinePositionModel.m in Sources */,

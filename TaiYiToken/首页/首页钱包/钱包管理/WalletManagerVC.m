@@ -9,6 +9,7 @@
 #import "WalletManagerVC.h"
 #import "WalletManagerCell.h"
 #import "ExportWalletVC.h"
+#import "ImportWalletSwitchVC.h"
 @interface WalletManagerVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 @property(nonatomic)UICollectionView *collectionview;
 @property(nonatomic,strong) UIButton *backBtn;
@@ -38,12 +39,13 @@
 - (void)popAction{
     [self.navigationController popViewControllerAnimated:YES];
 }
-
+//导入钱包
 - (void)addWalletBtnAction{
-    
+    ImportWalletSwitchVC *isvc = [ImportWalletSwitchVC new];
+    [self.navigationController pushViewController:isvc animated:YES];
 }
-
-- (void)addAccountBtnAction{
+//创建新账户
+- (void)createNewAccountBtnAction{
     
 }
 -(void)initHeadView{
@@ -88,7 +90,7 @@
     
     _addWalletBtn = [UIButton buttonWithType: UIButtonTypeCustom];
     [_addWalletBtn setBackgroundImage:[UIImage imageNamed:@"add"] forState:UIControlStateNormal];
-    [_addWalletBtn addTarget:self action:@selector(addAccountBtnAction) forControlEvents:UIControlEventTouchUpInside];
+    [_addWalletBtn addTarget:self action:@selector(addWalletBtnAction) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_addWalletBtn];
     [_addWalletBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(-20);
@@ -105,7 +107,7 @@
     _addAccountBtn.tintColor = [UIColor textBlackColor];
     _addAccountBtn.userInteractionEnabled = YES;
     [_addAccountBtn setTitle:@"创建新账户" forState:UIControlStateNormal];
-    [_addAccountBtn addTarget:self action:@selector(addWalletBtnAction) forControlEvents:UIControlEventTouchUpInside];
+    [_addAccountBtn addTarget:self action:@selector(createNewAccountBtnAction) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_addAccountBtn];
     [_addAccountBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.equalTo(0);
