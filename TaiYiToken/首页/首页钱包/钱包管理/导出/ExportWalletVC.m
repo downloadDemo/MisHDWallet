@@ -225,7 +225,7 @@
 -(void)ExportKeyStore{
     
     [self.view showHUD];
-    [CreateAll ExportKeyStoreByPassword:self.password callback:^(NSString *address, NSError *error) {
+    [CreateAll ExportKeyStoreByPassword:self.password WalletAddress:self.wallet.address callback:^(NSString *address, NSError *error) {
         [self.view hideHUD];
         if (!error) {
             if ([self.wallet.address isEqualToString:address]) {
@@ -238,14 +238,14 @@
                 [self.view showMsg:@"密码错误"];
             }
         }else{
-            [self.view showMsg:error.description];
+            [self.view showMsg:@"密码错误"];
         }
     }];
 }
 //导出私钥
 -(void)ExportPrivateKey{
     [self.view showHUD];
-    [CreateAll ExportPrivateKeyByPassword:self.password CoinType:self.wallet.coinType index:self.wallet.index callback:^(NSString *privateKey, NSError *error) {
+    [CreateAll ExportPrivateKeyByPassword:self.password  CoinType:self.wallet.coinType WalletAddress:self.wallet.address index:self.wallet.index callback:^(NSString *privateKey, NSError *error) {
         [self.view hideHUD];
         if (!error) {
             ExportPrivateKeyOrMnemonicVC *epmvc = [ExportPrivateKeyOrMnemonicVC new];
@@ -254,14 +254,14 @@
             epmvc.isExportMnemonic = NO;
             [self.navigationController pushViewController:epmvc animated:YES];
         }else{
-             [self.view showMsg:error.description];
+             [self.view showMsg:@"密码错误"];
         }
     }];
 }
 //导出Mnemonic
 -(void)ExportMnemonic{
     [self.view showHUD];
-    [CreateAll ExportMnemonicByPassword:self.password callback:^(NSString *mnemonic, NSError *error) {
+    [CreateAll ExportMnemonicByPassword:self.password  WalletAddress:self.wallet.address callback:^(NSString *mnemonic, NSError *error) {
         [self.view hideHUD];
         if (!error) {
             ExportPrivateKeyOrMnemonicVC *epmvc = [ExportPrivateKeyOrMnemonicVC new];
@@ -270,7 +270,7 @@
             epmvc.isExportMnemonic = YES;
             [self.navigationController pushViewController:epmvc animated:YES];
         }else{
-            [self.view showMsg:error.description];
+            [self.view showMsg:@"密码错误"];
         }
     }];
 }

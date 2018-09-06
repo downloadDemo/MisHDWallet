@@ -10,5 +10,4 @@
 #import "MissionWallet.h"
 @interface ReceiptQRCodeVC : UIViewController
 @property(nonatomic)MissionWallet *wallet;
-@property(nonatomic)MissionWallet *BTCWallet2;
 @end

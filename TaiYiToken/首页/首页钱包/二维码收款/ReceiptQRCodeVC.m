@@ -132,7 +132,6 @@
     if (_wallet.coinType == BTC) {
         NSData *walletBTCdata2 =  [[NSUserDefaults standardUserDefaults] objectForKey:@"walletBTC2"];
         MissionWallet *walletBTC2 =  [NSKeyedUnarchiver unarchiveObjectWithData:walletBTCdata2];
-        self.BTCWallet2 = walletBTC2;
         _addressSwitch=[[MySwitch alloc] initWithFrame:CGRectMake(0, 0, 144, 34) withGap:2.0];
         [_addressSwitch setBackgroundImage:[UIImage imageNamed:@"rectxx"]];
         [_addressSwitch setLeftBlockImage:[UIImage imageNamed:@"rectbtn"]];
@@ -202,7 +201,7 @@
     if (_wallet.coinType == ETH || self.addressSwitch == nil) {
         pasteboard.string = _wallet.address;
     }else{
-        pasteboard.string = _addressSwitch.OnStatus == YES ? self.wallet.address : self.BTCWallet2.address;
+        pasteboard.string = _addressSwitch.OnStatus == YES ? self.wallet.address : self.wallet.addressarray[1];
     }
    [self.view showMsg:@"地址已复制"];
 }
@@ -218,14 +217,18 @@
         }
         [_addressBtn setTitle:address forState:UIControlStateNormal];
     }else{
-        [_QRCodeiv setImage:[CreateAll CreateQRCodeForAddress:_BTCWallet2 == nil?@"":_BTCWallet2.address]];
-        NSString *address = @"";
-        if(_BTCWallet2.address.length > 20){
-            NSString *str1 = [_BTCWallet2.address substringToIndex:9];
-            NSString *str2 = [_BTCWallet2.address substringFromIndex:_BTCWallet2.address.length - 10];
-            address = [NSString stringWithFormat:@"%@...%@",str1,str2];
+        if (_wallet.addressarray && _wallet.addressarray.count > 1) {
+            NSString *address2 = _wallet.addressarray[1];
+            [_QRCodeiv setImage:[CreateAll CreateQRCodeForAddress:address2]];
+            NSString *address = @"";
+            if(address2.length > 20){
+                NSString *str1 = [address2 substringToIndex:9];
+                NSString *str2 = [address2 substringFromIndex:address2.length - 10];
+                address = [NSString stringWithFormat:@"%@...%@",str1,str2];
+            }
+            [_addressBtn setTitle:address forState:UIControlStateNormal];
         }
-        [_addressBtn setTitle:address forState:UIControlStateNormal];
+       
     }
 }
 

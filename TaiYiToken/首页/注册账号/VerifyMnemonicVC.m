@@ -133,12 +133,18 @@
     NSString *seed = [CreateAll CreateSeedByMnemonic:self.mnemonic Password:password];
     //test
     NSString *mnemonic = @"breeze eternal fiction junior ethics lumber chaos squirrel code jar snack broccoli";
-    [CreateAll CreateKeyStoreByMnemonic:mnemonic Password:password callback:^(Account *account, NSError *error) {
-        NSLog(@"**** CreateKeyStoreByMnemonic finished ! ****");
-    }];
+   
     NSString *xprv = [CreateAll CreateExtendPrivateKeyWithSeed:seed];
     MissionWallet *walletBTC = [CreateAll CreateWalletByXprv:xprv index:0 CoinType:BTC];
     MissionWallet *walletETH = [CreateAll CreateWalletByXprv:xprv index:0 CoinType:ETH];
+    //创建并存KeyStore
+    [CreateAll CreateKeyStoreByMnemonic:mnemonic  WalletAddress:walletBTC.address Password:password callback:^(Account *account, NSError *error) {
+        NSLog(@"**** BTC KeyStore finished ! ****");
+    }];
+    //创建并存KeyStore
+    [CreateAll CreateKeyStoreByMnemonic:mnemonic  WalletAddress:walletETH.address Password:password callback:^(Account *account, NSError *error) {
+        NSLog(@"**** ETH KeyStore finished ! ****");
+    }];
     //创建完成 清除密码
     [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"password"];
 

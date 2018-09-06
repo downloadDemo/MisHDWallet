@@ -33,4 +33,7 @@
 //导入/本地生成
 @property(nonatomic)WALLET_TYPE walletType;
 
+//密码提示
+@property(nonatomic,copy)NSString *passwordHint;
+
 @end

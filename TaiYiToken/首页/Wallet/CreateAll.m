@@ -28,7 +28,7 @@
 /*
  根据mnemonic生成keystore,用于恢复账号，备份私钥，导出助记词等
  */
-+(void)CreateKeyStoreByMnemonic:(NSString *)mnemonic Password:(NSString *)password  callback: (void (^)(Account *account, NSError *error))callback{
++(void)CreateKeyStoreByMnemonic:(NSString *)mnemonic WalletAddress:(NSString *)walletAddress Password:(NSString *)password  callback: (void (^)(Account *account, NSError *error))callback{
     Account *account = [Account accountWithMnemonicPhrase:mnemonic];
     [account encryptSecretStorageJSON:password callback:^(NSString *json) {
         NSLog(@"\n keystore(json) = %@",json);
@@ -37,14 +37,37 @@
                 NSLog(@"keystore生成错误");
             }else{
                 NSLog(@"\n\n\n** keystore 恢复 mnemonic ** = \n %@ \n\n\n",decryptedAccount.mnemonicPhrase);
-                //按密码保存keystore
-                [[NSUserDefaults standardUserDefaults] setObject:json forKey:[NSString stringWithFormat:@"keystore%@",password]];
+                //按地址保存keystore
+                [[NSUserDefaults standardUserDefaults] setObject:json forKey:[NSString stringWithFormat:@"keystore%@",walletAddress]];
             }
             callback(decryptedAccount,error);
 
         }];
     }];
 }
+
+
+/*
+ 根据PrivateKey生成keystore,用于恢复账号，备份私钥，导出助记词等
+ */
++(void)CreateKeyStoreByPrivateKey:(NSString *)privatekey  WalletAddress:(NSString *)walletAddress Password:(NSString *)password  callback: (void (^)(Account *account, NSError *error))callback{
+    Account *account = [Account accountWithPrivateKey:privatekey.dataValue];
+    [account encryptSecretStorageJSON:password callback:^(NSString *json) {
+        NSLog(@"\n keystore(json) = %@",json);
+        [Account decryptSecretStorageJSON:json password:password callback:^(Account *decryptedAccount, NSError *error) {
+            if (![account.address isEqual:decryptedAccount.address]) {
+                NSLog(@"keystore生成错误");
+            }else{
+                NSLog(@"\n\n\n** keystore 恢复 mnemonic ** = \n %@ \n\n\n",decryptedAccount.mnemonicPhrase);
+                //按密码保存keystore
+                [[NSUserDefaults standardUserDefaults] setObject:json forKey:[NSString stringWithFormat:@"keystore%@",walletAddress]];
+            }
+            callback(decryptedAccount,error);
+            
+        }];
+    }];
+}
+
 
 //扩展主公钥生成
 +(NSString *)CreateMasterPublicKeyWithSeed:(NSString *)seed{
@@ -85,16 +108,12 @@
     NSLog(@"xpub = %@",xpub);
     return  xpub;
 }
-//根据扩展公钥生成index索引的子BTCKey
+//根据扩展公钥生成index索引的子BTCKey，用于增加BTC子地址
 +(BTCKey *)CreateBTCAddressAtIndex:(UInt32)index ExtendKey:(NSString *)extendedPublicKey{
     BTCKeychain* pubchain = [[BTCKeychain alloc] initWithExtendedKey:extendedPublicKey];
     BTCKey* key = [pubchain keyAtIndex:index];
     return key;
 }
-
-
-
-
 
 /*
  由扩展私钥生成钱包，指定钱包索引，币种两个参数
@@ -151,20 +170,10 @@
     wallet.walletName = @"";
     wallet.walletType = LOCAL_WALLET;//类型标记为本地生成
     wallet.selectedBTCAddress = wallet.address;
+    wallet.passwordHint = @"";
     return wallet;
 }
 
-//从keystore恢复账号
-+(void)RecoverAccountByPassword:(NSString *)password callback: (void (^)(Account *account, NSError *error))callback{
-    NSString *json = [[NSUserDefaults standardUserDefaults]  objectForKey:[NSString stringWithFormat:@"keystore%@",password]];
-    if (json == nil || json == [NSNull null]) {
-        callback(@"wrong password！",nil);
-        return;
-    }
-    [Account decryptSecretStorageJSON:json password:password callback:^(Account *decryptedAccount, NSError *error) {
-        callback(decryptedAccount,error);
-    }];
-}
 
 //生成地址二维码
 +(UIImage *)CreateQRCodeForAddress:(NSString *)address{
@@ -177,9 +186,35 @@
 
 /*
 ************************************  导入  **************************************************
+ BTC -> 助记词，私钥
+ ETH -> keyStore,助记词，私钥
 */
-//由私钥导入钱包
-+(MissionWallet *)ImportWalletByPrivateKey:(NSString *)privateKey CoinType:(CoinType)coinType{
+
+//由助记词导入钱包 （存储钱包 生成存储KeyStore）
+/*
+ return nil; 表示钱包已存在
+ */
++(MissionWallet *)ImportWalletByMnemonic:(NSString *)mnemonic CoinType:(CoinType)coinType Password:(NSString *)password PasswordHint:(NSString *)passwordHint{
+    NSString *seed = [CreateAll CreateSeedByMnemonic:mnemonic Password:password];
+    NSString *xprv = [CreateAll CreateExtendPrivateKeyWithSeed:seed];
+    MissionWallet *wallet = [CreateAll CreateWalletByXprv:xprv index:0 CoinType:coinType];
+    [CreateAll CreateKeyStoreByMnemonic:mnemonic  WalletAddress:wallet.address Password:password callback:^(Account *account, NSError *error) {
+    }];
+    wallet.walletName = [CreateAll GenerateNewWalletNameWithWalletAddress:wallet.address CoinType:coinType];
+    if ([wallet.walletName isEqualToString:@"exist"]) {
+        return nil;
+    }
+    [CreateAll SaveWallet:wallet Name:wallet.walletName WalletType:IMPORT_WALLET];
+    [CreateAll CreateKeyStoreByMnemonic:mnemonic WalletAddress:wallet.address Password:password callback:^(Account *account, NSError *error) {
+    }];
+    return wallet;
+}
+
+//由私钥导入钱包 （存储钱包 生成存储KeyStore）
+/*
+return nil; 表示钱包已存在
+ */
++(MissionWallet *)ImportWalletByPrivateKey:(NSString *)privateKey CoinType:(CoinType)coinType Password:(NSString *)password PasswordHint:(NSString *)passwordHint{
     BTCKey *key = [[BTCKey alloc]initWithPrivateKey:privateKey.dataValue];
     
     MissionWallet *wallet = [MissionWallet new];
@@ -188,7 +223,6 @@
     wallet.AccountExtendedPublicKey = @"";
     wallet.BIP32ExtendedPrivateKey = @"";
     wallet.BIP32ExtendedPublicKey = @"";
-    
     wallet.privateKey = key.privateKeyAddress.string;;
     wallet.publicKey = [NSString hexWithData:key.compressedPublicKey];
     if (coinType == BTC) {
@@ -199,17 +233,46 @@
     }
     wallet.addressarray = [@[wallet.address] mutableCopy];
     wallet.index = 0;
-    
-    
-    wallet.walletType = IMPORT_WALLET;//类型标记为本地生成
+    wallet.walletType = IMPORT_WALLET;
     wallet.selectedBTCAddress = wallet.address;
-    
+    wallet.passwordHint = passwordHint;
+    wallet.walletName = [CreateAll GenerateNewWalletNameWithWalletAddress:wallet.address CoinType:coinType];
+    if ([wallet.walletName isEqualToString:@"exist"]) {
+        return nil;
+    }
+    [CreateAll SaveWallet:wallet Name:wallet.walletName WalletType:IMPORT_WALLET];
+    [CreateAll CreateKeyStoreByPrivateKey:wallet.privateKey WalletAddress:wallet.address Password:password callback:^(Account *account, NSError *error) {
+    }];
+    return wallet;
+}
+
+//由KeyStore导入钱包 （存储钱包 生成存储KeyStore）
+/*
+ callback(wallet,error); wallet == nil; 表示钱包已存在
+ */
++(void)ImportWalletByKeyStore:(NSString *)keystore  CoinType:(CoinType)coinType Password:(NSString *)password PasswordHint:(NSString *)passwordHint callback: (void (^)(MissionWallet *wallet, NSError *error))callback{
+    [Account decryptSecretStorageJSON:keystore password:password callback:^(Account *decryptedAccount, NSError *error) {
+        NSString *mnemonic = decryptedAccount.mnemonicPhrase;
+        MissionWallet *wallet = [CreateAll ImportWalletByMnemonic:mnemonic CoinType:coinType Password:password PasswordHint:passwordHint];
+        callback(wallet,error);
+    }];
+}
+
+
+
+
+
+//生成新导入钱包的名称
+/*
+ return @"exist";表示已存在
+ */
++(NSString *)GenerateNewWalletNameWithWalletAddress:(NSString *)address CoinType:(CoinType)coinType{
     //查询本地生成数组中是否已经存在
     NSArray *namearray = [CreateAll GetWalletNameArray];
     for (NSString *name in namearray) {
         MissionWallet *miswallet = [CreateAll GetMissionWalletByName:name];
-        if ([wallet.address isEqualToString:miswallet.address]) {
-            return nil;
+        if ([address isEqualToString:miswallet.address]) {
+            return @"exist";
         }
     }
     //查询本地导入数组中是否已经存在
@@ -217,15 +280,14 @@
     NSArray *importnamearray = [CreateAll GetImportWalletNameArray];
     for (NSString *name in importnamearray) {
         MissionWallet *miswallet = [CreateAll GetMissionWalletByName:name];
-        if ([wallet.address isEqualToString:miswallet.address]) {
-            return nil;
+        if ([address isEqualToString:miswallet.address]) {
+            return @"exist";
         }else{
-            if (miswallet.coinType == wallet.coinType) {
+            if (miswallet.coinType == coinType) {
                 importindex ++;//标记是第几个BTC/ETH钱包
             }
         }
     }
-    
     //本地不存在，存储
     NSString *savewalletname = @"";
     if (coinType == BTC) {
@@ -233,16 +295,16 @@
     }else{
         savewalletname = [NSString stringWithFormat:@"ETHWalletImported%ld",importindex];
     }
-    wallet.walletName = savewalletname;
-    return wallet;
+    return savewalletname;
 }
+
 
 /*
  ************************************************ 钱包导出 *********************************************************************
  */
 //导出keystore
-+(void)ExportKeyStoreByPassword:(NSString *)password  callback: (void (^)(NSString *address, NSError *error))callback{
-    NSString *json = [[NSUserDefaults standardUserDefaults]  objectForKey:[NSString stringWithFormat:@"keystore%@",password]];
++(void)ExportKeyStoreByPassword:(NSString *)password  WalletAddress:(NSString *)walletAddress callback: (void (^)(NSString *address, NSError *error))callback{
+    NSString *json = [[NSUserDefaults standardUserDefaults]  objectForKey:[NSString stringWithFormat:@"keystore%@",walletAddress]];
     NSLog(@"json = %@",json);
     if (json == nil || json == [NSNull null]) {
         callback(@"wrong password！",nil);
@@ -253,8 +315,8 @@
     }];
 }
 //导出助记词
-+(void)ExportMnemonicByPassword:(NSString *)password  callback: (void (^)(NSString *mnemonic, NSError *error))callback{
-    NSString *json = [[NSUserDefaults standardUserDefaults]  objectForKey:[NSString stringWithFormat:@"keystore%@",password]];
++(void)ExportMnemonicByPassword:(NSString *)password WalletAddress:(NSString *)walletAddress callback: (void (^)(NSString *mnemonic, NSError *error))callback{
+    NSString *json = [[NSUserDefaults standardUserDefaults]  objectForKey:[NSString stringWithFormat:@"keystore%@",walletAddress]];
     if (json == nil || json == [NSNull null]) {
         callback(@"wrong password！",nil);
         return;
@@ -264,8 +326,8 @@
     }];
 }
 //导出私钥
-+(void)ExportPrivateKeyByPassword:(NSString *)password CoinType:(CoinType)coinType index:(UInt32)index  callback: (void (^)(NSString *privateKey, NSError *error))callback{
-    NSString *json = [[NSUserDefaults standardUserDefaults]  objectForKey:[NSString stringWithFormat:@"keystore%@",password]];
++(void)ExportPrivateKeyByPassword:(NSString *)password CoinType:(CoinType)coinType WalletAddress:(NSString *)walletAddress  index:(UInt32)index  callback: (void (^)(NSString *privateKey, NSError *error))callback{
+    NSString *json = [[NSUserDefaults standardUserDefaults]  objectForKey:[NSString stringWithFormat:@"keystore%@",walletAddress]];
     if (json == nil || json == [NSNull null]) {
         callback(@"wrong password！",nil);
         return;
@@ -318,6 +380,7 @@
 //存储钱包
 +(void)SaveWallet:(MissionWallet *)wallet Name:(NSString *)walletname WalletType:(WALLET_TYPE)walletType{
     wallet.walletName = walletname;
+    wallet.walletType = walletType;
     //存钱包
     NSData *walletdata = [NSKeyedArchiver archivedDataWithRootObject:wallet];
     [[NSUserDefaults standardUserDefaults] setObject:walletdata forKey:walletname];
@@ -343,234 +406,5 @@
 }
 
 
-/***********************************************************/
-
-/***********************************************************/
-
-/***********************************************************/
-
-/***********************************************************/
-
-/***********************************************************/
-+(void)GetBitcoinWalletBalanceForAddress:(NSString *)address{
-    
-}
-//Bitcoin转账
-+(void)TransitionBitcoinToAddress:(NSString *)address Password:(NSString *)password  amount:(BTCAmount)amount
-                              fee:(BTCAmount)fee
-                              api:(BTCAPI)btcApi{
-    
-    [CreateAll RecoverAccountByPassword:password callback:^(Account *account, NSError *error) {
-       
-       
-        BTCKey* key = [[BTCKey alloc] initWithPrivateKey:account.privateKey];
-        
-        NSLog(@"Address: %@", key.compressedPublicKeyAddress);
-        
-        if (![@"1TipsuQ7CSqfQsjA9KU5jarSB1AnrVLLo" isEqualToString:key.compressedPublicKeyAddress.string]) {
-            NSLog(@"WARNING: incorrect private key is supplied");
-            return;
-        }
-        
-        NSError* trerror = nil;
-        BTCTransaction* transaction = [self transactionSpendingFromPrivateKey:account.privateKey
-                                                                           to:[BTCPublicKeyAddress addressWithString:address]
-                                                                       change:key.compressedPublicKeyAddress
-                                                                       amount:amount
-                                                                          fee:fee
-                                                                          api:btcApi
-                                                                        error:&trerror];
-        
-        if (!transaction) {
-            NSLog(@"Can't make a transaction: %@", error);
-        }
-        
-        NSLog(@"transaction = %@", transaction.dictionary);
-        NSLog(@"transaction in hex:\n------------------\n%@\n------------------\n", BTCHexFromData([transaction data]));
-        
-        NSLog(@"Sending in 5 sec...");
-        sleep(5);
-        NSLog(@"Sending...");
-        sleep(1);
-        NSURLRequest* req = [[[BTCChainCom alloc] initWithToken:@"Free API Token form chain.com"] requestForTransactionBroadcastWithData:[transaction data]];
-        NSData* data = [NSURLConnection sendSynchronousRequest:req returningResponse:nil error:nil];
-        NSLog(@"Broadcast result: data = %@", data);
-        NSLog(@"string = %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-        
-    }];
-    
-}
-
-+ (BTCTransaction*) transactionSpendingFromPrivateKey:(NSData*)privateKey
-                                                   to:(BTCPublicKeyAddress*)destinationAddress
-                                               change:(BTCPublicKeyAddress*)changeAddress
-                                               amount:(BTCAmount)amount
-                                                  fee:(BTCAmount)fee
-                                                  api:(BTCAPI)btcApi
-                                                error:(NSError**)errorOut
-{
-    // 1. Get a private key, destination address, change address and amount
-    // 2. Get unspent outputs for that key (using both compressed and non-compressed pubkey)
-    // 3. Take the smallest available outputs to combine into the inputs of new transaction
-    // 4. Prepare the scripts with proper signatures for the inputs
-    // 5. Broadcast the transaction
-    
-    BTCKey* key = [[BTCKey alloc] initWithPrivateKey:privateKey];
-    
-    NSError* error = nil;
-    NSArray* utxos = nil;
-    
-    switch (btcApi) {
-        case BTCAPIBlockchain: {
-            BTCBlockchainInfo* bci = [[BTCBlockchainInfo alloc] init];
-            utxos = [bci unspentOutputsWithAddresses:@[ key.compressedPublicKeyAddress ] error:&error];
-            break;
-        }
-        case BTCAPIChain: {
-            BTCChainCom* chain = [[BTCChainCom alloc] initWithToken:@"Free API Token form chain.com"];
-            utxos = [chain unspentOutputsWithAddress:key.compressedPublicKeyAddress error:&error];
-            break;
-        }
-        default:
-            break;
-    }
-    
-    NSLog(@"UTXOs for %@: %@ %@", key.compressedPublicKeyAddress, utxos, error);
-    
-    // Can't download unspent outputs - return with error.
-    if (!utxos) {
-        *errorOut = error;
-        return nil;
-    }
-    
-    
-    // Find enough outputs to spend the total amount.
-    BTCAmount totalAmount = amount + fee;
-    BTCAmount dustThreshold = 100000; // don't want less than 1mBTC in the change.
-    
-    // We need to avoid situation when change is very small. In such case we should leave smallest coin alone and add some bigger one.
-    // Ideally, we need to maintain more-or-less binary distribution of coins: having 0.001, 0.002, 0.004, 0.008, 0.016, 0.032, 0.064, 0.128, 0.256, 0.512, 1.024 etc.
-    // Another option is to spend a coin which is 2x bigger than amount to be spent.
-    // Desire to maintain a certain distribution of change to closely match the spending pattern is the best strategy.
-    // Yet another strategy is to minimize both current and future spending fees. Thus, keeping number of outputs low and change sum above "dust" threshold.
-    
-    // For this test we'll just choose the smallest output.
-    
-    // 1. Sort outputs by amount
-    // 2. Find the output that is bigger than what we need and closer to 2x the amount.
-    // 3. If not, find a bigger one which covers the amount + reasonably big change (to avoid dust), but as small as possible.
-    // 4. If not, find a combination of two outputs closer to 2x amount from the top.
-    // 5. If not, find a combination of two outputs closer to 1x amount with enough change.
-    // 6. If not, find a combination of three outputs.
-    // Maybe Monte Carlo method is a way to go.
-    
-    
-    // Another way:
-    // Find the minimum number of txouts by scanning from the biggest one.
-    // Find the maximum number of txouts by scanning from the lowest one.
-    // Scan with a minimum window increasing it if needed if no good enough change can be found.
-    // Yet another option: finding combinations so the below-the-dust change can go to miners.
-    
-    
-    // Sort utxo in order of
-    utxos = [utxos sortedArrayUsingComparator:^(BTCTransactionOutput* obj1, BTCTransactionOutput* obj2) {
-        if ((obj1.value - obj2.value) < 0) return NSOrderedAscending;
-        else return NSOrderedDescending;
-    }];
-    
-    NSArray* txouts = nil;
-    
-    for (BTCTransactionOutput* txout in utxos) {
-        if (txout.value > (totalAmount + dustThreshold) && txout.script.isPayToPublicKeyHashScript) {
-            txouts = @[ txout ];
-            break;
-        }
-    }
-    
-    // We support spending just one output for now.
-    if (!txouts) return nil;
-    
-    // Create a new transaction
-    BTCTransaction* tx = [[BTCTransaction alloc] init];
-    
-    BTCAmount spentCoins = 0;
-    
-    // Add all outputs as inputs
-    for (BTCTransactionOutput* txout in txouts) {
-        BTCTransactionInput* txin = [[BTCTransactionInput alloc] init];
-        txin.previousHash = txout.transactionHash;
-        txin.previousIndex = txout.index;
-        [tx addInput:txin];
-        
-        NSLog(@"txhash: http://blockchain.info/rawtx/%@", BTCHexFromData(txout.transactionHash));
-        NSLog(@"txhash: http://blockchain.info/rawtx/%@ (reversed)", BTCHexFromData(BTCReversedData(txout.transactionHash)));
-        
-        spentCoins += txout.value;
-    }
-    
-    NSLog(@"Total satoshis to spend:       %lld", spentCoins);
-    NSLog(@"Total satoshis to destination: %lld", amount);
-    NSLog(@"Total satoshis to fee:         %lld", fee);
-    NSLog(@"Total satoshis to change:      %lld", (spentCoins - (amount + fee)));
-    
-    // Add required outputs - payment and change
-    BTCTransactionOutput* paymentOutput = [[BTCTransactionOutput alloc] initWithValue:amount address:destinationAddress];
-    BTCTransactionOutput* changeOutput = [[BTCTransactionOutput alloc] initWithValue:(spentCoins - (amount + fee)) address:changeAddress];
-    
-    // Idea: deterministically-randomly choose which output goes first to improve privacy.
-    [tx addOutput:paymentOutput];
-    [tx addOutput:changeOutput];
-    
-    
-    // Sign all inputs. We now have both inputs and outputs defined, so we can sign the transaction.
-    for (int i = 0; i < txouts.count; i++) {
-        // Normally, we have to find proper keys to sign this txin, but in this
-        // example we already know that we use a single private key.
-        
-        BTCTransactionOutput* txout = txouts[i]; // output from a previous tx which is referenced by this txin.
-        BTCTransactionInput* txin = tx.inputs[i];
-        
-        BTCScript* sigScript = [[BTCScript alloc] init];
-        
-        NSData* d1 = tx.data;
-        
-        BTCSignatureHashType hashtype = BTCSignatureHashTypeAll;
-        
-        NSData* hash = [tx signatureHashForScript:txout.script inputIndex:i hashType:hashtype error:errorOut];
-        
-        NSData* d2 = tx.data;
-        
-        NSAssert([d1 isEqual:d2], @"Transaction must not change within signatureHashForScript!");
-        
-        // 134675e153a5df1b8e0e0f0c45db0822f8f681a2eb83a0f3492ea8f220d4d3e4
-        NSLog(@"Hash for input %d: %@", i, BTCHexFromData(hash));
-        if (!hash) {
-            return nil;
-        }
-        
-        NSData* signatureForScript = [key signatureForHash:hash hashType:hashtype];
-        [sigScript appendData:signatureForScript];
-        [sigScript appendData:key.publicKey];
-        
-        NSData* sig = [signatureForScript subdataWithRange:NSMakeRange(0, signatureForScript.length - 1)]; // trim hashtype byte to check the signature.
-        NSAssert([key isValidSignature:sig hash:hash], @"Signature must be valid");
-        
-        txin.signatureScript = sigScript;
-    }
-    
-    // Validate the signatures before returning for extra measure.
-    
-    {
-        BTCScriptMachine* sm = [[BTCScriptMachine alloc] initWithTransaction:tx inputIndex:0];
-        NSError* error = nil;
-        BOOL r = [sm verifyWithOutputScript:[[(BTCTransactionOutput*)txouts[0] script] copy] error:&error];
-        NSLog(@"Error: %@", error);
-        NSAssert(r, @"should verify first output");
-    }
-    
-    // Transaction is signed now, return it.
-
-    return tx;
-}
 
 @end

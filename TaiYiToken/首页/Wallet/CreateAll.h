@@ -41,13 +41,17 @@
 #import "BRBIP32Sequence.h"
 @interface CreateAll : NSObject
 /*
- *********钱包生成/导入/恢复**********
+ ********************************************** 钱包生成/导入/恢复 ***********************************************
  */
 //由助记词生成种子  seed
 +(NSString *)CreateSeedByMnemonic:(NSString *)mnemonic Password:(NSString *)password;
 
+
 //根据mnemonic生成keystore,用于恢复账号，备份私钥，导出助记词等
-+(void)CreateKeyStoreByMnemonic:(NSString *)mnemonic Password:(NSString *)password  callback: (void (^)(Account *account, NSError *NSError))callback;
++(void)CreateKeyStoreByMnemonic:(NSString *)mnemonic WalletAddress:(NSString *)walletAddress Password:(NSString *)password  callback: (void (^)(Account *account, NSError *error))callback;
+//根据PrivateKey生成keystore,用于恢复账号，备份私钥，导出助记词等
++(void)CreateKeyStoreByPrivateKey:(NSString *)privatekey WalletAddress:(NSString *)walletAddress Password:(NSString *)password  callback: (void (^)(Account *account, NSError *error))callback;
+
 
 //扩展主公钥生成    mpk
 +(NSString *)CreateMasterPublicKeyWithSeed:(NSString *)seed;
@@ -70,26 +74,60 @@
 
 //生成地址二维码
 +(UIImage *)CreateQRCodeForAddress:(NSString *)address;
-/*
- ************** 钱包导入 ***************
- */
-//由私钥导入钱包
-+(MissionWallet *)ImportWalletByPrivateKey:(NSString *)privateKey CoinType:(CoinType)coinType;
+
+
+
+
+
+
 
 /*
- ************** 钱包导出 ***************
+ *************************************************** 钱包导入 ****************************************************
+ */
+
+//由助记词导入钱包 （存储钱包 生成存储KeyStore）
+/*
+ return nil; 表示钱包已存在 提示导入错误
+ */
++(MissionWallet *)ImportWalletByMnemonic:(NSString *)mnemonic CoinType:(CoinType)coinType Password:(NSString *)password PasswordHint:(NSString *)passwordHint;
+
+//由私钥导入钱包  （存储钱包 生成存储KeyStore）
+/*
+ return nil; 表示钱包已存在 提示导入错误
+ */
++(MissionWallet *)ImportWalletByPrivateKey:(NSString *)privateKey CoinType:(CoinType)coinType Password:(NSString *)password PasswordHint:(NSString *)passwordHint;
+//由KeyStore导入钱包 （存储钱包 生成存储KeyStore）
+/*
+ wallet == nil; 表示钱包已存在 提示导入错误
+ */
++(void)ImportWalletByKeyStore:(NSString *)keystore  CoinType:(CoinType)coinType Password:(NSString *)password PasswordHint:(NSString *)passwordHint callback: (void (^)(MissionWallet *wallet, NSError *error))callback;
+
+
+
+
+
+
+/*
+ ************************************************** 钱包导出 *************************************
  */
 //导出keystore
-+(void)ExportKeyStoreByPassword:(NSString *)password  callback: (void (^)(NSString *address, NSError *error))callback;
++(void)ExportKeyStoreByPassword:(NSString *)password  WalletAddress:(NSString *)walletAddress callback: (void (^)(NSString *address, NSError *error))callback;
 
 //导出助记词
-+(void)ExportMnemonicByPassword:(NSString *)password  callback: (void (^)(NSString *mnemonic, NSError *error))callback;
++(void)ExportMnemonicByPassword:(NSString *)password WalletAddress:(NSString *)walletAddress callback: (void (^)(NSString *mnemonic, NSError *error))callback;
 
 //导出私钥
-+(void)ExportPrivateKeyByPassword:(NSString *)password CoinType:(CoinType)coinType index:(UInt32)index  callback: (void (^)(NSString *privateKey, NSError *error))callback;
++(void)ExportPrivateKeyByPassword:(NSString *)password CoinType:(CoinType)coinType WalletAddress:(NSString *)walletAddress  index:(UInt32)index  callback: (void (^)(NSString *privateKey, NSError *error))callback;
+
+
+
+
+
+
+
 
 /*
- ***************钱包账号存取管理************
+ *************************************************** 钱包账号存取管理 *************************************************
  */
 //清空所有钱包，退出账号
 +(void)RemoveAllWallet;

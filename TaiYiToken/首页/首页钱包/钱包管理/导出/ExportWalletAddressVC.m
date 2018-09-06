@@ -134,7 +134,7 @@
     
 }
 -(void)addAddress{
-    UInt32 index = (UInt32) self.existAddressArray.count + 1;
+    UInt32 index = (UInt32) self.existAddressArray.count;
     BTCKey *key = [CreateAll CreateBTCAddressAtIndex:index ExtendKey:self.wallet.BIP32ExtendedPublicKey];
     [self.wallet.addressarray addObject:key.compressedPublicKeyAddress.string];
     [CreateAll SaveWallet:self.wallet Name:@"walletBTC" WalletType:LOCAL_WALLET];
