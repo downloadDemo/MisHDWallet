@@ -204,13 +204,22 @@ typedef enum {
         }];
         
     }else if(self.importType == PRIVATEKEY_IMPORT){
+        if (![self.ImportContentTextView.text isValidBitcoinPrivateKey]) {
+            [self.view showMsg:@"请输入正确格式的私钥！"];
+            return;
+        }
         [self.view showHUD];
         MissionWallet *wallet = [CreateAll ImportWalletByPrivateKey:self.ImportContentTextView.text CoinType:BTC Password:self.setPasswordView.passwordTextField.text PasswordHint:self.setPasswordView.passwordHintTextField.text];
         [self.view hideHUD];
+        
         if (wallet == nil) {
             [self.view showMsg:@"导入失败！"];
         }else{
-            [self.view showMsg:@"导入成功！"];
+            if ([wallet.address isValidBitcoinAddress]) {
+                [self.view showMsg:@"导入成功！"];
+            }else{
+                [self.view showMsg:@"导入失败！"];
+            }
         }
     }
 }

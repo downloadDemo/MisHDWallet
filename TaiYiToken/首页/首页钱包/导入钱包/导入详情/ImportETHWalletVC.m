@@ -235,6 +235,12 @@ typedef enum {
         
         
     }else if(self.importType == PRIVATEKEY_IMPORT){
+        Account *account = [Account accountWithPrivateKey:[NSData dataWithHexString:self.ImportContentTextView.text]];
+        if (account == nil) {
+            [self.view showMsg:@"请输入正确的私钥！"];
+            return;
+        }
+        
         [self.view showHUD];
         MissionWallet *wallet = [CreateAll ImportWalletByPrivateKey:self.ImportContentTextView.text CoinType:ETH Password:self.setPasswordView.passwordTextField.text PasswordHint:self.setPasswordView.passwordHintTextField.text];
         [self.view hideHUD];
