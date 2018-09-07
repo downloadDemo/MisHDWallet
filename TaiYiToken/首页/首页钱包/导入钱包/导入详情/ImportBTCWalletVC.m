@@ -189,16 +189,26 @@ typedef enum {
         return;
     }
     if (self.importType == MNEMONIC_IMPORT) {
-        MissionWallet *wallet = [CreateAll ImportWalletByMnemonic:self.ImportContentTextView.text CoinType:BTC Password:self.setPasswordView.passwordTextField.text PasswordHint:self.setPasswordView.passwordHintTextField.text];
-        if (wallet == nil) {
-            [self.view showMsg:@"导入失败！钱包已存在！"];
-        }else{
-            [self.view showMsg:@"导入成功！"];
-        }
+        [self.view showHUD];
+        [CreateAll ImportWalletByMnemonic:self.ImportContentTextView.text CoinType:BTC Password:self.setPasswordView.passwordTextField.text PasswordHint:self.setPasswordView.passwordHintTextField.text callback:^(MissionWallet *wallet, NSError *error) {
+            [self.view hideHUD];
+            if (wallet == nil) {
+                if (error) {
+                    [self.view showMsg:@"导入失败！钱包已存在！"];
+                }else{
+                    [self.view showMsg:@"导入失败！"];
+                }
+            }else{
+                [self.view showMsg:@"导入成功！"];
+            }
+        }];
+        
     }else if(self.importType == PRIVATEKEY_IMPORT){
+        [self.view showHUD];
         MissionWallet *wallet = [CreateAll ImportWalletByPrivateKey:self.ImportContentTextView.text CoinType:BTC Password:self.setPasswordView.passwordTextField.text PasswordHint:self.setPasswordView.passwordHintTextField.text];
+        [self.view hideHUD];
         if (wallet == nil) {
-            [self.view showMsg:@"导入失败！钱包已存在！"];
+            [self.view showMsg:@"导入失败！"];
         }else{
             [self.view showMsg:@"导入成功！"];
         }

@@ -26,10 +26,7 @@
     self.importWalletArray = [NSMutableArray array];
     for (NSString *importwalletname in importwalletarray) {
         MissionWallet *wallet = [CreateAll GetMissionWalletByName:importwalletname];
-        //只显示主钱包
-        if(wallet.index == 0){
-            [self.importWalletArray addObject:wallet];
-        }
+        [self.importWalletArray addObject:wallet];
     }
     [self.collectionview reloadData];
 }

@@ -89,7 +89,7 @@
 /*
  return nil; 表示钱包已存在 提示导入错误
  */
-+(MissionWallet *)ImportWalletByMnemonic:(NSString *)mnemonic CoinType:(CoinType)coinType Password:(NSString *)password PasswordHint:(NSString *)passwordHint;
++(void)ImportWalletByMnemonic:(NSString *)mnemonic CoinType:(CoinType)coinType Password:(NSString *)password PasswordHint:(NSString *)passwordHint callback: (void (^)(MissionWallet *wallet, NSError *error))completionHandler;
 
 //由私钥导入钱包  （存储钱包 生成存储KeyStore）
 /*

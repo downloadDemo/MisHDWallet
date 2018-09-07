@@ -22,6 +22,8 @@
 @property(nonatomic)UILabel *titleLabel;
 @property(nonatomic)NSInteger selectedIndex;
 @property(nonatomic,copy)NSString *password;
+
+@property(nonatomic)UIButton *deleteWalletBtn;
 @end
 
 @implementation ExportWalletVC
@@ -64,7 +66,33 @@
         }
     }
     [self tableView];
+    //导入的钱包可删除
+    if (self.wallet.walletType == IMPORT_WALLET) {
+        _deleteWalletBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _deleteWalletBtn.backgroundColor = [UIColor redColor];
+        _deleteWalletBtn.tintColor = [UIColor whiteColor];
+        [_deleteWalletBtn.imageView setContentMode:UIViewContentModeScaleAspectFit];
+        [_deleteWalletBtn setTitle:@"删除钱包" forState:UIControlStateNormal];
+        _deleteWalletBtn.titleLabel.font = [UIFont boldSystemFontOfSize:14];
+        [_deleteWalletBtn addTarget:self action:@selector(deleteWalletAction) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:_deleteWalletBtn];
+        _deleteWalletBtn.userInteractionEnabled = YES;
+        [_deleteWalletBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.tableView.mas_bottom);
+            make.height.equalTo(40);
+            make.left.equalTo(0);
+            make.right.equalTo(0);
+        }];
+    }
+    
 }
+
+-(void)deleteWalletAction{
+    NSString *result = [CreateAll RemoveImportedWallet:self.wallet];
+    [self.view showMsg:result];
+   // [self.navigationController popViewControllerAnimated:YES];
+}
+
 
 -(void)initHeadView{
  
@@ -315,7 +343,7 @@
         [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(64);
             make.left.right.equalTo(0);
-            make.bottom.equalTo(0);
+            make.height.equalTo(300);
         }];
     }
     return _tableView;

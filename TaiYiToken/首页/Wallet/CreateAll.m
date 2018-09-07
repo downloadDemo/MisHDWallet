@@ -30,6 +30,9 @@
  */
 +(void)CreateKeyStoreByMnemonic:(NSString *)mnemonic WalletAddress:(NSString *)walletAddress Password:(NSString *)password  callback: (void (^)(Account *account, NSError *error))callback{
     Account *account = [Account accountWithMnemonicPhrase:mnemonic];
+    if (account == nil) {
+        callback(nil, nil);
+    }
     [account encryptSecretStorageJSON:password callback:^(NSString *json) {
         NSLog(@"\n keystore(json) = %@",json);
         [Account decryptSecretStorageJSON:json password:password callback:^(Account *decryptedAccount, NSError *error) {
@@ -196,7 +199,7 @@
 /*
  return nil; 表示钱包已存在
  */
-+(MissionWallet *)ImportWalletByMnemonic:(NSString *)mnemonic CoinType:(CoinType)coinType Password:(NSString *)password PasswordHint:(NSString *)passwordHint{
++(void)ImportWalletByMnemonic:(NSString *)mnemonic CoinType:(CoinType)coinType Password:(NSString *)password PasswordHint:(NSString *)passwordHint callback: (void (^)(MissionWallet *wallet, NSError *error))completionHandler{
     NSString *seed = [CreateAll CreateSeedByMnemonic:mnemonic Password:password];
     NSString *xprv = [CreateAll CreateExtendPrivateKeyWithSeed:seed];
     MissionWallet *wallet = [CreateAll CreateWalletByXprv:xprv index:0 CoinType:coinType];
@@ -204,15 +207,30 @@
     }];
     wallet.walletName = [CreateAll GenerateNewWalletNameWithWalletAddress:wallet.address CoinType:coinType];
     if ([wallet.walletName isEqualToString:@"exist"]) {
-        return nil;
+        NSString *domain = @"";
+        NSString *desc = NSLocalizedString(@"wallet already exist!", @"");
+        NSDictionary *userInfo = @{ NSLocalizedDescriptionKey : desc };
+        NSError *error = [NSError errorWithDomain:domain
+                                             code:-101
+                                         userInfo:userInfo];
+        completionHandler(nil,error);
     }
+
     wallet.importType = IMPORT_BY_MNEMONIC;
-    //存钱包
-    [CreateAll SaveWallet:wallet Name:wallet.walletName WalletType:IMPORT_WALLET];
-    //存助记词
+    
+    //存KeyStore
     [CreateAll CreateKeyStoreByMnemonic:mnemonic WalletAddress:wallet.address Password:password callback:^(Account *account, NSError *error) {
+        if (account == nil) {//说明出错
+            completionHandler(nil,nil);
+        }else{
+            if (!error) {//无错误
+                //存钱包
+                [CreateAll SaveWallet:wallet Name:wallet.walletName WalletType:IMPORT_WALLET];
+                completionHandler(wallet,nil);
+            }
+        }
     }];
-    return wallet;
+   
 }
 
 //由私钥导入钱包 （存储钱包 生成存储KeyStore）
@@ -221,7 +239,12 @@ return nil; 表示钱包已存在
  */
 +(MissionWallet *)ImportWalletByPrivateKey:(NSString *)privateKey CoinType:(CoinType)coinType Password:(NSString *)password PasswordHint:(NSString *)passwordHint{
     BTCKey *key = [[BTCKey alloc]initWithPrivateKey:[NSData dataWithHexString:privateKey]];
-    
+    if (key.privateKey == [NSNull null] || key.publicKey == [NSNull null]) {
+        return nil;
+    }
+    if (key.privateKey == nil || key.publicKey == nil) {
+        return nil;
+    }
     MissionWallet *wallet = [MissionWallet new];
     wallet.coinType = coinType;
     wallet.AccountExtendedPrivateKey = @"";
@@ -241,6 +264,7 @@ return nil; 表示钱包已存在
     wallet.walletType = IMPORT_WALLET;
     wallet.selectedBTCAddress = wallet.address;
     wallet.passwordHint = passwordHint;
+    wallet.index = [CreateAll GetCurrentImportWalletIndexWithWalletAddress:wallet.address CoinType:coinType];
     wallet.walletName = [CreateAll GenerateNewWalletNameWithWalletAddress:wallet.address CoinType:coinType];
     if ([wallet.walletName isEqualToString:@"exist"]) {
         return nil;
@@ -260,9 +284,14 @@ return nil; 表示钱包已存在
     [Account decryptSecretStorageJSON:keystore password:password callback:^(Account *decryptedAccount, NSError *error) {
         NSString *privateKey = [NSString hexWithData:decryptedAccount.privateKey];
         MissionWallet *wallet = [CreateAll ImportWalletByPrivateKey:privateKey CoinType:coinType Password:(NSString *)password PasswordHint:passwordHint];
-        wallet.importType = IMPORT_BY_KEYSTORE;
-        [CreateAll SaveWallet:wallet Name:wallet.walletName WalletType:IMPORT_WALLET];
-        callback(wallet,error);
+        if (wallet == nil) {
+            callback(nil,error);
+        }else{
+            wallet.importType = IMPORT_BY_KEYSTORE;
+            [CreateAll SaveWallet:wallet Name:wallet.walletName WalletType:IMPORT_WALLET];
+            callback(wallet,error);
+        }
+       
     }];
 }
 //移除导入的钱包
@@ -295,8 +324,26 @@ return nil; 表示钱包已存在
     }
     return @"Delete Successed!";
 }
-
-
+//获取当前导入钱包的index
+/*
+return -1;表示已存在
+ */
++(int)GetCurrentImportWalletIndexWithWalletAddress:(NSString *)address CoinType:(CoinType)coinType{
+    //查询本地导入数组中是否已经存在
+    int importindex = 0;
+    NSArray *importnamearray = [CreateAll GetImportWalletNameArray];
+    for (NSString *name in importnamearray) {
+        MissionWallet *miswallet = [CreateAll GetMissionWalletByName:name];
+        if ([address isEqualToString:miswallet.address]) {
+            return -1;
+        }else{
+            if (miswallet.coinType == coinType) {
+                importindex ++;//标记是第几个BTC/ETH钱包
+            }
+        }
+    }
+    return importindex;
+}
 //生成新导入钱包的名称
 /*
  return @"exist";表示已存在
@@ -411,7 +458,7 @@ return nil; 表示钱包已存在
 //根据钱包名称取钱包
 +(MissionWallet *)GetMissionWalletByName:(NSString *)walletname{
     NSData *walletdata =  [[NSUserDefaults standardUserDefaults] objectForKey:walletname];
-    if (walletdata == nil) {
+    if (walletdata == nil || [walletdata isEqual:@""]) {
         return nil;
     }
     MissionWallet *wallet =  [NSKeyedUnarchiver unarchiveObjectWithData:walletdata];
