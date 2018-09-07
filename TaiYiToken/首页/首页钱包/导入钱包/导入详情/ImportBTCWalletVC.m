@@ -9,14 +9,14 @@
 #import "ImportBTCWalletVC.h"
 #import "ControlBtnsView.h"
 #import "SetPasswordView.h"
-
+#import "WBQRCodeVC.h"
 #define PRIVATEKEY_REMIND_TEXT  @"输入private Key文件内容至输入框。或通过扫描PrivateKey内容生成的二维码录入。请留意字符大小写。"
 #define MNEMONIC_REMIND_TEXT    @"使用助记词导入的同时可以修改钱包密码"
 typedef enum {
     PRIVATEKEY_IMPORT = 0,
     MNEMONIC_IMPORT = 1
 }BTCWALLET_IMPORT_TYPE;
-@interface ImportBTCWalletVC ()
+@interface ImportBTCWalletVC ()<UIImagePickerControllerDelegate>
 @property(nonatomic,strong) UIButton *backBtn;
 @property(nonatomic)UILabel *titleLabel;
 @property(nonatomic)UILabel *remindLabel;
@@ -25,6 +25,7 @@ typedef enum {
 @property(nonatomic)SetPasswordView *setPasswordView;
 @property(nonatomic,strong) UIButton *ImportBtn;
 @property(nonatomic)UIView *shadowView;
+@property(nonatomic)UIButton *scanBtn;
 @property(nonatomic)BTCWALLET_IMPORT_TYPE importType;
 @end
 
@@ -86,6 +87,17 @@ typedef enum {
         make.left.equalTo(45);
         make.width.equalTo(200);
         make.height.equalTo(20);
+    }];
+    
+    _scanBtn = [UIButton buttonWithType: UIButtonTypeCustom];
+    [_scanBtn setBackgroundImage:[UIImage imageNamed:@"wallet_scan"] forState:UIControlStateNormal];
+    [_scanBtn addTarget:self action:@selector(scanBtnAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_scanBtn];
+    [_scanBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(-20);
+        make.top.equalTo(35);
+        make.width.equalTo(16);
+        make.height.equalTo(16);
     }];
     
 }
@@ -223,7 +235,76 @@ typedef enum {
         }
     }
 }
+//扫描二维码
+-(void)scanBtnAction{
+    WBQRCodeVC *WBVC = [[WBQRCodeVC alloc] init];
+    [self QRCodeScanVC:WBVC];
+    [WBVC setGetQRCodeResult:^(NSString *string) {
+        NSLog(@"QRCode result = %@",string);
+        self.ImportContentTextView.text = string;
+    }];
+}
 
+//扫码判断权限
+- (void)QRCodeScanVC:(UIViewController *)scanVC {
+    AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+    if (device) {
+        AVAuthorizationStatus status = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
+        switch (status) {
+            case AVAuthorizationStatusNotDetermined: {
+                [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
+                    if (granted) {
+                        dispatch_sync(dispatch_get_main_queue(), ^{
+                            // [self.navigationController pushViewController:scanVC animated:YES];
+                            UINavigationController *navisc = [[UINavigationController alloc]initWithRootViewController:scanVC];
+                            [self presentViewController:navisc animated:YES completion:^{
+                                
+                            }];
+                        });
+                        NSLog(@"用户第一次同意了访问相机权限 - - %@", [NSThread currentThread]);
+                    } else {
+                        NSLog(@"用户第一次拒绝了访问相机权限 - - %@", [NSThread currentThread]);
+                    }
+                }];
+                break;
+            }
+            case AVAuthorizationStatusAuthorized: {
+                // [self.navigationController pushViewController:scanVC animated:YES];
+                UINavigationController *navisc = [[UINavigationController alloc]initWithRootViewController:scanVC];
+                [self presentViewController:navisc animated:YES completion:^{
+                    
+                }];
+                break;
+            }
+            case AVAuthorizationStatusDenied: {
+                UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"请去-> [设置 - 隐私 - 相机 - SGQRCodeExample] 打开访问开关" preferredStyle:(UIAlertControllerStyleAlert)];
+                UIAlertAction *alertA = [UIAlertAction actionWithTitle:@"确定" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+                    
+                }];
+                
+                [alertC addAction:alertA];
+                [self presentViewController:alertC animated:YES completion:nil];
+                break;
+            }
+            case AVAuthorizationStatusRestricted: {
+                NSLog(@"因为系统原因, 无法访问相册");
+                break;
+            }
+                
+            default:
+                break;
+        }
+        return;
+    }
+    
+    UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"未检测到您的摄像头" preferredStyle:(UIAlertControllerStyleAlert)];
+    UIAlertAction *alertA = [UIAlertAction actionWithTitle:@"确定" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    
+    [alertC addAction:alertA];
+    [self presentViewController:alertC animated:YES completion:nil];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     
