@@ -85,7 +85,7 @@
 //取主公钥
 +(NSData *)GetMasterPublicKey{
     NSData *mpk = [[NSUserDefaults standardUserDefaults] objectForKey:@"masterPublicKey"];
-    if (mpk == nil || mpk == [NSNull null]) {
+    if (mpk == nil || [mpk isEqual:[NSNull null]]) {
         return nil;
     }
     return mpk;
@@ -239,7 +239,7 @@ return nil; 表示钱包已存在
  */
 +(MissionWallet *)ImportWalletByPrivateKey:(NSString *)privateKey CoinType:(CoinType)coinType Password:(NSString *)password PasswordHint:(NSString *)passwordHint{
     BTCKey *key = [[BTCKey alloc]initWithPrivateKey:[NSData dataWithHexString:privateKey]];
-    if (key.privateKey == [NSNull null] || key.publicKey == [NSNull null]) {
+    if ([key.privateKey isEqual:[NSNull null]] || [key.publicKey isEqual:[NSNull null]]) {
         return nil;
     }
     if (key.privateKey == nil || key.publicKey == nil) {
@@ -388,7 +388,7 @@ return -1;表示已存在
 +(void)ExportKeyStoreByPassword:(NSString *)password  WalletAddress:(NSString *)walletAddress callback: (void (^)(NSString *address, NSError *error))callback{
     NSString *json = [[NSUserDefaults standardUserDefaults]  objectForKey:[NSString stringWithFormat:@"keystore%@",walletAddress]];
     NSLog(@"json = %@",json);
-    if (json == nil || json == [NSNull null]) {
+    if (json == nil || [json isEqual:[NSNull null]]) {
         callback(@"wrong password！",nil);
         return;
     }
@@ -399,7 +399,7 @@ return -1;表示已存在
 //导出助记词
 +(void)ExportMnemonicByPassword:(NSString *)password WalletAddress:(NSString *)walletAddress callback: (void (^)(NSString *mnemonic, NSError *error))callback{
     NSString *json = [[NSUserDefaults standardUserDefaults]  objectForKey:[NSString stringWithFormat:@"keystore%@",walletAddress]];
-    if (json == nil || json == [NSNull null]) {
+    if (json == nil || [json isEqual:[NSNull null]]) {
         callback(@"wrong password！",nil);
         return;
     }
@@ -410,7 +410,7 @@ return -1;表示已存在
 //导出私钥
 +(void)ExportPrivateKeyByPassword:(NSString *)password CoinType:(CoinType)coinType WalletAddress:(NSString *)walletAddress  index:(UInt32)index  callback: (void (^)(NSString *privateKey, NSError *error))callback{
     NSString *json = [[NSUserDefaults standardUserDefaults]  objectForKey:[NSString stringWithFormat:@"keystore%@",walletAddress]];
-    if (json == nil || json == [NSNull null]) {
+    if (json == nil || [json isEqual:[NSNull null]]) {
         callback(@"wrong password！",nil);
         return;
     }

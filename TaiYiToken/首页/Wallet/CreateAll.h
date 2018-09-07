@@ -33,7 +33,7 @@
 #import "secp256k1_ecdh.h"
 #import "secp256k1_recovery.h"
 #import "util.h"
-#import "BRKey.h"
+
 
 #import "NSString+Bitcoin.h"
 #import "NSData+Bitcoin.h"
@@ -68,9 +68,6 @@
 
 //创建钱包 由扩展私钥xprv生成第index个秘钥对及地址
 +(MissionWallet *)CreateWalletByXprv:(NSString*)xprv index:(UInt32)index CoinType:(CoinType)coinType;
-
-//从keystore恢复账号
-+(void)RecoverAccountByPassword:(NSString *)password callback: (void (^)(Account *account, NSError *error))callback;
 
 //生成地址二维码
 +(UIImage *)CreateQRCodeForAddress:(NSString *)address;

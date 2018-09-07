@@ -48,6 +48,6 @@
 - (NSString * _Nullable)serializedMasterPublicKey:(NSData * _Nonnull)masterPublicKey;
 
 
-//add********
--(NSData *)CreatePrivateKeyFromSeed:(NSData *)seed Pass:(NSData *)pass;
+
+//-(NSData *)CreatePrivateKeyFromSeed:(NSData *)seed Pass:(NSData *)pass;
 @end

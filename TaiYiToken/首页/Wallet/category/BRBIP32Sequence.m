@@ -126,16 +126,16 @@ static NSString *serialize(uint8_t depth, uint32_t fingerprint, uint32_t child, 
 
 @implementation BRBIP32Sequence
 
--(NSData *)CreatePrivateKeyFromSeed:(NSData *)seed Pass:(NSData *)pass{
-    UInt512 I;
-    //根据seed计算私钥+主链码
-    xHMAC(&I, xSHA512, sizeof(UInt512), BIP32_SEED_KEY, strlen(BIP32_SEED_KEY), seed.bytes, seed.length);
-    
-    UInt256 secret = *(UInt256 *)&I, chain = *(UInt256 *)&I.u8[sizeof(UInt256)];
-    NSMutableData *secretdata = [NSMutableData secureData];
-    [secretdata appendBytes:&secret length:sizeof(secret)];
-    return secretdata;
-}
+//-(NSData *)CreatePrivateKeyFromSeed:(NSData *)seed Pass:(NSData *)pass{
+//    UInt512 I;
+//    //根据seed计算私钥+主链码
+//    xHMAC(&I, xSHA512, sizeof(UInt512), BIP32_SEED_KEY, strlen(BIP32_SEED_KEY), seed.bytes, seed.length);
+//    
+//    UInt256 secret = *(UInt256 *)&I, chain = *(UInt256 *)&I.u8[sizeof(UInt256)];
+//    NSMutableData *secretdata = [NSMutableData secureData];
+//    [secretdata appendBytes:&secret length:sizeof(secret)];
+//    return secretdata;
+//}
 
 
 // MARK: - BRKeySequence
