@@ -127,6 +127,7 @@
                  [array addObject:wallet];
             }
         }
+       
         WalletManagerVC *walletVC = [WalletManagerVC new];
         walletVC.walletArray = [array mutableCopy];
         [self.navigationController pushViewController:walletVC animated:YES];

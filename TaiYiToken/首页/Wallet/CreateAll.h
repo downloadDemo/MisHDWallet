@@ -102,7 +102,14 @@
  */
 +(void)ImportWalletByKeyStore:(NSString *)keystore  CoinType:(CoinType)coinType Password:(NSString *)password PasswordHint:(NSString *)passwordHint callback: (void (^)(MissionWallet *wallet, NSError *error))callback;
 
-
+//移除导入的钱包
+/*
+ return @"WalletType is LOCAL_WALLET !";
+ return @"Delete WalletName Failed!";
+ return @"Delete Wallet Failed!";
+ return @"Delete Successed!"; 成功
+ */
++(NSString *)RemoveImportedWallet:(MissionWallet *)wallet;
 
 
 

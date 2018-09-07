@@ -105,6 +105,13 @@ typedef enum : NSUInteger {
     IMPORT_WALLET = 0,
     LOCAL_WALLET = 1,
 } WALLET_TYPE;
+
+typedef enum : NSUInteger {
+    LOCAL_CREATED_WALLET = 0,
+    IMPORT_BY_MNEMONIC = 1,
+    IMPORT_BY_KEYSTORE = 2,
+    IMPORT_BY_PRIVATEKEY = 3,
+} IMPORT_WALLET_TYPE;
 #define BTNRISECOLOR [UIColor colorWithHexString:@"#E53A32"]
 #define BTNFALLCOLOR [UIColor colorWithHexString:@"#26B13D"]
 

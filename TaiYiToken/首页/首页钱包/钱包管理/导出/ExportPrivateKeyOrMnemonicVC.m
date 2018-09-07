@@ -123,7 +123,7 @@
         make.right.equalTo(-15);
         make.height.equalTo(50);
     }];
-    
+    NSLog(@"%@",self.mnemonic);
 }
 
 

@@ -10,21 +10,36 @@
 #import "WalletManagerCell.h"
 #import "ExportWalletVC.h"
 #import "ImportWalletSwitchVC.h"
+#import "SectionHeaderView.h"
 @interface WalletManagerVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 @property(nonatomic)UICollectionView *collectionview;
 @property(nonatomic,strong) UIButton *backBtn;
 @property(nonatomic)UILabel *titleLabel;
 @property(nonatomic)UIButton *addAccountBtn;
 @property(nonatomic)UIButton *addWalletBtn;
-
+@property(nonatomic)NSMutableArray <MissionWallet*> *importWalletArray;
 @end
 
 @implementation WalletManagerVC
+-(void)RefreshImportWalletList{
+    NSArray *importwalletarray = [CreateAll GetImportWalletNameArray];
+    self.importWalletArray = [NSMutableArray array];
+    for (NSString *importwalletname in importwalletarray) {
+        MissionWallet *wallet = [CreateAll GetMissionWalletByName:importwalletname];
+        //只显示主钱包
+        if(wallet.index == 0){
+            [self.importWalletArray addObject:wallet];
+        }
+    }
+    [self.collectionview reloadData];
+}
+
 -(void)viewWillAppear:(BOOL)animated{
     self.navigationController.navigationBar.hidden = YES;
     self.navigationController.navigationBar.barStyle = UIStatusBarStyleDefault;
     self.navigationController.hidesBottomBarWhenPushed = YES;
     self.tabBarController.tabBar.hidden = YES;
+    [self RefreshImportWalletList];
 }
 -(void)viewWillDisappear:(BOOL)animated{
     self.tabBarController.tabBar.hidden = NO;
@@ -33,7 +48,10 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.importWalletArray = [NSMutableArray new];
+    [self RefreshImportWalletList];
     [self initHeadView];
+
     [self.collectionview registerClass:[WalletManagerCell class] forCellWithReuseIdentifier:@"WalletManagerCell"];
 }
 - (void)popAction{
@@ -118,6 +136,15 @@
 }
 
 #pragma collectionview *****************************
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
+    SectionHeaderView *view = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"headerV" forIndexPath:indexPath];
+    if (indexPath.section == 0) {
+        [view.remindlb setText:@"当前身份下钱包"];
+    }else{
+        [view.remindlb setText:@"导入的钱包"];
+    }
+    return view;
+}
 
 -(CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
     return 10;
@@ -126,10 +153,10 @@
     return 10;
 }
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
-    return UIEdgeInsetsMake(5, 10, 5, 10);
+    return UIEdgeInsetsMake(10, 10, 10, 10);
 }
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
-    return CGSizeMake(1, 1);
+    return CGSizeMake(ScreenWidth, 20);
 }
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section{
     return CGSizeMake(1, 1);
@@ -138,14 +165,23 @@
     return CGSizeMake(ScreenWidth -36 , 120);//CGSizeMake(width, 300);
 }
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
-    return 1;
+    return 2;
 }
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return self.walletArray == nil? 0:self.walletArray.count;
+    if (section == 0) {
+        return self.walletArray == nil? 0:self.walletArray.count;
+    }else{
+        return self.importWalletArray == nil? 0:self.importWalletArray.count;
+    }
 }
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     WalletManagerCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"WalletManagerCell" forIndexPath:indexPath];
-    MissionWallet *wallet = self.walletArray[indexPath.row];
+    MissionWallet *wallet = nil;
+    if (indexPath.section == 0) {
+        wallet = self.walletArray[indexPath.row];
+    }else{
+        wallet = self.importWalletArray[indexPath.row];
+    }
     NSString *address = @"";
     if(wallet.address.length > 20){
         NSString *str1 = [wallet.address substringToIndex:9];
@@ -158,7 +194,7 @@
         [cell.backImageViewRight setImage:[UIImage imageNamed:@"bglogo1"]];
         cell.namelb.text = @"BTC_wallet";
         [cell.addressBtn setTitle:address forState:UIControlStateNormal];
-        cell.addressBtn.tag = indexPath.row;
+        cell.addressBtn.tag =  indexPath.section * 100 + indexPath.row;
         [cell.addressBtn addTarget:self action:@selector(addressBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     }else if(wallet && wallet.coinType == ETH){
         UIImage *backImage = [[UIImage alloc]createImageWithSize:CGSizeMake(312, 155) gradientColors:@[[UIColor colorWithHexString:@"#54D595"],[UIColor colorWithHexString:@"#76D9A8"]] percentage:@[@(0.3),@(1)] gradientType:GradientFromLeftTopToRightBottom];
@@ -166,10 +202,10 @@
         [cell.backImageViewRight setImage:[UIImage imageNamed:@"bglogo2"]];
         cell.namelb.text = @"ETH_wallet";
         [cell.addressBtn setTitle:address forState:UIControlStateNormal];
-        cell.addressBtn.tag = indexPath.row;
+        cell.addressBtn.tag = indexPath.section  * 100 + indexPath.row;
         [cell.addressBtn addTarget:self action:@selector(addressBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     }
-    cell.exportBtn.tag = indexPath.row;
+    cell.exportBtn.tag =  indexPath.section * 100  + indexPath.row;
     [cell.exportBtn addTarget:self action:@selector(exportBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     return cell;
 }
@@ -177,7 +213,12 @@
 //导出钱包
 -(void)exportBtnAction:(UIButton *)btn{
     ExportWalletVC *evc = [ExportWalletVC new];
-    MissionWallet *wallet = self.walletArray[btn.tag];
+    MissionWallet *wallet = nil;
+    if (btn.tag < 100) {
+        wallet = self.walletArray[btn.tag];
+    }else{
+        wallet = self.importWalletArray[btn.tag - 100];
+    }
     evc.wallet = wallet;
     [self.navigationController pushViewController:evc animated:YES];
 }
@@ -185,7 +226,12 @@
 
 //点击复制地址
 -(void)addressBtnAction:(UIButton *)btn{
-    MissionWallet *wallet = self.walletArray[btn.tag];
+    MissionWallet *wallet = nil;
+    if (btn.tag < 100) {
+        wallet = self.walletArray[btn.tag];
+    }else{
+        wallet = self.importWalletArray[btn.tag - 100];
+    }
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
     pasteboard.string = wallet.address;
     [self.view showMsg:@"地址已复制"];
@@ -209,6 +255,7 @@
         _collectionview.backgroundColor = [UIColor colorWithHexString:@"#2B3041"];
         _collectionview.showsVerticalScrollIndicator = NO;
         _collectionview.showsHorizontalScrollIndicator = NO;
+        [_collectionview registerClass:[SectionHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"headerV"];
         [self.view addSubview:_collectionview];
         [_collectionview mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(0);

@@ -46,11 +46,22 @@
     self.selectedIndex = -1;
     self.view.backgroundColor = [UIColor whiteColor];
     if (self.wallet.coinType == BTC) {
-        self.iconImageNameArray = @[@"ico_wallet_adress",@"ico_export_pub",@"ico_password",@"ico_export_pub"];
-        self.titleArray = @[@"钱包地址",@"切换地址类型",@"密码提示信息",@"导出助记词"];
+        if ((self.wallet.importType == IMPORT_BY_MNEMONIC) || (self.wallet.walletType == LOCAL_WALLET)) {//助记词导入的才能导出助记词
+            self.iconImageNameArray = @[@"ico_wallet_adress",@"ico_export_pub",@"ico_password",@"ico_export_pub"];
+            self.titleArray = @[@"钱包地址",@"切换地址类型",@"密码提示信息",@"导出助记词"];
+        }else{
+            self.iconImageNameArray = @[@"ico_wallet_adress",@"ico_export_pub",@"ico_password"];
+            self.titleArray = @[@"钱包地址",@"切换地址类型",@"密码提示信息"];
+        }
+        
     }else if (self.wallet.coinType == ETH){
-        self.iconImageNameArray = @[@"ico_key",@"ico_export_pub",@"ico_password",@"ico_export_pub"];
-        self.titleArray = @[@"导出Keystore",@"导出私钥",@"密码提示信息",@"导出助记词"];
+        if ((self.wallet.importType == IMPORT_BY_MNEMONIC) || (self.wallet.walletType == LOCAL_WALLET)) {
+            self.iconImageNameArray = @[@"ico_key",@"ico_export_pub",@"ico_password",@"ico_export_pub"];
+            self.titleArray = @[@"导出Keystore",@"导出私钥",@"密码提示信息",@"导出助记词"];
+        }else{
+            self.iconImageNameArray = @[@"ico_key",@"ico_export_pub",@"ico_password"];
+            self.titleArray = @[@"导出Keystore",@"导出私钥",@"密码提示信息"];
+        }
     }
     [self tableView];
 }
@@ -122,7 +133,7 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 4;
+    return self.titleArray.count;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -230,7 +241,7 @@
         if (!error) {
             if ([self.wallet.address isEqualToString:address]) {
                 ExportKeyStoreVC *ekvc = [ExportKeyStoreVC new];
-                ekvc.keystore = [[NSUserDefaults standardUserDefaults]  objectForKey:[NSString stringWithFormat:@"keystore%@",self.password]];
+                ekvc.keystore = [[NSUserDefaults standardUserDefaults]  objectForKey:[NSString stringWithFormat:@"keystore%@",address]];
                 [self.navigationController pushViewController:ekvc animated:YES];
             } else if([address isEqualToString:@"wrong password！"]) {
                 [self.view showMsg:@"密码错误"];

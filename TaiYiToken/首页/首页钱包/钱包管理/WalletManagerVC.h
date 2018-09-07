@@ -10,4 +10,5 @@
 
 @interface WalletManagerVC : UIViewController
 @property(nonatomic)NSMutableArray <MissionWallet*> *walletArray;
+
 @end

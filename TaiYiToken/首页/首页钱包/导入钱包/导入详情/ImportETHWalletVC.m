@@ -1,22 +1,23 @@
 //
-//  ImportBTCWalletVC.m
+//  ImportETHWalletVC.m
 //  TaiYiToken
 //
-//  Created by admin on 2018/9/6.
+//  Created by admin on 2018/9/7.
 //  Copyright © 2018年 admin. All rights reserved.
 //
 
-#import "ImportBTCWalletVC.h"
+#import "ImportETHWalletVC.h"
 #import "ControlBtnsView.h"
 #import "SetPasswordView.h"
-
+#define KEYSTORE_REMIND_TEXT  @"复制粘贴以太坊钱包Keystore文件内容至输入框，或通过扫描Keystore内容生成的二维码录入"
 #define PRIVATEKEY_REMIND_TEXT  @"输入private Key文件内容至输入框。或通过扫描PrivateKey内容生成的二维码录入。请留意字符大小写。"
 #define MNEMONIC_REMIND_TEXT    @"使用助记词导入的同时可以修改钱包密码"
 typedef enum {
-    PRIVATEKEY_IMPORT = 0,
-    MNEMONIC_IMPORT = 1
-}BTCWALLET_IMPORT_TYPE;
-@interface ImportBTCWalletVC ()
+    KEYSTORE_IMPORT = 0,
+    PRIVATEKEY_IMPORT = 1,
+    MNEMONIC_IMPORT = 2,
+}ETHWALLET_IMPORT_TYPE;
+@interface ImportETHWalletVC ()
 @property(nonatomic,strong) UIButton *backBtn;
 @property(nonatomic)UILabel *titleLabel;
 @property(nonatomic)UILabel *remindLabel;
@@ -25,10 +26,10 @@ typedef enum {
 @property(nonatomic)SetPasswordView *setPasswordView;
 @property(nonatomic,strong) UIButton *ImportBtn;
 @property(nonatomic)UIView *shadowView;
-@property(nonatomic)BTCWALLET_IMPORT_TYPE importType;
+@property(nonatomic)ETHWALLET_IMPORT_TYPE importType;
 @end
 
-@implementation ImportBTCWalletVC
+@implementation ImportETHWalletVC
 -(void)viewWillAppear:(BOOL)animated{
     self.navigationController.navigationBar.hidden = YES;
     self.navigationController.navigationBar.barStyle = UIStatusBarStyleDefault;
@@ -48,7 +49,8 @@ typedef enum {
     self.view.backgroundColor = [UIColor ExportBackgroundColor];
     [self initHeadView];
     [self initUI];
-    self.importType = MNEMONIC_IMPORT;
+    [self selectImportWay:self.buttonView.btnArray[0]];
+    self.importType = KEYSTORE_IMPORT;
 }
 -(void)initHeadView{
     UIView *headBackView = [UIView new];
@@ -78,7 +80,7 @@ typedef enum {
     _titleLabel = [UILabel new];
     _titleLabel.font = [UIFont boldSystemFontOfSize:17];
     _titleLabel.textColor = [UIColor textBlackColor];
-    [_titleLabel setText:[NSString stringWithFormat:@"导入BITCOIN钱包"]];
+    [_titleLabel setText:[NSString stringWithFormat:@"导入ETHEREUM钱包"]];
     _titleLabel.textAlignment = NSTextAlignmentLeft;
     [self.view addSubview:_titleLabel];
     [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -89,15 +91,39 @@ typedef enum {
     }];
     
 }
+
 -(void)selectImportWay:(UIButton *)btn{
-    self.importType = btn.tag == 0? MNEMONIC_IMPORT : PRIVATEKEY_IMPORT;
+    switch (btn.tag) {
+        case 0:
+            self.importType = KEYSTORE_IMPORT;
+            self.remindLabel.text = KEYSTORE_REMIND_TEXT;
+            [self.setPasswordView.passwordTextField setPlaceholder:@"确认密码"];
+            self.setPasswordView.repasswordTextField.hidden = YES;
+            self.setPasswordView.passwordHintTextField.hidden = YES;
+            break;
+        case 1:
+            self.importType = MNEMONIC_IMPORT;
+            self.remindLabel.text = MNEMONIC_REMIND_TEXT;
+            [self.setPasswordView.passwordTextField setPlaceholder:@"钱包密码"];
+            self.setPasswordView.repasswordTextField.hidden = NO;
+            self.setPasswordView.passwordHintTextField.hidden = NO;
+            break;
+        case 2:
+            self.importType = PRIVATEKEY_IMPORT;
+            self.remindLabel.text = PRIVATEKEY_REMIND_TEXT;
+            [self.setPasswordView.passwordTextField setPlaceholder:@"钱包密码"];
+            self.setPasswordView.repasswordTextField.hidden = NO;
+            self.setPasswordView.passwordHintTextField.hidden = NO;
+            break;
+        default:
+            break;
+    }
     [_buttonView setBtnSelected:btn];
-    self.remindLabel.text =  btn.tag == 0?MNEMONIC_REMIND_TEXT : PRIVATEKEY_REMIND_TEXT;
     
 }
 -(void)initUI{
     _buttonView = [ControlBtnsView new];
-    [_buttonView initButtonsViewWithTitles:@[@"助记词",@"私钥"] Width:ScreenWidth Height:44];
+    [_buttonView initButtonsViewWithTitles:@[@"Keystore",@"助记词",@"私钥"] Width:ScreenWidth Height:44];
     for (UIButton *btn in _buttonView.btnArray) {
         [btn addTarget:self action:@selector(selectImportWay:) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -159,7 +185,7 @@ typedef enum {
         make.left.right.equalTo(0);
         make.height.equalTo(162);
     }];
-
+    
     
     _ImportBtn = [UIButton buttonWithType: UIButtonTypeSystem];
     _ImportBtn.titleLabel.textColor = [UIColor textBlackColor];
@@ -189,26 +215,35 @@ typedef enum {
         return;
     }
     if (self.importType == MNEMONIC_IMPORT) {
-        MissionWallet *wallet = [CreateAll ImportWalletByMnemonic:self.ImportContentTextView.text CoinType:BTC Password:self.setPasswordView.passwordTextField.text PasswordHint:self.setPasswordView.passwordHintTextField.text];
+        MissionWallet *wallet = [CreateAll ImportWalletByMnemonic:self.ImportContentTextView.text CoinType:ETH Password:self.setPasswordView.passwordTextField.text PasswordHint:self.setPasswordView.passwordHintTextField.text];
         if (wallet == nil) {
             [self.view showMsg:@"导入失败！钱包已存在！"];
         }else{
             [self.view showMsg:@"导入成功！"];
         }
     }else if(self.importType == PRIVATEKEY_IMPORT){
-        MissionWallet *wallet = [CreateAll ImportWalletByPrivateKey:self.ImportContentTextView.text CoinType:BTC Password:self.setPasswordView.passwordTextField.text PasswordHint:self.setPasswordView.passwordHintTextField.text];
+        MissionWallet *wallet = [CreateAll ImportWalletByPrivateKey:self.ImportContentTextView.text CoinType:ETH Password:self.setPasswordView.passwordTextField.text PasswordHint:self.setPasswordView.passwordHintTextField.text];
         if (wallet == nil) {
             [self.view showMsg:@"导入失败！钱包已存在！"];
         }else{
             [self.view showMsg:@"导入成功！"];
         }
+    }else if(self.importType == KEYSTORE_IMPORT){
+        [CreateAll ImportWalletByKeyStore:self.ImportContentTextView.text CoinType:ETH Password:self.setPasswordView.passwordTextField.text PasswordHint:self.setPasswordView.passwordHintTextField.text callback:^(MissionWallet *wallet, NSError *error) {
+            if (wallet == nil) {
+                [self.view showMsg:@"导入失败！钱包已存在！"];
+            }else{
+                [self.view showMsg:@"导入成功！"];
+            }
+        }];
+       
     }
 }
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     
 }
+
 
 
 @end

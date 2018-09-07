@@ -8,6 +8,7 @@
 
 #import "ImportWalletSwitchVC.h"
 #import "ImportBTCWalletVC.h"
+#import "ImportETHWalletVC.h"
 @interface ImportWalletSwitchVC ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong) UIButton *backBtn;
 @property(nonatomic)UILabel *titleLabel;
@@ -107,7 +108,8 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row == 0) {
-        
+        ImportETHWalletVC *ethvc = [ImportETHWalletVC new];
+        [self.navigationController pushViewController:ethvc animated:YES];
     }else{
         ImportBTCWalletVC *btcvc = [ImportBTCWalletVC new];
         [self.navigationController pushViewController:btcvc animated:YES];

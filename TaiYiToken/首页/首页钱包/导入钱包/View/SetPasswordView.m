@@ -11,7 +11,7 @@
 @implementation SetPasswordView
 
 -(void)initSetPasswordViewUI{
-    self.backgroundColor = [UIColor whiteColor];
+    self.backgroundColor = [UIColor clearColor];
     
     _passwordTextField = [UITextField new];
     _passwordTextField.borderStyle = UITextBorderStyleNone;

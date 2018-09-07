@@ -17,7 +17,7 @@
  生成的种子被用来生成构建deterministic Wallet和推导钱包密钥。
  */
 +(NSString *)CreateSeedByMnemonic:(NSString *)mnemonic Password:(NSString *)password{
-    mnemonic = @"breeze eternal fiction junior ethics lumber chaos squirrel code jar snack broccoli";
+   // mnemonic = @"breeze eternal fiction junior ethics lumber chaos squirrel code jar snack broccoli";
 //    NSLog(@"mnemonic = %@",mnemonic);
     NSString *seed = [NYMnemonic deterministicSeedStringFromMnemonicString:mnemonic
                                                                 passphrase:@""
@@ -51,7 +51,7 @@
  根据PrivateKey生成keystore,用于恢复账号，备份私钥，导出助记词等
  */
 +(void)CreateKeyStoreByPrivateKey:(NSString *)privatekey  WalletAddress:(NSString *)walletAddress Password:(NSString *)password  callback: (void (^)(Account *account, NSError *error))callback{
-    Account *account = [Account accountWithPrivateKey:privatekey.dataValue];
+    Account *account = [Account accountWithPrivateKey:[NSData dataWithHexString:privatekey]];
     [account encryptSecretStorageJSON:password callback:^(NSString *json) {
         NSLog(@"\n keystore(json) = %@",json);
         [Account decryptSecretStorageJSON:json password:password callback:^(Account *decryptedAccount, NSError *error) {
@@ -116,7 +116,8 @@
 }
 
 /*
- 由扩展私钥生成钱包，指定钱包索引，币种两个参数
+ 由扩展私钥生成钱包
+ 指定钱包索引，币种两个参数
  xprv,index,coinType
  */
 +(MissionWallet *)CreateWalletByXprv:(NSString*)xprv index:(UInt32)index CoinType:(CoinType)coinType{
@@ -169,6 +170,7 @@
     }
     wallet.walletName = @"";
     wallet.walletType = LOCAL_WALLET;//类型标记为本地生成
+    wallet.importType = LOCAL_CREATED_WALLET;//类型标记为本地生成
     wallet.selectedBTCAddress = wallet.address;
     wallet.passwordHint = @"";
     return wallet;
@@ -204,7 +206,10 @@
     if ([wallet.walletName isEqualToString:@"exist"]) {
         return nil;
     }
+    wallet.importType = IMPORT_BY_MNEMONIC;
+    //存钱包
     [CreateAll SaveWallet:wallet Name:wallet.walletName WalletType:IMPORT_WALLET];
+    //存助记词
     [CreateAll CreateKeyStoreByMnemonic:mnemonic WalletAddress:wallet.address Password:password callback:^(Account *account, NSError *error) {
     }];
     return wallet;
@@ -215,7 +220,7 @@
 return nil; 表示钱包已存在
  */
 +(MissionWallet *)ImportWalletByPrivateKey:(NSString *)privateKey CoinType:(CoinType)coinType Password:(NSString *)password PasswordHint:(NSString *)passwordHint{
-    BTCKey *key = [[BTCKey alloc]initWithPrivateKey:privateKey.dataValue];
+    BTCKey *key = [[BTCKey alloc]initWithPrivateKey:[NSData dataWithHexString:privateKey]];
     
     MissionWallet *wallet = [MissionWallet new];
     wallet.coinType = coinType;
@@ -223,7 +228,7 @@ return nil; 表示钱包已存在
     wallet.AccountExtendedPublicKey = @"";
     wallet.BIP32ExtendedPrivateKey = @"";
     wallet.BIP32ExtendedPublicKey = @"";
-    wallet.privateKey = key.privateKeyAddress.string;;
+    wallet.privateKey = [NSString hexWithData:key.privateKeyAddress.data];
     wallet.publicKey = [NSString hexWithData:key.compressedPublicKey];
     if (coinType == BTC) {
         wallet.address = key.compressedPublicKeyAddress.string;
@@ -240,6 +245,7 @@ return nil; 表示钱包已存在
     if ([wallet.walletName isEqualToString:@"exist"]) {
         return nil;
     }
+    wallet.importType = IMPORT_BY_PRIVATEKEY;
     [CreateAll SaveWallet:wallet Name:wallet.walletName WalletType:IMPORT_WALLET];
     [CreateAll CreateKeyStoreByPrivateKey:wallet.privateKey WalletAddress:wallet.address Password:password callback:^(Account *account, NSError *error) {
     }];
@@ -252,14 +258,43 @@ return nil; 表示钱包已存在
  */
 +(void)ImportWalletByKeyStore:(NSString *)keystore  CoinType:(CoinType)coinType Password:(NSString *)password PasswordHint:(NSString *)passwordHint callback: (void (^)(MissionWallet *wallet, NSError *error))callback{
     [Account decryptSecretStorageJSON:keystore password:password callback:^(Account *decryptedAccount, NSError *error) {
-        NSString *mnemonic = decryptedAccount.mnemonicPhrase;
-        MissionWallet *wallet = [CreateAll ImportWalletByMnemonic:mnemonic CoinType:coinType Password:password PasswordHint:passwordHint];
+        NSString *privateKey = [NSString hexWithData:decryptedAccount.privateKey];
+        MissionWallet *wallet = [CreateAll ImportWalletByPrivateKey:privateKey CoinType:coinType Password:(NSString *)password PasswordHint:passwordHint];
+        wallet.importType = IMPORT_BY_KEYSTORE;
+        [CreateAll SaveWallet:wallet Name:wallet.walletName WalletType:IMPORT_WALLET];
         callback(wallet,error);
     }];
 }
-
-
-
+//移除导入的钱包
+/*
+ return @"WalletType is LOCAL_WALLET !";
+ return @"Delete WalletName Failed!";
+ return @"Delete Wallet Failed!";
+ return @"Delete Successed!"; 成功
+ */
++(NSString *)RemoveImportedWallet:(MissionWallet *)wallet{
+    //只能移除导入的钱包
+    if (wallet.walletType == LOCAL_WALLET) {
+        return @"WalletType is LOCAL_WALLET !";
+    }
+    NSString *walletname = @"";
+    if (wallet.coinType == BTC) {
+        walletname = [NSString stringWithFormat:@"BTCWalletImported%d",wallet.index];
+    }else{
+        walletname = [NSString stringWithFormat:@"ETHWalletImported%d",wallet.index];
+    }
+    //移除钱包名
+    BOOL deleteName = [CreateAll DeleteWalletFromImportWalletNameArray:walletname];
+    //移除钱包
+    BOOL deleteWallet = [CreateAll DeleteWallet:wallet.address WalletName:walletname];
+    if (deleteName == NO) {
+        return @"Delete WalletName Failed!";
+    }
+    if (deleteWallet == NO) {
+        return @"Delete Wallet Failed!";
+    }
+    return @"Delete Successed!";
+}
 
 
 //生成新导入钱包的名称
@@ -333,10 +368,8 @@ return nil; 表示钱包已存在
         return;
     }
     [Account decryptSecretStorageJSON:json password:password callback:^(Account *decryptedAccount, NSError *error) {
-        NSString *seed = [CreateAll CreateSeedByMnemonic:decryptedAccount.mnemonicPhrase Password:password];
-        NSString *xprv = [CreateAll CreateExtendPrivateKeyWithSeed:seed];
-        MissionWallet *wallet = [CreateAll CreateWalletByXprv:xprv index:index CoinType:coinType];
-        callback(wallet.privateKey,error);
+        NSString *hexprivatekey = [NSString hexWithData:decryptedAccount.privateKey];
+        callback(hexprivatekey,error);
     }];
 }
 
@@ -345,15 +378,23 @@ return nil; 表示钱包已存在
  */
 //清空所有钱包，退出账号
 +(void)RemoveAllWallet{
-    [[NSUserDefaults standardUserDefaults]  setBool:NO forKey:@"ifHasAccount"];
-    NSArray *walletnamearray = [CreateAll GetWalletNameArray];
-    for (NSString *walletname in walletnamearray) {
-        [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:walletname];
-    }
-    NSArray *array = @[];
-    [[NSUserDefaults standardUserDefaults]  setObject:array forKey:@"walletArray"];
-    [[NSUserDefaults standardUserDefaults]  setObject:array forKey:@"importwalletArray"];
+    [CreateAll clearAllUserDefaultsData];
 }
+
+/**
+ *  清除所有的存储本地的数据
+ */
++ (void)clearAllUserDefaultsData
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    
+    NSDictionary *dic = [userDefaults dictionaryRepresentation];
+    for (id  key in dic) {
+        [userDefaults removeObjectForKey:key];
+    }
+    [userDefaults synchronize];
+}
+
 //取得所有钱包名称（不包含导入）
 +(NSArray *)GetWalletNameArray{
    NSArray *walletarray = [[NSUserDefaults standardUserDefaults]  objectForKey:@"walletArray"];
@@ -381,14 +422,17 @@ return nil; 表示钱包已存在
 +(void)SaveWallet:(MissionWallet *)wallet Name:(NSString *)walletname WalletType:(WALLET_TYPE)walletType{
     wallet.walletName = walletname;
     wallet.walletType = walletType;
-    //存钱包
+    //1.存钱包
     NSData *walletdata = [NSKeyedArchiver archivedDataWithRootObject:wallet];
     [[NSUserDefaults standardUserDefaults] setObject:walletdata forKey:walletname];
-    //存钱包名到钱包名数组
+    //2.存钱包名
     //如果是本地创建类型 存储到本地钱包名数组
     if (walletType == LOCAL_WALLET) {
         NSMutableArray *oldwalletarray = [[[NSUserDefaults standardUserDefaults]  objectForKey:@"walletArray"] mutableCopy];
-        if (![oldwalletarray containsObject:walletname]) {
+        if (oldwalletarray == nil || ![oldwalletarray containsObject:walletname]) {
+            if (oldwalletarray == nil) {
+                oldwalletarray = [NSMutableArray array];
+            }
             [oldwalletarray addObject:walletname];
             NSMutableArray *newwalletarray = [oldwalletarray mutableCopy];
             [[NSUserDefaults standardUserDefaults]  setObject:newwalletarray forKey:@"walletArray"];
@@ -396,15 +440,40 @@ return nil; 表示钱包已存在
     }
     //如果是导入类型 存储到导入钱包名数组
     if (walletType == IMPORT_WALLET) {
+       
         NSMutableArray *oldimportwalletarray = [[[NSUserDefaults standardUserDefaults]  objectForKey:@"importwalletArray"] mutableCopy];
-        if (![oldimportwalletarray containsObject:walletname]) {
+        if (oldimportwalletarray == nil || ![oldimportwalletarray containsObject:walletname]) {
+            if (oldimportwalletarray == nil) {
+                oldimportwalletarray = [NSMutableArray array];
+            }
             [oldimportwalletarray addObject:walletname];
             NSMutableArray *newimportwalletarray = [oldimportwalletarray mutableCopy];
             [[NSUserDefaults standardUserDefaults]  setObject:newimportwalletarray forKey:@"importwalletArray"];
         }
     }
 }
-
+//移除钱包名
++(BOOL)DeleteWalletFromImportWalletNameArray:(NSString *)walletname{
+    NSMutableArray *oldimportwalletarray = [[[NSUserDefaults standardUserDefaults]  objectForKey:@"importwalletArray"] mutableCopy];
+    if ([oldimportwalletarray containsObject:walletname]) {
+        [oldimportwalletarray removeObject:walletname];
+        NSMutableArray *newimportwalletarray = [oldimportwalletarray mutableCopy];
+        [[NSUserDefaults standardUserDefaults]  setObject:newimportwalletarray forKey:@"importwalletArray"];
+        return YES;
+    }else{
+        return NO;
+    }
+}
+//移除钱包
++(BOOL)DeleteWallet:(NSString *)walletaddress WalletName:(NSString *)walletname{
+    MissionWallet *miswallet = [CreateAll GetMissionWalletByName:walletname];
+    if ([walletaddress isEqualToString:miswallet.address]) {
+        [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:walletname];
+        return YES;
+    }else{
+        return NO;
+    }
+}
 
 
 @end

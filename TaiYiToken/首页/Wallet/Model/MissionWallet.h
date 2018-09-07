@@ -32,7 +32,8 @@
 @property(nonatomic,copy)NSString *selectedBTCAddress;
 //导入/本地生成
 @property(nonatomic)WALLET_TYPE walletType;
-
+//导入方式，若不是导入则为LOCAL_CREATED_WALLET
+@property(nonatomic)IMPORT_WALLET_TYPE importType;
 //密码提示
 @property(nonatomic,copy)NSString *passwordHint;
 
