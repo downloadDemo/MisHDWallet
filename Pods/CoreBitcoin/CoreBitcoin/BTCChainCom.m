@@ -100,8 +100,11 @@
 
 - (NSURL*) chainURLWithV1BitcoinPath:(NSString *)path
 {
-    NSString *baseURLString = @"https://api.chain.com/v1/bitcoin";
-    NSString *URLString = [NSString stringWithFormat:@"%@/%@?key=%@", baseURLString, path, self.token];
+   // NSString *baseURLString = @"https://api.chain.com/v1/bitcoin";
+    //NSString *URLString = [NSString stringWithFormat:@"%@/%@?key=%@", baseURLString, path, self.token];
+    NSString *baseURLString = @"https://insight.bitpay.com/";
+    NSString *URLString = [NSString stringWithFormat:@"%@/%@", baseURLString, path];
+    NSLog(@"urlstring = %@",URLString);
     return [NSURL URLWithString:URLString];
 }
 

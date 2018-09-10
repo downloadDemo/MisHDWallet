@@ -153,8 +153,13 @@
 //点击进入钱包详情
 -(void)detailBtnAction:(UIButton *)btn{
     //test
-    [CreateAll RemoveAllWallet];
-    
+   // [CreateAll RemoveAllWallet];
+    MissionWallet *walletBTC = [self.walletDic objectForKey:@"walletBTC"];
+
+    [CreateAll BTCTransactionFromWallet:walletBTC ToAddress:@"muvdP9MDrfEAqnnTPzLqfP9LCLDLxvN41v" Amount:100000 Fee:1 Api:BTCAPIChain callback:^(NSString *result, NSError *error) {
+        NSLog(@"result = %@",result);
+        NSLog(@"error = %@",error);
+    }];
 }
 //点击复制地址
 -(void)addressBtnAction:(UIButton *)btn{

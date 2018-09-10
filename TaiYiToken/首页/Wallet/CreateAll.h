@@ -149,4 +149,17 @@
 +(void)SaveWallet:(MissionWallet *)wallet Name:(NSString *)walletname WalletType:(WALLET_TYPE)walletType;
 
 
+
+
+
+
+
+/*
+ ********************************************** 转账 *******************************************************************
+ */
+//转账
++(void)BTCTransactionFromWallet:(MissionWallet *)wallet ToAddress:(NSString *)address Amount:(BTCAmount)amount
+                            Fee:(BTCAmount)fee
+                            Api:(BTCAPI)btcApi
+                       callback: (void (^)(NSString *result, NSError *error))callback;
 @end

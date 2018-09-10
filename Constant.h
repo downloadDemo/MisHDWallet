@@ -74,6 +74,7 @@
 #define kIs_iPhoneX (SCREEN_WIDTH == 375.f && SCREEN_HEIGHT == 812.f)
 typedef enum {
     BTC = 0,
+    BTC_TESTNET = 1,
     ETH = 60
 }CoinType;
 
