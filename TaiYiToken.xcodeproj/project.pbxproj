@@ -67,6 +67,7 @@
 		842FEE892141286B0075716E /* SetPasswordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 842FEE882141286B0075716E /* SetPasswordView.m */; };
 		842FEE8D214219B50075716E /* SectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 842FEE8C214219B50075716E /* SectionHeaderView.m */; };
 		842FEE9021422D500075716E /* ImportETHWalletVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 842FEE8F21422D500075716E /* ImportETHWalletVC.m */; };
+		842FEE9321475A8F0075716E /* BTCUTXOModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 842FEE9221475A8E0075716E /* BTCUTXOModel.m */; };
 		843EC9DA21212271002D5C2A /* NSObject+Parse.m in Sources */ = {isa = PBXBuildFile; fileRef = 843EC9CF21212266002D5C2A /* NSObject+Parse.m */; };
 		843EC9DB21212271002D5C2A /* UIScrollView+Refresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 843EC9D021212267002D5C2A /* UIScrollView+Refresh.m */; };
 		843EC9DC21212271002D5C2A /* UIView+HUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 843EC9D221212268002D5C2A /* UIView+HUD.m */; };
@@ -282,6 +283,8 @@
 		842FEE8C214219B50075716E /* SectionHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SectionHeaderView.m; sourceTree = "<group>"; };
 		842FEE8E21422D500075716E /* ImportETHWalletVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImportETHWalletVC.h; sourceTree = "<group>"; };
 		842FEE8F21422D500075716E /* ImportETHWalletVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImportETHWalletVC.m; sourceTree = "<group>"; };
+		842FEE9121475A8E0075716E /* BTCUTXOModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTCUTXOModel.h; sourceTree = "<group>"; };
+		842FEE9221475A8E0075716E /* BTCUTXOModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTCUTXOModel.m; sourceTree = "<group>"; };
 		843EC9C721212170002D5C2A /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		843EC9CE21212266002D5C2A /* NSString+URLString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+URLString.h"; sourceTree = "<group>"; };
 		843EC9CF21212266002D5C2A /* NSObject+Parse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Parse.m"; sourceTree = "<group>"; };
@@ -1080,6 +1083,8 @@
 			children = (
 				847BC6072133E001000B02AC /* MissionWallet.h */,
 				847BC6082133E001000B02AC /* MissionWallet.m */,
+				842FEE9121475A8E0075716E /* BTCUTXOModel.h */,
+				842FEE9221475A8E0075716E /* BTCUTXOModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1592,6 +1597,7 @@
 				84BDD1702126B3DF0039FE09 /* ButtonsView.m in Sources */,
 				842FEE58213E75D60075716E /* ExportWalletCell.m in Sources */,
 				0415BDA42131BC850022DEB7 /* YYTimeLineVolumeView.m in Sources */,
+				842FEE9321475A8F0075716E /* BTCUTXOModel.m in Sources */,
 				84B0A94A2122736B002EFA0A /* CustomTabBar.m in Sources */,
 				0415BDA22131BC850022DEB7 /* YYTimeLineMaskView.m in Sources */,
 			);

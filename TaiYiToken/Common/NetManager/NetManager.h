@@ -23,5 +23,5 @@
 //获取UTXO
 +(void)GetUTXOByBTCAdress:(NSString *)address completionHandler:(void (^)(id responseObj, NSError *error))handler;
 //交易广播 Rawtx参数为交易信息签名
-+(void)BroadcastBTCTransactionData:(NSData *)transaction completionHandler:(void (^)(id responseObj, NSError *error))handler;
++(void)BroadcastBTCTransactionData:(NSString *)transaction completionHandler:(void (^)(id responseObj, NSError *error))handler;
 @end
