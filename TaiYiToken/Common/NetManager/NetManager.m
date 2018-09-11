@@ -20,7 +20,7 @@
 #define BTC_GETTXList_URL_TESTNET @"http://47.96.79.74:3001/insight-api/txs/"
 #define BTC_GETCurrency_URL_TESTNET @"http://47.96.79.74:3001/insight-api/currency"
 #define BTC_GETTXDetail_URL_TESTNET @"http://47.96.79.74:3001/insight-api/tx/"
-#define BTC_BroadcastTransaction_URL_TESTNET @"http://47.96.79.74:3001/insight-api/tx"
+#define BTC_BroadcastTransaction_URL_TESTNET @"http://47.96.79.74:3001/insight-api/tx/send"
 /*
  *****************************************  行情  *******************************
  */
@@ -102,7 +102,6 @@
 +(void)BroadcastBTCTransactionData:(NSString *)transaction completionHandler:(void (^)(id responseObj, NSError *error))handler{
     NSString *path = [NSString stringWithFormat:@"%@",ChangeToTESTNET == 1?BTC_BroadcastTransaction_URL_TESTNET : BTC_BroadcastTransaction_URL];
     NSDictionary *params = @{@"rawtx": transaction};
-    NSString *pathparam = [NSString stringWithFormat:@"%@/%@",path,transaction];
     [self POSTImage:path parameters:params completionHandler:^(id repsonseObj, NSError *error) {
          !handler?:handler(repsonseObj,error);
     }];

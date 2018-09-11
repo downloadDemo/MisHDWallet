@@ -20,7 +20,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Pods/CoreBitcoin/CoreBitcoin/BTCChainCom.m"
-            timestampString = "558331847.19821"
+            timestampString = "558355367.152241"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "40"
@@ -36,7 +36,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Pods/CoreBitcoin/CoreBitcoin/BTCChainCom.m"
-            timestampString = "558331847.199568"
+            timestampString = "558355367.153558"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "44"
@@ -51,74 +51,58 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "TaiYiToken/&#x9996;&#x9875;/Wallet/CreateAll.m"
-            timestampString = "558331847.200169"
+            filePath = "TaiYiToken/Common/NetManager/NetManager.m"
+            timestampString = "558355367.154096"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "644"
-            endingLineNumber = "644"
-            landmarkName = "+transactionSpendingFromPrivateKey:to:change:amount:fee:api:callback:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TaiYiToken/&#x9996;&#x9875;/Wallet/CreateAll.m"
-            timestampString = "558331847.200747"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "635"
-            endingLineNumber = "635"
-            landmarkName = "+transactionSpendingFromPrivateKey:to:change:amount:fee:api:callback:"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
+            landmarkName = "+GetUTXOByBTCAdress:completionHandler:"
             landmarkType = "7">
             <Locations>
                <Location
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "+[CreateAll transactionSpendingFromPrivateKey:to:change:amount:fee:api:callback:]"
+                  symbolName = "+[NetManager GetUTXOByBTCAdress:completionHandler:]"
                   moduleName = "TaiYiToken"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/admin/Desktop/%E6%B3%B0%E4%B8%80%E9%92%B1%E5%8C%85/TaiYiToken/TaiYiToken/%E9%A6%96%E9%A1%B5/Wallet/CreateAll.m"
-                  timestampString = "558326998.959952"
+                  urlString = "file:///Users/admin/Desktop/%E6%B3%B0%E4%B8%80%E9%92%B1%E5%8C%85/TaiYiToken/TaiYiToken/Common/NetManager/NetManager.m"
+                  timestampString = "558351545.2483391"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "620"
-                  endingLineNumber = "620"
-                  offsetFromSymbolStart = "696">
+                  startingLineNumber = "95"
+                  endingLineNumber = "95"
+                  offsetFromSymbolStart = "192">
                </Location>
                <Location
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__81+[CreateAll transactionSpendingFromPrivateKey:to:change:amount:fee:api:callback:]_block_invoke"
+                  symbolName = "__51+[NetManager GetUTXOByBTCAdress:completionHandler:]_block_invoke"
                   moduleName = "TaiYiToken"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/admin/Desktop/%E6%B3%B0%E4%B8%80%E9%92%B1%E5%8C%85/TaiYiToken/TaiYiToken/%E9%A6%96%E9%A1%B5/Wallet/CreateAll.m"
-                  timestampString = "558326998.9630001"
+                  urlString = "file:///Users/admin/Desktop/%E6%B3%B0%E4%B8%80%E9%92%B1%E5%8C%85/TaiYiToken/TaiYiToken/Common/NetManager/NetManager.m"
+                  timestampString = "558351545.257161"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "621"
-                  endingLineNumber = "621"
-                  offsetFromSymbolStart = "84">
+                  startingLineNumber = "95"
+                  endingLineNumber = "95"
+                  offsetFromSymbolStart = "24">
                </Location>
                <Location
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__destroy_helper_block_.315"
+                  symbolName = "__destroy_helper_block_.61"
                   moduleName = "TaiYiToken"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/admin/Desktop/%E6%B3%B0%E4%B8%80%E9%92%B1%E5%8C%85/TaiYiToken/TaiYiToken/%E9%A6%96%E9%A1%B5/Wallet/CreateAll.m"
-                  timestampString = "558326998.967253"
+                  urlString = "file:///Users/admin/Desktop/%E6%B3%B0%E4%B8%80%E9%92%B1%E5%8C%85/TaiYiToken/TaiYiToken/Common/NetManager/NetManager.m"
+                  timestampString = "558351545.266204"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "620"
-                  endingLineNumber = "620"
+                  startingLineNumber = "95"
+                  endingLineNumber = "95"
                   offsetFromSymbolStart = "20">
                </Location>
             </Locations>

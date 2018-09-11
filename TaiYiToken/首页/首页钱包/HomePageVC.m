@@ -155,8 +155,9 @@
     //test
    // [CreateAll RemoveAllWallet];
     MissionWallet *walletBTC = [self.walletDic objectForKey:@"walletBTC"];
-
-    [CreateAll BTCTransactionFromWallet:walletBTC ToAddress:@"muvdP9MDrfEAqnnTPzLqfP9LCLDLxvN41v" Amount:100000 Fee:1 Api:BTCAPIChain callback:^(NSString *result, NSError *error) {
+    //1CdPXB55ZDgDP65bX2YU7stdQDBmhafafB
+    //mmJjyBKuV4RWnAhHx1w3Wpb11idWUifbSF
+    [CreateAll BTCTransactionFromWallet:walletBTC ToAddress:@"mmJjyBKuV4RWnAhHx1w3Wpb11idWUifbSF" Amount:1000000 Fee:200000 Api:BTCAPIBlockchain callback:^(NSString *result, NSError *error) {
         NSLog(@"result = %@",result);
         NSLog(@"error = %@",error);
     }];

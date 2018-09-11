@@ -250,7 +250,13 @@
 return nil; 表示钱包已存在
  */
 +(MissionWallet *)ImportWalletByPrivateKey:(NSString *)privateKey CoinType:(CoinType)coinType Password:(NSString *)password PasswordHint:(NSString *)passwordHint{
-    BTCKey *key = [[BTCKey alloc]initWithPrivateKey:[NSData dataWithHexString:privateKey]];
+    BTCKey *key = nil;
+    if (coinType == BTC) {
+        key = [[BTCKey alloc]initWithPrivateKey:[NSData dataWithBase58String:privateKey]];
+    }else if (coinType == ETH){
+        key = [[BTCKey alloc]initWithPrivateKey:[NSData dataWithHexString:privateKey]];
+    }
+    
     if ([key.privateKey isEqual:[NSNull null]] || [key.publicKey isEqual:[NSNull null]]) {
         return nil;
     }
@@ -544,19 +550,19 @@ return -1;表示已存在
     //address = 1Nbr7DfQ76R9SaAmxU31b3AkcKVg8Ne3YG
     // pri = KzShD5XsK9kP7o2YAiRAHdY1XLPGWAvf4DG8X16r2JEbHarEg49S
     
-    
+    //@"muvdP9MDrfEAqnnTPzLqfP9LCLDLxvN41v"
     BTCPublicKeyAddress *changeAddress = [BTCPublicKeyAddress addressWithString:wallet.address];
     BTCPublicKeyAddress *toAddress = [BTCPublicKeyAddress addressWithString:address];
     NSError* error = nil;
-    [CreateAll transactionSpendingFromPrivateKey:[NSData dataWithHexString:wallet.privateKey]
-                                                                       to:toAddress
-                                                                   change:changeAddress // send change to the same address
-                                                                   amount:amount
-                                                                      fee:fee
-                                                                      api:btcApi
+    //@"2d0dd8973270e3c1810917da87047bbe8d28cfa633a82f589a10a247d3f1aa16"
+    [CreateAll transactionSpendingFromPrivateKey:wallet
+                                              to:toAddress
+                                          change:changeAddress // send change to the same address
+                                          amount:amount
+                                             fee:fee
+                                             api:btcApi
                                         callback:^(BTCTransaction *transaction, NSError *error) {
-                                            
-                                            
+
                                             if (!transaction) {
                                                 NSLog(@"Can't make a transaction");
                                                 callback(nil, error);
@@ -566,26 +572,13 @@ return -1;表示已存在
                                             NSLog(@"transaction = %@", transaction.dictionary);
                                             NSLog(@"transaction in hex:\n------------------\n%@\n------------------\n", BTCHexFromData([transaction data]));
                                             NSString *broadcastTX = BTCHexFromData([transaction data]);
-                                            NSLog(@"Sending in 5 sec...");
-                                            //sleep(5);
-                                            //NSLog(@"Sending...");
-                                            //sleep(1);
+                                            NSLog(@"Sending ...");
+                                            
                                             //广播交易
                                             [NetManager BroadcastBTCTransactionData:broadcastTX completionHandler:^(id responseObj, NSError *error) {
                                                 NSLog(@"string = %@", responseObj);
                                                 callback(responseObj,error);
                                             }];
-                                            
-                                            
-                                            
-//                                            NSURLRequest* req = [[[BTCChainCom alloc] initWithToken:@"Free API Token form chain.com"] requestForTransactionBroadcastWithData:[transaction data]];
-//                                            NSData* data = [NSURLConnection sendSynchronousRequest:req returningResponse:nil error:nil];
-                                            
-//                                            NSLog(@"Broadcast result: data = %@", data);
-//
-//                                            NSString *resultstring = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-//                                            NSLog(@"string = %@", resultstring);
-                                            
                                             
                                         }];
     
@@ -593,7 +586,7 @@ return -1;表示已存在
 }
 
 // Simple method for now, fetching unspent coins on the fly
-+ (void) transactionSpendingFromPrivateKey:(NSData*)privateKey
++ (void) transactionSpendingFromPrivateKey:(MissionWallet*)wallet
                                                    to:(BTCPublicKeyAddress*)destinationAddress
                                                change:(BTCPublicKeyAddress*)changeAddress
                                                amount:(BTCAmount)amount
@@ -607,27 +600,31 @@ return -1;表示已存在
     // 4. Prepare the scripts with proper signatures for the inputs
     // 5. Broadcast the transaction
     
-    BTCKey* key = [[BTCKey alloc] initWithPrivateKey:privateKey];
+    BTCKey* key = [[BTCKey alloc] initWithPrivateKey:@"KyCQcAD7QvuGHfCWgfYPivx24CeCvgqqVPFn6NXks53FSHP3XQQn".dataFromBase58];
     
     NSError* error = nil;
     __block NSArray* utxos = nil;
     
     switch (btcApi) {
         case BTCAPIBlockchain: {
-//            BTCBlockchainInfo* bci = [[BTCBlockchainInfo alloc] init];
-//            utxos = [bci unspentOutputsWithAddresses:@[ key.compressedPublicKeyAddress ] error:&error];
-            [NetManager GetUTXOByBTCAdress:changeAddress.publicAddress.string completionHandler:^(id responseObj, NSError *error) {
-                NSArray *array = (NSArray *)responseObj;
-                NSMutableArray *utoxarray = [NSMutableArray new];
-                for (int i = 0; i < array.count; i++) {
-                    BTCUTXOModel *model = [BTCUTXOModel parse:array[i]];
-                    [utoxarray addObject:model];
-                }
-                utxos = utoxarray;
-                [CreateAll DoTransBTCKey:key UTXO:utxos to:destinationAddress change:changeAddress amount:amount fee:fee api:btcApi callback:^(BTCTransaction *result, NSError *error) {
-                    callback(result,error);
-                }];
+            BTCBlockchainInfo* bci = [[BTCBlockchainInfo alloc] init];
+            utxos = [bci unspentOutputsWithAddresses:@[ key.compressedPublicKeyAddress ] error:&error];
+            [CreateAll DoTransBTCKey:wallet UTXO:utxos to:destinationAddress change:changeAddress amount:amount fee:fee api:btcApi callback:^(BTCTransaction *result, NSError *error) {
+                callback(result,error);
             }];
+            
+//            [NetManager GetUTXOByBTCAdress:changeAddress.publicAddress.string completionHandler:^(id responseObj, NSError *error) {
+//                NSArray *array = (NSArray *)responseObj;
+//                NSMutableArray *utoxarray = [NSMutableArray new];
+//                for (int i = 0; i < array.count; i++) {
+//                    BTCUTXOModel *model = [BTCUTXOModel parse:array[i]];
+//                    [utoxarray addObject:model];
+//                }
+//                utxos = utoxarray;
+//                [CreateAll DoTransBTCKey:wallet UTXO:utxos to:destinationAddress change:changeAddress amount:amount fee:fee api:btcApi callback:^(BTCTransaction *result, NSError *error) {
+//                    callback(result,error);
+//                }];
+//            }];
             break;
         }
         case BTCAPIChain: {
@@ -640,7 +637,7 @@ return -1;表示已存在
                     [utoxarray addObject:model];
                 }
                 utxos = utoxarray;
-                [CreateAll DoTransBTCKey:key UTXO:utxos to:destinationAddress change:changeAddress amount:amount fee:fee api:btcApi callback:^(BTCTransaction *result, NSError *error) {
+                [CreateAll DoTransBTCKey:wallet UTXO:utxos to:destinationAddress change:changeAddress amount:amount fee:fee api:btcApi callback:^(BTCTransaction *result, NSError *error) {
                     callback(result,error);
                 }];
                 
@@ -655,16 +652,17 @@ return -1;表示已存在
     
 }
 
-+(void)DoTransBTCKey:(BTCKey*)key  UTXO:(NSArray *)utxos   to:(BTCPublicKeyAddress*)destinationAddress
- change:(BTCPublicKeyAddress*)changeAddress
- amount:(BTCAmount)amount
- fee:(BTCAmount)fee
- api:(BTCAPI)btcApi
- callback: (void (^)(BTCTransaction *result, NSError *error))callback{
++(void)DoTransBTCKey:(MissionWallet*)wallet  UTXO:(NSArray *)utxos   to:(BTCPublicKeyAddress*)destinationAddress change:(BTCPublicKeyAddress*)changeAddress
+ amount:(BTCAmount)amount fee:(BTCAmount)fee api:(BTCAPI)btcApi callback: (void (^)(BTCTransaction *result, NSError *error))callback{
 
     NSError* error = nil;
     
-    NSLog(@"UTXOs for %@: %@ ", key.compressedPublicKeyAddress, utxos);
+    NSLog(@"UTXOs for %@: %@ ", wallet.address, utxos);
+   
+    
+    BTCKey* key = [[BTCKey alloc] initWithPrivateKey:[NSMutableData dataWithBase58String:wallet.privateKey]];
+    //cSFqECb6f2nCvRVSEsQBEo4ETG61sPGQbZRFYBQt8zFNQ1zHmZd8
+   
     
     // Can't download unspent outputs - return with error.
     if (!utxos) {
@@ -691,8 +689,6 @@ return -1;表示已存在
             [txouts addObject:txout];
             satishistotal += txout.satoshis;
         }else{
-            [txouts addObject:txout];
-            satishistotal += txout.satoshis;
             break;
         }
     }
@@ -701,19 +697,17 @@ return -1;表示已存在
 
     // Create a new transaction
     BTCTransaction* tx = [[BTCTransaction alloc] init];
-    
+    tx.fee = fee;
+
     BTCAmount spentCoins = 0;
-    int index = 0;
+
     // Add all outputs as inputs
     for (BTCUTXOModel* txout in txouts) {
         BTCTransactionInput* txin = [[BTCTransactionInput alloc] init];
-        txin.previousHash = [NSData dataWithHexString:txout.txid];
+        txin.signatureScript = [[BTCScript alloc]initWithString:txout.scriptPubKey];
+        txin.previousTransactionID = txout.txid;
         txin.previousIndex = (uint32_t)txout.vout;
         [tx addInput:txin];
-        index ++;
-//        NSLog(@"txhash: http://blockchain.info/rawtx/%@", BTCHexFromData(txout.transactionHash));
-//        NSLog(@"txhash: http://blockchain.info/rawtx/%@ (reversed)", BTCHexFromData(BTCReversedData(txout.transactionHash)));
-//
         spentCoins += txout.satoshis;
     }
     
@@ -740,9 +734,6 @@ return -1;表示已存在
         BTCUTXOModel *model = txouts[i];
         BTCScript *scriptPubKey = [[BTCScript alloc]initWithString:model.scriptPubKey];
         
-        
-        
-        BTCTransactionOutput* txout = txouts[i]; // output from a previous tx which is referenced by this txin.
         BTCTransactionInput* txin = tx.inputs[i];
         
         BTCScript* sigScript = [[BTCScript alloc] init];
@@ -765,7 +756,7 @@ return -1;表示已存在
         
         NSData* signatureForScript = [key signatureForHash:hash hashType:hashtype];
         [sigScript appendData:signatureForScript];
-        [sigScript appendData:key.publicKey];
+        [sigScript appendData:[NSData dataWithHexString:wallet.publicKey]];
         
         NSData* sig = [signatureForScript subdataWithRange:NSMakeRange(0, signatureForScript.length - 1)]; // trim hashtype byte to check the signature.
         NSAssert([key isValidSignature:sig hash:hash], @"Signature must be valid");
