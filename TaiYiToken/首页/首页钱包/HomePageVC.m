@@ -152,15 +152,22 @@
 }
 //点击进入钱包详情
 -(void)detailBtnAction:(UIButton *)btn{
-    //test
+    //******   test
    // [CreateAll RemoveAllWallet];
+    
+    //*********  testnet BTC tran
     MissionWallet *walletBTC = [self.walletDic objectForKey:@"walletBTC"];
-    //1CdPXB55ZDgDP65bX2YU7stdQDBmhafafB
-    //mmJjyBKuV4RWnAhHx1w3Wpb11idWUifbSF
-    [CreateAll BTCTransactionFromWallet:walletBTC ToAddress:@"mmJjyBKuV4RWnAhHx1w3Wpb11idWUifbSF" Amount:1000000 Fee:200000 Api:BTCAPIBlockchain callback:^(NSString *result, NSError *error) {
-        NSLog(@"result = %@",result);
-        NSLog(@"error = %@",error);
-    }];
+ 
+    walletBTC.privateKey = @"cSFqECb6f2nCvRVSEsQBEo4ETG61sPGQbZRFYBQt8zFNQ1zHmZd8";
+    walletBTC.publicKey = @"03b0a1a1136d89f1ac1a8bd4a1bca52deb3791f22b31ddbe5f915de30961a80ff9";
+    walletBTC.address = @"n1AhnRa7mgmkbkmMzeZsP9pGZbHBAV92JC";
+    [CreateAll BTCTransactionFromWallet:walletBTC ToAddress:@"mmJjyBKuV4RWnAhHx1w3Wpb11idWUifbSF" Amount:40000
+                                    Fee:10000 Api:BTCAPIChain callback:^(NSString *result, NSError *error) {
+                                        NSLog(@"result = %@",result);
+                                        NSLog(@"error = %@",error);
+                                    }];
+    
+    //********* ETH tran 
 }
 //点击复制地址
 -(void)addressBtnAction:(UIButton *)btn{

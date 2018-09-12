@@ -247,6 +247,8 @@ static int     ECDSA_SIG_recover_key_GFp(EC_KEY *eckey, ECDSA_SIG *ecsig, const 
 - (NSMutableData*) signatureNonceForHash:(NSData*)hash {
 
     NSMutableData* privkey = [self privateKey];
+  //  NSMutableData* privkey = [self.privateKeyAddressTestnet.data mutableCopy];
+    
     BTCBigNumber* order = [BTCCurvePoint curveOrder];
 
     uint8_t v[32];
