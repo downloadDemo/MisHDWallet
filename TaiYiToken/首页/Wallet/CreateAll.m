@@ -777,4 +777,48 @@ return -1;表示已存在
     
     callback(tx,error);
 }
+
+/*
+ ********************************************** BTC转账 *******************************************************************
+ */
+/*
+ gasPrice gasLimit value为10进制
+ */
++(void)ETHTransactionFromWallet:(MissionWallet *)wallet ToAddress:(NSString *)address GasPrice:(NSInteger)gasPrice GasLimit:(NSInteger)gasLimit Value:(NSInteger)value{
+    
+    Account *account =  [Account accountWithPrivateKey:[NSData dataWithHexString:wallet.privateKey]];
+    
+    Transaction *transaction = [[Transaction alloc] init];
+    Transaction *transactionChainId5 = [[Transaction alloc] init];
+    
+    transaction.nonce = (NSUInteger)strtoll([@"0x019e" cStringUsingEncoding:NSASCIIStringEncoding], NULL, 16);
+    transactionChainId5.nonce = transaction.nonce;
+    transaction.gasPrice = [BigNumber bigNumberWithDecimalString:[NSString stringWithFormat:@"%ld",gasPrice]];
+    transactionChainId5.gasPrice = transaction.gasPrice;
+    transaction.gasLimit = [BigNumber bigNumberWithDecimalString:[NSString stringWithFormat:@"%ld",gasLimit]];
+    transactionChainId5.gasLimit = transaction.gasLimit;
+    transaction.toAddress = [Address addressWithString:address];
+    transactionChainId5.toAddress = transaction.toAddress;
+    transaction.value = [BigNumber bigNumberWithDecimalString:[NSString stringWithFormat:@"%ld",value]];
+    transactionChainId5.value = transaction.value;
+    transaction.data = [SecureData hexStringToData:@""];
+    transactionChainId5.data = transaction.data;
+    
+    [account sign:transaction];
+    transactionChainId5.chainId = 1;
+    [account sign:transactionChainId5];
+    EtherscanProvider *provider = [[EtherscanProvider alloc] initWithChainId:ChainIdHomestead apiKey:nil];
+    [[provider getBalance:account.address] onCompletion:^(BigNumberPromise *promise) {
+        NSLog(@"balance = %@",promise.result);
+    }];
+    [[provider sendTransaction:[transactionChainId5 serialize]] onCompletion:^(HashPromise *promise) {
+        NSLog(@"result eth = \n\n\n%@\n\n\n",promise.description);
+    }];
+    
+   // HashPromise *promise = [provider sendTransaction:[transactionChainId5 serialize]];
+    
+}
+
+
+
 @end
