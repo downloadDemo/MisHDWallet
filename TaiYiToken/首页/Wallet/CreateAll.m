@@ -17,9 +17,7 @@
  生成的种子被用来生成构建deterministic Wallet和推导钱包密钥。
  */
 +(NSString *)CreateSeedByMnemonic:(NSString *)mnemonic Password:(NSString *)password{
-   // mnemonic = @"breeze eternal fiction junior ethics lumber chaos squirrel code jar snack broccoli";
-//    NSLog(@"mnemonic = %@",mnemonic);
-    mnemonic = @"yard impulse luxury drive today throw farm pepper survey wreck glass federal";
+
     NSString *seed = [NYMnemonic deterministicSeedStringFromMnemonicString:mnemonic
                                                                 passphrase:@""
                                                                 language:@"english"];
@@ -137,12 +135,12 @@
     NSLog(@"\n\n path = %@\n\n",AccountPath);
     NSString *AccountExtendedPrivateKey  =  [btckeychainxprv derivedKeychainWithPath:AccountPath].extendedPrivateKey;
     NSString *AccountExtendedPublicKey  = [btckeychainxprv derivedKeychainWithPath:AccountPath].extendedPublicKey;
-    NSLog(@"\n *** Account Extended ***\n pri = %@ \n pub = %@",AccountExtendedPrivateKey,AccountExtendedPublicKey);
+   // NSLog(@"\n *** Account Extended ***\n pri = %@ \n pub = %@",AccountExtendedPrivateKey,AccountExtendedPublicKey);
    // BIP32 Extended
     NSString *BIP32Path = [NSString stringWithFormat:@"%@/0",AccountPath];
     NSString *BIP32ExtendedPrivateKey = [btckeychainxprv derivedKeychainWithPath:BIP32Path].extendedPrivateKey;
     NSString *BIP32ExtendedPublicKey = [btckeychainxprv derivedKeychainWithPath:BIP32Path].extendedPublicKey;
-    NSLog(@"\n *** BIP32 Extended ***\n pri = %@ \n pub = %@",BIP32ExtendedPrivateKey,BIP32ExtendedPublicKey);
+   // NSLog(@"\n *** BIP32 Extended ***\n pri = %@ \n pub = %@",BIP32ExtendedPrivateKey,BIP32ExtendedPublicKey);
     
     wallet.AccountExtendedPrivateKey = AccountExtendedPrivateKey;
     wallet.AccountExtendedPublicKey = AccountExtendedPublicKey;
@@ -160,7 +158,7 @@
         wallet.address = compressedPublicKeyAddress;
         wallet.addressarray = [@[compressedPublicKeyAddress] mutableCopy];
         wallet.index = index;
-        NSLog(@"\n BTC  privateKey= %@\n Address = %@\n  PublicKey = %@\n",privateKey,compressedPublicKeyAddress, compressedPublicKey);
+       // NSLog(@"\n BTC  privateKey= %@\n Address = %@\n  PublicKey = %@\n",privateKey,compressedPublicKeyAddress, compressedPublicKey);
         
     }else if(coinType == BTC_TESTNET){
         NSString *compressedPublicKeyAddress = key.addressTestnet.string;
@@ -171,7 +169,7 @@
         wallet.address = compressedPublicKeyAddress;
         wallet.addressarray = [@[compressedPublicKeyAddress] mutableCopy];
         wallet.index = index;
-        NSLog(@"\n BTC  privateKey= %@\n Address = %@\n  PublicKey = %@\n",privateKey,compressedPublicKeyAddress, compressedPublicKey);
+       // NSLog(@"\n BTC  privateKey= %@\n Address = %@\n  PublicKey = %@\n",privateKey,compressedPublicKeyAddress, compressedPublicKey);
     }else if (coinType == ETH){
         Account *account = [Account accountWithPrivateKey:key.privateKeyAddress.data];
         NSString *privateKey = [NSString hexWithData:key.privateKeyAddress.data];
@@ -181,7 +179,7 @@
         wallet.address = account.address.checksumAddress;
         wallet.addressarray = [@[account.address.checksumAddress] mutableCopy];
         wallet.index = index;
-        NSLog(@"\n ETH  privateKey= %@\n Address = %@\n  PublicKey = %@\n",privateKey,account.address.checksumAddress, compressedPublicKey);
+       // NSLog(@"\n ETH  privateKey= %@\n Address = %@\n  PublicKey = %@\n",privateKey,account.address.checksumAddress, compressedPublicKey);
     }
     wallet.walletName = @"";
     wallet.walletType = LOCAL_WALLET;//类型标记为本地生成
@@ -779,46 +777,71 @@ return -1;表示已存在
 }
 
 /*
- ********************************************** BTC转账 *******************************************************************
+ ********************************************** ETH转账 *******************************************************************
  */
+//切换ETH测试网络 小金额转账可能会报错
+#define MODENET ChainIdHomestead
+
+//创建交易
++(void)CreateETHTransactionFromWallet:(MissionWallet *)wallet ToAddress:(NSString *)address Value:(BigNumber *)value callback: (void (^)(Transaction *transaction))callback{
+    Transaction *transaction = [[Transaction alloc] init];
+    EtherscanProvider *provider = [[EtherscanProvider alloc] initWithChainId:MODENET apiKey:nil];
+    transaction.toAddress = [Address addressWithString:address];
+    transaction.value = value;
+    transaction.data = [SecureData hexStringToData:@""];
+    transaction.gasLimit = [BigNumber constantZero];
+    transaction.gasPrice = [BigNumber constantZero];
+    transaction.chainId = MODENET;
+    [[provider getTransactionCount:[Address addressWithString:wallet.address]] onCompletion:^(IntegerPromise *lastnounce) {
+        transaction.nonce = (NSUInteger)(lastnounce.value + 1);
+        NSLog(@"nounce = %ld",transaction.nonce);
+        callback(transaction);
+    }];
+}
+
+//获取交易预估gas
++(void)GetGasLimitPriceForTransaction:(Transaction *)transaction callback: (void (^)(BigNumber *gasLimitPrice))callback{
+    EtherscanProvider *provider = [[EtherscanProvider alloc] initWithChainId:MODENET apiKey:nil];
+    [[provider estimateGas:transaction] onCompletion:^(BigNumberPromise *promise) {
+        NSLog(@"estimateGas = %@",promise.result);
+        BigNumber *gaslimit = (BigNumber *)promise.result;
+        callback(gaslimit);
+    }];
+}
+//
++(void)GetBalanceETHForWallet:(MissionWallet *)wallet callback: (void (^)(BigNumber *balance))callback{
+    Account *account =  [Account accountWithPrivateKey:[NSData dataWithHexString:wallet.privateKey]];
+    EtherscanProvider *provider = [[EtherscanProvider alloc] initWithChainId:MODENET apiKey:nil];
+    [[provider getBalance:account.address] onCompletion:^(BigNumberPromise *promise) {
+        NSLog(@"balance = %@",promise.result);
+        BigNumber *balance = (BigNumber *)promise.result;
+        callback(balance);
+    }];
+}
 /*
  gasPrice gasLimit value为10进制
  */
-+(void)ETHTransactionFromWallet:(MissionWallet *)wallet ToAddress:(NSString *)address GasPrice:(NSInteger)gasPrice GasLimit:(NSInteger)gasLimit Value:(NSInteger)value{
-    
++(void)ETHTransaction:(Transaction *)transaction Wallet:(MissionWallet *)wallet GasPrice:(BigNumber *)gasPrice GasLimit:(BigNumber *)gasLimit callback: (void (^)(HashPromise *promise))callback{
     Account *account =  [Account accountWithPrivateKey:[NSData dataWithHexString:wallet.privateKey]];
     
-    Transaction *transaction = [[Transaction alloc] init];
-    Transaction *transactionChainId5 = [[Transaction alloc] init];
-    
-    transaction.nonce = (NSUInteger)strtoll([@"0x019e" cStringUsingEncoding:NSASCIIStringEncoding], NULL, 16);
-    transactionChainId5.nonce = transaction.nonce;
-    transaction.gasPrice = [BigNumber bigNumberWithDecimalString:[NSString stringWithFormat:@"%ld",gasPrice]];
-    transactionChainId5.gasPrice = transaction.gasPrice;
-    transaction.gasLimit = [BigNumber bigNumberWithDecimalString:[NSString stringWithFormat:@"%ld",gasLimit]];
-    transactionChainId5.gasLimit = transaction.gasLimit;
-    transaction.toAddress = [Address addressWithString:address];
-    transactionChainId5.toAddress = transaction.toAddress;
-    transaction.value = [BigNumber bigNumberWithDecimalString:[NSString stringWithFormat:@"%ld",value]];
-    transactionChainId5.value = transaction.value;
-    transaction.data = [SecureData hexStringToData:@""];
-    transactionChainId5.data = transaction.data;
-    
-    [account sign:transaction];
-    transactionChainId5.chainId = 1;
-    [account sign:transactionChainId5];
-    EtherscanProvider *provider = [[EtherscanProvider alloc] initWithChainId:ChainIdHomestead apiKey:nil];
-    [[provider getBalance:account.address] onCompletion:^(BigNumberPromise *promise) {
-        NSLog(@"balance = %@",promise.result);
-    }];
-    [[provider sendTransaction:[transactionChainId5 serialize]] onCompletion:^(HashPromise *promise) {
-        NSLog(@"result eth = \n\n\n%@\n\n\n",promise.description);
-    }];
-    
-   // HashPromise *promise = [provider sendTransaction:[transactionChainId5 serialize]];
-    
+    if (transaction) {
+        EtherscanProvider *provider = [[EtherscanProvider alloc] initWithChainId:MODENET apiKey:nil];
+        transaction.gasPrice = gasPrice;
+        transaction.gasLimit = gasLimit;
+        
+        [account sign:transaction];
+        [[provider getBalance:account.address] onCompletion:^(BigNumberPromise *promise) {
+            NSLog(@"balance = %@ \n",promise.result);
+            BigNumber *balance = (BigNumber *)promise.result;
+            if (![balance lessThan:[transaction.value add:gasPrice]]) {
+                [[provider sendTransaction:[transaction serialize]] onCompletion:^(HashPromise *promise) {
+                    NSLog(@"tran = %@\n",transaction);
+                    callback(promise);
+                }];
+            }else{
+                callback(nil);
+            }
+        }];
+    }
 }
-
-
-
 @end

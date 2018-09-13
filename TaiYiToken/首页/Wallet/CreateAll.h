@@ -157,10 +157,19 @@
 /*
  ********************************************** 转账 *******************************************************************
  */
+//**************  BTC ********************
 //转账
 +(void)BTCTransactionFromWallet:(MissionWallet *)wallet ToAddress:(NSString *)address Amount:(BTCAmount)amount
                             Fee:(BTCAmount)fee
                             Api:(BTCAPI)btcApi
                        callback: (void (^)(NSString *result, NSError *error))callback;
-+(void)ETHTransactionFromWallet:(MissionWallet *)wallet ToAddress:(NSString *)address GasPrice:(NSInteger)gasPrice GasLimit:(NSInteger)gasLimit Value:(NSInteger)value;
+//**************  ETH ********************
+//转账
++(void)ETHTransaction:(Transaction *)transaction Wallet:(MissionWallet *)wallet GasPrice:(BigNumber *)gasPrice GasLimit:(BigNumber *)gasLimit callback: (void (^)(HashPromise *promise))callback;
+//获取余额
++(void)GetBalanceETHForWallet:(MissionWallet *)wallet callback: (void (^)(BigNumber *balance))callback;
+//创建交易
++(void)CreateETHTransactionFromWallet:(MissionWallet *)wallet ToAddress:(NSString *)address Value:(BigNumber *)value callback: (void (^)(Transaction *transaction))callback;
+//获取交易预估gas
++(void)GetGasLimitPriceForTransaction:(Transaction *)transaction callback: (void (^)(BigNumber *gasLimitPrice))callback;
 @end

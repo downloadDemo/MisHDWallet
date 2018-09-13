@@ -157,21 +157,40 @@
     
     //*********  testnet BTC tran
 //    MissionWallet *walletBTC = [self.walletDic objectForKey:@"walletBTC"];
-//    walletBTC.privateKey = @"cSFqECb6f2nCvRVSEsQBEo4ETG61sPGQbZRFYBQt8zFNQ1zHmZd8";
-//    walletBTC.publicKey = @"03b0a1a1136d89f1ac1a8bd4a1bca52deb3791f22b31ddbe5f915de30961a80ff9";
-//    walletBTC.address = @"n1AhnRa7mgmkbkmMzeZsP9pGZbHBAV92JC";
 //    [CreateAll BTCTransactionFromWallet:walletBTC ToAddress:@"mmJjyBKuV4RWnAhHx1w3Wpb11idWUifbSF" Amount:40000
 //                                    Fee:10000 Api:BTCAPIChain callback:^(NSString *result, NSError *error) {
 //                                        NSLog(@"result = %@",result);
 //                                        NSLog(@"error = %@",error);
 //                                    }];
     
-    //********* ETH tran //0x4b118B4E0b0129A3DEA1165ae742F8B9653fFB74
-    //40000000000000
-    //400000000000000
-    MissionWallet *walletETH = [self.walletDic objectForKey:@"walletETH"];
-    [CreateAll ETHTransactionFromWallet:walletETH ToAddress:@"0x4b118B4E0b0129A3DEA1165ae742F8B9653fFB74" GasPrice:40000000000000 GasLimit:48543504586392 Value:400000000000000];
+    //********* ETH tran
+
+    __block MissionWallet *walletETH = [self.walletDic objectForKey:@"walletETH"];
+    NSInteger valuedecimal = 104556264624000;
+    NSString *hexvalue = [NSString getHexByDecimal:valuedecimal];
+    __block BigNumber *value = [BigNumber bigNumberWithHexString:[NSString stringWithFormat:@"0x%@",hexvalue]];
+    
+    [CreateAll CreateETHTransactionFromWallet:walletETH ToAddress:@"0x4b118B4E0b0129A3DEA1165ae742F8B9653fFB74" Value:value callback:^(Transaction *transactionresult) {
+        __block Transaction *transaction = transactionresult;
+        
+        if (transaction) {
+            [CreateAll GetBalanceETHForWallet:walletETH callback:^(BigNumber *balance) {
+                BigNumber *valuenumber =  [balance div:[BigNumber bigNumberWithInteger:2]];//转1/3
+                transaction.value = valuenumber;
+                NSLog(@"value = %@ bal = %@",value,balance);
+                [CreateAll GetGasLimitPriceForTransaction:transaction callback:^(BigNumber *gasLimitPrice) {
+                    BigNumber *gasprice = [gasLimitPrice add:[gasLimitPrice div:[BigNumber bigNumberWithInteger:3]]];
+                    [CreateAll ETHTransaction:transaction Wallet:walletETH GasPrice:gasprice GasLimit:gasLimitPrice callback:^(HashPromise *promise) {
+                        NSLog(@"result = %@",promise.description);
+                    }];
+                }];
+            }];
+        }else{
+            
+        }
+    }];
 }
+
 //点击复制地址
 -(void)addressBtnAction:(UIButton *)btn{
     MissionWallet *wallet = btn.tag == 0 ? [self.walletDic objectForKey:@"walletBTC"]:[self.walletDic objectForKey:@"walletETH"];
@@ -180,6 +199,7 @@
     [self.view showMsg:@"地址已复制"];
     NSLog(@"addressBtn %ld %@",btn.tag,pasteboard.string);
 }
+
 //扫码判断权限
 - (void)QRCodeScanVC:(UIViewController *)scanVC {
     AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];

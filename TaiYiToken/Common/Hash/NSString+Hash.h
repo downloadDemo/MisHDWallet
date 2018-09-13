@@ -14,6 +14,6 @@
 -(NSString *) sha256;
 -(NSString *) sha384;
 -(NSString *) sha512;
-
++(NSString *)getHexByDecimal:(NSInteger)decimal;
 @end
 

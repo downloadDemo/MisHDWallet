@@ -757,6 +757,7 @@
 		842FEDF7213CD3770075716E /* 首页钱包 */ = {
 			isa = PBXGroup;
 			children = (
+				842FEE95214A56470075716E /* 转账 */,
 				842FEE7B214110200075716E /* 导入钱包 */,
 				842FEE35213E1CF40075716E /* 钱包管理 */,
 				842FEE34213E1CE20075716E /* 二维码收款 */,
@@ -895,6 +896,13 @@
 				842FEE882141286B0075716E /* SetPasswordView.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		842FEE95214A56470075716E /* 转账 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "转账";
 			sourceTree = "<group>";
 		};
 		843EC9C1212120E9002D5C2A /* 导航控制 */ = {
