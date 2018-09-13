@@ -68,6 +68,10 @@
 		842FEE8D214219B50075716E /* SectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 842FEE8C214219B50075716E /* SectionHeaderView.m */; };
 		842FEE9021422D500075716E /* ImportETHWalletVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 842FEE8F21422D500075716E /* ImportETHWalletVC.m */; };
 		842FEE9321475A8F0075716E /* BTCUTXOModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 842FEE9221475A8E0075716E /* BTCUTXOModel.m */; };
+		842FEE9B214A5E330075716E /* TransactionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 842FEE9A214A5E330075716E /* TransactionVC.m */; };
+		842FEE9F214A5FC10075716E /* TransactionAmountView.m in Sources */ = {isa = PBXBuildFile; fileRef = 842FEE9E214A5FC10075716E /* TransactionAmountView.m */; };
+		842FEEA2214A5FD30075716E /* TransactionAddressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 842FEEA1214A5FD30075716E /* TransactionAddressView.m */; };
+		842FEEA5214A5FE80075716E /* TransactionGasView.m in Sources */ = {isa = PBXBuildFile; fileRef = 842FEEA4214A5FE80075716E /* TransactionGasView.m */; };
 		843EC9DA21212271002D5C2A /* NSObject+Parse.m in Sources */ = {isa = PBXBuildFile; fileRef = 843EC9CF21212266002D5C2A /* NSObject+Parse.m */; };
 		843EC9DB21212271002D5C2A /* UIScrollView+Refresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 843EC9D021212267002D5C2A /* UIScrollView+Refresh.m */; };
 		843EC9DC21212271002D5C2A /* UIView+HUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 843EC9D221212268002D5C2A /* UIView+HUD.m */; };
@@ -285,6 +289,14 @@
 		842FEE8F21422D500075716E /* ImportETHWalletVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImportETHWalletVC.m; sourceTree = "<group>"; };
 		842FEE9121475A8E0075716E /* BTCUTXOModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTCUTXOModel.h; sourceTree = "<group>"; };
 		842FEE9221475A8E0075716E /* BTCUTXOModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTCUTXOModel.m; sourceTree = "<group>"; };
+		842FEE99214A5E330075716E /* TransactionVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransactionVC.h; sourceTree = "<group>"; };
+		842FEE9A214A5E330075716E /* TransactionVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransactionVC.m; sourceTree = "<group>"; };
+		842FEE9D214A5FC10075716E /* TransactionAmountView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransactionAmountView.h; sourceTree = "<group>"; };
+		842FEE9E214A5FC10075716E /* TransactionAmountView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransactionAmountView.m; sourceTree = "<group>"; };
+		842FEEA0214A5FD30075716E /* TransactionAddressView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransactionAddressView.h; sourceTree = "<group>"; };
+		842FEEA1214A5FD30075716E /* TransactionAddressView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransactionAddressView.m; sourceTree = "<group>"; };
+		842FEEA3214A5FE80075716E /* TransactionGasView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransactionGasView.h; sourceTree = "<group>"; };
+		842FEEA4214A5FE80075716E /* TransactionGasView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransactionGasView.m; sourceTree = "<group>"; };
 		843EC9C721212170002D5C2A /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		843EC9CE21212266002D5C2A /* NSString+URLString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+URLString.h"; sourceTree = "<group>"; };
 		843EC9CF21212266002D5C2A /* NSObject+Parse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Parse.m"; sourceTree = "<group>"; };
@@ -901,8 +913,24 @@
 		842FEE95214A56470075716E /* 转账 */ = {
 			isa = PBXGroup;
 			children = (
+				842FEE9C214A5F940075716E /* View */,
+				842FEE99214A5E330075716E /* TransactionVC.h */,
+				842FEE9A214A5E330075716E /* TransactionVC.m */,
 			);
 			path = "转账";
+			sourceTree = "<group>";
+		};
+		842FEE9C214A5F940075716E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				842FEE9D214A5FC10075716E /* TransactionAmountView.h */,
+				842FEE9E214A5FC10075716E /* TransactionAmountView.m */,
+				842FEEA0214A5FD30075716E /* TransactionAddressView.h */,
+				842FEEA1214A5FD30075716E /* TransactionAddressView.m */,
+				842FEEA3214A5FE80075716E /* TransactionGasView.h */,
+				842FEEA4214A5FE80075716E /* TransactionGasView.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		843EC9C1212120E9002D5C2A /* 导航控制 */ = {
@@ -1513,6 +1541,7 @@
 				0415BD9A2131BC850022DEB7 /* YYTopBarView.m in Sources */,
 				8460C7B12136A446002E4B2F /* YYTimeLineModel.m in Sources */,
 				843ECA3921216320002D5C2A /* UIView+frameAdjust.m in Sources */,
+				842FEEA2214A5FD30075716E /* TransactionAddressView.m in Sources */,
 				842FEE55213E752C0075716E /* ExportWalletVC.m in Sources */,
 				0415BDAC2131BC850022DEB7 /* YYKlineVolumeView.m in Sources */,
 				843ECA3B21216320002D5C2A /* UIColor+Util.m in Sources */,
@@ -1529,6 +1558,7 @@
 				0415BDA82131BC850022DEB7 /* YYKlineView.m in Sources */,
 				0415BDAB2131BC850022DEB7 /* YYKlineMaskView.m in Sources */,
 				842FEE5E213E8B0A0075716E /* InputPasswordVC.m in Sources */,
+				842FEE9F214A5FC10075716E /* TransactionAmountView.m in Sources */,
 				8481805F2123B2630007DCF9 /* Base64.m in Sources */,
 				842FEE8221411C9E0075716E /* ImportBTCWalletVC.m in Sources */,
 				84748845212AAAD70077AC0F /* VerifyMnemonicVC.m in Sources */,
@@ -1550,6 +1580,7 @@
 				842FEE64213F5FF20075716E /* Customlayout.m in Sources */,
 				8460C7B22136A446002E4B2F /* YYFiveRecordModel.m in Sources */,
 				0415BDA72131BC850022DEB7 /* YYStockViewMaskView.m in Sources */,
+				842FEE9B214A5E330075716E /* TransactionVC.m in Sources */,
 				84B0A9602122C184002EFA0A /* UIImage+Gradient.m in Sources */,
 				84C0DF2A212CFF7700BCC91D /* NSString+Bitcoin.m in Sources */,
 				842FEE70213F84B90075716E /* SelectButtonView.m in Sources */,
@@ -1602,6 +1633,7 @@
 				842FEE2B213D27470075716E /* SGWebView.m in Sources */,
 				843ECA2D212162FB002D5C2A /* UIImage+ExFoundation.m in Sources */,
 				84748848212BC2EC0077AC0F /* UserInfoVC.m in Sources */,
+				842FEEA5214A5FE80075716E /* TransactionGasView.m in Sources */,
 				84BDD1702126B3DF0039FE09 /* ButtonsView.m in Sources */,
 				842FEE58213E75D60075716E /* ExportWalletCell.m in Sources */,
 				0415BDA42131BC850022DEB7 /* YYTimeLineVolumeView.m in Sources */,

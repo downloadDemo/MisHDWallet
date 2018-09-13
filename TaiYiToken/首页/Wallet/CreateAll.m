@@ -823,7 +823,6 @@ return -1;表示已存在
  */
 +(void)ETHTransaction:(Transaction *)transaction Wallet:(MissionWallet *)wallet GasPrice:(BigNumber *)gasPrice GasLimit:(BigNumber *)gasLimit callback: (void (^)(HashPromise *promise))callback{
     Account *account =  [Account accountWithPrivateKey:[NSData dataWithHexString:wallet.privateKey]];
-    
     if (transaction) {
         EtherscanProvider *provider = [[EtherscanProvider alloc] initWithChainId:MODENET apiKey:nil];
         transaction.gasPrice = gasPrice;
