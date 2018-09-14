@@ -100,6 +100,7 @@
         [self transactionETHToAddress:self.addressView.toAddressTextField.text];
     }
 }
+//检查金额？
 -(void)transactionBTCToAddress:(NSString *)address{
     __block MissionWallet *walletBTC = self.wallet;
     NSString *amount = self.amountView.amountTextField.text;
@@ -118,8 +119,11 @@
     __block MissionWallet *walletETH = self.wallet;
     //NSInteger valuedecimal = 104556264624000;
     NSString *amount = self.amountView.amountTextField.text;
-    NSString *hexvalue = [NSString getHexByDecimal:(amount.floatValue * pow(10,18))];
-    __block BigNumber *value = [BigNumber bigNumberWithHexString:[NSString stringWithFormat:@"0x%@",hexvalue]];
+//    NSString *hexvalue = [NSString getHexByDecimal:(amount.floatValue * pow(10,18))];
+//0.019999999776482582
+//1.745620419994773000
+//    __block BigNumber *value = [BigNumber bigNumberWithHexString:[NSString stringWithFormat:@"0x%@",hexvalue]];
+    __block BigNumber *value = [BigNumber bigNumberWithDecimalString:[NSString stringWithFormat:@"%ld",(NSInteger)(amount.floatValue * pow(10,18))]];
     [CreateAll CreateETHTransactionFromWallet:walletETH ToAddress:address Value:value callback:^(Transaction *transactionresult) {
         __block Transaction *transaction = transactionresult;
         if (transaction) {
