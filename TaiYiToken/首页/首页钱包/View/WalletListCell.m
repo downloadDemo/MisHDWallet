@@ -12,7 +12,7 @@
 -(UIImageView *)iconImageView{
     if (!_iconImageView) {
         _iconImageView = [UIImageView new];
-        [self.contentView addSubview:_iconImageView];
+        [self.swipeContentView addSubview:_iconImageView];
         [_iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(16);
             make.centerY.equalTo(0);
@@ -27,7 +27,7 @@
         _symbolNamelb.textColor = [UIColor textLightGrayColor];
         _symbolNamelb.font = [UIFont systemFontOfSize:10];
         _symbolNamelb.textAlignment = NSTextAlignmentLeft;
-        [self.contentView addSubview:_symbolNamelb];
+        [self.swipeContentView addSubview:_symbolNamelb];
         [_symbolNamelb mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(40);
             make.top.equalTo(17);
@@ -44,7 +44,7 @@
         _symbollb.font = [UIFont systemFontOfSize:15];
         _symbollb.textAlignment = NSTextAlignmentLeft;
         _symbollb.numberOfLines = 1;
-        [self.contentView addSubview:_symbollb];
+        [self.swipeContentView addSubview:_symbollb];
         [_symbollb mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(40);
             make.bottom.equalTo(-20);
@@ -62,7 +62,7 @@
         _amountlb.font = [UIFont boldSystemFontOfSize:15];
         _amountlb.textAlignment = NSTextAlignmentLeft;
         _amountlb.numberOfLines = 1;
-        [self.contentView addSubview:_amountlb];
+        [self.swipeContentView addSubview:_amountlb];
         [_amountlb mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(30);
             make.centerY.equalTo(0);
@@ -80,7 +80,7 @@
         _valuelb.font = [UIFont systemFontOfSize:15];
         _valuelb.textAlignment = NSTextAlignmentRight;
         _valuelb.numberOfLines = 1;
-        [self addSubview:_valuelb];
+        [self.swipeContentView addSubview:_valuelb];
         [_valuelb mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(17);
             make.right.equalTo(-10);
@@ -98,7 +98,7 @@
         _rmbvaluelb.font = [UIFont boldSystemFontOfSize:10];
         _rmbvaluelb.textAlignment = NSTextAlignmentRight;
         _rmbvaluelb.numberOfLines = 1;
-        [self addSubview:_rmbvaluelb];
+        [self.swipeContentView addSubview:_rmbvaluelb];
         [_rmbvaluelb mas_makeConstraints:^(MASConstraintMaker *make) {
             make.bottom.equalTo(-20);
             make.right.equalTo(-10);

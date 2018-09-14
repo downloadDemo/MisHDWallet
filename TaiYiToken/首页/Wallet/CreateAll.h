@@ -166,6 +166,12 @@
 //**************  ETH ********************
 //转账
 +(void)ETHTransaction:(Transaction *)transaction Wallet:(MissionWallet *)wallet GasPrice:(BigNumber *)gasPrice GasLimit:(BigNumber *)gasLimit callback: (void (^)(HashPromise *promise))callback;
+//获取ETH价格
++(void)GetETHCurrencyCallback: (void (^)(FloatPromise *etherprice))callback;
+//获取GAS价格
++(void)GetGasPriceCallback: (void (^)(BigNumberPromise *gasPrice))callback;
+//获取交易记录
++(void)GetTransactionsForAddress:(NSString *)address startBlockTag: (BlockTag)blockTag Callback: (void (^)(ArrayPromise *promiseArray))callback;
 //获取余额
 +(void)GetBalanceETHForWallet:(MissionWallet *)wallet callback: (void (^)(BigNumber *balance))callback;
 //创建交易

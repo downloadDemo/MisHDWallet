@@ -14,7 +14,7 @@
 //@property(nonatomic)UILabel *pricelb;
 //@property(nonatomic)UILabel *balancelb;
 -(void)initUI{
-    
+    self.backgroundColor = [UIColor whiteColor];
     //eth
     _namelb = [UILabel new];
     _namelb.textColor = [UIColor textBlackColor];
@@ -24,7 +24,7 @@
     [_namelb mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(17);
         make.top.equalTo(10);
-        make.width.equalTo(50);
+        make.width.equalTo(150);
         make.height.equalTo(20);
     }];
     //余额：0.0105ETH
@@ -47,7 +47,7 @@
     _amountTextField.textAlignment = NSTextAlignmentLeft;
     _amountTextField.textColor = [UIColor textBlackColor];
     _amountTextField.font = [UIFont systemFontOfSize:23];
-    _amountTextField.keyboardType = UIKeyboardTypeNumberPad;
+    _amountTextField.keyboardType = UIKeyboardTypeDecimalPad;
     [self addSubview:_amountTextField];
     [_amountTextField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(35);
@@ -63,7 +63,7 @@
     [self addSubview:_pricelb];
     [_pricelb mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(-15);
-        make.top.equalTo(10);
+        make.top.equalTo(35);
         make.width.equalTo(200);
         make.height.equalTo(20);
     }];

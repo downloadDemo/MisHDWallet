@@ -133,9 +133,9 @@
     NSString *seed = [CreateAll CreateSeedByMnemonic:self.mnemonic Password:password];
 
     NSString *xprv = [CreateAll CreateExtendPrivateKeyWithSeed:seed];
-    MissionWallet *walletBTC = [CreateAll CreateWalletByXprv:xprv index:0 CoinType:BTC];
+    MissionWallet *walletBTC = [CreateAll CreateWalletByXprv:xprv index:0 CoinType:BTC_TESTNET];
     MissionWallet *walletETH = [CreateAll CreateWalletByXprv:xprv index:0 CoinType:ETH];
-   
+    self.mnemonic = @"yard impulse luxury drive today throw farm pepper survey wreck glass federal";
     //创建并存KeyStore
     [CreateAll CreateKeyStoreByMnemonic:self.mnemonic  WalletAddress:walletBTC.address Password:password callback:^(Account *account, NSError *error) {
         NSLog(@"**** BTC KeyStore finished ! ****");

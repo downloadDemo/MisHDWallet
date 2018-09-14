@@ -121,6 +121,7 @@
 		84B0A95F2122C184002EFA0A /* UIButton+Gradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B0A95B2122C183002EFA0A /* UIButton+Gradient.m */; };
 		84B0A9602122C184002EFA0A /* UIImage+Gradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B0A95D2122C183002EFA0A /* UIImage+Gradient.m */; };
 		84B0A9642122CD7B002EFA0A /* RemindView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B0A9632122CD7B002EFA0A /* RemindView.m */; };
+		84B8D51C214B591C00286631 /* BTCBalanceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B8D51B214B591C00286631 /* BTCBalanceModel.m */; };
 		84BDD16D21269D5B0039FE09 /* DataView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84BDD16C21269D5B0039FE09 /* DataView.m */; };
 		84BDD1702126B3DF0039FE09 /* ButtonsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84BDD16F2126B3DF0039FE09 /* ButtonsView.m */; };
 		84C0DF26212CFF3800BCC91D /* BRKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C0DF24212CFF3700BCC91D /* BRKey.m */; };
@@ -392,6 +393,8 @@
 		84B0A95E2122C184002EFA0A /* UIImage+Gradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Gradient.h"; sourceTree = "<group>"; };
 		84B0A9622122CD7B002EFA0A /* RemindView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RemindView.h; sourceTree = "<group>"; };
 		84B0A9632122CD7B002EFA0A /* RemindView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RemindView.m; sourceTree = "<group>"; };
+		84B8D51A214B591C00286631 /* BTCBalanceModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTCBalanceModel.h; sourceTree = "<group>"; };
+		84B8D51B214B591C00286631 /* BTCBalanceModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTCBalanceModel.m; sourceTree = "<group>"; };
 		84BDD16B21269D5A0039FE09 /* DataView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataView.h; sourceTree = "<group>"; };
 		84BDD16C21269D5B0039FE09 /* DataView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DataView.m; sourceTree = "<group>"; };
 		84BDD16E2126B3DF0039FE09 /* ButtonsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ButtonsView.h; sourceTree = "<group>"; };
@@ -1121,6 +1124,8 @@
 				847BC6082133E001000B02AC /* MissionWallet.m */,
 				842FEE9121475A8E0075716E /* BTCUTXOModel.h */,
 				842FEE9221475A8E0075716E /* BTCUTXOModel.m */,
+				84B8D51A214B591C00286631 /* BTCBalanceModel.h */,
+				84B8D51B214B591C00286631 /* BTCBalanceModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1587,6 +1592,7 @@
 				843ECA312121630A002D5C2A /* RegularExpression.m in Sources */,
 				842FEE6A213F806C0075716E /* ExportWalletAddressVC.m in Sources */,
 				8481805D2123B2630007DCF9 /* AESCrypt.m in Sources */,
+				84B8D51C214B591C00286631 /* BTCBalanceModel.m in Sources */,
 				843EC9E62121228B002D5C2A /* AMSaveFile.m in Sources */,
 				84C8E7D4212A971C00627445 /* NYMnemonic.m in Sources */,
 				843EC9DF21212271002D5C2A /* AppDelegate+Custom.m in Sources */,

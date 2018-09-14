@@ -185,7 +185,7 @@
         NSString *str2 = [wallet.address substringFromIndex:wallet.address.length - 10];
         address = [NSString stringWithFormat:@"%@...%@",str1,str2];
     }
-    if (wallet && wallet.coinType == BTC) {
+    if (wallet && (wallet.coinType == BTC || wallet.coinType == BTC_TESTNET)) {
         UIImage *backImage = [[UIImage alloc]createImageWithSize:CGSizeMake(312, 155) gradientColors:@[[UIColor colorWithHexString:@"#4090F7"],[UIColor colorWithHexString:@"#57A8FF"]] percentage:@[@(0.3),@(1)] gradientType:GradientFromLeftTopToRightBottom];
         [cell.backImageViewLeft setImage:backImage];
         [cell.backImageViewRight setImage:[UIImage imageNamed:@"bglogo1"]];

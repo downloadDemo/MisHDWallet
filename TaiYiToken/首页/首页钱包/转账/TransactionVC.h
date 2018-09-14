@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface TransactionVC : UIViewController
-
+@property(nonatomic)MissionWallet *wallet;
 @end

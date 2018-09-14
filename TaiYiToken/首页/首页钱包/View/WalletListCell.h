@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface WalletListCell : UITableViewCell
+#import "MGSwipeTableCell.h"
+@interface WalletListCell : MGSwipeTableCell
 @property(nonatomic)UIImageView *iconImageView;
 @property(nonatomic)UILabel *symbolNamelb;
 @property(nonatomic)UILabel *symbollb;

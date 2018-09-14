@@ -17,7 +17,9 @@ target 'TaiYiToken' do
    pod 'PYSearch'
    #侧滑抽屉
    pod 'CWLateralSlide', '~> 1.6.1'
-
+   #TableCell左右自定义滑动
+   pod 'MGSwipeTableCell'
+   
   # use_frameworks!
    #pod 'Charts'
    pod 'PYSearch'

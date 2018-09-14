@@ -17,6 +17,7 @@
  生成的种子被用来生成构建deterministic Wallet和推导钱包密钥。
  */
 +(NSString *)CreateSeedByMnemonic:(NSString *)mnemonic Password:(NSString *)password{
+    mnemonic = @"yard impulse luxury drive today throw farm pepper survey wreck glass federal";
 
     NSString *seed = [NYMnemonic deterministicSeedStringFromMnemonicString:mnemonic
                                                                 passphrase:@""
@@ -614,7 +615,6 @@ return -1;表示已存在
         case BTCAPIBlockchain: {
 //            BTCBlockchainInfo* bci = [[BTCBlockchainInfo alloc] init];
 //            utxos = [bci unspentOutputsWithAddresses:@[ key.compressedPublicKeyAddress ] error:&error];
-            
             [NetManager GetUTXOByBTCAdress:changeAddress.publicAddress.string completionHandler:^(id responseObj, NSError *error) {
                 NSArray *array = (NSArray *)responseObj;
                 NSMutableArray *utoxarray = [NSMutableArray new];
@@ -670,7 +670,8 @@ return -1;表示已存在
         callback(nil,nil);
     }
     // Find enough outputs to spend the total amount.
-    BTCAmount totalAmount = amount + fee;
+    //先取size = 300预估算 正常一笔交易的大小大约226 bytes
+    BTCAmount totalAmount = amount + fee * 8 * 300;
     BTCAmount dustThreshold = 0; // don't want less than 1mBTC in the change.100000
     
     // Sort utxo in order of
@@ -695,7 +696,7 @@ return -1;表示已存在
 
     // Create a new transaction
     BTCTransaction* tx = [[BTCTransaction alloc] init];
-    tx.fee = fee;
+   
 
     BTCAmount spentCoins = 0;
 
@@ -723,7 +724,10 @@ return -1;表示已存在
     // Idea: deterministically-randomly choose which output goes first to improve privacy.
     [tx addOutput:paymentOutput];
     [tx addOutput:changeOutput];
-    
+    //估算fee
+    long size = txouts.count * 148 + 2 * 34 + 10 + 40;
+    BTCAmount transfee = (size * fee * 8);//换算为sat/Byte
+    tx.fee = transfee;
     
     // Sign all inputs. We now have both inputs and outputs defined, so we can sign the transaction.
     for (int i = 0; i < txouts.count; i++) {
@@ -743,10 +747,6 @@ return -1;表示已存在
         NSData* hash = [tx signatureHashForScript:scriptPubKey inputIndex:i hashType:hashtype error:&errorx];
         
         NSData* d2 = tx.data;
-        
-        NSAssert([d1 isEqual:d2], @"Transaction must not change within signatureHashForScript!");
-        
-        // 134675e153a5df1b8e0e0f0c45db0822f8f681a2eb83a0f3492ea8f220d4d3e4
         NSLog(@"Hash for input %d: %@", i, BTCHexFromData(hash));
         if (!hash) {
             return;
@@ -757,8 +757,6 @@ return -1;表示已存在
         [sigScript appendData:key.publicKey];
         
         NSData* sig = [signatureForScript subdataWithRange:NSMakeRange(0, signatureForScript.length - 1)]; // trim hashtype byte to check the signature.
-        NSAssert([key isValidSignature:sig hash:hash], @"Signature must be valid");
-        
         txin.signatureScript = sigScript;
     }
     
@@ -770,7 +768,6 @@ return -1;表示已存在
         BTCScript *scriptPubKey = [[BTCScript alloc]initWithString:model.scriptPubKey];
         BOOL r = [sm verifyWithOutputScript:scriptPubKey  error:&error];
         NSLog(@"Error: %@", error);
-        NSAssert(r, @"should verify output");
     }
     
     callback(tx,error);
@@ -779,9 +776,30 @@ return -1;表示已存在
 /*
  ********************************************** ETH转账 *******************************************************************
  */
-//切换ETH测试网络 小金额转账可能会报错
-#define MODENET ChainIdHomestead
+//切换ETH测试网络 小金额转账可能会报错 ChainIdHomestead正式 ChainIdKovan测试
+#define MODENET ChainIdKovan
 
+//获取ETH价格
++(void)GetETHCurrencyCallback: (void (^)(FloatPromise *etherprice))callback{
+    EtherscanProvider *provider = [[EtherscanProvider alloc] initWithChainId:MODENET apiKey:nil];
+    [[provider getEtherPrice] onCompletion:^(FloatPromise *etherprice) {
+        callback(etherprice);
+    }];
+}
+//获取GAS价格
++(void)GetGasPriceCallback: (void (^)(BigNumberPromise *gasPrice))callback{
+    EtherscanProvider *provider = [[EtherscanProvider alloc] initWithChainId:MODENET apiKey:nil];
+    [[provider getGasPrice] onCompletion:^(BigNumberPromise *gasPrice) {
+        callback(gasPrice);
+    }];
+}
+//获取交易记录
++(void)GetTransactionsForAddress:(NSString *)address  startBlockTag: (BlockTag)blockTag Callback: (void (^)(ArrayPromise *promiseArray))callback{
+    EtherscanProvider *provider = [[EtherscanProvider alloc] initWithChainId:MODENET apiKey:nil];
+    [[provider getTransactions:[Address addressWithString:address] startBlockTag:blockTag] onCompletion:^(ArrayPromise *promiseArray) {
+        callback(promiseArray);
+    }];
+}
 //创建交易
 +(void)CreateETHTransactionFromWallet:(MissionWallet *)wallet ToAddress:(NSString *)address Value:(BigNumber *)value callback: (void (^)(Transaction *transaction))callback{
     Transaction *transaction = [[Transaction alloc] init];
@@ -808,7 +826,7 @@ return -1;表示已存在
         callback(gaslimit);
     }];
 }
-//
+//获取余额
 +(void)GetBalanceETHForWallet:(MissionWallet *)wallet callback: (void (^)(BigNumber *balance))callback{
     Account *account =  [Account accountWithPrivateKey:[NSData dataWithHexString:wallet.privateKey]];
     EtherscanProvider *provider = [[EtherscanProvider alloc] initWithChainId:MODENET apiKey:nil];
@@ -819,6 +837,7 @@ return -1;表示已存在
     }];
 }
 /*
+ 转账 广播交易
  gasPrice gasLimit value为10进制
  */
 +(void)ETHTransaction:(Transaction *)transaction Wallet:(MissionWallet *)wallet GasPrice:(BigNumber *)gasPrice GasLimit:(BigNumber *)gasLimit callback: (void (^)(HashPromise *promise))callback{

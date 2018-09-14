@@ -14,4 +14,6 @@
 @property(nonatomic)UILabel *pricelb;
 @property(nonatomic)UILabel *balancelb;
 @property(nonatomic)UILabel *namelb;
+
+-(void)initUI;
 @end

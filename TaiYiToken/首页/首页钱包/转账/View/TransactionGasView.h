@@ -10,4 +10,9 @@
 
 @interface TransactionGasView : UIView
 @property(nonatomic)UILabel *gaspricelb;
+@property(nonatomic,strong)UISlider *gasSlider;
+@property(nonatomic)UILabel *valueLabel;
+
+-(void)initUI;
+-(void)updateLabelValues:(CGFloat)value;
 @end

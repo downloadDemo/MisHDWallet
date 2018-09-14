@@ -11,4 +11,6 @@
 @interface TransactionAddressView : UIView
 @property(nonatomic)UITextField *fromAddressTextField;
 @property(nonatomic)UITextField *toAddressTextField;
+
+-(void)initUI;
 @end

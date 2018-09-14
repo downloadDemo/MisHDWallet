@@ -16,9 +16,9 @@
 #import "CustomizedNavigationController.h"
 #import "ReceiptQRCodeVC.h"
 #import "WalletManagerVC.h"
-
 #import "Customlayout.h"
-@interface HomePageVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITableViewDelegate,UITableViewDataSource,UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+#import "TransactionVC.h"
+@interface HomePageVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITableViewDelegate,UITableViewDataSource,UIImagePickerControllerDelegate, UINavigationControllerDelegate,MGSwipeTableCellDelegate>
 @property(nonatomic)UICollectionView *collectionview;
 @property(nonatomic)UITableView *tableView;
 @property(nonatomic)UIButton *walletBtn;
@@ -175,7 +175,7 @@
         
         if (transaction) {
             [CreateAll GetBalanceETHForWallet:walletETH callback:^(BigNumber *balance) {
-                BigNumber *valuenumber =  [balance div:[BigNumber bigNumberWithInteger:2]];//转1/3
+                BigNumber *valuenumber =  [balance div:[BigNumber bigNumberWithInteger:4]];//转1/3
                 transaction.value = valuenumber;
                 NSLog(@"value = %@ bal = %@",value,balance);
                 [CreateAll GetGasLimitPriceForTransaction:transaction callback:^(BigNumber *gasLimitPrice) {
@@ -289,6 +289,22 @@
     return 1;
 }
 
+-(void) swipeTableCell:(WalletListCell*) cell didChangeSwipeState:(MGSwipeState) state gestureIsActive:(BOOL) gestureIsActive{
+    NSLog(@"swipe  state = %ld",state);
+    if (state == MGSwipeStateSwipingLeftToRight) {//收款
+        ReceiptQRCodeVC *revc = [ReceiptQRCodeVC new];
+        revc.wallet =  [cell.symbollb.text isEqualToString:@"BTC"]? [self.walletDic objectForKey:@"walletBTC"]:[self.walletDic objectForKey:@"walletETH"];
+        [self.navigationController pushViewController:revc animated:YES];
+    }
+    if(state == MGSwipeStateSwipingRightToLeft){//转账
+        TransactionVC *tranvc = [TransactionVC new];
+        tranvc.wallet = [cell.symbollb.text isEqualToString:@"BTC"]? [self.walletDic objectForKey:@"walletBTC"]:[self.walletDic objectForKey:@"walletETH"];
+        [self.navigationController pushViewController:tranvc animated:YES];
+    }
+    
+}
+
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     WalletListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"WalletListCell" forIndexPath:indexPath];
     if (cell == nil) {
@@ -312,6 +328,18 @@
         cell.valuelb.text = @"unknown";
         cell.rmbvaluelb.text = @"unknown";
     }
+    cell.delegate = self;
+    MGSwipeButton *leftBtn = [MGSwipeButton buttonWithTitle:@"收款" backgroundColor:[UIColor appBlueColor] padding:30];
+    leftBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+    cell.leftButtons = @[leftBtn];
+    cell.leftSwipeSettings.transition = MGSwipeTransitionDrag;
+    
+    //configure right buttons
+    MGSwipeButton *rightBtn = [MGSwipeButton buttonWithTitle:@"转账" backgroundColor:[UIColor redColor] padding:30];
+    rightBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+    cell.rightButtons = @[rightBtn];
+    cell.rightSwipeSettings.transition = MGSwipeTransitionDrag;
+    
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }

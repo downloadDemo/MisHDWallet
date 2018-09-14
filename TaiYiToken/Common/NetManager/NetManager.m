@@ -64,7 +64,7 @@
 //BTC查询余额https://insight.bitpay.com/api/addr/1D9NoaVRDVoGuUcCq735JSX52gcxvc1rf4
 +(void)GetBalanceForBTCAdress:(NSString *)address noTxList:(int)noTxList completionHandler:(void (^)(id responseObj, NSError *error))handler{
     NSString *path = [NSString stringWithFormat:@"%@%@",ChangeToTESTNET == 1?BTC_GETBalance_URL_TESTNET : BTC_GETBalance_URL,address];
-    NSDictionary *params = nil;
+    NSDictionary *params = noTxList == -1?nil : @{@"noTxList": [NSString stringWithFormat:@"%d",noTxList]};
     [self GET:path parameters:params completionHandler:^(id repsonseObj, NSError *error) {
         !handler ?:handler(repsonseObj,error);
     }];
