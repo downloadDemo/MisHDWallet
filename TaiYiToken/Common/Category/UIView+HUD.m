@@ -25,11 +25,18 @@
     
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self animated:YES];
     hud.mode = MBProgressHUDModeText;
-    hud.labelText = msg;
-    [hud hideAnimated:YES afterDelay:1];
+    hud.label.text = msg;
+    [hud hideAnimated:YES afterDelay:2];
 }
 
-
+- (void)showAlert:(NSString *)title DetailMsg:(NSString *)msg{
+    [self hideHUD];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self animated:YES];
+    hud.mode = MBProgressHUDModeText;
+    hud.label.text = title;
+    hud.detailsLabel.text = msg;
+    [hud hideAnimated:YES afterDelay:5];
+}
 @end
 
 

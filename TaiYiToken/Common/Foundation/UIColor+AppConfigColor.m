@@ -83,7 +83,8 @@
 
 #pragma mark - The default font light gray
 +(UIColor *)textLightGrayColor{
-    return HEX_RGB(0xafb0b1);
+   // return HEX_RGB(0xafb0b1);
+    return RGB(199, 199, 200);
 }
 
 #pragma mark - 白色字体
@@ -93,7 +94,8 @@
 #warning -- 先将绿色改为蓝色, 以后再改回来
 + (UIColor *)textGreenColor{
 //    return RGB(0, 221, 140);
-    return RGB(71, 201, 246);
+   return RGB(71, 201, 246);
+    
 }
 
 + (UIColor *)textDarkColor{

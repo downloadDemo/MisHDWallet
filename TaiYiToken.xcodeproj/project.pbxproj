@@ -122,6 +122,10 @@
 		84B0A9602122C184002EFA0A /* UIImage+Gradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B0A95D2122C183002EFA0A /* UIImage+Gradient.m */; };
 		84B0A9642122CD7B002EFA0A /* RemindView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B0A9632122CD7B002EFA0A /* RemindView.m */; };
 		84B8D51C214B591C00286631 /* BTCBalanceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B8D51B214B591C00286631 /* BTCBalanceModel.m */; };
+		84B8D520214F55FF00286631 /* TransactionRecordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B8D51F214F55FF00286631 /* TransactionRecordVC.m */; };
+		84B8D524214F56CA00286631 /* BTCTransactionRecordModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B8D523214F56CA00286631 /* BTCTransactionRecordModel.m */; };
+		84B8D52B214F571D00286631 /* TransactionRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B8D52A214F571D00286631 /* TransactionRecordCell.m */; };
+		84B8D52E214FA6EF00286631 /* ETHTransactionRecordModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B8D52D214FA6EF00286631 /* ETHTransactionRecordModel.m */; };
 		84BDD16D21269D5B0039FE09 /* DataView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84BDD16C21269D5B0039FE09 /* DataView.m */; };
 		84BDD1702126B3DF0039FE09 /* ButtonsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84BDD16F2126B3DF0039FE09 /* ButtonsView.m */; };
 		84C0DF26212CFF3800BCC91D /* BRKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C0DF24212CFF3700BCC91D /* BRKey.m */; };
@@ -395,6 +399,14 @@
 		84B0A9632122CD7B002EFA0A /* RemindView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RemindView.m; sourceTree = "<group>"; };
 		84B8D51A214B591C00286631 /* BTCBalanceModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTCBalanceModel.h; sourceTree = "<group>"; };
 		84B8D51B214B591C00286631 /* BTCBalanceModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTCBalanceModel.m; sourceTree = "<group>"; };
+		84B8D51E214F55FF00286631 /* TransactionRecordVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransactionRecordVC.h; sourceTree = "<group>"; };
+		84B8D51F214F55FF00286631 /* TransactionRecordVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransactionRecordVC.m; sourceTree = "<group>"; };
+		84B8D522214F56CA00286631 /* BTCTransactionRecordModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTCTransactionRecordModel.h; sourceTree = "<group>"; };
+		84B8D523214F56CA00286631 /* BTCTransactionRecordModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTCTransactionRecordModel.m; sourceTree = "<group>"; };
+		84B8D529214F571D00286631 /* TransactionRecordCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransactionRecordCell.h; sourceTree = "<group>"; };
+		84B8D52A214F571D00286631 /* TransactionRecordCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransactionRecordCell.m; sourceTree = "<group>"; };
+		84B8D52C214FA6EF00286631 /* ETHTransactionRecordModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ETHTransactionRecordModel.h; sourceTree = "<group>"; };
+		84B8D52D214FA6EF00286631 /* ETHTransactionRecordModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ETHTransactionRecordModel.m; sourceTree = "<group>"; };
 		84BDD16B21269D5A0039FE09 /* DataView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataView.h; sourceTree = "<group>"; };
 		84BDD16C21269D5B0039FE09 /* DataView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DataView.m; sourceTree = "<group>"; };
 		84BDD16E2126B3DF0039FE09 /* ButtonsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ButtonsView.h; sourceTree = "<group>"; };
@@ -772,6 +784,7 @@
 		842FEDF7213CD3770075716E /* 首页钱包 */ = {
 			isa = PBXGroup;
 			children = (
+				84B8D51D214F55B300286631 /* 交易记录 */,
 				842FEE95214A56470075716E /* 转账 */,
 				842FEE7B214110200075716E /* 导入钱包 */,
 				842FEE35213E1CF40075716E /* 钱包管理 */,
@@ -1221,6 +1234,37 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		84B8D51D214F55B300286631 /* 交易记录 */ = {
+			isa = PBXGroup;
+			children = (
+				84B8D528214F56E800286631 /* View */,
+				84B8D521214F56A500286631 /* Model */,
+				84B8D51E214F55FF00286631 /* TransactionRecordVC.h */,
+				84B8D51F214F55FF00286631 /* TransactionRecordVC.m */,
+			);
+			path = "交易记录";
+			sourceTree = "<group>";
+		};
+		84B8D521214F56A500286631 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				84B8D522214F56CA00286631 /* BTCTransactionRecordModel.h */,
+				84B8D523214F56CA00286631 /* BTCTransactionRecordModel.m */,
+				84B8D52C214FA6EF00286631 /* ETHTransactionRecordModel.h */,
+				84B8D52D214FA6EF00286631 /* ETHTransactionRecordModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		84B8D528214F56E800286631 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				84B8D529214F571D00286631 /* TransactionRecordCell.h */,
+				84B8D52A214F571D00286631 /* TransactionRecordCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		84C0DF27212CFF6100BCC91D /* category */ = {
 			isa = PBXGroup;
 			children = (
@@ -1533,6 +1577,7 @@
 				843EC9DD21212271002D5C2A /* UIImage+BaseToImage.m in Sources */,
 				84D0E42621211AAB004E65AD /* ViewController.m in Sources */,
 				84B0A95021228BE9002EFA0A /* SwitchAccountVc.m in Sources */,
+				84B8D524214F56CA00286631 /* BTCTransactionRecordModel.m in Sources */,
 				842FEE14213D26030075716E /* WBQRCodeVC.m in Sources */,
 				84FA0821212BE3AF00DCFC0C /* CreateAll.m in Sources */,
 				842FEE892141286B0075716E /* SetPasswordView.m in Sources */,
@@ -1589,6 +1634,7 @@
 				84B0A9602122C184002EFA0A /* UIImage+Gradient.m in Sources */,
 				84C0DF2A212CFF7700BCC91D /* NSString+Bitcoin.m in Sources */,
 				842FEE70213F84B90075716E /* SelectButtonView.m in Sources */,
+				84B8D520214F55FF00286631 /* TransactionRecordVC.m in Sources */,
 				843ECA312121630A002D5C2A /* RegularExpression.m in Sources */,
 				842FEE6A213F806C0075716E /* ExportWalletAddressVC.m in Sources */,
 				8481805D2123B2630007DCF9 /* AESCrypt.m in Sources */,
@@ -1620,6 +1666,7 @@
 				842FEE67213F7EB00075716E /* ExportPrivateKeyOrMnemonicVC.m in Sources */,
 				84B0A95A2122B87B002EFA0A /* UIColor+PGHex.m in Sources */,
 				842FEE5B213E89940075716E /* ExportKeyStoreVC.m in Sources */,
+				84B8D52E214FA6EF00286631 /* ETHTransactionRecordModel.m in Sources */,
 				0415BD9D2131BC850022DEB7 /* YYVolumePositionModel.m in Sources */,
 				842FEE2E213D27BE0075716E /* MBProgressHUD+SGQRCode.m in Sources */,
 				84C0DF2D212CFF8500BCC91D /* NSData+Bitcoin.m in Sources */,
@@ -1632,6 +1679,7 @@
 				842FEE4B213E51390075716E /* WalletManagerVC.m in Sources */,
 				843ECA23212162FB002D5C2A /* CALayer+XibConfiguration.m in Sources */,
 				843ECA07212162B7002D5C2A /* NSString+Hash.m in Sources */,
+				84B8D52B214F571D00286631 /* TransactionRecordCell.m in Sources */,
 				84B0A9482122736B002EFA0A /* CustomizedTabBarController.m in Sources */,
 				842FEE79213FCFCA0075716E /* AddBTCAddressCell.m in Sources */,
 				843EC9DB21212271002D5C2A /* UIScrollView+Refresh.m in Sources */,

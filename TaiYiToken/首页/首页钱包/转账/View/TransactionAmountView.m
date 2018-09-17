@@ -88,7 +88,7 @@
     _remarkTextField.attributedPlaceholder =[[NSAttributedString alloc]initWithString: @"（选填）"];
     _remarkTextField.backgroundColor = [UIColor whiteColor];
     _remarkTextField.textAlignment = NSTextAlignmentLeft;
-    _remarkTextField.textColor = RGBACOLOR(224, 224, 224, 1);
+    _remarkTextField.textColor = [UIColor textBlackColor];
     _remarkTextField.font = [UIFont systemFontOfSize:13];
     [self addSubview:_remarkTextField];
     [_remarkTextField mas_makeConstraints:^(MASConstraintMaker *make) {

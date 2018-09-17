@@ -15,7 +15,7 @@
 - (void)hideHUD;
 
 - (void)showMsg:(NSString *)msg;
-
+- (void)showAlert:(NSString *)title DetailMsg:(NSString *)msg;
 @end
 
 

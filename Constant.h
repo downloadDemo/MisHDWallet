@@ -113,6 +113,13 @@ typedef enum : NSUInteger {
     IMPORT_BY_KEYSTORE = 2,
     IMPORT_BY_PRIVATEKEY = 3,
 } IMPORT_WALLET_TYPE;
+
+typedef enum {
+    IN_Trans = 1,
+    OUT_Trans = 2,
+    FAILD_Trans = 3,
+    SELF_Trans = 4,
+}TranResultSelectType;
 #define BTNRISECOLOR [UIColor colorWithHexString:@"#E53A32"]
 #define BTNFALLCOLOR [UIColor colorWithHexString:@"#26B13D"]
 

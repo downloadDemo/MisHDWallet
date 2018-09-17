@@ -117,12 +117,7 @@
 
 -(void)transactionETHToAddress:(NSString *)address{
     __block MissionWallet *walletETH = self.wallet;
-    //NSInteger valuedecimal = 104556264624000;
     NSString *amount = self.amountView.amountTextField.text;
-//    NSString *hexvalue = [NSString getHexByDecimal:(amount.floatValue * pow(10,18))];
-//0.019999999776482582
-//1.745620419994773000
-//    __block BigNumber *value = [BigNumber bigNumberWithHexString:[NSString stringWithFormat:@"0x%@",hexvalue]];
     __block BigNumber *value = [BigNumber bigNumberWithDecimalString:[NSString stringWithFormat:@"%ld",(NSInteger)(amount.floatValue * pow(10,18))]];
     [CreateAll CreateETHTransactionFromWallet:walletETH ToAddress:address Value:value callback:^(Transaction *transactionresult) {
         __block Transaction *transaction = transactionresult;
@@ -131,9 +126,23 @@
                 transaction.value = value;
                 NSLog(@"value = %@ bal = %@",value,balance);
                 CGFloat gwei = self.gasView.gasSlider.value;
-                NSInteger gasvalue = (NSInteger)(gwei * self.GasLimit.integerValue);
+                NSInteger gasvalue = (NSInteger)(gwei * pow(10, 9));
                 BigNumber *gasbignumber = [BigNumber bigNumberWithDecimalString:[NSString stringWithFormat:@"%ld",gasvalue]];
                 [CreateAll ETHTransaction:transaction Wallet:walletETH GasPrice:gasbignumber GasLimit:self.GasLimit callback:^(HashPromise *promise) {
+                    if (promise.error) {
+                        if ([promise.error.userInfo containsObjectForKey:@"response"]) {
+                            NSString *responsedata = promise.error.userInfo[@"response"];
+                            NSDictionary *response = [NSJSONSerialization JSONObjectWithData:responsedata.dataValue options:kNilOptions error:nil];
+                            if ([response containsObjectForKey:@"error"]) {
+                                NSDictionary *err = response[@"error"];
+                                if ([err containsObjectForKey:@"message"]) {
+                                    [self.view showAlert:@"error!" DetailMsg:err[@"message"]];
+                                }
+                            }
+                        } 
+                    }else{
+                        [self.view showMsg:@"交易已广播"];
+                    }
                     NSLog(@"result = %@",promise.value);
                 }];
             }];

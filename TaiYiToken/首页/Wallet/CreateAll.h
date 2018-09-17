@@ -172,6 +172,8 @@
 +(void)GetGasPriceCallback: (void (^)(BigNumberPromise *gasPrice))callback;
 //获取交易记录
 +(void)GetTransactionsForAddress:(NSString *)address startBlockTag: (BlockTag)blockTag Callback: (void (^)(ArrayPromise *promiseArray))callback;
+//获取交易详情
++(void)GetTransactionDetaslByHash:(NSString *)hash Callback: (void (^)(TransactionInfoPromise *promise))callback;
 //获取余额
 +(void)GetBalanceETHForWallet:(MissionWallet *)wallet callback: (void (^)(BigNumber *balance))callback;
 //创建交易

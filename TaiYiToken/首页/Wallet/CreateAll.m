@@ -797,7 +797,19 @@ return -1;表示已存在
 +(void)GetTransactionsForAddress:(NSString *)address  startBlockTag: (BlockTag)blockTag Callback: (void (^)(ArrayPromise *promiseArray))callback{
     EtherscanProvider *provider = [[EtherscanProvider alloc] initWithChainId:MODENET apiKey:nil];
     [[provider getTransactions:[Address addressWithString:address] startBlockTag:blockTag] onCompletion:^(ArrayPromise *promiseArray) {
+        if (!promiseArray.error) {
+             
+        }
+        
+        
         callback(promiseArray);
+    }];
+}
+//获取交易详情
++(void)GetTransactionDetaslByHash:(NSString *)hash Callback: (void (^)(TransactionInfoPromise *promise))callback{
+    EtherscanProvider *provider = [[EtherscanProvider alloc] initWithChainId:MODENET apiKey:nil];
+    [[provider getTransaction:[Hash hashWithHexString:hash]] onCompletion:^(TransactionInfoPromise *promise) {
+        callback(promise);
     }];
 }
 //创建交易
@@ -811,7 +823,7 @@ return -1;表示已存在
     transaction.gasPrice = [BigNumber constantZero];
     transaction.chainId = MODENET;
     [[provider getTransactionCount:[Address addressWithString:wallet.address]] onCompletion:^(IntegerPromise *lastnounce) {
-        transaction.nonce = (NSUInteger)(lastnounce.value + 1);
+        transaction.nonce = (NSUInteger)(lastnounce.value + 2);
         NSLog(@"nounce = %ld",transaction.nonce);
         callback(transaction);
     }];
