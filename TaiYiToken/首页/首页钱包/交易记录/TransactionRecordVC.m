@@ -371,14 +371,10 @@
     }else if(self.wallet.coinType == ETH){
         ETHTransactionRecordModel *model = self.ethSelectRecordArray[indexPath.row];
         dvc.ethRecord = model;
-        if (model.selectType == IN_Trans) {
-            
-        }else if (model.selectType == OUT_Trans){
-            
-        }else if (model.selectType == SELF_Trans){
-            
-        }
+        dvc.fromAddress = model.info.fromAddress.checksumAddress;
+        dvc.toAddress = model.info.toAddress.checksumAddress;
     }
+    [self.navigationController pushViewController:dvc animated:YES];
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{

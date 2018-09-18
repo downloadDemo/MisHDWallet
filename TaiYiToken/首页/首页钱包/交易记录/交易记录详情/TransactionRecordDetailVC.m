@@ -32,19 +32,38 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.view.backgroundColor = [UIColor ExportBackgroundColor];
+    [self initHeadView];
     self.formatter = [[NSDateFormatter alloc] init];
     [_formatter setDateStyle:NSDateFormatterMediumStyle];
     [_formatter setTimeStyle:NSDateFormatterShortStyle];
     [_formatter setDateFormat:@"yyyy/MM/dd \nHH:MM:ss"];
+    
+    
     if (self.wallet.coinType == BTC || self.wallet.coinType == BTC_TESTNET) {
         [self BTCRecordToView];
     }else if (self.wallet.coinType == ETH){
         [self ETHRecordToView];
     }
 }
+
+//点击复制地址
+-(void)copyAddress:(UIButton *)btn{
+    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+    pasteboard.string = btn.tag == 0?self.toAddress:self.fromAddress;
+    [self.view showMsg:@"地址已复制"];
+    NSLog(@"addressBtn %ld %@",btn.tag,pasteboard.string);
+}
+
 -(void)BTCRecordToView{
     self.detailView = [TransactionDetailView new];
+    [self.view addSubview:self.detailView];
+    [_detailView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(70);
+        make.left.right.equalTo(0);
+        make.bottom.equalTo(-30);
+    }];
     [self.detailView.iconImageView setImage:[UIImage imageNamed:@"ico_btc"]];
 
     NSDate *currentDate = [NSDate dateWithTimeIntervalSince1970:self.btcRecord.time];
@@ -84,7 +103,28 @@
     NSMutableAttributedString *str1 = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%.lf BTC",self.btcRecord.fees] attributes:@{NSForegroundColorAttributeName:[UIColor textBlackColor], NSFontAttributeName:[UIFont systemFontOfSize:13]}];
     [_detailView.feelb initWithTitle:@"旷工费用：" Detail:str1];
     
+    
+    NSTextAttachment * attach = [[NSTextAttachment alloc] init];
+    attach.image = [UIImage imageNamed:@"ico_backups"];
+    attach.bounds = CGRectMake(0, 0, 20, 10);
+    NSAttributedString * imageStr = [NSAttributedString attributedStringWithAttachment:attach];
+    
+    NSMutableAttributedString * to = [[NSMutableAttributedString alloc] initWithString:self.toAddress];
+    [to appendAttributedString:imageStr];
+    [_detailView.tolb initWithTitle:@"收款地址：" DetailBtn:to];
+    [_detailView.tolb.detailbtn addTarget:self action:@selector(copyAddress:) forControlEvents:UIControlEventTouchUpInside];
+    _detailView.tolb.detailbtn.tag = 0;
+    
+    NSMutableAttributedString * from = [[NSMutableAttributedString alloc] initWithString:self.fromAddress];
+    [from appendAttributedString:imageStr];
+    [_detailView.fromlb initWithTitle:@"付款地址：" DetailBtn:from];
+    [_detailView.fromlb.detailbtn addTarget:self action:@selector(copyAddress:) forControlEvents:UIControlEventTouchUpInside];
+    _detailView.fromlb.detailbtn.tag = 1;
+    
+    [_detailView.remarklb initWithTitle:@"备注：" DetailBtn:nil];
 }
+
+
 
 -(void)ETHRecordToView{
     self.detailView = [TransactionDetailView new];
@@ -108,8 +148,27 @@
     NSInteger gas =  self.ethRecord.info.gasLimit.integerValue;
     CGFloat gasfee = (gwei * gas)*1.0/pow(10,9);
     NSMutableAttributedString *str1 = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%lf ETH ≈Gas(%ld) * GasPrice(%.2f gwei)",gasfee,gas,gasfee] attributes:@{NSForegroundColorAttributeName:[UIColor textBlackColor], NSFontAttributeName:[UIFont systemFontOfSize:13]}];
-    [str1 addAttribute:NSForegroundColorAttributeName value:[UIColor textLightGrayColor] range:NSMakeRange(12, 40)];
+    [str1 addAttribute:NSForegroundColorAttributeName value:[UIColor textLightGrayColor] range:NSMakeRange(12, str1.length - 12)];
     [_detailView.feelb initWithTitle:@"旷工费用：" Detail:str1];
+    
+    NSTextAttachment * attach = [[NSTextAttachment alloc] init];
+    attach.image = [UIImage imageNamed:@"ico_backups"];
+    attach.bounds = CGRectMake(0, 0, 20, 10);
+    NSAttributedString * imageStr = [NSAttributedString attributedStringWithAttachment:attach];
+    
+    NSMutableAttributedString * to = [[NSMutableAttributedString alloc] initWithString:self.toAddress];
+    [to appendAttributedString:imageStr];
+    [_detailView.tolb initWithTitle:@"收款地址：" DetailBtn:to];
+    [_detailView.tolb.detailbtn addTarget:self action:@selector(copyAddress:) forControlEvents:UIControlEventTouchUpInside];
+    _detailView.tolb.detailbtn.tag = 0;
+    
+    NSMutableAttributedString * from = [[NSMutableAttributedString alloc] initWithString:self.fromAddress];
+    [from appendAttributedString:imageStr];
+    [_detailView.fromlb initWithTitle:@"付款地址：" DetailBtn:from];
+    [_detailView.fromlb.detailbtn addTarget:self action:@selector(copyAddress:) forControlEvents:UIControlEventTouchUpInside];
+    _detailView.fromlb.detailbtn.tag = 1;
+    
+    [_detailView.remarklb initWithTitle:@"备注：" DetailBtn:nil];
 }
 
 

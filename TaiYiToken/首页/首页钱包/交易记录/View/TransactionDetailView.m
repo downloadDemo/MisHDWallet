@@ -53,7 +53,7 @@
         [_amountlb mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.equalTo(-30);
             make.top.equalTo(20);
-            make.width.equalTo(150);
+            make.width.equalTo(250);
             make.height.equalTo(30);
         }];
         
@@ -77,7 +77,7 @@
     if (!_resultlb) {
         _resultlb = [UILabel new];
         _resultlb.textColor = [UIColor textBlackColor];
-        _resultlb.font = [UIFont boldSystemFontOfSize:9];
+        _resultlb.font = [UIFont boldSystemFontOfSize:13];
         _resultlb.textAlignment = NSTextAlignmentRight;
         [self addSubview:_resultlb];
         [_resultlb mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -90,14 +90,7 @@
     return _resultlb;
 }
 
-/*
- @property(nonatomic,strong)RecordDetailLabel *feelb;
- @property(nonatomic,strong)RecordDetailLabel *tolb;
- @property(nonatomic,strong)RecordDetailLabel *fromlb;
- @property(nonatomic,strong)RecordDetailLabel *remarklb;
- @property(nonatomic,strong)RecordDetailLabel *tranNumberlb;
- @property(nonatomic,strong)RecordDetailLabel *blockNumberlb;
- */
+
 -(RecordDetailLabel *)feelb{
     if (!_feelb) {
         _feelb = [RecordDetailLabel new];
@@ -117,7 +110,7 @@
         [self addSubview:_tolb];
         [_tolb mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.equalTo(0);
-            make.top.equalTo(150);
+            make.top.equalTo(200);
             make.height.equalTo(40);
         }];
     }
@@ -129,7 +122,7 @@
         [self addSubview:_fromlb];
         [_fromlb mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.equalTo(0);
-            make.top.equalTo(150);
+            make.top.equalTo(250);
             make.height.equalTo(40);
         }];
     }
@@ -141,7 +134,7 @@
         [self addSubview:_remarklb];
         [_remarklb mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.equalTo(0);
-            make.top.equalTo(150);
+            make.top.equalTo(300);
             make.height.equalTo(40);
         }];
     }
@@ -153,7 +146,7 @@
         [self addSubview:_tranNumberlb];
         [_tranNumberlb mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.equalTo(0);
-            make.top.equalTo(150);
+            make.top.equalTo(350);
             make.height.equalTo(40);
         }];
     }
@@ -165,7 +158,7 @@
         [self addSubview:_blockNumberlb];
         [_blockNumberlb mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.equalTo(0);
-            make.top.equalTo(150);
+            make.top.equalTo(400);
             make.height.equalTo(40);
         }];
     }

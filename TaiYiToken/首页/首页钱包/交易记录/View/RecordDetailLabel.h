@@ -11,5 +11,7 @@
 @interface RecordDetailLabel : UIView
 @property(nonatomic)UILabel *titlelb;
 @property(nonatomic)UILabel *detaillb;
+@property(nonatomic)UIButton *detailbtn;
 -(void)initWithTitle:(NSString *)title Detail:(NSAttributedString *)detail;
+-(void)initWithTitle:(NSString *)title DetailBtn:(NSAttributedString *)detail;
 @end

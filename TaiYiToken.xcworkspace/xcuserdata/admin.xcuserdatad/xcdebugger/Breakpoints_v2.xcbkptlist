@@ -20,7 +20,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TaiYiToken/Common/NetManager/NetManager.m"
-            timestampString = "558941217.074311"
+            timestampString = "558957915.444854"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "74"
@@ -36,7 +36,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TaiYiToken/Common/NetManager/NetManager.m"
-            timestampString = "558941217.079464"
+            timestampString = "558957915.445719"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "75"
@@ -52,7 +52,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TaiYiToken/Common/NetManager/NetManager.m"
-            timestampString = "558941217.0797271"
+            timestampString = "558957915.445896"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "78"
@@ -115,12 +115,44 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TaiYiToken/Common/NetManager/NetManager.m"
-            timestampString = "558941217.079888"
+            timestampString = "558957915.446146"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "79"
             endingLineNumber = "79"
             landmarkName = "+GetTXListBTCAdress:pageNum:completionHandler:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TaiYiToken/&#x9996;&#x9875;/&#x9996;&#x9875;&#x94b1;&#x5305;/&#x4ea4;&#x6613;&#x8bb0;&#x5f55;/&#x4ea4;&#x6613;&#x8bb0;&#x5f55;&#x8be6;&#x60c5;/TransactionRecordDetailVC.m"
+            timestampString = "558957915.446295"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "132"
+            endingLineNumber = "132"
+            landmarkName = "-ETHRecordToView"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TaiYiToken/&#x9996;&#x9875;/&#x9996;&#x9875;&#x94b1;&#x5305;/&#x4ea4;&#x6613;&#x8bb0;&#x5f55;/&#x4ea4;&#x6613;&#x8bb0;&#x5f55;&#x8be6;&#x60c5;/TransactionRecordDetailVC.m"
+            timestampString = "558957915.447543"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "146"
+            endingLineNumber = "146"
+            landmarkName = "-ETHRecordToView"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
