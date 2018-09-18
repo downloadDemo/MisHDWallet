@@ -55,7 +55,7 @@
     if (self.wallet.coinType == BTC || self.wallet.coinType == BTC_TESTNET) {
         MJWeakSelf
         [self.tableView addHeaderRefresh:^{
-            weakSelf.page = 1;
+            weakSelf.page = 0;
             [NetManager GetTXListBTCAdress:weakSelf.wallet.address pageNum:weakSelf.page completionHandler:^(id responseObj, NSError *error) {
                 [weakSelf.tableView endHeaderRefresh];
                 [weakSelf.btcRecordArray removeAllObjects];
@@ -75,11 +75,33 @@
                         array = [dic objectForKey:@"txs"];
                         for (id obj in array) {
                             BTCTransactionRecordModel *model = [BTCTransactionRecordModel parse:obj];
-                            if ( model.valueIn > 0 && model.valueOut <= 0) {
+                            int vinaddr = 0;
+                            for(VIN *vin in model.vin){
+                                //自己转出
+                                if ([vin.addr isEqualToString:weakSelf.wallet.address]) {
+                                    model.selectType = OUT_Trans;
+                                    break;
+                                }
+                                vinaddr ++;
+                            }
+                            //别人转出
+                            if(vinaddr >= model.vin.count) {
                                 model.selectType = IN_Trans;
-                            }else if(model.valueIn > 0 && model.valueOut > 0){
-                                model.selectType = OUT_Trans;
-                            }else{
+                            }
+                            int voutaddr = 0;
+                            for (VOUT *vout in model.vout) {
+                                //转给别人
+                                if (![vout.scriptPubKey.addresses containsObject:weakSelf.wallet.address]) {
+                                    break;
+                                }
+                                voutaddr ++;
+                            }
+                             //自己转自己
+                            if (vinaddr < model.vin.count && voutaddr >= model.vout.count) {
+                                model.selectType = SELF_Trans;
+                            }
+                            
+                            if ( model.valueIn < 0 || model.valueOut <= 0) {
                                 model.selectType = FAILD_Trans;
                             }
                             [weakSelf.btcRecordArray addObject:model];
@@ -109,24 +131,35 @@
                         array = [responseObj objectForKey:@"txs"];
                         for (id obj in array) {
                             BTCTransactionRecordModel *model = [BTCTransactionRecordModel parse:obj];
-                            if ( model.valueIn > 0 && model.valueOut <= 0) {
-                                model.selectType = IN_Trans;
-                            }else if(model.valueIn > 0 && model.valueOut > 0){
-                                model.selectType = OUT_Trans;
-                            }else{
-                                model.selectType = FAILD_Trans;
-                            }
-                            int index = 0;
-                            for (VOUT *vout in model.vout) {
-                                ScriptPubKey *pubkey =vout.scriptPubKey;
-                                if (![pubkey.addresses containsObject:weakSelf.wallet.address]) {
+                            int vinaddr = 0;
+                            for(VIN *vin in model.vin){
+                                //自己转出
+                                if ([vin.addr isEqualToString:weakSelf.wallet.address]) {
+                                    model.selectType = OUT_Trans;
                                     break;
                                 }
-                                index++;
+                                vinaddr ++;
                             }
-                            //如果遍历所有vout地址都是自己
-                            if (index == model.vout.count) {
+                            //别人转出
+                            if(vinaddr >= model.vin.count) {
+                                model.selectType = IN_Trans;
+                            }
+                            int voutaddr = 0;
+                            for (VOUT *vout in model.vout) {
+                                //转给别人
+                                if (![vout.scriptPubKey.addresses containsObject:weakSelf.wallet.address]) {
+                                    model.selectType = OUT_Trans;
+                                    break;
+                                }
+                                voutaddr ++;
+                            }
+                            //自己转自己
+                            if (vinaddr >= model.vin.count && voutaddr >= model.vout.count) {
                                 model.selectType = SELF_Trans;
+                            }
+                            
+                            if ( model.valueIn < 0 || model.valueOut <= 0) {
+                                model.selectType = FAILD_Trans;
                             }
                             [weakSelf.btcRecordArray addObject:model];
                         }
@@ -234,6 +267,7 @@
 
 -(void)selectRecordStatus:(UIButton *)btn{
     [_buttonView setBtnSelected:btn];
+    
     if (self.wallet.coinType == BTC || self.wallet.coinType == BTC_TESTNET) {
         NSMutableArray *array = [self.btcRecordArray mutableCopy];
         if (btn.tag == 0) {//全部
@@ -241,6 +275,7 @@
         }else{
             self.btcSelectRecordArray = [self.btcRecordArray mutableCopy];
             for (BTCTransactionRecordModel *model in array) {
+                NSLog(@"\n\n\n %ld - %u \n\n\n",btn.tag,model.selectType);
                 if (model.selectType != btn.tag) {
                     if ((btn.tag == IN_Trans || btn.tag == OUT_Trans)&& model.selectType == SELF_Trans) {
                         
@@ -324,13 +359,13 @@
             ScriptPubKey *pubkey = vout.scriptPubKey;
             if (![pubkey.addresses containsObject:self.wallet.address]) {
                 addr = pubkey.addresses.firstObject;
-            }else{
-                addr = self.wallet.address;
             }
         }
-        
-        NSString *str1 = [_wallet.address substringToIndex:9];
-        NSString *str2 = [_wallet.address substringFromIndex:_wallet.address.length - 10];
+        if (addr == nil) {
+            addr = self.wallet.address;
+        }
+        NSString *str1 = [addr substringToIndex:9];
+        NSString *str2 = [addr substringFromIndex:addr.length - 10];
         cell.addresslb.text = [NSString stringWithFormat:@"%@...%@",str1,str2];
         
         NSDate *currentDate = [NSDate dateWithTimeIntervalSince1970:model.time];
@@ -350,11 +385,21 @@
             [cell.amountlb setTextColor:[UIColor textBlueColor]];
             [cell.resultlb setTextColor:[UIColor textLightGrayColor]];
             if (model.selectType == IN_Trans) {
-                cell.amountlb.text = [NSString stringWithFormat:@"+%.4f", model.valueIn];
+                for (VOUT *vout in model.vout) {
+                    //别人转给自己，取自己地址的vout
+                    if ([vout.scriptPubKey.addresses containsObject:self.wallet.address]) {
+                        cell.amountlb.text = [NSString stringWithFormat:@"+%.5f", vout.value.floatValue];
+                    }
+                }
             }else if(model.selectType == OUT_Trans){
-                cell.amountlb.text = [NSString stringWithFormat:@"-%.4f", model.valueOut];
+                for (VOUT *vout in model.vout) {
+                    //转给别人，取别人地址的vout
+                    if (![vout.scriptPubKey.addresses containsObject:self.wallet.address]) {
+                        cell.amountlb.text = [NSString stringWithFormat:@"-%.5f", vout.value.floatValue];
+                    }
+                }
             }else{
-                cell.amountlb.text = [NSString stringWithFormat:@"0.000"];
+                cell.amountlb.text = [NSString stringWithFormat:@"0.00000"];
             }
         }
         
@@ -369,9 +414,9 @@
         [cell.timelb setText:[NSString stringWithFormat:@"%@",timeStr]];
         CGFloat amount = info.value.integerValue * 1.0 / pow(10, 18);
         if (model.selectType == IN_Trans) {
-            cell.amountlb.text = [NSString stringWithFormat:@"+%.4f", amount];
+            cell.amountlb.text = [NSString stringWithFormat:@"+%.5f", amount];
         }else if(model.selectType == OUT_Trans){
-            cell.amountlb.text = [NSString stringWithFormat:@"-%.4f", amount];
+            cell.amountlb.text = [NSString stringWithFormat:@"-%.5f", amount];
         }else{
             cell.amountlb.text = [NSString stringWithFormat:@"0.000"];
         }

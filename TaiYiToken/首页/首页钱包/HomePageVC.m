@@ -295,16 +295,17 @@
         [cell.iconImageView setImage:[UIImage imageNamed:@"ico_btc"]];
         cell.symbollb.text = @"BTC";
         cell.symbolNamelb.text = @"比特币";
-        cell.amountlb.text = @"unknown";
-        cell.valuelb.text = @"unknown";
+        cell.amountlb.text = [NSString stringWithFormat:@"%.5f", self.BTCbalance.balance];
+        cell.valuelb.text = [NSString stringWithFormat:@"$%.2f", self.BTCbalance.balance * self.BTCCurrency];
         cell.rmbvaluelb.text = @"unknown";
     }else{//ETH
         wallet = [self.walletDic objectForKey:@"walletETH"];
         [cell.iconImageView setImage:[UIImage imageNamed:@"ico_eth"]];
         cell.symbollb.text = @"ETH";
         cell.symbolNamelb.text = @"以太坊";
-        cell.amountlb.text = @"unknown";
-        cell.valuelb.text = @"unknown";
+        CGFloat ethbalance = self.ETHbalance.integerValue*1.0/pow(10,18);
+        cell.amountlb.text = [NSString stringWithFormat:@"%.5f",ethbalance];
+        cell.valuelb.text = [NSString stringWithFormat:@"$%.2f", ethbalance * self.ETHCurrency];
         cell.rmbvaluelb.text = @"unknown";
     }
     cell.delegate = self;
@@ -387,7 +388,7 @@
     //创建一个定时器
     self.time = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
     //设置开始时间
-    dispatch_time_t start = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10.0 * NSEC_PER_SEC));
+    dispatch_time_t start = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.0 * NSEC_PER_SEC));
     //设置时间间隔
     uint64_t interval = (uint64_t)(self.TimeInterval* NSEC_PER_SEC);
     //设置定时器
@@ -409,8 +410,9 @@
     [NetManager GetBalanceForBTCAdress:walletBTC.address noTxList:-1 completionHandler:^(id responseObj, NSError *error) {
         if (!error) {
             self.BTCbalance = [BTCBalanceModel parse:responseObj];
-            [self.collectionview reloadData];
             self.TimeInterval = 5.0;
+            [self.collectionview reloadData];
+            [self.tableView reloadData];
         }else{
             self.TimeInterval += 10.0;
         }
@@ -421,6 +423,7 @@
     [CreateAll GetBalanceETHForWallet:walletETH callback:^(BigNumber *balance) {
         self.ETHbalance = balance;
         [self.collectionview reloadData];
+        [self.tableView reloadData];
     }];
     //汇率只获取一次
     static dispatch_once_t onceToken;
@@ -496,8 +499,6 @@
     [iv mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(0);
     }];
-    
-//    [cell.balancelb setText:@"¥"];
     [cell.profitlb setText:@"今日最新收益"];
     NSString *address = @"";
     if(wallet.address.length > 20){
@@ -509,9 +510,6 @@
     cell.QRCodeBtn.tag = indexPath.row;
     cell.detailBtn.tag = indexPath.row;
     cell.addressBtn.tag = indexPath.row;
-//    UIView *view = [UIView new];
-//    view.backgroundColor = [UIColor whiteColor];
-   
     [cell.QRCodeBtn addTarget:self action:@selector(QRCodeBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     [cell.detailBtn addTarget:self action:@selector(detailBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     [cell.addressBtn addTarget:self action:@selector(addressBtnAction:) forControlEvents:UIControlEventTouchUpInside];

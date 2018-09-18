@@ -19,13 +19,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "TaiYiToken/&#x9996;&#x9875;/&#x9996;&#x9875;&#x94b1;&#x5305;/&#x4ea4;&#x6613;&#x8bb0;&#x5f55;/TransactionRecordVC.m"
-            timestampString = "558930029.6629"
+            filePath = "TaiYiToken/Common/NetManager/NetManager.m"
+            timestampString = "558935026.450634"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "271"
-            endingLineNumber = "271"
-            landmarkName = "-selectRecordStatus:"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
+            landmarkName = "+GetTXListBTCAdress:pageNum:completionHandler:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -35,13 +35,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "TaiYiToken/&#x9996;&#x9875;/&#x9996;&#x9875;&#x94b1;&#x5305;/&#x4ea4;&#x6613;&#x8bb0;&#x5f55;/TransactionRecordVC.m"
-            timestampString = "558930029.673299"
+            filePath = "TaiYiToken/Common/NetManager/NetManager.m"
+            timestampString = "558935026.451411"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "272"
-            endingLineNumber = "272"
-            landmarkName = "-selectRecordStatus:"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
+            landmarkName = "+GetTXListBTCAdress:pageNum:completionHandler:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -51,14 +51,61 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "TaiYiToken/&#x9996;&#x9875;/&#x9996;&#x9875;&#x94b1;&#x5305;/&#x4ea4;&#x6613;&#x8bb0;&#x5f55;/TransactionRecordVC.m"
-            timestampString = "558930029.6735801"
+            filePath = "TaiYiToken/Common/NetManager/NetManager.m"
+            timestampString = "558935026.451568"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "273"
-            endingLineNumber = "273"
-            landmarkName = "-selectRecordStatus:"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
+            landmarkName = "+GetTXListBTCAdress:pageNum:completionHandler:"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "+[NetManager GetTXListBTCAdress:pageNum:completionHandler:]"
+                  moduleName = "TaiYiToken"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/admin/Desktop/%E6%B3%B0%E4%B8%80%E9%92%B1%E5%8C%85/TaiYiToken/TaiYiToken/Common/NetManager/NetManager.m"
+                  timestampString = "558931880.655072"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "78"
+                  endingLineNumber = "78"
+                  offsetFromSymbolStart = "448">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__59+[NetManager GetTXListBTCAdress:pageNum:completionHandler:]_block_invoke"
+                  moduleName = "TaiYiToken"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/admin/Desktop/%E6%B3%B0%E4%B8%80%E9%92%B1%E5%8C%85/TaiYiToken/TaiYiToken/Common/NetManager/NetManager.m"
+                  timestampString = "558931880.659575"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "78"
+                  endingLineNumber = "78"
+                  offsetFromSymbolStart = "24">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_.53"
+                  moduleName = "TaiYiToken"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/admin/Desktop/%E6%B3%B0%E4%B8%80%E9%92%B1%E5%8C%85/TaiYiToken/TaiYiToken/Common/NetManager/NetManager.m"
+                  timestampString = "558931880.6653709"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "78"
+                  endingLineNumber = "78"
+                  offsetFromSymbolStart = "20">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -67,45 +114,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "TaiYiToken/&#x9996;&#x9875;/&#x9996;&#x9875;&#x94b1;&#x5305;/&#x4ea4;&#x6613;&#x8bb0;&#x5f55;/TransactionRecordVC.m"
-            timestampString = "558930029.673918"
+            filePath = "TaiYiToken/Common/NetManager/NetManager.m"
+            timestampString = "558935026.451782"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "260"
-            endingLineNumber = "260"
-            landmarkName = "-selectRecordStatus:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TaiYiToken/&#x9996;&#x9875;/&#x9996;&#x9875;&#x94b1;&#x5305;/&#x4ea4;&#x6613;&#x8bb0;&#x5f55;/TransactionRecordVC.m"
-            timestampString = "558930029.674166"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "261"
-            endingLineNumber = "261"
-            landmarkName = "-selectRecordStatus:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TaiYiToken/&#x9996;&#x9875;/&#x9996;&#x9875;&#x94b1;&#x5305;/&#x4ea4;&#x6613;&#x8bb0;&#x5f55;/TransactionRecordVC.m"
-            timestampString = "558930029.674444"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "262"
-            endingLineNumber = "262"
-            landmarkName = "-selectRecordStatus:"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
+            landmarkName = "+GetTXListBTCAdress:pageNum:completionHandler:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
