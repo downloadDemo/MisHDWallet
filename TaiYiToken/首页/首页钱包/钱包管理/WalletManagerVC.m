@@ -11,6 +11,7 @@
 #import "ExportWalletVC.h"
 #import "ImportWalletSwitchVC.h"
 #import "SectionHeaderView.h"
+#import "SwitchAccountVc.h"
 @interface WalletManagerVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 @property(nonatomic)UICollectionView *collectionview;
 @property(nonatomic,strong) UIButton *backBtn;
@@ -49,6 +50,7 @@
     [self RefreshImportWalletList];
     [self initHeadView];
 
+
     [self.collectionview registerClass:[WalletManagerCell class] forCellWithReuseIdentifier:@"WalletManagerCell"];
 }
 - (void)popAction{
@@ -61,7 +63,28 @@
 }
 //创建新账户
 - (void)createNewAccountBtnAction{
+
+    UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"" preferredStyle:(UIAlertControllerStyleAlert)];
+    UIAlertAction *alertA = [UIAlertAction actionWithTitle:@"取消" style:(UIAlertActionStyleCancel) handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    UIAlertAction *alertB = [UIAlertAction actionWithTitle:@"确定" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+        SwitchAccountVc *switchvc = [SwitchAccountVc new];
+        UINavigationController *navivc = [[UINavigationController alloc]initWithRootViewController:switchvc];
+        [navivc.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+        navivc.navigationBar.shadowImage = [UIImage new];
+        navivc.navigationBar.translucent = YES;
+        navivc.navigationBar.alpha = 0;
+        [self presentViewController:navivc animated:YES completion:^{
+            
+        }];
+    }];
     
+    [alertC addAction:alertA];
+    [alertC addAction:alertB];
+    [self presentViewController:alertC animated:YES completion:nil];
+    
+
 }
 -(void)initHeadView{
     

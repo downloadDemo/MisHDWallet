@@ -126,6 +126,9 @@
 		84B8D524214F56CA00286631 /* BTCTransactionRecordModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B8D523214F56CA00286631 /* BTCTransactionRecordModel.m */; };
 		84B8D52B214F571D00286631 /* TransactionRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B8D52A214F571D00286631 /* TransactionRecordCell.m */; };
 		84B8D52E214FA6EF00286631 /* ETHTransactionRecordModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B8D52D214FA6EF00286631 /* ETHTransactionRecordModel.m */; };
+		84B8D5332150C54C00286631 /* TransactionRecordDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B8D5322150C54C00286631 /* TransactionRecordDetailVC.m */; };
+		84B8D5362150C6B700286631 /* TransactionDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B8D5352150C6B700286631 /* TransactionDetailView.m */; };
+		84B8D5392150C8BB00286631 /* RecordDetailLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B8D5382150C8BB00286631 /* RecordDetailLabel.m */; };
 		84BDD16D21269D5B0039FE09 /* DataView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84BDD16C21269D5B0039FE09 /* DataView.m */; };
 		84BDD1702126B3DF0039FE09 /* ButtonsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84BDD16F2126B3DF0039FE09 /* ButtonsView.m */; };
 		84C0DF26212CFF3800BCC91D /* BRKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C0DF24212CFF3700BCC91D /* BRKey.m */; };
@@ -407,6 +410,12 @@
 		84B8D52A214F571D00286631 /* TransactionRecordCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransactionRecordCell.m; sourceTree = "<group>"; };
 		84B8D52C214FA6EF00286631 /* ETHTransactionRecordModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ETHTransactionRecordModel.h; sourceTree = "<group>"; };
 		84B8D52D214FA6EF00286631 /* ETHTransactionRecordModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ETHTransactionRecordModel.m; sourceTree = "<group>"; };
+		84B8D5312150C54C00286631 /* TransactionRecordDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransactionRecordDetailVC.h; sourceTree = "<group>"; };
+		84B8D5322150C54C00286631 /* TransactionRecordDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransactionRecordDetailVC.m; sourceTree = "<group>"; };
+		84B8D5342150C6B700286631 /* TransactionDetailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransactionDetailView.h; sourceTree = "<group>"; };
+		84B8D5352150C6B700286631 /* TransactionDetailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransactionDetailView.m; sourceTree = "<group>"; };
+		84B8D5372150C8BB00286631 /* RecordDetailLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecordDetailLabel.h; sourceTree = "<group>"; };
+		84B8D5382150C8BB00286631 /* RecordDetailLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecordDetailLabel.m; sourceTree = "<group>"; };
 		84BDD16B21269D5A0039FE09 /* DataView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataView.h; sourceTree = "<group>"; };
 		84BDD16C21269D5B0039FE09 /* DataView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DataView.m; sourceTree = "<group>"; };
 		84BDD16E2126B3DF0039FE09 /* ButtonsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ButtonsView.h; sourceTree = "<group>"; };
@@ -784,6 +793,7 @@
 		842FEDF7213CD3770075716E /* 首页钱包 */ = {
 			isa = PBXGroup;
 			children = (
+				84B8D52F2150C4EC00286631 /* 导入HD钱包 */,
 				84B8D51D214F55B300286631 /* 交易记录 */,
 				842FEE95214A56470075716E /* 转账 */,
 				842FEE7B214110200075716E /* 导入钱包 */,
@@ -1237,6 +1247,7 @@
 		84B8D51D214F55B300286631 /* 交易记录 */ = {
 			isa = PBXGroup;
 			children = (
+				84B8D5302150C52000286631 /* 交易记录详情 */,
 				84B8D528214F56E800286631 /* View */,
 				84B8D521214F56A500286631 /* Model */,
 				84B8D51E214F55FF00286631 /* TransactionRecordVC.h */,
@@ -1261,8 +1272,28 @@
 			children = (
 				84B8D529214F571D00286631 /* TransactionRecordCell.h */,
 				84B8D52A214F571D00286631 /* TransactionRecordCell.m */,
+				84B8D5342150C6B700286631 /* TransactionDetailView.h */,
+				84B8D5352150C6B700286631 /* TransactionDetailView.m */,
+				84B8D5372150C8BB00286631 /* RecordDetailLabel.h */,
+				84B8D5382150C8BB00286631 /* RecordDetailLabel.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		84B8D52F2150C4EC00286631 /* 导入HD钱包 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "导入HD钱包";
+			sourceTree = "<group>";
+		};
+		84B8D5302150C52000286631 /* 交易记录详情 */ = {
+			isa = PBXGroup;
+			children = (
+				84B8D5312150C54C00286631 /* TransactionRecordDetailVC.h */,
+				84B8D5322150C54C00286631 /* TransactionRecordDetailVC.m */,
+			);
+			path = "交易记录详情";
 			sourceTree = "<group>";
 		};
 		84C0DF27212CFF6100BCC91D /* category */ = {
@@ -1567,6 +1598,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84B8D5392150C8BB00286631 /* RecordDetailLabel.m in Sources */,
 				84A9FF5721368830006F9D1B /* KLinePointModel.m in Sources */,
 				843EC9DC21212271002D5C2A /* UIView+HUD.m in Sources */,
 				848180BB2123C72A0007DCF9 /* ContainerViewController.m in Sources */,
@@ -1574,6 +1606,7 @@
 				842FEE48213E38510075716E /* MySwitch.m in Sources */,
 				842FEE8621411D1A0075716E /* ControlBtnsView.m in Sources */,
 				843EC9EC212122A7002D5C2A /* NetManager.m in Sources */,
+				84B8D5332150C54C00286631 /* TransactionRecordDetailVC.m in Sources */,
 				843EC9DD21212271002D5C2A /* UIImage+BaseToImage.m in Sources */,
 				84D0E42621211AAB004E65AD /* ViewController.m in Sources */,
 				84B0A95021228BE9002EFA0A /* SwitchAccountVc.m in Sources */,
@@ -1680,6 +1713,7 @@
 				843ECA23212162FB002D5C2A /* CALayer+XibConfiguration.m in Sources */,
 				843ECA07212162B7002D5C2A /* NSString+Hash.m in Sources */,
 				84B8D52B214F571D00286631 /* TransactionRecordCell.m in Sources */,
+				84B8D5362150C6B700286631 /* TransactionDetailView.m in Sources */,
 				84B0A9482122736B002EFA0A /* CustomizedTabBarController.m in Sources */,
 				842FEE79213FCFCA0075716E /* AddBTCAddressCell.m in Sources */,
 				843EC9DB21212271002D5C2A /* UIScrollView+Refresh.m in Sources */,

@@ -163,6 +163,7 @@
                             Fee:(BTCAmount)fee
                             Api:(BTCAPI)btcApi
                        callback: (void (^)(NSString *result, NSError *error))callback;
+
 //**************  ETH ********************
 //转账
 +(void)ETHTransaction:(Transaction *)transaction Wallet:(MissionWallet *)wallet GasPrice:(BigNumber *)gasPrice GasLimit:(BigNumber *)gasLimit callback: (void (^)(HashPromise *promise))callback;

@@ -11,6 +11,7 @@
 #import "TransactionRecordCell.h"
 #import "BTCTransactionRecordModel.h"
 #import "ETHTransactionRecordModel.h"
+#import "TransactionRecordDetailVC.h"
 @interface TransactionRecordVC ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong) UIButton *backBtn;
 @property(nonatomic)UILabel *titleLabel;
@@ -344,6 +345,42 @@
     
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    TransactionRecordDetailVC *dvc = [TransactionRecordDetailVC new];
+    dvc.wallet = self.wallet;
+    if (self.wallet.coinType == BTC || self.wallet.coinType == BTC_TESTNET) {
+        BTCTransactionRecordModel *model = self.btcSelectRecordArray[indexPath.row];
+        dvc.btcRecord = model;
+        NSString *addr = nil;
+        for (VOUT *vout in model.vout) {
+            ScriptPubKey *pubkey = vout.scriptPubKey;
+            if (![pubkey.addresses containsObject:self.wallet.address]) {
+                addr = pubkey.addresses.firstObject;
+            }
+        }
+        if (model.selectType == IN_Trans) {
+            dvc.fromAddress = addr;
+            dvc.toAddress = self.wallet.address;
+        }else if (model.selectType == OUT_Trans){
+            dvc.fromAddress = self.wallet.address;
+            dvc.toAddress = self.wallet.address;
+        }else if (model.selectType == SELF_Trans){
+            dvc.fromAddress = addr;
+            dvc.toAddress = self.wallet.address;
+        }
+    }else if(self.wallet.coinType == ETH){
+        ETHTransactionRecordModel *model = self.ethSelectRecordArray[indexPath.row];
+        dvc.ethRecord = model;
+        if (model.selectType == IN_Trans) {
+            
+        }else if (model.selectType == OUT_Trans){
+            
+        }else if (model.selectType == SELF_Trans){
+            
+        }
+    }
+}
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     TransactionRecordCell *cell =  [tableView dequeueReusableCellWithIdentifier:@"TransactionRecordCell" forIndexPath:indexPath];
     cell.contentView.backgroundColor = [UIColor whiteColor];
@@ -418,7 +455,7 @@
         }else if(model.selectType == OUT_Trans){
             cell.amountlb.text = [NSString stringWithFormat:@"-%.5f", amount];
         }else{
-            cell.amountlb.text = [NSString stringWithFormat:@"0.000"];
+            cell.amountlb.text = [NSString stringWithFormat:@"0.00000"];
         }
         cell.addresslb.text = info.toAddress.checksumAddress;
         //判断交易是否有错
