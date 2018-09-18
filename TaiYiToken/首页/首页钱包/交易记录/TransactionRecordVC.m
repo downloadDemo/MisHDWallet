@@ -60,8 +60,7 @@
                 [weakSelf.tableView endHeaderRefresh];
                 [weakSelf.btcRecordArray removeAllObjects];
                 if (error) {
-                    [weakSelf.view showMsg:error.description];
-                    
+                    [weakSelf.view showAlert:@"error!" DetailMsg:error.description];
                 }else{
                     NSDictionary *dic = [NSDictionary new];
                     dic = responseObj;
@@ -142,7 +141,8 @@
         MJWeakSelf
         [self.tableView addHeaderRefresh:^{
             //weakSelf.wallet.address
-            [CreateAll GetTransactionsForAddress:@"0xc41e3D6c8a3c168618Cc22f6E18263944F4aba81" startBlockTag:BLOCK_TAG_LATEST Callback:^(ArrayPromise *promiseArray) {
+            
+            [CreateAll GetTransactionsForAddress:weakSelf.wallet.address startBlockTag:BLOCK_TAG_LATEST Callback:^(ArrayPromise *promiseArray) {
                 [weakSelf.tableView endHeaderRefresh];
                 [weakSelf.ethRecordArray removeAllObjects];
                 if (!promiseArray.error) {
@@ -162,9 +162,10 @@
                             model.selectType = FAILD_Trans;
                         }
                         [weakSelf.ethRecordArray addObject:model];
+                        
                     }
 //                    [weakSelf.ethRecordArray addObjectsFromArray:promiseArray.value];
-                     weakSelf.ethSelectRecordArray = [weakSelf.ethRecordArray mutableCopy];
+                    weakSelf.ethSelectRecordArray = [weakSelf.ethRecordArray mutableCopy];
                     [weakSelf.tableView reloadData];
                 }else{
                     [weakSelf.view showAlert:@"error!" DetailMsg:promiseArray.error.description];
@@ -238,6 +239,7 @@
         if (btn.tag == 0) {//全部
             self.btcSelectRecordArray = [self.btcRecordArray mutableCopy];
         }else{
+            self.btcSelectRecordArray = [self.btcRecordArray mutableCopy];
             for (BTCTransactionRecordModel *model in array) {
                 if (model.selectType != btn.tag) {
                     if ((btn.tag == IN_Trans || btn.tag == OUT_Trans)&& model.selectType == SELF_Trans) {
@@ -254,6 +256,7 @@
         if (btn.tag == 0) {//全部
             self.ethSelectRecordArray = [self.ethRecordArray mutableCopy];
         }else{
+            self.ethSelectRecordArray = [self.ethRecordArray mutableCopy];
             for (ETHTransactionRecordModel *model in array) {
                 if (model.selectType != btn.tag) {
                     if ((btn.tag == IN_Trans || btn.tag == OUT_Trans)&& model.selectType == SELF_Trans) {
@@ -359,7 +362,8 @@
         [cell.iconImageView setImage:[UIImage imageNamed:@"ico_eth-1"]];
         ETHTransactionRecordModel *model = [ETHTransactionRecordModel new];
         model = self.ethSelectRecordArray[indexPath.row];
-        TransactionInfo *info = model.info;
+        TransactionInfo *info = [TransactionInfo new];
+        info = model.info;
         NSDate *currentDate = [NSDate dateWithTimeIntervalSince1970:info.timestamp];
         NSString *timeStr=[_formatter stringFromDate:currentDate];
         [cell.timelb setText:[NSString stringWithFormat:@"%@",timeStr]];

@@ -14,9 +14,9 @@
     if (!_balancelb) {
         _balancelb = [UILabel new];
         _balancelb.textColor = [UIColor textWhiteColor];
-        _balancelb.font = [UIFont boldSystemFontOfSize:35];
+        _balancelb.font = [UIFont boldSystemFontOfSize:33];
         _balancelb.textAlignment = NSTextAlignmentLeft;
-        [self.contentView addSubview:_balancelb];
+        [self addSubview:_balancelb];
         [_balancelb mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(26);
             make.top.equalTo(22);
@@ -32,7 +32,7 @@
         _profitlb.textColor = [UIColor textWhiteColor];
         _profitlb.font = [UIFont systemFontOfSize:12];
         _profitlb.textAlignment = NSTextAlignmentLeft;
-        [self.contentView addSubview:_profitlb];
+        [self addSubview:_profitlb];
         [_profitlb mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(26);
             make.top.equalTo(self.balancelb.mas_bottom).equalTo(5);
@@ -46,7 +46,7 @@
     if (!_QRCodeBtn) {
         _QRCodeBtn = [UIButton buttonWithType: UIButtonTypeCustom];
         _QRCodeBtn.userInteractionEnabled = YES;
-        [self.contentView  addSubview:_QRCodeBtn];
+        [self  addSubview:_QRCodeBtn];
         [_QRCodeBtn setBackgroundImage:[UIImage imageNamed:@"wallet_code"] forState:UIControlStateNormal];
         [_QRCodeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(26);
@@ -64,7 +64,7 @@
         _addressBtn.titleLabel.textColor = [UIColor textWhiteColor];
         _addressBtn.titleLabel.textAlignment = NSTextAlignmentRight;
         _addressBtn.titleLabel.font = [UIFont systemFontOfSize:10];
-        [self.contentView  addSubview:_addressBtn];
+        [self  addSubview:_addressBtn];
         [_addressBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.equalTo(0);
             make.bottom.equalTo(-20);
@@ -74,7 +74,7 @@
         
         UIImageView *iv = [UIImageView new];
         iv.image = [UIImage imageNamed:@"ico_backups"];
-        [self.contentView addSubview:iv];
+        [self addSubview:iv];
         [iv mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.equalTo(-20);
             make.width.equalTo(10);
@@ -90,7 +90,7 @@
         _detailBtn.userInteractionEnabled = YES;
         [_detailBtn setBackgroundImage:[UIImage imageNamed:@"detail"] forState:UIControlStateNormal];
         _detailBtn.imageView.contentMode = UIViewContentModeCenter;
-        [self.contentView addSubview:_detailBtn];
+        [self addSubview:_detailBtn];
         [_detailBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.equalTo(-20);
             make.top.equalTo(22);

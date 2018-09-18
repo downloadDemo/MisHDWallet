@@ -52,9 +52,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     if (self.wallet.coinType == BTC_TESTNET) {
-        self.wallet.privateKey = @"cSFqECb6f2nCvRVSEsQBEo4ETG61sPGQbZRFYBQt8zFNQ1zHmZd8";
-        self.wallet.publicKey = @"03b0a1a1136d89f1ac1a8bd4a1bca52deb3791f22b31ddbe5f915de30961a80ff9";
-        self.wallet.address = @"n1AhnRa7mgmkbkmMzeZsP9pGZbHBAV92JC";
+//        self.wallet.privateKey = @"cSFqECb6f2nCvRVSEsQBEo4ETG61sPGQbZRFYBQt8zFNQ1zHmZd8";
+//        self.wallet.publicKey = @"03b0a1a1136d89f1ac1a8bd4a1bca52deb3791f22b31ddbe5f915de30961a80ff9";
+//        self.wallet.address = @"n1AhnRa7mgmkbkmMzeZsP9pGZbHBAV92JC";
     }else{//当前ETH钱包即为测试账号
         
     }
@@ -177,7 +177,6 @@
     return NO;
 }
 
-
 -(void)requestData{
     if (self.wallet.coinType == BTC || self.wallet.coinType == BTC_TESTNET) {
         //余额
@@ -220,13 +219,13 @@
 -(void)loadDataToView{
     NSString *amount = self.amountView.amountTextField.text;
     if (self.wallet.coinType == BTC || self.wallet.coinType == BTC_TESTNET) {
-        [self.amountView.balancelb setText:[NSString stringWithFormat:@"余额：%.4fBTC",self.BTCbalance.balance]];
-        [self.amountView.pricelb setText:[NSString stringWithFormat:@"≈￥%.2f",amount.floatValue * self.BTCCurrency]];
+        [self.amountView.balancelb setText:[NSString stringWithFormat:@"余额：%.5fBTC",self.BTCbalance.balance]];
+        [self.amountView.pricelb setText:[NSString stringWithFormat:@"≈$%.2f",amount.floatValue * self.BTCCurrency]];
         [self.gasView.gaspricelb setText:[NSString stringWithFormat:@"%ld sat/b",self.satPerBit]];
     }else if (self.wallet.coinType == ETH){
         CGFloat ethbalance = self.ETHbalance.integerValue*1.0/pow(10,18);
-        [self.amountView.balancelb setText:[NSString stringWithFormat:@"余额：%.4fETH",ethbalance]];
-        [self.amountView.pricelb setText:[NSString stringWithFormat:@"≈￥%.2f ",amount.floatValue * self.ETHCurrency]];
+        [self.amountView.balancelb setText:[NSString stringWithFormat:@"余额：%.5fETH",ethbalance]];
+        [self.amountView.pricelb setText:[NSString stringWithFormat:@"≈$%.2f ",amount.floatValue * self.ETHCurrency]];
         //ETH矿工费 = Gas Limit * Gas Price
         self.gasView.gasSlider.value = self.gasView.gasSlider.minimumValue;
         CGFloat gwei = self.gasView.gasSlider.value;

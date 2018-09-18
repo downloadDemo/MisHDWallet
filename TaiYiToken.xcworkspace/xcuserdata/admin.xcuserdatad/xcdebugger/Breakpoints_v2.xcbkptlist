@@ -20,11 +20,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TaiYiToken/&#x9996;&#x9875;/&#x9996;&#x9875;&#x94b1;&#x5305;/&#x4ea4;&#x6613;&#x8bb0;&#x5f55;/TransactionRecordVC.m"
-            timestampString = "558872731.1809109"
+            timestampString = "558930029.6629"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "268"
-            endingLineNumber = "268"
+            startingLineNumber = "271"
+            endingLineNumber = "271"
             landmarkName = "-selectRecordStatus:"
             landmarkType = "7">
          </BreakpointContent>
@@ -36,11 +36,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TaiYiToken/&#x9996;&#x9875;/&#x9996;&#x9875;&#x94b1;&#x5305;/&#x4ea4;&#x6613;&#x8bb0;&#x5f55;/TransactionRecordVC.m"
-            timestampString = "558872731.1819119"
+            timestampString = "558930029.673299"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "269"
-            endingLineNumber = "269"
+            startingLineNumber = "272"
+            endingLineNumber = "272"
             landmarkName = "-selectRecordStatus:"
             landmarkType = "7">
          </BreakpointContent>
@@ -52,11 +52,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TaiYiToken/&#x9996;&#x9875;/&#x9996;&#x9875;&#x94b1;&#x5305;/&#x4ea4;&#x6613;&#x8bb0;&#x5f55;/TransactionRecordVC.m"
-            timestampString = "558872731.182263"
+            timestampString = "558930029.6735801"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "270"
-            endingLineNumber = "270"
+            startingLineNumber = "273"
+            endingLineNumber = "273"
             landmarkName = "-selectRecordStatus:"
             landmarkType = "7">
          </BreakpointContent>
@@ -68,12 +68,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TaiYiToken/&#x9996;&#x9875;/&#x9996;&#x9875;&#x94b1;&#x5305;/&#x4ea4;&#x6613;&#x8bb0;&#x5f55;/TransactionRecordVC.m"
-            timestampString = "558872731.1825759"
+            timestampString = "558930029.673918"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "170"
-            endingLineNumber = "170"
-            landmarkName = "-viewDidLoad"
+            startingLineNumber = "260"
+            endingLineNumber = "260"
+            landmarkName = "-selectRecordStatus:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -84,12 +84,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TaiYiToken/&#x9996;&#x9875;/&#x9996;&#x9875;&#x94b1;&#x5305;/&#x4ea4;&#x6613;&#x8bb0;&#x5f55;/TransactionRecordVC.m"
-            timestampString = "558872731.182865"
+            timestampString = "558930029.674166"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "148"
-            endingLineNumber = "148"
-            landmarkName = "-viewDidLoad"
+            startingLineNumber = "261"
+            endingLineNumber = "261"
+            landmarkName = "-selectRecordStatus:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -100,12 +100,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TaiYiToken/&#x9996;&#x9875;/&#x9996;&#x9875;&#x94b1;&#x5305;/&#x4ea4;&#x6613;&#x8bb0;&#x5f55;/TransactionRecordVC.m"
-            timestampString = "558872731.183175"
+            timestampString = "558930029.674444"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "167"
-            endingLineNumber = "167"
-            landmarkName = "-viewDidLoad"
+            startingLineNumber = "262"
+            endingLineNumber = "262"
+            landmarkName = "-selectRecordStatus:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

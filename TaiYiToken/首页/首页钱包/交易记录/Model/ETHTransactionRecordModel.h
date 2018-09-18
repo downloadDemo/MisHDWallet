@@ -10,5 +10,5 @@
 
 @interface ETHTransactionRecordModel : NSObject
 @property (nonatomic, assign) TranResultSelectType selectType;
-@property (nonatomic, assign) TransactionInfo *info;
+@property (nonatomic, strong) TransactionInfo *info;
 @end

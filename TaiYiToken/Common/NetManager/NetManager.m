@@ -15,7 +15,7 @@
 
 //BTC testnet
 //ChangeToTESTNET = 0正式网，= 1测试网
-#define ChangeToTESTNET 1
+#define ChangeToTESTNET 0
 #define BTC_GETBalance_URL_TESTNET @"http://47.96.79.74:3001/insight-api/addr/"
 #define BTC_GETTXList_URL_TESTNET @"http://47.96.79.74:3001/insight-api/txs/"
 #define BTC_GETCurrency_URL_TESTNET @"http://47.96.79.74:3001/insight-api/currency"

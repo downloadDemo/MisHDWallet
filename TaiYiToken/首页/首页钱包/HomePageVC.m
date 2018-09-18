@@ -19,6 +19,7 @@
 #import "Customlayout.h"
 #import "TransactionVC.h"
 #import "TransactionRecordVC.h"
+#import "BTCBalanceModel.h"
 @interface HomePageVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITableViewDelegate,UITableViewDataSource,UIImagePickerControllerDelegate, UINavigationControllerDelegate,MGSwipeTableCellDelegate>
 @property(nonatomic)UICollectionView *collectionview;
 @property(nonatomic)UITableView *tableView;
@@ -27,6 +28,14 @@
 @property(nonatomic)UILabel *titleLabel;
 @property(nonatomic)NSMutableDictionary *walletDic;
 @property(nonatomic)NSInteger selectedIndex;
+
+@property (nonatomic, strong)dispatch_source_t time;
+@property(nonatomic)float TimeInterval;
+//余额
+@property(nonatomic)BTCBalanceModel *BTCbalance;
+@property(nonatomic)BigNumber *ETHbalance;
+@property(nonatomic)CGFloat BTCCurrency;//btc 美元汇率
+@property(nonatomic)CGFloat ETHCurrency;
 @end
 
 @implementation HomePageVC
@@ -45,8 +54,10 @@
         [self.walletDic setObject:walletETH forKey:@"walletETH"];
         [self.collectionview registerClass:[WalletCell class] forCellWithReuseIdentifier:@"walletcell"];
         [self tableView];
+        [self InitTimerRequest];
     }
 }
+
 -(void)viewDidAppear:(BOOL)animated{
     
     if (![[NSUserDefaults standardUserDefaults] boolForKey:@"ifHasAccount"] == YES) {
@@ -100,6 +111,7 @@
     [super viewDidLoad];
     [self initUI];
     self.selectedIndex = 0;
+    self.TimeInterval = 5.0;
 }
 
 
@@ -369,6 +381,66 @@
     }];
     
 }
+-(void)InitTimerRequest{
+    //获得队列
+    dispatch_queue_t queue = dispatch_get_global_queue(0, 0);
+    //创建一个定时器
+    self.time = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
+    //设置开始时间
+    dispatch_time_t start = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10.0 * NSEC_PER_SEC));
+    //设置时间间隔
+    uint64_t interval = (uint64_t)(self.TimeInterval* NSEC_PER_SEC);
+    //设置定时器
+    dispatch_source_set_timer(self.time, start, interval, 0);
+    //设置回调
+    dispatch_source_set_event_handler(self.time, ^{
+        [self requestBalance];
+    });
+    //由于定时器默认是暂停的所以我们启动一下
+    //启动定时器
+    dispatch_resume(self.time);
+}
+-(void)requestBalance{
+    MissionWallet *walletBTC = [self.walletDic objectForKey:@"walletBTC"];
+    MissionWallet *walletETH = [self.walletDic objectForKey:@"walletETH"];
+    if (walletBTC == nil ) {
+        return;
+    }
+    [NetManager GetBalanceForBTCAdress:walletBTC.address noTxList:-1 completionHandler:^(id responseObj, NSError *error) {
+        if (!error) {
+            self.BTCbalance = [BTCBalanceModel parse:responseObj];
+            [self.collectionview reloadData];
+            self.TimeInterval = 5.0;
+        }else{
+            self.TimeInterval += 10.0;
+        }
+    }];
+    if (walletETH == nil ) {
+        return;
+    }
+    [CreateAll GetBalanceETHForWallet:walletETH callback:^(BigNumber *balance) {
+        self.ETHbalance = balance;
+        [self.collectionview reloadData];
+    }];
+    //汇率只获取一次
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [NetManager GetCurrencyCompletionHandler:^(id responseObj, NSError *error) {
+            if (!error) {
+                NSDictionary *dic = [NSDictionary new];
+                if ([responseObj containsObjectForKey:@"data"]) {
+                    dic = responseObj[@"data"];
+                    if ([dic containsObjectForKey:@"bitstamp"]) {
+                        self.BTCCurrency = ((NSString *)[dic objectForKey:@"bitstamp"]).doubleValue;
+                    }
+                }
+            }
+        }];
+        [CreateAll GetETHCurrencyCallback:^(FloatPromise *etherprice) {
+            self.ETHCurrency = etherprice.value;
+        }];
+    });
+}
 
 #pragma collectionview *****************************
 
@@ -403,9 +475,18 @@
     if (indexPath.row == 0) {//BTC
         wallet = [self.walletDic objectForKey:@"walletBTC"];
         backImage = [[UIImage alloc]createImageWithSize:cell.contentView.frame.size gradientColors:@[[UIColor colorWithHexString:@"#4090F7"],[UIColor colorWithHexString:@"#57A8FF"]] percentage:@[@(0.3),@(1)] gradientType:GradientFromLeftTopToRightBottom];
+        NSMutableAttributedString *str1 = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%.5fBTC ≈$%.2f",self.BTCbalance.balance,self.BTCbalance.balance * self.BTCCurrency] attributes:@{NSForegroundColorAttributeName:[UIColor textWhiteColor], NSFontAttributeName:[UIFont boldSystemFontOfSize:35]}];
+        [str1 addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:15] range:NSMakeRange(7, 3)];
+        [str1 addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:15] range:NSMakeRange(11, 6)];
+        cell.balancelb.attributedText = str1;
     }else{//ETH
         wallet = [self.walletDic objectForKey:@"walletETH"];
         backImage = [[UIImage alloc]createImageWithSize:cell.contentView.frame.size gradientColors:@[[UIColor colorWithHexString:@"#54D595"],[UIColor colorWithHexString:@"#76D9A8"]] percentage:@[@(0.3),@(1)] gradientType:GradientFromLeftTopToRightBottom];
+        CGFloat ethbalance = self.ETHbalance.integerValue*1.0/pow(10,18);
+        NSMutableAttributedString *str1 = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%.5fETH ≈$%.2f",ethbalance,ethbalance * self.ETHCurrency] attributes:@{NSForegroundColorAttributeName:[UIColor textWhiteColor], NSFontAttributeName:[UIFont boldSystemFontOfSize:35]}];
+        [str1 addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:15] range:NSMakeRange(7, 3)];
+        [str1 addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:15] range:NSMakeRange(11, 6)];
+        cell.balancelb.attributedText = str1;
     }
     UIImageView *iv = [UIImageView new];
     iv.image = backImage;
@@ -415,7 +496,8 @@
     [iv mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(0);
     }];
-    [cell.balancelb setText:@"¥"];
+    
+//    [cell.balancelb setText:@"¥"];
     [cell.profitlb setText:@"今日最新收益"];
     NSString *address = @"";
     if(wallet.address.length > 20){
@@ -427,9 +509,9 @@
     cell.QRCodeBtn.tag = indexPath.row;
     cell.detailBtn.tag = indexPath.row;
     cell.addressBtn.tag = indexPath.row;
-    UIView *view = [UIView new];
-    view.backgroundColor = [UIColor whiteColor];
-
+//    UIView *view = [UIView new];
+//    view.backgroundColor = [UIColor whiteColor];
+   
     [cell.QRCodeBtn addTarget:self action:@selector(QRCodeBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     [cell.detailBtn addTarget:self action:@selector(detailBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     [cell.addressBtn addTarget:self action:@selector(addressBtnAction:) forControlEvents:UIControlEventTouchUpInside];

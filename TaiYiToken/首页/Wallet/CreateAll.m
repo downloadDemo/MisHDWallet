@@ -17,7 +17,7 @@
  生成的种子被用来生成构建deterministic Wallet和推导钱包密钥。
  */
 +(NSString *)CreateSeedByMnemonic:(NSString *)mnemonic Password:(NSString *)password{
-    mnemonic = @"yard impulse luxury drive today throw farm pepper survey wreck glass federal";
+  //  mnemonic = @"yard impulse luxury drive today throw farm pepper survey wreck glass federal";
 
     NSString *seed = [NYMnemonic deterministicSeedStringFromMnemonicString:mnemonic
                                                                 passphrase:@""
@@ -777,7 +777,7 @@ return -1;表示已存在
  ********************************************** ETH转账 *******************************************************************
  */
 //切换ETH测试网络 小金额转账可能会报错 ChainIdHomestead正式 ChainIdKovan测试
-#define MODENET ChainIdKovan
+#define MODENET ChainIdHomestead
 
 //获取ETH价格
 +(void)GetETHCurrencyCallback: (void (^)(FloatPromise *etherprice))callback{
