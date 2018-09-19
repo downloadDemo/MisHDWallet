@@ -613,21 +613,150 @@ return -1;表示已存在
     
     switch (btcApi) {
         case BTCAPIBlockchain: {
-//            BTCBlockchainInfo* bci = [[BTCBlockchainInfo alloc] init];
-//            utxos = [bci unspentOutputsWithAddresses:@[ key.compressedPublicKeyAddress ] error:&error];
-            [NetManager GetUTXOByBTCAdress:changeAddress.publicAddress.string completionHandler:^(id responseObj, NSError *error) {
-                NSArray *array = (NSArray *)responseObj;
-                NSMutableArray *utoxarray = [NSMutableArray new];
-                for (int i = 0; i < array.count; i++) {
-                    BTCUTXOModel *model = [BTCUTXOModel parse:array[i]];
-                    [utoxarray addObject:model];
+      /*      NSError* error = nil;
+            NSArray* utxos = nil;
+            
+            BTCBlockchainInfo* bci = [[BTCBlockchainInfo alloc] init];
+            BTCPrivateKeyAddress *pkaddr = [BTCPrivateKeyAddress addressWithString:wallet.privateKey];
+            BTCKey* key = [[BTCKey alloc]initWithPrivateKeyAddress:pkaddr];
+            utxos = [bci unspentOutputsWithAddresses:@[ key.compressedPublicKeyAddress ] error:&error];
+            if (!utxos) {
+                callback(nil,nil);
+                return;
+            }
+            BTCAmount totalAmount = amount + fee;
+            BTCAmount dustThreshold = 0;
+            utxos = [utxos sortedArrayUsingComparator:^(BTCTransactionOutput* obj1, BTCTransactionOutput* obj2) {
+                if ((obj1.value - obj2.value) < 0) return NSOrderedAscending;
+                else return NSOrderedDescending;
+            }];
+            
+            NSArray* txouts = nil;
+            
+            for (BTCTransactionOutput* txout in utxos) {
+                if (txout.value > (totalAmount + dustThreshold) && txout.script.isPayToPublicKeyHashScript) {
+                    txouts = @[ txout ];
+                    break;
                 }
-                utxos = utoxarray;
-                [CreateAll DoTransBTCKey:wallet UTXO:utxos to:destinationAddress change:changeAddress amount:amount fee:fee api:btcApi callback:^(BTCTransaction *result, NSError *error) {
-                    callback(result,error);
-                }];
+            }
+            
+            // We support spending just one output for now.
+            if (!txouts) return;
+            
+            // Create a new transaction
+            BTCTransaction* tx = [[BTCTransaction alloc] init];
+            
+            BTCAmount spentCoins = 0;
+            
+            // Add all outputs as inputs
+            for (BTCTransactionOutput* txout in txouts) {
+                BTCTransactionInput* txin = [[BTCTransactionInput alloc] init];
+                
+                txin.previousHash = txout.transactionHash;
+                txin.previousIndex = txout.index;
+                [tx addInput:txin];
+                
+                NSLog(@"txhash: http://blockchain.info/rawtx/%@", BTCHexFromData(txout.transactionHash));
+                NSLog(@"txhash: http://blockchain.info/rawtx/%@ (reversed)", BTCHexFromData(BTCReversedData(txout.transactionHash)));
+                
+                spentCoins += txout.value;
+            }
+            
+            NSLog(@"Total satoshis to spend:       %lld", spentCoins);
+            NSLog(@"Total satoshis to destination: %lld", amount);
+            NSLog(@"Total satoshis to fee:         %lld", fee);
+            NSLog(@"Total satoshis to change:      %lld", (spentCoins - (amount + fee)));
+            
+            // Add required outputs - payment and change
+            BTCTransactionOutput* paymentOutput = [[BTCTransactionOutput alloc] initWithValue:amount address:destinationAddress];
+            BTCTransactionOutput* changeOutput = [[BTCTransactionOutput alloc] initWithValue:(spentCoins - (amount + fee)) address:changeAddress];
+            
+            // Idea: deterministically-randomly choose which output goes first to improve privacy.
+            [tx addOutput:paymentOutput];
+            [tx addOutput:changeOutput];
+            
+            
+            // Sign all inputs. We now have both inputs and outputs defined, so we can sign the transaction.
+            for (int i = 0; i < txouts.count; i++) {
+                // Normally, we have to find proper keys to sign this txin, but in this
+                // example we already know that we use a single private key.
+                
+                BTCTransactionOutput* txout = txouts[i]; // output from a previous tx which is referenced by this txin.
+                BTCTransactionInput* txin = tx.inputs[i];
+                
+                BTCScript* sigScript = [[BTCScript alloc] init];
+                
+                NSData* d1 = tx.data;
+                
+                BTCSignatureHashType hashtype = BTCSignatureHashTypeAll;
+                
+                NSData* hash = [tx signatureHashForScript:txout.script inputIndex:i hashType:hashtype error:&error];
+                
+                NSData* d2 = tx.data;
+                
+                NSAssert([d1 isEqual:d2], @"Transaction must not change within signatureHashForScript!");
+                
+                // 134675e153a5df1b8e0e0f0c45db0822f8f681a2eb83a0f3492ea8f220d4d3e4
+                NSLog(@"Hash for input %d: %@", i, BTCHexFromData(hash));
+                if (!hash) {
+                    return;
+                }
+                
+                NSData* signatureForScript = [key signatureForHash:hash hashType:hashtype];
+                [sigScript appendData:signatureForScript];
+                [sigScript appendData:key.publicKey];
+                
+                NSData* sig = [signatureForScript subdataWithRange:NSMakeRange(0, signatureForScript.length - 1)]; // trim hashtype byte to check the signature.
+                NSAssert([key isValidSignature:sig hash:hash], @"Signature must be valid");
+                
+                txin.signatureScript = sigScript;
+            }
+            
+            // Validate the signatures before returning for extra measure.
+            
+            {
+                BTCScriptMachine* sm = [[BTCScriptMachine alloc] initWithTransaction:tx inputIndex:0];
+                NSError* error = nil;
+                BOOL r = [sm verifyWithOutputScript:[[(BTCTransactionOutput*)txouts[0] script] copy] error:&error];
+                NSLog(@"Error: %@", error);
+                NSAssert(r, @"should verify first output");
+            }
+            if (!tx) {
+                NSLog(@"Can't make a transaction");
+                callback(nil, error);
+                return;
+            }
+            
+            NSLog(@"transaction = %@", tx.dictionary);
+            NSLog(@"transaction in hex:\n------------------\n%@\n------------------\n", BTCHexFromData([tx data]));
+            NSString *broadcastTX = BTCHexFromData([tx data]);
+            NSLog(@"Sending ...");
+            //广播交易
+            callback(tx,error);
+            return;
+       */
+            
+            
+            [NetManager GetUTXOByBTCAdress:changeAddress.publicAddress.string completionHandler:^(id responseObj, NSError *error) {
+                if (!error) {
+                    NSArray *array = (NSArray *)responseObj;
+                    NSMutableArray *utoxarray = [NSMutableArray new];
+                    for (int i = 0; i < array.count; i++) {
+                        BTCUTXOModel *model = [BTCUTXOModel parse:array[i]];
+                        [utoxarray addObject:model];
+                    }
+                    utxos = utoxarray;
+                    [CreateAll DoTransBTCKey:wallet UTXO:utxos to:destinationAddress change:changeAddress amount:amount fee:fee api:btcApi callback:^(BTCTransaction *result, NSError *error) {
+                        result.confirmations = 0;
+                        callback(result,error);
+                    }];
+
+                }else{
+                    callback(nil,error);
+                }
             }];
             break;
+            
         }
         case BTCAPIChain: {
           
@@ -674,8 +803,8 @@ return -1;表示已存在
     }
     // Find enough outputs to spend the total amount.
     //先取size = 300预估算 正常一笔交易的大小大约226 bytes
-    BTCAmount totalAmount = amount + fee * 300;
-    BTCAmount dustThreshold = 0; // don't want less than 1mBTC in the change.100000
+    BTCAmount totalAmount = amount + fee * 300 * 3;
+    BTCAmount dustThreshold = 0;
     
     // Sort utxo in order of
     utxos = [utxos sortedArrayUsingComparator:^(BTCUTXOModel* utxo1, BTCUTXOModel* utxo2) {
@@ -686,7 +815,6 @@ return -1;表示已存在
     NSMutableArray* txouts = [NSMutableArray new];
     NSInteger satishistotal = 0;
     for (BTCUTXOModel* txout in utxos) {
-        
         if (satishistotal < (totalAmount + dustThreshold)) {
             [txouts addObject:txout];
             satishistotal += txout.satoshis;
@@ -732,7 +860,7 @@ return -1;表示已存在
     [tx addOutput:changeOutput];
     //估算fee
     long size = txouts.count * 148 + 2 * 34 + 10 + 40;
-    BTCAmount transfee = (size * fee);//换算为sat/Byte
+    BTCAmount transfee = (size * fee * 3);//换算为sat/Byte
     tx.fee = transfee;
     
     // Sign all inputs. We now have both inputs and outputs defined, so we can sign the transaction.
@@ -768,7 +896,7 @@ return -1;表示已存在
     }
     
     // Validate the signatures before returning for extra measure.
-    
+
     for (int i = 0; i < txouts.count; i++){
         BTCScriptMachine* sm = [[BTCScriptMachine alloc] initWithTransaction:tx inputIndex:i];
         BTCUTXOModel *model = txouts[i];

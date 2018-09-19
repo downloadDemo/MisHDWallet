@@ -107,7 +107,7 @@
     BTCAmount amountvalue = amount.floatValue * pow(10,8);
     BTCAmount fee = self.satPerBit;
     [CreateAll BTCTransactionFromWallet:walletBTC ToAddress:address Amount:amountvalue
-                                    Fee:fee Api:BTCAPIChain callback:^(NSString *result, NSError *error) {
+                                    Fee:fee Api:BTCAPIBlockchain callback:^(NSString *result, NSError *error) {
                                         if (result == nil) {
                                             [self.view showMsg:@"转账失败"];
                                         }else{
