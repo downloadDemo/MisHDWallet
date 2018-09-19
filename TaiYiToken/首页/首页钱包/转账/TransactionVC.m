@@ -6,7 +6,7 @@
 //  Copyright © 2018年 admin. All rights reserved.
 //
 
-#define MIN_ETH_GAS 0.0002
+#define MIN_ETH_GAS 0.0001
 
 #import "TransactionVC.h"
 #import "WBQRCodeVC.h"
@@ -87,7 +87,7 @@
 -(void)transactionAction{
     //如果超额
     if ([self checkAmount] == NO) {
-        [self.view showMsg:@"转账超额！"];
+        [self.view showMsg:@"转账金额错误！"];
         return;
     }
     if ([self.addressView.toAddressTextField.text isEqualToString:@""]) {
@@ -104,12 +104,15 @@
 -(void)transactionBTCToAddress:(NSString *)address{
     __block MissionWallet *walletBTC = self.wallet;
     NSString *amount = self.amountView.amountTextField.text;
-    BTCAmount amountvalue = amount.floatValue * pow(10,6);
+    BTCAmount amountvalue = amount.floatValue * pow(10,8);
     BTCAmount fee = self.satPerBit;
     [CreateAll BTCTransactionFromWallet:walletBTC ToAddress:address Amount:amountvalue
                                     Fee:fee Api:BTCAPIChain callback:^(NSString *result, NSError *error) {
-                                        NSLog(@"result = %@",result);
-                                        NSLog(@"error = %@",error);
+                                        if (result == nil) {
+                                            [self.view showMsg:@"转账失败"];
+                                        }else{
+                                            [self.view showMsg:@"交易已广播"];
+                                        }
                                     }];
 }
 

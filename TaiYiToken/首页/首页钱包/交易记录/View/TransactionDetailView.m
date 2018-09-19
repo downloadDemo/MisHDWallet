@@ -7,9 +7,10 @@
 //
 
 #import "TransactionDetailView.h"
-
+#import "DashesLineView.h"
 @implementation TransactionDetailView
 -(UIImageView *)iconImageView{
+    self.backgroundColor = [UIColor whiteColor];
     if (!_iconImageView) {
         _iconImageView = [UIImageView new];
         _iconImageView.layer.cornerRadius = 12;
@@ -93,6 +94,18 @@
 
 -(RecordDetailLabel *)feelb{
     if (!_feelb) {
+        
+        DashesLineView *line = [DashesLineView new];
+        line.backgroundColor = [UIColor whiteColor];
+        line.lineColor = [UIColor lineGrayColor];
+        line.lineWidth = 1.0;
+        [self addSubview:line];
+        [line mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.equalTo(0);
+            make.height.equalTo(2);
+            make.top.equalTo(120);
+        }];
+        
         _feelb = [RecordDetailLabel new];
         [self addSubview:_feelb];
         [_feelb mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -142,11 +155,23 @@
 }
 -(RecordDetailLabel *)tranNumberlb{
     if (!_tranNumberlb) {
+        
+        DashesLineView *line = [DashesLineView new];
+        line.backgroundColor = [UIColor whiteColor];
+        line.lineColor = [UIColor lineGrayColor];
+        line.lineWidth = 1.0;
+        [self addSubview:line];
+        [line mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.equalTo(0);
+            make.height.equalTo(2);
+            make.top.equalTo(350);
+        }];
+        
         _tranNumberlb = [RecordDetailLabel new];
         [self addSubview:_tranNumberlb];
         [_tranNumberlb mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.equalTo(0);
-            make.top.equalTo(350);
+            make.top.equalTo(370);
             make.height.equalTo(40);
         }];
     }
@@ -158,9 +183,10 @@
         [self addSubview:_blockNumberlb];
         [_blockNumberlb mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.equalTo(0);
-            make.top.equalTo(400);
+            make.top.equalTo(420);
             make.height.equalTo(40);
         }];
+    
     }
     return _blockNumberlb;
 }

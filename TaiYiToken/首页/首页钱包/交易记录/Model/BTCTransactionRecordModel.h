@@ -18,7 +18,7 @@
 @property (nonatomic, assign) NSInteger locktime;
 @property (nonatomic, assign) NSInteger size;
 @property (nonatomic, assign) NSInteger time;//时间 1535335261
-@property (nonatomic, strong) NSString * txid;
+@property (nonatomic, strong) NSString * txid;//
 @property (nonatomic, assign) CGFloat valueIn;//valueIn，valueOut都是0，表示失败
 @property (nonatomic, assign) CGFloat valueOut;//
 @property (nonatomic, assign) NSInteger version;

@@ -663,15 +663,18 @@ return -1;表示已存在
     
     NSLog(@"UTXOs for %@: %@ ", wallet.address, utxos);
 
-    BTCPrivateKeyAddressTestnet* pkaddr = [BTCPrivateKeyAddressTestnet addressWithString:wallet.privateKey];
+    //BTCPrivateKeyAddressTestnet* pkaddr = [BTCPrivateKeyAddressTestnet addressWithString:wallet.privateKey];
+    //BTCKey* key = [[BTCKey alloc]initWithPrivateKeyAddress:pkaddr];
+    BTCPrivateKeyAddress *pkaddr = [BTCPrivateKeyAddress addressWithString:wallet.privateKey];
     BTCKey* key = [[BTCKey alloc]initWithPrivateKeyAddress:pkaddr];
 
     if (!utxos) {
         callback(nil,nil);
+        return;
     }
     // Find enough outputs to spend the total amount.
     //先取size = 300预估算 正常一笔交易的大小大约226 bytes
-    BTCAmount totalAmount = amount + fee * 8 * 300;
+    BTCAmount totalAmount = amount + fee * 300;
     BTCAmount dustThreshold = 0; // don't want less than 1mBTC in the change.100000
     
     // Sort utxo in order of
@@ -692,7 +695,10 @@ return -1;表示已存在
         }
     }
 
-    if (satishistotal < (totalAmount + dustThreshold)) return;
+    if (satishistotal < (totalAmount + dustThreshold)){
+        callback(nil,nil);
+        return;
+    }
 
     // Create a new transaction
     BTCTransaction* tx = [[BTCTransaction alloc] init];
@@ -726,7 +732,7 @@ return -1;表示已存在
     [tx addOutput:changeOutput];
     //估算fee
     long size = txouts.count * 148 + 2 * 34 + 10 + 40;
-    BTCAmount transfee = (size * fee * 8);//换算为sat/Byte
+    BTCAmount transfee = (size * fee);//换算为sat/Byte
     tx.fee = transfee;
     
     // Sign all inputs. We now have both inputs and outputs defined, so we can sign the transaction.
@@ -749,6 +755,7 @@ return -1;表示已存在
         NSData* d2 = tx.data;
         NSLog(@"Hash for input %d: %@", i, BTCHexFromData(hash));
         if (!hash) {
+            callback(nil,nil);
             return;
         }
         
@@ -799,10 +806,9 @@ return -1;表示已存在
     [[provider getTransactions:[Address addressWithString:address] startBlockTag:blockTag] onCompletion:^(ArrayPromise *promiseArray) {
         if (!promiseArray.error) {
              
+        }else{
+            callback(promiseArray);
         }
-        
-        
-        callback(promiseArray);
     }];
 }
 //获取交易详情

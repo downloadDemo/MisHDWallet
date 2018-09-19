@@ -72,41 +72,39 @@
     
     if (self.btcRecord.selectType == FAILD_Trans) {
         self.detailView.resultlb.text = @"失败";
-        [self.detailView.amountlb setTextColor:[UIColor redColor]];
-        [self.detailView.resultlb setTextColor:[UIColor textBlackColor]];
     }else{
+        if (self.btcRecord.selectType == IN_Trans) {
+            self.detailView.resultlb.text = @"收款成功";
+            for (VOUT *vout in self.btcRecord.vout) {
+                //别人转给自己，取自己地址的vout
+                if ([vout.scriptPubKey.addresses containsObject:self.wallet.address]) {
+                    _detailView.amountlb.text = [NSString stringWithFormat:@"+%.5f BTC", vout.value.floatValue];
+                }
+            }
+        }else if(self.btcRecord.selectType == OUT_Trans){
+            self.detailView.resultlb.text = @"转账成功";
+            for (VOUT *vout in self.btcRecord.vout) {
+                //转给别人，取别人地址的vout
+                if (![vout.scriptPubKey.addresses containsObject:self.wallet.address]) {
+                    _detailView.amountlb.text = [NSString stringWithFormat:@"-%.5f BTC", vout.value.floatValue];
+                }
+            }
+        }else{
+            _detailView.amountlb.text = [NSString stringWithFormat:@"0.00000  BTC"];
+        }
         if(self.btcRecord.confirmations < 6){
             self.detailView.resultlb.text = @"确认中";
-        }else{
-            if (self.btcRecord.selectType == IN_Trans) {
-                self.detailView.resultlb.text = @"收款成功";
-                for (VOUT *vout in self.btcRecord.vout) {
-                    //别人转给自己，取自己地址的vout
-                    if ([vout.scriptPubKey.addresses containsObject:self.wallet.address]) {
-                        _detailView.amountlb.text = [NSString stringWithFormat:@"+%.5f BTC", vout.value.floatValue];
-                    }
-                }
-            }else if(self.btcRecord.selectType == OUT_Trans){
-                self.detailView.resultlb.text = @"转账成功";
-                for (VOUT *vout in self.btcRecord.vout) {
-                    //转给别人，取别人地址的vout
-                    if (![vout.scriptPubKey.addresses containsObject:self.wallet.address]) {
-                        _detailView.amountlb.text = [NSString stringWithFormat:@"-%.5f BTC", vout.value.floatValue];
-                    }
-                }
-            }else{
-                _detailView.amountlb.text = [NSString stringWithFormat:@"0.00000  BTC"];
-            }
+            
         }
     }
     //
-    NSMutableAttributedString *str1 = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%.lf BTC",self.btcRecord.fees] attributes:@{NSForegroundColorAttributeName:[UIColor textBlackColor], NSFontAttributeName:[UIFont systemFontOfSize:13]}];
+    NSMutableAttributedString *str1 = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%.8f BTC\n",self.btcRecord.fees] attributes:@{NSForegroundColorAttributeName:[UIColor textBlackColor], NSFontAttributeName:[UIFont systemFontOfSize:13]}];
     [_detailView.feelb initWithTitle:@"旷工费用：" Detail:str1];
     
     
     NSTextAttachment * attach = [[NSTextAttachment alloc] init];
-    attach.image = [UIImage imageNamed:@"ico_backups"];
-    attach.bounds = CGRectMake(0, 0, 20, 10);
+    attach.image = [UIImage imageNamed:@"ico_password"];
+    attach.bounds = CGRectMake(0, 0, 10, 10);
     NSAttributedString * imageStr = [NSAttributedString attributedStringWithAttachment:attach];
     
     NSMutableAttributedString * to = [[NSMutableAttributedString alloc] initWithString:self.toAddress];
@@ -122,6 +120,15 @@
     _detailView.fromlb.detailbtn.tag = 1;
     
     [_detailView.remarklb initWithTitle:@"备注：" DetailBtn:nil];
+    
+    NSString *btctxid = self.btcRecord.txid;
+    NSMutableAttributedString * ethtransactionHashAttr = [[NSMutableAttributedString alloc] initWithString:btctxid attributes:@{NSForegroundColorAttributeName:[UIColor textBlackColor], NSFontAttributeName:[UIFont systemFontOfSize:13]}];
+    [_detailView.tranNumberlb initWithTitle:@"交易号：" Detail:ethtransactionHashAttr];
+    
+    NSString *blocknum = [NSString stringWithFormat:@"%ld\n", self.btcRecord.blockheight];
+    NSMutableAttributedString * blocknumAttr = [[NSMutableAttributedString alloc] initWithString:blocknum attributes:@{NSForegroundColorAttributeName:[UIColor textBlackColor], NSFontAttributeName:[UIFont systemFontOfSize:13]}];
+    [_detailView.blockNumberlb initWithTitle:@"区块：" Detail:blocknumAttr];
+    
 }
 
 
@@ -129,6 +136,12 @@
 -(void)ETHRecordToView{
     self.detailView = [TransactionDetailView new];
     [self.detailView.iconImageView setImage:[UIImage imageNamed:@"ico_eth-1"]];
+    [self.view addSubview:self.detailView];
+    [_detailView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(70);
+        make.left.right.equalTo(0);
+        make.bottom.equalTo(-30);
+    }];
     
     TransactionInfo *info = self.ethRecord.info;
     NSDate *currentDate = [NSDate dateWithTimeIntervalSince1970:info.timestamp];
@@ -137,38 +150,49 @@
     
     CGFloat amount = info.value.integerValue * 1.0 / pow(10, 18);
     if (self.ethRecord.selectType == IN_Trans) {
+        self.detailView.resultlb.text = @"收款成功";
         _detailView.amountlb.text = [NSString stringWithFormat:@"+%.5f ETH", amount];
     }else if(self.ethRecord.selectType == OUT_Trans){
+        self.detailView.resultlb.text = @"转账成功";
         _detailView.amountlb.text = [NSString stringWithFormat:@"-%.5f ETH", amount];
     }else{
+        self.detailView.resultlb.text = @"失败";
         _detailView.amountlb.text = [NSString stringWithFormat:@"0.00000 ETH"];
     }
     //
     CGFloat gwei = self.ethRecord.info.gasPrice.integerValue *1.0 / pow(10,9);
-    NSInteger gas =  self.ethRecord.info.gasLimit.integerValue;
-    CGFloat gasfee = (gwei * gas)*1.0/pow(10,9);
-    NSMutableAttributedString *str1 = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%lf ETH ≈Gas(%ld) * GasPrice(%.2f gwei)",gasfee,gas,gasfee] attributes:@{NSForegroundColorAttributeName:[UIColor textBlackColor], NSFontAttributeName:[UIFont systemFontOfSize:13]}];
-    [str1 addAttribute:NSForegroundColorAttributeName value:[UIColor textLightGrayColor] range:NSMakeRange(12, str1.length - 12)];
+    NSInteger gasused =  self.ethRecord.info.gasUsed.integerValue;
+    CGFloat gasfee = (gwei * gasused)*1.0/pow(10,9);
+    NSMutableAttributedString *str1 = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%.7f ETH\n≈Gas(%ld) * GasPrice(%.2f gwei)",gasfee,gasused,gwei] attributes:@{NSForegroundColorAttributeName:[UIColor textBlackColor], NSFontAttributeName:[UIFont systemFontOfSize:13]}];
+    [str1 addAttribute:NSForegroundColorAttributeName value:[UIColor textLightGrayColor] range:NSMakeRange(13, str1.length - 13)];
     [_detailView.feelb initWithTitle:@"旷工费用：" Detail:str1];
     
     NSTextAttachment * attach = [[NSTextAttachment alloc] init];
-    attach.image = [UIImage imageNamed:@"ico_backups"];
-    attach.bounds = CGRectMake(0, 0, 20, 10);
+    attach.image = [UIImage imageNamed:@"ico_password"];
+    attach.bounds = CGRectMake(0, 0, 10, 10);
     NSAttributedString * imageStr = [NSAttributedString attributedStringWithAttachment:attach];
     
-    NSMutableAttributedString * to = [[NSMutableAttributedString alloc] initWithString:self.toAddress];
+    NSMutableAttributedString * to =  [[NSMutableAttributedString alloc] initWithString:self.toAddress attributes:@{NSForegroundColorAttributeName:[UIColor textBlackColor], NSFontAttributeName:[UIFont systemFontOfSize:13]}];
     [to appendAttributedString:imageStr];
     [_detailView.tolb initWithTitle:@"收款地址：" DetailBtn:to];
     [_detailView.tolb.detailbtn addTarget:self action:@selector(copyAddress:) forControlEvents:UIControlEventTouchUpInside];
     _detailView.tolb.detailbtn.tag = 0;
     
-    NSMutableAttributedString * from = [[NSMutableAttributedString alloc] initWithString:self.fromAddress];
+    NSMutableAttributedString * from = [[NSMutableAttributedString alloc] initWithString:self.fromAddress attributes:@{NSForegroundColorAttributeName:[UIColor textBlackColor], NSFontAttributeName:[UIFont systemFontOfSize:13]}];
     [from appendAttributedString:imageStr];
     [_detailView.fromlb initWithTitle:@"付款地址：" DetailBtn:from];
     [_detailView.fromlb.detailbtn addTarget:self action:@selector(copyAddress:) forControlEvents:UIControlEventTouchUpInside];
     _detailView.fromlb.detailbtn.tag = 1;
     
     [_detailView.remarklb initWithTitle:@"备注：" DetailBtn:nil];
+    
+    NSString *ethtransactionHash = self.ethRecord.info.transactionHash.hexString;
+    NSMutableAttributedString * ethtransactionHashAttr = [[NSMutableAttributedString alloc] initWithString:ethtransactionHash attributes:@{NSForegroundColorAttributeName:[UIColor textBlackColor], NSFontAttributeName:[UIFont systemFontOfSize:13]}];
+    [_detailView.tranNumberlb initWithTitle:@"交易号：" Detail:ethtransactionHashAttr];
+    
+    NSString *blocknum = [NSString stringWithFormat:@"%ld\n", self.ethRecord.info.blockNumber];
+    NSMutableAttributedString * blocknumAttr = [[NSMutableAttributedString alloc] initWithString:blocknum attributes:@{NSForegroundColorAttributeName:[UIColor textBlackColor], NSFontAttributeName:[UIFont systemFontOfSize:13]}];
+    [_detailView.blockNumberlb initWithTitle:@"区块：" Detail:blocknumAttr];
 }
 
 

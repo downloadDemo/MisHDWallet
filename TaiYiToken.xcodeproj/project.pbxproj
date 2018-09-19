@@ -129,6 +129,7 @@
 		84B8D5332150C54C00286631 /* TransactionRecordDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B8D5322150C54C00286631 /* TransactionRecordDetailVC.m */; };
 		84B8D5362150C6B700286631 /* TransactionDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B8D5352150C6B700286631 /* TransactionDetailView.m */; };
 		84B8D5392150C8BB00286631 /* RecordDetailLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B8D5382150C8BB00286631 /* RecordDetailLabel.m */; };
+		84B8D53C2151E1BA00286631 /* DashesLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B8D53B2151E1BA00286631 /* DashesLineView.m */; };
 		84BDD16D21269D5B0039FE09 /* DataView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84BDD16C21269D5B0039FE09 /* DataView.m */; };
 		84BDD1702126B3DF0039FE09 /* ButtonsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84BDD16F2126B3DF0039FE09 /* ButtonsView.m */; };
 		84C0DF26212CFF3800BCC91D /* BRKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C0DF24212CFF3700BCC91D /* BRKey.m */; };
@@ -416,6 +417,8 @@
 		84B8D5352150C6B700286631 /* TransactionDetailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransactionDetailView.m; sourceTree = "<group>"; };
 		84B8D5372150C8BB00286631 /* RecordDetailLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecordDetailLabel.h; sourceTree = "<group>"; };
 		84B8D5382150C8BB00286631 /* RecordDetailLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecordDetailLabel.m; sourceTree = "<group>"; };
+		84B8D53A2151E1BA00286631 /* DashesLineView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DashesLineView.h; sourceTree = "<group>"; };
+		84B8D53B2151E1BA00286631 /* DashesLineView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DashesLineView.m; sourceTree = "<group>"; };
 		84BDD16B21269D5A0039FE09 /* DataView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataView.h; sourceTree = "<group>"; };
 		84BDD16C21269D5B0039FE09 /* DataView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DataView.m; sourceTree = "<group>"; };
 		84BDD16E2126B3DF0039FE09 /* ButtonsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ButtonsView.h; sourceTree = "<group>"; };
@@ -1276,6 +1279,8 @@
 				84B8D5352150C6B700286631 /* TransactionDetailView.m */,
 				84B8D5372150C8BB00286631 /* RecordDetailLabel.h */,
 				84B8D5382150C8BB00286631 /* RecordDetailLabel.m */,
+				84B8D53A2151E1BA00286631 /* DashesLineView.h */,
+				84B8D53B2151E1BA00286631 /* DashesLineView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1724,6 +1729,7 @@
 				842FEEA5214A5FE80075716E /* TransactionGasView.m in Sources */,
 				84BDD1702126B3DF0039FE09 /* ButtonsView.m in Sources */,
 				842FEE58213E75D60075716E /* ExportWalletCell.m in Sources */,
+				84B8D53C2151E1BA00286631 /* DashesLineView.m in Sources */,
 				0415BDA42131BC850022DEB7 /* YYTimeLineVolumeView.m in Sources */,
 				842FEE9321475A8F0075716E /* BTCUTXOModel.m in Sources */,
 				84B0A94A2122736B002EFA0A /* CustomTabBar.m in Sources */,
