@@ -348,7 +348,7 @@
             _amountView.namelb.text = @"unknown Wallet coinType";
             break;
     }
-   [_amountView.amountTextField addTarget:self action:@selector(textFieldDidChange) forControlEvents:UIControlEventEditingChanged];
+    [_amountView.amountTextField addTarget:self action:@selector(textFieldDidChange) forControlEvents:UIControlEventEditingChanged];
     [self.view addSubview:_amountView];
     [_amountView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(70);

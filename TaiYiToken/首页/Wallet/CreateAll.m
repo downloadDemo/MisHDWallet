@@ -803,7 +803,7 @@ return -1;表示已存在
     }
     // Find enough outputs to spend the total amount.
     //先取size = 300预估算 正常一笔交易的大小大约226 bytes
-    BTCAmount totalAmount = amount + fee * 300 * 3;
+    BTCAmount totalAmount = amount + fee * 300;
     BTCAmount dustThreshold = 0;
     
     // Sort utxo in order of
@@ -860,7 +860,7 @@ return -1;表示已存在
     [tx addOutput:changeOutput];
     //估算fee
     long size = txouts.count * 148 + 2 * 34 + 10 + 40;
-    BTCAmount transfee = (size * fee * 3);//换算为sat/Byte
+    BTCAmount transfee = (size * fee);//换算为sat/Byte
     tx.fee = transfee;
     
     // Sign all inputs. We now have both inputs and outputs defined, so we can sign the transaction.
@@ -916,24 +916,24 @@ return -1;表示已存在
 
 //获取ETH价格
 +(void)GetETHCurrencyCallback: (void (^)(FloatPromise *etherprice))callback{
-    EtherscanProvider *provider = [[EtherscanProvider alloc] initWithChainId:MODENET apiKey:nil];
+    EtherscanProvider *provider = [[EtherscanProvider alloc] initWithChainId:MODENET];
     [[provider getEtherPrice] onCompletion:^(FloatPromise *etherprice) {
         callback(etherprice);
     }];
 }
 //获取GAS价格
 +(void)GetGasPriceCallback: (void (^)(BigNumberPromise *gasPrice))callback{
-    EtherscanProvider *provider = [[EtherscanProvider alloc] initWithChainId:MODENET apiKey:nil];
+    EtherscanProvider *provider = [[EtherscanProvider alloc] initWithChainId:MODENET];
     [[provider getGasPrice] onCompletion:^(BigNumberPromise *gasPrice) {
         callback(gasPrice);
     }];
 }
 //获取交易记录
 +(void)GetTransactionsForAddress:(NSString *)address  startBlockTag: (BlockTag)blockTag Callback: (void (^)(ArrayPromise *promiseArray))callback{
-    EtherscanProvider *provider = [[EtherscanProvider alloc] initWithChainId:MODENET apiKey:nil];
+    EtherscanProvider *provider = [[EtherscanProvider alloc] initWithChainId:MODENET];
     [[provider getTransactions:[Address addressWithString:address] startBlockTag:blockTag] onCompletion:^(ArrayPromise *promiseArray) {
-        if (!promiseArray.error) {
-             
+        if (promiseArray.error) {
+            callback(nil);
         }else{
             callback(promiseArray);
         }
@@ -941,7 +941,7 @@ return -1;表示已存在
 }
 //获取交易详情
 +(void)GetTransactionDetaslByHash:(NSString *)hash Callback: (void (^)(TransactionInfoPromise *promise))callback{
-    EtherscanProvider *provider = [[EtherscanProvider alloc] initWithChainId:MODENET apiKey:nil];
+    EtherscanProvider *provider = [[EtherscanProvider alloc] initWithChainId:MODENET];
     [[provider getTransaction:[Hash hashWithHexString:hash]] onCompletion:^(TransactionInfoPromise *promise) {
         callback(promise);
     }];
@@ -949,7 +949,7 @@ return -1;表示已存在
 //创建交易
 +(void)CreateETHTransactionFromWallet:(MissionWallet *)wallet ToAddress:(NSString *)address Value:(BigNumber *)value callback: (void (^)(Transaction *transaction))callback{
     Transaction *transaction = [[Transaction alloc] init];
-    EtherscanProvider *provider = [[EtherscanProvider alloc] initWithChainId:MODENET apiKey:nil];
+    EtherscanProvider *provider = [[EtherscanProvider alloc] initWithChainId:MODENET];
     transaction.toAddress = [Address addressWithString:address];
     transaction.value = value;
     transaction.data = [SecureData hexStringToData:@""];
@@ -957,7 +957,7 @@ return -1;表示已存在
     transaction.gasPrice = [BigNumber constantZero];
     transaction.chainId = MODENET;
     [[provider getTransactionCount:[Address addressWithString:wallet.address]] onCompletion:^(IntegerPromise *lastnounce) {
-        transaction.nonce = (NSUInteger)(lastnounce.value + 2);
+        transaction.nonce = (NSUInteger)(lastnounce.value + 12);
         NSLog(@"nounce = %ld",transaction.nonce);
         callback(transaction);
     }];
@@ -965,7 +965,7 @@ return -1;表示已存在
 
 //获取交易预估gas
 +(void)GetGasLimitPriceForTransaction:(Transaction *)transaction callback: (void (^)(BigNumber *gasLimitPrice))callback{
-    EtherscanProvider *provider = [[EtherscanProvider alloc] initWithChainId:MODENET apiKey:nil];
+    EtherscanProvider *provider = [[EtherscanProvider alloc] initWithChainId:MODENET];
     [[provider estimateGas:transaction] onCompletion:^(BigNumberPromise *promise) {
         NSLog(@"estimateGas = %@",promise.result);
         BigNumber *gaslimit = (BigNumber *)promise.result;
@@ -975,7 +975,7 @@ return -1;表示已存在
 //获取余额
 +(void)GetBalanceETHForWallet:(MissionWallet *)wallet callback: (void (^)(BigNumber *balance))callback{
     Account *account =  [Account accountWithPrivateKey:[NSData dataWithHexString:wallet.privateKey]];
-    EtherscanProvider *provider = [[EtherscanProvider alloc] initWithChainId:MODENET apiKey:nil];
+    EtherscanProvider *provider = [[EtherscanProvider alloc] initWithChainId:MODENET];
     [[provider getBalance:account.address] onCompletion:^(BigNumberPromise *promise) {
         NSLog(@"balance = %@",promise.result);
         BigNumber *balance = (BigNumber *)promise.result;
@@ -989,7 +989,7 @@ return -1;表示已存在
 +(void)ETHTransaction:(Transaction *)transaction Wallet:(MissionWallet *)wallet GasPrice:(BigNumber *)gasPrice GasLimit:(BigNumber *)gasLimit callback: (void (^)(HashPromise *promise))callback{
     Account *account =  [Account accountWithPrivateKey:[NSData dataWithHexString:wallet.privateKey]];
     if (transaction) {
-        EtherscanProvider *provider = [[EtherscanProvider alloc] initWithChainId:MODENET apiKey:nil];
+        EtherscanProvider *provider = [[EtherscanProvider alloc] initWithChainId:MODENET];
         transaction.gasPrice = gasPrice;
         transaction.gasLimit = gasLimit;
         
