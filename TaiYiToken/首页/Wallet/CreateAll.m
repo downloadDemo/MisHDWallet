@@ -762,7 +762,7 @@ return -1;表示已存在
                     }
                     utxos = utoxarray;
                     [CreateAll DoTransBTCKey:wallet UTXO:utxos to:destinationAddress change:changeAddress amount:amount fee:fee api:btcApi callback:^(BTCTransaction *result, NSError *error) {
-                        result.confirmations = 0;
+//                        result.confirmations = 0;
                         callback(result,error);
                     }];
 
