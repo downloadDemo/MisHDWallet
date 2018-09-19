@@ -123,6 +123,8 @@
 //导出私钥
 +(void)ExportPrivateKeyByPassword:(NSString *)password CoinType:(CoinType)coinType WalletAddress:(NSString *)walletAddress  index:(UInt32)index  callback: (void (^)(NSString *privateKey, NSError *error))callback;
 
+//验证某钱包的密码
++(void)VerifyPassword:(NSString *)password WalletAddress:(NSString *)walletAddress callback: (void (^)(BOOL passwordIsRight, NSError *error))callback;
 
 
 
@@ -150,7 +152,8 @@
 
 
 
-
+//TODO
+//增加钱包存储使用密码加密，解锁使用密码加密，一定时间内未登录 再登录时需要密码解锁钱包对象 
 
 
 

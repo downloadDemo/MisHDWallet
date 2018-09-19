@@ -136,10 +136,9 @@
 -(void)addAddress{
     //对导入的钱包另外考虑
     //TODO
-    
-    
-    
-    
+    BTCPrivateKeyAddress *pkaddr = [BTCPrivateKeyAddress addressWithString:self.wallet.privateKey];
+    BTCKey* key1 = [[BTCKey alloc]initWithPrivateKeyAddress:pkaddr];
+
     UInt32 index = (UInt32) self.existAddressArray.count;
     BTCKey *key = [CreateAll CreateBTCAddressAtIndex:index ExtendKey:self.wallet.BIP32ExtendedPublicKey];
     [self.wallet.addressarray addObject:key.compressedPublicKeyAddress.string];

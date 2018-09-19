@@ -438,7 +438,21 @@ return -1;表示已存在
         callback(hexprivatekey,error);
     }];
 }
-
+//验证某钱包的密码
++(void)VerifyPassword:(NSString *)password WalletAddress:(NSString *)walletAddress callback: (void (^)(BOOL passwordIsRight, NSError *error))callback{
+    NSString *json = [[NSUserDefaults standardUserDefaults]  objectForKey:[NSString stringWithFormat:@"keystore%@",walletAddress]];
+    if (json == nil || [json isEqual:[NSNull null]]) {
+        callback(NO,nil);
+        return;
+    }
+    [Account decryptSecretStorageJSON:json password:password callback:^(Account *decryptedAccount, NSError *error) {
+        if (!error) {
+            callback(YES,error);
+        }else{
+            callback(NO,error);
+        }
+    }];
+}
 /*
  ********************************************** 钱包账号存取管理 *******************************************************************
  */
@@ -613,7 +627,8 @@ return -1;表示已存在
     
     switch (btcApi) {
         case BTCAPIBlockchain: {
-      /*      NSError* error = nil;
+      /*
+            NSError* error = nil;
             NSArray* utxos = nil;
             
             BTCBlockchainInfo* bci = [[BTCBlockchainInfo alloc] init];
