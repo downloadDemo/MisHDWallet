@@ -116,7 +116,7 @@
 /*
  
  */
-#import <eosio/eosio.h>
+
 
 
 #import "CreateAll.h"

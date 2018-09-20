@@ -110,8 +110,6 @@
 		848180602123B2630007DCF9 /* NSData+CommonCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = 8481805B2123B2620007DCF9 /* NSData+CommonCrypto.m */; };
 		848180612123B2630007DCF9 /* PBKDF2.m in Sources */ = {isa = PBXBuildFile; fileRef = 8481805C2123B2620007DCF9 /* PBKDF2.m */; };
 		848180BB2123C72A0007DCF9 /* ContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 848180B92123C72A0007DCF9 /* ContainerViewController.m */; };
-		8484F29721537EF6005992B1 /* eosio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8484F29621537EF6005992B1 /* eosio.framework */; };
-		8484F29821537F1A005992B1 /* eosio.framework in Resources */ = {isa = PBXBuildFile; fileRef = 8484F29621537EF6005992B1 /* eosio.framework */; };
 		84A9FF5721368830006F9D1B /* KLinePointModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8428A54D21255333003E1DD8 /* KLinePointModel.m */; };
 		84B0A9482122736B002EFA0A /* CustomizedTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B0A94321227369002EFA0A /* CustomizedTabBarController.m */; };
 		84B0A9492122736B002EFA0A /* CustomizedNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B0A9442122736A002EFA0A /* CustomizedNavigationController.m */; };
@@ -384,7 +382,6 @@
 		8481805C2123B2620007DCF9 /* PBKDF2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBKDF2.m; sourceTree = "<group>"; };
 		848180B92123C72A0007DCF9 /* ContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContainerViewController.m; sourceTree = "<group>"; };
 		848180BA2123C72A0007DCF9 /* ContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContainerViewController.h; sourceTree = "<group>"; };
-		8484F29621537EF6005992B1 /* eosio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = eosio.framework; sourceTree = "<group>"; };
 		84B0A94221227369002EFA0A /* CustomizedNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomizedNavigationController.h; sourceTree = "<group>"; };
 		84B0A94321227369002EFA0A /* CustomizedTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomizedTabBarController.m; sourceTree = "<group>"; };
 		84B0A9442122736A002EFA0A /* CustomizedNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomizedNavigationController.m; sourceTree = "<group>"; };
@@ -479,7 +476,6 @@
 			files = (
 				842FEE0A213D22860075716E /* AVFoundation.framework in Frameworks */,
 				847BC60C21355613000B02AC /* libPods-TaiYiToken.a in Frameworks */,
-				8484F29721537EF6005992B1 /* eosio.framework in Frameworks */,
 				847BC60B21355289000B02AC /* libstdc++.tbd in Frameworks */,
 				84C0DF33212D4F1E00BCC91D /* libiconv.tbd in Frameworks */,
 				84C8E7DA212A976800627445 /* Foundation.framework in Frameworks */,
@@ -761,7 +757,6 @@
 		6AC5FF18C18AADA88B0CA162 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				8484F29621537EF6005992B1 /* eosio.framework */,
 				842FEE09213D22850075716E /* AVFoundation.framework */,
 				0415BDBD213586C70022DEB7 /* ethers.framework */,
 				847BC60A21355288000B02AC /* libstdc++.tbd */,
@@ -1519,7 +1514,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8484F29821537F1A005992B1 /* eosio.framework in Resources */,
 				0415BDBE213586C70022DEB7 /* ethers.framework in Resources */,
 				84D0E42E21211AAF004E65AD /* LaunchScreen.storyboard in Resources */,
 				842FEDF421392DB90075716E /* Images.xcassets in Resources */,

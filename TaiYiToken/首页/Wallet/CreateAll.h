@@ -109,7 +109,8 @@
 +(NSString *)RemoveImportedWallet:(MissionWallet *)wallet;
 
 
-
+//创建EOS KeyPair
++(void)CreateEOSKeyPairWithMnemonicCode:(NSString *)mnemonic;
 
 /*
  ************************************************** 钱包导出 *************************************

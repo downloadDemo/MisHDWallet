@@ -191,6 +191,15 @@
 }
 
 
+//创建EOS KeyPair
++(void)CreateEOSKeyPairWithMnemonicCode:(NSString *)mnemonic{
+    //
+//    mnemonic = @"yard impulse luxury drive today throw farm pepper survey wreck glass federal";
+
+    
+    
+}
+
 //生成地址二维码
 +(UIImage *)CreateQRCodeForAddress:(NSString *)address{
     if (address == nil || [address isEqualToString:@""]) {
