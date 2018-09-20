@@ -148,7 +148,7 @@
 +(MissionWallet *)GetMissionWalletByName:(NSString *)walletname;
 
 //存储钱包
-+(void)SaveWallet:(MissionWallet *)wallet Name:(NSString *)walletname WalletType:(WALLET_TYPE)walletType;
++(void)SaveWallet:(MissionWallet *)wallet Name:(NSString *)walletname WalletType:(WALLET_TYPE)walletType Password:(NSString *)password;
 
 
 

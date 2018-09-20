@@ -236,7 +236,7 @@
         }else{
             if (!error) {//无错误
                 //存钱包
-                [CreateAll SaveWallet:wallet Name:wallet.walletName WalletType:IMPORT_WALLET];
+                [CreateAll SaveWallet:wallet Name:wallet.walletName WalletType:IMPORT_WALLET Password:password];
                 completionHandler(wallet,nil);
             }
         }
@@ -289,7 +289,7 @@ return nil; 表示钱包已存在
         return nil;
     }
     wallet.importType = IMPORT_BY_PRIVATEKEY;
-    [CreateAll SaveWallet:wallet Name:wallet.walletName WalletType:IMPORT_WALLET];
+    [CreateAll SaveWallet:wallet Name:wallet.walletName WalletType:IMPORT_WALLET Password:password];
     [CreateAll CreateKeyStoreByPrivateKey:wallet.privateKey WalletAddress:wallet.address Password:password callback:^(Account *account, NSError *error) {
     }];
     return wallet;
@@ -307,7 +307,7 @@ return nil; 表示钱包已存在
             callback(nil,error);
         }else{
             wallet.importType = IMPORT_BY_KEYSTORE;
-            [CreateAll SaveWallet:wallet Name:wallet.walletName WalletType:IMPORT_WALLET];
+            [CreateAll SaveWallet:wallet Name:wallet.walletName WalletType:IMPORT_WALLET Password:password];
             callback(wallet,error);
         }
        
@@ -499,7 +499,8 @@ return -1;表示已存在
 }
 
 //存储钱包
-+(void)SaveWallet:(MissionWallet *)wallet Name:(NSString *)walletname WalletType:(WALLET_TYPE)walletType{
++(void)SaveWallet:(MissionWallet *)wallet Name:(NSString *)walletname WalletType:(WALLET_TYPE)walletType Password:(NSString *)password{
+    //password预留
     wallet.walletName = walletname;
     wallet.walletType = walletType;
     //1.存钱包
@@ -554,6 +555,11 @@ return -1;表示已存在
         return NO;
     }
 }
+
+
+
+
+
 /*
  ********************************************** BTC转账 *******************************************************************
  */
@@ -762,7 +768,6 @@ return -1;表示已存在
                     }
                     utxos = utoxarray;
                     [CreateAll DoTransBTCKey:wallet UTXO:utxos to:destinationAddress change:changeAddress amount:amount fee:fee api:btcApi callback:^(BTCTransaction *result, NSError *error) {
-//                        result.confirmations = 0;
                         callback(result,error);
                     }];
 

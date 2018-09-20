@@ -147,8 +147,8 @@
     //创建完成 清除密码
     [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"password"];
 
-    [CreateAll SaveWallet:walletBTC Name:@"walletBTC" WalletType:LOCAL_WALLET];
-    [CreateAll SaveWallet:walletETH Name:@"walletETH" WalletType:LOCAL_WALLET];
+    [CreateAll SaveWallet:walletBTC Name:@"walletBTC" WalletType:LOCAL_WALLET Password:password];
+    [CreateAll SaveWallet:walletETH Name:@"walletETH" WalletType:LOCAL_WALLET Password:password];
     
     [[NSUserDefaults standardUserDefaults]  setBool:YES forKey:@"ifHasAccount"];
 }

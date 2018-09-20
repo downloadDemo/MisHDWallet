@@ -34,7 +34,7 @@
     self.navigationController.hidesBottomBarWhenPushed = NO;
     //离开页面，更新选择的地址
     self.wallet.selectedBTCAddress = self.existAddressArray[self.selectedIndexPath.row];
-    [CreateAll SaveWallet:self.wallet Name:self.wallet.walletName WalletType:self.wallet.walletType];
+    [CreateAll SaveWallet:self.wallet Name:self.wallet.walletName WalletType:self.wallet.walletType Password:nil];
 }
 - (void)popAction{
     [self.navigationController popViewControllerAnimated:YES];
@@ -142,7 +142,7 @@
     UInt32 index = (UInt32) self.existAddressArray.count;
     BTCKey *key = [CreateAll CreateBTCAddressAtIndex:index ExtendKey:self.wallet.BIP32ExtendedPublicKey];
     [self.wallet.addressarray addObject:key.compressedPublicKeyAddress.string];
-    [CreateAll SaveWallet:self.wallet Name:self.wallet.walletName WalletType:self.wallet.walletType];
+    [CreateAll SaveWallet:self.wallet Name:self.wallet.walletName WalletType:self.wallet.walletType Password:nil];
     [self.existAddressArray addObject:key.compressedPublicKeyAddress.string];
     [self.tableView reloadData];
     NSLog(@"add address = %@",key.compressedPublicKeyAddress.string);
