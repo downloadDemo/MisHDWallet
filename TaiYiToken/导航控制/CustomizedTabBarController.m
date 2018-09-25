@@ -13,6 +13,7 @@
 #import "ContainerViewController.h"
 #import "UserInfoVC.h"
 #import "HomePageVC.h"
+#import "JavascriptWebViewController.h"
 @interface CustomizedTabBarController ()<CustomTabBarDelegate>
 @property(nonatomic)double anglesec;
 @property(nonatomic)double angle;

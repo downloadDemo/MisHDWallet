@@ -362,10 +362,10 @@
             dvc.fromAddress = addr;
             dvc.toAddress = self.wallet.address;
         }else if (model.selectType == OUT_Trans){
-            dvc.fromAddress = self.wallet.address;
+            dvc.fromAddress = addr;
             dvc.toAddress = self.wallet.address;
         }else if (model.selectType == SELF_Trans){
-            dvc.fromAddress = addr;
+            dvc.fromAddress = self.wallet.address;
             dvc.toAddress = self.wallet.address;
         }
     }else if(self.wallet.coinType == ETH){

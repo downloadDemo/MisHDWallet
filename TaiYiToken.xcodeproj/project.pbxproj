@@ -110,6 +110,18 @@
 		848180602123B2630007DCF9 /* NSData+CommonCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = 8481805B2123B2620007DCF9 /* NSData+CommonCrypto.m */; };
 		848180612123B2630007DCF9 /* PBKDF2.m in Sources */ = {isa = PBXBuildFile; fileRef = 8481805C2123B2620007DCF9 /* PBKDF2.m */; };
 		848180BB2123C72A0007DCF9 /* ContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 848180B92123C72A0007DCF9 /* ContainerViewController.m */; };
+		8484F37F2159B9F1005992B1 /* WebViewJavascriptBridgeBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 8484F3772159B9F1005992B1 /* WebViewJavascriptBridgeBase.m */; };
+		8484F3802159B9F1005992B1 /* WKWebViewJavascriptBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 8484F3782159B9F1005992B1 /* WKWebViewJavascriptBridge.m */; };
+		8484F3812159B9F1005992B1 /* WebViewJavascriptBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 8484F3792159B9F1005992B1 /* WebViewJavascriptBridge.m */; };
+		8484F3822159B9F1005992B1 /* WebViewJavascriptBridge_JS.m in Sources */ = {isa = PBXBuildFile; fileRef = 8484F37C2159B9F1005992B1 /* WebViewJavascriptBridge_JS.m */; };
+		8484F38D2159BA0A005992B1 /* Javascript.html in Resources */ = {isa = PBXBuildFile; fileRef = 8484F3892159BA09005992B1 /* Javascript.html */; };
+		8484F38E2159BA0A005992B1 /* Eos.js in Resources */ = {isa = PBXBuildFile; fileRef = 8484F38A2159BA09005992B1 /* Eos.js */; };
+		8484F3942159BA3A005992B1 /* QuoteLocalHtmlTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 8484F3902159BA39005992B1 /* QuoteLocalHtmlTool.m */; };
+		8484F3952159BA3A005992B1 /* JavascriptWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8484F3932159BA39005992B1 /* JavascriptWebViewController.m */; };
+		8484F3992159CB13005992B1 /* UserInfoHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8484F3982159CB13005992B1 /* UserInfoHeadView.m */; };
+		8484F39C2159CDB9005992B1 /* ImageTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8484F39B2159CDB9005992B1 /* ImageTextCell.m */; };
+		8484F3A02159D9CA005992B1 /* AccountConfigVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8484F39F2159D9CA005992B1 /* AccountConfigVC.m */; };
+		8484F3A62159DA63005992B1 /* UserConfigCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8484F3A52159DA63005992B1 /* UserConfigCell.m */; };
 		84A9FF5721368830006F9D1B /* KLinePointModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8428A54D21255333003E1DD8 /* KLinePointModel.m */; };
 		84B0A9482122736B002EFA0A /* CustomizedTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B0A94321227369002EFA0A /* CustomizedTabBarController.m */; };
 		84B0A9492122736B002EFA0A /* CustomizedNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B0A9442122736A002EFA0A /* CustomizedNavigationController.m */; };
@@ -382,6 +394,28 @@
 		8481805C2123B2620007DCF9 /* PBKDF2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBKDF2.m; sourceTree = "<group>"; };
 		848180B92123C72A0007DCF9 /* ContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContainerViewController.m; sourceTree = "<group>"; };
 		848180BA2123C72A0007DCF9 /* ContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContainerViewController.h; sourceTree = "<group>"; };
+		8484F3772159B9F1005992B1 /* WebViewJavascriptBridgeBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewJavascriptBridgeBase.m; sourceTree = "<group>"; };
+		8484F3782159B9F1005992B1 /* WKWebViewJavascriptBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKWebViewJavascriptBridge.m; sourceTree = "<group>"; };
+		8484F3792159B9F1005992B1 /* WebViewJavascriptBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewJavascriptBridge.m; sourceTree = "<group>"; };
+		8484F37A2159B9F1005992B1 /* WebViewJavascriptBridge_JS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewJavascriptBridge_JS.h; sourceTree = "<group>"; };
+		8484F37B2159B9F1005992B1 /* WebViewJavascriptBridgeBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewJavascriptBridgeBase.h; sourceTree = "<group>"; };
+		8484F37C2159B9F1005992B1 /* WebViewJavascriptBridge_JS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewJavascriptBridge_JS.m; sourceTree = "<group>"; };
+		8484F37D2159B9F1005992B1 /* WebViewJavascriptBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewJavascriptBridge.h; sourceTree = "<group>"; };
+		8484F37E2159B9F1005992B1 /* WKWebViewJavascriptBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKWebViewJavascriptBridge.h; sourceTree = "<group>"; };
+		8484F3892159BA09005992B1 /* Javascript.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Javascript.html; sourceTree = "<group>"; };
+		8484F38A2159BA09005992B1 /* Eos.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Eos.js; sourceTree = "<group>"; };
+		8484F3902159BA39005992B1 /* QuoteLocalHtmlTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuoteLocalHtmlTool.m; sourceTree = "<group>"; };
+		8484F3912159BA39005992B1 /* JavascriptWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JavascriptWebViewController.h; sourceTree = "<group>"; };
+		8484F3922159BA39005992B1 /* QuoteLocalHtmlTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuoteLocalHtmlTool.h; sourceTree = "<group>"; };
+		8484F3932159BA39005992B1 /* JavascriptWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JavascriptWebViewController.m; sourceTree = "<group>"; };
+		8484F3972159CB13005992B1 /* UserInfoHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = UserInfoHeadView.h; path = ../../../../../../Documents/UserInfoHeadView.h; sourceTree = "<group>"; };
+		8484F3982159CB13005992B1 /* UserInfoHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = UserInfoHeadView.m; path = ../../../../../../Documents/UserInfoHeadView.m; sourceTree = "<group>"; };
+		8484F39A2159CDB9005992B1 /* ImageTextCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ImageTextCell.h; path = ../../../../../../Documents/ImageTextCell.h; sourceTree = "<group>"; };
+		8484F39B2159CDB9005992B1 /* ImageTextCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ImageTextCell.m; path = ../../../../../../Documents/ImageTextCell.m; sourceTree = "<group>"; };
+		8484F39E2159D9CA005992B1 /* AccountConfigVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AccountConfigVC.h; path = ../../../../../../Documents/AccountConfigVC.h; sourceTree = "<group>"; };
+		8484F39F2159D9CA005992B1 /* AccountConfigVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AccountConfigVC.m; path = ../../../../../../Documents/AccountConfigVC.m; sourceTree = "<group>"; };
+		8484F3A42159DA63005992B1 /* UserConfigCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = UserConfigCell.h; path = ../../../../../../Documents/UserConfigCell.h; sourceTree = "<group>"; };
+		8484F3A52159DA63005992B1 /* UserConfigCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = UserConfigCell.m; path = ../../../../../../Documents/UserConfigCell.m; sourceTree = "<group>"; };
 		84B0A94221227369002EFA0A /* CustomizedNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomizedNavigationController.h; sourceTree = "<group>"; };
 		84B0A94321227369002EFA0A /* CustomizedTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomizedTabBarController.m; sourceTree = "<group>"; };
 		84B0A9442122736A002EFA0A /* CustomizedNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomizedNavigationController.m; sourceTree = "<group>"; };
@@ -996,6 +1030,8 @@
 		843EC9C421212102002D5C2A /* 我的 */ = {
 			isa = PBXGroup;
 			children = (
+				8484F39D2159D99C005992B1 /* OperationDetail */,
+				8484F3962159CAD5005992B1 /* View */,
 				84748846212BC2EC0077AC0F /* UserInfoVC.h */,
 				84748847212BC2EC0077AC0F /* UserInfoVC.m */,
 			);
@@ -1005,6 +1041,8 @@
 		843EC9C52121212D002D5C2A /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				8484F3882159BA09005992B1 /* JavascriptFile */,
+				8484F3762159B9F1005992B1 /* WebViewJavascriptBridge */,
 				848180522123B2620007DCF9 /* AESCrypt */,
 				843ECA322121631F002D5C2A /* CQMarqueeView */,
 				843ECA2E2121630A002D5C2A /* RegularExpression */,
@@ -1223,6 +1261,63 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		8484F3762159B9F1005992B1 /* WebViewJavascriptBridge */ = {
+			isa = PBXGroup;
+			children = (
+				8484F3772159B9F1005992B1 /* WebViewJavascriptBridgeBase.m */,
+				8484F3782159B9F1005992B1 /* WKWebViewJavascriptBridge.m */,
+				8484F3792159B9F1005992B1 /* WebViewJavascriptBridge.m */,
+				8484F37A2159B9F1005992B1 /* WebViewJavascriptBridge_JS.h */,
+				8484F37B2159B9F1005992B1 /* WebViewJavascriptBridgeBase.h */,
+				8484F37C2159B9F1005992B1 /* WebViewJavascriptBridge_JS.m */,
+				8484F37D2159B9F1005992B1 /* WebViewJavascriptBridge.h */,
+				8484F37E2159B9F1005992B1 /* WKWebViewJavascriptBridge.h */,
+			);
+			path = WebViewJavascriptBridge;
+			sourceTree = "<group>";
+		};
+		8484F3882159BA09005992B1 /* JavascriptFile */ = {
+			isa = PBXGroup;
+			children = (
+				8484F3892159BA09005992B1 /* Javascript.html */,
+				8484F38A2159BA09005992B1 /* Eos.js */,
+			);
+			path = JavascriptFile;
+			sourceTree = "<group>";
+		};
+		8484F38F2159BA39005992B1 /* JavascriptWebViewController */ = {
+			isa = PBXGroup;
+			children = (
+				8484F3922159BA39005992B1 /* QuoteLocalHtmlTool.h */,
+				8484F3902159BA39005992B1 /* QuoteLocalHtmlTool.m */,
+				8484F3912159BA39005992B1 /* JavascriptWebViewController.h */,
+				8484F3932159BA39005992B1 /* JavascriptWebViewController.m */,
+			);
+			path = JavascriptWebViewController;
+			sourceTree = "<group>";
+		};
+		8484F3962159CAD5005992B1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8484F3972159CB13005992B1 /* UserInfoHeadView.h */,
+				8484F3982159CB13005992B1 /* UserInfoHeadView.m */,
+				8484F39A2159CDB9005992B1 /* ImageTextCell.h */,
+				8484F39B2159CDB9005992B1 /* ImageTextCell.m */,
+				8484F3A42159DA63005992B1 /* UserConfigCell.h */,
+				8484F3A52159DA63005992B1 /* UserConfigCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8484F39D2159D99C005992B1 /* OperationDetail */ = {
+			isa = PBXGroup;
+			children = (
+				8484F39E2159D9CA005992B1 /* AccountConfigVC.h */,
+				8484F39F2159D9CA005992B1 /* AccountConfigVC.m */,
+			);
+			path = OperationDetail;
+			sourceTree = "<group>";
+		};
 		84B0A94D21228B94002EFA0A /* 首页 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1320,6 +1415,7 @@
 		84C8E7CF212A95D000627445 /* Wallet */ = {
 			isa = PBXGroup;
 			children = (
+				8484F38F2159BA39005992B1 /* JavascriptWebViewController */,
 				847BC6062133DFD2000B02AC /* Model */,
 				84C0DF27212CFF6100BCC91D /* category */,
 				84C0DF25212CFF3700BCC91D /* BRKey.h */,
@@ -1515,10 +1611,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				0415BDBE213586C70022DEB7 /* ethers.framework in Resources */,
+				8484F38D2159BA0A005992B1 /* Javascript.html in Resources */,
 				84D0E42E21211AAF004E65AD /* LaunchScreen.storyboard in Resources */,
 				842FEDF421392DB90075716E /* Images.xcassets in Resources */,
 				0415BDA02131BC850022DEB7 /* YYFiveRecordTableViewCell.xib in Resources */,
 				84B0A94C21227892002EFA0A /* Assets.xcassets in Resources */,
+				8484F38E2159BA0A005992B1 /* Eos.js in Resources */,
 				84D0E42921211AAB004E65AD /* Main.storyboard in Resources */,
 				84C8E7D1212A95EC00627445 /* english.txt in Resources */,
 			);
@@ -1606,6 +1704,7 @@
 				84B8D5392150C8BB00286631 /* RecordDetailLabel.m in Sources */,
 				84A9FF5721368830006F9D1B /* KLinePointModel.m in Sources */,
 				843EC9DC21212271002D5C2A /* UIView+HUD.m in Sources */,
+				8484F39C2159CDB9005992B1 /* ImageTextCell.m in Sources */,
 				848180BB2123C72A0007DCF9 /* ContainerViewController.m in Sources */,
 				842FEE76213FBFF90075716E /* AnnounceView.m in Sources */,
 				842FEE48213E38510075716E /* MySwitch.m in Sources */,
@@ -1619,8 +1718,10 @@
 				842FEE14213D26030075716E /* WBQRCodeVC.m in Sources */,
 				84FA0821212BE3AF00DCFC0C /* CreateAll.m in Sources */,
 				842FEE892141286B0075716E /* SetPasswordView.m in Sources */,
+				8484F37F2159B9F1005992B1 /* WebViewJavascriptBridgeBase.m in Sources */,
 				842FEE9021422D500075716E /* ImportETHWalletVC.m in Sources */,
 				843ECA2C212162FB002D5C2A /* NSString+Extention.m in Sources */,
+				8484F3A02159D9CA005992B1 /* AccountConfigVC.m in Sources */,
 				0415BDA52131BC850022DEB7 /* YYStockView_Kline.m in Sources */,
 				842FEE15213D26030075716E /* ScanSuccessJumpVC.m in Sources */,
 				84B0A9642122CD7B002EFA0A /* RemindView.m in Sources */,
@@ -1661,6 +1762,7 @@
 				842FEDEF2137DEDA0075716E /* MarketDetailTextViewCell.m in Sources */,
 				0415BD992131BC850022DEB7 /* YYStockVariable.m in Sources */,
 				0415BD9E2131BC850022DEB7 /* YYStockView_TimeLine.m in Sources */,
+				8484F3822159B9F1005992B1 /* WebViewJavascriptBridge_JS.m in Sources */,
 				84B0A9572122ABD5002EFA0A /* CreateAccountVC.m in Sources */,
 				843EC9E52121228B002D5C2A /* SAMKeyChainEasy.m in Sources */,
 				8428A54521242323003E1DD8 /* MarketCell.m in Sources */,
@@ -1668,6 +1770,7 @@
 				842FEE64213F5FF20075716E /* Customlayout.m in Sources */,
 				8460C7B22136A446002E4B2F /* YYFiveRecordModel.m in Sources */,
 				0415BDA72131BC850022DEB7 /* YYStockViewMaskView.m in Sources */,
+				8484F3942159BA3A005992B1 /* QuoteLocalHtmlTool.m in Sources */,
 				842FEE9B214A5E330075716E /* TransactionVC.m in Sources */,
 				84B0A9602122C184002EFA0A /* UIImage+Gradient.m in Sources */,
 				84C0DF2A212CFF7700BCC91D /* NSString+Bitcoin.m in Sources */,
@@ -1683,10 +1786,13 @@
 				0415BD982131BC850022DEB7 /* UIColor+YYStockTheme.m in Sources */,
 				84C8E7E3212A9FFD00627445 /* CFFlowButtonView.m in Sources */,
 				0415BDA92131BC850022DEB7 /* YYKline.m in Sources */,
+				8484F3992159CB13005992B1 /* UserInfoHeadView.m in Sources */,
 				8428A548212544F2003E1DD8 /* MarketDetailVC.m in Sources */,
 				84D0E43121211AAF004E65AD /* main.m in Sources */,
+				8484F3802159B9F1005992B1 /* WKWebViewJavascriptBridge.m in Sources */,
 				842FEE4F213E52590075716E /* WalletManagerCell.m in Sources */,
 				0415BDA32131BC850022DEB7 /* YYTimeLineView.m in Sources */,
+				8484F3952159BA3A005992B1 /* JavascriptWebViewController.m in Sources */,
 				0415BD9B2131BC850022DEB7 /* YYStock.m in Sources */,
 				84C8E7E0212A9FEF00627445 /* UIView+Extension.m in Sources */,
 				842FEDFE213CDE2A0075716E /* WalletCell.m in Sources */,
@@ -1725,11 +1831,13 @@
 				843ECA25212162FB002D5C2A /* UIColor+AppConfigColor.m in Sources */,
 				842FEE2B213D27470075716E /* SGWebView.m in Sources */,
 				843ECA2D212162FB002D5C2A /* UIImage+ExFoundation.m in Sources */,
+				8484F3A62159DA63005992B1 /* UserConfigCell.m in Sources */,
 				84748848212BC2EC0077AC0F /* UserInfoVC.m in Sources */,
 				842FEEA5214A5FE80075716E /* TransactionGasView.m in Sources */,
 				84BDD1702126B3DF0039FE09 /* ButtonsView.m in Sources */,
 				842FEE58213E75D60075716E /* ExportWalletCell.m in Sources */,
 				84B8D53C2151E1BA00286631 /* DashesLineView.m in Sources */,
+				8484F3812159B9F1005992B1 /* WebViewJavascriptBridge.m in Sources */,
 				0415BDA42131BC850022DEB7 /* YYTimeLineVolumeView.m in Sources */,
 				842FEE9321475A8F0075716E /* BTCUTXOModel.m in Sources */,
 				84B0A94A2122736B002EFA0A /* CustomTabBar.m in Sources */,
