@@ -50,10 +50,10 @@
     _jvc = [JavascriptWebViewController new];
     [_jvc viewDidLoad];
 //    [_jvc privateKeyGen: @"makePriv"];
-    [_jvc activePrivateKeyGen:@"a3580f8f87e6b59b80df424d63e137ff884866d8866737d3ef8a8b149bfe9749f88876e3366e7409831067239be2667eed60d70f3a3818756baf9444350a3bba" callback:^(id response) {
+    [_jvc activePrivateKeyGen:@"yard impulse luxury drive today throw farm pepper survey wreck glass federal" callback:^(id response) {
         NSLog(@"1: %@",response);
     }];
-    [_jvc activePrivateKeyGen:@"a3580f8f87e6b59b80df424d63e137ff884866d8866737d3ef8a8b149bfe9749f88876e3366e7409831067239be2667eed60d70f3a3818756baf9444350a3bba" callback:^(id response) {
+    [_jvc activePrivateKeyGen: @"yard impulse luxury drive today throw farm pepper survey wreck glass federal" callback:^(id response) {
         NSLog(@"2: %@",response);
     }];
 }

@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TaiYiToken/&#x9996;&#x9875;/&#x9996;&#x9875;&#x94b1;&#x5305;/&#x5bfc;&#x5165;HD&#x94b1;&#x5305;/ImportHDWalletVC.m"
-            timestampString = "559560684.744938"
+            timestampString = "559562519.2105581"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "187"
@@ -73,7 +73,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TaiYiToken/&#x9996;&#x9875;/Wallet/JavascriptWebViewController/JavascriptWebViewController.m"
-            timestampString = "559560684.745021"
+            timestampString = "559562519.210657"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "42"
@@ -89,7 +89,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TaiYiToken/&#x9996;&#x9875;/Wallet/JavascriptWebViewController/JavascriptWebViewController.m"
-            timestampString = "559560684.745092"
+            timestampString = "559562519.210744"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "55"
@@ -105,12 +105,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TaiYiToken/&#x9996;&#x9875;/Wallet/JavascriptWebViewController/JavascriptWebViewController.m"
-            timestampString = "559560684.745155"
+            timestampString = "559562519.210819"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "56"
             endingLineNumber = "56"
             landmarkName = "-initWebViewConfig"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TaiYiToken/&#x9996;&#x9875;/Wallet/JavascriptWebViewController/JavascriptWebViewController.m"
+            timestampString = "559562519.210956"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "117"
+            endingLineNumber = "117"
+            landmarkName = "-activePrivateKeyGen:callback:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
