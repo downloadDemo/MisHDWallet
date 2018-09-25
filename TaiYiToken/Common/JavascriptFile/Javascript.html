@@ -44,24 +44,22 @@
 			responseCallback(responseData)
 		})
     
-      //生成私钥active_privateKeyGen
-       bridge.registerHandler('active_privateKeyGen', function(data ,
-            responseCallback){
-            setTimeout(function () {
-            const ecc = Eos.modules.ecc;
-            const seedPrivate = ecc.seedPrivate(data)
-            responseCallback(seedPrivate.toString());
-            }, 0);
-          }
-       )
+    //生成私钥active_privateKeyGen
+    bridge.registerHandler('active_privateKeyGen', function(data ,
+        responseCallback){
+        setTimeout(function () {
+        const ecc = Eos.modules.ecc;
+        const seedPrivate = ecc.seedPrivate(data)
+        responseCallback(seedPrivate.toString());
+        }, 0);
+    })
     //生成私钥owner_privateKeyGen
     bridge.registerHandler('owner_privateKeyGen', function(data ,
         responseCallback){
         setTimeout(function () {
         const ecc = Eos.modules.ecc;
-        ecc.randomKey(10).then(priv_key => {
-        responseCallback(priv_key.toString());
-        })
+        const seedPrivate = ecc.seedPrivate(data)
+        responseCallback(seedPrivate.toString());
         }, 0);
     })
         

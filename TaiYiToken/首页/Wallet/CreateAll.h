@@ -39,6 +39,8 @@
 #import "NSData+Bitcoin.h"
 #import "NSMutableData+Bitcoin.h"
 #import "BRBIP32Sequence.h"
+
+#import "JavascriptWebViewController.h"
 @interface CreateAll : NSObject
 /*
  ********************************************** 钱包生成/导入/恢复 ***********************************************

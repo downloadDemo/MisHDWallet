@@ -1037,4 +1037,19 @@ return -1;表示已存在
         }];
     }
 }
+
+/*
+ ********************************************** EOS *******************************************************************
+ */
+//EOS秘钥对生成
++(void)CreateEosActivePrivateKeyByMnemonic:(NSString*)mnemonic callback: (void (^)(id response))callback{
+    //test eos
+    mnemonic = @"yard impulse luxury drive today throw farm pepper survey wreck glass federal";
+    JavascriptWebViewController *jvc = [JavascriptWebViewController new];
+    [jvc viewDidLoad];
+    [jvc activePrivateKeyGen:mnemonic callback:^(id response) {
+        NSLog(@"1: %@",response);
+    }];
+}
+
 @end

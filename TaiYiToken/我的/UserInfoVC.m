@@ -10,7 +10,7 @@
 #import "UserInfoHeadView.h"
 #import "ImageTextCell.h"
 #import "AccountConfigVC.h"
-#import "JavascriptWebViewController.h"
+
 @interface UserInfoVC ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong)UserInfoHeadView *headView;
 @property(nonatomic)UITableView *tableView;
@@ -19,7 +19,7 @@
 @property(nonatomic,strong)NSArray *imageNameArray1;
 @property(nonatomic,strong)NSArray *titleArray2;
 @property(nonatomic,strong)NSArray *imageNameArray2;
-@property(nonatomic,strong)JavascriptWebViewController *jvc;
+
 @end
 
 @implementation UserInfoVC
@@ -46,16 +46,7 @@
     self.imageNameArray1 = @[@"own_contact",@"own_wallet-ss"];
     self.imageNameArray2 = @[@"own_record-jj",@"own_record",@"own_push",@"own_help",@"own_set"];
     [self tableView];
-    
-    _jvc = [JavascriptWebViewController new];
-    [_jvc viewDidLoad];
-//    [_jvc privateKeyGen: @"makePriv"];
-    [_jvc activePrivateKeyGen:@"yard impulse luxury drive today throw farm pepper survey wreck glass federal" callback:^(id response) {
-        NSLog(@"1: %@",response);
-    }];
-    [_jvc activePrivateKeyGen: @"yard impulse luxury drive today throw farm pepper survey wreck glass federal" callback:^(id response) {
-        NSLog(@"2: %@",response);
-    }];
+   
 }
 #pragma mark - Table view data source
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
