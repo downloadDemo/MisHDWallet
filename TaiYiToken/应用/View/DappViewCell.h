@@ -11,5 +11,7 @@
 @interface DappViewCell : UICollectionViewCell
 @property(nonatomic)UIImageView *iconImageView;
 @property(nonatomic)UILabel *namelb;
+
+@property(nonatomic)UIView *backView;
 @property(nonatomic)UIView *shadowView;
 @end

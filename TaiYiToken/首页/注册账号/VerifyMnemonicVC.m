@@ -41,7 +41,6 @@
     //将助记词字符串分割为单词,因使用dic初始化optionView时通过枚举已经打乱了顺序 故无需专门打破顺序
     self.mnemonicArray = [[self.mnemonic componentsSeparatedByString:@" "] mutableCopy];
 
-    
     _backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _backBtn.backgroundColor = [UIColor clearColor];
     [_backBtn.imageView setContentMode:UIViewContentModeScaleAspectFit];
@@ -104,7 +103,7 @@
 }
 -(void)nextAction{
    //正式版本移到后面
-    [self CreateWallet];
+  //  [self CreateWallet];
     
     if (self.selectedButtonView.buttonList == nil||self.selectedButtonView.buttonList.count < 12) {
         [self.view showMsg:@"请按顺序选择所有单词！"];

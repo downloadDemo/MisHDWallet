@@ -14,6 +14,7 @@
 #import "UserInfoVC.h"
 #import "HomePageVC.h"
 #import "JavascriptWebViewController.h"
+#import "DappVC.h"
 @interface CustomizedTabBarController ()<CustomTabBarDelegate>
 @property(nonatomic)double anglesec;
 @property(nonatomic)double angle;
@@ -61,7 +62,7 @@ static CustomizedTabBarController* _customizedTabBarController;
     CustomizedNavigationController *manNaVC1 = [[CustomizedNavigationController alloc] initWithRootViewController:manVC1];
     [manNaVC1.titlelb setText:@"行情"];
 
-    UIViewController *manVC11 = [UIViewController new];
+    DappVC *manVC11 = [DappVC new];
     manVC11.view.backgroundColor = kRGBA(255, 255, 255, 1);
     CustomizedNavigationController *manNaVC11 = [[CustomizedNavigationController alloc] initWithRootViewController:manVC11];
     [manNaVC11.titlelb setText:@"应用"];
