@@ -130,26 +130,38 @@
     NSString *password = [[NSUserDefaults standardUserDefaults] objectForKey:@"password"];
     //512位种子 长度为128字符 64Byte
     NSString *seed = [CreateAll CreateSeedByMnemonic:self.mnemonic Password:password];
-
+    
     NSString *xprv = [CreateAll CreateExtendPrivateKeyWithSeed:seed];
     MissionWallet *walletBTC = [CreateAll CreateWalletByXprv:xprv index:0 CoinType:BTC];
     MissionWallet *walletETH = [CreateAll CreateWalletByXprv:xprv index:0 CoinType:ETH];
     //self.mnemonic = @"yard impulse luxury drive today throw farm pepper survey wreck glass federal";
     //创建并存KeyStore
     [CreateAll CreateKeyStoreByMnemonic:self.mnemonic  WalletAddress:walletBTC.address Password:password callback:^(Account *account, NSError *error) {
-        NSLog(@"**** BTC KeyStore finished ! ****");
+        if (account == nil) {
+            [self.view showMsg:@"创建出错！"];
+        }else{
+            NSLog(@"**** BTC KeyStore finished ! ****");
+            [CreateAll SaveWallet:walletBTC Name:@"walletBTC" WalletType:LOCAL_WALLET Password:password];
+            [[NSUserDefaults standardUserDefaults]  setBool:YES forKey:@"ifHasAccount"];
+            [self dismissViewControllerAnimated:YES completion:^{
+                [self.view hideHUD];
+            }];
+        }
+        
     }];
     //创建并存KeyStore
     [CreateAll CreateKeyStoreByMnemonic:self.mnemonic  WalletAddress:walletETH.address Password:password callback:^(Account *account, NSError *error) {
-        NSLog(@"**** ETH KeyStore finished ! ****");
+        if (account == nil) {
+            [self.view showMsg:@"创建出错！"];
+        }else{
+            NSLog(@"**** ETH KeyStore finished ! ****");
+            [CreateAll SaveWallet:walletETH Name:@"walletETH" WalletType:LOCAL_WALLET Password:password];
+            [[NSUserDefaults standardUserDefaults]  setBool:YES forKey:@"ifHasAccount"];
+        }
+        
     }];
     //创建完成 清除密码
     [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"password"];
-
-    [CreateAll SaveWallet:walletBTC Name:@"walletBTC" WalletType:LOCAL_WALLET Password:password];
-    [CreateAll SaveWallet:walletETH Name:@"walletETH" WalletType:LOCAL_WALLET Password:password];
-    
-    [[NSUserDefaults standardUserDefaults]  setBool:YES forKey:@"ifHasAccount"];
 }
 
 

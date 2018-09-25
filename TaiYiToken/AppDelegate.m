@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "CustomizedTabBarController.h"
 #import "SwitchAccountVc.h"
+#import "LaunchIntroductionView.h"
 @interface AppDelegate ()
 
 @end
@@ -18,11 +19,14 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     //启动图延迟
-    [NSThread sleepForTimeInterval:2.0];
-    
+   // [NSThread sleepForTimeInterval:2.0];
     CustomizedTabBarController *csVC = [CustomizedTabBarController sharedCustomizedTabBarController];
     self.window.rootViewController = csVC;
     [self.window makeKeyAndVisible];
+    
+    LaunchIntroductionView *launch = [LaunchIntroductionView sharedWithImages:@[@"launch0",@"launch1",@"launch2",@"launch3"]];
+    launch.currentColor = [UIColor backBlueColorA];
+    launch.nomalColor = [UIColor textLightGrayColor];
     
     return YES;
 }

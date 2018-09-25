@@ -8,12 +8,13 @@
 
 #import "SwitchAccountVc.h"
 #import "CreateAccountVC.h"
-
+#import "ImportHDWalletVC.h"
 @interface SwitchAccountVc ()
 @property(nonatomic)UIButton *createBtn;
 @property(nonatomic)UIButton *importBtn;
 @property(nonatomic)UIImageView *backImageView;
 @property(nonatomic)CreateAccountVC *cvc;
+@property(nonatomic)ImportHDWalletVC *imvc;
 @property(nonatomic)UIButton *quitBtn;
 @end
 
@@ -115,6 +116,8 @@
     [_importBtn gradientButtonWithSize:CGSizeMake(ScreenWidth, 49) colorArray:@[RGB(150, 160, 240),RGB(170, 170, 240)] percentageArray:@[@(0.3),@(1)] gradientType:GradientFromLeftTopToRightBottom];
     _createBtn.tintColor = [UIColor textBlueColor];
     _importBtn.tintColor = [UIColor whiteColor];
+    _imvc = [ImportHDWalletVC new];
+    [self.navigationController pushViewController:_imvc animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

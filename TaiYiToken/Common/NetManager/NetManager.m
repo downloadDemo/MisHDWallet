@@ -7,11 +7,11 @@
 
 #define BASE_URL @"http://159.138.7.23:8080/mission-wallet"
 
-#define BTC_GETBalance_URL @"https://insight.bitpay.com/api/addr/"
-#define BTC_GETTXList_URL @"https://insight.bitpay.com/api/txs"
-#define BTC_GETCurrency_URL @"https://insight.bitpay.com/api/currency"
-#define BTC_GETTXDetail_URL @"https://insight.bitpay.com/api/tx/"
-#define BTC_BroadcastTransaction_URL @"https://insight.bitpay.com/api/tx/send"
+#define BTC_GETBalance_URL @"http://159.138.1.94:3001/insight-api/addr/"
+#define BTC_GETTXList_URL @"http://159.138.1.94:3001/insight-api/txs"
+#define BTC_GETCurrency_URL @"http://159.138.1.94:3001/insight-api/currency"
+#define BTC_GETTXDetail_URL @"http://159.138.1.94:3001/insight-api/tx/"
+#define BTC_BroadcastTransaction_URL @"http://159.138.1.94:3001/insight-api/tx/send"
 
 //BTC testnet
 //ChangeToTESTNET = 0正式网，= 1测试网

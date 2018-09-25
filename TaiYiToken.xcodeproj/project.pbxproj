@@ -29,6 +29,8 @@
 		0415BDAB2131BC850022DEB7 /* YYKlineMaskView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0415BD922131BC850022DEB7 /* YYKlineMaskView.m */; };
 		0415BDAC2131BC850022DEB7 /* YYKlineVolumeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0415BD952131BC850022DEB7 /* YYKlineVolumeView.m */; };
 		0415BDBE213586C70022DEB7 /* ethers.framework in Resources */ = {isa = PBXBuildFile; fileRef = 0415BDBD213586C70022DEB7 /* ethers.framework */; };
+		8414300A215A12C60079EFEC /* LaunchIntroductionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84143008215A12C60079EFEC /* LaunchIntroductionView.m */; };
+		8414300E215A1DD20079EFEC /* ImportHDWalletVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8414300D215A1DD20079EFEC /* ImportHDWalletVC.m */; };
 		8428A53F2123FE76003E1DD8 /* CurrencyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8428A53E2123FE76003E1DD8 /* CurrencyModel.m */; };
 		8428A542212422EC003E1DD8 /* MarketVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8428A541212422EC003E1DD8 /* MarketVC.m */; };
 		8428A54521242323003E1DD8 /* MarketCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8428A54421242323003E1DD8 /* MarketCell.m */; };
@@ -37,7 +39,6 @@
 		842FEDEC2137DB600075716E /* MarketDetailTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 842FEDEB2137DB600075716E /* MarketDetailTextCell.m */; };
 		842FEDEF2137DEDA0075716E /* MarketDetailTextViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 842FEDEE2137DEDA0075716E /* MarketDetailTextViewCell.m */; };
 		842FEDF22138D8770075716E /* WebVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 842FEDF12138D8770075716E /* WebVC.m */; };
-		842FEDF421392DB90075716E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 842FEDF321392DB90075716E /* Images.xcassets */; };
 		842FEDFA213CD39A0075716E /* HomePageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 842FEDF9213CD3990075716E /* HomePageVC.m */; };
 		842FEDFE213CDE2A0075716E /* WalletCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 842FEDFD213CDE2A0075716E /* WalletCell.m */; };
 		842FEE08213D13780075716E /* WalletListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 842FEE07213D13780075716E /* WalletListCell.m */; };
@@ -234,6 +235,10 @@
 		0415BD962131BC850022DEB7 /* YYKlineVolumeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYKlineVolumeView.h; sourceTree = "<group>"; };
 		0415BD972131BC850022DEB7 /* YYStock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYStock.h; sourceTree = "<group>"; };
 		0415BDBD213586C70022DEB7 /* ethers.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ethers.framework; sourceTree = "<group>"; };
+		84143008215A12C60079EFEC /* LaunchIntroductionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchIntroductionView.m; sourceTree = "<group>"; };
+		84143009215A12C60079EFEC /* LaunchIntroductionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchIntroductionView.h; sourceTree = "<group>"; };
+		8414300C215A1DD20079EFEC /* ImportHDWalletVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImportHDWalletVC.h; sourceTree = "<group>"; };
+		8414300D215A1DD20079EFEC /* ImportHDWalletVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImportHDWalletVC.m; sourceTree = "<group>"; };
 		8428A53D2123FE76003E1DD8 /* CurrencyModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CurrencyModel.h; sourceTree = "<group>"; };
 		8428A53E2123FE76003E1DD8 /* CurrencyModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CurrencyModel.m; sourceTree = "<group>"; };
 		8428A540212422EC003E1DD8 /* MarketVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MarketVC.h; sourceTree = "<group>"; };
@@ -252,7 +257,6 @@
 		842FEDEE2137DEDA0075716E /* MarketDetailTextViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MarketDetailTextViewCell.m; sourceTree = "<group>"; };
 		842FEDF02138D8770075716E /* WebVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebVC.h; sourceTree = "<group>"; };
 		842FEDF12138D8770075716E /* WebVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebVC.m; sourceTree = "<group>"; };
-		842FEDF321392DB90075716E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		842FEDF8213CD3990075716E /* HomePageVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomePageVC.h; sourceTree = "<group>"; };
 		842FEDF9213CD3990075716E /* HomePageVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomePageVC.m; sourceTree = "<group>"; };
 		842FEDFC213CDE2A0075716E /* WalletCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WalletCell.h; sourceTree = "<group>"; };
@@ -809,6 +813,24 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		84143007215A12AD0079EFEC /* 启动引导页 */ = {
+			isa = PBXGroup;
+			children = (
+				84143009215A12C60079EFEC /* LaunchIntroductionView.h */,
+				84143008215A12C60079EFEC /* LaunchIntroductionView.m */,
+			);
+			path = "启动引导页";
+			sourceTree = "<group>";
+		};
+		8414300B215A1DA60079EFEC /* 导入HD钱包 */ = {
+			isa = PBXGroup;
+			children = (
+				8414300C215A1DD20079EFEC /* ImportHDWalletVC.h */,
+				8414300D215A1DD20079EFEC /* ImportHDWalletVC.m */,
+			);
+			path = "导入HD钱包";
+			sourceTree = "<group>";
+		};
 		8428A53C2123FE45003E1DD8 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -836,7 +858,7 @@
 		842FEDF7213CD3770075716E /* 首页钱包 */ = {
 			isa = PBXGroup;
 			children = (
-				84B8D52F2150C4EC00286631 /* 导入HD钱包 */,
+				8414300B215A1DA60079EFEC /* 导入HD钱包 */,
 				84B8D51D214F55B300286631 /* 交易记录 */,
 				842FEE95214A56470075716E /* 转账 */,
 				842FEE7B214110200075716E /* 导入钱包 */,
@@ -1040,6 +1062,7 @@
 		843EC9C52121212D002D5C2A /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				84143007215A12AD0079EFEC /* 启动引导页 */,
 				8484F3882159BA09005992B1 /* JavascriptFile */,
 				8484F3762159B9F1005992B1 /* WebViewJavascriptBridge */,
 				848180522123B2620007DCF9 /* AESCrypt */,
@@ -1398,13 +1421,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		84B8D52F2150C4EC00286631 /* 导入HD钱包 */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "导入HD钱包";
-			sourceTree = "<group>";
-		};
 		84B8D5302150C52000286631 /* 交易记录详情 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1490,7 +1506,6 @@
 				84D0E42C21211AAF004E65AD /* LaunchScreen.storyboard */,
 				84D0E42F21211AAF004E65AD /* Info.plist */,
 				84D0E43021211AAF004E65AD /* main.m */,
-				842FEDF321392DB90075716E /* Images.xcassets */,
 			);
 			path = TaiYiToken;
 			sourceTree = "<group>";
@@ -1631,7 +1646,6 @@
 				0415BDBE213586C70022DEB7 /* ethers.framework in Resources */,
 				8484F38D2159BA0A005992B1 /* Javascript.html in Resources */,
 				84D0E42E21211AAF004E65AD /* LaunchScreen.storyboard in Resources */,
-				842FEDF421392DB90075716E /* Images.xcassets in Resources */,
 				0415BDA02131BC850022DEB7 /* YYFiveRecordTableViewCell.xib in Resources */,
 				84B0A94C21227892002EFA0A /* Assets.xcassets in Resources */,
 				8484F38E2159BA0A005992B1 /* Eos.js in Resources */,
@@ -1730,6 +1744,8 @@
 				843EC9EC212122A7002D5C2A /* NetManager.m in Sources */,
 				84B8D5332150C54C00286631 /* TransactionRecordDetailVC.m in Sources */,
 				843EC9DD21212271002D5C2A /* UIImage+BaseToImage.m in Sources */,
+				8414300E215A1DD20079EFEC /* ImportHDWalletVC.m in Sources */,
+				8414300A215A12C60079EFEC /* LaunchIntroductionView.m in Sources */,
 				84D0E42621211AAB004E65AD /* ViewController.m in Sources */,
 				84B0A95021228BE9002EFA0A /* SwitchAccountVc.m in Sources */,
 				84B8D524214F56CA00286631 /* BTCTransactionRecordModel.m in Sources */,
