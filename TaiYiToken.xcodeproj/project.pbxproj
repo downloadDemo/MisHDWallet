@@ -122,6 +122,8 @@
 		8484F39C2159CDB9005992B1 /* ImageTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8484F39B2159CDB9005992B1 /* ImageTextCell.m */; };
 		8484F3A02159D9CA005992B1 /* AccountConfigVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8484F39F2159D9CA005992B1 /* AccountConfigVC.m */; };
 		8484F3A62159DA63005992B1 /* UserConfigCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8484F3A52159DA63005992B1 /* UserConfigCell.m */; };
+		8484F3AD2159E609005992B1 /* DappVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8484F3AC2159E609005992B1 /* DappVC.m */; };
+		8484F3B12159E650005992B1 /* DappViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8484F3B02159E650005992B1 /* DappViewCell.m */; };
 		84A9FF5721368830006F9D1B /* KLinePointModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8428A54D21255333003E1DD8 /* KLinePointModel.m */; };
 		84B0A9482122736B002EFA0A /* CustomizedTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B0A94321227369002EFA0A /* CustomizedTabBarController.m */; };
 		84B0A9492122736B002EFA0A /* CustomizedNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B0A9442122736A002EFA0A /* CustomizedNavigationController.m */; };
@@ -416,6 +418,10 @@
 		8484F39F2159D9CA005992B1 /* AccountConfigVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AccountConfigVC.m; path = ../../../../../../Documents/AccountConfigVC.m; sourceTree = "<group>"; };
 		8484F3A42159DA63005992B1 /* UserConfigCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = UserConfigCell.h; path = ../../../../../../Documents/UserConfigCell.h; sourceTree = "<group>"; };
 		8484F3A52159DA63005992B1 /* UserConfigCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = UserConfigCell.m; path = ../../../../../../Documents/UserConfigCell.m; sourceTree = "<group>"; };
+		8484F3AB2159E609005992B1 /* DappVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DappVC.h; path = ../../../../../Documents/DappVC.h; sourceTree = "<group>"; };
+		8484F3AC2159E609005992B1 /* DappVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = DappVC.m; path = ../../../../../Documents/DappVC.m; sourceTree = "<group>"; };
+		8484F3AF2159E650005992B1 /* DappViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DappViewCell.h; sourceTree = "<group>"; };
+		8484F3B02159E650005992B1 /* DappViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DappViewCell.m; sourceTree = "<group>"; };
 		84B0A94221227369002EFA0A /* CustomizedNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomizedNavigationController.h; sourceTree = "<group>"; };
 		84B0A94321227369002EFA0A /* CustomizedTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomizedTabBarController.m; sourceTree = "<group>"; };
 		84B0A9442122736A002EFA0A /* CustomizedNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomizedNavigationController.m; sourceTree = "<group>"; };
@@ -1020,13 +1026,6 @@
 			path = "行情";
 			sourceTree = "<group>";
 		};
-		843EC9C3212120F9002D5C2A /* 应用 */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "应用";
-			sourceTree = "<group>";
-		};
 		843EC9C421212102002D5C2A /* 我的 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1318,6 +1317,25 @@
 			path = OperationDetail;
 			sourceTree = "<group>";
 		};
+		8484F3AA2159E53B005992B1 /* 应用 */ = {
+			isa = PBXGroup;
+			children = (
+				8484F3AE2159E611005992B1 /* View */,
+				8484F3AB2159E609005992B1 /* DappVC.h */,
+				8484F3AC2159E609005992B1 /* DappVC.m */,
+			);
+			path = "应用";
+			sourceTree = "<group>";
+		};
+		8484F3AE2159E611005992B1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8484F3AF2159E650005992B1 /* DappViewCell.h */,
+				8484F3B02159E650005992B1 /* DappViewCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		84B0A94D21228B94002EFA0A /* 首页 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1461,7 +1479,7 @@
 				843EC9C1212120E9002D5C2A /* 导航控制 */,
 				84B0A94D21228B94002EFA0A /* 首页 */,
 				843EC9C2212120F0002D5C2A /* 行情 */,
-				843EC9C3212120F9002D5C2A /* 应用 */,
+				8484F3AA2159E53B005992B1 /* 应用 */,
 				843EC9C421212102002D5C2A /* 我的 */,
 				84D0E42121211AAB004E65AD /* AppDelegate.h */,
 				84D0E42221211AAB004E65AD /* AppDelegate.m */,
@@ -1731,6 +1749,7 @@
 				8460C7B12136A446002E4B2F /* YYTimeLineModel.m in Sources */,
 				843ECA3921216320002D5C2A /* UIView+frameAdjust.m in Sources */,
 				842FEEA2214A5FD30075716E /* TransactionAddressView.m in Sources */,
+				8484F3B12159E650005992B1 /* DappViewCell.m in Sources */,
 				842FEE55213E752C0075716E /* ExportWalletVC.m in Sources */,
 				0415BDAC2131BC850022DEB7 /* YYKlineVolumeView.m in Sources */,
 				843ECA3B21216320002D5C2A /* UIColor+Util.m in Sources */,
@@ -1822,6 +1841,7 @@
 				842FEDF22138D8770075716E /* WebVC.m in Sources */,
 				842FEE4B213E51390075716E /* WalletManagerVC.m in Sources */,
 				843ECA23212162FB002D5C2A /* CALayer+XibConfiguration.m in Sources */,
+				8484F3AD2159E609005992B1 /* DappVC.m in Sources */,
 				843ECA07212162B7002D5C2A /* NSString+Hash.m in Sources */,
 				84B8D52B214F571D00286631 /* TransactionRecordCell.m in Sources */,
 				84B8D5362150C6B700286631 /* TransactionDetailView.m in Sources */,
