@@ -49,11 +49,17 @@
             responseCallback){
             setTimeout(function () {
             const ecc = Eos.modules.ecc;
-            ecc.randomKey(10).then(priv_key => {
-            responseCallback(priv_key.toString());
-            })
-            }, 0);
-          })
+<!--            ecc.randomKey(10).then(priv_key => {-->
+<!--            responseCallback(priv_key.toString());-->
+<!--            })-->
+<!--            }, 0);-->
+<!--          }-->
+               ecc.randomKey(10).then(priv_key => {
+                  responseCallback(priv_key.toString());
+                  })
+                  }, 0);
+              }
+            )
     //生成私钥owner_privateKeyGen
     bridge.registerHandler('owner_privateKeyGen', function(data ,
         responseCallback){

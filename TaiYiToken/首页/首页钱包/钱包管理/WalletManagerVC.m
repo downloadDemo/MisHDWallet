@@ -49,8 +49,6 @@
     self.importWalletArray = [NSMutableArray new];
     [self RefreshImportWalletList];
     [self initHeadView];
-
-
     [self.collectionview registerClass:[WalletManagerCell class] forCellWithReuseIdentifier:@"WalletManagerCell"];
 }
 - (void)popAction{
@@ -64,7 +62,7 @@
 //创建新账户
 - (void)createNewAccountBtnAction{
 
-    UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"" preferredStyle:(UIAlertControllerStyleAlert)];
+    UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"此操作将会移除本地钱包，请提前做好备份！" message:@"" preferredStyle:(UIAlertControllerStyleAlert)];
     UIAlertAction *alertA = [UIAlertAction actionWithTitle:@"取消" style:(UIAlertActionStyleCancel) handler:^(UIAlertAction * _Nonnull action) {
         
     }];
@@ -83,11 +81,8 @@
     [alertC addAction:alertA];
     [alertC addAction:alertB];
     [self presentViewController:alertC animated:YES completion:nil];
-    
-
 }
 -(void)initHeadView{
-    
     UIView *headBackView = [UIView new];
     headBackView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:headBackView];
@@ -96,7 +91,6 @@
         make.top.equalTo(0);
         make.height.equalTo(64);
     }];
-    
     
     _titleLabel = [UILabel new];
     _titleLabel.font = [UIFont boldSystemFontOfSize:17];
@@ -141,6 +135,8 @@
     _addAccountBtn.titleLabel.textColor = [UIColor textBlackColor];
     _addAccountBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
     _addAccountBtn.titleLabel.font = [UIFont boldSystemFontOfSize:16];
+    _addAccountBtn.layer.borderWidth = 0.5;
+    _addAccountBtn.layer.borderColor = [UIColor blackColor].CGColor;
     _addAccountBtn.backgroundColor = [UIColor whiteColor];
     _addAccountBtn.tintColor = [UIColor textBlackColor];
     _addAccountBtn.userInteractionEnabled = YES;
@@ -272,7 +268,7 @@
         _collectionview.dataSource = self;
         _collectionview.delegate = self;
         _collectionview.contentInset = UIEdgeInsetsMake(5, 5, -5, -5);
-        _collectionview.backgroundColor = [UIColor colorWithHexString:@"#2B3041"];
+        _collectionview.backgroundColor = [UIColor whiteColor];
         _collectionview.showsVerticalScrollIndicator = NO;
         _collectionview.showsHorizontalScrollIndicator = NO;
         [_collectionview registerClass:[SectionHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"headerV"];

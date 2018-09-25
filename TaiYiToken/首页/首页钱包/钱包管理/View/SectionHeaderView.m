@@ -13,7 +13,7 @@
     self = [super initWithFrame:frame
             ];
     if (self){
-        self.backgroundColor = RGB(70, 90, 120);
+        self.backgroundColor = [UIColor colorWithHexString:@"#F8F8FF"];
     }
     return self;
 }
@@ -21,7 +21,7 @@
     if (_remindlb == nil) {
 
         _remindlb = [UILabel new];
-        _remindlb.textColor = [UIColor textWhiteColor];
+        _remindlb.textColor = [UIColor textGrayColor];
         _remindlb.font = [UIFont boldSystemFontOfSize:12];
         _remindlb.textAlignment = NSTextAlignmentLeft;
         [self addSubview:_remindlb];

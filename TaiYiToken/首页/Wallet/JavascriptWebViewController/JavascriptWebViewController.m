@@ -7,10 +7,10 @@
 //
 
 #import "JavascriptWebViewController.h"
-#import "WebViewJavascriptBridge.h"
+
 #import "QuoteLocalHtmlTool.h"
 @interface JavascriptWebViewController ()
-@property WebViewJavascriptBridge* bridge;
+
 @property(nonatomic, strong) WKWebView *webView;
 
 @end
@@ -64,51 +64,57 @@
 
 
 - (void)btnDidClick:(UIButton *)sender{
-    if (sender.tag == 1000){
-        //testJavascriptHandler
-        [self callHandler:nil];
-    }else if (sender.tag == 1001){
-        //生成私钥privateKeyGen
-        [self privateKeyGen: @"makePriv"];
-    }else if (sender.tag == 1002){
-        //根据私钥生成公钥privateToPublic
-        [self privateToPublic:@"makePub" andPriv_key:@"5KTXrkyvdxAhGpw3DLJsiZvSdEwi3u6gMQQ3qKbsYjm6CTErqxZ"];
-    }
-    else if (sender.tag == 1003){
-        //验证私钥格式isValidPrivate
-        
-        [self isValidPrivate:@"isValidPrivate" andPriv_key:@"5JkgC3U4X1ymcrYVhFDbiVUpD6a7wtfZ13Nd4nuaBGLkBwLu2Z7" ];
-        
-    }else if (sender.tag == 1004){
-        //验证公钥格式isValidPublic
-        [self isValidPublic:@"isValidPublic" andPub_key:@"EOS8damnMBH3QSkHRM62H86zFyDuB2GUKDqp6SjrQYZXwwSK27Jkq"];
-        
-    }else if (sender.tag == 1005){
-        //签名sign
-        [self sign:@"sign" andData:@"12345" andPriv_key:@"5KTXrkyvdxAhGpw3DLJsiZvSdEwi3u6gMQQ3qKbsYjm6CTErqxZ"];
-        
-    }else if (sender.tag == 1006){
-        //验证签名verify
-        [self verify:@"verify" andSign:@"1f76ce8f2ebf857229b4e56bc3e0c064d75fe125f864f5a2d63d96aee5a55e7b3d481f0989fb6db41980e2586c24dd9909d5eb1020c8221af5691d192f94c2676c" andData:@"12345" andPub_key:@"EOS8damnMBH3QSkHRM62H86zFyDuB2GUKDqp6SjrQYZXwwSK27Jkq"];
-        
-    }else if (sender.tag == 1007){
-        //SHA256sha256
-        [self sha256:@"sha256" andData:@"12345"];
-        
-    }
+//    if (sender.tag == 1000){
+//        //testJavascriptHandler
+//        [self callHandler:nil];
+//    }else if (sender.tag == 1001){
+//        //生成私钥privateKeyGen
+////        [self activePrivateKeyGen: @"makePriv"];
+//    }else if (sender.tag == 1002){
+//        //根据私钥生成公钥privateToPublic
+//        [self privateToPublic:@"makePub" andPriv_key:@"5KTXrkyvdxAhGpw3DLJsiZvSdEwi3u6gMQQ3qKbsYjm6CTErqxZ"];
+//    }
+//    else if (sender.tag == 1003){
+//        //验证私钥格式isValidPrivate
+//
+//        [self isValidPrivate:@"isValidPrivate" andPriv_key:@"5JkgC3U4X1ymcrYVhFDbiVUpD6a7wtfZ13Nd4nuaBGLkBwLu2Z7" ];
+//
+//    }else if (sender.tag == 1004){
+//        //验证公钥格式isValidPublic
+//        [self isValidPublic:@"isValidPublic" andPub_key:@"EOS8damnMBH3QSkHRM62H86zFyDuB2GUKDqp6SjrQYZXwwSK27Jkq"];
+//
+//    }else if (sender.tag == 1005){
+//        //签名sign
+//        [self sign:@"sign" andData:@"12345" andPriv_key:@"5KTXrkyvdxAhGpw3DLJsiZvSdEwi3u6gMQQ3qKbsYjm6CTErqxZ"];
+//
+//    }else if (sender.tag == 1006){
+//        //验证签名verify
+//        [self verify:@"verify" andSign:@"1f76ce8f2ebf857229b4e56bc3e0c064d75fe125f864f5a2d63d96aee5a55e7b3d481f0989fb6db41980e2586c24dd9909d5eb1020c8221af5691d192f94c2676c" andData:@"12345" andPub_key:@"EOS8damnMBH3QSkHRM62H86zFyDuB2GUKDqp6SjrQYZXwwSK27Jkq"];
+//
+//    }else if (sender.tag == 1007){
+//        //SHA256sha256
+//        [self sha256:@"sha256" andData:@"12345"];
+//
+//    }
 }
 
 - (void)callHandler:(id)sender {
     id data = @{ @"greetingFromObjC": @"Hi there, JS!" };
     [self.bridge callHandler:@"testJavascriptHandler" data:data responseCallback:^(id response) {
         NSLog(@"testJavascriptHandler responded: %@", response);
+       
     }];
 }
-
 //生成私钥privateKeyGen
-- (void)privateKeyGen:(NSString *)tid{
-    [self.bridge callHandler:@"privateKeyGen" data:tid responseCallback:^(id responseData) {
-        NSLog(NSLocalizedString(@"oc请求js后接受的回调结果：%@", nil),responseData);
+- (void)ownerPrivateKeyGen:(NSString *)tid callback: (void (^)(id response))callback{
+    [self.bridge callHandler:@"owner_privateKeyGen" data:tid responseCallback:^(id responseData) {
+        callback(responseData);
+    }];
+}
+//生成私钥privateKeyGen
+- (void)activePrivateKeyGen:(NSString *)tid callback: (void (^)(id response))callback{
+    [self.bridge callHandler:@"active_privateKeyGen" data:tid responseCallback:^(id responseData) {
+        callback(responseData);
     }];
 }
 //根据私钥生成公钥privateToPublic
