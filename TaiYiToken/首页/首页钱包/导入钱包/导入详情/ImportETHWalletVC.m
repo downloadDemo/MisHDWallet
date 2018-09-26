@@ -10,6 +10,7 @@
 #import "ControlBtnsView.h"
 #import "SetPasswordView.h"
 #import "WBQRCodeVC.h"
+
 #define KEYSTORE_REMIND_TEXT  @"复制粘贴以太坊钱包Keystore文件内容至输入框，或通过扫描Keystore内容生成的二维码录入"
 #define PRIVATEKEY_REMIND_TEXT  @"输入private Key文件内容至输入框。或通过扫描PrivateKey内容生成的二维码录入。请留意字符大小写。"
 #define MNEMONIC_REMIND_TEXT    @"使用助记词导入的同时可以修改钱包密码"

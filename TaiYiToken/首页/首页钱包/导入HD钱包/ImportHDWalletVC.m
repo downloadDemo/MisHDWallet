@@ -8,6 +8,7 @@
 
 #import "ImportHDWalletVC.h"
 #import "SetPasswordView.h"
+
 @interface ImportHDWalletVC ()
 @property(nonatomic,strong)UILabel *headlabel;
 @property(nonatomic,strong) UIButton *backBtn;
@@ -145,10 +146,10 @@
 }
 -(void)ImportWalletAction{
     if ([self.ImportContentTextView.text isEqualToString:@""] || self.ImportContentTextView.text == nil) {
-        [self.view showMsg:@"请输入正确的助记词！"];
+        [self.view showMsg:@"请输入助记词！"];
         return;
     }
-    
+
     if (![self.setPasswordView.passwordTextField.text isEqualToString:self.setPasswordView.repasswordTextField.text]) {
         [self.view showMsg:@"两次密码输入不一致！"];
         return;
@@ -174,7 +175,12 @@
         if (account == nil) {
             [self.view showMsg:@"导入出错！"];
         }else{
-            NSLog(@"**** BTC KeyStore finished ! ****");
+            //NSLog(@"**** BTC KeyStore finished ! ****");
+            if (self.setPasswordView.passwordHintTextField.text == nil) {
+                walletETH.passwordHint = @"";
+            }else{
+                walletETH.passwordHint = self.setPasswordView.passwordHintTextField.text;
+            }
             [CreateAll SaveWallet:walletBTC Name:@"walletBTC" WalletType:LOCAL_WALLET Password:password];
             [[NSUserDefaults standardUserDefaults]  setBool:YES forKey:@"ifHasAccount"];
             [self dismissViewControllerAnimated:YES completion:^{
@@ -188,11 +194,15 @@
         if (account == nil) {
             [self.view showMsg:@"导入出错！"];
         }else{
-            NSLog(@"**** ETH KeyStore finished ! ****");
+            //NSLog(@"**** ETH KeyStore finished ! ****");
+            if (self.setPasswordView.passwordHintTextField.text == nil) {
+                walletETH.passwordHint = @"";
+            }else{
+                walletETH.passwordHint = self.setPasswordView.passwordHintTextField.text;
+            }
             [CreateAll SaveWallet:walletETH Name:@"walletETH" WalletType:LOCAL_WALLET Password:password];
             [[NSUserDefaults standardUserDefaults]  setBool:YES forKey:@"ifHasAccount"];
         }
-        
     }];
     //创建完成 清除密码
     [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"password"];

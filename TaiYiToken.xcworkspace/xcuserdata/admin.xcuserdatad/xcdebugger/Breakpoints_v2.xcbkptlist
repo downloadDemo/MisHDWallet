@@ -9,71 +9,8 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "TaiYiToken/&#x9996;&#x9875;/&#x9996;&#x9875;&#x94b1;&#x5305;/&#x5bfc;&#x5165;HD&#x94b1;&#x5305;/ImportHDWalletVC.m"
-            timestampString = "559625375.996792"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "187"
-            endingLineNumber = "187"
-            landmarkName = "-CreateWallet"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[ImportHDWalletVC CreateWallet]"
-                  moduleName = "TaiYiToken"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/admin/Desktop/%E6%B3%B0%E4%B8%80%E9%92%B1%E5%8C%85/TaiYiToken/TaiYiToken/%E9%A6%96%E9%A1%B5/%E9%A6%96%E9%A1%B5%E9%92%B1%E5%8C%85/%E5%AF%BC%E5%85%A5HD%E9%92%B1%E5%8C%85/ImportHDWalletVC.m"
-                  timestampString = "559555880.27174"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "186"
-                  endingLineNumber = "186"
-                  offsetFromSymbolStart = "696">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__32-[ImportHDWalletVC CreateWallet]_block_invoke.246"
-                  moduleName = "TaiYiToken"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/admin/Desktop/%E6%B3%B0%E4%B8%80%E9%92%B1%E5%8C%85/TaiYiToken/TaiYiToken/%E9%A6%96%E9%A1%B5/%E9%A6%96%E9%A1%B5%E9%92%B1%E5%8C%85/%E5%AF%BC%E5%85%A5HD%E9%92%B1%E5%8C%85/ImportHDWalletVC.m"
-                  timestampString = "559555880.275984"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "187"
-                  endingLineNumber = "187"
-                  offsetFromSymbolStart = "80">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__destroy_helper_block_.252"
-                  moduleName = "TaiYiToken"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/admin/Desktop/%E6%B3%B0%E4%B8%80%E9%92%B1%E5%8C%85/TaiYiToken/TaiYiToken/%E9%A6%96%E9%A1%B5/%E9%A6%96%E9%A1%B5%E9%92%B1%E5%8C%85/%E5%AF%BC%E5%85%A5HD%E9%92%B1%E5%8C%85/ImportHDWalletVC.m"
-                  timestampString = "559555880.2800061"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "186"
-                  endingLineNumber = "186"
-                  offsetFromSymbolStart = "20">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "TaiYiToken/&#x9996;&#x9875;/Wallet/JavascriptWebViewController/JavascriptWebViewController.m"
-            timestampString = "559625375.997735"
+            timestampString = "559635092.358471"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "42"
@@ -89,7 +26,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TaiYiToken/&#x9996;&#x9875;/Wallet/JavascriptWebViewController/JavascriptWebViewController.m"
-            timestampString = "559625375.99828"
+            timestampString = "559635092.361182"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "55"
@@ -105,7 +42,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TaiYiToken/&#x9996;&#x9875;/Wallet/JavascriptWebViewController/JavascriptWebViewController.m"
-            timestampString = "559625375.9985189"
+            timestampString = "559635092.3615609"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "56"
@@ -131,7 +68,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TaiYiToken/&#x9996;&#x9875;/&#x9996;&#x9875;&#x94b1;&#x5305;/HomePageVC.m"
-            timestampString = "559625375.998674"
+            timestampString = "559635092.361997"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "62"
@@ -147,7 +84,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TaiYiToken/&#x9996;&#x9875;/&#x9996;&#x9875;&#x94b1;&#x5305;/HomePageVC.m"
-            timestampString = "559625375.999523"
+            timestampString = "559635092.3627501"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "305"
@@ -163,7 +100,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TaiYiToken/&#x9996;&#x9875;/&#x9996;&#x9875;&#x94b1;&#x5305;/HomePageVC.m"
-            timestampString = "559625375.999889"
+            timestampString = "559635092.362947"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "303"
@@ -179,7 +116,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TaiYiToken/&#x9996;&#x9875;/&#x9996;&#x9875;&#x94b1;&#x5305;/HomePageVC.m"
-            timestampString = "559625376.0002199"
+            timestampString = "559635092.363155"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "310"
@@ -194,13 +131,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "TaiYiToken/&#x9996;&#x9875;/&#x9996;&#x9875;&#x94b1;&#x5305;/HomePageVC.m"
-            timestampString = "559625376.000567"
+            filePath = "TaiYiToken/&#x9996;&#x9875;/Wallet/category/BRBIP39Mnemonic.m"
+            timestampString = "559634194.834788"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "525"
-            endingLineNumber = "525"
-            landmarkName = "-collectionView:cellForItemAtIndexPath:"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
+            landmarkName = "-decodePhrase:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -210,13 +147,61 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "TaiYiToken/&#x9996;&#x9875;/&#x9996;&#x9875;&#x94b1;&#x5305;/HomePageVC.m"
-            timestampString = "559625376.00089"
+            filePath = "TaiYiToken/&#x9996;&#x9875;/Wallet/category/BRBIP39Mnemonic.m"
+            timestampString = "559634194.843449"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "526"
-            endingLineNumber = "526"
-            landmarkName = "-collectionView:cellForItemAtIndexPath:"
+            startingLineNumber = "97"
+            endingLineNumber = "97"
+            landmarkName = "-decodePhrase:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TaiYiToken/&#x9996;&#x9875;/Wallet/category/BRBIP39Mnemonic.m"
+            timestampString = "559634194.8440861"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "123"
+            endingLineNumber = "123"
+            landmarkName = "-decodePhrase:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TaiYiToken/&#x9996;&#x9875;/Wallet/category/BRBIP39Mnemonic.m"
+            timestampString = "559634194.844474"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "124"
+            endingLineNumber = "124"
+            landmarkName = "-decodePhrase:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TaiYiToken/&#x9996;&#x9875;/Wallet/category/BRBIP39Mnemonic.m"
+            timestampString = "559634194.8450201"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
+            landmarkName = "-decodePhrase:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

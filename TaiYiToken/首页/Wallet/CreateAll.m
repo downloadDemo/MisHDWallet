@@ -97,7 +97,6 @@
     BRBIP32Sequence *seq = [BRBIP32Sequence new];
     //**********BIP32SequenceSerializedPrivateMasterFromSeed
     NSString *xprv = [seq serializedPrivateMasterFromSeed:seed.hexToData];
-    
     NSLog(@"xprv = %@",xprv);
     return  xprv;
 }

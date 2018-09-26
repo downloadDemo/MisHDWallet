@@ -30,9 +30,9 @@
 		0415BDAC2131BC850022DEB7 /* YYKlineVolumeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0415BD952131BC850022DEB7 /* YYKlineVolumeView.m */; };
 		0415BDBE213586C70022DEB7 /* ethers.framework in Resources */ = {isa = PBXBuildFile; fileRef = 0415BDBD213586C70022DEB7 /* ethers.framework */; };
 		8414300A215A12C60079EFEC /* LaunchIntroductionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84143008215A12C60079EFEC /* LaunchIntroductionView.m */; };
-		8414300E215A1DD20079EFEC /* ImportHDWalletVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8414300D215A1DD20079EFEC /* ImportHDWalletVC.m */; };
 		84143011215B117B0079EFEC /* EOSAccountKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 84143010215B117B0079EFEC /* EOSAccountKey.m */; };
 		84143014215B278D0079EFEC /* SelectCurrencyTypeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84143013215B278D0079EFEC /* SelectCurrencyTypeVC.m */; };
+		8414301A215B57D10079EFEC /* ImportHDWalletVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84143019215B57D00079EFEC /* ImportHDWalletVC.m */; };
 		8428A53F2123FE76003E1DD8 /* CurrencyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8428A53E2123FE76003E1DD8 /* CurrencyModel.m */; };
 		8428A542212422EC003E1DD8 /* MarketVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8428A541212422EC003E1DD8 /* MarketVC.m */; };
 		8428A54521242323003E1DD8 /* MarketCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8428A54421242323003E1DD8 /* MarketCell.m */; };
@@ -240,11 +240,11 @@
 		84143008215A12C60079EFEC /* LaunchIntroductionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchIntroductionView.m; sourceTree = "<group>"; };
 		84143009215A12C60079EFEC /* LaunchIntroductionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchIntroductionView.h; sourceTree = "<group>"; };
 		8414300C215A1DD20079EFEC /* ImportHDWalletVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImportHDWalletVC.h; sourceTree = "<group>"; };
-		8414300D215A1DD20079EFEC /* ImportHDWalletVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImportHDWalletVC.m; sourceTree = "<group>"; };
 		8414300F215B117B0079EFEC /* EOSAccountKey.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EOSAccountKey.h; sourceTree = "<group>"; };
 		84143010215B117B0079EFEC /* EOSAccountKey.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EOSAccountKey.m; sourceTree = "<group>"; };
 		84143012215B278D0079EFEC /* SelectCurrencyTypeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectCurrencyTypeVC.h; sourceTree = "<group>"; };
 		84143013215B278D0079EFEC /* SelectCurrencyTypeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectCurrencyTypeVC.m; sourceTree = "<group>"; };
+		84143019215B57D00079EFEC /* ImportHDWalletVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportHDWalletVC.m; sourceTree = "<group>"; };
 		8428A53D2123FE76003E1DD8 /* CurrencyModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CurrencyModel.h; sourceTree = "<group>"; };
 		8428A53E2123FE76003E1DD8 /* CurrencyModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CurrencyModel.m; sourceTree = "<group>"; };
 		8428A540212422EC003E1DD8 /* MarketVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MarketVC.h; sourceTree = "<group>"; };
@@ -832,7 +832,7 @@
 			isa = PBXGroup;
 			children = (
 				8414300C215A1DD20079EFEC /* ImportHDWalletVC.h */,
-				8414300D215A1DD20079EFEC /* ImportHDWalletVC.m */,
+				84143019215B57D00079EFEC /* ImportHDWalletVC.m */,
 			);
 			path = "导入HD钱包";
 			sourceTree = "<group>";
@@ -1754,7 +1754,6 @@
 				843EC9EC212122A7002D5C2A /* NetManager.m in Sources */,
 				84B8D5332150C54C00286631 /* TransactionRecordDetailVC.m in Sources */,
 				843EC9DD21212271002D5C2A /* UIImage+BaseToImage.m in Sources */,
-				8414300E215A1DD20079EFEC /* ImportHDWalletVC.m in Sources */,
 				8414300A215A12C60079EFEC /* LaunchIntroductionView.m in Sources */,
 				84D0E42621211AAB004E65AD /* ViewController.m in Sources */,
 				84B0A95021228BE9002EFA0A /* SwitchAccountVc.m in Sources */,
@@ -1878,6 +1877,7 @@
 				843EC9DB21212271002D5C2A /* UIScrollView+Refresh.m in Sources */,
 				843ECA25212162FB002D5C2A /* UIColor+AppConfigColor.m in Sources */,
 				842FEE2B213D27470075716E /* SGWebView.m in Sources */,
+				8414301A215B57D10079EFEC /* ImportHDWalletVC.m in Sources */,
 				843ECA2D212162FB002D5C2A /* UIImage+ExFoundation.m in Sources */,
 				8484F3A62159DA63005992B1 /* UserConfigCell.m in Sources */,
 				84748848212BC2EC0077AC0F /* UserInfoVC.m in Sources */,

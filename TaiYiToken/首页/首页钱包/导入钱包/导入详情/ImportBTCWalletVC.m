@@ -10,6 +10,7 @@
 #import "ControlBtnsView.h"
 #import "SetPasswordView.h"
 #import "WBQRCodeVC.h"
+
 #define PRIVATEKEY_REMIND_TEXT  @"输入private Key文件内容至输入框。或通过扫描PrivateKey内容生成的二维码录入。请留意字符大小写。"
 #define MNEMONIC_REMIND_TEXT    @"使用助记词导入的同时可以修改钱包密码"
 typedef enum {
@@ -201,6 +202,7 @@ typedef enum {
         return;
     }
     if (self.importType == MNEMONIC_IMPORT) {
+
         [self.view showHUD];
         [CreateAll ImportWalletByMnemonic:self.ImportContentTextView.text CoinType:BTC Password:self.setPasswordView.passwordTextField.text PasswordHint:self.setPasswordView.passwordHintTextField.text callback:^(MissionWallet *wallet, NSError *error) {
             [self.view hideHUD];
