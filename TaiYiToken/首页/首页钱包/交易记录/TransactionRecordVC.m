@@ -192,7 +192,7 @@
                         if ([info.fromAddress.checksumAddress isEqual:weakSelf.wallet.address] && [info.toAddress.checksumAddress isEqual:weakSelf.wallet.address]) {
                             model.selectType = SELF_Trans;
                         }
-                        if (info.gasLimit.integerValue * info.gasPrice.integerValue <= 0 || info.gasUsed.integerValue <= 0) {
+                        if (info.gasLimit.integerValue * info.gasPrice.integerValue <= 0 || info.gasUsed.integerValue <= 0 || info.value.isZero) {
                             model.selectType = FAILD_Trans;
                         }
                         [weakSelf.ethRecordArray addObject:model];
@@ -211,9 +211,6 @@
         [self.tableView beginHeaderRefresh];
     }
 }
-
-
-
 
 -(void)initHeadView{
     UIView *headBackView = [UIView new];
@@ -362,8 +359,8 @@
             dvc.fromAddress = addr;
             dvc.toAddress = self.wallet.address;
         }else if (model.selectType == OUT_Trans){
-            dvc.fromAddress = addr;
-            dvc.toAddress = self.wallet.address;
+            dvc.fromAddress = self.wallet.address;
+            dvc.toAddress = addr;
         }else if (model.selectType == SELF_Trans){
             dvc.fromAddress = self.wallet.address;
             dvc.toAddress = self.wallet.address;
@@ -453,9 +450,14 @@
         }else{
             cell.amountlb.text = [NSString stringWithFormat:@"0.00000"];
         }
-        cell.addresslb.text = info.toAddress.checksumAddress;
+        if (model.selectType == IN_Trans) {
+            cell.addresslb.text = info.fromAddress.checksumAddress;
+        }else{
+            cell.addresslb.text = info.toAddress.checksumAddress;
+        }
+        
         //判断交易是否有错
-        if (info.gasLimit.integerValue * info.gasPrice.integerValue == 0 || info.gasUsed == 0) {
+        if (info.gasLimit.integerValue * info.gasPrice.integerValue == 0 || info.gasUsed == 0 || info.value.isZero) {
             cell.resultlb.text = @"失败";
         }else{
             cell.resultlb.text = @"成功";

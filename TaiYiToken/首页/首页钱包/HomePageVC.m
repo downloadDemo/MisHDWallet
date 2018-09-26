@@ -306,23 +306,23 @@
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    WalletListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"WalletListCell" forIndexPath:indexPath];
-//    if (cell == nil) {
-//        cell = [WalletListCell new];
-//    }
-    WalletListCell *cell = [WalletListCell new];
+    WalletListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"WalletListCell" forIndexPath:indexPath];
+    if (cell == nil) {
+        cell = [WalletListCell new];
+    }
+  //  WalletListCell *cell = [WalletListCell new];
     MissionWallet *wallet = self.walletArray[indexPath.row];
     
     if (wallet.coinType == BTC || wallet.coinType == BTC_TESTNET) {//BTC
         [cell.iconImageView setImage:[UIImage imageNamed:@"ico_btc"]];
-        cell.symbollb.text = @"BTC";
+        cell.symbollb.text = wallet.walletName;
         cell.symbolNamelb.text = @"比特币";
         cell.amountlb.text = [NSString stringWithFormat:@"%.5f", [self.walletBalance[indexPath.row] floatValue]];
         cell.valuelb.text = [NSString stringWithFormat:@"$%.2f", [self.walletBalance[indexPath.row] floatValue] * self.BTCCurrency];
         cell.rmbvaluelb.text = [NSString stringWithFormat:@"¥%.2f", [self.walletBalance[indexPath.row] floatValue] * self.BTCCurrency * (self.RMBDollarCurrency / 100.0)];
     }else{//ETH
         [cell.iconImageView setImage:[UIImage imageNamed:@"ico_eth-1"]];
-        cell.symbollb.text = @"ETH";
+        cell.symbollb.text = wallet.walletName;
         cell.symbolNamelb.text = @"以太坊";
         CGFloat ethbalance = [self.walletBalance[indexPath.row] integerValue] * 1.0/pow(10,18);
         cell.amountlb.text = [NSString stringWithFormat:@"%.5f",ethbalance];

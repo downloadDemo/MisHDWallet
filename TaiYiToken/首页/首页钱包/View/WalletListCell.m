@@ -41,14 +41,14 @@
     if(_symbollb == nil) {
         _symbollb = [[UILabel alloc] init];
         _symbollb.textColor = [UIColor textBlackColor];
-        _symbollb.font = [UIFont systemFontOfSize:15];
+        _symbollb.font = [UIFont systemFontOfSize:12];
         _symbollb.textAlignment = NSTextAlignmentLeft;
         _symbollb.numberOfLines = 1;
         [self.swipeContentView addSubview:_symbollb];
         [_symbollb mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(40);
             make.bottom.equalTo(-20);
-            make.width.equalTo(50);
+            make.width.equalTo(130);
             make.height.equalTo(18);
         }];
         
