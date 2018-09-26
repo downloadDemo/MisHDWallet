@@ -31,6 +31,8 @@
 		0415BDBE213586C70022DEB7 /* ethers.framework in Resources */ = {isa = PBXBuildFile; fileRef = 0415BDBD213586C70022DEB7 /* ethers.framework */; };
 		8414300A215A12C60079EFEC /* LaunchIntroductionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84143008215A12C60079EFEC /* LaunchIntroductionView.m */; };
 		8414300E215A1DD20079EFEC /* ImportHDWalletVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8414300D215A1DD20079EFEC /* ImportHDWalletVC.m */; };
+		84143011215B117B0079EFEC /* EOSAccountKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 84143010215B117B0079EFEC /* EOSAccountKey.m */; };
+		84143014215B278D0079EFEC /* SelectCurrencyTypeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84143013215B278D0079EFEC /* SelectCurrencyTypeVC.m */; };
 		8428A53F2123FE76003E1DD8 /* CurrencyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8428A53E2123FE76003E1DD8 /* CurrencyModel.m */; };
 		8428A542212422EC003E1DD8 /* MarketVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8428A541212422EC003E1DD8 /* MarketVC.m */; };
 		8428A54521242323003E1DD8 /* MarketCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8428A54421242323003E1DD8 /* MarketCell.m */; };
@@ -239,6 +241,10 @@
 		84143009215A12C60079EFEC /* LaunchIntroductionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchIntroductionView.h; sourceTree = "<group>"; };
 		8414300C215A1DD20079EFEC /* ImportHDWalletVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImportHDWalletVC.h; sourceTree = "<group>"; };
 		8414300D215A1DD20079EFEC /* ImportHDWalletVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImportHDWalletVC.m; sourceTree = "<group>"; };
+		8414300F215B117B0079EFEC /* EOSAccountKey.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EOSAccountKey.h; sourceTree = "<group>"; };
+		84143010215B117B0079EFEC /* EOSAccountKey.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EOSAccountKey.m; sourceTree = "<group>"; };
+		84143012215B278D0079EFEC /* SelectCurrencyTypeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectCurrencyTypeVC.h; sourceTree = "<group>"; };
+		84143013215B278D0079EFEC /* SelectCurrencyTypeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectCurrencyTypeVC.m; sourceTree = "<group>"; };
 		8428A53D2123FE76003E1DD8 /* CurrencyModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CurrencyModel.h; sourceTree = "<group>"; };
 		8428A53E2123FE76003E1DD8 /* CurrencyModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CurrencyModel.m; sourceTree = "<group>"; };
 		8428A540212422EC003E1DD8 /* MarketVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MarketVC.h; sourceTree = "<group>"; };
@@ -1336,6 +1342,8 @@
 			children = (
 				8484F39E2159D9CA005992B1 /* AccountConfigVC.h */,
 				8484F39F2159D9CA005992B1 /* AccountConfigVC.m */,
+				84143012215B278D0079EFEC /* SelectCurrencyTypeVC.h */,
+				84143013215B278D0079EFEC /* SelectCurrencyTypeVC.m */,
 			);
 			path = OperationDetail;
 			sourceTree = "<group>";
@@ -1459,6 +1467,8 @@
 				84C8E7D0212A95EC00627445 /* english.txt */,
 				84FA081F212BE3AF00DCFC0C /* CreateAll.h */,
 				84FA0820212BE3AF00DCFC0C /* CreateAll.m */,
+				8414300F215B117B0079EFEC /* EOSAccountKey.h */,
+				84143010215B117B0079EFEC /* EOSAccountKey.m */,
 			);
 			path = Wallet;
 			sourceTree = "<group>";
@@ -1758,6 +1768,7 @@
 				8484F3A02159D9CA005992B1 /* AccountConfigVC.m in Sources */,
 				0415BDA52131BC850022DEB7 /* YYStockView_Kline.m in Sources */,
 				842FEE15213D26030075716E /* ScanSuccessJumpVC.m in Sources */,
+				84143011215B117B0079EFEC /* EOSAccountKey.m in Sources */,
 				84B0A9642122CD7B002EFA0A /* RemindView.m in Sources */,
 				84C0DF30212CFF9100BCC91D /* NSMutableData+Bitcoin.m in Sources */,
 				842FEE7E2141106A0075716E /* ImportWalletSwitchVC.m in Sources */,
@@ -1805,6 +1816,7 @@
 				842FEE64213F5FF20075716E /* Customlayout.m in Sources */,
 				8460C7B22136A446002E4B2F /* YYFiveRecordModel.m in Sources */,
 				0415BDA72131BC850022DEB7 /* YYStockViewMaskView.m in Sources */,
+				84143014215B278D0079EFEC /* SelectCurrencyTypeVC.m in Sources */,
 				8484F3942159BA3A005992B1 /* QuoteLocalHtmlTool.m in Sources */,
 				842FEE9B214A5E330075716E /* TransactionVC.m in Sources */,
 				84B0A9602122C184002EFA0A /* UIImage+Gradient.m in Sources */,

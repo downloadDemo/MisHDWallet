@@ -10,7 +10,8 @@
 //******************  行情 ****************
 +(id)GETCurrencyListWithMySymbol:(NSString *)mySymbol  completionHandler:(void (^)(id responseObj, NSError *error))handler;
 +(void)GETKLineWthkSearchSymbol:(NSString*)symbol LineType:(KLineType)kLineType searchNum:(NSInteger)searchNum completionHandler:(void (^)(id responseObj, NSError *error))handler;
-
+//汇率
++(void)GetAllCurrencyCompletionHandler:(void (^)(id responseObj, NSError *error))handler;
 //****************** BTC交易 ****************
 //比特币美元汇率
 +(void)GetCurrencyCompletionHandler:(void (^)(id responseObj, NSError *error))handler;

@@ -120,6 +120,11 @@ typedef enum {
     FAILD_Trans = 3,
     SELF_Trans  = 4,
 }TranResultSelectType;
+
+typedef enum {
+    EOS_ACTIVE_KEY   = 1,
+    EOS_OWNER_KEY    = 2,
+}EOSKeyType;
 #define BTNRISECOLOR [UIColor colorWithHexString:@"#E53A32"]
 #define BTNFALLCOLOR [UIColor colorWithHexString:@"#26B13D"]
 

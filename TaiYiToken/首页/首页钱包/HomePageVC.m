@@ -36,6 +36,8 @@
 @property(nonatomic)BigNumber *ETHbalance;
 @property(nonatomic)CGFloat BTCCurrency;//btc 美元汇率
 @property(nonatomic)CGFloat ETHCurrency;
+@property(nonatomic)CGFloat RMBDollarCurrency;//人民币汇率
+@property(nonatomic)NSString *currentCurrencySelected;//当前选择的货币单位
 @end
 
 @implementation HomePageVC
@@ -56,6 +58,8 @@
         [self tableView];
         [self InitTimerRequest];
     }
+    self.currentCurrencySelected = [[NSUserDefaults standardUserDefaults] objectForKey:@"CurrentCurrencySelected"];
+    [self.collectionview reloadInputViews];
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -112,6 +116,11 @@
     [self initUI];
     self.selectedIndex = 0;
     self.TimeInterval = 5.0;
+    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"CurrentCurrencySelected"]) {
+        [[NSUserDefaults standardUserDefaults] setObject:@"rmb" forKey:@"CurrentCurrencySelected"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+    self.currentCurrencySelected = [[NSUserDefaults standardUserDefaults] objectForKey:@"CurrentCurrencySelected"];
 }
 
 
@@ -284,7 +293,7 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [CreateAll CreateEOSKeyPairWithMnemonicCode:@""];
+   //test
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -300,16 +309,16 @@
         cell.symbolNamelb.text = @"比特币";
         cell.amountlb.text = [NSString stringWithFormat:@"%.5f", self.BTCbalance.balance];
         cell.valuelb.text = [NSString stringWithFormat:@"$%.2f", self.BTCbalance.balance * self.BTCCurrency];
-        cell.rmbvaluelb.text = @"unknown";
+        cell.rmbvaluelb.text = [NSString stringWithFormat:@"¥%.2f", self.BTCbalance.balance * self.BTCCurrency * (self.RMBDollarCurrency / 100.0)];
     }else{//ETH
         wallet = [self.walletDic objectForKey:@"walletETH"];
-        [cell.iconImageView setImage:[UIImage imageNamed:@"ico_eth"]];
+        [cell.iconImageView setImage:[UIImage imageNamed:@"ico_eth-1"]];
         cell.symbollb.text = @"ETH";
         cell.symbolNamelb.text = @"以太坊";
         CGFloat ethbalance = self.ETHbalance.integerValue*1.0/pow(10,18);
         cell.amountlb.text = [NSString stringWithFormat:@"%.5f",ethbalance];
         cell.valuelb.text = [NSString stringWithFormat:@"$%.2f", ethbalance * self.ETHCurrency];
-        cell.rmbvaluelb.text = @"unknown";
+        cell.rmbvaluelb.text = [NSString stringWithFormat:@"¥%.2f", ethbalance * self.self.ETHCurrency * (self.RMBDollarCurrency / 100.0)];
     }
     cell.delegate = self;
     MGSwipeButton *leftBtn = [MGSwipeButton buttonWithTitle:@"收款" backgroundColor:[UIColor appBlueColor] padding:30];
@@ -431,19 +440,56 @@
     //汇率只获取一次
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        [NetManager GetCurrencyCompletionHandler:^(id responseObj, NSError *error) {
+        
+        [NetManager GetAllCurrencyCompletionHandler:^(id responseObj, NSError *error) {
             if (!error) {
-                NSDictionary *dic = [NSDictionary new];
-                if ([responseObj containsObjectForKey:@"data"]) {
-                    dic = responseObj[@"data"];
-                    if ([dic containsObjectForKey:@"bitstamp"]) {
-                        self.BTCCurrency = ((NSString *)[dic objectForKey:@"bitstamp"]).doubleValue;
+                if (!error) {
+                    /*{"code":0,"message":"成功","result":{"rmbRate":685.21002197265625,"btcToDollar":6388.67,"ethToDollar":209.9}}*/
+                    NSDictionary *dic = [NSDictionary new];
+                    if ([responseObj containsObjectForKey:@"result"]) {
+                        dic = responseObj[@"result"];
+                        if ([dic containsObjectForKey:@"rmbRate"]) {
+                            self.RMBDollarCurrency = ((NSString *)[dic objectForKey:@"rmbRate"]).doubleValue;
+                            [[NSUserDefaults standardUserDefaults] setFloat:self.RMBDollarCurrency forKey:@"RMBDollarCurrency"];
+                        }
+                        if ([dic containsObjectForKey:@"btcToDollar"]) {
+                            self.BTCCurrency = ((NSString *)[dic objectForKey:@"btcToDollar"]).doubleValue;
+                            [[NSUserDefaults standardUserDefaults] setFloat:self.BTCCurrency forKey:@"BTCCurrency"];
+                        }
+                        if ([dic containsObjectForKey:@"ethToDollar"]) {
+                            self.ETHCurrency = ((NSString *)[dic objectForKey:@"ethToDollar"]).doubleValue;
+                            [[NSUserDefaults standardUserDefaults] setFloat:self.ETHCurrency forKey:@"ETHCurrency"];
+                        }
                     }
                 }
+            }else{
+                //ETH备用美元汇率
+                [CreateAll GetETHCurrencyCallback:^(FloatPromise *etherprice) {
+                    if (etherprice == nil) {
+                        self.ETHCurrency = [[NSUserDefaults standardUserDefaults] floatForKey:@"ETHCurrency"];
+                    }else{
+                        self.ETHCurrency = etherprice.value;
+                        [[NSUserDefaults standardUserDefaults] setFloat:self.ETHCurrency forKey:@"ETHCurrency"];
+                    }
+                }];
+                //BTC备用美元汇率
+                [NetManager GetCurrencyCompletionHandler:^(id responseObj, NSError *error) {
+                    if (!error) {
+                        NSDictionary *dic = [NSDictionary new];
+                        if ([responseObj containsObjectForKey:@"data"]) {
+                            dic = responseObj[@"data"];
+                            if ([dic containsObjectForKey:@"bitstamp"]) {
+                                self.BTCCurrency = ((NSString *)[dic objectForKey:@"bitstamp"]).doubleValue;
+                                [[NSUserDefaults standardUserDefaults] setFloat:self.BTCCurrency forKey:@"BTCCurrency"];
+                            }
+                        }
+                    }else{
+                        self.BTCCurrency = [[NSUserDefaults standardUserDefaults] floatForKey:@"BTCCurrency"];
+                    }
+                }];
+                //RMB汇率取上次的
+                self.RMBDollarCurrency = [[NSUserDefaults standardUserDefaults] floatForKey:@"RMBDollarCurrency"];
             }
-        }];
-        [CreateAll GetETHCurrencyCallback:^(FloatPromise *etherprice) {
-            self.ETHCurrency = etherprice.value;
         }];
     });
 }
@@ -481,17 +527,29 @@
     if (indexPath.row == 0) {//BTC
         wallet = [self.walletDic objectForKey:@"walletBTC"];
         backImage = [[UIImage alloc]createImageWithSize:cell.contentView.frame.size gradientColors:@[[UIColor colorWithHexString:@"#4090F7"],[UIColor colorWithHexString:@"#57A8FF"]] percentage:@[@(0.3),@(1)] gradientType:GradientFromLeftTopToRightBottom];
-        NSMutableAttributedString *str1 = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%.5fBTC ≈$%.2f",self.BTCbalance.balance,self.BTCbalance.balance * self.BTCCurrency] attributes:@{NSForegroundColorAttributeName:[UIColor textWhiteColor], NSFontAttributeName:[UIFont boldSystemFontOfSize:35]}];
-        [str1 addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:15] range:NSMakeRange(7, 3)];
-        [str1 addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:15] range:NSMakeRange(11, 6)];
+        NSString *balanceValue = @"0.00";
+        if ([self.currentCurrencySelected isEqualToString:@"rmb"]) {
+            balanceValue = [NSString stringWithFormat:@"¥%.2f", self.BTCbalance.balance * self.BTCCurrency * (self.RMBDollarCurrency / 100.0)];
+        }else{
+            balanceValue = [NSString stringWithFormat:@"$%.2f", self.BTCbalance.balance * self.BTCCurrency];
+        }
+        NSMutableAttributedString *str1 = [[NSMutableAttributedString alloc] initWithString:balanceValue attributes:@{NSForegroundColorAttributeName:[UIColor textWhiteColor], NSFontAttributeName:[UIFont boldSystemFontOfSize:35]}];
+//        [str1 addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:15] range:NSMakeRange(7, 3)];
+//        [str1 addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:15] range:NSMakeRange(11, 6)];
         cell.balancelb.attributedText = str1;
     }else{//ETH
         wallet = [self.walletDic objectForKey:@"walletETH"];
         backImage = [[UIImage alloc]createImageWithSize:cell.contentView.frame.size gradientColors:@[[UIColor colorWithHexString:@"#54D595"],[UIColor colorWithHexString:@"#76D9A8"]] percentage:@[@(0.3),@(1)] gradientType:GradientFromLeftTopToRightBottom];
         CGFloat ethbalance = self.ETHbalance.integerValue*1.0/pow(10,18);
-        NSMutableAttributedString *str1 = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%.5fETH ≈$%.2f",ethbalance,ethbalance * self.ETHCurrency] attributes:@{NSForegroundColorAttributeName:[UIColor textWhiteColor], NSFontAttributeName:[UIFont boldSystemFontOfSize:35]}];
-        [str1 addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:15] range:NSMakeRange(7, 3)];
-        [str1 addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:15] range:NSMakeRange(11, 6)];
+        NSString *balanceValue = @"0.00";
+        if ([self.currentCurrencySelected isEqualToString:@"rmb"]) {
+            balanceValue = [NSString stringWithFormat:@"¥%.2f",ethbalance * self.ETHCurrency * (self.RMBDollarCurrency / 100.0)];
+        }else{
+            balanceValue = [NSString stringWithFormat:@"$%.2f",ethbalance * self.ETHCurrency];
+        }
+        NSMutableAttributedString *str1 = [[NSMutableAttributedString alloc] initWithString:balanceValue attributes:@{NSForegroundColorAttributeName:[UIColor textWhiteColor], NSFontAttributeName:[UIFont boldSystemFontOfSize:35]}];
+//        [str1 addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:15] range:NSMakeRange(7, 3)];
+//        [str1 addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:15] range:NSMakeRange(11, 6)];
         cell.balancelb.attributedText = str1;
     }
     UIImageView *iv = [UIImageView new];

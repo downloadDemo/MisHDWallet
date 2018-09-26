@@ -4,8 +4,8 @@
 
 
 #import "NetManager.h"
-
-#define BASE_URL @"http://159.138.7.23:8080/mission-wallet"
+//http://159.138.7.23:8080/mission-wallet
+#define BASE_URL @"http://159.138.5.245:8080/mission-wallet"
 
 #define BTC_GETBalance_URL @"http://159.138.1.94:3001/insight-api/addr/"
 #define BTC_GETTXList_URL @"http://159.138.1.94:3001/insight-api/txs"
@@ -50,9 +50,20 @@
         !handler ?:handler(repsonseObj,error);
     }];
 }
+//汇率
++(void)GetAllCurrencyCompletionHandler:(void (^)(id responseObj, NSError *error))handler{
+    NSString *path = [NSString stringWithFormat:@"%@%@",BASE_URL,@"/getRates"];
+    [self GET:path parameters:nil completionHandler:^(id repsonseObj, NSError *error) {
+        !handler ?:handler(repsonseObj,error);
+    }];
+}
+
 /*
  *****************************************  BTC  *******************************
  */
+
+
+
 //比特币美元汇率
 +(void)GetCurrencyCompletionHandler:(void (^)(id responseObj, NSError *error))handler{
     NSString *path = [NSString stringWithFormat:@"%@",ChangeToTESTNET == 1?BTC_GETCurrency_URL_TESTNET : BTC_GETCurrency_URL];

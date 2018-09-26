@@ -111,8 +111,7 @@
 +(NSString *)RemoveImportedWallet:(MissionWallet *)wallet;
 
 
-//创建EOS KeyPair
-+(void)CreateEOSKeyPairWithMnemonicCode:(NSString *)mnemonic;
+
 
 /*
  ************************************************** 钱包导出 *************************************
@@ -187,4 +186,15 @@
 +(void)CreateETHTransactionFromWallet:(MissionWallet *)wallet ToAddress:(NSString *)address Value:(BigNumber *)value callback: (void (^)(Transaction *transaction))callback;
 //获取交易预估gas
 +(void)GetGasLimitPriceForTransaction:(Transaction *)transaction callback: (void (^)(BigNumber *gasLimitPrice))callback;
+
+
+/*
+ ********************************************** EOS *******************************************************************
+ */
+//EOS ActivePrivateKey
++(void)CreateEosActivePrivateKeyByMnemonic:(NSString*)mnemonic callback: (void (^)(id response))callback;
+//EOS OwnerPrivateKey
++(void)CreateEosOwnerPrivateKeyByMnemonic:(NSString*)mnemonic callback: (void (^)(id response))callback;
+//私钥生成公钥
++(void)EOSPrivateKeyToPublicKey:(NSString *)privateKey callback: (void(^)(id response))callback;
 @end
