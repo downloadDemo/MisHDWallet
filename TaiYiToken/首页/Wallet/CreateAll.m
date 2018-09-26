@@ -1005,7 +1005,7 @@ return -1;表示已存在
     Account *account =  [Account accountWithPrivateKey:[NSData dataWithHexString:wallet.privateKey]];
     EtherscanProvider *provider = [[EtherscanProvider alloc] initWithChainId:MODENET];
     [[provider getBalance:account.address] onCompletion:^(BigNumberPromise *promise) {
-        NSLog(@"balance = %@",promise.result);
+//        NSLog(@"balance = %@",promise.result);
         BigNumber *balance = (BigNumber *)promise.result;
         callback(balance);
     }];

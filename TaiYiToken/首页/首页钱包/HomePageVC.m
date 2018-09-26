@@ -44,13 +44,17 @@
     self.navigationController.navigationBar.hidden = YES;
     self.navigationController.navigationBar.barStyle = UIStatusBarStyleDefault;
     self.navigationController.hidesBottomBarWhenPushed = YES;
+    
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"ifHasAccount"] == YES) {
         MissionWallet *walletBTC = [CreateAll GetMissionWalletByName:@"walletBTC"];
         MissionWallet *walletETH = [CreateAll GetMissionWalletByName:@"walletETH"];
-        
-        self.walletArray = [NSMutableArray array];
+        if (_walletArray == nil) {
+            _walletArray = [NSMutableArray array];
+        }
+        [self.walletArray removeAllObjects];
         [self.walletArray addObject:walletBTC];
         [self.walletArray addObject:walletETH];
+        
         NSArray *importwalletarray = [CreateAll GetImportWalletNameArray];
         for (NSString *importwalletname in importwalletarray) {
             MissionWallet *wallet = [CreateAll GetMissionWalletByName:importwalletname];
@@ -58,11 +62,14 @@
         }
         
         [self.collectionview registerClass:[WalletCell class] forCellWithReuseIdentifier:@"walletcell"];
-        [self tableView];
+        [self.tableView reloadData];
+        [self InitTimerRequest];
+        self.currentCurrencySelected = [[NSUserDefaults standardUserDefaults] objectForKey:@"CurrentCurrencySelected"];
+        [self.collectionview reloadInputViews];
+        //回到页面 开始请求余额
         [self InitTimerRequest];
     }
-    self.currentCurrencySelected = [[NSUserDefaults standardUserDefaults] objectForKey:@"CurrentCurrencySelected"];
-    [self.collectionview reloadInputViews];
+    
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -72,6 +79,8 @@
     }
 }
 -(void)viewWillDisappear:(BOOL)animated{
+    //离开页面 停止请求余额
+    dispatch_cancel(self.time);
     self.navigationController.navigationBar.hidden = YES;
     self.navigationController.hidesBottomBarWhenPushed = YES;
 }
@@ -117,7 +126,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initUI];
-    self.walletBalance = [NSMutableArray arrayWithObjects:@"0",@"0",@"0",@"0", nil];
+    self.walletBalance = [NSMutableArray arrayWithObjects:@0,@0,@0,@0,@0,@0,@0,@0,@0,@0, nil];
     self.selectedIndex = 0;
     self.TimeInterval = 5.0;
     if (![[NSUserDefaults standardUserDefaults] objectForKey:@"CurrentCurrencySelected"]) {

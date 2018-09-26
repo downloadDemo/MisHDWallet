@@ -88,9 +88,19 @@
 }
 
 -(void)deleteWalletAction{
-    NSString *result = [CreateAll RemoveImportedWallet:self.wallet];
-    [self.view showMsg:result];
-   // [self.navigationController popViewControllerAnimated:YES];
+    UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"此操作将会移除导入的钱包，请提前做好备份！" message:@"" preferredStyle:(UIAlertControllerStyleAlert)];
+    UIAlertAction *alertA = [UIAlertAction actionWithTitle:@"取消" style:(UIAlertActionStyleCancel) handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    UIAlertAction *alertB = [UIAlertAction actionWithTitle:@"确定" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+        NSString *result = [CreateAll RemoveImportedWallet:self.wallet];
+        [self.view showMsg:result];
+    }];
+    
+    [alertC addAction:alertA];
+    [alertC addAction:alertB];
+    [self presentViewController:alertC animated:YES completion:nil];
+
 }
 
 
