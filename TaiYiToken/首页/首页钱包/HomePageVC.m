@@ -26,14 +26,12 @@
 @property(nonatomic)UIButton *walletBtn;
 @property(nonatomic)UIButton *scanBtn;
 @property(nonatomic)UILabel *titleLabel;
-@property(nonatomic)NSMutableDictionary *walletDic;
 @property(nonatomic)NSInteger selectedIndex;
-
+@property(nonatomic)NSMutableArray <MissionWallet*> *walletArray;
 @property (nonatomic, strong)dispatch_source_t time;
 @property(nonatomic)float TimeInterval;
 //余额
-@property(nonatomic)BTCBalanceModel *BTCbalance;
-@property(nonatomic)BigNumber *ETHbalance;
+@property(nonatomic)NSMutableArray *walletBalance;
 @property(nonatomic)CGFloat BTCCurrency;//btc 美元汇率
 @property(nonatomic)CGFloat ETHCurrency;
 @property(nonatomic)CGFloat RMBDollarCurrency;//人民币汇率
@@ -47,13 +45,18 @@
     self.navigationController.navigationBar.barStyle = UIStatusBarStyleDefault;
     self.navigationController.hidesBottomBarWhenPushed = YES;
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"ifHasAccount"] == YES) {
-        self.walletDic = [NSMutableDictionary new];
-        
         MissionWallet *walletBTC = [CreateAll GetMissionWalletByName:@"walletBTC"];
         MissionWallet *walletETH = [CreateAll GetMissionWalletByName:@"walletETH"];
         
-        [self.walletDic setObject:walletBTC forKey:@"walletBTC"];
-        [self.walletDic setObject:walletETH forKey:@"walletETH"];
+        self.walletArray = [NSMutableArray array];
+        [self.walletArray addObject:walletBTC];
+        [self.walletArray addObject:walletETH];
+        NSArray *importwalletarray = [CreateAll GetImportWalletNameArray];
+        for (NSString *importwalletname in importwalletarray) {
+            MissionWallet *wallet = [CreateAll GetMissionWalletByName:importwalletname];
+            [self.walletArray addObject:wallet];
+        }
+        
         [self.collectionview registerClass:[WalletCell class] forCellWithReuseIdentifier:@"walletcell"];
         [self tableView];
         [self InitTimerRequest];
@@ -75,15 +78,15 @@
 
 -(void)initUI{
     _titleLabel = [UILabel new];
-    _titleLabel.font = [UIFont boldSystemFontOfSize:18];
+    _titleLabel.font = [UIFont boldSystemFontOfSize:17];
     _titleLabel.textColor = [UIColor textBlackColor];
     [_titleLabel setText:@"BTC_wallet"];
     _titleLabel.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:_titleLabel];
     [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(30);
+        make.top.equalTo(32);
         make.centerX.equalTo(0);
-        make.width.equalTo(100);
+        make.width.equalTo(200);
         make.height.equalTo(20);
     }];
     
@@ -114,6 +117,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initUI];
+    self.walletBalance = [NSMutableArray arrayWithObjects:@"0",@"0",@"0",@"0", nil];
     self.selectedIndex = 0;
     self.TimeInterval = 5.0;
     if (![[NSUserDefaults standardUserDefaults] objectForKey:@"CurrentCurrencySelected"]) {
@@ -169,19 +173,19 @@
 //点击进入收款码界面
 -(void)QRCodeBtnAction:(UIButton *)btn{
     ReceiptQRCodeVC *revc = [ReceiptQRCodeVC new];
-    revc.wallet = btn.tag == 0 ? [self.walletDic objectForKey:@"walletBTC"]:[self.walletDic objectForKey:@"walletETH"];
+    revc.wallet = self.walletArray[btn.tag];
     [self.navigationController pushViewController:revc animated:YES];
 }
 //点击进入钱包详情
 -(void)detailBtnAction:(UIButton *)btn{
     TransactionRecordVC *trvc = [TransactionRecordVC new];
-    trvc.wallet = btn.tag == 0 ? [self.walletDic objectForKey:@"walletBTC"]:[self.walletDic objectForKey:@"walletETH"];
+    trvc.wallet = self.walletArray[btn.tag];
     [self.navigationController pushViewController:trvc animated:YES];
 }
 
 //点击复制地址
 -(void)addressBtnAction:(UIButton *)btn{
-    MissionWallet *wallet = btn.tag == 0 ? [self.walletDic objectForKey:@"walletBTC"]:[self.walletDic objectForKey:@"walletETH"];
+    MissionWallet *wallet = self.walletArray[btn.tag];
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
     pasteboard.string = wallet.address;
     [self.view showMsg:@"地址已复制"];
@@ -274,19 +278,19 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 1;
+    return self.walletArray.count;
 }
 
 -(void) swipeTableCell:(WalletListCell*) cell didChangeSwipeState:(MGSwipeState) state gestureIsActive:(BOOL) gestureIsActive{
     NSLog(@"swipe  state = %ld",state);
     if (state == MGSwipeStateSwipingLeftToRight) {//收款
         ReceiptQRCodeVC *revc = [ReceiptQRCodeVC new];
-        revc.wallet =  [cell.symbollb.text isEqualToString:@"BTC"]? [self.walletDic objectForKey:@"walletBTC"]:[self.walletDic objectForKey:@"walletETH"];
+        revc.wallet = self.walletArray[[self.tableView indexPathForCell:cell].row];
         [self.navigationController pushViewController:revc animated:YES];
     }
     if(state == MGSwipeStateSwipingRightToLeft){//转账
         TransactionVC *tranvc = [TransactionVC new];
-        tranvc.wallet = [cell.symbollb.text isEqualToString:@"BTC"]? [self.walletDic objectForKey:@"walletBTC"]:[self.walletDic objectForKey:@"walletETH"];
+        tranvc.wallet = self.walletArray[[self.tableView indexPathForCell:cell].row];
         [self.navigationController pushViewController:tranvc animated:YES];
     }
     
@@ -294,28 +298,33 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
    //test
+    [self.collectionview selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
+    //滚动到中间
+    [self.collectionview scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
+    [self.titleLabel setText: self.walletArray[indexPath.row].walletName];
+    self.selectedIndex = indexPath.row;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    WalletListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"WalletListCell" forIndexPath:indexPath];
-    if (cell == nil) {
-        cell = [WalletListCell new];
-    }
-    MissionWallet *wallet = nil;
-    if (self.selectedIndex == 0) {//BTC
-        wallet = [self.walletDic objectForKey:@"walletBTC"];
+//    WalletListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"WalletListCell" forIndexPath:indexPath];
+//    if (cell == nil) {
+//        cell = [WalletListCell new];
+//    }
+    WalletListCell *cell = [WalletListCell new];
+    MissionWallet *wallet = self.walletArray[indexPath.row];
+    
+    if (wallet.coinType == BTC || wallet.coinType == BTC_TESTNET) {//BTC
         [cell.iconImageView setImage:[UIImage imageNamed:@"ico_btc"]];
         cell.symbollb.text = @"BTC";
         cell.symbolNamelb.text = @"比特币";
-        cell.amountlb.text = [NSString stringWithFormat:@"%.5f", self.BTCbalance.balance];
-        cell.valuelb.text = [NSString stringWithFormat:@"$%.2f", self.BTCbalance.balance * self.BTCCurrency];
-        cell.rmbvaluelb.text = [NSString stringWithFormat:@"¥%.2f", self.BTCbalance.balance * self.BTCCurrency * (self.RMBDollarCurrency / 100.0)];
+        cell.amountlb.text = [NSString stringWithFormat:@"%.5f", [self.walletBalance[indexPath.row] floatValue]];
+        cell.valuelb.text = [NSString stringWithFormat:@"$%.2f", [self.walletBalance[indexPath.row] floatValue] * self.BTCCurrency];
+        cell.rmbvaluelb.text = [NSString stringWithFormat:@"¥%.2f", [self.walletBalance[indexPath.row] floatValue] * self.BTCCurrency * (self.RMBDollarCurrency / 100.0)];
     }else{//ETH
-        wallet = [self.walletDic objectForKey:@"walletETH"];
         [cell.iconImageView setImage:[UIImage imageNamed:@"ico_eth-1"]];
         cell.symbollb.text = @"ETH";
         cell.symbolNamelb.text = @"以太坊";
-        CGFloat ethbalance = self.ETHbalance.integerValue*1.0/pow(10,18);
+        CGFloat ethbalance = [self.walletBalance[indexPath.row] integerValue] * 1.0/pow(10,18);
         cell.amountlb.text = [NSString stringWithFormat:@"%.5f",ethbalance];
         cell.valuelb.text = [NSString stringWithFormat:@"$%.2f", ethbalance * self.ETHCurrency];
         cell.rmbvaluelb.text = [NSString stringWithFormat:@"¥%.2f", ethbalance * self.self.ETHCurrency * (self.RMBDollarCurrency / 100.0)];
@@ -407,36 +416,42 @@
     dispatch_source_set_timer(self.time, start, interval, 0);
     //设置回调
     dispatch_source_set_event_handler(self.time, ^{
-        [self requestBalance];
+        NSInteger index = 0;
+        for (MissionWallet *wallet in self.walletArray) {
+            [self requestBalance:wallet index:index];
+            index ++;
+        }
+        
     });
     //由于定时器默认是暂停的所以我们启动一下
     //启动定时器
     dispatch_resume(self.time);
 }
--(void)requestBalance{
-    MissionWallet *walletBTC = [self.walletDic objectForKey:@"walletBTC"];
-    MissionWallet *walletETH = [self.walletDic objectForKey:@"walletETH"];
-    if (walletBTC == nil ) {
+-(void)requestBalance:(MissionWallet *)wallet index:(NSInteger)index{
+    
+    if (wallet == nil ) {
         return;
     }
-    [NetManager GetBalanceForBTCAdress:walletBTC.address noTxList:-1 completionHandler:^(id responseObj, NSError *error) {
-        if (!error) {
-            self.BTCbalance = [BTCBalanceModel parse:responseObj];
-            self.TimeInterval = 5.0;
+    if (wallet.coinType == BTC || wallet.coinType == BTC_TESTNET) {
+        [NetManager GetBalanceForBTCAdress:wallet.address noTxList:-1 completionHandler:^(id responseObj, NSError *error) {
+            if (!error) {
+                BTCBalanceModel *btcbanance = [BTCBalanceModel parse:responseObj];
+                self.walletBalance[index] = [NSNumber numberWithFloat:btcbanance.balance];
+                self.TimeInterval = 5.0;
+                [self.collectionview reloadData];
+                [self.tableView reloadData];
+            }else{
+                self.TimeInterval += 10.0;
+            }
+        }];
+    }else if (wallet.coinType == ETH){
+        [CreateAll GetBalanceETHForWallet:wallet callback:^(BigNumber *balance) {
+            self.walletBalance[index] = [NSNumber numberWithInteger:balance.integerValue];
             [self.collectionview reloadData];
             [self.tableView reloadData];
-        }else{
-            self.TimeInterval += 10.0;
-        }
-    }];
-    if (walletETH == nil ) {
-        return;
+        }];
     }
-    [CreateAll GetBalanceETHForWallet:walletETH callback:^(BigNumber *balance) {
-        self.ETHbalance = balance;
-        [self.collectionview reloadData];
-        [self.tableView reloadData];
-    }];
+   
     //汇率只获取一次
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -518,29 +533,26 @@
     return 1;
 }
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return 2;
+    return self.walletArray.count;
 }
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     WalletCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"walletcell" forIndexPath:indexPath];
-    MissionWallet *wallet = nil;
+    MissionWallet *wallet = self.walletArray[indexPath.row];
     UIImage *backImage = nil;
-    if (indexPath.row == 0) {//BTC
-        wallet = [self.walletDic objectForKey:@"walletBTC"];
+    if (wallet.coinType == BTC || wallet.coinType == BTC_TESTNET) {//BTC
         backImage = [[UIImage alloc]createImageWithSize:cell.contentView.frame.size gradientColors:@[[UIColor colorWithHexString:@"#4090F7"],[UIColor colorWithHexString:@"#57A8FF"]] percentage:@[@(0.3),@(1)] gradientType:GradientFromLeftTopToRightBottom];
         NSString *balanceValue = @"0.00";
         if ([self.currentCurrencySelected isEqualToString:@"rmb"]) {
-            balanceValue = [NSString stringWithFormat:@"¥%.2f", self.BTCbalance.balance * self.BTCCurrency * (self.RMBDollarCurrency / 100.0)];
+            balanceValue = [NSString stringWithFormat:@"¥%.2f", [self.walletBalance[indexPath.row] floatValue] * self.BTCCurrency * (self.RMBDollarCurrency / 100.0)];
         }else{
-            balanceValue = [NSString stringWithFormat:@"$%.2f", self.BTCbalance.balance * self.BTCCurrency];
+            balanceValue = [NSString stringWithFormat:@"$%.2f", [self.walletBalance[indexPath.row] floatValue] * self.BTCCurrency];
         }
         NSMutableAttributedString *str1 = [[NSMutableAttributedString alloc] initWithString:balanceValue attributes:@{NSForegroundColorAttributeName:[UIColor textWhiteColor], NSFontAttributeName:[UIFont boldSystemFontOfSize:35]}];
-//        [str1 addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:15] range:NSMakeRange(7, 3)];
-//        [str1 addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:15] range:NSMakeRange(11, 6)];
+
         cell.balancelb.attributedText = str1;
     }else{//ETH
-        wallet = [self.walletDic objectForKey:@"walletETH"];
         backImage = [[UIImage alloc]createImageWithSize:cell.contentView.frame.size gradientColors:@[[UIColor colorWithHexString:@"#54D595"],[UIColor colorWithHexString:@"#76D9A8"]] percentage:@[@(0.3),@(1)] gradientType:GradientFromLeftTopToRightBottom];
-        CGFloat ethbalance = self.ETHbalance.integerValue*1.0/pow(10,18);
+        CGFloat ethbalance = [self.walletBalance[indexPath.row] integerValue] * 1.0/pow(10,18);
         NSString *balanceValue = @"0.00";
         if ([self.currentCurrencySelected isEqualToString:@"rmb"]) {
             balanceValue = [NSString stringWithFormat:@"¥%.2f",ethbalance * self.ETHCurrency * (self.RMBDollarCurrency / 100.0)];
@@ -548,8 +560,6 @@
             balanceValue = [NSString stringWithFormat:@"$%.2f",ethbalance * self.ETHCurrency];
         }
         NSMutableAttributedString *str1 = [[NSMutableAttributedString alloc] initWithString:balanceValue attributes:@{NSForegroundColorAttributeName:[UIColor textWhiteColor], NSFontAttributeName:[UIFont boldSystemFontOfSize:35]}];
-//        [str1 addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:15] range:NSMakeRange(7, 3)];
-//        [str1 addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:15] range:NSMakeRange(11, 6)];
         cell.balancelb.attributedText = str1;
     }
     UIImageView *iv = [UIImageView new];
@@ -581,7 +591,7 @@
     [self.collectionview selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
     //滚动到中间
     [self.collectionview scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
-    [self.titleLabel setText: indexPath.row == 0?@"BTC_wallet":@"ETH_wallet"];
+    [self.titleLabel setText: self.walletArray[indexPath.row].walletName];
     self.selectedIndex = indexPath.row;
     [self.tableView reloadData];
 }
