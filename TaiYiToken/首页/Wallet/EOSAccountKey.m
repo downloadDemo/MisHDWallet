@@ -9,12 +9,19 @@
 #import "EOSAccountKey.h"
 
 @implementation EOSAccountKey
-+(void)EOSKeyByMnemonic:(NSString*)mnemonic KeyType:(EOSKeyType)keyType callback: (void (^)(EOSAccountKey *key))callback{
+//-(JavascriptWebViewController *)jvc{
+//    if (!_jvc) {
+//        _jvc = [JavascriptWebViewController new];
+//        [_jvc viewDidLoad];
+//    }
+//    return _jvc;
+//}
++(void)EOSKeyByJvc:(JavascriptWebViewController *)jvc Mnemonic:(NSString*)mnemonic KeyType:(EOSKeyType)keyType callback: (void (^)(EOSAccountKey *key))callback{
     if (keyType == EOS_ACTIVE_KEY) {
-        [CreateAll CreateEosActivePrivateKeyByMnemonic:mnemonic callback:^(id response) {
+        [CreateAll CreateEosActivePrivateKeyByJvc:jvc Mnemonic:mnemonic callback:^(id response) {
             if (response != nil) {
                 NSString *pri = response;
-                [CreateAll EOSPrivateKeyToPublicKey:pri callback:^(id response) {
+                [CreateAll EOSPrivateKeyToPublicKeyJvc:jvc PrivateKey:pri callback:^(id response) {
                     if (response != nil) {
                         NSString *pub = response;
                         EOSAccountKey *eoskey = [EOSAccountKey new];
@@ -30,10 +37,10 @@
             }
         }];
     }else if (keyType == EOS_OWNER_KEY){
-        [CreateAll CreateEosOwnerPrivateKeyByMnemonic:mnemonic callback:^(id response) {
+        [CreateAll CreateEosOwnerPrivateKeyByJvc:jvc Mnemonic:mnemonic callback:^(id response) {
             if (response != nil) {
                 NSString *pri = response;
-                [CreateAll EOSPrivateKeyToPublicKey:pri callback:^(id response) {
+                [CreateAll EOSPrivateKeyToPublicKeyJvc:jvc PrivateKey:pri callback:^(id response) {
                     if (response != nil) {
                         NSString *pub = response;
                         EOSAccountKey *eoskey = [EOSAccountKey new];

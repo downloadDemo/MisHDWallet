@@ -190,11 +190,11 @@
  ********************************************** EOS *******************************************************************
  */
 //EOS ActivePrivateKey
-+(void)CreateEosActivePrivateKeyByMnemonic:(NSString*)mnemonic callback: (void (^)(id response))callback;
++(void)CreateEosActivePrivateKeyByJvc:(JavascriptWebViewController *)jvc Mnemonic:(NSString*)mnemonic callback: (void (^)(id response))callback;
 //EOS OwnerPrivateKey
-+(void)CreateEosOwnerPrivateKeyByMnemonic:(NSString*)mnemonic callback: (void (^)(id response))callback;
++(void)CreateEosOwnerPrivateKeyByJvc:(JavascriptWebViewController *)jvc Mnemonic:(NSString*)mnemonic callback: (void (^)(id response))callback;
 //EOS私钥生成公钥
-+(void)EOSPrivateKeyToPublicKey:(NSString *)privateKey callback: (void(^)(id response))callback;
++(void)EOSPrivateKeyToPublicKeyJvc:(JavascriptWebViewController *)jvc PrivateKey:(NSString *)privateKey callback: (void(^)(id response))callback;
 //创建EOS KeyPair
-+(void)CreateEOSKeyPairWithMnemonicCode:(NSString *)mnemonic KeyType:(EOSKeyType)keyType callback: (void (^)(EOSAccountKey *key))callback;
++(void)CreateEOSKeyPairJvc:(JavascriptWebViewController *)jvc MnemonicCode:(NSString *)mnemonic KeyType:(EOSKeyType)keyType callback: (void (^)(EOSAccountKey *key))callback;
 @end

@@ -7,10 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "JavascriptWebViewController.h"
 
 @interface EOSAccountKey : NSObject
 @property(nonatomic, strong) NSString *eosPrivateKey;
 @property(nonatomic, strong) NSString *eosPublicKey;
-
-+(void)EOSKeyByMnemonic:(NSString*)mnemonic KeyType:(EOSKeyType)keyType callback: (void (^)(EOSAccountKey *key))callback;
+//@property(nonatomic,strong)JavascriptWebViewController *jvc;
++(void)EOSKeyByJvc:(JavascriptWebViewController *)jvc Mnemonic:(NSString*)mnemonic KeyType:(EOSKeyType)keyType callback: (void (^)(EOSAccountKey *key))callback;
 @end

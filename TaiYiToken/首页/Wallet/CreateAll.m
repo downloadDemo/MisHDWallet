@@ -1035,34 +1035,28 @@ return -1;表示已存在
  ********************************************** EOS *******************************************************************
  */
 //EOS ActivePrivateKey
-+(void)CreateEosActivePrivateKeyByMnemonic:(NSString*)mnemonic callback: (void (^)(id response))callback{
-    //test eos
-    JavascriptWebViewController *jvc = [JavascriptWebViewController new];
-    [jvc viewDidLoad];
++(void)CreateEosActivePrivateKeyByJvc:(JavascriptWebViewController *)jvc Mnemonic:(NSString*)mnemonic callback: (void (^)(id response))callback{
     [jvc activePrivateKeyGen:mnemonic callback:^(id response) {
         NSLog(@"EOS - ActivePrivateKey: %@",response);
     }];
 }
 //EOS OwnerPrivateKey
-+(void)CreateEosOwnerPrivateKeyByMnemonic:(NSString*)mnemonic callback: (void (^)(id response))callback{
-    //test eos
-    JavascriptWebViewController *jvc = [JavascriptWebViewController new];
-    [jvc viewDidLoad];
++(void)CreateEosOwnerPrivateKeyByJvc:(JavascriptWebViewController *)jvc Mnemonic:(NSString*)mnemonic callback: (void (^)(id response))callback{
     [jvc ownerPrivateKeyGen:mnemonic callback:^(id response) {
-        NSLog(@"EOS - ActivePrivateKey: %@",response);
+        NSLog(@"EOS - OwnerPrivateKey: %@",response);
     }];
 }
 //EOS私钥生成公钥
-+(void)EOSPrivateKeyToPublicKey:(NSString *)privateKey callback: (void(^)(id response))callback{
-    JavascriptWebViewController *jvc = [JavascriptWebViewController new];
-    [jvc viewDidLoad];
-    [jvc privateToPublic:@"ttttt" andPriv_key:privateKey];
++(void)EOSPrivateKeyToPublicKeyJvc:(JavascriptWebViewController *)jvc PrivateKey:(NSString *)privateKey callback: (void(^)(id response))callback{
+    [jvc privateToPublic:@"" andPriv_key:privateKey callback:^(id response) {
+        callback(response);
+    }];
 }
 
 //创建EOS KeyPair
-+(void)CreateEOSKeyPairWithMnemonicCode:(NSString *)mnemonic KeyType:(EOSKeyType)keyType callback: (void (^)(EOSAccountKey *key))callback{
++(void)CreateEOSKeyPairJvc:(JavascriptWebViewController *)jvc MnemonicCode:(NSString *)mnemonic KeyType:(EOSKeyType)keyType callback: (void (^)(EOSAccountKey *key))callback{
     //    mnemonic = @"yard impulse luxury drive today throw farm pepper survey wreck glass federal";
-    [EOSAccountKey EOSKeyByMnemonic:mnemonic KeyType:keyType callback:^(EOSAccountKey *key) {
+    [EOSAccountKey EOSKeyByJvc:jvc Mnemonic:mnemonic KeyType:keyType callback:^(EOSAccountKey *key) {
         callback(key);
     }];
 }

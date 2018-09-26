@@ -158,7 +158,7 @@
 - (void)sha256:(NSString *)tid andData:(id)data callback: (void (^)(id response))callback{
     id params = @{ @"tid": tid, @"sha256_data" : data  };
     [self.bridge callHandler:@"sha256" data:params responseCallback:^(id responseData) {
-        callback(responseData);
+//        NSLog(NSLocalizedString(@"oc请求js后接受的回调结果：%@", nil),responseData);
     }];
 }
 @end

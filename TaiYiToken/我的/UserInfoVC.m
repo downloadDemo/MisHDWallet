@@ -10,7 +10,7 @@
 #import "UserInfoHeadView.h"
 #import "ImageTextCell.h"
 #import "AccountConfigVC.h"
-
+#import "JavascriptWebViewController.h"
 @interface UserInfoVC ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong)UserInfoHeadView *headView;
 @property(nonatomic)UITableView *tableView;
@@ -19,7 +19,7 @@
 @property(nonatomic,strong)NSArray *imageNameArray1;
 @property(nonatomic,strong)NSArray *titleArray2;
 @property(nonatomic,strong)NSArray *imageNameArray2;
-
+@property(nonatomic,strong)JavascriptWebViewController *jvc;
 @end
 
 @implementation UserInfoVC
@@ -82,6 +82,16 @@
             [self.navigationController pushViewController:vc animated:YES];
         }
     }
+    _jvc = [JavascriptWebViewController new];
+    [_jvc viewDidLoad];
+    NSString *str = @"yard impulse luxury drive today throw farm pepper survey wreck glass federal";
+    //生成两个key相同 需要再做修改
+    [CreateAll CreateEOSKeyPairJvc:_jvc MnemonicCode:str KeyType:EOS_OWNER_KEY callback:^(EOSAccountKey *key) {
+        NSLog(@"prikey = %@ \n pubkey = %@\n",key.eosPrivateKey,key.eosPublicKey);
+    }];
+    [CreateAll CreateEOSKeyPairJvc:_jvc MnemonicCode:str KeyType:EOS_ACTIVE_KEY callback:^(EOSAccountKey *key) {
+        NSLog(@"prikey = %@ \n pubkey = %@\n",key.eosPrivateKey,key.eosPublicKey);
+    }];
    
 }
 
