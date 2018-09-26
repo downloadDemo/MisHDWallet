@@ -41,6 +41,7 @@
 #import "BRBIP32Sequence.h"
 
 #import "JavascriptWebViewController.h"
+#import "EOSAccountKey.h"
 @interface CreateAll : NSObject
 /*
  ********************************************** 钱包生成/导入/恢复 ***********************************************
@@ -73,9 +74,6 @@
 
 //生成地址二维码
 +(UIImage *)CreateQRCodeForAddress:(NSString *)address;
-
-
-
 
 
 
@@ -195,6 +193,8 @@
 +(void)CreateEosActivePrivateKeyByMnemonic:(NSString*)mnemonic callback: (void (^)(id response))callback;
 //EOS OwnerPrivateKey
 +(void)CreateEosOwnerPrivateKeyByMnemonic:(NSString*)mnemonic callback: (void (^)(id response))callback;
-//私钥生成公钥
+//EOS私钥生成公钥
 +(void)EOSPrivateKeyToPublicKey:(NSString *)privateKey callback: (void(^)(id response))callback;
+//创建EOS KeyPair
++(void)CreateEOSKeyPairWithMnemonicCode:(NSString *)mnemonic KeyType:(EOSKeyType)keyType callback: (void (^)(EOSAccountKey *key))callback;
 @end

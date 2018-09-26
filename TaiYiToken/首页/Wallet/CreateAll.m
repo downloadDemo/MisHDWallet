@@ -8,6 +8,7 @@
 #import <Foundation/Foundation.h>
 #import "CreateAll.h"
 #import "BTCUTXOModel.h"
+
 @implementation CreateAll
 /*
  *********************************************钱包生成/导入/恢复********************************************************
@@ -190,14 +191,7 @@
 }
 
 
-//创建EOS KeyPair
-+(void)CreateEOSKeyPairWithMnemonicCode:(NSString *)mnemonic{
-    //
-//    mnemonic = @"yard impulse luxury drive today throw farm pepper survey wreck glass federal";
 
-    
-    
-}
 
 //生成地址二维码
 +(UIImage *)CreateQRCodeForAddress:(NSString *)address{
@@ -1058,14 +1052,20 @@ return -1;表示已存在
         NSLog(@"EOS - ActivePrivateKey: %@",response);
     }];
 }
-//私钥生成公钥
+//EOS私钥生成公钥
 +(void)EOSPrivateKeyToPublicKey:(NSString *)privateKey callback: (void(^)(id response))callback{
     JavascriptWebViewController *jvc = [JavascriptWebViewController new];
     [jvc viewDidLoad];
     [jvc privateToPublic:@"ttttt" andPriv_key:privateKey];
 }
 
-
+//创建EOS KeyPair
++(void)CreateEOSKeyPairWithMnemonicCode:(NSString *)mnemonic KeyType:(EOSKeyType)keyType callback: (void (^)(EOSAccountKey *key))callback{
+    //    mnemonic = @"yard impulse luxury drive today throw farm pepper survey wreck glass federal";
+    [EOSAccountKey EOSKeyByMnemonic:mnemonic KeyType:keyType callback:^(EOSAccountKey *key) {
+        callback(key);
+    }];
+}
 
 
 @end

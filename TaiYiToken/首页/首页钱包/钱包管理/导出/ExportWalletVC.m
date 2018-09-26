@@ -96,11 +96,9 @@
         NSString *result = [CreateAll RemoveImportedWallet:self.wallet];
         [self.view showMsg:result];
     }];
-    
     [alertC addAction:alertA];
     [alertC addAction:alertB];
     [self presentViewController:alertC animated:YES completion:nil];
-
 }
 
 
