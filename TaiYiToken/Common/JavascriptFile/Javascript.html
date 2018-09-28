@@ -9,6 +9,8 @@
 	</style>
 </head><body>
 	<h6>WebViewJavascriptBridge Demo</h6>
+    
+    
     <script src="Eos.js"></script>
 	<script>
 	window.onerror = function(err) {
@@ -43,7 +45,7 @@
 			log('JS responding with', responseData)
 			responseCallback(responseData)
 		})
-    
+      
       //生成私钥active_privateKeyGen
        bridge.registerHandler('active_privateKeyGen', function(data ,
             responseCallback){
@@ -190,10 +192,7 @@
             }, 0);
     })
                                  
-                                 
-                                 
-                                 
-                                 
+                         
 		document.body.appendChild(document.createElement('br'))
                                  
 		var callbackButton = document.getElementById('buttons').appendChild(document.createElement('button'))
@@ -207,6 +206,7 @@
 		}
 	})
 	</script>
+    
 	<div id='buttons'></div> <div id='log'></div>
 </body></html>
 

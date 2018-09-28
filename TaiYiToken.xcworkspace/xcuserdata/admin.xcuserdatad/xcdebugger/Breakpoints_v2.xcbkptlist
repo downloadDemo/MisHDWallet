@@ -19,13 +19,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "TaiYiToken/&#x9996;&#x9875;/Wallet/category/BRBIP39Mnemonic.m"
-            timestampString = "559634194.834788"
+            filePath = "Pods/CoreBitcoin/CoreBitcoin/BTCKeychain.m"
+            timestampString = "559822127.881392"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "95"
-            endingLineNumber = "95"
-            landmarkName = "-decodePhrase:"
+            startingLineNumber = "314"
+            endingLineNumber = "314"
+            landmarkName = "-derivedKeychainAtIndex:hardened:factor:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -35,13 +35,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "TaiYiToken/&#x9996;&#x9875;/Wallet/category/BRBIP39Mnemonic.m"
-            timestampString = "559634194.843449"
+            filePath = "Pods/CoreBitcoin/CoreBitcoin/BTCKeychain.m"
+            timestampString = "559822127.889344"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "97"
-            endingLineNumber = "97"
-            landmarkName = "-decodePhrase:"
+            startingLineNumber = "321"
+            endingLineNumber = "321"
+            landmarkName = "-derivedKeychainAtIndex:hardened:factor:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -51,13 +51,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "TaiYiToken/&#x9996;&#x9875;/Wallet/category/BRBIP39Mnemonic.m"
-            timestampString = "559634194.8440861"
+            filePath = "Pods/CoreBitcoin/CoreBitcoin/BTCKeychain.m"
+            timestampString = "559822127.889877"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "123"
-            endingLineNumber = "123"
-            landmarkName = "-decodePhrase:"
+            startingLineNumber = "320"
+            endingLineNumber = "320"
+            landmarkName = "-derivedKeychainAtIndex:hardened:factor:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -67,30 +67,46 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "TaiYiToken/&#x9996;&#x9875;/Wallet/category/BRBIP39Mnemonic.m"
-            timestampString = "559634194.844474"
+            filePath = "Pods/CoreBitcoin/CoreBitcoin/BTCKeychain.m"
+            timestampString = "559822127.890578"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "124"
-            endingLineNumber = "124"
-            landmarkName = "-decodePhrase:"
+            startingLineNumber = "325"
+            endingLineNumber = "325"
+            landmarkName = "-derivedKeychainAtIndex:hardened:factor:"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TaiYiToken/&#x9996;&#x9875;/Wallet/category/BRBIP39Mnemonic.m"
-            timestampString = "559634194.8450201"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "122"
-            endingLineNumber = "122"
-            landmarkName = "-decodePhrase:"
-            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[BTCKeychain derivedKeychainAtIndex:hardened:factor:]"
+                  moduleName = "TaiYiToken"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/admin/Desktop/%E6%B3%B0%E4%B8%80%E9%92%B1%E5%8C%85/TaiYiToken/Pods/CoreBitcoin/CoreBitcoin/BTCKeychain.m"
+                  timestampString = "559815706.875672"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "325"
+                  endingLineNumber = "325"
+                  offsetFromSymbolStart = "1700">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[BTCKeychain derivedKeychainAtIndex:hardened:factor:]"
+                  moduleName = "TaiYiToken"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/admin/Desktop/%E6%B3%B0%E4%B8%80%E9%92%B1%E5%8C%85/TaiYiToken/Pods/CoreBitcoin/CoreBitcoin/BTCKeychain.m"
+                  timestampString = "559815706.8829941"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "325"
+                  endingLineNumber = "325"
+                  offsetFromSymbolStart = "1740">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

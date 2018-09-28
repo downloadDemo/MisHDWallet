@@ -10,6 +10,15 @@
 #import "WebViewJavascriptBridge.h"
 @interface JavascriptWebViewController : UIViewController
 @property WebViewJavascriptBridge* bridge;
+//************************************************
+
+
+
+
+
+
+
+//************************************************
 
 
 //生成私钥active privateKeyGen

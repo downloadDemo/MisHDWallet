@@ -33,6 +33,10 @@
 		84143011215B117B0079EFEC /* EOSAccountKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 84143010215B117B0079EFEC /* EOSAccountKey.m */; };
 		84143014215B278D0079EFEC /* SelectCurrencyTypeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84143013215B278D0079EFEC /* SelectCurrencyTypeVC.m */; };
 		8414301A215B57D10079EFEC /* ImportHDWalletVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84143019215B57D00079EFEC /* ImportHDWalletVC.m */; };
+		8414301E215C70E70079EFEC /* EosPrivateKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 8414301C215C70E60079EFEC /* EosPrivateKey.m */; };
+		84143021215C71060079EFEC /* sha2.c in Sources */ = {isa = PBXBuildFile; fileRef = 84143020215C71060079EFEC /* sha2.c */; };
+		84143024215C71170079EFEC /* uECC.c in Sources */ = {isa = PBXBuildFile; fileRef = 84143022215C71160079EFEC /* uECC.c */; };
+		84143028215C71400079EFEC /* rmd160.c in Sources */ = {isa = PBXBuildFile; fileRef = 84143026215C713F0079EFEC /* rmd160.c */; };
 		8428A53F2123FE76003E1DD8 /* CurrencyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8428A53E2123FE76003E1DD8 /* CurrencyModel.m */; };
 		8428A542212422EC003E1DD8 /* MarketVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8428A541212422EC003E1DD8 /* MarketVC.m */; };
 		8428A54521242323003E1DD8 /* MarketCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8428A54421242323003E1DD8 /* MarketCell.m */; };
@@ -245,6 +249,15 @@
 		84143012215B278D0079EFEC /* SelectCurrencyTypeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectCurrencyTypeVC.h; sourceTree = "<group>"; };
 		84143013215B278D0079EFEC /* SelectCurrencyTypeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectCurrencyTypeVC.m; sourceTree = "<group>"; };
 		84143019215B57D00079EFEC /* ImportHDWalletVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportHDWalletVC.m; sourceTree = "<group>"; };
+		8414301C215C70E60079EFEC /* EosPrivateKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EosPrivateKey.m; sourceTree = "<group>"; };
+		8414301D215C70E70079EFEC /* EosPrivateKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EosPrivateKey.h; sourceTree = "<group>"; };
+		8414301F215C71060079EFEC /* sha2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sha2.h; sourceTree = "<group>"; };
+		84143020215C71060079EFEC /* sha2.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.objc; fileEncoding = 4; path = sha2.c; sourceTree = "<group>"; };
+		84143022215C71160079EFEC /* uECC.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.objc; fileEncoding = 4; path = uECC.c; sourceTree = "<group>"; };
+		84143023215C71170079EFEC /* uECC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uECC.h; sourceTree = "<group>"; };
+		84143025215C71290079EFEC /* libbase58.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = libbase58.h; sourceTree = "<group>"; };
+		84143026215C713F0079EFEC /* rmd160.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.objc; fileEncoding = 4; path = rmd160.c; sourceTree = "<group>"; };
+		84143027215C71400079EFEC /* rmd160.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rmd160.h; sourceTree = "<group>"; };
 		8428A53D2123FE76003E1DD8 /* CurrencyModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CurrencyModel.h; sourceTree = "<group>"; };
 		8428A53E2123FE76003E1DD8 /* CurrencyModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CurrencyModel.m; sourceTree = "<group>"; };
 		8428A540212422EC003E1DD8 /* MarketVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MarketVC.h; sourceTree = "<group>"; };
@@ -837,6 +850,22 @@
 			path = "导入HD钱包";
 			sourceTree = "<group>";
 		};
+		8414301B215C70D20079EFEC /* EOS */ = {
+			isa = PBXGroup;
+			children = (
+				84143026215C713F0079EFEC /* rmd160.c */,
+				84143027215C71400079EFEC /* rmd160.h */,
+				84143025215C71290079EFEC /* libbase58.h */,
+				84143022215C71160079EFEC /* uECC.c */,
+				84143023215C71170079EFEC /* uECC.h */,
+				84143020215C71060079EFEC /* sha2.c */,
+				8414301F215C71060079EFEC /* sha2.h */,
+				8414301D215C70E70079EFEC /* EosPrivateKey.h */,
+				8414301C215C70E60079EFEC /* EosPrivateKey.m */,
+			);
+			path = EOS;
+			sourceTree = "<group>";
+		};
 		8428A53C2123FE45003E1DD8 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -1068,6 +1097,7 @@
 		843EC9C52121212D002D5C2A /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				8414301B215C70D20079EFEC /* EOS */,
 				84143007215A12AD0079EFEC /* 启动引导页 */,
 				8484F3882159BA09005992B1 /* JavascriptFile */,
 				8484F3762159B9F1005992B1 /* WebViewJavascriptBridge */,
@@ -1828,6 +1858,7 @@
 				84B8D51C214B591C00286631 /* BTCBalanceModel.m in Sources */,
 				843EC9E62121228B002D5C2A /* AMSaveFile.m in Sources */,
 				84C8E7D4212A971C00627445 /* NYMnemonic.m in Sources */,
+				84143028215C71400079EFEC /* rmd160.c in Sources */,
 				843EC9DF21212271002D5C2A /* AppDelegate+Custom.m in Sources */,
 				0415BD982131BC850022DEB7 /* UIColor+YYStockTheme.m in Sources */,
 				84C8E7E3212A9FFD00627445 /* CFFlowButtonView.m in Sources */,
@@ -1873,9 +1904,11 @@
 				84B8D52B214F571D00286631 /* TransactionRecordCell.m in Sources */,
 				84B8D5362150C6B700286631 /* TransactionDetailView.m in Sources */,
 				84B0A9482122736B002EFA0A /* CustomizedTabBarController.m in Sources */,
+				84143021215C71060079EFEC /* sha2.c in Sources */,
 				842FEE79213FCFCA0075716E /* AddBTCAddressCell.m in Sources */,
 				843EC9DB21212271002D5C2A /* UIScrollView+Refresh.m in Sources */,
 				843ECA25212162FB002D5C2A /* UIColor+AppConfigColor.m in Sources */,
+				8414301E215C70E70079EFEC /* EosPrivateKey.m in Sources */,
 				842FEE2B213D27470075716E /* SGWebView.m in Sources */,
 				8414301A215B57D10079EFEC /* ImportHDWalletVC.m in Sources */,
 				843ECA2D212162FB002D5C2A /* UIImage+ExFoundation.m in Sources */,
@@ -1886,6 +1919,7 @@
 				842FEE58213E75D60075716E /* ExportWalletCell.m in Sources */,
 				84B8D53C2151E1BA00286631 /* DashesLineView.m in Sources */,
 				8484F3812159B9F1005992B1 /* WebViewJavascriptBridge.m in Sources */,
+				84143024215C71170079EFEC /* uECC.c in Sources */,
 				0415BDA42131BC850022DEB7 /* YYTimeLineVolumeView.m in Sources */,
 				842FEE9321475A8F0075716E /* BTCUTXOModel.m in Sources */,
 				84B0A94A2122736B002EFA0A /* CustomTabBar.m in Sources */,

@@ -9,18 +9,13 @@
 #import "EOSAccountKey.h"
 
 @implementation EOSAccountKey
-//-(JavascriptWebViewController *)jvc{
-//    if (!_jvc) {
-//        _jvc = [JavascriptWebViewController new];
-//        [_jvc viewDidLoad];
-//    }
-//    return _jvc;
-//}
+
 +(void)EOSKeyByJvc:(JavascriptWebViewController *)jvc Mnemonic:(NSString*)mnemonic KeyType:(EOSKeyType)keyType callback: (void (^)(EOSAccountKey *key))callback{
     if (keyType == EOS_ACTIVE_KEY) {
+       
         [CreateAll CreateEosActivePrivateKeyByJvc:jvc Mnemonic:mnemonic callback:^(id response) {
             if (response != nil) {
-                NSString *pri = response;
+                NSString *pri = (NSString *)response;
                 [CreateAll EOSPrivateKeyToPublicKeyJvc:jvc PrivateKey:pri callback:^(id response) {
                     if (response != nil) {
                         NSString *pub = response;
@@ -39,7 +34,7 @@
     }else if (keyType == EOS_OWNER_KEY){
         [CreateAll CreateEosOwnerPrivateKeyByJvc:jvc Mnemonic:mnemonic callback:^(id response) {
             if (response != nil) {
-                NSString *pri = response;
+                NSString *pri = (NSString *)response;
                 [CreateAll EOSPrivateKeyToPublicKeyJvc:jvc PrivateKey:pri callback:^(id response) {
                     if (response != nil) {
                         NSString *pub = response;

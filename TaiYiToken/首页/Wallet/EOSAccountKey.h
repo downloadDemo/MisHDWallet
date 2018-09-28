@@ -12,6 +12,6 @@
 @interface EOSAccountKey : NSObject
 @property(nonatomic, strong) NSString *eosPrivateKey;
 @property(nonatomic, strong) NSString *eosPublicKey;
-//@property(nonatomic,strong)JavascriptWebViewController *jvc;
+
 +(void)EOSKeyByJvc:(JavascriptWebViewController *)jvc Mnemonic:(NSString*)mnemonic KeyType:(EOSKeyType)keyType callback: (void (^)(EOSAccountKey *key))callback;
 @end

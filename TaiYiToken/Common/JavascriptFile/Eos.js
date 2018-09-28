@@ -14075,11 +14075,8 @@ var ecc = {
             return key.toString();
         });
     },
-    
-	test3 : function test3(){
-		console.log('我是 test3');
-	},
-	
+
+                                                                                                                                      
     /**
          @arg {string} seed - any length string.  This is private.  The same
         seed produces the same private key every time.  At least 128 random

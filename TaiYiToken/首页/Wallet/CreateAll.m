@@ -8,7 +8,7 @@
 #import <Foundation/Foundation.h>
 #import "CreateAll.h"
 #import "BTCUTXOModel.h"
-
+#import "EosPrivateKey.h"
 @implementation CreateAll
 /*
  *********************************************钱包生成/导入/恢复********************************************************
@@ -1034,16 +1034,19 @@ return -1;表示已存在
 /*
  ********************************************** EOS *******************************************************************
  */
+//*************************  EOS.js  *************************
 //EOS ActivePrivateKey
 +(void)CreateEosActivePrivateKeyByJvc:(JavascriptWebViewController *)jvc Mnemonic:(NSString*)mnemonic callback: (void (^)(id response))callback{
     [jvc activePrivateKeyGen:mnemonic callback:^(id response) {
         NSLog(@"EOS - ActivePrivateKey: %@",response);
+        callback(response);
     }];
 }
 //EOS OwnerPrivateKey
 +(void)CreateEosOwnerPrivateKeyByJvc:(JavascriptWebViewController *)jvc Mnemonic:(NSString*)mnemonic callback: (void (^)(id response))callback{
     [jvc ownerPrivateKeyGen:mnemonic callback:^(id response) {
         NSLog(@"EOS - OwnerPrivateKey: %@",response);
+        callback(response);
     }];
 }
 //EOS私钥生成公钥
@@ -1055,11 +1058,43 @@ return -1;表示已存在
 
 //创建EOS KeyPair
 +(void)CreateEOSKeyPairJvc:(JavascriptWebViewController *)jvc MnemonicCode:(NSString *)mnemonic KeyType:(EOSKeyType)keyType callback: (void (^)(EOSAccountKey *key))callback{
-    //    mnemonic = @"yard impulse luxury drive today throw farm pepper survey wreck glass federal";
     [EOSAccountKey EOSKeyByJvc:jvc Mnemonic:mnemonic KeyType:keyType callback:^(EOSAccountKey *key) {
         callback(key);
     }];
 }
+
+//EOS私钥
++(void)isValidPrivateJvc:(JavascriptWebViewController *)jvc PrivateKey:(NSString *)privateKey callback: (void(^)(id response))callback{
+    [jvc isValidPrivate:@"tid" andPriv_key:privateKey callback:^(id response) {
+        callback(response);
+    }];
+}
+//*************************  EOS.js  *************************
+
+
+////*************************  BIP44 EOSKey  *************************
+
+//BIP44 EOSKey
++(NSString *)CreateEOSKeyBySeed:(NSString *)seed{
+    NSString *xprv = [CreateAll CreateExtendPrivateKeyWithSeed:seed];
+    //@"m/44'/194'/0'/0"   @"m/48'/4'/0'/0'"
+    BTCKeychain *btckeychainxprv = [[BTCKeychain alloc]initWithExtendedKey:xprv];
+    NSString *OWNERPath = [NSString stringWithFormat:@"m/44'/194'/0'/0"];
+    NSString *privateKeyx = @"";
+    for (int i = 0; i<1; i++) {
+        BTCKey* ownerkey = [[btckeychainxprv derivedKeychainWithPath:OWNERPath] keyAtIndex:i hardened:NO];
+        NSString *privateKey = ownerkey.privateKeyAddress.string;
+        privateKeyx = privateKey;
+        NSString *hexpri = [NSString hexWithData:ownerkey.privateKeyAddress.data];
+        NSLog(@"pri =%@", privateKey);
+        //length 51
+        NSLog(@"length =%ld", privateKey.length);
+        
+    }
+    return privateKeyx;
+   
+}
+
 
 
 @end
