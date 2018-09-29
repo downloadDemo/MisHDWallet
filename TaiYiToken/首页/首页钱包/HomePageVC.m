@@ -31,6 +31,8 @@
 @property(nonatomic)NSMutableArray <MissionWallet*> *walletArray;
 @property (nonatomic, strong)dispatch_source_t time;
 @property(nonatomic)float TimeInterval;
+@property(nonatomic)UIView *headView;
+
 //余额
 @property(nonatomic)NSMutableArray *walletBalance;
 @property(nonatomic)CGFloat BTCCurrency;//btc 美元汇率
@@ -68,7 +70,9 @@
                 [self.walletArray addObject:wallet];
             }
         }
-       
+        [self.tableView setHidden:NO];
+        [self.collectionview setHidden:NO];
+        [self.headView setHidden:NO];
         [self.collectionview registerClass:[WalletCell class] forCellWithReuseIdentifier:@"walletcell"];
         [self.tableView reloadData];
         [self InitTimerRequest];
@@ -79,9 +83,30 @@
         if (_createAccountBtn) {
             [_createAccountBtn removeFromSuperview];
         }
+    }else{
+        [self.walletArray removeAllObjects];
+        [self.tableView reloadData];
+        [self.collectionview reloadData];
+        [self.tableView setHidden:YES];
+        [self.collectionview setHidden:YES];
+        [self.headView setHidden:YES];
+        _createAccountBtn = [UIButton buttonWithType: UIButtonTypeSystem];
+        _createAccountBtn.backgroundColor = [UIColor whiteColor];
+        _createAccountBtn.layer.cornerRadius = 4;
+        _createAccountBtn.layer.masksToBounds = YES;
+        _createAccountBtn.layer.borderWidth = 1;
+        _createAccountBtn.layer.borderColor = [UIColor blackColor].CGColor;
+        [_createAccountBtn setTitle:@"创建/导入账号" forState:UIControlStateNormal];
+        [_createAccountBtn setTintColor:[UIColor textBlackColor]];
+        [_createAccountBtn addTarget:self action:@selector(CreateAccount) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:_createAccountBtn];
+        [_createAccountBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(-20);
+            make.centerX.equalTo(0);
+            make.width.equalTo(180);
+            make.height.equalTo(40);
+        }];
     }
-   
-    
 }
 
 
@@ -130,26 +155,6 @@
         make.height.equalTo(16);
     }];
     
-    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"ifHasAccount"] || [[NSUserDefaults standardUserDefaults] boolForKey:@"ifHasAccount"] == NO) {
-        _createAccountBtn = [UIButton buttonWithType: UIButtonTypeSystem];
-        _createAccountBtn.backgroundColor = [UIColor whiteColor];
-        _createAccountBtn.layer.cornerRadius = 4;
-        _createAccountBtn.layer.masksToBounds = YES;
-        _createAccountBtn.layer.borderWidth = 1;
-        _createAccountBtn.layer.borderColor = [UIColor blackColor].CGColor;
-        [_createAccountBtn setTitle:@"创建/导入账号" forState:UIControlStateNormal];
-        [_createAccountBtn setTintColor:[UIColor textBlackColor]];
-        [_createAccountBtn addTarget:self action:@selector(CreateAccount) forControlEvents:UIControlEventTouchUpInside];
-        [self.view addSubview:_createAccountBtn];
-        [_createAccountBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerY.equalTo(-20);
-            make.centerX.equalTo(0);
-            make.width.equalTo(180);
-            make.height.equalTo(40);
-        }];
-        
-    }
-    
 }
 
 
@@ -160,13 +165,11 @@
     self.selectedIndex = 0;
     self.TimeInterval = 5.0;
     
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"ifHasAccount"] == YES) {
-        if (![[NSUserDefaults standardUserDefaults] objectForKey:@"CurrentCurrencySelected"]) {
-            [[NSUserDefaults standardUserDefaults] setObject:@"rmb" forKey:@"CurrentCurrencySelected"];
-            [[NSUserDefaults standardUserDefaults] synchronize];
-        }
-        self.currentCurrencySelected = [[NSUserDefaults standardUserDefaults] objectForKey:@"CurrentCurrencySelected"];
+    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"CurrentCurrencySelected"]) {
+        [[NSUserDefaults standardUserDefaults] setObject:@"rmb" forKey:@"CurrentCurrencySelected"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
     }
+    self.currentCurrencySelected = [[NSUserDefaults standardUserDefaults] objectForKey:@"CurrentCurrencySelected"];
 }
 
 
@@ -391,10 +394,10 @@
 }
 
 -(void)initHeadView{
-    UIView *headView = [UIView new];
-    headView.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:headView];
-    [headView mas_makeConstraints:^(MASConstraintMaker *make) {
+    _headView = [UIView new];
+    _headView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:_headView];
+    [_headView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(0);
         make.top.equalTo(246);
         make.height.equalTo(30);
@@ -405,7 +408,7 @@
     alabel.textAlignment = NSTextAlignmentLeft;
     alabel.numberOfLines = 1;
     alabel.text = @"币名";
-    [headView addSubview:alabel];
+    [_headView addSubview:alabel];
     [alabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(16);
         make.top.equalTo(0);
@@ -418,7 +421,7 @@
     amountLabel.textColor = [UIColor textGrayColor];
     amountLabel.textAlignment = NSTextAlignmentLeft;
     amountLabel.font = [UIFont systemFontOfSize:12];
-    [headView addSubview:amountLabel];
+    [_headView addSubview:amountLabel];
     [amountLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(0);
         make.centerX.equalTo(40);
@@ -431,7 +434,7 @@
     valueLabel.textColor = [UIColor textGrayColor];
     valueLabel.textAlignment = NSTextAlignmentRight;
     valueLabel.font = [UIFont systemFontOfSize:12];
-    [headView addSubview:valueLabel];
+    [_headView addSubview:valueLabel];
     [valueLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(0);
         make.right.equalTo(-30);
@@ -441,7 +444,7 @@
     
     UIView *lineView = [UIView new];
     lineView.backgroundColor = [UIColor lightGrayColor];
-    [headView addSubview:lineView];
+    [_headView addSubview:lineView];
     [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.equalTo(0);
         make.height.equalTo(1);

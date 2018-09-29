@@ -150,10 +150,10 @@
                     [self.view showMsg:@"创建出错！"];
                 }else{
                     [[NSUserDefaults standardUserDefaults]  setBool:YES forKey:@"ifHasAccount"];
+                    [[NSUserDefaults standardUserDefaults] synchronize];
                     [CreateAll SaveWallet:walletETH Name:@"walletETH" WalletType:LOCAL_WALLET Password:password];
                     [CreateAll SaveWallet:walletBTC Name:@"walletBTC" WalletType:LOCAL_WALLET Password:password];
                     [self.view showMsg:@"创建成功！"];
-                    [[NSUserDefaults standardUserDefaults]  setBool:YES forKey:@"ifHasAccount"];
                     [self dismissViewControllerAnimated:YES completion:^{
                         [self.view hideHUD];
                     }];

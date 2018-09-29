@@ -197,9 +197,11 @@
                     }else{
                         walletETH.passwordHint = self.setPasswordView.passwordHintTextField.text;
                     }
+                    [[NSUserDefaults standardUserDefaults]  setBool:YES forKey:@"ifHasAccount"];
+                    [[NSUserDefaults standardUserDefaults] synchronize];
                     [CreateAll SaveWallet:walletBTC Name:@"walletBTC" WalletType:LOCAL_WALLET Password:password];
                     [CreateAll SaveWallet:walletETH Name:@"walletETH" WalletType:LOCAL_WALLET Password:password];
-                    [[NSUserDefaults standardUserDefaults]  setBool:YES forKey:@"ifHasAccount"];
+                   
                     [self dismissViewControllerAnimated:YES completion:^{
                         [self.view hideHUD];
                     }];
