@@ -12,6 +12,7 @@
 #import "ExportKeyStoreVC.h"
 #import "ExportPrivateKeyOrMnemonicVC.h"
 #import "ExportWalletAddressVC.h"
+#import "ExportPasswordHintVC.h"
 @interface ExportWalletVC ()<UITableViewDelegate ,UITableViewDataSource>
 @property(nonatomic)UITableView *tableView;
 @property(nonatomic)NSArray *iconImageNameArray;
@@ -268,7 +269,7 @@
     wadvc.wallet = self.wallet;
     [self.navigationController pushViewController:wadvc animated:YES];
 }
-//BTC = ETH 导出KeyStore
+//ETH 导出KeyStore
 -(void)ExportKeyStore{
     
     [self.view showHUD];
@@ -279,9 +280,7 @@
                 ExportKeyStoreVC *ekvc = [ExportKeyStoreVC new];
                 ekvc.keystore = [[NSUserDefaults standardUserDefaults]  objectForKey:[NSString stringWithFormat:@"keystore%@",address]];
                 [self.navigationController pushViewController:ekvc animated:YES];
-            } else if([address isEqualToString:@"wrong password！"]) {
-                [self.view showMsg:@"密码错误"];
-            }else{
+            } else{
                 [self.view showMsg:@"密码错误"];
             }
         }else{
@@ -289,7 +288,7 @@
         }
     }];
 }
-//导出私钥
+//ETH 导出私钥
 -(void)ExportPrivateKey{
     [self.view showHUD];
     [CreateAll ExportPrivateKeyByPassword:self.password  CoinType:self.wallet.coinType WalletAddress:self.wallet.address index:self.wallet.index callback:^(NSString *privateKey, NSError *error) {
@@ -305,10 +304,11 @@
         }
     }];
 }
-//导出Mnemonic
+//BTC ETH导出Mnemonic
 -(void)ExportMnemonic{
     [self.view showHUD];
-    [CreateAll ExportMnemonicByPassword:self.password  WalletAddress:self.wallet.address callback:^(NSString *mnemonic, NSError *error) {
+    MissionWallet *ethwallet = [CreateAll GetMissionWalletByName:@"walletETH"];
+    [CreateAll ExportMnemonicByPassword:self.password  WalletAddress:ethwallet.address callback:^(NSString *mnemonic, NSError *error) {
         [self.view hideHUD];
         if (!error) {
             ExportPrivateKeyOrMnemonicVC *epmvc = [ExportPrivateKeyOrMnemonicVC new];
@@ -321,9 +321,16 @@
         }
     }];
 }
-//BTC = ETH 密码提示
+//BTC  ETH 密码提示
 -(void)ExportPasswordHint{
-    
+    ExportPasswordHintVC *passhintvc = [ExportPasswordHintVC new];
+    if (self.wallet.walletType == IMPORT_WALLET) {
+        passhintvc.passwordHint = self.wallet.passwordHint;
+    }else{
+        passhintvc.passwordHint = [CreateAll GetPasswordHint];
+    }
+    passhintvc.wallet = self.wallet;
+    [self.navigationController pushViewController:passhintvc animated:YES];
 }
 //切换BTC地址类型
 -(void)ChangeBTCAddressType{

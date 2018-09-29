@@ -12,6 +12,7 @@
 +(void)GETKLineWthkSearchSymbol:(NSString*)symbol LineType:(KLineType)kLineType searchNum:(NSInteger)searchNum completionHandler:(void (^)(id responseObj, NSError *error))handler;
 //汇率
 +(void)GetAllCurrencyCompletionHandler:(void (^)(id responseObj, NSError *error))handler;
+
 //****************** BTC交易 ****************
 //比特币美元汇率
 +(void)GetCurrencyCompletionHandler:(void (^)(id responseObj, NSError *error))handler;
@@ -25,4 +26,6 @@
 +(void)GetUTXOByBTCAdress:(NSString *)address completionHandler:(void (^)(id responseObj, NSError *error))handler;
 //交易广播 Rawtx参数为交易信息签名
 +(void)BroadcastBTCTransactionData:(NSString *)transaction completionHandler:(void (^)(id responseObj, NSError *error))handler;
+
+//****************** 账号管理 ****************
 @end

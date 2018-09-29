@@ -150,7 +150,9 @@
 //存储钱包
 +(void)SaveWallet:(MissionWallet *)wallet Name:(NSString *)walletname WalletType:(WALLET_TYPE)walletType Password:(NSString *)password;
 
-
+//存取密码提示(本地钱包)
++(void)UpdatePasswordHint:(NSString *)passwordHint;
++(NSString *)GetPasswordHint;
 
 //TODO
 //增加钱包存储使用密码加密，解锁使用密码加密，一定时间内未登录 再登录时需要密码解锁钱包对象 
@@ -189,6 +191,7 @@
 /*
  ********************************************** EOS *******************************************************************
  */
+//*************************  EOS.js  *************************
 //EOS ActivePrivateKey
 +(void)CreateEosActivePrivateKeyByJvc:(JavascriptWebViewController *)jvc Mnemonic:(NSString*)mnemonic callback: (void (^)(id response))callback;
 //EOS OwnerPrivateKey
@@ -202,7 +205,7 @@
 
 
 
-
+////*************************  BIP44 EOSKey  *************************
 //BIP48 EOSKey
 +(NSString *)CreateEOSPrivateKeyBySeed:(NSString *)seed Index:(uint32_t)index;
 @end

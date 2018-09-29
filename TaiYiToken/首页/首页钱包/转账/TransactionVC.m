@@ -14,7 +14,7 @@
 #import "TransactionAddressView.h"
 #import "TransactionGasView.h"
 #import "BTCBalanceModel.h"
-
+#import "InputPasswordView.h"
 
 @interface TransactionVC ()<UIImagePickerControllerDelegate>
 @property(nonatomic,strong) UIButton *backBtn;
@@ -32,6 +32,10 @@
 @property(nonatomic)BigNumber *ETHbalance;
 @property(nonatomic)CGFloat ETHCurrency;
 @property(nonatomic)BigNumber *GasLimit;
+
+@property(nonatomic)UIView *shadowView;
+@property(nonatomic)InputPasswordView *ipview;
+@property(nonatomic,copy)NSString *password;
 @end
 
 @implementation TransactionVC
@@ -94,11 +98,64 @@
         [self.view showMsg:@"请填写转账地址！"];
         return;
     }
-    if (self.wallet.coinType == BTC || self.wallet.coinType == BTC_TESTNET) {
-        [self transactionBTCToAddress:self.addressView.toAddressTextField.text];
-    }else if (self.wallet.coinType == ETH){
-        [self transactionETHToAddress:self.addressView.toAddressTextField.text];
-    }
+    _shadowView = [UIView new];
+    _shadowView.layer.shadowColor = [UIColor grayColor].CGColor;
+    _shadowView.layer.shadowOffset = CGSizeMake(0, 0);
+    _shadowView.layer.shadowOpacity = 1;
+    _shadowView.layer.shadowRadius = 3.0;
+    _shadowView.layer.cornerRadius = 3.0;
+    _shadowView.clipsToBounds = NO;
+    _shadowView.alpha = 0;
+    [self.view addSubview:_shadowView];
+    [_shadowView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.equalTo(0);
+        make.width.equalTo(300);
+        make.height.equalTo(120);
+    }];
+    _ipview = [InputPasswordView new];
+    [_ipview initUI];
+    [_ipview.confirmBtn addTarget:self action:@selector(confirmBtnAction) forControlEvents:UIControlEventTouchUpInside];
+    [_shadowView addSubview:_ipview];
+    [_ipview mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(0);
+    }];
+    [UIView animateWithDuration:0.5 animations:^{
+        self.shadowView.alpha = 1;
+    } completion:^(BOOL finished) {
+        
+    }];
+    
+}
+-(void)confirmBtnAction{
+    
+    [UIView animateWithDuration:0.5 animations:^{
+        self.shadowView.alpha = 0;
+    } completion:^(BOOL finished) {
+        self.password = self.ipview.passwordTextField.text;
+        [self.ipview removeFromSuperview];
+        if([self.password isEqualToString:@""] || self.password == nil){
+            [self.view showMsg:@"请输入密码！"];
+        }else{
+            //
+            [self.view showHUD];
+            MissionWallet *ethwallet = [CreateAll GetMissionWalletByName:@"walletETH"];
+            [CreateAll VerifyPassword:self.password WalletAddress:ethwallet.address callback:^(BOOL passwordIsRight, NSError *error){
+                [self.view hideHUD];
+                if (passwordIsRight == YES) {
+                    if (self.wallet.coinType == BTC || self.wallet.coinType == BTC_TESTNET) {
+                        [self transactionBTCToAddress:self.addressView.toAddressTextField.text];
+                    }else if (self.wallet.coinType == ETH){
+                        [self transactionETHToAddress:self.addressView.toAddressTextField.text];
+                    }
+                }else{
+                    [self.view showMsg:@"密码错误！"];
+                }
+            }];
+            
+           
+        }
+    }];
+    
 }
 //检查金额？
 -(void)transactionBTCToAddress:(NSString *)address{
@@ -384,6 +441,8 @@
     [_gasView.gasSlider setValue:_gasView.gasSlider.minimumValue];
     [_gasView.gasSlider addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];// 针对值变化添加响应方法
     [_addressView.fromAddressTextField setText:self.wallet.address];
+    
+    
 }
 
 

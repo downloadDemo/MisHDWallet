@@ -76,6 +76,10 @@
         [self.collectionview registerClass:[WalletCell class] forCellWithReuseIdentifier:@"walletcell"];
         [self.tableView reloadData];
         [self InitTimerRequest];
+        if (![[NSUserDefaults standardUserDefaults] objectForKey:@"CurrentCurrencySelected"]) {
+            [[NSUserDefaults standardUserDefaults] setObject:@"rmb" forKey:@"CurrentCurrencySelected"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+        }
         self.currentCurrencySelected = [[NSUserDefaults standardUserDefaults] objectForKey:@"CurrentCurrencySelected"];
         [self.collectionview reloadInputViews];
         //回到页面 开始请求余额

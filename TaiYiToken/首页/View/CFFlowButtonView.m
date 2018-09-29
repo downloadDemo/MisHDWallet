@@ -30,12 +30,7 @@
     UIButton *button0 = self.buttonList[0];
     button0.frame = CGRectMake(10, 10, button0.titleLabel.text.length*15, 23);
     [self addSubview:button0];
-//    [button0 mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.top.equalTo(10);
-//        make.width.equalTo(button0.titleLabel.text.length*15);
-//        make.height.equalTo(20);
-//    }];
-    
+
     [oldButtons addObject:button0];
     
     
@@ -49,28 +44,14 @@
             currentHeight += 33;//+23+10
             button.frame = CGRectMake(10, currentHeight, button.titleLabel.text.length*15, 23);
             [self addSubview:button];
-//            [button mas_makeConstraints:^(MASConstraintMaker *make) {
-//                make.left.equalTo(10);
-//                make.top.equalTo(rect.origin.y).equalTo(20+10);
-//                make.width.equalTo(button.titleLabel.text.length*15);
-//                make.height.equalTo(20);
-//            }];
+
             
         }else{
             button.frame = CGRectMake(rect.origin.x +rect.size.width + 10, currentHeight, button.titleLabel.text.length*15, 23);
             [self addSubview:button];
-//            [button mas_makeConstraints:^(MASConstraintMaker *make) {
-//                make.left.equalTo(rect.origin.x).equalTo(rect.size.width + 10);
-//                make.top.equalTo(rect.origin.y);
-//                make.width.equalTo(button.titleLabel.text.length*15);
-//                make.height.equalTo(20);
-//            }];
         }
       
     }
-    
-
-
 }
 
 

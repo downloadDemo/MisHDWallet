@@ -174,6 +174,8 @@
 		84D0E43121211AAF004E65AD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D0E43021211AAF004E65AD /* main.m */; };
 		84D0E43B21211AAF004E65AD /* TaiYiTokenTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D0E43A21211AAF004E65AD /* TaiYiTokenTests.m */; };
 		84D0E44621211AAF004E65AD /* TaiYiTokenUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D0E44521211AAF004E65AD /* TaiYiTokenUITests.m */; };
+		84E3052C215F5860008ABC6C /* PromptView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E3052B215F5860008ABC6C /* PromptView.m */; };
+		84E3052F215F69A9008ABC6C /* ExportPasswordHintVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E3052E215F69A9008ABC6C /* ExportPasswordHintVC.m */; };
 		84FA0821212BE3AF00DCFC0C /* CreateAll.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FA0820212BE3AF00DCFC0C /* CreateAll.m */; };
 /* End PBXBuildFile section */
 
@@ -525,6 +527,10 @@
 		84D0E44121211AAF004E65AD /* TaiYiTokenUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TaiYiTokenUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		84D0E44521211AAF004E65AD /* TaiYiTokenUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaiYiTokenUITests.m; sourceTree = "<group>"; };
 		84D0E44721211AAF004E65AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		84E3052A215F5860008ABC6C /* PromptView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PromptView.h; sourceTree = "<group>"; };
+		84E3052B215F5860008ABC6C /* PromptView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PromptView.m; sourceTree = "<group>"; };
+		84E3052D215F69A9008ABC6C /* ExportPasswordHintVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExportPasswordHintVC.h; sourceTree = "<group>"; };
+		84E3052E215F69A9008ABC6C /* ExportPasswordHintVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExportPasswordHintVC.m; sourceTree = "<group>"; };
 		84FA081F212BE3AF00DCFC0C /* CreateAll.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateAll.h; sourceTree = "<group>"; };
 		84FA0820212BE3AF00DCFC0C /* CreateAll.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateAll.m; sourceTree = "<group>"; };
 		8B1D65BC8D952F047398FF96 /* Pods-TaiYiToken.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaiYiToken.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TaiYiToken/Pods-TaiYiToken.debug.xcconfig"; sourceTree = "<group>"; };
@@ -916,6 +922,8 @@
 				842FEDFD213CDE2A0075716E /* WalletCell.m */,
 				842FEE06213D13780075716E /* WalletListCell.h */,
 				842FEE07213D13780075716E /* WalletListCell.m */,
+				84E3052A215F5860008ABC6C /* PromptView.h */,
+				84E3052B215F5860008ABC6C /* PromptView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -968,6 +976,8 @@
 		842FEE51213E74C00075716E /* 导出 */ = {
 			isa = PBXGroup;
 			children = (
+				84E3052D215F69A9008ABC6C /* ExportPasswordHintVC.h */,
+				84E3052E215F69A9008ABC6C /* ExportPasswordHintVC.m */,
 				842FEE68213F806C0075716E /* ExportWalletAddressVC.h */,
 				842FEE69213F806C0075716E /* ExportWalletAddressVC.m */,
 				842FEE65213F7EB00075716E /* ExportPrivateKeyOrMnemonicVC.h */,
@@ -1783,6 +1793,7 @@
 				842FEE8621411D1A0075716E /* ControlBtnsView.m in Sources */,
 				843EC9EC212122A7002D5C2A /* NetManager.m in Sources */,
 				84B8D5332150C54C00286631 /* TransactionRecordDetailVC.m in Sources */,
+				84E3052F215F69A9008ABC6C /* ExportPasswordHintVC.m in Sources */,
 				843EC9DD21212271002D5C2A /* UIImage+BaseToImage.m in Sources */,
 				8414300A215A12C60079EFEC /* LaunchIntroductionView.m in Sources */,
 				84D0E42621211AAB004E65AD /* ViewController.m in Sources */,
@@ -1809,6 +1820,7 @@
 				0415BDAC2131BC850022DEB7 /* YYKlineVolumeView.m in Sources */,
 				843ECA3B21216320002D5C2A /* UIColor+Util.m in Sources */,
 				843ECA29212162FB002D5C2A /* NSDictionary+ExFoundation.m in Sources */,
+				84E3052C215F5860008ABC6C /* PromptView.m in Sources */,
 				843EC9DA21212271002D5C2A /* NSObject+Parse.m in Sources */,
 				843ECA28212162FB002D5C2A /* NSObject+Extension.m in Sources */,
 				84C8E7DD212A99FD00627445 /* CreateMnemonicVC.m in Sources */,

@@ -44,7 +44,7 @@
                 NSLog(@"\n\n\n** keystore 恢复 mnemonic ** = \n %@ \n\n\n",decryptedAccount.mnemonicPhrase);
                 //按地址保存keystore
                 [[NSUserDefaults standardUserDefaults] setObject:json forKey:[NSString stringWithFormat:@"keystore%@",walletAddress]];
-                [[NSUserDefaults standardUserDefaults] synchronize];
+               // [[NSUserDefaults standardUserDefaults] synchronize];
             }
             callback(decryptedAccount,error);
 
@@ -219,6 +219,7 @@
     NSString *seed = [CreateAll CreateSeedByMnemonic:mnemonic Password:password];
     NSString *xprv = [CreateAll CreateExtendPrivateKeyWithSeed:seed];
     MissionWallet *wallet = [CreateAll CreateWalletByXprv:xprv index:0 CoinType:coinType];
+    wallet.passwordHint = passwordHint;
     [CreateAll CreateKeyStoreByMnemonic:mnemonic  WalletAddress:wallet.address Password:password callback:^(Account *account, NSError *error) {
     }];
     wallet.walletName = [CreateAll GenerateNewWalletNameWithWalletAddress:wallet.address CoinType:coinType];
@@ -230,6 +231,7 @@
                                              code:-101
                                          userInfo:userInfo];
         completionHandler(nil,error);
+        return;
     }
 
     wallet.importType = IMPORT_BY_MNEMONIC;
@@ -411,7 +413,7 @@ return -1;表示已存在
 //导出keystore
 +(void)ExportKeyStoreByPassword:(NSString *)password  WalletAddress:(NSString *)walletAddress callback: (void (^)(NSString *address, NSError *error))callback{
     NSString *json = [[NSUserDefaults standardUserDefaults]  objectForKey:[NSString stringWithFormat:@"keystore%@",walletAddress]];
-    NSLog(@"json = %@",json);
+   
     if (json == nil || [json isEqual:[NSNull null]]) {
         callback(@"wrong password！",nil);
         return;
@@ -428,7 +430,12 @@ return -1;表示已存在
         return;
     }
     [Account decryptSecretStorageJSON:json password:password callback:^(Account *decryptedAccount, NSError *error) {
-        callback(decryptedAccount.mnemonicPhrase,error);
+        if (!error) {
+            callback(decryptedAccount.mnemonicPhrase,error);
+        }else{
+            callback(nil,error);
+        }
+        
     }];
 }
 //导出私钥
@@ -501,6 +508,19 @@ return -1;表示已存在
     }
     MissionWallet *wallet =  [NSKeyedUnarchiver unarchiveObjectWithData:walletdata];
     return wallet;
+}
+//存取密码提示
++(void)UpdatePasswordHint:(NSString *)passwordHint{
+    [[NSUserDefaults standardUserDefaults] setObject:passwordHint forKey:@"passwordHint"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
++(NSString *)GetPasswordHint{
+    NSString *passwordHint = [[NSUserDefaults standardUserDefaults] objectForKey:@"passwordHint"];
+    if (!passwordHint) {
+        passwordHint = @"";
+        [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"passwordHint"];
+    }
+    return passwordHint;
 }
 
 //存储钱包
@@ -1077,7 +1097,7 @@ return -1;表示已存在
         callback(response);
     }];
 }
-//*************************  EOS.js  *************************
+
 
 
 ////*************************  BIP44 EOSKey  *************************
@@ -1095,7 +1115,6 @@ return -1;表示已存在
      私钥不同格式的转换 （56位二进制格式，WIF未压缩格式和WIF压缩格式）
      相互转换：
      假设随机生成的私钥如下：
-     
      P = 0x9B257AD1E78C14794FBE9DC60B724B375FDE5D0FB2415538820D0D929C4AD436
      添加前缀0x80
      

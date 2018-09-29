@@ -169,48 +169,38 @@
     NSString *xprv = [CreateAll CreateExtendPrivateKeyWithSeed:seed];
     MissionWallet *walletBTC = [CreateAll CreateWalletByXprv:xprv index:0 CoinType:BTC];
     MissionWallet *walletETH = [CreateAll CreateWalletByXprv:xprv index:0 CoinType:ETH];
-    //self.mnemonic = @"yard impulse luxury drive today throw farm pepper survey wreck glass federal";
+ 
     if (!walletBTC || !walletETH) {
         [self.view hideHUD];
         return;
     }
+
+    if (self.setPasswordView.passwordHintTextField.text == nil) {
+        walletBTC.passwordHint = @"";
+        walletETH.passwordHint = @"";
+    }else{
+        walletBTC.passwordHint = self.setPasswordView.passwordHintTextField.text;
+        walletETH.passwordHint = self.setPasswordView.passwordHintTextField.text;
+        [CreateAll UpdatePasswordHint:self.setPasswordView.passwordHintTextField.text];
+    }
+    
     //创建并存KeyStore
-    [CreateAll CreateKeyStoreByMnemonic:self.mnemonic  WalletAddress:walletBTC.address Password:password callback:^(Account *account, NSError *error) {
+    [CreateAll CreateKeyStoreByMnemonic:self.mnemonic  WalletAddress:walletETH.address Password:password callback:^(Account *account, NSError *error) {
         if (account == nil) {
-            [self.view showMsg:@"导入出错！"];
+            [self.view showMsg:@"导入出错,助记词错误！"];
         }else{
-            //NSLog(@"**** BTC KeyStore finished ! ****");
-            if (self.setPasswordView.passwordHintTextField.text == nil) {
-                walletETH.passwordHint = @"";
-            }else{
-                walletETH.passwordHint = self.setPasswordView.passwordHintTextField.text;
-            }
+            [self.view showMsg:@"导入成功！"];
+            [[NSUserDefaults standardUserDefaults]  setBool:YES forKey:@"ifHasAccount"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            [CreateAll SaveWallet:walletBTC Name:@"walletBTC" WalletType:LOCAL_WALLET Password:password];
+            [CreateAll SaveWallet:walletETH Name:@"walletETH" WalletType:LOCAL_WALLET Password:password];
             
-            //创建并存KeyStore
-            [CreateAll CreateKeyStoreByMnemonic:self.mnemonic  WalletAddress:walletETH.address Password:password callback:^(Account *account, NSError *error) {
-                if (account == nil) {
-                    [self.view showMsg:@"导入出错！"];
-                }else{
-                    [self.view showMsg:@"导入成功！"];
-                    if (self.setPasswordView.passwordHintTextField.text == nil) {
-                        walletETH.passwordHint = @"";
-                    }else{
-                        walletETH.passwordHint = self.setPasswordView.passwordHintTextField.text;
-                    }
-                    [[NSUserDefaults standardUserDefaults]  setBool:YES forKey:@"ifHasAccount"];
-                    [[NSUserDefaults standardUserDefaults] synchronize];
-                    [CreateAll SaveWallet:walletBTC Name:@"walletBTC" WalletType:LOCAL_WALLET Password:password];
-                    [CreateAll SaveWallet:walletETH Name:@"walletETH" WalletType:LOCAL_WALLET Password:password];
-                   
-                    [self dismissViewControllerAnimated:YES completion:^{
-                        [self.view hideHUD];
-                    }];
-                    
-                }
+            [self dismissViewControllerAnimated:YES completion:^{
+                [self.view hideHUD];
             }];
         }
-        
     }];
+
 }
 
 @end
