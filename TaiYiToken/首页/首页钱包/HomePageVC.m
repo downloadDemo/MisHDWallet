@@ -52,6 +52,8 @@
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"ifHasAccount"] == YES) {
         MissionWallet *walletBTC = [CreateAll GetMissionWalletByName:@"walletBTC"];
         MissionWallet *walletETH = [CreateAll GetMissionWalletByName:@"walletETH"];
+        
+        
         if (_walletArray == nil) {
             _walletArray = [NSMutableArray array];
         }
@@ -70,6 +72,14 @@
                 [self.walletArray addObject:wallet];
             }
         }
+        NSString *title = @"";
+        if (self.selectedIndex < self.walletArray.count && self.selectedIndex > -1) {
+            title = ((MissionWallet *)self.walletArray[self.selectedIndex]).walletName;
+        }else{
+            title = ((MissionWallet *)self.walletArray[0]).walletName;
+            self.selectedIndex = 0;
+        }
+        _titleLabel.text = title;
         [self.tableView setHidden:NO];
         [self.collectionview setHidden:NO];
         [self.headView setHidden:NO];
@@ -87,6 +97,7 @@
         if (_createAccountBtn) {
             [_createAccountBtn removeFromSuperview];
         }
+        
     }else{
         [self.walletArray removeAllObjects];
         [self.tableView reloadData];
@@ -127,8 +138,8 @@
     _titleLabel = [UILabel new];
     _titleLabel.font = [UIFont boldSystemFontOfSize:17];
     _titleLabel.textColor = [UIColor textBlackColor];
-    //[_titleLabel setText:@"BTC_wallet"];
     _titleLabel.textAlignment = NSTextAlignmentCenter;
+    
     [self.view addSubview:_titleLabel];
     [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(32);

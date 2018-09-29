@@ -248,6 +248,7 @@ typedef enum {
         
         
     }else if(self.importType == PRIVATEKEY_IMPORT){
+       
         Account *account = [Account accountWithPrivateKey:[NSData dataWithHexString:self.ImportContentTextView.text]];
         if (account == nil) {
             [self.view showMsg:@"请输入正确的私钥！"];

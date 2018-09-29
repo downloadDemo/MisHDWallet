@@ -202,7 +202,6 @@ typedef enum {
         return;
     }
     if (self.importType == MNEMONIC_IMPORT) {
-
         [self.view showHUD];
         [CreateAll ImportWalletByMnemonic:self.ImportContentTextView.text CoinType:BTC Password:self.setPasswordView.passwordTextField.text PasswordHint:self.setPasswordView.passwordHintTextField.text callback:^(MissionWallet *wallet, NSError *error) {
             [self.view hideHUD];
