@@ -37,6 +37,11 @@
 		84143021215C71060079EFEC /* sha2.c in Sources */ = {isa = PBXBuildFile; fileRef = 84143020215C71060079EFEC /* sha2.c */; };
 		84143024215C71170079EFEC /* uECC.c in Sources */ = {isa = PBXBuildFile; fileRef = 84143022215C71160079EFEC /* uECC.c */; };
 		84143028215C71400079EFEC /* rmd160.c in Sources */ = {isa = PBXBuildFile; fileRef = 84143026215C713F0079EFEC /* rmd160.c */; };
+		84143051215EFFFA0079EFEC /* ImageTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8414304E215EFFF90079EFEC /* ImageTextCell.m */; };
+		84143052215EFFFA0079EFEC /* UserConfigCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8414304F215EFFF90079EFEC /* UserConfigCell.m */; };
+		84143053215EFFFA0079EFEC /* UserInfoHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84143050215EFFFA0079EFEC /* UserInfoHeadView.m */; };
+		84143056215F004F0079EFEC /* AccountConfigVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84143054215F004E0079EFEC /* AccountConfigVC.m */; };
+		84143059215F007F0079EFEC /* DappVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84143057215F007D0079EFEC /* DappVC.m */; };
 		8428A53F2123FE76003E1DD8 /* CurrencyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8428A53E2123FE76003E1DD8 /* CurrencyModel.m */; };
 		8428A542212422EC003E1DD8 /* MarketVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8428A541212422EC003E1DD8 /* MarketVC.m */; };
 		8428A54521242323003E1DD8 /* MarketCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8428A54421242323003E1DD8 /* MarketCell.m */; };
@@ -125,11 +130,6 @@
 		8484F38E2159BA0A005992B1 /* Eos.js in Resources */ = {isa = PBXBuildFile; fileRef = 8484F38A2159BA09005992B1 /* Eos.js */; };
 		8484F3942159BA3A005992B1 /* QuoteLocalHtmlTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 8484F3902159BA39005992B1 /* QuoteLocalHtmlTool.m */; };
 		8484F3952159BA3A005992B1 /* JavascriptWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8484F3932159BA39005992B1 /* JavascriptWebViewController.m */; };
-		8484F3992159CB13005992B1 /* UserInfoHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8484F3982159CB13005992B1 /* UserInfoHeadView.m */; };
-		8484F39C2159CDB9005992B1 /* ImageTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8484F39B2159CDB9005992B1 /* ImageTextCell.m */; };
-		8484F3A02159D9CA005992B1 /* AccountConfigVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8484F39F2159D9CA005992B1 /* AccountConfigVC.m */; };
-		8484F3A62159DA63005992B1 /* UserConfigCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8484F3A52159DA63005992B1 /* UserConfigCell.m */; };
-		8484F3AD2159E609005992B1 /* DappVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8484F3AC2159E609005992B1 /* DappVC.m */; };
 		8484F3B12159E650005992B1 /* DappViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8484F3B02159E650005992B1 /* DappViewCell.m */; };
 		84A9FF5721368830006F9D1B /* KLinePointModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8428A54D21255333003E1DD8 /* KLinePointModel.m */; };
 		84B0A9482122736B002EFA0A /* CustomizedTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B0A94321227369002EFA0A /* CustomizedTabBarController.m */; };
@@ -258,6 +258,16 @@
 		84143025215C71290079EFEC /* libbase58.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = libbase58.h; sourceTree = "<group>"; };
 		84143026215C713F0079EFEC /* rmd160.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.objc; fileEncoding = 4; path = rmd160.c; sourceTree = "<group>"; };
 		84143027215C71400079EFEC /* rmd160.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rmd160.h; sourceTree = "<group>"; };
+		8414304B215EFFF70079EFEC /* ImageTextCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageTextCell.h; sourceTree = "<group>"; };
+		8414304C215EFFF80079EFEC /* UserInfoHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoHeadView.h; sourceTree = "<group>"; };
+		8414304D215EFFF80079EFEC /* UserConfigCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserConfigCell.h; sourceTree = "<group>"; };
+		8414304E215EFFF90079EFEC /* ImageTextCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageTextCell.m; sourceTree = "<group>"; };
+		8414304F215EFFF90079EFEC /* UserConfigCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserConfigCell.m; sourceTree = "<group>"; };
+		84143050215EFFFA0079EFEC /* UserInfoHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoHeadView.m; sourceTree = "<group>"; };
+		84143054215F004E0079EFEC /* AccountConfigVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountConfigVC.m; sourceTree = "<group>"; };
+		84143055215F004F0079EFEC /* AccountConfigVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountConfigVC.h; sourceTree = "<group>"; };
+		84143057215F007D0079EFEC /* DappVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DappVC.m; sourceTree = "<group>"; };
+		84143058215F007D0079EFEC /* DappVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DappVC.h; sourceTree = "<group>"; };
 		8428A53D2123FE76003E1DD8 /* CurrencyModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CurrencyModel.h; sourceTree = "<group>"; };
 		8428A53E2123FE76003E1DD8 /* CurrencyModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CurrencyModel.m; sourceTree = "<group>"; };
 		8428A540212422EC003E1DD8 /* MarketVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MarketVC.h; sourceTree = "<group>"; };
@@ -433,16 +443,6 @@
 		8484F3912159BA39005992B1 /* JavascriptWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JavascriptWebViewController.h; sourceTree = "<group>"; };
 		8484F3922159BA39005992B1 /* QuoteLocalHtmlTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuoteLocalHtmlTool.h; sourceTree = "<group>"; };
 		8484F3932159BA39005992B1 /* JavascriptWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JavascriptWebViewController.m; sourceTree = "<group>"; };
-		8484F3972159CB13005992B1 /* UserInfoHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = UserInfoHeadView.h; path = ../../../../../../Documents/UserInfoHeadView.h; sourceTree = "<group>"; };
-		8484F3982159CB13005992B1 /* UserInfoHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = UserInfoHeadView.m; path = ../../../../../../Documents/UserInfoHeadView.m; sourceTree = "<group>"; };
-		8484F39A2159CDB9005992B1 /* ImageTextCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ImageTextCell.h; path = ../../../../../../Documents/ImageTextCell.h; sourceTree = "<group>"; };
-		8484F39B2159CDB9005992B1 /* ImageTextCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ImageTextCell.m; path = ../../../../../../Documents/ImageTextCell.m; sourceTree = "<group>"; };
-		8484F39E2159D9CA005992B1 /* AccountConfigVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AccountConfigVC.h; path = ../../../../../../Documents/AccountConfigVC.h; sourceTree = "<group>"; };
-		8484F39F2159D9CA005992B1 /* AccountConfigVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AccountConfigVC.m; path = ../../../../../../Documents/AccountConfigVC.m; sourceTree = "<group>"; };
-		8484F3A42159DA63005992B1 /* UserConfigCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = UserConfigCell.h; path = ../../../../../../Documents/UserConfigCell.h; sourceTree = "<group>"; };
-		8484F3A52159DA63005992B1 /* UserConfigCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = UserConfigCell.m; path = ../../../../../../Documents/UserConfigCell.m; sourceTree = "<group>"; };
-		8484F3AB2159E609005992B1 /* DappVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DappVC.h; path = ../../../../../Documents/DappVC.h; sourceTree = "<group>"; };
-		8484F3AC2159E609005992B1 /* DappVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = DappVC.m; path = ../../../../../Documents/DappVC.m; sourceTree = "<group>"; };
 		8484F3AF2159E650005992B1 /* DappViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DappViewCell.h; sourceTree = "<group>"; };
 		8484F3B02159E650005992B1 /* DappViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DappViewCell.m; sourceTree = "<group>"; };
 		84B0A94221227369002EFA0A /* CustomizedNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomizedNavigationController.h; sourceTree = "<group>"; };
@@ -1357,12 +1357,12 @@
 		8484F3962159CAD5005992B1 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				8484F3972159CB13005992B1 /* UserInfoHeadView.h */,
-				8484F3982159CB13005992B1 /* UserInfoHeadView.m */,
-				8484F39A2159CDB9005992B1 /* ImageTextCell.h */,
-				8484F39B2159CDB9005992B1 /* ImageTextCell.m */,
-				8484F3A42159DA63005992B1 /* UserConfigCell.h */,
-				8484F3A52159DA63005992B1 /* UserConfigCell.m */,
+				8414304B215EFFF70079EFEC /* ImageTextCell.h */,
+				8414304E215EFFF90079EFEC /* ImageTextCell.m */,
+				8414304D215EFFF80079EFEC /* UserConfigCell.h */,
+				8414304F215EFFF90079EFEC /* UserConfigCell.m */,
+				8414304C215EFFF80079EFEC /* UserInfoHeadView.h */,
+				84143050215EFFFA0079EFEC /* UserInfoHeadView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1370,8 +1370,8 @@
 		8484F39D2159D99C005992B1 /* OperationDetail */ = {
 			isa = PBXGroup;
 			children = (
-				8484F39E2159D9CA005992B1 /* AccountConfigVC.h */,
-				8484F39F2159D9CA005992B1 /* AccountConfigVC.m */,
+				84143055215F004F0079EFEC /* AccountConfigVC.h */,
+				84143054215F004E0079EFEC /* AccountConfigVC.m */,
 				84143012215B278D0079EFEC /* SelectCurrencyTypeVC.h */,
 				84143013215B278D0079EFEC /* SelectCurrencyTypeVC.m */,
 			);
@@ -1381,9 +1381,9 @@
 		8484F3AA2159E53B005992B1 /* 应用 */ = {
 			isa = PBXGroup;
 			children = (
+				84143058215F007D0079EFEC /* DappVC.h */,
+				84143057215F007D0079EFEC /* DappVC.m */,
 				8484F3AE2159E611005992B1 /* View */,
-				8484F3AB2159E609005992B1 /* DappVC.h */,
-				8484F3AC2159E609005992B1 /* DappVC.m */,
 			);
 			path = "应用";
 			sourceTree = "<group>";
@@ -1774,9 +1774,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				84B8D5392150C8BB00286631 /* RecordDetailLabel.m in Sources */,
+				84143059215F007F0079EFEC /* DappVC.m in Sources */,
 				84A9FF5721368830006F9D1B /* KLinePointModel.m in Sources */,
 				843EC9DC21212271002D5C2A /* UIView+HUD.m in Sources */,
-				8484F39C2159CDB9005992B1 /* ImageTextCell.m in Sources */,
 				848180BB2123C72A0007DCF9 /* ContainerViewController.m in Sources */,
 				842FEE76213FBFF90075716E /* AnnounceView.m in Sources */,
 				842FEE48213E38510075716E /* MySwitch.m in Sources */,
@@ -1794,7 +1794,6 @@
 				8484F37F2159B9F1005992B1 /* WebViewJavascriptBridgeBase.m in Sources */,
 				842FEE9021422D500075716E /* ImportETHWalletVC.m in Sources */,
 				843ECA2C212162FB002D5C2A /* NSString+Extention.m in Sources */,
-				8484F3A02159D9CA005992B1 /* AccountConfigVC.m in Sources */,
 				0415BDA52131BC850022DEB7 /* YYStockView_Kline.m in Sources */,
 				842FEE15213D26030075716E /* ScanSuccessJumpVC.m in Sources */,
 				84143011215B117B0079EFEC /* EOSAccountKey.m in Sources */,
@@ -1855,15 +1854,16 @@
 				843ECA312121630A002D5C2A /* RegularExpression.m in Sources */,
 				842FEE6A213F806C0075716E /* ExportWalletAddressVC.m in Sources */,
 				8481805D2123B2630007DCF9 /* AESCrypt.m in Sources */,
+				84143051215EFFFA0079EFEC /* ImageTextCell.m in Sources */,
 				84B8D51C214B591C00286631 /* BTCBalanceModel.m in Sources */,
 				843EC9E62121228B002D5C2A /* AMSaveFile.m in Sources */,
 				84C8E7D4212A971C00627445 /* NYMnemonic.m in Sources */,
 				84143028215C71400079EFEC /* rmd160.c in Sources */,
 				843EC9DF21212271002D5C2A /* AppDelegate+Custom.m in Sources */,
 				0415BD982131BC850022DEB7 /* UIColor+YYStockTheme.m in Sources */,
+				84143056215F004F0079EFEC /* AccountConfigVC.m in Sources */,
 				84C8E7E3212A9FFD00627445 /* CFFlowButtonView.m in Sources */,
 				0415BDA92131BC850022DEB7 /* YYKline.m in Sources */,
-				8484F3992159CB13005992B1 /* UserInfoHeadView.m in Sources */,
 				8428A548212544F2003E1DD8 /* MarketDetailVC.m in Sources */,
 				84D0E43121211AAF004E65AD /* main.m in Sources */,
 				8484F3802159B9F1005992B1 /* WKWebViewJavascriptBridge.m in Sources */,
@@ -1893,13 +1893,13 @@
 				84C0DF2D212CFF8500BCC91D /* NSData+Bitcoin.m in Sources */,
 				848180602123B2630007DCF9 /* NSData+CommonCrypto.m in Sources */,
 				0415BD9F2131BC850022DEB7 /* YYFiveRecordTableViewCell.m in Sources */,
+				84143052215EFFFA0079EFEC /* UserConfigCell.m in Sources */,
 				848180612123B2630007DCF9 /* PBKDF2.m in Sources */,
 				842FEE61213E8E840075716E /* InputPasswordView.m in Sources */,
 				842C1097212A4A7E00E466C5 /* DataPointView.m in Sources */,
 				842FEDF22138D8770075716E /* WebVC.m in Sources */,
 				842FEE4B213E51390075716E /* WalletManagerVC.m in Sources */,
 				843ECA23212162FB002D5C2A /* CALayer+XibConfiguration.m in Sources */,
-				8484F3AD2159E609005992B1 /* DappVC.m in Sources */,
 				843ECA07212162B7002D5C2A /* NSString+Hash.m in Sources */,
 				84B8D52B214F571D00286631 /* TransactionRecordCell.m in Sources */,
 				84B8D5362150C6B700286631 /* TransactionDetailView.m in Sources */,
@@ -1912,12 +1912,12 @@
 				842FEE2B213D27470075716E /* SGWebView.m in Sources */,
 				8414301A215B57D10079EFEC /* ImportHDWalletVC.m in Sources */,
 				843ECA2D212162FB002D5C2A /* UIImage+ExFoundation.m in Sources */,
-				8484F3A62159DA63005992B1 /* UserConfigCell.m in Sources */,
 				84748848212BC2EC0077AC0F /* UserInfoVC.m in Sources */,
 				842FEEA5214A5FE80075716E /* TransactionGasView.m in Sources */,
 				84BDD1702126B3DF0039FE09 /* ButtonsView.m in Sources */,
 				842FEE58213E75D60075716E /* ExportWalletCell.m in Sources */,
 				84B8D53C2151E1BA00286631 /* DashesLineView.m in Sources */,
+				84143053215EFFFA0079EFEC /* UserInfoHeadView.m in Sources */,
 				8484F3812159B9F1005992B1 /* WebViewJavascriptBridge.m in Sources */,
 				84143024215C71170079EFEC /* uECC.c in Sources */,
 				0415BDA42131BC850022DEB7 /* YYTimeLineVolumeView.m in Sources */,
