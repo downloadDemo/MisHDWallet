@@ -162,7 +162,7 @@
     
 }
 -(void)CreateWallet{
-    NSString *password = [[NSUserDefaults standardUserDefaults] objectForKey:@"password"];
+    NSString *password = self.setPasswordView.passwordTextField.text;
     //512位种子 长度为128字符 64Byte
     NSString *seed = [CreateAll CreateSeedByMnemonic:self.mnemonic Password:password];
     
@@ -211,9 +211,6 @@
         }
         
     }];
-    
-    //创建完成 清除密码
-    [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"password"];
 }
 
 @end

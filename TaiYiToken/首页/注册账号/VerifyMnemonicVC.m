@@ -127,32 +127,31 @@
 }
 
 -(void)CreateWallet{
-    NSString *password = [[NSUserDefaults standardUserDefaults] objectForKey:@"password"];
+    
     //512位种子 长度为128字符 64Byte
-    NSString *seed = [CreateAll CreateSeedByMnemonic:self.mnemonic Password:password];
+    NSString *seed = [CreateAll CreateSeedByMnemonic:self.mnemonic Password:self.password];
     
     NSString *xprv = [CreateAll CreateExtendPrivateKeyWithSeed:seed];
     MissionWallet *walletBTC = [CreateAll CreateWalletByXprv:xprv index:0 CoinType:BTC];
     MissionWallet *walletETH = [CreateAll CreateWalletByXprv:xprv index:0 CoinType:ETH];
-    //self.mnemonic = @"yard impulse luxury drive today throw farm pepper survey wreck glass federal";
     if (!walletBTC || !walletETH) {
         [self.view hideHUD];
         return;
     }
     //创建并存KeyStore
-    [CreateAll CreateKeyStoreByMnemonic:self.mnemonic  WalletAddress:walletBTC.address Password:password callback:^(Account *account, NSError *error) {
+    [CreateAll CreateKeyStoreByMnemonic:self.mnemonic  WalletAddress:walletBTC.address Password:self.password callback:^(Account *account, NSError *error) {
         if (account == nil) {
             [self.view showMsg:@"创建出错！"];
         }else{
             //创建并存KeyStore
-            [CreateAll CreateKeyStoreByMnemonic:self.mnemonic  WalletAddress:walletETH.address Password:password callback:^(Account *account, NSError *error) {
+            [CreateAll CreateKeyStoreByMnemonic:self.mnemonic  WalletAddress:walletETH.address Password:self.password callback:^(Account *account, NSError *error) {
                 if (account == nil) {
                     [self.view showMsg:@"创建出错！"];
                 }else{
                     [[NSUserDefaults standardUserDefaults]  setBool:YES forKey:@"ifHasAccount"];
                     [[NSUserDefaults standardUserDefaults] synchronize];
-                    [CreateAll SaveWallet:walletETH Name:@"walletETH" WalletType:LOCAL_WALLET Password:password];
-                    [CreateAll SaveWallet:walletBTC Name:@"walletBTC" WalletType:LOCAL_WALLET Password:password];
+                    [CreateAll SaveWallet:walletETH Name:@"walletETH" WalletType:LOCAL_WALLET Password:self.password];
+                    [CreateAll SaveWallet:walletBTC Name:@"walletBTC" WalletType:LOCAL_WALLET Password:self.password];
                     [self.view showMsg:@"创建成功！"];
                     [self dismissViewControllerAnimated:YES completion:^{
                         [self.view hideHUD];
@@ -161,9 +160,7 @@
             }];
         }
     }];
-   
-    //创建完成 清除密码
-    [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"password"];
+
 }
 
 

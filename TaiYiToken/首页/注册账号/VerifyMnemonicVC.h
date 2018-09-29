@@ -10,4 +10,5 @@
 
 @interface VerifyMnemonicVC : UIViewController
 @property(nonatomic)NSString *mnemonic;
+@property(nonatomic,copy)NSString *password;
 @end

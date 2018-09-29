@@ -44,6 +44,7 @@
                 NSLog(@"\n\n\n** keystore 恢复 mnemonic ** = \n %@ \n\n\n",decryptedAccount.mnemonicPhrase);
                 //按地址保存keystore
                 [[NSUserDefaults standardUserDefaults] setObject:json forKey:[NSString stringWithFormat:@"keystore%@",walletAddress]];
+                [[NSUserDefaults standardUserDefaults] synchronize];
             }
             callback(decryptedAccount,error);
 
@@ -66,6 +67,7 @@
                 NSLog(@"\n\n\n** keystore 恢复 mnemonic ** = \n %@ \n\n\n",decryptedAccount.mnemonicPhrase);
                 //按密码保存keystore
                 [[NSUserDefaults standardUserDefaults] setObject:json forKey:[NSString stringWithFormat:@"keystore%@",walletAddress]];
+                [[NSUserDefaults standardUserDefaults] synchronize];
             }
             callback(decryptedAccount,error);
             
@@ -520,6 +522,7 @@ return -1;表示已存在
             [oldwalletarray addObject:walletname];
             NSMutableArray *newwalletarray = [oldwalletarray mutableCopy];
             [[NSUserDefaults standardUserDefaults]  setObject:newwalletarray forKey:@"walletArray"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
         }
     }
     //如果是导入类型 存储到导入钱包名数组
@@ -533,8 +536,10 @@ return -1;表示已存在
             [oldimportwalletarray addObject:walletname];
             NSMutableArray *newimportwalletarray = [oldimportwalletarray mutableCopy];
             [[NSUserDefaults standardUserDefaults]  setObject:newimportwalletarray forKey:@"importwalletArray"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
         }
     }
+    
 }
 //移除钱包名
 +(BOOL)DeleteWalletFromImportWalletNameArray:(NSString *)walletname{
@@ -543,6 +548,7 @@ return -1;表示已存在
         [oldimportwalletarray removeObject:walletname];
         NSMutableArray *newimportwalletarray = [oldimportwalletarray mutableCopy];
         [[NSUserDefaults standardUserDefaults]  setObject:newimportwalletarray forKey:@"importwalletArray"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
         return YES;
     }else{
         return NO;
@@ -553,6 +559,7 @@ return -1;表示已存在
     MissionWallet *miswallet = [CreateAll GetMissionWalletByName:walletname];
     if ([walletaddress isEqualToString:miswallet.address]) {
         [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:walletname];
+        [[NSUserDefaults standardUserDefaults] synchronize];
         return YES;
     }else{
         return NO;

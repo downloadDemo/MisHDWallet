@@ -16,6 +16,7 @@
 
 @property(nonatomic,strong) UIButton *nextBtn;
 @property(nonatomic,copy)NSString *mnemonic;
+
 @end
 
 @implementation CreateMnemonicVC
@@ -126,6 +127,7 @@
 -(void)nextAction{
     VerifyMnemonicVC *vmvc = [VerifyMnemonicVC new];
     vmvc.mnemonic = self.mnemonic;
+    vmvc.password = self.password;
     [self.navigationController pushViewController:vmvc animated:YES];
 }
 - (void)didReceiveMemoryWarning {

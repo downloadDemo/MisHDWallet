@@ -161,8 +161,7 @@
     }
 
     [[NSUserDefaults standardUserDefaults] setObject:self.accountTextField.text forKey:@"account"];
-    [[NSUserDefaults standardUserDefaults] setObject:self.passwordTextField.text forKey:@"password"];
-    
+
     
     _shadowView = [UIView new];
     _shadowView.layer.shadowColor = [UIColor grayColor].CGColor;
@@ -214,6 +213,7 @@
         [self.remindView removeFromSuperview];
     }];
     CreateMnemonicVC *cmvc = [CreateMnemonicVC new];
+    cmvc.password = self.passwordTextField.text;
     [self.navigationController pushViewController:cmvc animated:YES];
 }
 - (void)didReceiveMemoryWarning {

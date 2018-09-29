@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface CreateMnemonicVC : UIViewController
-
+@property(nonatomic,copy)NSString *password;
 @end
