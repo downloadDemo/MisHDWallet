@@ -1073,7 +1073,7 @@ return -1;表示已存在
 
 //EOS私钥
 +(void)isValidPrivateJvc:(JavascriptWebViewController *)jvc PrivateKey:(NSString *)privateKey callback: (void(^)(id response))callback{
-    [jvc isValidPrivate:@"tid" andPriv_key:privateKey callback:^(id response) {
+    [jvc isValidPrivate:@"" andPriv_key:privateKey callback:^(id response) {
         callback(response);
     }];
 }
@@ -1083,41 +1083,38 @@ return -1;表示已存在
 ////*************************  BIP44 EOSKey  *************************
 
 //BIP44 EOSKey
-+(NSString *)CreateEOSKeyBySeed:(NSString *)seed{
++(NSString *)CreateEOSPrivateKeyBySeed:(NSString *)seed Index:(uint32_t)index{
     NSString *xprv = [CreateAll CreateExtendPrivateKeyWithSeed:seed];
     //@"m/44'/194'/0'/0"   @"m/48'/4'/0'/0'"
     BTCKeychain *btckeychainxprv = [[BTCKeychain alloc]initWithExtendedKey:xprv];
     NSString *OWNERPath = [NSString stringWithFormat:@"m/44'/194'/0'/0"];
-    NSString *privateKeyx = @"";
-    for (int i = 0; i<1; i++) {
-        BTCKey* ownerkey = [[btckeychainxprv derivedKeychainWithPath:OWNERPath] keyAtIndex:i hardened:NO];
-       /*
-        私钥不同格式的转换 （56位二进制格式，WIF未压缩格式和WIF压缩格式）
-        相互转换：
-        假设随机生成的私钥如下：
-        
-        P = 0x9B257AD1E78C14794FBE9DC60B724B375FDE5D0FB2415538820D0D929C4AD436
-        添加前缀0x80
-        
-        WIF = Base58(0x80 + P + CHECK(0x80 + P) + 0x01)
-        = Base58(0x80 +
-        0x9B257AD1E78C14794FBE9DC60B724B375FDE5D0FB2415538820D0D929C4AD436 +
-        0x36dfd253 +
-        0x01)
-        其中CHECK表示两次sha256哈希后取前四个比特。前缀0x80表示私钥类型，后缀0x01表示公钥采用压缩格式，如果用 *非压缩公钥则不加这个后缀*
-        WIF格式的私钥的首字符是以“5”，“K”或“L”开头的，其中以“5” 开头的是WIF未压缩格式，其他两个是WIF压缩格式。
-        */
-        BTCPrivateKeyAddress *umcomaddr = [BTCPrivateKeyAddress addressWithData:ownerkey.privateKeyAddress.data];
-        umcomaddr.publicKeyCompressed = NO;
-        NSString *umcompresspri = umcomaddr.string;
-        NSString *privateKey = ownerkey.privateKeyAddress.string;
-
-        NSLog(@"pri =%@ \n %@", privateKey,umcompresspri);
-        //length 52 / 51
-        NSLog(@"length =%ld \n %ld", privateKey.length,umcompresspri.length);
-        
-    }
-    return privateKeyx;
+  
+    BTCKey* ownerkey = [[btckeychainxprv derivedKeychainWithPath:OWNERPath] keyAtIndex:index hardened:NO];
+    NSString *privateKey = ownerkey.privateKeyAddress.string;
+    /*
+     私钥不同格式的转换 （56位二进制格式，WIF未压缩格式和WIF压缩格式）
+     相互转换：
+     假设随机生成的私钥如下：
+     
+     P = 0x9B257AD1E78C14794FBE9DC60B724B375FDE5D0FB2415538820D0D929C4AD436
+     添加前缀0x80
+     
+     WIF = Base58(0x80 + P + CHECK(0x80 + P) + 0x01)
+     = Base58(0x80 +
+     0x9B257AD1E78C14794FBE9DC60B724B375FDE5D0FB2415538820D0D929C4AD436 +
+     0x36dfd253 +
+     0x01)
+     其中CHECK表示两次sha256哈希后取前四个比特。前缀0x80表示私钥类型，后缀0x01表示公钥采用压缩格式，如果用 *非压缩公钥则不加这个后缀*
+     WIF格式的私钥的首字符是以“5”，“K”或“L”开头的，其中以“5” 开头的是WIF未压缩格式，其他两个是WIF压缩格式。
+     */
+    BTCPrivateKeyAddress *umcomaddr = [BTCPrivateKeyAddress addressWithData:ownerkey.privateKeyAddress.data];
+    umcomaddr.publicKeyCompressed = NO;
+    NSString *umcompresspri = umcomaddr.string;
+    NSLog(@"pri =%@ \n %@", privateKey,umcompresspri);
+    //length 52 / 51
+    NSLog(@"length =%ld \n %ld", privateKey.length,umcompresspri.length);
+    
+    return umcompresspri;
    
 }
 

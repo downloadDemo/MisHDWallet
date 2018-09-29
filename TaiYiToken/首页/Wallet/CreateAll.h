@@ -204,5 +204,5 @@
 
 
 //BIP48 EOSKey
-+(NSString *)CreateEOSKeyBySeed:(NSString *)seed;
++(NSString *)CreateEOSPrivateKeyBySeed:(NSString *)seed Index:(uint32_t)index;
 @end

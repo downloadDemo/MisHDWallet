@@ -85,39 +85,24 @@
     }
     _jvc = [JavascriptWebViewController new];
     [_jvc viewDidLoad];
-    //@"yard impulse luxury drive today throw farm pepper survey wreck glass federal";
-
+   
     NSString *str = @"once crawl machine nuclear wall firm holiday dismiss common fall note frozen";
     NSString *seed = [CreateAll CreateSeedByMnemonic:str Password:nil];
-    
-//    [CreateAll CreateEOSKeyPairJvc:_jvc MnemonicCode:seed KeyType:EOS_OWNER_KEY callback:^(EOSAccountKey *key) {
-//        NSLog(@"1 prikey = %@ \n pubkey = %@\n",key.eosPrivateKey,key.eosPublicKey);
-//    }];
-//    [CreateAll CreateEOSKeyPairJvc:_jvc MnemonicCode:seed KeyType:EOS_ACTIVE_KEY callback:^(EOSAccountKey *key) {
-//        NSLog(@"2 prikey = %@ \n pubkey = %@\n",key.eosPrivateKey,key.eosPublicKey);
-//    }];
-//
-//    NSLog(@"lengthOfSeed = %ld",seed.length);
-//    NSString *one = [seed substringWithRange:NSMakeRange(0, seed.length/2)];
-//    NSString *two = [seed substringWithRange:NSMakeRange(seed.length/2, seed.length/2)];
-//    NSString *three = [seed substringWithRange:NSMakeRange(seed.length/2, seed.length/4)];
-//    NSString *four = [seed substringWithRange:NSMakeRange(seed.length*3/4, seed.length/4)];
-//    EosPrivateKey *ownerPrivateKey = [[EosPrivateKey alloc] initEosPrivateKeySeed:seed];
-//    EosPrivateKey *activePrivateKey = [[EosPrivateKey alloc] initEosPrivateKeySeed:seed];
-
-//    NSLog(@"{ownerPrivateKey:%@\neosPublicKey:%@\nactivePrivateKey:%@\neosPublicKey:%@\n}", ownerPrivateKey.eosPrivateKey, ownerPrivateKey.eosPublicKey, activePrivateKey.eosPrivateKey, activePrivateKey.eosPublicKey);
-
-    
-    NSString *eosPriOwner = [CreateAll CreateEOSKeyBySeed:seed];
-    //true
-    [CreateAll isValidPrivateJvc:_jvc PrivateKey:eosPriOwner callback:^(id response) {
-        NSLog(@"a = %@",response);
-    }];
    
-    [CreateAll EOSPrivateKeyToPublicKeyJvc:_jvc PrivateKey:eosPriOwner callback:^(id response) {
-        NSLog(@"pub = %@",response);
-    }];
+    NSString *eosPriOwner = [CreateAll CreateEOSPrivateKeyBySeed:seed Index:0];
     
+    [CreateAll isValidPrivateJvc:_jvc PrivateKey:eosPriOwner callback:^(id response) {
+        NSString *str = [(NSString *)response componentsSeparatedByString:@","].lastObject;
+        if ([str isEqualToString:@"true"]) {
+            [CreateAll EOSPrivateKeyToPublicKeyJvc:self.jvc PrivateKey:eosPriOwner callback:^(id response) {
+                NSLog(@"pub = %@",response);
+            }];
+        }else{
+            //Error
+        }
+       
+    }];
+
 }
 
 
