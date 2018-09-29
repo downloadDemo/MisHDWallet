@@ -31,9 +31,11 @@
 @implementation MarketVC
 -(void)viewWillAppear:(BOOL)animated{
     if (self.indexName == SELF_CHOOSE) {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(EditMYSymbol) name:@"EditMYSymbol" object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ExitEditMySymbol) name:@"ExitEditMySymbol" object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(DeleteSelectMySymbol) name:@"DeleteSelectMySymbol" object:nil];
+        if ([[NSUserDefaults standardUserDefaults] boolForKey:@"ifHasAccount"] == YES) {
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(EditMYSymbol) name:@"EditMYSymbol" object:nil];
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ExitEditMySymbol) name:@"ExitEditMySymbol" object:nil];
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(DeleteSelectMySymbol) name:@"DeleteSelectMySymbol" object:nil];
+        }
     }
     if(self.indexName == SEARCH_CHOOSE){
         if (self.modelarray == nil || self.modelarray.count == 0) {
@@ -531,7 +533,9 @@
 }
 -(void)dealloc {
     if (self.indexName == SELF_CHOOSE) {
-        [[NSNotificationCenter defaultCenter]removeObserver:self];
+        if ([[NSUserDefaults standardUserDefaults] boolForKey:@"ifHasAccount"] == YES) {
+            [[NSNotificationCenter defaultCenter]removeObserver:self];
+        }
     }
 }
 

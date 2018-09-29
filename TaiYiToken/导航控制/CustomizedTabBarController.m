@@ -55,7 +55,7 @@ static CustomizedTabBarController* _customizedTabBarController;
     HomePageVC *manVC = [HomePageVC new];
     manVC.view.backgroundColor = kRGBA(255, 255, 255, 1);
     CustomizedNavigationController *manNaVC = [[CustomizedNavigationController alloc] initWithRootViewController:manVC];
-    
+
 
     ContainerViewController *manVC1 = [ContainerViewController new];
     manVC1.view.backgroundColor = kRGBA(255, 255, 255, 1);
@@ -66,11 +66,12 @@ static CustomizedTabBarController* _customizedTabBarController;
     manVC11.view.backgroundColor = kRGBA(255, 255, 255, 1);
     CustomizedNavigationController *manNaVC11 = [[CustomizedNavigationController alloc] initWithRootViewController:manVC11];
     [manNaVC11.titlelb setText:@"应用"];
-    
+
     UserInfoVC *manVC111 = [UserInfoVC new];
     manVC111.view.backgroundColor = kRGBA(255, 255, 255, 1);
     CustomizedNavigationController *manNaVC111 = [[CustomizedNavigationController alloc] initWithRootViewController:manVC111];
     [manNaVC111.titlelb setText:@"我的"];
+  
     
     self.viewControllers = @[manNaVC,manNaVC1,manNaVC11,manNaVC111];
     self.selectedIndex = 0;

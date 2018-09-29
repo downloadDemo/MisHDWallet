@@ -20,6 +20,7 @@
 #import "TransactionVC.h"
 #import "TransactionRecordVC.h"
 #import "BTCBalanceModel.h"
+#import "CreateAccountVC.h"
 @interface HomePageVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITableViewDelegate,UITableViewDataSource,UIImagePickerControllerDelegate, UINavigationControllerDelegate,MGSwipeTableCellDelegate>
 @property(nonatomic)UICollectionView *collectionview;
 @property(nonatomic)UITableView *tableView;
@@ -36,6 +37,7 @@
 @property(nonatomic)CGFloat ETHCurrency;
 @property(nonatomic)CGFloat RMBDollarCurrency;//人民币汇率
 @property(nonatomic)NSString *currentCurrencySelected;//当前选择的货币单位
+@property(nonatomic)UIButton *createAccountBtn;
 @end
 
 @implementation HomePageVC
@@ -68,19 +70,22 @@
         [self.collectionview reloadInputViews];
         //回到页面 开始请求余额
         [self InitTimerRequest];
+        if (_createAccountBtn) {
+            [_createAccountBtn removeFromSuperview];
+        }
     }
+   
     
 }
 
 -(void)viewDidAppear:(BOOL)animated{
-    
-    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"ifHasAccount"] == YES) {
-        [self CreateAccount];
-    }
+
 }
 -(void)viewWillDisappear:(BOOL)animated{
     //离开页面 停止请求余额
-    dispatch_cancel(self.time);
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"ifHasAccount"] == YES) {
+        dispatch_cancel(self.time);
+    }
     self.navigationController.navigationBar.hidden = YES;
     self.navigationController.hidesBottomBarWhenPushed = YES;
 }
@@ -89,7 +94,7 @@
     _titleLabel = [UILabel new];
     _titleLabel.font = [UIFont boldSystemFontOfSize:17];
     _titleLabel.textColor = [UIColor textBlackColor];
-    [_titleLabel setText:@"BTC_wallet"];
+    //[_titleLabel setText:@"BTC_wallet"];
     _titleLabel.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:_titleLabel];
     [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -120,6 +125,27 @@
         make.width.equalTo(16);
         make.height.equalTo(16);
     }];
+    
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"ifHasAccount"] || [[NSUserDefaults standardUserDefaults] boolForKey:@"ifHasAccount"] == NO) {
+        _createAccountBtn = [UIButton buttonWithType: UIButtonTypeSystem];
+        _createAccountBtn.backgroundColor = [UIColor whiteColor];
+        _createAccountBtn.layer.cornerRadius = 4;
+        _createAccountBtn.layer.masksToBounds = YES;
+        _createAccountBtn.layer.borderWidth = 1;
+        _createAccountBtn.layer.borderColor = [UIColor blackColor].CGColor;
+        [_createAccountBtn setTitle:@"创建账号" forState:UIControlStateNormal];
+        [_createAccountBtn setTintColor:[UIColor textBlackColor]];
+        [_createAccountBtn addTarget:self action:@selector(CreateAccount) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:_createAccountBtn];
+        [_createAccountBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(-20);
+            make.centerX.equalTo(0);
+            make.width.equalTo(150);
+            make.height.equalTo(40);
+        }];
+        
+    }
+    
 }
 
 
@@ -129,11 +155,14 @@
     self.walletBalance = [NSMutableArray arrayWithObjects:@0,@0,@0,@0,@0,@0,@0,@0,@0,@0, nil];
     self.selectedIndex = 0;
     self.TimeInterval = 5.0;
-    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"CurrentCurrencySelected"]) {
-        [[NSUserDefaults standardUserDefaults] setObject:@"rmb" forKey:@"CurrentCurrencySelected"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"ifHasAccount"] == YES) {
+        if (![[NSUserDefaults standardUserDefaults] objectForKey:@"CurrentCurrencySelected"]) {
+            [[NSUserDefaults standardUserDefaults] setObject:@"rmb" forKey:@"CurrentCurrencySelected"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+        }
+        self.currentCurrencySelected = [[NSUserDefaults standardUserDefaults] objectForKey:@"CurrentCurrencySelected"];
     }
-    self.currentCurrencySelected = [[NSUserDefaults standardUserDefaults] objectForKey:@"CurrentCurrencySelected"];
 }
 
 
@@ -152,6 +181,7 @@
 }
 //点击进入钱包管理
 -(void)walletBtnAction{
+    
     NSArray *walletarray = [CreateAll GetWalletNameArray];
     NSMutableArray *array = [NSMutableArray array];
     if (walletarray != nil) {
@@ -166,6 +196,8 @@
         WalletManagerVC *walletVC = [WalletManagerVC new];
         walletVC.walletArray = [array mutableCopy];
         [self.navigationController pushViewController:walletVC animated:YES];
+    }else{
+        [self.view showMsg:@"没有钱包"];
     }
 }
 //扫描二维码

@@ -1083,7 +1083,7 @@ return -1;表示已存在
     NSString *privateKeyx = @"";
     for (int i = 0; i<1; i++) {
         BTCKey* ownerkey = [[btckeychainxprv derivedKeychainWithPath:OWNERPath] keyAtIndex:i hardened:NO];
-        NSString *privateKey = ownerkey.privateKeyAddress.string;
+        NSString *privateKey = ownerkey.compressedPublicKeyAddress.string;
         privateKeyx = privateKey;
         NSString *hexpri = [NSString hexWithData:ownerkey.privateKeyAddress.data];
         NSLog(@"pri =%@", privateKey);

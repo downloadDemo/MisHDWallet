@@ -20,6 +20,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     //启动图延迟
    // [NSThread sleepForTimeInterval:2.0];
+    
     CustomizedTabBarController *csVC = [CustomizedTabBarController sharedCustomizedTabBarController];
     self.window.rootViewController = csVC;
     [self.window makeKeyAndVisible];
