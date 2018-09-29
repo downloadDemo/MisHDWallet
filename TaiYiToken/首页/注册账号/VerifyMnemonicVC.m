@@ -135,31 +135,33 @@
     MissionWallet *walletBTC = [CreateAll CreateWalletByXprv:xprv index:0 CoinType:BTC];
     MissionWallet *walletETH = [CreateAll CreateWalletByXprv:xprv index:0 CoinType:ETH];
     //self.mnemonic = @"yard impulse luxury drive today throw farm pepper survey wreck glass federal";
+    if (!walletBTC || !walletETH) {
+        [self.view hideHUD];
+        return;
+    }
     //创建并存KeyStore
     [CreateAll CreateKeyStoreByMnemonic:self.mnemonic  WalletAddress:walletBTC.address Password:password callback:^(Account *account, NSError *error) {
         if (account == nil) {
             [self.view showMsg:@"创建出错！"];
         }else{
-            NSLog(@"**** BTC KeyStore finished ! ****");
-            [CreateAll SaveWallet:walletBTC Name:@"walletBTC" WalletType:LOCAL_WALLET Password:password];
-            [[NSUserDefaults standardUserDefaults]  setBool:YES forKey:@"ifHasAccount"];
-            [self dismissViewControllerAnimated:YES completion:^{
-                [self.view hideHUD];
+            //创建并存KeyStore
+            [CreateAll CreateKeyStoreByMnemonic:self.mnemonic  WalletAddress:walletETH.address Password:password callback:^(Account *account, NSError *error) {
+                if (account == nil) {
+                    [self.view showMsg:@"创建出错！"];
+                }else{
+                    [[NSUserDefaults standardUserDefaults]  setBool:YES forKey:@"ifHasAccount"];
+                    [CreateAll SaveWallet:walletETH Name:@"walletETH" WalletType:LOCAL_WALLET Password:password];
+                    [CreateAll SaveWallet:walletBTC Name:@"walletBTC" WalletType:LOCAL_WALLET Password:password];
+                    [self.view showMsg:@"创建成功！"];
+                    [[NSUserDefaults standardUserDefaults]  setBool:YES forKey:@"ifHasAccount"];
+                    [self dismissViewControllerAnimated:YES completion:^{
+                        [self.view hideHUD];
+                    }];
+                }
             }];
         }
-        
     }];
-    //创建并存KeyStore
-    [CreateAll CreateKeyStoreByMnemonic:self.mnemonic  WalletAddress:walletETH.address Password:password callback:^(Account *account, NSError *error) {
-        if (account == nil) {
-            [self.view showMsg:@"创建出错！"];
-        }else{
-            NSLog(@"**** ETH KeyStore finished ! ****");
-            [CreateAll SaveWallet:walletETH Name:@"walletETH" WalletType:LOCAL_WALLET Password:password];
-            [[NSUserDefaults standardUserDefaults]  setBool:YES forKey:@"ifHasAccount"];
-        }
-        
-    }];
+   
     //创建完成 清除密码
     [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"password"];
 }

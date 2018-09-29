@@ -37,8 +37,9 @@
     [account encryptSecretStorageJSON:password callback:^(NSString *json) {
         NSLog(@"\n keystore(json) = %@",json);
         [Account decryptSecretStorageJSON:json password:password callback:^(Account *decryptedAccount, NSError *error) {
-            if (![account.address isEqual:decryptedAccount.address]) {
+            if (![account.address.checksumAddress isEqualToString:decryptedAccount.address.checksumAddress]) {
                 NSLog(@"keystore生成错误");
+                callback(nil, nil);
             }else{
                 NSLog(@"\n\n\n** keystore 恢复 mnemonic ** = \n %@ \n\n\n",decryptedAccount.mnemonicPhrase);
                 //按地址保存keystore
@@ -59,7 +60,7 @@
     [account encryptSecretStorageJSON:password callback:^(NSString *json) {
         NSLog(@"\n keystore(json) = %@",json);
         [Account decryptSecretStorageJSON:json password:password callback:^(Account *decryptedAccount, NSError *error) {
-            if (![account.address isEqual:decryptedAccount.address]) {
+            if (![account.address.checksumAddress isEqualToString:decryptedAccount.address.checksumAddress]) {
                 NSLog(@"keystore生成错误");
             }else{
                 NSLog(@"\n\n\n** keystore 恢复 mnemonic ** = \n %@ \n\n\n",decryptedAccount.mnemonicPhrase);

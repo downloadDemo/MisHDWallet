@@ -6,7 +6,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             scope = "0"
@@ -116,11 +116,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TaiYiToken/&#x9996;&#x9875;/Wallet/CreateAll.m"
-            timestampString = "559877941.144805"
+            timestampString = "559881191.748461"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1092"
-            endingLineNumber = "1092"
+            startingLineNumber = "1093"
+            endingLineNumber = "1093"
             landmarkName = "+CreateEOSKeyBySeed:"
             landmarkType = "7">
          </BreakpointContent>
@@ -132,7 +132,23 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TaiYiToken/&#x9996;&#x9875;/Wallet/CreateAll.m"
-            timestampString = "559877941.14531"
+            timestampString = "559881191.748811"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1095"
+            endingLineNumber = "1095"
+            landmarkName = "+CreateEOSKeyBySeed:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TaiYiToken/&#x9996;&#x9875;/Wallet/CreateAll.m"
+            timestampString = "559881191.7488739"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1094"
@@ -147,13 +163,45 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "TaiYiToken/&#x9996;&#x9875;/Wallet/CreateAll.m"
-            timestampString = "559877941.145407"
+            filePath = "TaiYiToken/&#x9996;&#x9875;/&#x9996;&#x9875;&#x94b1;&#x5305;/&#x5bfc;&#x5165;HD&#x94b1;&#x5305;/ImportHDWalletVC.m"
+            timestampString = "559881191.754339"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1093"
-            endingLineNumber = "1093"
-            landmarkName = "+CreateEOSKeyBySeed:"
+            startingLineNumber = "186"
+            endingLineNumber = "186"
+            landmarkName = "-CreateWallet"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TaiYiToken/&#x9996;&#x9875;/&#x9996;&#x9875;&#x94b1;&#x5305;/&#x5bfc;&#x5165;HD&#x94b1;&#x5305;/ImportHDWalletVC.m"
+            timestampString = "559881191.754868"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "192"
+            endingLineNumber = "192"
+            landmarkName = "-CreateWallet"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TaiYiToken/&#x9996;&#x9875;/&#x9996;&#x9875;&#x94b1;&#x5305;/&#x5bfc;&#x5165;HD&#x94b1;&#x5305;/ImportHDWalletVC.m"
+            timestampString = "559881191.755365"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "191"
+            endingLineNumber = "191"
+            landmarkName = "-CreateWallet"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

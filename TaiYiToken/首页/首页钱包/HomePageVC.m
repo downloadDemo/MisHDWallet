@@ -54,15 +54,21 @@
             _walletArray = [NSMutableArray array];
         }
         [self.walletArray removeAllObjects];
-        [self.walletArray addObject:walletBTC];
-        [self.walletArray addObject:walletETH];
-        
-        NSArray *importwalletarray = [CreateAll GetImportWalletNameArray];
-        for (NSString *importwalletname in importwalletarray) {
-            MissionWallet *wallet = [CreateAll GetMissionWalletByName:importwalletname];
-            [self.walletArray addObject:wallet];
+        if (walletBTC) {
+            [self.walletArray addObject:walletBTC];
+        }
+        if (walletETH) {
+            [self.walletArray addObject:walletETH];
         }
         
+        NSArray *importwalletarray = [CreateAll GetImportWalletNameArray];
+        if (importwalletarray) {
+            for (NSString *importwalletname in importwalletarray) {
+                MissionWallet *wallet = [CreateAll GetMissionWalletByName:importwalletname];
+                [self.walletArray addObject:wallet];
+            }
+        }
+       
         [self.collectionview registerClass:[WalletCell class] forCellWithReuseIdentifier:@"walletcell"];
         [self.tableView reloadData];
         [self InitTimerRequest];
@@ -78,9 +84,7 @@
     
 }
 
--(void)viewDidAppear:(BOOL)animated{
 
-}
 -(void)viewWillDisappear:(BOOL)animated{
     //离开页面 停止请求余额
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"ifHasAccount"] == YES) {
@@ -133,14 +137,14 @@
         _createAccountBtn.layer.masksToBounds = YES;
         _createAccountBtn.layer.borderWidth = 1;
         _createAccountBtn.layer.borderColor = [UIColor blackColor].CGColor;
-        [_createAccountBtn setTitle:@"创建账号" forState:UIControlStateNormal];
+        [_createAccountBtn setTitle:@"创建/导入账号" forState:UIControlStateNormal];
         [_createAccountBtn setTintColor:[UIColor textBlackColor]];
         [_createAccountBtn addTarget:self action:@selector(CreateAccount) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:_createAccountBtn];
         [_createAccountBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(-20);
             make.centerX.equalTo(0);
-            make.width.equalTo(150);
+            make.width.equalTo(180);
             make.height.equalTo(40);
         }];
         
