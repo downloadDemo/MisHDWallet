@@ -183,8 +183,10 @@
         walletETH.passwordHint = self.setPasswordView.passwordHintTextField.text;
         [CreateAll UpdatePasswordHint:self.setPasswordView.passwordHintTextField.text];
     }
-    
-    //创建并存KeyStore
+    //根据地址存助记词
+    [SAMKeychain setPassword:_mnemonic forService:PRODUCT_BUNDLE_ID account:[NSString stringWithFormat:@"mnemonic%@",walletBTC.address]];
+    [SAMKeychain setPassword:_mnemonic forService:PRODUCT_BUNDLE_ID account:[NSString stringWithFormat:@"mnemonic%@",walletETH.address]];
+    //创建并存KeyStore eth
     [CreateAll CreateKeyStoreByMnemonic:self.mnemonic  WalletAddress:walletETH.address Password:password callback:^(Account *account, NSError *error) {
         if (account == nil) {
             [self.view showMsg:@"导入出错,助记词错误！"];

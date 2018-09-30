@@ -136,23 +136,17 @@
         if([self.password isEqualToString:@""] || self.password == nil){
             [self.view showMsg:@"请输入密码！"];
         }else{
-            //
-            [self.view showHUD];
-            MissionWallet *ethwallet = [CreateAll GetMissionWalletByName:@"walletETH"];
-            [CreateAll VerifyPassword:self.password WalletAddress:ethwallet.address callback:^(BOOL passwordIsRight, NSError *error){
-                [self.view hideHUD];
-                if (passwordIsRight == YES) {
-                    if (self.wallet.coinType == BTC || self.wallet.coinType == BTC_TESTNET) {
-                        [self transactionBTCToAddress:self.addressView.toAddressTextField.text];
-                    }else if (self.wallet.coinType == ETH){
-                        [self transactionETHToAddress:self.addressView.toAddressTextField.text];
-                    }
-                }else{
-                    [self.view showMsg:@"密码错误！"];
-                }
-            }];
+            NSString *psd = [SAMKeychain passwordForService:PRODUCT_BUNDLE_ID account:self.wallet.address];
             
-           
+            if([self.password isEqualToString:psd]){
+                if (self.wallet.coinType == BTC || self.wallet.coinType == BTC_TESTNET) {
+                    [self transactionBTCToAddress:self.addressView.toAddressTextField.text];
+                }else if (self.wallet.coinType == ETH){
+                    [self transactionETHToAddress:self.addressView.toAddressTextField.text];
+                }
+            }else{
+                [self.view showMsg:@"密码错误！"];
+            }
         }
     }];
     

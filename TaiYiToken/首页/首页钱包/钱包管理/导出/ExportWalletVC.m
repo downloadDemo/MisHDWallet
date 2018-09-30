@@ -293,7 +293,7 @@
     [self.view showHUD];
     [CreateAll ExportPrivateKeyByPassword:self.password  CoinType:self.wallet.coinType WalletAddress:self.wallet.address index:self.wallet.index callback:^(NSString *privateKey, NSError *error) {
         [self.view hideHUD];
-        if (!error) {
+        if (!error && privateKey != nil) {
             ExportPrivateKeyOrMnemonicVC *epmvc = [ExportPrivateKeyOrMnemonicVC new];
             epmvc.privateKey = privateKey;
             epmvc.isExportPrivateKey = YES;
@@ -310,7 +310,7 @@
     MissionWallet *ethwallet = [CreateAll GetMissionWalletByName:@"walletETH"];
     [CreateAll ExportMnemonicByPassword:self.password  WalletAddress:ethwallet.address callback:^(NSString *mnemonic, NSError *error) {
         [self.view hideHUD];
-        if (!error) {
+        if (!error && mnemonic != nil) {
             ExportPrivateKeyOrMnemonicVC *epmvc = [ExportPrivateKeyOrMnemonicVC new];
             epmvc.mnemonic = mnemonic;
             epmvc.isExportPrivateKey = NO;

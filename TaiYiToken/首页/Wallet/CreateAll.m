@@ -44,7 +44,7 @@
                 NSLog(@"\n\n\n** keystore 恢复 mnemonic ** = \n %@ \n\n\n",decryptedAccount.mnemonicPhrase);
                 //按地址保存keystore
                 [[NSUserDefaults standardUserDefaults] setObject:json forKey:[NSString stringWithFormat:@"keystore%@",walletAddress]];
-               // [[NSUserDefaults standardUserDefaults] synchronize];
+                [[NSUserDefaults standardUserDefaults] synchronize];
             }
             callback(decryptedAccount,error);
 
@@ -55,21 +55,29 @@
 
 /*
  根据PrivateKey生成keystore,用于恢复账号，备份私钥，导出助记词等
+ BTC:keystore用于之后的密码验证
  */
 +(void)CreateKeyStoreByPrivateKey:(NSString *)privatekey  WalletAddress:(NSString *)walletAddress Password:(NSString *)password  callback: (void (^)(Account *account, NSError *error))callback{
+    //privatekey 用来验证keystore
+    //walletAddress 只用来存keystore
     Account *account = [Account accountWithPrivateKey:[NSData dataWithHexString:privatekey]];
+    if (account == nil) {
+        callback(nil, nil);
+    }
     [account encryptSecretStorageJSON:password callback:^(NSString *json) {
         NSLog(@"\n keystore(json) = %@",json);
         [Account decryptSecretStorageJSON:json password:password callback:^(Account *decryptedAccount, NSError *error) {
             if (![account.address.checksumAddress isEqualToString:decryptedAccount.address.checksumAddress]) {
                 NSLog(@"keystore生成错误");
+                callback(nil,error);
             }else{
                 NSLog(@"\n\n\n** keystore 恢复 mnemonic ** = \n %@ \n\n\n",decryptedAccount.mnemonicPhrase);
                 //按密码保存keystore
                 [[NSUserDefaults standardUserDefaults] setObject:json forKey:[NSString stringWithFormat:@"keystore%@",walletAddress]];
                 [[NSUserDefaults standardUserDefaults] synchronize];
+                
             }
-            callback(decryptedAccount,error);
+            callback(decryptedAccount,nil);
             
         }];
     }];
@@ -220,8 +228,6 @@
     NSString *xprv = [CreateAll CreateExtendPrivateKeyWithSeed:seed];
     MissionWallet *wallet = [CreateAll CreateWalletByXprv:xprv index:0 CoinType:coinType];
     wallet.passwordHint = passwordHint;
-    [CreateAll CreateKeyStoreByMnemonic:mnemonic  WalletAddress:wallet.address Password:password callback:^(Account *account, NSError *error) {
-    }];
     wallet.walletName = [CreateAll GenerateNewWalletNameWithWalletAddress:wallet.address CoinType:coinType];
     if ([wallet.walletName isEqualToString:@"exist"]) {
         NSString *domain = @"";
@@ -235,20 +241,26 @@
     }
 
     wallet.importType = IMPORT_BY_MNEMONIC;
-    
-    //存KeyStore
-    [CreateAll CreateKeyStoreByMnemonic:mnemonic WalletAddress:wallet.address Password:password callback:^(Account *account, NSError *error) {
-        if (account == nil) {//说明出错
-            completionHandler(nil,nil);
-        }else{
-            if (!error) {//无错误
-                //存钱包
-                [CreateAll SaveWallet:wallet Name:wallet.walletName WalletType:IMPORT_WALLET Password:password];
-                completionHandler(wallet,nil);
-            }
-        }
-    }];
    
+    if (wallet.coinType == ETH) {
+        //存KeyStore
+        [CreateAll CreateKeyStoreByMnemonic:mnemonic WalletAddress:wallet.address Password:password callback:^(Account *account, NSError *error) {
+            if (account == nil) {//说明出错
+                completionHandler(nil,nil);
+            }else{
+                if (!error) {//无错误
+                    //存钱包
+                    [CreateAll SaveWallet:wallet Name:wallet.walletName WalletType:IMPORT_WALLET Password:password];
+                    completionHandler(wallet,nil);
+                }
+            }
+        }];
+    }else if (wallet.coinType == BTC || wallet.coinType == BTC_TESTNET){
+        //存钱包
+        [CreateAll SaveWallet:wallet Name:wallet.walletName WalletType:IMPORT_WALLET Password:password];
+        completionHandler(wallet,nil);
+    }
+ 
 }
 
 //由私钥导入钱包 （存储钱包 生成存储KeyStore）
@@ -257,7 +269,7 @@ return nil; 表示钱包已存在
  */
 +(MissionWallet *)ImportWalletByPrivateKey:(NSString *)privateKey CoinType:(CoinType)coinType Password:(NSString *)password PasswordHint:(NSString *)passwordHint{
     BTCKey *key = nil;
-    if (coinType == BTC) {
+    if (coinType == BTC || coinType == BTC_TESTNET) {
         BTCPrivateKeyAddress* pkaddr = [BTCPrivateKeyAddress addressWithString:privateKey];
         NSData *privkeydata = pkaddr.data;
         key = [[BTCKey alloc]initWithPrivateKey:privkeydata];
@@ -296,17 +308,23 @@ return nil; 表示钱包已存在
         return nil;
     }
     wallet.importType = IMPORT_BY_PRIVATEKEY;
+    
     [CreateAll SaveWallet:wallet Name:wallet.walletName WalletType:IMPORT_WALLET Password:password];
-    [CreateAll CreateKeyStoreByPrivateKey:wallet.privateKey WalletAddress:wallet.address Password:password callback:^(Account *account, NSError *error) {
-    }];
+    
+    if (coinType == ETH){
+        [CreateAll CreateKeyStoreByPrivateKey:wallet.privateKey WalletAddress:wallet.address Password:password callback:^(Account *account, NSError *error) {
+        }];
+    }
+   
     return wallet;
 }
 
-//由KeyStore导入钱包 （存储钱包 生成存储KeyStore）
+//由KeyStore导入钱包 （存储钱包 生成存储KeyStore）eth
 /*
  callback(wallet,error); wallet == nil; 表示钱包已存在
  */
 +(void)ImportWalletByKeyStore:(NSString *)keystore  CoinType:(CoinType)coinType Password:(NSString *)password PasswordHint:(NSString *)passwordHint callback: (void (^)(MissionWallet *wallet, NSError *error))callback{
+    
     [Account decryptSecretStorageJSON:keystore password:password callback:^(Account *decryptedAccount, NSError *error) {
         NSString *privateKey = [NSString hexWithData:decryptedAccount.privateKey];
         MissionWallet *wallet = [CreateAll ImportWalletByPrivateKey:privateKey CoinType:coinType Password:(NSString *)password PasswordHint:passwordHint];
@@ -410,39 +428,33 @@ return -1;表示已存在
 /*
  ************************************************ 钱包导出 *********************************************************************
  */
-//导出keystore
+//导出keystore eth
 +(void)ExportKeyStoreByPassword:(NSString *)password  WalletAddress:(NSString *)walletAddress callback: (void (^)(NSString *address, NSError *error))callback{
     NSString *json = [[NSUserDefaults standardUserDefaults]  objectForKey:[NSString stringWithFormat:@"keystore%@",walletAddress]];
    
     if (json == nil || [json isEqual:[NSNull null]]) {
-        callback(@"wrong password！",nil);
+        callback(nil,nil);
         return;
     }
     [Account decryptSecretStorageJSON:json password:password callback:^(Account *decryptedAccount, NSError *error) {
         callback(decryptedAccount.address.checksumAddress,error);
     }];
 }
-//导出助记词
+//导出助记词 btc eth
 +(void)ExportMnemonicByPassword:(NSString *)password WalletAddress:(NSString *)walletAddress callback: (void (^)(NSString *mnemonic, NSError *error))callback{
-    NSString *json = [[NSUserDefaults standardUserDefaults]  objectForKey:[NSString stringWithFormat:@"keystore%@",walletAddress]];
-    if (json == nil || [json isEqual:[NSNull null]]) {
-        callback(@"wrong password！",nil);
+    NSString *psd = [SAMKeychain passwordForService:PRODUCT_BUNDLE_ID account:walletAddress];
+    if(![psd isEqualToString:password]){
+        callback(nil,nil);
         return;
     }
-    [Account decryptSecretStorageJSON:json password:password callback:^(Account *decryptedAccount, NSError *error) {
-        if (!error) {
-            callback(decryptedAccount.mnemonicPhrase,error);
-        }else{
-            callback(nil,error);
-        }
-        
-    }];
+    NSString *mne = [SAMKeychain passwordForService:PRODUCT_BUNDLE_ID account:[NSString stringWithFormat:@"mnemonic%@",walletAddress]];
+    callback(mne,nil);
 }
-//导出私钥
+//导出私钥 eth
 +(void)ExportPrivateKeyByPassword:(NSString *)password CoinType:(CoinType)coinType WalletAddress:(NSString *)walletAddress  index:(UInt32)index  callback: (void (^)(NSString *privateKey, NSError *error))callback{
     NSString *json = [[NSUserDefaults standardUserDefaults]  objectForKey:[NSString stringWithFormat:@"keystore%@",walletAddress]];
     if (json == nil || [json isEqual:[NSNull null]]) {
-        callback(@"wrong password！",nil);
+        callback(nil,nil);
         return;
     }
     [Account decryptSecretStorageJSON:json password:password callback:^(Account *decryptedAccount, NSError *error) {
@@ -450,21 +462,7 @@ return -1;表示已存在
         callback(hexprivatekey,error);
     }];
 }
-//验证某钱包的密码
-+(void)VerifyPassword:(NSString *)password WalletAddress:(NSString *)walletAddress callback: (void (^)(BOOL passwordIsRight, NSError *error))callback{
-    NSString *json = [[NSUserDefaults standardUserDefaults]  objectForKey:[NSString stringWithFormat:@"keystore%@",walletAddress]];
-    if (json == nil || [json isEqual:[NSNull null]]) {
-        callback(NO,nil);
-        return;
-    }
-    [Account decryptSecretStorageJSON:json password:password callback:^(Account *decryptedAccount, NSError *error) {
-        if (!error) {
-            callback(YES,error);
-        }else{
-            callback(NO,error);
-        }
-    }];
-}
+
 /*
  ********************************************** 钱包账号存取管理 *******************************************************************
  */
@@ -531,6 +529,8 @@ return -1;表示已存在
     //1.存钱包
     NSData *walletdata = [NSKeyedArchiver archivedDataWithRootObject:wallet];
     [[NSUserDefaults standardUserDefaults] setObject:walletdata forKey:walletname];
+    //根据地址存密码
+    [SAMKeychain setPassword:password forService:PRODUCT_BUNDLE_ID account:wallet.address];
     //2.存钱包名
     //如果是本地创建类型 存储到本地钱包名数组
     if (walletType == LOCAL_WALLET) {

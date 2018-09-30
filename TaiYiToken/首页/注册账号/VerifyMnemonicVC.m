@@ -138,25 +138,23 @@
         [self.view hideHUD];
         return;
     }
-    //创建并存KeyStore
-    [CreateAll CreateKeyStoreByMnemonic:self.mnemonic  WalletAddress:walletBTC.address Password:self.password callback:^(Account *account, NSError *error) {
+    
+    //根据地址存助记词
+    [SAMKeychain setPassword:_mnemonic forService:PRODUCT_BUNDLE_ID account:[NSString stringWithFormat:@"mnemonic%@",walletBTC.address]];
+    [SAMKeychain setPassword:_mnemonic forService:PRODUCT_BUNDLE_ID account:[NSString stringWithFormat:@"mnemonic%@",walletETH.address]];
+    //创建并存KeyStore eth
+    [CreateAll CreateKeyStoreByMnemonic:self.mnemonic  WalletAddress:walletETH.address Password:self.password callback:^(Account *account, NSError *error) {
         if (account == nil) {
             [self.view showMsg:@"创建出错！"];
         }else{
-            //创建并存KeyStore
-            [CreateAll CreateKeyStoreByMnemonic:self.mnemonic  WalletAddress:walletETH.address Password:self.password callback:^(Account *account, NSError *error) {
-                if (account == nil) {
-                    [self.view showMsg:@"创建出错！"];
-                }else{
-                    [[NSUserDefaults standardUserDefaults]  setBool:YES forKey:@"ifHasAccount"];
-                    [[NSUserDefaults standardUserDefaults] synchronize];
-                    [CreateAll SaveWallet:walletETH Name:@"walletETH" WalletType:LOCAL_WALLET Password:self.password];
-                    [CreateAll SaveWallet:walletBTC Name:@"walletBTC" WalletType:LOCAL_WALLET Password:self.password];
-                    [self.view showMsg:@"创建成功！"];
-                    [self dismissViewControllerAnimated:YES completion:^{
-                        [self.view hideHUD];
-                    }];
-                }
+            [self.view showMsg:@"创建成功！"];
+            [[NSUserDefaults standardUserDefaults]  setBool:YES forKey:@"ifHasAccount"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            [CreateAll SaveWallet:walletBTC Name:@"walletBTC" WalletType:LOCAL_WALLET Password:self.password];
+            [CreateAll SaveWallet:walletETH Name:@"walletETH" WalletType:LOCAL_WALLET Password:self.password];
+            
+            [self dismissViewControllerAnimated:YES completion:^{
+                [self.view hideHUD];
             }];
         }
     }];

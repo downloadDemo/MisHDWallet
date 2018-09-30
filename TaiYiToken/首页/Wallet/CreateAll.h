@@ -53,7 +53,7 @@
 //根据mnemonic生成keystore,用于恢复账号，备份私钥，导出助记词等
 +(void)CreateKeyStoreByMnemonic:(NSString *)mnemonic WalletAddress:(NSString *)walletAddress Password:(NSString *)password  callback: (void (^)(Account *account, NSError *error))callback;
 //根据PrivateKey生成keystore,用于恢复账号，备份私钥，导出助记词等
-+(void)CreateKeyStoreByPrivateKey:(NSString *)privatekey WalletAddress:(NSString *)walletAddress Password:(NSString *)password  callback: (void (^)(Account *account, NSError *error))callback;
++(void)CreateKeyStoreByPrivateKey:(NSString *)privatekey  CoinType:(CoinType)coinTYpe WalletAddress:(NSString *)walletAddress Password:(NSString *)password  callback: (void (^)(Account *account, NSError *error))callback;
 
 
 //扩展主公钥生成    mpk
@@ -123,8 +123,6 @@
 //导出私钥
 +(void)ExportPrivateKeyByPassword:(NSString *)password CoinType:(CoinType)coinType WalletAddress:(NSString *)walletAddress  index:(UInt32)index  callback: (void (^)(NSString *privateKey, NSError *error))callback;
 
-//验证某钱包的密码
-+(void)VerifyPassword:(NSString *)password WalletAddress:(NSString *)walletAddress callback: (void (^)(BOOL passwordIsRight, NSError *error))callback;
 
 
 

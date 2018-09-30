@@ -223,7 +223,7 @@
         for (SymbolModel *dic in arrcopy) {
             SymbolModel *model = [SymbolModel parse:dic];
             NSString *symbol = model.symbol;
-            if(![symbol containsString:searchText]){
+            if(![symbol containsString:[searchText uppercaseString]]){
                 [arr removeObject:dic];
             }
         }
