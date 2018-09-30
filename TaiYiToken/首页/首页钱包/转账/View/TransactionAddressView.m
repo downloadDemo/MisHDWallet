@@ -16,7 +16,7 @@
     leftlb.textColor = [UIColor textBlackColor];
     leftlb.font = [UIFont boldSystemFontOfSize:13];
     leftlb.textAlignment = NSTextAlignmentLeft;
-    leftlb.text = @"收款地址";
+    leftlb.text = NSLocalizedString(@"收款地址", nil);
     [self addSubview:leftlb];
     [leftlb mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(15);
@@ -43,7 +43,7 @@
     leftlb1.textColor = [UIColor textBlackColor];
     leftlb1.font = [UIFont boldSystemFontOfSize:13];
     leftlb1.textAlignment = NSTextAlignmentLeft;
-    leftlb1.text = @"付款地址";
+    leftlb1.text = NSLocalizedString(@"付款地址", nil);
     [self addSubview:leftlb1];
     [leftlb1 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(15);

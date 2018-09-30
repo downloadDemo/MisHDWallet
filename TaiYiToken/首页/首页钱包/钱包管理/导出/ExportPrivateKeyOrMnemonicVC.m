@@ -65,7 +65,7 @@
     _titleLabel = [UILabel new];
     _titleLabel.font = [UIFont boldSystemFontOfSize:17];
     _titleLabel.textColor = [UIColor textBlackColor];
-    [_titleLabel setText:self.isExportPrivateKey == YES? @"导出私钥":@"导出助记词"];
+    [_titleLabel setText:self.isExportPrivateKey == YES? NSLocalizedString(@"导出私钥", nil):NSLocalizedString(@"导出助记词", nil)];
     _titleLabel.textAlignment = NSTextAlignmentLeft;
     [self.view addSubview:_titleLabel];
     [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -82,9 +82,9 @@
     _announceView = [AnnounceView new];
     [_announceView initAnnounceView];
     if (self.isExportPrivateKey == YES) {
-       _announceView.textView.text = @"温馨提示：私钥相当于您的银行卡密码，请妥善保管！(切勿截图、存储到网络硬盘、微信等传输！)";
+       _announceView.textView.text = NSLocalizedString(@"温馨提示：私钥相当于您的银行卡密码，请妥善保管！(切勿截图、存储到网络硬盘、微信等传输！)", nil);
     }else{
-       _announceView.textView.text = @"温馨提示：助记词相当于您的银行卡密码，请妥善保管！(切勿截图、存储到网络硬盘、微信等传输！)";
+       _announceView.textView.text = NSLocalizedString(@"温馨提示：助记词相当于您的银行卡密码，请妥善保管！(切勿截图、存储到网络硬盘、微信等传输！)", nil);
     }
    
     [self.view addSubview:_announceView];
@@ -98,7 +98,7 @@
     UILabel *leftlabel = [UILabel new];
     leftlabel.font = [UIFont boldSystemFontOfSize:15];
     leftlabel.textColor = [UIColor textBlackColor];
-    [leftlabel setText:self.isExportPrivateKey == YES? @"私钥":@"助记词"];
+    [leftlabel setText:self.isExportPrivateKey == YES? NSLocalizedString(@"私钥", nil):NSLocalizedString(@"助记词", nil)];
     leftlabel.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:leftlabel];
     [leftlabel mas_makeConstraints:^(MASConstraintMaker *make) {

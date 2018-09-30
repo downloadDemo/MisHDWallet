@@ -55,7 +55,7 @@
         myBuffer[i / 2] = (char)anInt;
     }
     NSString *unicodeString = [NSString stringWithCString:myBuffer encoding:4];
-    NSLog(NSLocalizedString(@"字符串%@", nil),unicodeString);
+    NSLog(NSLocalizedString(NSLocalizedString(@"字符串%@", nil), nil),unicodeString);
     return unicodeString;
 }
 

@@ -61,7 +61,7 @@
     _headlabel = [[UILabel alloc] init];
     _headlabel.textColor = [UIColor blackColor];
     _headlabel.font = [UIFont systemFontOfSize:24];
-    _headlabel.text = @"创建账号";
+    _headlabel.text = NSLocalizedString(@"创建账号", nil);
     _headlabel.textAlignment = NSTextAlignmentLeft;
     _headlabel.numberOfLines = 1;
     [self.view addSubview:_headlabel];
@@ -74,7 +74,7 @@
     
     _accountTextField = [JVFloatLabeledTextField new];
     _accountTextField.borderStyle = UITextBorderStyleNone;
-    _accountTextField.attributedPlaceholder =[[NSAttributedString alloc]initWithString: @"请输入名称"];
+    _accountTextField.attributedPlaceholder =[[NSAttributedString alloc]initWithString: NSLocalizedString(@"请输入名称", nil)];
     _accountTextField.keepBaseline = YES;
     _accountTextField.backgroundColor = [UIColor whiteColor];
     _accountTextField.textAlignment = NSTextAlignmentLeft;
@@ -91,7 +91,7 @@
     
     _passwordTextField = [JVFloatLabeledTextField new];
     _passwordTextField.borderStyle = UITextBorderStyleNone;
-    _passwordTextField.attributedPlaceholder =[[NSAttributedString alloc]initWithString: @"请设置密码"];
+    _passwordTextField.attributedPlaceholder =[[NSAttributedString alloc]initWithString: NSLocalizedString(@"请设置密码", nil)];
     _passwordTextField.backgroundColor = [UIColor whiteColor];
     _passwordTextField.textAlignment = NSTextAlignmentLeft;
     _passwordTextField.textColor = [UIColor darkGrayColor];
@@ -108,7 +108,7 @@
     
     _repasswordTextField = [JVFloatLabeledTextField new];
     _repasswordTextField.borderStyle = UITextBorderStyleNone;
-    _repasswordTextField.attributedPlaceholder =[[NSAttributedString alloc]initWithString: @"请再次输入密码"];
+    _repasswordTextField.attributedPlaceholder =[[NSAttributedString alloc]initWithString: NSLocalizedString(@"请再次输入密码", nil)];
     
     _repasswordTextField.backgroundColor = [UIColor whiteColor];
     _repasswordTextField.textAlignment = NSTextAlignmentLeft;
@@ -131,7 +131,7 @@
     _createBtn.layer.cornerRadius = 4;
     _createBtn.clipsToBounds = YES;
     [_createBtn gradientButtonWithSize:CGSizeMake(ScreenWidth - 34, 45) colorArray:@[RGB(150, 160, 240),RGB(170, 170, 240)] percentageArray:@[@(0.3),@(1)] gradientType:GradientFromLeftTopToRightBottom];
-    [_createBtn setTitle:@"创建" forState:UIControlStateNormal];
+    [_createBtn setTitle:NSLocalizedString(@"创建", nil) forState:UIControlStateNormal];
     [_createBtn addTarget:self action:@selector(createAccount) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_createBtn];
     _createBtn.userInteractionEnabled = YES;
@@ -148,15 +148,15 @@
 
 -(void)createAccount{
     if (([_accountTextField.text isEqualToString:@""])||(_accountTextField.text == nil)) {
-        [self.view showMsg:@"请输入名称！"];
+        [self.view showMsg:NSLocalizedString(@"请输入名称！", nil)];
         return;
     }
     if (([_passwordTextField.text isEqualToString:@""])||(_passwordTextField.text == nil)) {
-        [self.view showMsg:@"请输入密码！"];
+        [self.view showMsg:NSLocalizedString(@"请输入密码！", nil)];
         return;
     }
     if (![_repasswordTextField.text isEqualToString:_passwordTextField.text]) {
-        [self.view showMsg:@"两次密码输入不一致！"];
+        [self.view showMsg:NSLocalizedString(@"两次密码输入不一致！", nil)];
         return;
     }
 
@@ -189,7 +189,7 @@
     [_remindView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.bottom.equalTo(0);
     }];
-    [_remindView initRemainViewWithTitle:@"备份钱包" message:@"  没有妥善备份就无法保障资产安全。删除程序或钱包后，您需要备份文件恢复钱包。"];
+    [_remindView initRemainViewWithTitle:NSLocalizedString(@"备份钱包", nil) message:NSLocalizedString(@"  没有妥善备份就无法保障资产安全。删除程序或钱包后，您需要备份文件恢复钱包。", nil)];
     [_remindView.quitBtn addTarget:self action:@selector(quitRemindView) forControlEvents:UIControlEventTouchUpInside];
     
     [UIView animateWithDuration:0.5 animations:^{

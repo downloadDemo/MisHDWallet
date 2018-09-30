@@ -60,17 +60,17 @@ static CustomizedTabBarController* _customizedTabBarController;
     ContainerViewController *manVC1 = [ContainerViewController new];
     manVC1.view.backgroundColor = kRGBA(255, 255, 255, 1);
     CustomizedNavigationController *manNaVC1 = [[CustomizedNavigationController alloc] initWithRootViewController:manVC1];
-    [manNaVC1.titlelb setText:@"行情"];
+    [manNaVC1.titlelb setText:NSLocalizedString(@"行情", nil)];
 
     DappVC *manVC11 = [DappVC new];
     manVC11.view.backgroundColor = kRGBA(255, 255, 255, 1);
     CustomizedNavigationController *manNaVC11 = [[CustomizedNavigationController alloc] initWithRootViewController:manVC11];
-    [manNaVC11.titlelb setText:@"应用"];
+    [manNaVC11.titlelb setText:NSLocalizedString(@"Dapp", nil)];
 
     UserInfoVC *manVC111 = [UserInfoVC new];
     manVC111.view.backgroundColor = kRGBA(255, 255, 255, 1);
     CustomizedNavigationController *manNaVC111 = [[CustomizedNavigationController alloc] initWithRootViewController:manVC111];
-    [manNaVC111.titlelb setText:@"我的"];
+    [manNaVC111.titlelb setText:NSLocalizedString(@"我的", nil)];
   
     
     self.viewControllers = @[manNaVC,manNaVC1,manNaVC11,manNaVC111];
@@ -82,7 +82,7 @@ static CustomizedTabBarController* _customizedTabBarController;
 
 - (void)setupTabBar
 {
-    NSArray *titleArr = @[@"首页",@"行情",@"应用",@"我的"];
+    NSArray *titleArr = @[NSLocalizedString(@"首页", nil),NSLocalizedString(@"行情", nil),NSLocalizedString(@"应用", nil),NSLocalizedString(@"我的", nil)];
     NSArray *imageArr = @[@"wallet_default",@"hp_market_default",@"apps_default",@"own_default"];
     NSArray *imageHelightArr = @[@"hp_asset_select",@"hp_market_select",@"apps_select",@"own_select"];
     for (int i = 0 ; i < 4; i++) {

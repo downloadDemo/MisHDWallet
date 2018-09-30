@@ -78,7 +78,7 @@
     
     [obtain establishQRCodeObtainScanWithController:self configure:configure];
     [obtain startRunningWithBefore:^{
-        [MBProgressHUD SG_showMBProgressHUDWithModifyStyleMessage:@"正在加载..." toView:weakSelf.view];
+        [MBProgressHUD SG_showMBProgressHUDWithModifyStyleMessage:NSLocalizedString(@"正在加载...", nil) toView:weakSelf.view];
     } completion:^{
         [MBProgressHUD SG_hideHUDForView:weakSelf.view];
     }];
@@ -105,7 +105,7 @@
     _titlelb.textColor = [UIColor whiteColor];
     _titlelb.textAlignment = NSTextAlignmentCenter;
     _titlelb.font = [UIFont systemFontOfSize:20 weight:0];
-    _titlelb.text = @"扫一扫";
+    _titlelb.text = NSLocalizedString(@"扫一扫", nil);
     [self.navigationController.navigationBar addSubview:_titlelb];
     [_titlelb mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(0);
@@ -116,8 +116,8 @@
     self.navigationController.navigationBar.translucent = NO;
     self.navigationController.navigationBar.barTintColor = [UIColor blackColor];
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"相册" style:(UIBarButtonItemStyleDone) target:self action:@selector(rightBarButtonItenAction)];
-     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"取消" style:(UIBarButtonItemStyleDone) target:self action:@selector(leftBarButtonItenAction)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"相册", nil) style:(UIBarButtonItemStyleDone) target:self action:@selector(rightBarButtonItenAction)];
+     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"取消", nil) style:(UIBarButtonItemStyleDone) target:self action:@selector(leftBarButtonItenAction)];
 }
 -(void)leftBarButtonItenAction{
     [self dismissViewControllerAnimated:YES completion:^{
@@ -136,7 +136,7 @@
     }];
     [obtain setBlockWithQRCodeObtainAlbumResult:^(SGQRCodeObtain *obtain, NSString *result) {
         if (result == nil) {
-            NSLog(@"暂未识别出二维码");
+            NSLog(NSLocalizedString(@"暂未识别出二维码", nil));
         } else {
             if ([result hasPrefix:@"http"]) {
                 ScanSuccessJumpVC *jumpVC = [[ScanSuccessJumpVC alloc] init];
@@ -186,7 +186,7 @@
         _promptLabel.textAlignment = NSTextAlignmentCenter;
         _promptLabel.font = [UIFont boldSystemFontOfSize:13.0];
         _promptLabel.textColor = [[UIColor whiteColor] colorWithAlphaComponent:0.6];
-        _promptLabel.text = @"将二维码/条码放入框内, 即可自动扫描";
+        _promptLabel.text = NSLocalizedString(@"将二维码/条码放入框内, 即可自动扫描", nil);
     }
     return _promptLabel;
 }

@@ -17,7 +17,7 @@
     namelb.textColor = [UIColor textBlackColor];
     namelb.font = [UIFont boldSystemFontOfSize:13];
     namelb.textAlignment = NSTextAlignmentLeft;
-    namelb.text = @"手续费";
+    namelb.text = NSLocalizedString(@"手续费", nil);
     [self addSubview:namelb];
     [namelb mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(17);
@@ -65,7 +65,7 @@
     minLabel.font = [UIFont systemFontOfSize:15];
     minLabel.textColor = [UIColor textBlackColor];
     minLabel.textAlignment = NSTextAlignmentRight;
-    minLabel.text = [NSString stringWithFormat:@"慢"];
+    minLabel.text = [NSString stringWithFormat:NSLocalizedString(@"慢", nil)];
     [self addSubview:minLabel];
     [minLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(10);
@@ -79,7 +79,7 @@
     maxLabel.textAlignment = NSTextAlignmentLeft;
     maxLabel.font = [UIFont systemFontOfSize:15];
     maxLabel.textColor = [UIColor textBlackColor];
-    maxLabel.text = [NSString stringWithFormat:@"快"];
+    maxLabel.text = [NSString stringWithFormat:NSLocalizedString(@"快", nil)];
     [self addSubview:maxLabel];
     [maxLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(-10);

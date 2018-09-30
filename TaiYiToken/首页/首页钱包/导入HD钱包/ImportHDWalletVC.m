@@ -72,7 +72,7 @@
     _headlabel = [[UILabel alloc] init];
     _headlabel.textColor = [UIColor blackColor];
     _headlabel.font = [UIFont systemFontOfSize:24];
-    _headlabel.text = @"输入助记词";
+    _headlabel.text = NSLocalizedString(@"输入助记词", nil);
     _headlabel.textAlignment = NSTextAlignmentLeft;
     _headlabel.numberOfLines = 1;
     [self.view addSubview:_headlabel];
@@ -129,7 +129,7 @@
     [_ImportBtn gradientButtonWithSize:CGSizeMake(ScreenWidth, 44) colorArray:@[[UIColor colorWithHexString:@"#4090F7"],[UIColor colorWithHexString:@"#57A8FF"]] percentageArray:@[@(0.3),@(1)] gradientType:GradientFromLeftTopToRightBottom];
     _ImportBtn.tintColor = [UIColor textWhiteColor];
     _ImportBtn.userInteractionEnabled = YES;
-    [_ImportBtn setTitle:@"开始导入" forState:UIControlStateNormal];
+    [_ImportBtn setTitle:NSLocalizedString(@"开始导入", nil) forState:UIControlStateNormal];
     [_ImportBtn addTarget:self action:@selector(ImportWalletAction) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_ImportBtn];
     [_ImportBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -146,16 +146,16 @@
 }
 -(void)ImportWalletAction{
     if ([self.ImportContentTextView.text isEqualToString:@""] || self.ImportContentTextView.text == nil) {
-        [self.view showMsg:@"请输入助记词！"];
+        [self.view showMsg:NSLocalizedString(@"请输入助记词！", nil)];
         return;
     }
 
     if (![self.setPasswordView.passwordTextField.text isEqualToString:self.setPasswordView.repasswordTextField.text]) {
-        [self.view showMsg:@"两次密码输入不一致！"];
+        [self.view showMsg:NSLocalizedString(@"两次密码输入不一致！", nil)];
         return;
     }
     self.mnemonic = self.ImportContentTextView.text;
-    [self.view showMsg:@"正在创建钱包..."];
+    [self.view showMsg:NSLocalizedString(@"正在创建钱包...", nil)];
     [self.view showHUD];
     [self CreateWallet];
    
@@ -189,9 +189,9 @@
     //创建并存KeyStore eth
     [CreateAll CreateKeyStoreByMnemonic:self.mnemonic  WalletAddress:walletETH.address Password:password callback:^(Account *account, NSError *error) {
         if (account == nil) {
-            [self.view showMsg:@"导入出错,助记词错误！"];
+            [self.view showMsg:NSLocalizedString(@"导入出错,助记词错误！", nil)];
         }else{
-            [self.view showMsg:@"导入成功！"];
+            [self.view showMsg:NSLocalizedString(@"导入成功！", nil)];
             [[NSUserDefaults standardUserDefaults]  setBool:YES forKey:@"ifHasAccount"];
             [[NSUserDefaults standardUserDefaults] synchronize];
             [CreateAll SaveWallet:walletBTC Name:@"walletBTC" WalletType:LOCAL_WALLET Password:password];

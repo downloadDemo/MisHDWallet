@@ -42,7 +42,7 @@
     //0.05
     _amountTextField = [UITextField new];
     _amountTextField.borderStyle = UITextBorderStyleNone;
-    _amountTextField.attributedPlaceholder =[[NSAttributedString alloc]initWithString: @"输入金额"];
+    _amountTextField.attributedPlaceholder =[[NSAttributedString alloc]initWithString: NSLocalizedString(@"输入金额", nil)];
     _amountTextField.backgroundColor = [UIColor whiteColor];
     _amountTextField.textAlignment = NSTextAlignmentLeft;
     _amountTextField.textColor = [UIColor textBlackColor];
@@ -73,7 +73,7 @@
     remlb.textColor = [UIColor textBlackColor];
     remlb.font = [UIFont boldSystemFontOfSize:13];
     remlb.textAlignment = NSTextAlignmentLeft;
-    remlb.text = @"备注";
+    remlb.text = NSLocalizedString(@"备注", nil);
     [self addSubview:remlb];
     [remlb mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(17);
@@ -85,7 +85,7 @@
     //备注内容
     _remarkTextField = [UITextField new];
     _remarkTextField.borderStyle = UITextBorderStyleNone;
-    _remarkTextField.attributedPlaceholder =[[NSAttributedString alloc]initWithString: @"（选填）"];
+    _remarkTextField.attributedPlaceholder =[[NSAttributedString alloc]initWithString: NSLocalizedString(@"（选填）", nil)];
     _remarkTextField.backgroundColor = [UIColor whiteColor];
     _remarkTextField.textAlignment = NSTextAlignmentLeft;
     _remarkTextField.textColor = [UIColor textBlackColor];

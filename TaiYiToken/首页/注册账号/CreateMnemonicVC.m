@@ -52,7 +52,7 @@
     _headlabel = [[UILabel alloc] init];
     _headlabel.textColor = [UIColor blackColor];
     _headlabel.font = [UIFont systemFontOfSize:16];
-    _headlabel.text = @"备份助记词";
+    _headlabel.text = NSLocalizedString(@"备份助记词", nil);
     _headlabel.textAlignment = NSTextAlignmentLeft;
     _headlabel.numberOfLines = 1;
     [self.view addSubview:_headlabel];
@@ -66,7 +66,7 @@
     UILabel *remindlabel = [[UILabel alloc] init];
     remindlabel.textColor = [UIColor textGrayColor];
     remindlabel.font = [UIFont systemFontOfSize:13];
-    remindlabel.text = @"请仔细抄写下方助记词，我们将在下一步验证";
+    remindlabel.text = NSLocalizedString(@"请仔细抄写下方助记词，我们将在下一步验证", nil);
     remindlabel.textAlignment = NSTextAlignmentCenter;
     remindlabel.numberOfLines = 1;
     [self.view addSubview:remindlabel];
@@ -80,7 +80,7 @@
     _nextBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _nextBtn.backgroundColor = [UIColor textBlueColor];
     [_nextBtn gradientButtonWithSize:CGSizeMake(ScreenWidth, 49) colorArray:@[RGB(150, 160, 240),RGB(170, 170, 240)] percentageArray:@[@(0.3),@(1)] gradientType:GradientFromLeftTopToRightBottom];
-    [_nextBtn setTitle:@"下一步" forState:UIControlStateNormal];
+    [_nextBtn setTitle:NSLocalizedString(@"下一步", nil) forState:UIControlStateNormal];
     [_nextBtn addTarget:self action:@selector(nextAction) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_nextBtn];
     _nextBtn.userInteractionEnabled = YES;

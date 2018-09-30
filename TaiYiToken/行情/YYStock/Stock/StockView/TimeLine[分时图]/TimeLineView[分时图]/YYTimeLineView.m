@@ -34,7 +34,7 @@
     if (isnan(firstPoint.x) || isnan(firstPoint.y)) {
         return;
     }
-    NSAssert(!isnan(firstPoint.x) && !isnan(firstPoint.y), @"出现NAN值：MA画线");
+    NSAssert(!isnan(firstPoint.x) && !isnan(firstPoint.y), NSLocalizedString(@"出现NAN值：MA画线", nil));
     
     //画分时线
     CGContextSetStrokeColorWithColor(ctx, [UIColor YYStock_TimeLineColor].CGColor);
@@ -64,7 +64,7 @@
 }
 
 - (NSArray *)drawViewWithXPosition:(CGFloat)xPosition drawModels:(NSArray <id<YYStockTimeLineProtocol>>*)drawLineModels  maxValue:(CGFloat)maxValue minValue:(CGFloat)minValue {
-    NSAssert(drawLineModels, @"数据源不能为空");
+    NSAssert(drawLineModels, NSLocalizedString(@"数据源不能为空", nil));
     
     //转换为实际坐标
     [self convertToPositionModelsWithXPosition:xPosition drawLineModels:drawLineModels maxValue:maxValue minValue:minValue];

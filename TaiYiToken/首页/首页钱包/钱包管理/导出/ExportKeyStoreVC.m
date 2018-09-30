@@ -72,7 +72,7 @@
     _titleLabel.font = [UIFont boldSystemFontOfSize:17];
     _titleLabel.textColor = [UIColor textBlackColor];
     NSString *title = @"";
-    title = [NSString stringWithFormat:@"导出Keystore"];
+    title = [NSString stringWithFormat:NSLocalizedString(@"导出Keystore", nil)];
     [_titleLabel setText:title];
     _titleLabel.textAlignment = NSTextAlignmentLeft;
     [self.view addSubview:_titleLabel];
@@ -124,9 +124,9 @@
     _detailTextView = [UITextView new];
     _detailTextView.font = [UIFont systemFontOfSize:12];
     _detailTextView.textAlignment = NSTextAlignmentLeft;
-    NSString *text = @"离线保存\n切勿保存至邮箱、记事本、网盘、聊天工具等，非常危险\n";
-    NSString *text1 = @"请勿通过网络工具传输\n请勿通过网络工具传输，一旦被黑客获取将造成不可挽回的资产损失。建议离线设备通过二维码方式传输。\n";
-    NSString *text2 = @"密码管理工具保存\n建议使用密码管理工具管理\n";
+    NSString *text = NSLocalizedString(@"离线保存\n切勿保存至邮箱、记事本、网盘、聊天工具等，非常危险\n", nil);
+    NSString *text1 = NSLocalizedString(@"请勿通过网络工具传输\n请勿通过网络工具传输，一旦被黑客获取将造成不可挽回的资产损失。建议离线设备通过二维码方式传输。\n", nil);
+    NSString *text2 = NSLocalizedString(@"密码管理工具保存\n建议使用密码管理工具管理\n", nil);
     _attributeStrKeyStore = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"%@%@%@",text,text1,text2]];
     [_attributeStrKeyStore addAttribute:NSForegroundColorAttributeName value:[UIColor textBlueColor] range:NSMakeRange(0, 4)];
     [_attributeStrKeyStore addAttribute:NSForegroundColorAttributeName value:[UIColor textBlueColor] range:NSMakeRange(text.length, 10)];
@@ -184,7 +184,7 @@
     [_keystoreCopyBtn gradientButtonWithSize:CGSizeMake(ScreenWidth, 44) colorArray:@[[UIColor colorWithHexString:@"#4090F7"],[UIColor colorWithHexString:@"#57A8FF"]] percentageArray:@[@(0.3),@(1)] gradientType:GradientFromLeftTopToRightBottom];
     _keystoreCopyBtn.tintColor = [UIColor textWhiteColor];
     _keystoreCopyBtn.userInteractionEnabled = YES;
-    [_keystoreCopyBtn setTitle:@"复制Keystore" forState:UIControlStateNormal];
+    [_keystoreCopyBtn setTitle:NSLocalizedString(@"复制Keystore", nil) forState:UIControlStateNormal];
     [_keystoreCopyBtn addTarget:self action:@selector(copyKeyStore) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_keystoreCopyBtn];
     [_keystoreCopyBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -195,7 +195,7 @@
 -(void)copyKeyStore{
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
     pasteboard.string = self.keystore;
-    [self.view showMsg:@"Keystore已复制"];
+    [self.view showMsg:NSLocalizedString(@"Keystore已复制", nil)];
 }
 
 

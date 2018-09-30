@@ -34,11 +34,11 @@
 }
 
 - (NSArray *)BuyDescArray {
-    return @[@"买1",@"买2",@"买3",@"买4",@"买5"];
+    return @[NSLocalizedString(@"买1", nil),NSLocalizedString(@"买2", nil),NSLocalizedString(@"买3", nil),NSLocalizedString(@"买4", nil),NSLocalizedString(@"买5", nil)];
 }
 
 - (NSArray *)SellDescArray {
-    return @[@"卖5",@"卖4",@"卖3",@"卖2",@"卖1"];
+    return @[NSLocalizedString(@"卖5", nil),NSLocalizedString(@"卖4", nil),NSLocalizedString(@"卖3", nil),NSLocalizedString(@"卖2", nil),NSLocalizedString(@"卖1", nil)];
 }
 
 - (instancetype)initWithDict:(NSDictionary *)dict {

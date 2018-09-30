@@ -208,14 +208,14 @@
             CGSize textSize = [self rectOfNSString:text attribute:attribute].size;
             [text drawInRect:CGRectMake(YYStockScrollViewLeftGap - textSize.width - 5, YYStockScrollViewTopGap + self.stockScrollView.frame.size.height * (1 - [YYStockVariable volumeViewRadio]), 60, 20) withAttributes:attribute];
             
-            NSString *descText = @"亿手";
+            NSString *descText = NSLocalizedString(@"亿手", nil);
             CGSize textSize1 = [self rectOfNSString:descText attribute:attribute].size;
             [descText drawInRect:CGRectMake(YYStockScrollViewLeftGap - textSize1.width - 5, YYStockScrollViewTopGap + 15 + self.stockScrollView.frame.size.height * (1 - [YYStockVariable volumeViewRadio]), 60, 20) withAttributes:attribute];
         } else {
             NSString *text = [NSString stringWithFormat:@"%.2f",wVolume];
             CGSize textSize = [self rectOfNSString:text attribute:attribute].size;
             [text drawInRect:CGRectMake(YYStockScrollViewLeftGap - textSize.width - 5, YYStockScrollViewTopGap + self.stockScrollView.frame.size.height * (1 - [YYStockVariable volumeViewRadio]), 60, 20) withAttributes:attribute];
-            NSString *descText = @"万手";
+            NSString *descText = NSLocalizedString(@"万手", nil);
             CGSize textSize1 = [self rectOfNSString:descText attribute:attribute].size;
             [descText drawInRect:CGRectMake(YYStockScrollViewLeftGap - textSize1.width - 5, YYStockScrollViewTopGap + 15 + self.stockScrollView.frame.size.height * (1 - [YYStockVariable volumeViewRadio]), 60, 20) withAttributes:attribute];
         }
@@ -223,7 +223,7 @@
         NSString *text = [NSString stringWithFormat:@"%.0f",volume];
         CGSize textSize = [self rectOfNSString:text attribute:attribute].size;
         [text drawInRect:CGRectMake(YYStockScrollViewLeftGap - textSize.width - 5, YYStockScrollViewTopGap + self.stockScrollView.frame.size.height * (1 - [YYStockVariable volumeViewRadio]), 60, 20) withAttributes:attribute];
-        NSString *descText = @"手";
+        NSString *descText = NSLocalizedString(@"手", nil);
         CGSize textSize1 = [self rectOfNSString:descText attribute:attribute].size;
         [descText drawInRect:CGRectMake(YYStockScrollViewLeftGap - textSize1.width - 5, YYStockScrollViewTopGap + 15 + self.stockScrollView.frame.size.height * (1 - [YYStockVariable volumeViewRadio]), 60, 20) withAttributes:attribute];
     }
@@ -348,7 +348,7 @@
 }
 
 - (void)event_longPressAction:(UILongPressGestureRecognizer *)longPress {
-    NSLog(@"进入长按");
+    NSLog(NSLocalizedString(@"进入长按", nil));
     
     
     NSLog(@"%f", [longPress locationInView:self.stockScrollView].x - self.stockScrollView.contentOffset.x);

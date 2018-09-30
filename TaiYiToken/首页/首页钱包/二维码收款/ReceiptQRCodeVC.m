@@ -137,8 +137,8 @@
         _addressSwitch.delegate=self;
         _addressSwitch.OnStatus = YES;
         _addressSwitch.userInteractionEnabled = YES;
-        [_addressSwitch setLeftLabelText:@"主地址"];
-        [_addressSwitch setRightLabelText:@"子地址"];
+        [_addressSwitch setLeftLabelText:NSLocalizedString(@"主地址", nil)];
+        [_addressSwitch setRightLabelText:NSLocalizedString(@"子地址", nil)];
         [self.view addSubview:_addressSwitch];
         [_addressSwitch mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(0);
@@ -201,7 +201,7 @@
     }else{
         pasteboard.string = _addressSwitch.OnStatus == YES ? self.wallet.address : self.wallet.addressarray[1];
     }
-   [self.view showMsg:@"地址已复制"];
+   [self.view showMsg:NSLocalizedString(@"地址已复制", nil)];
 }
 
 - (void)onStatusDelegate{

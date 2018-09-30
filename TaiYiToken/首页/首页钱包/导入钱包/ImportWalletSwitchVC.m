@@ -36,7 +36,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     [self initHeadView];
-    self.walletTypeArray = @[@"以太坊钱包",@"比特币钱包"];
+    self.walletTypeArray = @[NSLocalizedString(@"以太坊钱包", nil),NSLocalizedString(@"比特币钱包", nil)];
     [self.tableView reloadData];
 }
 -(void)initHeadView{
@@ -67,7 +67,7 @@
     _titleLabel = [UILabel new];
     _titleLabel.font = [UIFont boldSystemFontOfSize:17];
     _titleLabel.textColor = [UIColor textBlackColor];
-    [_titleLabel setText:[NSString stringWithFormat:@"导入钱包"]];
+    [_titleLabel setText:[NSString stringWithFormat:NSLocalizedString(@"导入钱包", nil)]];
     _titleLabel.textAlignment = NSTextAlignmentLeft;
     [self.view addSubview:_titleLabel];
     [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {

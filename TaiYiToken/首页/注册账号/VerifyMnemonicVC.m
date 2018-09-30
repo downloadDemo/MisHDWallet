@@ -58,7 +58,7 @@
     _nextBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _nextBtn.backgroundColor = [UIColor textBlueColor];
     [_nextBtn gradientButtonWithSize:CGSizeMake(ScreenWidth, 49) colorArray:@[RGB(150, 160, 240),RGB(170, 170, 240)] percentageArray:@[@(0.3),@(1)] gradientType:GradientFromLeftTopToRightBottom];
-    [_nextBtn setTitle:@"完成" forState:UIControlStateNormal];
+    [_nextBtn setTitle:NSLocalizedString(@"完成", nil) forState:UIControlStateNormal];
     [_nextBtn addTarget:self action:@selector(nextAction) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_nextBtn];
     _nextBtn.userInteractionEnabled = YES;
@@ -73,7 +73,7 @@
     _headlabel = [[UILabel alloc] init];
     _headlabel.textColor = [UIColor blackColor];
     _headlabel.font = [UIFont systemFontOfSize:16];
-    _headlabel.text = @"确认助记词";
+    _headlabel.text = NSLocalizedString(@"确认助记词", nil);
     _headlabel.textAlignment = NSTextAlignmentLeft;
     _headlabel.numberOfLines = 1;
     [self.view addSubview:_headlabel];
@@ -87,7 +87,7 @@
     UILabel *remindlabel = [[UILabel alloc] init];
     remindlabel.textColor = [UIColor textGrayColor];
     remindlabel.font = [UIFont systemFontOfSize:13];
-    remindlabel.text = @"请按顺序点击助记词，以确认您正确备份";
+    remindlabel.text = NSLocalizedString(@"请按顺序点击助记词，以确认您正确备份", nil);
     remindlabel.textAlignment = NSTextAlignmentCenter;
     remindlabel.numberOfLines = 1;
     [self.view addSubview:remindlabel];
@@ -106,20 +106,20 @@
   //  [self CreateWallet];
     
     if (self.selectedButtonView.buttonList == nil||self.selectedButtonView.buttonList.count < 12) {
-        [self.view showMsg:@"请按顺序选择所有单词！"];
+        [self.view showMsg:NSLocalizedString(@"请按顺序选择所有单词！", nil)];
         return;
     }
    
     for (NSInteger i = 0; i < self.mnemonicArray.count; i++) {
         UIButton *btn = self.selectedButtonView.buttonList[i];
         if (![btn.titleLabel.text isEqualToString:self.mnemonicArray[i]]) {
-            [self.view showMsg:@"顺序错误，请重新选择！"];
+            [self.view showMsg:NSLocalizedString(@"顺序错误，请重新选择！", nil)];
             return;
         }
     }
 
     [self dismissViewControllerAnimated:YES completion:^{
-        [self.view showMsg:@"正在创建钱包..."];
+        [self.view showMsg:NSLocalizedString(@"正在创建钱包...", nil)];
         [self.view showHUD];
         [self CreateWallet];
         [self.view hideHUD];
@@ -145,9 +145,9 @@
     //创建并存KeyStore eth
     [CreateAll CreateKeyStoreByMnemonic:self.mnemonic  WalletAddress:walletETH.address Password:self.password callback:^(Account *account, NSError *error) {
         if (account == nil) {
-            [self.view showMsg:@"创建出错！"];
+            [self.view showMsg:NSLocalizedString(@"创建出错！", nil)];
         }else{
-            [self.view showMsg:@"创建成功！"];
+            [self.view showMsg:NSLocalizedString(@"创建成功！", nil)];
             [[NSUserDefaults standardUserDefaults]  setBool:YES forKey:@"ifHasAccount"];
             [[NSUserDefaults standardUserDefaults] synchronize];
             [CreateAll SaveWallet:walletBTC Name:@"walletBTC" WalletType:LOCAL_WALLET Password:self.password];

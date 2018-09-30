@@ -33,7 +33,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initHeadView];
-    self.titleArray1 = @[@"人民币",@"美元"];
+    self.titleArray1 = @[NSLocalizedString(@"人民币", nil),NSLocalizedString(@"美元", nil)];
     [self tableView];
 }
 -(void)initHeadView{
@@ -64,7 +64,7 @@
     _titleLabel = [UILabel new];
     _titleLabel.font = [UIFont boldSystemFontOfSize:17];
     _titleLabel.textColor = [UIColor textBlackColor];
-    [_titleLabel setText:@"货币单位"];
+    [_titleLabel setText:NSLocalizedString(@"货币单位", nil)];
     _titleLabel.textAlignment = NSTextAlignmentLeft;
     [self.view addSubview:_titleLabel];
     [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {

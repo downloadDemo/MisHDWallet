@@ -38,9 +38,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initHeadView];
-    self.titleArray1 = @[@"当前账号",@"多语言",@"货币单位"];
-    self.titleArray2 = @[@"涨红跌绿",@"消息推送",@"隐私模式"];
-    self.titleArray3 = @[@"邮箱绑定",@"手机绑定",@"关于我们"];
+    self.titleArray1 = @[NSLocalizedString(@"当前账号", nil),NSLocalizedString(@"多语言", nil),NSLocalizedString(@"货币单位", nil)];
+    self.titleArray2 = @[NSLocalizedString(@"涨红跌绿", nil),NSLocalizedString(@"消息推送", nil),NSLocalizedString(@"隐私模式", nil)];
+    self.titleArray3 = @[NSLocalizedString(@"邮箱绑定", nil),NSLocalizedString(@"手机绑定", nil),NSLocalizedString(@"关于我们", nil)];
     if (![[NSUserDefaults standardUserDefaults] objectForKey:@"CurrentCurrencySelected"]) {
         [[NSUserDefaults standardUserDefaults] setObject:@"rmb" forKey:@"CurrentCurrencySelected"];
         [[NSUserDefaults standardUserDefaults] synchronize];
@@ -50,11 +50,11 @@
 }
 
 -(void)quitAccountBtnAction{
-    UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"" preferredStyle:(UIAlertControllerStyleAlert)];
-    UIAlertAction *alertA = [UIAlertAction actionWithTitle:@"取消" style:(UIAlertActionStyleCancel) handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertController *alertC = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"温馨提示", nil) message:@"" preferredStyle:(UIAlertControllerStyleAlert)];
+    UIAlertAction *alertA = [UIAlertAction actionWithTitle:NSLocalizedString(@"取消", nil) style:(UIAlertActionStyleCancel) handler:^(UIAlertAction * _Nonnull action) {
         
     }];
-    UIAlertAction *alertB = [UIAlertAction actionWithTitle:@"确定" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction *alertB = [UIAlertAction actionWithTitle:NSLocalizedString(@"确定", nil) style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
         [CreateAll RemoveAllWallet];
         [self.tableView reloadData];
     }];
@@ -71,7 +71,7 @@
     _quitAccountBtn.backgroundColor = [UIColor whiteColor];
     _quitAccountBtn.tintColor = [UIColor redColor];
     _quitAccountBtn.userInteractionEnabled = YES;
-    [_quitAccountBtn setTitle:@"退出当前身份" forState:UIControlStateNormal];
+    [_quitAccountBtn setTitle:NSLocalizedString(@"退出当前身份", nil) forState:UIControlStateNormal];
     [_quitAccountBtn addTarget:self action:@selector(quitAccountBtnAction) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_quitAccountBtn];
     [_quitAccountBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -108,7 +108,7 @@
     _titleLabel = [UILabel new];
     _titleLabel.font = [UIFont boldSystemFontOfSize:17];
     _titleLabel.textColor = [UIColor textBlackColor];
-    [_titleLabel setText:@"账户设置"];
+    [_titleLabel setText:NSLocalizedString(@"账户设置", nil)];
     _titleLabel.textAlignment = NSTextAlignmentLeft;
     [self.view addSubview:_titleLabel];
     [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -164,14 +164,14 @@
         if (indexPath.row == 0) {
             [cell.detailtextlb setText:@"MissionWallet"];
         }else if(indexPath.row == 1){
-            [cell.detailtextlb setText:@"选择"];
+            [cell.detailtextlb setText:NSLocalizedString(@"选择", nil)];
             [cell rightIconIv];
         }else{
             NSString *current = [[NSUserDefaults standardUserDefaults] objectForKey:@"CurrentCurrencySelected"];
             if ([current isEqualToString:@"rmb"]) {
-                [cell.detailtextlb setText:@"人民币"];
+                [cell.detailtextlb setText:NSLocalizedString(@"人民币", nil)];
             }else{
-                [cell.detailtextlb setText:@"美元"];
+                [cell.detailtextlb setText:NSLocalizedString(@"美元", nil)];
             }
             [cell rightIconIv];
         }
@@ -185,7 +185,7 @@
         if(indexPath.row == 2){
             [cell.detailtextlb setText:@""];
         }else{
-            [cell.detailtextlb setText:@"未绑定"];
+            [cell.detailtextlb setText:NSLocalizedString(@"未绑定", nil)];
         }
         [cell rightIconIv];
         [cell rightIconIv];

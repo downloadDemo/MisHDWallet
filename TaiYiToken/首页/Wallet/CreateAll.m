@@ -54,10 +54,10 @@
         NSLog(@"\n keystore(json) = %@",json);
         [Account decryptSecretStorageJSON:json password:password callback:^(Account *decryptedAccount, NSError *error) {
             if (![account.address.checksumAddress isEqualToString:decryptedAccount.address.checksumAddress]) {
-                NSLog(@"keystore生成错误");
+                NSLog(NSLocalizedString(@"keystore生成错误", nil));
                 callback(nil, nil);
             }else{
-                NSLog(@"\n\n\n** keystore 恢复 mnemonic ** = \n %@ \n\n\n",decryptedAccount.mnemonicPhrase);
+                NSLog(NSLocalizedString(@"\n\n\n** keystore 恢复 mnemonic ** = \n %@ \n\n\n", nil),decryptedAccount.mnemonicPhrase);
                 //按地址保存keystore
                 [[NSUserDefaults standardUserDefaults] setObject:json forKey:[NSString stringWithFormat:@"keystore%@",walletAddress]];
                 [[NSUserDefaults standardUserDefaults] synchronize];
@@ -84,10 +84,10 @@
         NSLog(@"\n keystore(json) = %@",json);
         [Account decryptSecretStorageJSON:json password:password callback:^(Account *decryptedAccount, NSError *error) {
             if (![account.address.checksumAddress isEqualToString:decryptedAccount.address.checksumAddress]) {
-                NSLog(@"keystore生成错误");
+                NSLog(NSLocalizedString(@"keystore生成错误", nil));
                 callback(nil,error);
             }else{
-                NSLog(@"\n\n\n** keystore 恢复 mnemonic ** = \n %@ \n\n\n",decryptedAccount.mnemonicPhrase);
+                NSLog(NSLocalizedString(@"\n\n\n** keystore 恢复 mnemonic ** = \n %@ \n\n\n", nil),decryptedAccount.mnemonicPhrase);
                 //按密码保存keystore
                 [[NSUserDefaults standardUserDefaults] setObject:json forKey:[NSString stringWithFormat:@"keystore%@",walletAddress]];
                 [[NSUserDefaults standardUserDefaults] synchronize];

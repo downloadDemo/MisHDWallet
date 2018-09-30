@@ -22,9 +22,9 @@
     BOOL result = [imageData writeToFile:fullPath atomically:YES];
     
     if (result == YES) {
-        NSLog(@"保存成功");
+        NSLog(NSLocalizedString(@"保存成功", nil));
     }else{
-        NSLog(@"保存失败");
+        NSLog(NSLocalizedString(@"保存失败", nil));
     }
 
 }
@@ -42,7 +42,7 @@
     NSString *uniquePath=[kPathCache stringByAppendingPathComponent:imagename];
     BOOL isExit =[[NSFileManager defaultManager] fileExistsAtPath:uniquePath];
     if (! isExit) {
-        NSLog(@"文件不存在！");
+        NSLog(NSLocalizedString(@"文件不存在！", nil));
     }else {
         BOOL isDele= [fileManager removeItemAtPath:uniquePath error:nil];
         if (isDele)

@@ -303,14 +303,14 @@
         CGFloat yVolume = wVolume/10000.f;
         if (yVolume > 1) {
             text = [NSString stringWithFormat:@"%.2f",yVolume];
-            descText = @"亿手";
+            descText = NSLocalizedString(@"亿手", nil);
         } else {
             text = [NSString stringWithFormat:@"%.2f",wVolume];
-            descText = @"万手";
+            descText = NSLocalizedString(@"万手", nil);
         }
     } else {
         text = [NSString stringWithFormat:@"%.0f",volume];
-        descText = @"手";
+        descText = NSLocalizedString(@"手", nil);
     }
     [text drawInRect:CGRectMake(leftGap, YYStockScrollViewTopGap + self.stockScrollView.frame.size.height * (1 - [YYStockVariable volumeViewRadio]), 60, 20) withAttributes:attribute];
     [descText drawInRect:CGRectMake(leftGap, YYStockScrollViewTopGap + 15 + self.stockScrollView.frame.size.height * (1 - [YYStockVariable volumeViewRadio]), 60, 20) withAttributes:attribute];

@@ -59,7 +59,7 @@
         _exportBtn.titleLabel.textAlignment = NSTextAlignmentLeft;
         _exportBtn.titleLabel.font = [UIFont systemFontOfSize:13];
         _exportBtn.userInteractionEnabled = YES;
-        [_exportBtn setTitle:@"导出" forState:UIControlStateNormal];
+        [_exportBtn setTitle:NSLocalizedString(@"导出", nil) forState:UIControlStateNormal];
         [self.contentView addSubview:_exportBtn];
         [_exportBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(20);

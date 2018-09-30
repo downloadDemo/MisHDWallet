@@ -42,7 +42,7 @@
     _QRCodeBtn.titleLabel.font = [UIFont boldSystemFontOfSize:15];
     [_QRCodeBtn setTitleColor:SelectColor forState:UIControlStateSelected];
     [_QRCodeBtn setTitleColor:DeSelectColor forState:UIControlStateNormal];
-    [_QRCodeBtn setTitle:@"二维码" forState:UIControlStateNormal];
+    [_QRCodeBtn setTitle:NSLocalizedString(@"二维码", nil) forState:UIControlStateNormal];
     [self addSubview:_QRCodeBtn];
     _QRCodeBtn.userInteractionEnabled = YES;
     [_QRCodeBtn mas_makeConstraints:^(MASConstraintMaker *make) {

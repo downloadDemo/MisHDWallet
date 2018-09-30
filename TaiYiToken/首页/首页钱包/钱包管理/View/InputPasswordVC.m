@@ -24,7 +24,7 @@
     _titleLabel.textColor = [UIColor textDarkColor];
     _titleLabel.font = [UIFont boldSystemFontOfSize:10];
     _titleLabel.textAlignment = NSTextAlignmentLeft;
-    _titleLabel.text = @"请输入密码";
+    _titleLabel.text = NSLocalizedString(@"请输入密码", nil);
     [self.view addSubview:_titleLabel];
     [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(10);
@@ -50,7 +50,7 @@
     _confirmBtn.backgroundColor = [UIColor whiteColor];
     _confirmBtn.tintColor = [UIColor textBlueColor];
     _confirmBtn.titleLabel.font = [UIFont systemFontOfSize:14];
-    [_confirmBtn setTitle:@"确定" forState:UIControlStateNormal];
+    [_confirmBtn setTitle:NSLocalizedString(@"确定", nil) forState:UIControlStateNormal];
     [self.view addSubview:_confirmBtn];
     _confirmBtn.userInteractionEnabled = YES;
     [_confirmBtn mas_makeConstraints:^(MASConstraintMaker *make) {

@@ -42,8 +42,8 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor ExportBackgroundColor];
     [self initUI];
-    self.titleArray1 = @[@"我的数据",@"信用评分"];
-    self.titleArray2 = @[@"实名认证",@"交易记录",@"消息推送",@"帮助中心",@"账户设置"];
+    self.titleArray1 = @[NSLocalizedString(@"我的数据", nil),NSLocalizedString(@"信用评分", nil)];
+    self.titleArray2 = @[NSLocalizedString(@"实名认证", nil),NSLocalizedString(@"交易记录", nil),NSLocalizedString(@"消息推送", nil),NSLocalizedString(@"帮助中心", nil),NSLocalizedString(@"账户设置", nil)];
     self.imageNameArray1 = @[@"own_contact",@"own_wallet-ss"];
     self.imageNameArray2 = @[@"own_record-jj",@"own_record",@"own_push",@"own_help",@"own_set"];
     [self tableView];

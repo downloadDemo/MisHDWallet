@@ -49,7 +49,7 @@
     _quitBtn.backgroundColor = [UIColor whiteColor];
     _quitBtn.tintColor = [UIColor textBlueColor];
     _quitBtn.titleLabel.font = [UIFont systemFontOfSize:14];
-    [_quitBtn setTitle:@"备份助记词" forState:UIControlStateNormal];
+    [_quitBtn setTitle:NSLocalizedString(@"备份助记词", nil) forState:UIControlStateNormal];
     [self addSubview:_quitBtn];
     _quitBtn.userInteractionEnabled = YES;
     [_quitBtn mas_makeConstraints:^(MASConstraintMaker *make) {

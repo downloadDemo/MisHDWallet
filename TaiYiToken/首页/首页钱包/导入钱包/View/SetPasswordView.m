@@ -15,7 +15,7 @@
     
     _passwordTextField = [UITextField new];
     _passwordTextField.borderStyle = UITextBorderStyleNone;
-    _passwordTextField.attributedPlaceholder =[[NSAttributedString alloc]initWithString: @"钱包密码"];
+    _passwordTextField.attributedPlaceholder =[[NSAttributedString alloc]initWithString: NSLocalizedString(@"钱包密码", nil)];
     _passwordTextField.backgroundColor = [UIColor whiteColor];
     _passwordTextField.textAlignment = NSTextAlignmentLeft;
     _passwordTextField.textColor = [UIColor darkGrayColor];
@@ -31,7 +31,7 @@
     
     _repasswordTextField = [UITextField new];
     _repasswordTextField.borderStyle = UITextBorderStyleNone;
-    _repasswordTextField.attributedPlaceholder =[[NSAttributedString alloc]initWithString: @"重复输入密码"];
+    _repasswordTextField.attributedPlaceholder =[[NSAttributedString alloc]initWithString: NSLocalizedString(@"重复输入密码", nil)];
     _repasswordTextField.backgroundColor = [UIColor whiteColor];
     _repasswordTextField.textAlignment = NSTextAlignmentLeft;
     _repasswordTextField.textColor = [UIColor darkGrayColor];
@@ -47,7 +47,7 @@
     
     _passwordHintTextField = [UITextField new];
     _passwordHintTextField.borderStyle = UITextBorderStyleNone;
-    _passwordHintTextField.attributedPlaceholder =[[NSAttributedString alloc]initWithString: @"密码提示信息"];
+    _passwordHintTextField.attributedPlaceholder =[[NSAttributedString alloc]initWithString: NSLocalizedString(@"密码提示信息", nil)];
     _passwordHintTextField.backgroundColor = [UIColor whiteColor];
     _passwordHintTextField.textAlignment = NSTextAlignmentLeft;
     _passwordHintTextField.textColor = [UIColor darkGrayColor];

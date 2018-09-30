@@ -60,7 +60,7 @@
 }
 
 - (NSArray *)drawViewWithXPosition:(CGFloat)xPosition drawModels:(NSMutableArray <id<YYLineDataModelProtocol>>*)drawLineModels  maxValue:(CGFloat)maxValue minValue:(CGFloat)minValue {
-    NSAssert(drawLineModels, @"数据源不能为空");
+    NSAssert(drawLineModels, NSLocalizedString(@"数据源不能为空", nil));
     //转换为实际坐标
     [self convertToPositionModelsWithXPosition:xPosition drawLineModels:drawLineModels maxValue:maxValue minValue:minValue];
     dispatch_async(dispatch_get_main_queue(), ^{

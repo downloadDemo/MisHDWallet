@@ -66,7 +66,7 @@
     _UpdatePasswordHintBtn = [UIButton buttonWithType:UIButtonTypeSystem];
     _UpdatePasswordHintBtn.backgroundColor = [UIColor clearColor];
     _UpdatePasswordHintBtn.tintColor = [UIColor textBlackColor];
-    [_UpdatePasswordHintBtn setTitle:@"完成" forState:UIControlStateNormal];
+    [_UpdatePasswordHintBtn setTitle:NSLocalizedString(@"完成", nil) forState:UIControlStateNormal];
     _UpdatePasswordHintBtn.titleLabel.font = [UIFont systemFontOfSize:17];
     _UpdatePasswordHintBtn.titleLabel.textAlignment = NSTextAlignmentRight;
     [_UpdatePasswordHintBtn addTarget:self action:@selector(UpdatePasswordHint) forControlEvents:UIControlEventTouchUpInside];
@@ -83,10 +83,10 @@
     if(self.wallet.walletType == IMPORT_WALLET){
         self.wallet.passwordHint = self.passwordHintTextField.text == nil?@"":self.passwordHintTextField.text;
         [CreateAll SaveWallet:self.wallet Name:self.wallet.walletName WalletType:self.wallet.walletType Password:@""];
-        [self.view showMsg:@"成功"];
+        [self.view showMsg:NSLocalizedString(@"成功", nil)];
     }else{
         [CreateAll UpdatePasswordHint:self.passwordHintTextField.text == nil?@"":self.passwordHintTextField.text];
-        [self.view showMsg:@"成功"];
+        [self.view showMsg:NSLocalizedString(@"成功", nil)];
     }
 }
 -(void)initHeadView{
@@ -117,7 +117,7 @@
     _titleLabel = [UILabel new];
     _titleLabel.font = [UIFont boldSystemFontOfSize:17];
     _titleLabel.textColor = [UIColor textBlackColor];
-    [_titleLabel setText:[NSString stringWithFormat:@"密码提示信息"]];
+    [_titleLabel setText:[NSString stringWithFormat:NSLocalizedString(@"密码提示信息", nil)]];
     _titleLabel.textAlignment = NSTextAlignmentLeft;
     [self.view addSubview:_titleLabel];
     [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {

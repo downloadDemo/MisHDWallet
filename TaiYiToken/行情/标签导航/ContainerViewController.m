@@ -106,7 +106,7 @@
     aBtn.frame = CGRectMake(0, 0, kScreenWidth/5, 35);
     aBtn.titleLabel.font = [UIFont systemFontOfSize:15];
     [aBtn addTarget:self action:@selector(sliderAction:) forControlEvents:UIControlEventTouchUpInside];
-    [aBtn setTitle:@"自选" forState:UIControlStateNormal];
+    [aBtn setTitle:NSLocalizedString(@"自选", nil) forState:UIControlStateNormal];
     aBtn.tag = 1;
     aBtn.selected = YES;
     [_navView addSubview:aBtn];
@@ -210,7 +210,7 @@
    
     self.searchVC.ifNeedRequestData = NO;
    
-    PYSearchViewController *searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:hotSeaches searchBarPlaceholder:@"搜索交易对" didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
+    PYSearchViewController *searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:hotSeaches searchBarPlaceholder:NSLocalizedString(@"搜索交易对", nil) didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
         // 开始(点击)搜索时执行以下代码
 //        [arr removeAllObjects];
 //        [arrcopy removeAllObjects];
@@ -309,7 +309,7 @@
 -(UIButton *)editMySymbolBtn{
     if (_editMySymbolBtn == nil) {
         _editMySymbolBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_editMySymbolBtn setTitle:@"编辑" forState:UIControlStateNormal];
+        [_editMySymbolBtn setTitle:NSLocalizedString(@"编辑", nil) forState:UIControlStateNormal];
         [_editMySymbolBtn.titleLabel setFont:[UIFont systemFontOfSize:14]];
         [_editMySymbolBtn setTintColor:[UIColor textWhiteColor]];
         [_editMySymbolBtn addTarget:self action:@selector(editMySymbolAction) forControlEvents:UIControlEventTouchUpInside];
@@ -328,7 +328,7 @@
 -(void)CreateEditingBtn{
     if (_exitEditBtn == nil) {
         _exitEditBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_exitEditBtn setTitle:@"取消" forState:UIControlStateNormal];
+        [_exitEditBtn setTitle:NSLocalizedString(@"取消", nil) forState:UIControlStateNormal];
         [_exitEditBtn.titleLabel setFont:[UIFont systemFontOfSize:14]];
         [_exitEditBtn setTintColor:[UIColor textWhiteColor]];
         [_exitEditBtn addTarget:self action:@selector(exitEditBtnAction) forControlEvents:UIControlEventTouchUpInside];
@@ -338,7 +338,7 @@
     if(_deleteMySymbolBtn == nil){
         _deleteMySymbolBtn.hidden = NO;
         _deleteMySymbolBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_deleteMySymbolBtn setTitle:@"删除" forState:UIControlStateNormal];
+        [_deleteMySymbolBtn setTitle:NSLocalizedString(@"删除", nil) forState:UIControlStateNormal];
         [_deleteMySymbolBtn.titleLabel setFont:[UIFont systemFontOfSize:14]];
         [_deleteMySymbolBtn setTintColor:[UIColor textWhiteColor]];
         [_deleteMySymbolBtn addTarget:self action:@selector(deleteMySymbolBtnAction) forControlEvents:UIControlEventTouchUpInside];

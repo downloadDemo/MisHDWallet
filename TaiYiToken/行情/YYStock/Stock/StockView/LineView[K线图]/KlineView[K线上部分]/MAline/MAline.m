@@ -52,7 +52,7 @@
     CGContextSetLineWidth(self.context, YYStockMALineLineWidth);
     
     CGPoint firstPoint = [self.MAPositions.firstObject CGPointValue];
-    NSAssert(!isnan(firstPoint.x) && !isnan(firstPoint.y), @"出现NAN值：MA画线");
+    NSAssert(!isnan(firstPoint.x) && !isnan(firstPoint.y), NSLocalizedString(@"出现NAN值：MA画线", nil));
     CGContextMoveToPoint(self.context, firstPoint.x, firstPoint.y);
     
     for (NSInteger idx = 1; idx < self.MAPositions.count ; idx++)

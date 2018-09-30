@@ -39,7 +39,7 @@
     }
     if(self.indexName == SEARCH_CHOOSE){
         if (self.modelarray == nil || self.modelarray.count == 0) {
-            [self.view showMsg:@"暂无数据"];
+            [self.view showMsg:NSLocalizedString(@"暂无数据", nil)];
         }
     }
 }
@@ -65,7 +65,7 @@
     alabel.font = [UIFont systemFontOfSize:15];
     alabel.textAlignment = NSTextAlignmentLeft;
     alabel.numberOfLines = 1;
-    alabel.text = @"币名";
+    alabel.text = NSLocalizedString(@"币名", nil);
     [headView addSubview:alabel];
     [alabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(16);
@@ -75,7 +75,7 @@
     }];
     
     _priceBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-    [_priceBtn setTitle:@"最新价" forState:UIControlStateNormal];
+    [_priceBtn setTitle:NSLocalizedString(@"最新价", nil) forState:UIControlStateNormal];
     [_priceBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     _priceBtn.titleLabel.textAlignment = NSTextAlignmentLeft;
     _priceBtn.titleLabel.font = [UIFont systemFontOfSize:15];
@@ -89,7 +89,7 @@
     }];
     
     _rateBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-    [_rateBtn setTitle:@"涨跌幅" forState:UIControlStateNormal];
+    [_rateBtn setTitle:NSLocalizedString(@"涨跌幅", nil) forState:UIControlStateNormal];
     [_rateBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     _rateBtn.titleLabel.textAlignment = NSTextAlignmentRight;
     _rateBtn.titleLabel.font = [UIFont systemFontOfSize:15];
@@ -460,11 +460,11 @@
 -(void)LookOtherDataOfCell:(UIButton *)btn{
     self.dataChoose = self.dataChoose == 0? 1 : 0;
     if(self.dataChoose == 0){
-        [self.rateBtn setTitle:@"涨跌幅" forState:UIControlStateNormal];
+        [self.rateBtn setTitle:NSLocalizedString(@"涨跌幅", nil) forState:UIControlStateNormal];
         
         [self.tableView reloadData];
     }else{
-        [self.rateBtn setTitle:@"成交量" forState:UIControlStateNormal];
+        [self.rateBtn setTitle:NSLocalizedString(@"成交量", nil) forState:UIControlStateNormal];
         [self.tableView reloadData];
     }
 }

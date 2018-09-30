@@ -11,8 +11,8 @@
 #import "SetPasswordView.h"
 #import "WBQRCodeVC.h"
 
-#define PRIVATEKEY_REMIND_TEXT  @"输入private Key文件内容至输入框。或通过扫描PrivateKey内容生成的二维码录入。请留意字符大小写。"
-#define MNEMONIC_REMIND_TEXT    @"使用助记词导入的同时可以修改钱包密码"
+#define PRIVATEKEY_REMIND_TEXT  NSLocalizedString(@"输入private Key文件内容至输入框。或通过扫描PrivateKey内容生成的二维码录入。请留意字符大小写。", nil)
+#define MNEMONIC_REMIND_TEXT    NSLocalizedString(@"使用助记词导入的同时可以修改钱包密码", nil)
 typedef enum {
     PRIVATEKEY_IMPORT = 0,
     MNEMONIC_IMPORT = 1
@@ -80,7 +80,7 @@ typedef enum {
     _titleLabel = [UILabel new];
     _titleLabel.font = [UIFont boldSystemFontOfSize:17];
     _titleLabel.textColor = [UIColor textBlackColor];
-    [_titleLabel setText:[NSString stringWithFormat:@"导入BITCOIN钱包"]];
+    [_titleLabel setText:[NSString stringWithFormat:NSLocalizedString(@"导入BITCOIN钱包", nil)]];
     _titleLabel.textAlignment = NSTextAlignmentLeft;
     [self.view addSubview:_titleLabel];
     [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -110,7 +110,7 @@ typedef enum {
 }
 -(void)initUI{
     _buttonView = [ControlBtnsView new];
-    [_buttonView initButtonsViewWithTitles:@[@"助记词",@"私钥"] Width:ScreenWidth Height:44];
+    [_buttonView initButtonsViewWithTitles:@[NSLocalizedString(@"助记词", nil),NSLocalizedString(@"私钥", nil)] Width:ScreenWidth Height:44];
     for (UIButton *btn in _buttonView.btnArray) {
         [btn addTarget:self action:@selector(selectImportWay:) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -181,7 +181,7 @@ typedef enum {
     [_ImportBtn gradientButtonWithSize:CGSizeMake(ScreenWidth, 44) colorArray:@[[UIColor colorWithHexString:@"#4090F7"],[UIColor colorWithHexString:@"#57A8FF"]] percentageArray:@[@(0.3),@(1)] gradientType:GradientFromLeftTopToRightBottom];
     _ImportBtn.tintColor = [UIColor textWhiteColor];
     _ImportBtn.userInteractionEnabled = YES;
-    [_ImportBtn setTitle:@"开始导入" forState:UIControlStateNormal];
+    [_ImportBtn setTitle:NSLocalizedString(@"开始导入", nil) forState:UIControlStateNormal];
     [_ImportBtn addTarget:self action:@selector(ImportWalletAction) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_ImportBtn];
     [_ImportBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -198,14 +198,14 @@ typedef enum {
 //导入
 -(void)ImportWalletAction{
     if (![self.setPasswordView.passwordTextField.text isEqualToString:self.setPasswordView.repasswordTextField.text]) {
-        [self.view showMsg:@"两次密码输入不一致！"];
+        [self.view showMsg:NSLocalizedString(@"两次密码输入不一致！", nil)];
         return;
     }
     if (self.importType == MNEMONIC_IMPORT) {
        
         Account *account = [Account accountWithMnemonicPhrase:self.ImportContentTextView.text];
         if (account == nil) {
-            [self.view showMsg:@"请输入正确的助记词！"];
+            [self.view showMsg:NSLocalizedString(@"请输入正确的助记词！", nil)];
             return;
         }
         
@@ -214,18 +214,18 @@ typedef enum {
             [self.view hideHUD];
             if (wallet == nil) {
                 if (error) {
-                    [self.view showMsg:@"导入失败！钱包已存在！"];
+                    [self.view showMsg:NSLocalizedString(@"导入失败！钱包已存在！", nil)];
                 }else{
-                    [self.view showMsg:@"导入失败！"];
+                    [self.view showMsg:NSLocalizedString(@"导入失败！", nil)];
                 }
             }else{
-                [self.view showMsg:@"导入成功！"];
+                [self.view showMsg:NSLocalizedString(@"导入成功！", nil)];
             }
         }];
         
     }else if(self.importType == PRIVATEKEY_IMPORT){
         if (![self.ImportContentTextView.text isValidBitcoinPrivateKey]) {
-            [self.view showMsg:@"请输入正确格式的私钥！"];
+            [self.view showMsg:NSLocalizedString(@"请输入正确格式的私钥！", nil)];
             return;
         }
         [self.view showHUD];
@@ -233,12 +233,12 @@ typedef enum {
         [self.view hideHUD];
         
         if (wallet == nil) {
-            [self.view showMsg:@"导入失败！"];
+            [self.view showMsg:NSLocalizedString(@"导入失败！", nil)];
         }else{
             if ([wallet.address isValidBitcoinAddress]) {
-                [self.view showMsg:@"导入成功！"];
+                [self.view showMsg:NSLocalizedString(@"导入成功！", nil)];
             }else{
-                [self.view showMsg:@"导入失败！"];
+                [self.view showMsg:NSLocalizedString(@"导入失败！", nil)];
             }
         }
     }
@@ -269,9 +269,9 @@ typedef enum {
                                 
                             }];
                         });
-                        NSLog(@"用户第一次同意了访问相机权限 - - %@", [NSThread currentThread]);
+                        NSLog(NSLocalizedString(@"用户第一次同意了访问相机权限 - - %@", nil), [NSThread currentThread]);
                     } else {
-                        NSLog(@"用户第一次拒绝了访问相机权限 - - %@", [NSThread currentThread]);
+                        NSLog(NSLocalizedString(@"用户第一次拒绝了访问相机权限 - - %@", nil), [NSThread currentThread]);
                     }
                 }];
                 break;
@@ -285,8 +285,8 @@ typedef enum {
                 break;
             }
             case AVAuthorizationStatusDenied: {
-                UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"请去-> [设置 - 隐私 - 相机 - SGQRCodeExample] 打开访问开关" preferredStyle:(UIAlertControllerStyleAlert)];
-                UIAlertAction *alertA = [UIAlertAction actionWithTitle:@"确定" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+                UIAlertController *alertC = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"温馨提示", nil) message:NSLocalizedString(@"请去-> [设置 - 隐私 - 相机 - SGQRCodeExample] 打开访问开关", nil) preferredStyle:(UIAlertControllerStyleAlert)];
+                UIAlertAction *alertA = [UIAlertAction actionWithTitle:NSLocalizedString(@"确定", nil) style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
                     
                 }];
                 
@@ -295,7 +295,7 @@ typedef enum {
                 break;
             }
             case AVAuthorizationStatusRestricted: {
-                NSLog(@"因为系统原因, 无法访问相册");
+                NSLog(NSLocalizedString(@"因为系统原因, 无法访问相册", nil));
                 break;
             }
                 
@@ -305,8 +305,8 @@ typedef enum {
         return;
     }
     
-    UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"未检测到您的摄像头" preferredStyle:(UIAlertControllerStyleAlert)];
-    UIAlertAction *alertA = [UIAlertAction actionWithTitle:@"确定" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertController *alertC = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"温馨提示", nil) message:NSLocalizedString(@"未检测到您的摄像头", nil) preferredStyle:(UIAlertControllerStyleAlert)];
+    UIAlertAction *alertA = [UIAlertAction actionWithTitle:NSLocalizedString(@"确定", nil) style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
         
     }];
     

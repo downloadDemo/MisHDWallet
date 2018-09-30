@@ -251,7 +251,7 @@
     }];
 
     _buttonView = [ControlBtnsView new];
-    [_buttonView initButtonsViewWithTitles:@[@"全部",@"转出",@"转入",@"失败"] Width:ScreenWidth Height:44];
+    [_buttonView initButtonsViewWithTitles:@[NSLocalizedString(@"全部", nil),NSLocalizedString(@"转出", nil),NSLocalizedString(@"转入", nil),NSLocalizedString(@"失败", nil)] Width:ScreenWidth Height:44];
     for (UIButton *btn in _buttonView.btnArray) {
         [btn addTarget:self action:@selector(selectRecordStatus:) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -403,14 +403,14 @@
         [cell.timelb setText:[NSString stringWithFormat:@"%@",timeStr]];
         
         if (model.selectType == FAILD_Trans) {
-            cell.resultlb.text = @"失败";
+            cell.resultlb.text = NSLocalizedString(@"失败", nil);
             [cell.amountlb setTextColor:[UIColor redColor]];
             [cell.resultlb setTextColor:[UIColor textBlackColor]];
         }else{
             if(model.confirmations < 6){
-                cell.resultlb.text = @"确认中";
+                cell.resultlb.text = NSLocalizedString(@"确认中", nil);
             }else{
-                cell.resultlb.text = @"成功";
+                cell.resultlb.text = NSLocalizedString(@"成功", nil);
             }
             [cell.amountlb setTextColor:[UIColor textBlueColor]];
             [cell.resultlb setTextColor:[UIColor textLightGrayColor]];
@@ -458,9 +458,9 @@
         
         //判断交易是否有错
         if (info.gasLimit.integerValue * info.gasPrice.integerValue == 0 || info.gasUsed == 0 || info.value.isZero) {
-            cell.resultlb.text = @"失败";
+            cell.resultlb.text = NSLocalizedString(@"失败", nil);
         }else{
-            cell.resultlb.text = @"成功";
+            cell.resultlb.text = NSLocalizedString(@"成功", nil);
         }
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;

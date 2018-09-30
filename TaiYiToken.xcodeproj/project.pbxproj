@@ -116,6 +116,7 @@
 		847BC6092133E001000B02AC /* MissionWallet.m in Sources */ = {isa = PBXBuildFile; fileRef = 847BC6082133E001000B02AC /* MissionWallet.m */; };
 		847BC60B21355289000B02AC /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 847BC60A21355288000B02AC /* libstdc++.tbd */; };
 		847BC60C21355613000B02AC /* libPods-TaiYiToken.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E9748ED3D2B5C2D4D7CCFB04 /* libPods-TaiYiToken.a */; };
+		8481364D2160BB7900A4D166 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8481364F2160BB7900A4D166 /* Localizable.strings */; };
 		8481805D2123B2630007DCF9 /* AESCrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = 848180552123B2620007DCF9 /* AESCrypt.m */; };
 		8481805E2123B2630007DCF9 /* NSObject+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 848180582123B2620007DCF9 /* NSObject+Extension.m */; };
 		8481805F2123B2630007DCF9 /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 8481805A2123B2620007DCF9 /* Base64.m */; };
@@ -419,6 +420,8 @@
 		847BC6072133E001000B02AC /* MissionWallet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MissionWallet.h; sourceTree = "<group>"; };
 		847BC6082133E001000B02AC /* MissionWallet.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MissionWallet.m; sourceTree = "<group>"; };
 		847BC60A21355288000B02AC /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
+		8481364E2160BB7900A4D166 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		848136502160BB7C00A4D166 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		848180532123B2620007DCF9 /* NSObject+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Extension.h"; sourceTree = "<group>"; };
 		848180542123B2620007DCF9 /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64.h; sourceTree = "<group>"; };
 		848180552123B2620007DCF9 /* AESCrypt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AESCrypt.m; sourceTree = "<group>"; };
@@ -447,6 +450,8 @@
 		8484F3932159BA39005992B1 /* JavascriptWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JavascriptWebViewController.m; sourceTree = "<group>"; };
 		8484F3AF2159E650005992B1 /* DappViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DappViewCell.h; sourceTree = "<group>"; };
 		8484F3B02159E650005992B1 /* DappViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DappViewCell.m; sourceTree = "<group>"; };
+		848E3D8B2160B5D2002CB4CC /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		848E3D8C2160B5D3002CB4CC /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		84B0A94221227369002EFA0A /* CustomizedNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomizedNavigationController.h; sourceTree = "<group>"; };
 		84B0A94321227369002EFA0A /* CustomizedTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomizedTabBarController.m; sourceTree = "<group>"; };
 		84B0A9442122736A002EFA0A /* CustomizedNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomizedNavigationController.m; sourceTree = "<group>"; };
@@ -1262,6 +1267,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		8481364A2160BB5C00A4D166 /* Localizable */ = {
+			isa = PBXGroup;
+			children = (
+				8481364F2160BB7900A4D166 /* Localizable.strings */,
+			);
+			path = Localizable;
+			sourceTree = "<group>";
+		};
 		848180522123B2620007DCF9 /* AESCrypt */ = {
 			isa = PBXGroup;
 			children = (
@@ -1541,6 +1554,7 @@
 		84D0E42021211AAB004E65AD /* TaiYiToken */ = {
 			isa = PBXGroup;
 			children = (
+				8481364A2160BB5C00A4D166 /* Localizable */,
 				843EC9C52121212D002D5C2A /* Common */,
 				843EC9C1212120E9002D5C2A /* 导航控制 */,
 				84B0A94D21228B94002EFA0A /* 首页 */,
@@ -1675,6 +1689,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = 84D0E41521211AAB004E65AD;
 			productRefGroup = 84D0E41F21211AAB004E65AD /* Products */;
@@ -1697,6 +1712,7 @@
 				8484F38D2159BA0A005992B1 /* Javascript.html in Resources */,
 				84D0E42E21211AAF004E65AD /* LaunchScreen.storyboard in Resources */,
 				0415BDA02131BC850022DEB7 /* YYFiveRecordTableViewCell.xib in Resources */,
+				8481364D2160BB7900A4D166 /* Localizable.strings in Resources */,
 				84B0A94C21227892002EFA0A /* Assets.xcassets in Resources */,
 				8484F38E2159BA0A005992B1 /* Eos.js in Resources */,
 				84D0E42921211AAB004E65AD /* Main.storyboard in Resources */,
@@ -1971,10 +1987,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		8481364F2160BB7900A4D166 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8481364E2160BB7900A4D166 /* en */,
+				848136502160BB7C00A4D166 /* zh-Hans */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		84D0E42721211AAB004E65AD /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				84D0E42821211AAB004E65AD /* Base */,
+				848E3D8B2160B5D2002CB4CC /* zh-Hans */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -1983,6 +2009,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				84D0E42D21211AAF004E65AD /* Base */,
+				848E3D8C2160B5D3002CB4CC /* zh-Hans */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -1997,6 +2024,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -2064,6 +2092,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

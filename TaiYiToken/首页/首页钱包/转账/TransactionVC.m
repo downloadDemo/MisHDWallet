@@ -84,7 +84,7 @@
     _transactionBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
     _transactionBtn.titleLabel.font = [UIFont boldSystemFontOfSize:16];
     _transactionBtn.userInteractionEnabled = YES;
-    [_transactionBtn setTitle:@"转账" forState:UIControlStateNormal];
+    [_transactionBtn setTitle:NSLocalizedString(@"转账", nil) forState:UIControlStateNormal];
     [_transactionBtn gradientButtonWithSize:CGSizeMake(ScreenWidth, 44) colorArray:@[[UIColor colorWithHexString:@"#4090F7"],[UIColor colorWithHexString:@"#57A8FF"]] percentageArray:@[@(0.3),@(1)] gradientType:GradientFromLeftTopToRightBottom];
     [_transactionBtn addTarget:self action:@selector(transactionAction) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_transactionBtn];
@@ -96,11 +96,11 @@
 -(void)transactionAction{
     //如果超额
     if ([self checkAmount] == NO) {
-        [self.view showMsg:@"转账金额错误！"];
+        [self.view showMsg:NSLocalizedString(@"转账金额错误！", nil)];
         return;
     }
     if ([self.addressView.toAddressTextField.text isEqualToString:@""]) {
-        [self.view showMsg:@"请填写转账地址！"];
+        [self.view showMsg:NSLocalizedString(@"请填写转账地址！", nil)];
         return;
     }
     _shadowView = [UIView new];
@@ -139,7 +139,7 @@
         self.password = self.ipview.passwordTextField.text;
         [self.ipview removeFromSuperview];
         if([self.password isEqualToString:@""] || self.password == nil){
-            [self.view showMsg:@"请输入密码！"];
+            [self.view showMsg:NSLocalizedString(@"请输入密码！", nil)];
         }else{
             NSString *psd = [SAMKeychain passwordForService:PRODUCT_BUNDLE_ID account:self.wallet.address];
             
@@ -150,7 +150,7 @@
                     [self transactionETHToAddress:self.addressView.toAddressTextField.text];
                 }
             }else{
-                [self.view showMsg:@"密码错误！"];
+                [self.view showMsg:NSLocalizedString(@"密码错误！", nil)];
             }
         }
     }];
@@ -165,9 +165,9 @@
     [CreateAll BTCTransactionFromWallet:walletBTC ToAddress:address Amount:amountvalue
                                     Fee:fee Api:BTCAPIBlockchain callback:^(NSString *result, NSError *error) {
                                         if (result == nil) {
-                                            [self.view showMsg:@"转账失败"];
+                                            [self.view showMsg:NSLocalizedString(@"转账失败", nil)];
                                         }else{
-                                            [self.view showMsg:@"交易已广播"];
+                                            [self.view showMsg:NSLocalizedString(@"交易已广播", nil)];
                                         }
                                     }];
 }
@@ -200,13 +200,13 @@
                             }
                         } 
                     }else{
-                        [self.view showMsg:@"交易已广播"];
+                        [self.view showMsg:NSLocalizedString(@"交易已广播", nil)];
                     }
                     NSLog(@"result = %@",promise.value);
                 }];
             }];
         }else{
-            [self.view showMsg:@"交易创建失败！"];
+            [self.view showMsg:NSLocalizedString(@"交易创建失败！", nil)];
         }
     }];
 }
@@ -278,12 +278,12 @@
 -(void)loadDataToView{
     NSString *amount = self.amountView.amountTextField.text;
     if (self.wallet.coinType == BTC || self.wallet.coinType == BTC_TESTNET) {
-        [self.amountView.balancelb setText:[NSString stringWithFormat:@"余额：%.5fBTC",self.BTCbalance.balance]];
+        [self.amountView.balancelb setText:[NSString stringWithFormat:NSLocalizedString(@"余额：%.5fBTC", nil),self.BTCbalance.balance]];
         [self.amountView.pricelb setText:[NSString stringWithFormat:@"≈$%.2f",amount.floatValue * self.BTCCurrency]];
         [self.gasView.gaspricelb setText:[NSString stringWithFormat:@"%ld sat/b",self.satPerBit]];
     }else if (self.wallet.coinType == ETH){
         CGFloat ethbalance = self.ETHbalance.integerValue*1.0/pow(10,18);
-        [self.amountView.balancelb setText:[NSString stringWithFormat:@"余额：%.5fETH",ethbalance]];
+        [self.amountView.balancelb setText:[NSString stringWithFormat:NSLocalizedString(@"余额：%.5fETH", nil),ethbalance]];
         [self.amountView.pricelb setText:[NSString stringWithFormat:@"≈$%.2f ",amount.floatValue * self.ETHCurrency]];
         //ETH矿工费 = Gas Limit * Gas Price
         self.gasView.gasSlider.value = self.gasView.gasSlider.minimumValue;
@@ -364,7 +364,7 @@
     _titleLabel = [UILabel new];
     _titleLabel.font = [UIFont boldSystemFontOfSize:17];
     _titleLabel.textColor = [UIColor textBlackColor];
-    [_titleLabel setText:[NSString stringWithFormat:@"转账"]];
+    [_titleLabel setText:[NSString stringWithFormat:NSLocalizedString(@"转账", nil)]];
     _titleLabel.textAlignment = NSTextAlignmentLeft;
     [self.view addSubview:_titleLabel];
     [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -474,9 +474,9 @@
                                 
                             }];
                         });
-                        NSLog(@"用户第一次同意了访问相机权限 - - %@", [NSThread currentThread]);
+                        NSLog(NSLocalizedString(@"用户第一次同意了访问相机权限 - - %@", nil), [NSThread currentThread]);
                     } else {
-                        NSLog(@"用户第一次拒绝了访问相机权限 - - %@", [NSThread currentThread]);
+                        NSLog(NSLocalizedString(@"用户第一次拒绝了访问相机权限 - - %@", nil), [NSThread currentThread]);
                     }
                 }];
                 break;
@@ -490,8 +490,8 @@
                 break;
             }
             case AVAuthorizationStatusDenied: {
-                UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"请去-> [设置 - 隐私 - 相机 - SGQRCodeExample] 打开访问开关" preferredStyle:(UIAlertControllerStyleAlert)];
-                UIAlertAction *alertA = [UIAlertAction actionWithTitle:@"确定" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+                UIAlertController *alertC = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"温馨提示", nil) message:NSLocalizedString(@"请去-> [设置 - 隐私 - 相机 - SGQRCodeExample] 打开访问开关", nil) preferredStyle:(UIAlertControllerStyleAlert)];
+                UIAlertAction *alertA = [UIAlertAction actionWithTitle:NSLocalizedString(@"确定", nil) style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
                     
                 }];
                 
@@ -500,7 +500,7 @@
                 break;
             }
             case AVAuthorizationStatusRestricted: {
-                NSLog(@"因为系统原因, 无法访问相册");
+                NSLog(NSLocalizedString(@"因为系统原因, 无法访问相册", nil));
                 break;
             }
                 
@@ -510,8 +510,8 @@
         return;
     }
     
-    UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"未检测到您的摄像头" preferredStyle:(UIAlertControllerStyleAlert)];
-    UIAlertAction *alertA = [UIAlertAction actionWithTitle:@"确定" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertController *alertC = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"温馨提示", nil) message:NSLocalizedString(@"未检测到您的摄像头", nil) preferredStyle:(UIAlertControllerStyleAlert)];
+    UIAlertAction *alertA = [UIAlertAction actionWithTitle:NSLocalizedString(@"确定", nil) style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
         
     }];
     

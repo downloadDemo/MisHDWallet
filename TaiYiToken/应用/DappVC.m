@@ -19,7 +19,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.titleArray1 = @[@"魔力试用",@"广告监测",@"奇点空间",@"NEC"];
+    self.titleArray1 = @[NSLocalizedString(@"魔力试用", nil),NSLocalizedString(@"广告监测", nil),NSLocalizedString(@"奇点空间", nil),@"NEC"];
     self.imageNameArray1 = @[@"ico_logo _ml",@"ico_logo_ad",@"ico_logo_qd",@"ico_logo_nec_"];
     [self.collectionview registerClass:[DappViewCell class] forCellWithReuseIdentifier:@"DappViewCell"];
 }

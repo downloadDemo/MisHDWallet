@@ -83,7 +83,7 @@
     }];
     
     //绘制选中成交量
-    drawText = @"成交量：";
+    drawText = NSLocalizedString(@"成交量：", nil);
     attribute = @{NSFontAttributeName:[UIFont systemFontOfSize:13],NSForegroundColorAttributeName:[UIColor YYStock_textColor]};
     textRect = [self rectOfNSString:drawText attribute:attribute];
     drawRect = CGRectMake(50 + 290 , (rect.size.height - textRect.size.height)/2.f, textRect.size.width, textRect.size.height);
@@ -98,12 +98,12 @@
         //尝试转为亿手
         CGFloat yVolume = wVolume/10000.f;
         if (yVolume > 1) {
-            drawText = [NSString stringWithFormat:@"%.2f  亿手",yVolume];
+            drawText = [NSString stringWithFormat:NSLocalizedString(@"%.2f  亿手", nil),yVolume];
         } else {
-            drawText = [NSString stringWithFormat:@"%.2f  万手",wVolume];
+            drawText = [NSString stringWithFormat:NSLocalizedString(@"%.2f  万手", nil),wVolume];
         }
     } else {
-        drawText = [NSString stringWithFormat:@"%.2f  手",volume];
+        drawText = [NSString stringWithFormat:NSLocalizedString(@"%.2f  手", nil),volume];
     }
     textRect = [self rectOfNSString:drawText attribute:attribute];
     drawRect = CGRectMake(50 + 340 , (rect.size.height - textRect.size.height)/2.f, textRect.size.width, textRect.size.height);
@@ -142,7 +142,7 @@
     }];
     
     //绘制选中成交量
-    drawText = @"成交量：";
+    drawText = NSLocalizedString(@"成交量：", nil);
     attribute = @{NSFontAttributeName:[UIFont systemFontOfSize:12],NSForegroundColorAttributeName:[UIColor YYStock_textColor]};
     textRect = [self rectOfNSString:drawText attribute:attribute];
     drawRect = CGRectMake(90 + 245 , (rect.size.height - textRect.size.height)/2.f, textRect.size.width, textRect.size.height);
@@ -157,12 +157,12 @@
         //尝试转为亿手
         CGFloat yVolume = wVolume/10000.f;
         if (yVolume > 1) {
-            drawText = [NSString stringWithFormat:@"%.2f  亿元",yVolume];
+            drawText = [NSString stringWithFormat:NSLocalizedString(@"%.2f  亿元", nil),yVolume];
         } else {
-            drawText = [NSString stringWithFormat:@"%.2f  万元",wVolume];
+            drawText = [NSString stringWithFormat:NSLocalizedString(@"%.2f  万元", nil),wVolume];
         }
     } else {
-        drawText = [NSString stringWithFormat:@"%.2f  元",volume];
+        drawText = [NSString stringWithFormat:NSLocalizedString(@"%.2f  元", nil),volume];
     }
     textRect = [self rectOfNSString:drawText attribute:attribute];
     drawRect = CGRectMake(90 + 295 , (rect.size.height - textRect.size.height)/2.f, textRect.size.width, textRect.size.height);
@@ -180,14 +180,14 @@
 
 - (NSArray *)drawKlineDescTexts {
     if (!_drawKlineDescTexts) {
-        _drawKlineDescTexts = @[@"高：",@"开：",@"低：",@"收："];
+        _drawKlineDescTexts = @[NSLocalizedString(@"高：", nil),NSLocalizedString(@"开：", nil),NSLocalizedString(@"低：", nil),NSLocalizedString(@"收：", nil)];
     }
     return _drawKlineDescTexts;
 }
 
 - (NSArray *)drawTimeLineDescTexts {
     if (!_drawTimeLineDescTexts) {
-        _drawTimeLineDescTexts = @[@"价格：",@"涨跌：",@"均价："];
+        _drawTimeLineDescTexts = @[NSLocalizedString(@"价格：", nil),NSLocalizedString(@"涨跌：", nil),NSLocalizedString(@"均价：", nil)];
     }
     return _drawTimeLineDescTexts;
 }

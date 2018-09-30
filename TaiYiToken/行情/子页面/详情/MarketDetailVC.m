@@ -133,7 +133,7 @@
     _dataView.dollarlabel.text = [NSString stringWithFormat:@"%.2f", self.symbolmodel.dollarClosePrice];
     _dataView.rmblabel.text = [NSString stringWithFormat:@"≈￥%.2f",self.symbolmodel.rmbClosePrice];
     _dataView.ratelabel.text = self.symbolmodel.priceChange > 0? [NSString stringWithFormat:@"+%.2f%%",self.symbolmodel.priceChange]: [NSString stringWithFormat:@"%.2f%%",self.symbolmodel.priceChange];
-    _dataView.marketpricelabel.text = [NSString stringWithFormat:@"市值 ￥    24h交易量 %.2f    换手率 ",self.symbolmodel.amount];
+    _dataView.marketpricelabel.text = [NSString stringWithFormat:NSLocalizedString(@"市值 ￥    24h交易量 %.2f    换手率 ", nil),self.symbolmodel.amount];
     
 
     _backBtn = [UIButton buttonWithType:UIButtonTypeSystem];
@@ -390,7 +390,7 @@
 
 - (NSArray *)stockTopBarTitleArray {
     if (!_stockTopBarTitleArray) {
-        _stockTopBarTitleArray = @[@"5分"];
+        _stockTopBarTitleArray = @[NSLocalizedString(@"5分", nil)];
     }
     return _stockTopBarTitleArray;
 }
@@ -407,7 +407,7 @@
 
 -(void)CreateTableView{
     NSMutableArray *leftarray = [NSMutableArray new];
-    leftarray = [@[@"发行时间",@"流通总量",@"众筹价格",@"全名",@"白皮书地址",@"区块查询",@"官网",@"发行总量"] mutableCopy];
+    leftarray = [@[NSLocalizedString(@"发行时间", nil),NSLocalizedString(@"流通总量", nil),NSLocalizedString(@"众筹价格", nil),NSLocalizedString(@"全名", nil),NSLocalizedString(@"白皮书地址", nil),NSLocalizedString(@"区块查询", nil),NSLocalizedString(@"官网", nil),NSLocalizedString(@"发行总量", nil)] mutableCopy];
     
     NSString *whitepaperstring = self.coinBaseInfo.whitePaper == nil?@"":self.coinBaseInfo.whitePaper;
     NSString *whitepaperurl = [[whitepaperstring componentsSeparatedByString:@"\">"].lastObject componentsSeparatedByString:@"</a>"].firstObject;
@@ -497,7 +497,7 @@
         if (cell == nil) {
             cell = [MarketDetailTextCell new];
         }
-        cell.leftLabel.text = @"项目介绍";
+        cell.leftLabel.text = NSLocalizedString(@"项目介绍", nil);
         cell.leftLabel.font = [UIFont boldSystemFontOfSize:16];
         cell.leftLabel.textColor = [UIColor textBlackColor];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;

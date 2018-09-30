@@ -51,19 +51,19 @@
     if (self.wallet.coinType == BTC) {
         if ((self.wallet.importType == IMPORT_BY_MNEMONIC) || (self.wallet.walletType == LOCAL_WALLET)) {//助记词导入的才能导出助记词
             self.iconImageNameArray = @[@"ico_wallet_adress",@"ico_export_pub",@"ico_password",@"ico_export_pub"];
-            self.titleArray = @[@"钱包地址",@"切换地址类型",@"密码提示信息",@"导出助记词"];
+            self.titleArray = @[NSLocalizedString(@"钱包地址", nil),NSLocalizedString(@"切换地址类型", nil),NSLocalizedString(@"密码提示信息", nil),NSLocalizedString(@"导出助记词", nil)];
         }else{
             self.iconImageNameArray = @[@"ico_wallet_adress",@"ico_export_pub",@"ico_password"];
-            self.titleArray = @[@"钱包地址",@"切换地址类型",@"密码提示信息"];
+            self.titleArray = @[NSLocalizedString(@"钱包地址", nil),NSLocalizedString(@"切换地址类型", nil),NSLocalizedString(@"密码提示信息", nil)];
         }
         
     }else if (self.wallet.coinType == ETH){
         if ((self.wallet.importType == IMPORT_BY_MNEMONIC) || (self.wallet.walletType == LOCAL_WALLET)) {
             self.iconImageNameArray = @[@"ico_key",@"ico_export_pub",@"ico_password",@"ico_export_pub"];
-            self.titleArray = @[@"导出Keystore",@"导出私钥",@"密码提示信息",@"导出助记词"];
+            self.titleArray = @[NSLocalizedString(@"导出Keystore", nil),NSLocalizedString(@"导出私钥", nil),NSLocalizedString(@"密码提示信息", nil),NSLocalizedString(@"导出助记词", nil)];
         }else{
             self.iconImageNameArray = @[@"ico_key",@"ico_export_pub",@"ico_password"];
-            self.titleArray = @[@"导出Keystore",@"导出私钥",@"密码提示信息"];
+            self.titleArray = @[NSLocalizedString(@"导出Keystore", nil),NSLocalizedString(@"导出私钥", nil),NSLocalizedString(@"密码提示信息", nil)];
         }
     }
     [self tableView];
@@ -73,7 +73,7 @@
         _deleteWalletBtn.backgroundColor = [UIColor redColor];
         _deleteWalletBtn.tintColor = [UIColor whiteColor];
         [_deleteWalletBtn.imageView setContentMode:UIViewContentModeScaleAspectFit];
-        [_deleteWalletBtn setTitle:@"删除钱包" forState:UIControlStateNormal];
+        [_deleteWalletBtn setTitle:NSLocalizedString(@"删除钱包", nil) forState:UIControlStateNormal];
         _deleteWalletBtn.titleLabel.font = [UIFont boldSystemFontOfSize:14];
         [_deleteWalletBtn addTarget:self action:@selector(deleteWalletAction) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:_deleteWalletBtn];
@@ -89,11 +89,11 @@
 }
 
 -(void)deleteWalletAction{
-    UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"此操作将会移除导入的钱包，请提前做好备份！" message:@"" preferredStyle:(UIAlertControllerStyleAlert)];
-    UIAlertAction *alertA = [UIAlertAction actionWithTitle:@"取消" style:(UIAlertActionStyleCancel) handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertController *alertC = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"此操作将会移除导入的钱包，请提前做好备份！", nil) message:@"" preferredStyle:(UIAlertControllerStyleAlert)];
+    UIAlertAction *alertA = [UIAlertAction actionWithTitle:NSLocalizedString(@"取消", nil) style:(UIAlertActionStyleCancel) handler:^(UIAlertAction * _Nonnull action) {
         
     }];
-    UIAlertAction *alertB = [UIAlertAction actionWithTitle:@"确定" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction *alertB = [UIAlertAction actionWithTitle:NSLocalizedString(@"确定", nil) style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
         NSString *result = [CreateAll RemoveImportedWallet:self.wallet];
         [self.view showMsg:result];
     }];
@@ -125,9 +125,9 @@
     _titleLabel.textColor = [UIColor textBlackColor];
     NSString *title = @"";
     if (self.wallet.coinType == BTC) {
-        title = [NSString stringWithFormat:@"BTC_wallet-%d 导出",self.wallet.index];
+        title = [NSString stringWithFormat:NSLocalizedString(@"BTC_wallet-%d 导出", nil),self.wallet.index];
     }else if (self.wallet.coinType == ETH){
-        title = [NSString stringWithFormat:@"ETH_wallet-%d 导出",self.wallet.index];
+        title = [NSString stringWithFormat:NSLocalizedString(@"ETH_wallet-%d 导出", nil),self.wallet.index];
     }
     [_titleLabel setText:title];
     _titleLabel.textAlignment = NSTextAlignmentLeft;
@@ -236,12 +236,12 @@
         return;
     }
     if (self.password == nil || [self.password isEqualToString:@""]) {
-        [self.view showMsg:@"请输入密码"];
+        [self.view showMsg:NSLocalizedString(@"请输入密码", nil)];
         return;
     }
    
-    //self.titleArray = @[@"钱包地址",@"切换地址类型",@"密码提示信息",@"导出助记词"];
-    //self.titleArray = @[@"导出Keystore",@"导出私钥",@"密码提示信息",@"导出助记词"];
+    //self.titleArray = @[NSLocalizedString(@"钱包地址", nil),NSLocalizedString(@"切换地址类型", nil),NSLocalizedString(@"密码提示信息", nil),NSLocalizedString(@"导出助记词", nil)];
+    //self.titleArray = @[NSLocalizedString(@"导出Keystore", nil),NSLocalizedString(@"导出私钥", nil),NSLocalizedString(@"密码提示信息", nil),NSLocalizedString(@"导出助记词", nil)];
     switch (self.selectedIndex) {
         case 0:
             if (self.wallet.coinType == ETH) {
@@ -281,10 +281,10 @@
                 ekvc.keystore = [[NSUserDefaults standardUserDefaults]  objectForKey:[NSString stringWithFormat:@"keystore%@",address]];
                 [self.navigationController pushViewController:ekvc animated:YES];
             } else{
-                [self.view showMsg:@"密码错误"];
+                [self.view showMsg:NSLocalizedString(@"密码错误", nil)];
             }
         }else{
-            [self.view showMsg:@"密码错误"];
+            [self.view showMsg:NSLocalizedString(@"密码错误", nil)];
         }
     }];
 }
@@ -300,7 +300,7 @@
             epmvc.isExportMnemonic = NO;
             [self.navigationController pushViewController:epmvc animated:YES];
         }else{
-             [self.view showMsg:@"密码错误"];
+             [self.view showMsg:NSLocalizedString(@"密码错误", nil)];
         }
     }];
 }
@@ -317,7 +317,7 @@
             epmvc.isExportMnemonic = YES;
             [self.navigationController pushViewController:epmvc animated:YES];
         }else{
-            [self.view showMsg:@"密码错误"];
+            [self.view showMsg:NSLocalizedString(@"密码错误", nil)];
         }
     }];
 }

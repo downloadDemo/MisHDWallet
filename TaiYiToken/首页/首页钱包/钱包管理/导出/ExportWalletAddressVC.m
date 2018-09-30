@@ -78,7 +78,7 @@
     _titleLabel = [UILabel new];
     _titleLabel.font = [UIFont boldSystemFontOfSize:17];
     _titleLabel.textColor = [UIColor textBlackColor];
-    [_titleLabel setText:[NSString stringWithFormat:@"钱包地址"]];
+    [_titleLabel setText:[NSString stringWithFormat:NSLocalizedString(@"钱包地址", nil)]];
     _titleLabel.textAlignment = NSTextAlignmentLeft;
     [self.view addSubview:_titleLabel];
     [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -97,9 +97,9 @@
 -(void)initUI{
     _announceView = [AnnounceView new];
     [_announceView initAnnounceView];
-    _announceView.textView.text = @"你可以在一个比特币钱包下添加多个不同的子地址来避免地址重用以及保护您的隐私；\n"
-    " 标记 * 为未使用过的地址；\n"
-    "选中的地址将作为默认地址显示在收款页面";
+    _announceView.textView.text = NSLocalizedString(@"你可以在一个比特币钱包下添加多个不同的子地址来避免地址重用以及保护您的隐私\n"
+    " 标记 * 为未使用过的地址\n"
+    "选中的地址将作为默认地址显示在收款页面", nil);
     [self.view addSubview:_announceView];
     [_announceView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(16);
@@ -111,7 +111,7 @@
     UILabel *leftlabel = [UILabel new];
     leftlabel.font = [UIFont boldSystemFontOfSize:15];
     leftlabel.textColor = [UIColor textBlackColor];
-    [leftlabel setText:@"子地址"];
+    [leftlabel setText:NSLocalizedString(@"子地址", nil)];
     leftlabel.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:leftlabel];
     [leftlabel mas_makeConstraints:^(MASConstraintMaker *make) {

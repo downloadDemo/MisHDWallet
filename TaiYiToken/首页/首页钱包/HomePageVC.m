@@ -111,7 +111,7 @@
         _createAccountBtn.layer.masksToBounds = YES;
         _createAccountBtn.layer.borderWidth = 1;
         _createAccountBtn.layer.borderColor = [UIColor blackColor].CGColor;
-        [_createAccountBtn setTitle:@"创建/导入账号" forState:UIControlStateNormal];
+        [_createAccountBtn setTitle:NSLocalizedString(@"创建/导入账号", nil) forState:UIControlStateNormal];
         [_createAccountBtn setTintColor:[UIColor textBlackColor]];
         [_createAccountBtn addTarget:self action:@selector(CreateAccount) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:_createAccountBtn];
@@ -219,7 +219,7 @@
         walletVC.walletArray = [array mutableCopy];
         [self.navigationController pushViewController:walletVC animated:YES];
     }else{
-        [self.view showMsg:@"没有钱包"];
+        [self.view showMsg:NSLocalizedString(@"没有钱包", nil)];
     }
 }
 //扫描二维码
@@ -251,7 +251,7 @@
     MissionWallet *wallet = self.walletArray[btn.tag];
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
     pasteboard.string = wallet.address;
-    [self.view showMsg:@"地址已复制"];
+    [self.view showMsg:NSLocalizedString(@"地址已复制", nil)];
     NSLog(@"addressBtn %ld %@",btn.tag,pasteboard.string);
 }
 
@@ -271,9 +271,9 @@
                                 
                             }];
                         });
-                        NSLog(@"用户第一次同意了访问相机权限 - - %@", [NSThread currentThread]);
+                        NSLog(NSLocalizedString(@"用户第一次同意了访问相机权限 - - %@", nil), [NSThread currentThread]);
                     } else {
-                        NSLog(@"用户第一次拒绝了访问相机权限 - - %@", [NSThread currentThread]);
+                        NSLog(NSLocalizedString(@"用户第一次拒绝了访问相机权限 - - %@", nil), [NSThread currentThread]);
                     }
                 }];
                 break;
@@ -287,8 +287,8 @@
                 break;
             }
             case AVAuthorizationStatusDenied: {
-                UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"请去-> [设置 - 隐私 - 相机 - SGQRCodeExample] 打开访问开关" preferredStyle:(UIAlertControllerStyleAlert)];
-                UIAlertAction *alertA = [UIAlertAction actionWithTitle:@"确定" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+                UIAlertController *alertC = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"温馨提示", nil) message:NSLocalizedString(@"请去-> [设置 - 隐私 - 相机 - SGQRCodeExample] 打开访问开关", nil) preferredStyle:(UIAlertControllerStyleAlert)];
+                UIAlertAction *alertA = [UIAlertAction actionWithTitle:NSLocalizedString(@"确定", nil) style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
                     
                 }];
                 
@@ -297,7 +297,7 @@
                 break;
             }
             case AVAuthorizationStatusRestricted: {
-                NSLog(@"因为系统原因, 无法访问相册");
+                NSLog(NSLocalizedString(@"因为系统原因, 无法访问相册", nil));
                 break;
             }
                 
@@ -307,8 +307,8 @@
         return;
     }
     
-    UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"未检测到您的摄像头" preferredStyle:(UIAlertControllerStyleAlert)];
-    UIAlertAction *alertA = [UIAlertAction actionWithTitle:@"确定" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertController *alertC = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"温馨提示", nil) message:NSLocalizedString(@"未检测到您的摄像头", nil) preferredStyle:(UIAlertControllerStyleAlert)];
+    UIAlertAction *alertA = [UIAlertAction actionWithTitle:NSLocalizedString(@"确定", nil) style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
         
     }];
     
@@ -379,27 +379,27 @@
     if (wallet.coinType == BTC || wallet.coinType == BTC_TESTNET) {//BTC
         [cell.iconImageView setImage:[UIImage imageNamed:@"ico_btc"]];
         cell.symbollb.text = wallet.walletName;
-        cell.symbolNamelb.text = @"比特币";
+        cell.symbolNamelb.text = NSLocalizedString(@"比特币", nil);
         cell.amountlb.text = [NSString stringWithFormat:@"%.5f", [self.walletBalance[indexPath.row] floatValue]];
         cell.valuelb.text = [NSString stringWithFormat:@"$%.2f", [self.walletBalance[indexPath.row] floatValue] * self.BTCCurrency];
         cell.rmbvaluelb.text = [NSString stringWithFormat:@"¥%.2f", [self.walletBalance[indexPath.row] floatValue] * self.BTCCurrency * (self.RMBDollarCurrency / 100.0)];
     }else{//ETH
         [cell.iconImageView setImage:[UIImage imageNamed:@"ico_eth-1"]];
         cell.symbollb.text = wallet.walletName;
-        cell.symbolNamelb.text = @"以太坊";
+        cell.symbolNamelb.text = NSLocalizedString(@"以太坊", nil);
         CGFloat ethbalance = [self.walletBalance[indexPath.row] integerValue] * 1.0/pow(10,18);
         cell.amountlb.text = [NSString stringWithFormat:@"%.5f",ethbalance];
         cell.valuelb.text = [NSString stringWithFormat:@"$%.2f", ethbalance * self.ETHCurrency];
         cell.rmbvaluelb.text = [NSString stringWithFormat:@"¥%.2f", ethbalance * self.self.ETHCurrency * (self.RMBDollarCurrency / 100.0)];
     }
     cell.delegate = self;
-    MGSwipeButton *leftBtn = [MGSwipeButton buttonWithTitle:@"收款" backgroundColor:[UIColor appBlueColor] padding:30];
+    MGSwipeButton *leftBtn = [MGSwipeButton buttonWithTitle:NSLocalizedString(@"收款", nil) backgroundColor:[UIColor appBlueColor] padding:30];
     leftBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     cell.leftButtons = @[leftBtn];
     cell.leftSwipeSettings.transition = MGSwipeTransitionDrag;
     
     //configure right buttons
-    MGSwipeButton *rightBtn = [MGSwipeButton buttonWithTitle:@"转账" backgroundColor:[UIColor redColor] padding:30];
+    MGSwipeButton *rightBtn = [MGSwipeButton buttonWithTitle:NSLocalizedString(@"转账", nil) backgroundColor:[UIColor redColor] padding:30];
     rightBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     cell.rightButtons = @[rightBtn];
     cell.rightSwipeSettings.transition = MGSwipeTransitionDrag;
@@ -422,7 +422,7 @@
     alabel.font = [UIFont systemFontOfSize:12];
     alabel.textAlignment = NSTextAlignmentLeft;
     alabel.numberOfLines = 1;
-    alabel.text = @"币名";
+    alabel.text = NSLocalizedString(@"币名", nil);
     [_headView addSubview:alabel];
     [alabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(16);
@@ -432,7 +432,7 @@
     }];
     
     UILabel *amountLabel = [[UILabel alloc] init];
-    amountLabel.text = @"数量";
+    amountLabel.text = NSLocalizedString(@"数量", nil);
     amountLabel.textColor = [UIColor textGrayColor];
     amountLabel.textAlignment = NSTextAlignmentLeft;
     amountLabel.font = [UIFont systemFontOfSize:12];
@@ -445,7 +445,7 @@
     }];
     
     UILabel *valueLabel = [[UILabel alloc] init];
-    valueLabel.text = @"价值";
+    valueLabel.text = NSLocalizedString(@"价值", nil);
     valueLabel.textColor = [UIColor textGrayColor];
     valueLabel.textAlignment = NSTextAlignmentRight;
     valueLabel.font = [UIFont systemFontOfSize:12];
@@ -633,7 +633,7 @@
     [iv mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(0);
     }];
-    [cell.profitlb setText:@"今日最新收益"];
+    [cell.profitlb setText:NSLocalizedString(@"今日最新收益", nil)];
     NSString *address = @"";
     if(wallet.address.length > 20){
         NSString *str1 = [wallet.address substringToIndex:9];

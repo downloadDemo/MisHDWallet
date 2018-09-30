@@ -55,7 +55,7 @@
     _createBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     _createBtn.layer.cornerRadius = 20;
     _createBtn.clipsToBounds = YES;
-    [_createBtn setTitle:@"创建账号" forState:UIControlStateNormal];
+    [_createBtn setTitle:NSLocalizedString(@"创建账号", nil) forState:UIControlStateNormal];
     [_createBtn gradientButtonWithSize:CGSizeMake(ScreenWidth, 49) colorArray:@[RGB(150, 160, 240),RGB(170, 170, 240)] percentageArray:@[@(0.3),@(1)] gradientType:GradientFromLeftTopToRightBottom];
     [_createBtn addTarget:self action:@selector(createAccount) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_createBtn];
@@ -74,7 +74,7 @@
     _importBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     _importBtn.layer.cornerRadius = 20;
     _importBtn.clipsToBounds = YES;
-    [_importBtn setTitle:@"导入账号" forState:UIControlStateNormal];
+    [_importBtn setTitle:NSLocalizedString(@"导入账号", nil) forState:UIControlStateNormal];
     [_importBtn addTarget:self action:@selector(importAccount) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_importBtn];
     _importBtn.userInteractionEnabled = YES;

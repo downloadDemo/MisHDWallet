@@ -62,11 +62,11 @@
 //创建新账户
 - (void)createNewAccountBtnAction{
 
-    UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"此操作将会移除本地钱包，请提前做好备份！" message:@"" preferredStyle:(UIAlertControllerStyleAlert)];
-    UIAlertAction *alertA = [UIAlertAction actionWithTitle:@"取消" style:(UIAlertActionStyleCancel) handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertController *alertC = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"此操作将会移除本地钱包，请提前做好备份！", nil) message:@"" preferredStyle:(UIAlertControllerStyleAlert)];
+    UIAlertAction *alertA = [UIAlertAction actionWithTitle:NSLocalizedString(@"取消", nil) style:(UIAlertActionStyleCancel) handler:^(UIAlertAction * _Nonnull action) {
         
     }];
-    UIAlertAction *alertB = [UIAlertAction actionWithTitle:@"确定" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction *alertB = [UIAlertAction actionWithTitle:NSLocalizedString(@"确定", nil) style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
         SwitchAccountVc *switchvc = [SwitchAccountVc new];
         UINavigationController *navivc = [[UINavigationController alloc]initWithRootViewController:switchvc];
         [navivc.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
@@ -95,7 +95,7 @@
     _titleLabel = [UILabel new];
     _titleLabel.font = [UIFont boldSystemFontOfSize:17];
     _titleLabel.textColor = [UIColor textBlackColor];
-    [_titleLabel setText:@"钱包管理"];
+    [_titleLabel setText:NSLocalizedString(@"钱包管理", nil)];
     _titleLabel.textAlignment = NSTextAlignmentLeft;
     [self.view addSubview:_titleLabel];
     [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -140,7 +140,7 @@
     _addAccountBtn.backgroundColor = [UIColor whiteColor];
     _addAccountBtn.tintColor = [UIColor textBlackColor];
     _addAccountBtn.userInteractionEnabled = YES;
-    [_addAccountBtn setTitle:@"创建新账户" forState:UIControlStateNormal];
+    [_addAccountBtn setTitle:NSLocalizedString(@"创建新账户", nil) forState:UIControlStateNormal];
     [_addAccountBtn addTarget:self action:@selector(createNewAccountBtnAction) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_addAccountBtn];
     [_addAccountBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -155,9 +155,9 @@
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
     SectionHeaderView *view = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"headerV" forIndexPath:indexPath];
     if (indexPath.section == 0) {
-        [view.remindlb setText:@"当前身份下钱包"];
+        [view.remindlb setText:NSLocalizedString(@"当前身份下钱包", nil)];
     }else{
-        [view.remindlb setText:@"导入的钱包"];
+        [view.remindlb setText:NSLocalizedString(@"导入的钱包", nil)];
     }
     return view;
 }
@@ -250,7 +250,7 @@
     }
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
     pasteboard.string = wallet.address;
-    [self.view showMsg:@"地址已复制"];
+    [self.view showMsg:NSLocalizedString(@"地址已复制", nil)];
     NSLog(@"addressBtn %ld %@",btn.tag,pasteboard.string);
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {

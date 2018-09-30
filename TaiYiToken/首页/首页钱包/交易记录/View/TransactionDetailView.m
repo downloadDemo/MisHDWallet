@@ -59,7 +59,7 @@
         }];
         
         UILabel *label = [UILabel new];
-        label.text = @"金额";
+        label.text = NSLocalizedString(@"金额", nil);
         label.textColor = [UIColor textGrayColor];
         label.font = [UIFont systemFontOfSize:13];
         label.textAlignment = NSTextAlignmentRight;

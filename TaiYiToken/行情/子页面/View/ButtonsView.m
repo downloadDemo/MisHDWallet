@@ -20,7 +20,7 @@
     _FIVEMINBtn.tag = 1;
     [_FIVEMINBtn setTitleColor:SelectColor forState:UIControlStateSelected];
     [_FIVEMINBtn setTitleColor:DeSelectColor forState:UIControlStateNormal];
-    [_FIVEMINBtn setTitle:@"5分" forState:UIControlStateNormal];
+    [_FIVEMINBtn setTitle:NSLocalizedString(@"5分", nil) forState:UIControlStateNormal];
     [self addSubview:_FIVEMINBtn];
     _FIVEMINBtn.userInteractionEnabled = YES;
     [_FIVEMINBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -36,7 +36,7 @@
     _FIFTEENMINBtn.titleLabel.font = [UIFont systemFontOfSize:13];
     [_FIFTEENMINBtn setTitleColor:SelectColor forState:UIControlStateSelected];
     [_FIFTEENMINBtn setTitleColor:DeSelectColor forState:UIControlStateNormal];
-    [_FIFTEENMINBtn setTitle:@"15分" forState:UIControlStateNormal];
+    [_FIFTEENMINBtn setTitle:NSLocalizedString(@"15分", nil) forState:UIControlStateNormal];
     [self addSubview:_FIFTEENMINBtn];
     _FIFTEENMINBtn.userInteractionEnabled = YES;
     [_FIFTEENMINBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -51,7 +51,7 @@
     _ONEHOURBtn.tintColor = [UIColor blackColor];
     _ONEHOURBtn.tag = 4;
     _ONEHOURBtn.titleLabel.font = [UIFont systemFontOfSize:13];
-    [_ONEHOURBtn setTitle:@"1时" forState:UIControlStateNormal];
+    [_ONEHOURBtn setTitle:NSLocalizedString(@"1时", nil) forState:UIControlStateNormal];
     [_ONEHOURBtn setTitleColor:SelectColor forState:UIControlStateSelected];
     [_ONEHOURBtn setTitleColor:DeSelectColor forState:UIControlStateNormal];
     [self addSubview:_ONEHOURBtn];
@@ -68,7 +68,7 @@
     _ONEDAYBtn.tintColor = [UIColor blackColor];
     _ONEDAYBtn.tag = 5;
     _ONEDAYBtn.titleLabel.font = [UIFont systemFontOfSize:13];
-    [_ONEDAYBtn setTitle:@"日" forState:UIControlStateNormal];
+    [_ONEDAYBtn setTitle:NSLocalizedString(@"日", nil) forState:UIControlStateNormal];
     [_ONEDAYBtn setTitleColor:SelectColor forState:UIControlStateSelected];
     [_ONEDAYBtn setTitleColor:DeSelectColor forState:UIControlStateNormal];
     [self addSubview:_ONEDAYBtn];
@@ -85,7 +85,7 @@
     _ONEWEEKBtn.tintColor = [UIColor blackColor];
     _ONEWEEKBtn.tag = 6;
     _ONEWEEKBtn.titleLabel.font = [UIFont systemFontOfSize:13];
-    [_ONEWEEKBtn setTitle:@"周" forState:UIControlStateNormal];
+    [_ONEWEEKBtn setTitle:NSLocalizedString(@"周", nil) forState:UIControlStateNormal];
     [_ONEWEEKBtn setTitleColor:SelectColor forState:UIControlStateSelected];
     [_ONEWEEKBtn setTitleColor:DeSelectColor forState:UIControlStateNormal];
     [self addSubview:_ONEWEEKBtn];
@@ -102,7 +102,7 @@
     _ONEMONBtn.tintColor = [UIColor blackColor];
     _ONEMONBtn.tag = 7;
     _ONEMONBtn.titleLabel.font = [UIFont systemFontOfSize:13];
-    [_ONEMONBtn setTitle:@"月" forState:UIControlStateNormal];
+    [_ONEMONBtn setTitle:NSLocalizedString(@"月", nil) forState:UIControlStateNormal];
     [_ONEMONBtn setTitleColor:SelectColor forState:UIControlStateSelected];
     [_ONEMONBtn setTitleColor:DeSelectColor forState:UIControlStateNormal];
     [self addSubview:_ONEMONBtn];

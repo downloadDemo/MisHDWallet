@@ -36,7 +36,7 @@
         return;
     }
     
-    NSAssert(self.linePositionModels.count == self.drawPositionModels.count, @"K线图和成交量的个数不相等");
+    NSAssert(self.linePositionModels.count == self.drawPositionModels.count, NSLocalizedString(@"K线图和成交量的个数不相等", nil));
     
     
     __block CGFloat lastRectX = 0;
@@ -113,7 +113,7 @@
 }
 
 - (void)drawViewWithXPosition:(CGFloat)xPosition drawModels:(NSArray <id<YYLineDataModelProtocol>>*)drawLineModels linePositionModels:(NSArray <YYLinePositionModel *>*)linePositionModels {
-    NSAssert(drawLineModels, @"数据源不能为空");
+    NSAssert(drawLineModels, NSLocalizedString(@"数据源不能为空", nil));
     _linePositionModels = linePositionModels;
     //转换为实际坐标
     [self convertToPositionModelsWithXPosition:xPosition drawLineModels:drawLineModels];
