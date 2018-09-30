@@ -43,6 +43,8 @@
 #import "JavascriptWebViewController.h"
 #import "EOSAccountKey.h"
 @interface CreateAll : NSObject
+//验证是否是HexString
++(BOOL)ValidHexString:(NSString *)string;
 /*
  ********************************************** 钱包生成/导入/恢复 ***********************************************
  */
@@ -53,7 +55,7 @@
 //根据mnemonic生成keystore,用于恢复账号，备份私钥，导出助记词等
 +(void)CreateKeyStoreByMnemonic:(NSString *)mnemonic WalletAddress:(NSString *)walletAddress Password:(NSString *)password  callback: (void (^)(Account *account, NSError *error))callback;
 //根据PrivateKey生成keystore,用于恢复账号，备份私钥，导出助记词等
-+(void)CreateKeyStoreByPrivateKey:(NSString *)privatekey  CoinType:(CoinType)coinTYpe WalletAddress:(NSString *)walletAddress Password:(NSString *)password  callback: (void (^)(Account *account, NSError *error))callback;
++(void)CreateKeyStoreByPrivateKey:(NSString *)privatekey  WalletAddress:(NSString *)walletAddress Password:(NSString *)password  callback: (void (^)(Account *account, NSError *error))callback;
 
 
 //扩展主公钥生成    mpk

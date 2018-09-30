@@ -8,6 +8,13 @@
 
 #define MIN_ETH_GAS 0.0001
 
+#define BTCMaximumValue 45
+#define BTCMinimumValue 35
+#define ETHMaximumValue 100
+#define ETHMinimumValue 4.2
+
+
+
 #import "TransactionVC.h"
 #import "WBQRCodeVC.h"
 #import "TransactionAmountView.h"
@@ -56,9 +63,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     if (self.wallet.coinType == BTC_TESTNET) {
-//        self.wallet.privateKey = @"cSFqECb6f2nCvRVSEsQBEo4ETG61sPGQbZRFYBQt8zFNQ1zHmZd8";
-//        self.wallet.publicKey = @"03b0a1a1136d89f1ac1a8bd4a1bca52deb3791f22b31ddbe5f915de30961a80ff9";
-//        self.wallet.address = @"n1AhnRa7mgmkbkmMzeZsP9pGZbHBAV92JC";
+
     }else{//当前ETH钱包即为测试账号
         
     }
@@ -426,11 +431,11 @@
         make.height.equalTo(150);
     }];
     if (self.wallet.coinType == BTC || self.wallet.coinType == BTC_TESTNET) {
-        _gasView.gasSlider.maximumValue = 45;
-        _gasView.gasSlider.minimumValue = 35;
+        _gasView.gasSlider.maximumValue = BTCMaximumValue;
+        _gasView.gasSlider.minimumValue = BTCMinimumValue;
     }else if (self.wallet.coinType == ETH){
-        _gasView.gasSlider.maximumValue = 42;
-        _gasView.gasSlider.minimumValue = 4.2;
+        _gasView.gasSlider.maximumValue = ETHMaximumValue;
+        _gasView.gasSlider.minimumValue = ETHMinimumValue;
     }
     [_gasView.gasSlider setValue:_gasView.gasSlider.minimumValue];
     [_gasView.gasSlider addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];// 针对值变化添加响应方法

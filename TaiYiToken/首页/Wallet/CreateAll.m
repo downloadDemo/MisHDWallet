@@ -10,6 +10,22 @@
 #import "BTCUTXOModel.h"
 #import "EosPrivateKey.h"
 @implementation CreateAll
+//验证是否是HexString
++(BOOL)ValidHexString:(NSString *)string{
+    NSString *hexStr = [string stringByReplacingOccurrencesOfString:@" " withString:@""];
+    hexStr = [hexStr lowercaseString];
+    NSString *hexChar = @"0123456789abcdef";
+    NSString *temp = nil;
+    for(int i =0; i < [hexStr length]; i++){
+        temp = [hexStr substringWithRange:NSMakeRange(i, 1)];
+        if (![hexChar containsString:temp]) {
+            return NO;
+        }
+    }
+    return YES;
+}
+
+
 /*
  *********************************************钱包生成/导入/恢复********************************************************
  */

@@ -232,6 +232,11 @@ typedef enum {
         }
     }
     if (self.importType == MNEMONIC_IMPORT) {
+        Account *account = [Account accountWithMnemonicPhrase:self.ImportContentTextView.text];
+        if (account == nil) {
+            [self.view showMsg:@"请输入正确的助记词！"];
+            return;
+        }
         [self.view showHUD];
         [CreateAll ImportWalletByMnemonic:self.ImportContentTextView.text CoinType:ETH Password:self.setPasswordView.passwordTextField.text PasswordHint:self.setPasswordView.passwordHintTextField.text callback:^(MissionWallet *wallet, NSError *error) {
             [self.view hideHUD];
@@ -248,7 +253,11 @@ typedef enum {
         
         
     }else if(self.importType == PRIVATEKEY_IMPORT){
-       
+        BOOL isValid = [CreateAll ValidHexString:self.ImportContentTextView.text];
+        if (isValid == NO) {
+            [self.view showMsg:@"请输入正确的私钥！"];
+            return;
+        }
         Account *account = [Account accountWithPrivateKey:[NSData dataWithHexString:self.ImportContentTextView.text]];
         if (account == nil) {
             [self.view showMsg:@"请输入正确的私钥！"];
@@ -276,6 +285,9 @@ typedef enum {
        
     }
 }
+
+
+
 //扫描二维码
 -(void)scanBtnAction{
     WBQRCodeVC *WBVC = [[WBQRCodeVC alloc] init];
