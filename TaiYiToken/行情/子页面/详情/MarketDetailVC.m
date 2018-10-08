@@ -17,11 +17,15 @@
 #import "MarketDetailTextCell.h"
 #import "MarketDetailTextViewCell.h"
 #import "WebVC.h"
+#import "ShareMenuView.h"
+#define ShareMenuViewHeight 220
 @interface MarketDetailVC ()<UIScrollViewDelegate,UIScrollViewAccessibilityDelegate,YYStockDataSource,UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) id observer;
 @property(nonatomic,strong)UIView *showView;
 @property(nonatomic,strong)UIImageView *showImageView;
 @property(nonatomic,strong)UIButton *cancelbtn;
+@property(nonatomic,strong)ShareMenuView * menuView;
+@property(nonatomic,strong)UIView *dimView;
 /*** 上方行情基础信息，K线图选择按钮  ***/
 @property(nonatomic,strong)UIScrollView *scrollView;
 @property(nonatomic,strong)UIView *bridgeContentView;
@@ -89,19 +93,29 @@
 
 //截屏响应
 - (void)userDidTakeScreenshot{
+    
+    
     NSLog(@"检测到截屏");
     //人为截屏, 模拟用户截屏行为, 获取所截图片
     UIImage *image = [self imageWithScreenshot];
     UIImage *resultimage = [self generateShareImageWithMasterImage:image];
     
+    _dimView = [UIView new];
+    _dimView.backgroundColor = [UIColor blackColor];
+    _dimView.alpha = 0.0;
+    [self.view addSubview:_dimView];
+    [_dimView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(0);
+    }];
+    
     _showView = [UIView new];
     _showView.backgroundColor = [UIColor clearColor];
     [self.view addSubview:_showView];
     [_showView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(0);
-        make.left.equalTo(20);
-        make.right.equalTo(-20);
-        make.height.equalTo(ScreenHeight - 120);
+        make.centerY.equalTo(-50);
+        make.left.equalTo(100);
+        make.right.equalTo(-100);
+        make.height.equalTo(ScreenHeight - 370);
     }];
     _showImageView = [UIImageView new];
     _showImageView.contentMode = UIViewContentModeScaleToFill;
@@ -114,17 +128,34 @@
         make.right.equalTo(-5);
         make.bottom.equalTo(-30);
     }];
-    _cancelbtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [_cancelbtn setImage:[UIImage imageNamed:@"IconOfflineCancel"] forState:UIControlStateNormal];
-    [_cancelbtn addTarget:self action:@selector(cancelShowView) forControlEvents:UIControlEventTouchUpInside];
-    [_showView addSubview:_cancelbtn];
-    [_cancelbtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.left.right.equalTo(0);
-        make.height.equalTo(30);
+     self.tabBarController.tabBar.hidden = YES;
+    _menuView = [ShareMenuView new];
+    _menuView.frame = CGRectMake(0, kScreenHeight, kScreenWidth, ShareMenuViewHeight);
+    [_menuView loadShareMenuView];
+    [_menuView.hideBtn addTarget:self action:@selector(cancelShowView) forControlEvents:UIControlEventTouchUpInside];
+    _menuView.backgroundColor = [UIColor lightGrayColor];
+    [self.view addSubview:_menuView];
+
+    __block CGRect oldframe = self.menuView.frame;
+    [UIView animateWithDuration:.5 animations:^{
+        self.dimView.alpha = 0.7;
+        self.menuView.frame = CGRectMake(oldframe.origin.x, oldframe.origin.y - ShareMenuViewHeight, oldframe.size.width, oldframe.size.height);
+    } completion:^(BOOL finished) {
     }];
 }
 -(void)cancelShowView{
+    
     [self.showView removeFromSuperview];
+    __block CGRect oldframe = self.menuView.frame;
+    [UIView animateWithDuration:.5 animations:^{
+        self.dimView.alpha = 0;
+        self.menuView.frame = CGRectMake(oldframe.origin.x, ScreenHeight + ShareMenuViewHeight, oldframe.size.width, oldframe.size.height);
+    } completion:^(BOOL finished) {
+        [self.dimView removeFromSuperview];
+        [self.menuView removeFromSuperview];
+        self.tabBarController.tabBar.hidden = NO;
+    }];
+    
 }
 /**
      *  返回截取到的图片

@@ -30,6 +30,8 @@
 		0415BDAC2131BC850022DEB7 /* YYKlineVolumeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0415BD952131BC850022DEB7 /* YYKlineVolumeView.m */; };
 		0415BDBE213586C70022DEB7 /* ethers.framework in Resources */ = {isa = PBXBuildFile; fileRef = 0415BDBD213586C70022DEB7 /* ethers.framework */; };
 		840B1E9C216AF39500700700 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 840B1E9B216AF39500700700 /* Social.framework */; };
+		840B1EA5216B0D3500700700 /* ShareItemCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 840B1EA1216B0D3300700700 /* ShareItemCollectionViewCell.m */; };
+		840B1EA6216B0D3500700700 /* ShareMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 840B1EA3216B0D3400700700 /* ShareMenuView.m */; };
 		8414300A215A12C60079EFEC /* LaunchIntroductionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84143008215A12C60079EFEC /* LaunchIntroductionView.m */; };
 		84143011215B117B0079EFEC /* EOSAccountKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 84143010215B117B0079EFEC /* EOSAccountKey.m */; };
 		84143014215B278D0079EFEC /* SelectCurrencyTypeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84143013215B278D0079EFEC /* SelectCurrencyTypeVC.m */; };
@@ -246,6 +248,10 @@
 		0415BD972131BC850022DEB7 /* YYStock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYStock.h; sourceTree = "<group>"; };
 		0415BDBD213586C70022DEB7 /* ethers.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ethers.framework; sourceTree = "<group>"; };
 		840B1E9B216AF39500700700 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		840B1EA1216B0D3300700700 /* ShareItemCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareItemCollectionViewCell.m; sourceTree = "<group>"; };
+		840B1EA2216B0D3300700700 /* ShareMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareMenuView.h; sourceTree = "<group>"; };
+		840B1EA3216B0D3400700700 /* ShareMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareMenuView.m; sourceTree = "<group>"; };
+		840B1EA4216B0D3400700700 /* ShareItemCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareItemCollectionViewCell.h; sourceTree = "<group>"; };
 		84143008215A12C60079EFEC /* LaunchIntroductionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchIntroductionView.m; sourceTree = "<group>"; };
 		84143009215A12C60079EFEC /* LaunchIntroductionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchIntroductionView.h; sourceTree = "<group>"; };
 		8414300C215A1DD20079EFEC /* ImportHDWalletVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImportHDWalletVC.h; sourceTree = "<group>"; };
@@ -847,6 +853,17 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		840B1EA0216B0BAB00700700 /* shareView */ = {
+			isa = PBXGroup;
+			children = (
+				840B1EA4216B0D3400700700 /* ShareItemCollectionViewCell.h */,
+				840B1EA1216B0D3300700700 /* ShareItemCollectionViewCell.m */,
+				840B1EA2216B0D3300700700 /* ShareMenuView.h */,
+				840B1EA3216B0D3400700700 /* ShareMenuView.m */,
+			);
+			path = shareView;
+			sourceTree = "<group>";
+		};
 		84143007215A12AD0079EFEC /* 启动引导页 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1319,6 +1336,7 @@
 		848180BD2123CE750007DCF9 /* 详情 */ = {
 			isa = PBXGroup;
 			children = (
+				840B1EA0216B0BAB00700700 /* shareView */,
 				842FEDF02138D8770075716E /* WebVC.h */,
 				842FEDF12138D8770075716E /* WebVC.m */,
 				8428A546212544F2003E1DD8 /* MarketDetailVC.h */,
@@ -1890,10 +1908,12 @@
 				84B8D51C214B591C00286631 /* BTCBalanceModel.m in Sources */,
 				843EC9E62121228B002D5C2A /* AMSaveFile.m in Sources */,
 				84C8E7D4212A971C00627445 /* NYMnemonic.m in Sources */,
+				840B1EA5216B0D3500700700 /* ShareItemCollectionViewCell.m in Sources */,
 				84143028215C71400079EFEC /* rmd160.c in Sources */,
 				843EC9DF21212271002D5C2A /* AppDelegate+Custom.m in Sources */,
 				0415BD982131BC850022DEB7 /* UIColor+YYStockTheme.m in Sources */,
 				84143056215F004F0079EFEC /* AccountConfigVC.m in Sources */,
+				840B1EA6216B0D3500700700 /* ShareMenuView.m in Sources */,
 				84C8E7E3212A9FFD00627445 /* CFFlowButtonView.m in Sources */,
 				0415BDA92131BC850022DEB7 /* YYKline.m in Sources */,
 				8428A548212544F2003E1DD8 /* MarketDetailVC.m in Sources */,
