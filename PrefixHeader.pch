@@ -81,8 +81,8 @@
 #import "NSString+Hash.h"
 #import "NSString+Extention.h"
 #import "NSObject+Extension.h"
-
-
+#import "MissionWallet.h"
+#import "RequestUrlConstant.h"
 /**
  *  导入第三方库文件
  */
@@ -90,13 +90,9 @@
 
 #import "SDWebImageManager.h"
 #import "UIButton+WebCache.h"
-
 #import "SGQRCode.h"
-
 #import "PYSearch.h"
-
-#import "MissionWallet.h"
-
+#import "MJExtension.h"
 
 /*
  椭圆算法 由私钥生成公钥

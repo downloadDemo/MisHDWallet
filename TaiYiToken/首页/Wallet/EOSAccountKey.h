@@ -13,5 +13,5 @@
 @property(nonatomic, strong) NSString *eosPrivateKey;
 @property(nonatomic, strong) NSString *eosPublicKey;
 
-+(void)EOSKeyByJvc:(JavascriptWebViewController *)jvc Mnemonic:(NSString*)mnemonic KeyType:(EOSKeyType)keyType callback: (void (^)(EOSAccountKey *key))callback;
+//+(void)EOSKeyByJvc:(JavascriptWebViewController *)jvc Mnemonic:(NSString*)mnemonic KeyType:(EOSKeyType)keyType callback: (void (^)(EOSAccountKey *key))callback;
 @end

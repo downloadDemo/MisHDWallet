@@ -32,6 +32,24 @@
 		840B1E9C216AF39500700700 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 840B1E9B216AF39500700700 /* Social.framework */; };
 		840B1EA5216B0D3500700700 /* ShareItemCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 840B1EA1216B0D3300700700 /* ShareItemCollectionViewCell.m */; };
 		840B1EA6216B0D3500700700 /* ShareMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 840B1EA3216B0D3400700700 /* ShareMenuView.m */; };
+		840B1EC4216B5AC900700700 /* TransactionRecordsService.m in Sources */ = {isa = PBXBuildFile; fileRef = 840B1EC3216B5AC800700700 /* TransactionRecordsService.m */; };
+		840B1EC7216B5AD500700700 /* GetTransactionRecordsRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 840B1EC5216B5AD500700700 /* GetTransactionRecordsRequest.m */; };
+		840B1ECF216B5AEC00700700 /* TransactionRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 840B1EC9216B5AEC00700700 /* TransactionRecord.m */; };
+		840B1ED0216B5AEC00700700 /* TransactionsResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 840B1ECB216B5AEC00700700 /* TransactionsResult.m */; };
+		840B1ED1216B5AEC00700700 /* TransactionRecordsResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 840B1ECC216B5AEC00700700 /* TransactionRecordsResult.m */; };
+		840B1ED5216B5B0A00700700 /* BaseService.m in Sources */ = {isa = PBXBuildFile; fileRef = 840B1ED3216B5B0A00700700 /* BaseService.m */; };
+		840B1EDD216B5C2400700700 /* BaseHttpsNetworkRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 840B1ED8216B5C2300700700 /* BaseHttpsNetworkRequest.m */; };
+		840B1EDE216B5C2400700700 /* BaseNetworkRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 840B1EDB216B5C2400700700 /* BaseNetworkRequest.m */; };
+		840B1EF5216B5E8300700700 /* MJPropertyType.m in Sources */ = {isa = PBXBuildFile; fileRef = 840B1EE3216B5E8200700700 /* MJPropertyType.m */; };
+		840B1EF6216B5E8300700700 /* NSObject+MJKeyValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 840B1EE6216B5E8200700700 /* NSObject+MJKeyValue.m */; };
+		840B1EF7216B5E8300700700 /* MJProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 840B1EE7216B5E8200700700 /* MJProperty.m */; };
+		840B1EF8216B5E8300700700 /* NSObject+MJCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 840B1EE9216B5E8200700700 /* NSObject+MJCoding.m */; };
+		840B1EF9216B5E8300700700 /* MJExtensionConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 840B1EEB216B5E8200700700 /* MJExtensionConst.m */; };
+		840B1EFA216B5E8300700700 /* NSObject+MJProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 840B1EEC216B5E8200700700 /* NSObject+MJProperty.m */; };
+		840B1EFB216B5E8300700700 /* NSObject+MJClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 840B1EEE216B5E8200700700 /* NSObject+MJClass.m */; };
+		840B1EFC216B5E8300700700 /* NSString+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 840B1EEF216B5E8200700700 /* NSString+MJExtension.m */; };
+		840B1EFD216B5E8300700700 /* MJPropertyKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 840B1EF0216B5E8200700700 /* MJPropertyKey.m */; };
+		840B1EFE216B5E8300700700 /* MJFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = 840B1EF4216B5E8200700700 /* MJFoundation.m */; };
 		8414300A215A12C60079EFEC /* LaunchIntroductionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84143008215A12C60079EFEC /* LaunchIntroductionView.m */; };
 		84143011215B117B0079EFEC /* EOSAccountKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 84143010215B117B0079EFEC /* EOSAccountKey.m */; };
 		84143014215B278D0079EFEC /* SelectCurrencyTypeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84143013215B278D0079EFEC /* SelectCurrencyTypeVC.m */; };
@@ -252,6 +270,44 @@
 		840B1EA2216B0D3300700700 /* ShareMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareMenuView.h; sourceTree = "<group>"; };
 		840B1EA3216B0D3400700700 /* ShareMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareMenuView.m; sourceTree = "<group>"; };
 		840B1EA4216B0D3400700700 /* ShareItemCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareItemCollectionViewCell.h; sourceTree = "<group>"; };
+		840B1EC2216B5AC800700700 /* TransactionRecordsService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransactionRecordsService.h; sourceTree = "<group>"; };
+		840B1EC3216B5AC800700700 /* TransactionRecordsService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransactionRecordsService.m; sourceTree = "<group>"; };
+		840B1EC5216B5AD500700700 /* GetTransactionRecordsRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetTransactionRecordsRequest.m; sourceTree = "<group>"; };
+		840B1EC6216B5AD500700700 /* GetTransactionRecordsRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetTransactionRecordsRequest.h; sourceTree = "<group>"; };
+		840B1EC9216B5AEC00700700 /* TransactionRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransactionRecord.m; sourceTree = "<group>"; };
+		840B1ECA216B5AEC00700700 /* TransactionRecordsResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransactionRecordsResult.h; sourceTree = "<group>"; };
+		840B1ECB216B5AEC00700700 /* TransactionsResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransactionsResult.m; sourceTree = "<group>"; };
+		840B1ECC216B5AEC00700700 /* TransactionRecordsResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransactionRecordsResult.m; sourceTree = "<group>"; };
+		840B1ECD216B5AEC00700700 /* TransactionRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransactionRecord.h; sourceTree = "<group>"; };
+		840B1ECE216B5AEC00700700 /* TransactionsResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransactionsResult.h; sourceTree = "<group>"; };
+		840B1ED3216B5B0A00700700 /* BaseService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseService.m; sourceTree = "<group>"; };
+		840B1ED4216B5B0A00700700 /* BaseService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseService.h; sourceTree = "<group>"; };
+		840B1ED6216B5BA100700700 /* RequestUrlConstant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RequestUrlConstant.h; sourceTree = "<group>"; };
+		840B1ED8216B5C2300700700 /* BaseHttpsNetworkRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseHttpsNetworkRequest.m; sourceTree = "<group>"; };
+		840B1ED9216B5C2300700700 /* BaseHttpsNetworkRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseHttpsNetworkRequest.h; sourceTree = "<group>"; };
+		840B1EDB216B5C2400700700 /* BaseNetworkRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseNetworkRequest.m; sourceTree = "<group>"; };
+		840B1EDC216B5C2400700700 /* BaseNetworkRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseNetworkRequest.h; sourceTree = "<group>"; };
+		840B1EE0216B5E8200700700 /* MJPropertyKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPropertyKey.h; sourceTree = "<group>"; };
+		840B1EE1216B5E8200700700 /* NSObject+MJClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MJClass.h"; sourceTree = "<group>"; };
+		840B1EE2216B5E8200700700 /* NSString+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MJExtension.h"; sourceTree = "<group>"; };
+		840B1EE3216B5E8200700700 /* MJPropertyType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPropertyType.m; sourceTree = "<group>"; };
+		840B1EE4216B5E8200700700 /* NSObject+MJProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MJProperty.h"; sourceTree = "<group>"; };
+		840B1EE5216B5E8200700700 /* MJExtensionConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJExtensionConst.h; sourceTree = "<group>"; };
+		840B1EE6216B5E8200700700 /* NSObject+MJKeyValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MJKeyValue.m"; sourceTree = "<group>"; };
+		840B1EE7216B5E8200700700 /* MJProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJProperty.m; sourceTree = "<group>"; };
+		840B1EE8216B5E8200700700 /* MJFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJFoundation.h; sourceTree = "<group>"; };
+		840B1EE9216B5E8200700700 /* NSObject+MJCoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MJCoding.m"; sourceTree = "<group>"; };
+		840B1EEA216B5E8200700700 /* MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJExtension.h; sourceTree = "<group>"; };
+		840B1EEB216B5E8200700700 /* MJExtensionConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJExtensionConst.m; sourceTree = "<group>"; };
+		840B1EEC216B5E8200700700 /* NSObject+MJProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MJProperty.m"; sourceTree = "<group>"; };
+		840B1EED216B5E8200700700 /* MJPropertyType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPropertyType.h; sourceTree = "<group>"; };
+		840B1EEE216B5E8200700700 /* NSObject+MJClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MJClass.m"; sourceTree = "<group>"; };
+		840B1EEF216B5E8200700700 /* NSString+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MJExtension.m"; sourceTree = "<group>"; };
+		840B1EF0216B5E8200700700 /* MJPropertyKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPropertyKey.m; sourceTree = "<group>"; };
+		840B1EF1216B5E8200700700 /* MJProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJProperty.h; sourceTree = "<group>"; };
+		840B1EF2216B5E8200700700 /* NSObject+MJKeyValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MJKeyValue.h"; sourceTree = "<group>"; };
+		840B1EF3216B5E8200700700 /* NSObject+MJCoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MJCoding.h"; sourceTree = "<group>"; };
+		840B1EF4216B5E8200700700 /* MJFoundation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJFoundation.m; sourceTree = "<group>"; };
 		84143008215A12C60079EFEC /* LaunchIntroductionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchIntroductionView.m; sourceTree = "<group>"; };
 		84143009215A12C60079EFEC /* LaunchIntroductionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchIntroductionView.h; sourceTree = "<group>"; };
 		8414300C215A1DD20079EFEC /* ImportHDWalletVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImportHDWalletVC.h; sourceTree = "<group>"; };
@@ -864,6 +920,90 @@
 			path = shareView;
 			sourceTree = "<group>";
 		};
+		840B1EC1216B5AA200700700 /* EOS Ref */ = {
+			isa = PBXGroup;
+			children = (
+				840B1ED6216B5BA100700700 /* RequestUrlConstant.h */,
+				840B1ED7216B5C2300700700 /* BaseHttpsNetworkRequest */,
+				840B1EDA216B5C2400700700 /* BaseNetworkRequest */,
+				840B1ED2216B5B0A00700700 /* BaseService */,
+				840B1EC8216B5AEC00700700 /* Model */,
+				840B1EC6216B5AD500700700 /* GetTransactionRecordsRequest.h */,
+				840B1EC5216B5AD500700700 /* GetTransactionRecordsRequest.m */,
+				840B1EC2216B5AC800700700 /* TransactionRecordsService.h */,
+				840B1EC3216B5AC800700700 /* TransactionRecordsService.m */,
+			);
+			path = "EOS Ref";
+			sourceTree = "<group>";
+		};
+		840B1EC8216B5AEC00700700 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				840B1ECA216B5AEC00700700 /* TransactionRecordsResult.h */,
+				840B1ECC216B5AEC00700700 /* TransactionRecordsResult.m */,
+				840B1ECD216B5AEC00700700 /* TransactionRecord.h */,
+				840B1EC9216B5AEC00700700 /* TransactionRecord.m */,
+				840B1ECE216B5AEC00700700 /* TransactionsResult.h */,
+				840B1ECB216B5AEC00700700 /* TransactionsResult.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		840B1ED2216B5B0A00700700 /* BaseService */ = {
+			isa = PBXGroup;
+			children = (
+				840B1ED4216B5B0A00700700 /* BaseService.h */,
+				840B1ED3216B5B0A00700700 /* BaseService.m */,
+			);
+			path = BaseService;
+			sourceTree = "<group>";
+		};
+		840B1ED7216B5C2300700700 /* BaseHttpsNetworkRequest */ = {
+			isa = PBXGroup;
+			children = (
+				840B1ED9216B5C2300700700 /* BaseHttpsNetworkRequest.h */,
+				840B1ED8216B5C2300700700 /* BaseHttpsNetworkRequest.m */,
+			);
+			path = BaseHttpsNetworkRequest;
+			sourceTree = "<group>";
+		};
+		840B1EDA216B5C2400700700 /* BaseNetworkRequest */ = {
+			isa = PBXGroup;
+			children = (
+				840B1EDC216B5C2400700700 /* BaseNetworkRequest.h */,
+				840B1EDB216B5C2400700700 /* BaseNetworkRequest.m */,
+			);
+			path = BaseNetworkRequest;
+			sourceTree = "<group>";
+		};
+		840B1EDF216B5E8200700700 /* MJExtension */ = {
+			isa = PBXGroup;
+			children = (
+				840B1EE0216B5E8200700700 /* MJPropertyKey.h */,
+				840B1EE1216B5E8200700700 /* NSObject+MJClass.h */,
+				840B1EE2216B5E8200700700 /* NSString+MJExtension.h */,
+				840B1EE3216B5E8200700700 /* MJPropertyType.m */,
+				840B1EE4216B5E8200700700 /* NSObject+MJProperty.h */,
+				840B1EE5216B5E8200700700 /* MJExtensionConst.h */,
+				840B1EE6216B5E8200700700 /* NSObject+MJKeyValue.m */,
+				840B1EE7216B5E8200700700 /* MJProperty.m */,
+				840B1EE8216B5E8200700700 /* MJFoundation.h */,
+				840B1EE9216B5E8200700700 /* NSObject+MJCoding.m */,
+				840B1EEA216B5E8200700700 /* MJExtension.h */,
+				840B1EEB216B5E8200700700 /* MJExtensionConst.m */,
+				840B1EEC216B5E8200700700 /* NSObject+MJProperty.m */,
+				840B1EED216B5E8200700700 /* MJPropertyType.h */,
+				840B1EEE216B5E8200700700 /* NSObject+MJClass.m */,
+				840B1EEF216B5E8200700700 /* NSString+MJExtension.m */,
+				840B1EF0216B5E8200700700 /* MJPropertyKey.m */,
+				840B1EF1216B5E8200700700 /* MJProperty.h */,
+				840B1EF2216B5E8200700700 /* NSObject+MJKeyValue.h */,
+				840B1EF3216B5E8200700700 /* NSObject+MJCoding.h */,
+				840B1EF4216B5E8200700700 /* MJFoundation.m */,
+			);
+			path = MJExtension;
+			sourceTree = "<group>";
+		};
 		84143007215A12AD0079EFEC /* 启动引导页 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1133,6 +1273,8 @@
 		843EC9C52121212D002D5C2A /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				840B1EDF216B5E8200700700 /* MJExtension */,
+				840B1EC1216B5AA200700700 /* EOS Ref */,
 				8414301B215C70D20079EFEC /* EOS */,
 				84143007215A12AD0079EFEC /* 启动引导页 */,
 				8484F3882159BA09005992B1 /* JavascriptFile */,
@@ -1828,18 +1970,23 @@
 				848180BB2123C72A0007DCF9 /* ContainerViewController.m in Sources */,
 				842FEE76213FBFF90075716E /* AnnounceView.m in Sources */,
 				842FEE48213E38510075716E /* MySwitch.m in Sources */,
+				840B1ECF216B5AEC00700700 /* TransactionRecord.m in Sources */,
 				842FEE8621411D1A0075716E /* ControlBtnsView.m in Sources */,
 				843EC9EC212122A7002D5C2A /* NetManager.m in Sources */,
 				84B8D5332150C54C00286631 /* TransactionRecordDetailVC.m in Sources */,
 				84E3052F215F69A9008ABC6C /* ExportPasswordHintVC.m in Sources */,
 				843EC9DD21212271002D5C2A /* UIImage+BaseToImage.m in Sources */,
+				840B1ED0216B5AEC00700700 /* TransactionsResult.m in Sources */,
 				8414300A215A12C60079EFEC /* LaunchIntroductionView.m in Sources */,
 				84D0E42621211AAB004E65AD /* ViewController.m in Sources */,
+				840B1EF9216B5E8300700700 /* MJExtensionConst.m in Sources */,
 				84B0A95021228BE9002EFA0A /* SwitchAccountVc.m in Sources */,
+				840B1EF8216B5E8300700700 /* NSObject+MJCoding.m in Sources */,
 				84B8D524214F56CA00286631 /* BTCTransactionRecordModel.m in Sources */,
 				842FEE14213D26030075716E /* WBQRCodeVC.m in Sources */,
 				84FA0821212BE3AF00DCFC0C /* CreateAll.m in Sources */,
 				842FEE892141286B0075716E /* SetPasswordView.m in Sources */,
+				840B1EFB216B5E8300700700 /* NSObject+MJClass.m in Sources */,
 				8484F37F2159B9F1005992B1 /* WebViewJavascriptBridgeBase.m in Sources */,
 				842FEE9021422D500075716E /* ImportETHWalletVC.m in Sources */,
 				843ECA2C212162FB002D5C2A /* NSString+Extention.m in Sources */,
@@ -1848,7 +1995,9 @@
 				84143011215B117B0079EFEC /* EOSAccountKey.m in Sources */,
 				84B0A9642122CD7B002EFA0A /* RemindView.m in Sources */,
 				84C0DF30212CFF9100BCC91D /* NSMutableData+Bitcoin.m in Sources */,
+				840B1EF5216B5E8300700700 /* MJPropertyType.m in Sources */,
 				842FEE7E2141106A0075716E /* ImportWalletSwitchVC.m in Sources */,
+				840B1ED5216B5B0A00700700 /* BaseService.m in Sources */,
 				0415BD9A2131BC850022DEB7 /* YYTopBarView.m in Sources */,
 				8460C7B12136A446002E4B2F /* YYTimeLineModel.m in Sources */,
 				843ECA3921216320002D5C2A /* UIView+frameAdjust.m in Sources */,
@@ -1870,11 +2019,13 @@
 				843EC9ED212122A7002D5C2A /* BaseNetworking.m in Sources */,
 				0415BDA82131BC850022DEB7 /* YYKlineView.m in Sources */,
 				0415BDAB2131BC850022DEB7 /* YYKlineMaskView.m in Sources */,
+				840B1EF7216B5E8300700700 /* MJProperty.m in Sources */,
 				842FEE5E213E8B0A0075716E /* InputPasswordVC.m in Sources */,
 				842FEE9F214A5FC10075716E /* TransactionAmountView.m in Sources */,
 				8481805F2123B2630007DCF9 /* Base64.m in Sources */,
 				842FEE8221411C9E0075716E /* ImportBTCWalletVC.m in Sources */,
 				84748845212AAAD70077AC0F /* VerifyMnemonicVC.m in Sources */,
+				840B1EFC216B5E8300700700 /* NSString+MJExtension.m in Sources */,
 				843EC9DE21212271002D5C2A /* NSString+URLString.m in Sources */,
 				0415BD9C2131BC850022DEB7 /* YYLinePositionModel.m in Sources */,
 				842FEDFA213CD39A0075716E /* HomePageVC.m in Sources */,
@@ -1895,7 +2046,9 @@
 				8460C7B22136A446002E4B2F /* YYFiveRecordModel.m in Sources */,
 				0415BDA72131BC850022DEB7 /* YYStockViewMaskView.m in Sources */,
 				84143014215B278D0079EFEC /* SelectCurrencyTypeVC.m in Sources */,
+				840B1ED1216B5AEC00700700 /* TransactionRecordsResult.m in Sources */,
 				8484F3942159BA3A005992B1 /* QuoteLocalHtmlTool.m in Sources */,
+				840B1EC4216B5AC900700700 /* TransactionRecordsService.m in Sources */,
 				842FEE9B214A5E330075716E /* TransactionVC.m in Sources */,
 				84B0A9602122C184002EFA0A /* UIImage+Gradient.m in Sources */,
 				84C0DF2A212CFF7700BCC91D /* NSString+Bitcoin.m in Sources */,
@@ -1918,8 +2071,10 @@
 				0415BDA92131BC850022DEB7 /* YYKline.m in Sources */,
 				8428A548212544F2003E1DD8 /* MarketDetailVC.m in Sources */,
 				84D0E43121211AAF004E65AD /* main.m in Sources */,
+				840B1EF6216B5E8300700700 /* NSObject+MJKeyValue.m in Sources */,
 				8484F3802159B9F1005992B1 /* WKWebViewJavascriptBridge.m in Sources */,
 				842FEE4F213E52590075716E /* WalletManagerCell.m in Sources */,
+				840B1EC7216B5AD500700700 /* GetTransactionRecordsRequest.m in Sources */,
 				0415BDA32131BC850022DEB7 /* YYTimeLineView.m in Sources */,
 				8484F3952159BA3A005992B1 /* JavascriptWebViewController.m in Sources */,
 				0415BD9B2131BC850022DEB7 /* YYStock.m in Sources */,
@@ -1932,12 +2087,15 @@
 				84B0A95F2122C184002EFA0A /* UIButton+Gradient.m in Sources */,
 				843ECA2B212162FB002D5C2A /* UIColor+SNFoundation.m in Sources */,
 				842FEDEC2137DB600075716E /* MarketDetailTextCell.m in Sources */,
+				840B1EFE216B5E8300700700 /* MJFoundation.m in Sources */,
 				84BDD16D21269D5B0039FE09 /* DataView.m in Sources */,
 				84D0E42321211AAB004E65AD /* AppDelegate.m in Sources */,
 				847BC6092133E001000B02AC /* MissionWallet.m in Sources */,
 				8460C7B02136A446002E4B2F /* YYLineDataModel.m in Sources */,
+				840B1EDE216B5C2400700700 /* BaseNetworkRequest.m in Sources */,
 				842FEE67213F7EB00075716E /* ExportPrivateKeyOrMnemonicVC.m in Sources */,
 				84B0A95A2122B87B002EFA0A /* UIColor+PGHex.m in Sources */,
+				840B1EDD216B5C2400700700 /* BaseHttpsNetworkRequest.m in Sources */,
 				842FEE5B213E89940075716E /* ExportKeyStoreVC.m in Sources */,
 				84B8D52E214FA6EF00286631 /* ETHTransactionRecordModel.m in Sources */,
 				0415BD9D2131BC850022DEB7 /* YYVolumePositionModel.m in Sources */,
@@ -1945,6 +2103,7 @@
 				84C0DF2D212CFF8500BCC91D /* NSData+Bitcoin.m in Sources */,
 				848180602123B2630007DCF9 /* NSData+CommonCrypto.m in Sources */,
 				0415BD9F2131BC850022DEB7 /* YYFiveRecordTableViewCell.m in Sources */,
+				840B1EFD216B5E8300700700 /* MJPropertyKey.m in Sources */,
 				84143052215EFFFA0079EFEC /* UserConfigCell.m in Sources */,
 				848180612123B2630007DCF9 /* PBKDF2.m in Sources */,
 				842FEE61213E8E840075716E /* InputPasswordView.m in Sources */,
@@ -1955,6 +2114,7 @@
 				843ECA07212162B7002D5C2A /* NSString+Hash.m in Sources */,
 				84B8D52B214F571D00286631 /* TransactionRecordCell.m in Sources */,
 				84B8D5362150C6B700286631 /* TransactionDetailView.m in Sources */,
+				840B1EFA216B5E8300700700 /* NSObject+MJProperty.m in Sources */,
 				84B0A9482122736B002EFA0A /* CustomizedTabBarController.m in Sources */,
 				84143021215C71060079EFEC /* sha2.c in Sources */,
 				842FEE79213FCFCA0075716E /* AddBTCAddressCell.m in Sources */,

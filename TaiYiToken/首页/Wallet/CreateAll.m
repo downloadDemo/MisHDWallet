@@ -1100,12 +1100,12 @@ return -1;表示已存在
     }];
 }
 
-//创建EOS KeyPair
-+(void)CreateEOSKeyPairJvc:(JavascriptWebViewController *)jvc MnemonicCode:(NSString *)mnemonic KeyType:(EOSKeyType)keyType callback: (void (^)(EOSAccountKey *key))callback{
-    [EOSAccountKey EOSKeyByJvc:jvc Mnemonic:mnemonic KeyType:keyType callback:^(EOSAccountKey *key) {
-        callback(key);
-    }];
-}
+////创建EOS KeyPair
+//+(void)CreateEOSKeyPairJvc:(JavascriptWebViewController *)jvc MnemonicCode:(NSString *)mnemonic KeyType:(EOSKeyType)keyType callback: (void (^)(EOSAccountKey *key))callback{
+//    [EOSAccountKey EOSKeyByJvc:jvc Mnemonic:mnemonic KeyType:keyType callback:^(EOSAccountKey *key) {
+//        callback(key);
+//    }];
+//}
 
 //EOS私钥
 +(void)isValidPrivateJvc:(JavascriptWebViewController *)jvc PrivateKey:(NSString *)privateKey callback: (void(^)(id response))callback{

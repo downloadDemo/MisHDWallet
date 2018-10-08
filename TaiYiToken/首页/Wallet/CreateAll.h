@@ -200,9 +200,8 @@
 +(void)EOSPrivateKeyToPublicKeyJvc:(JavascriptWebViewController *)jvc PrivateKey:(NSString *)privateKey callback: (void(^)(id response))callback;
 //创建EOS KeyPair
 +(void)CreateEOSKeyPairJvc:(JavascriptWebViewController *)jvc MnemonicCode:(NSString *)mnemonic KeyType:(EOSKeyType)keyType callback: (void (^)(EOSAccountKey *key))callback;
-//EOS私钥
+//EOS私钥验证
 +(void)isValidPrivateJvc:(JavascriptWebViewController *)jvc PrivateKey:(NSString *)privateKey callback: (void(^)(id response))callback;
-
 
 
 ////*************************  BIP44 EOSKey  *************************
