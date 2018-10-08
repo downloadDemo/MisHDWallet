@@ -27,15 +27,36 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 -(void)shareAction{
+    UIImage *shareImage = self.QRCodeiv.image;
+    NSArray *activityItemsArray = @[shareImage];
+    
+    
+    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:activityItemsArray applicationActivities:nil];
+    activityVC.excludedActivityTypes = @[UIActivityTypePostToWeibo,UIActivityTypeMessage,UIActivityTypeMail,UIActivityTypePostToTencentWeibo,UIActivityTypeAirDrop];
+    activityVC.completionWithItemsHandler = ^(NSString *activityType,BOOL completed,NSArray *returnedItems,NSError *activityError)
+    {
+        NSLog(@"%@", activityType);
+        
+        if (completed) { // 确定分享
+            NSLog(@"分享成功");
+        }
+        else {
+            NSLog(@"分享失败");
+        }
+    };
+    
+    [self presentViewController:activityVC animated:YES completion:nil];
     
 }
+    
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorWithHexString:@"#434343"];
     [self initUI];
-   
-    
 }
+
+    
 -(void)initUI{
     _backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _backBtn.backgroundColor = [UIColor clearColor];
@@ -232,6 +253,9 @@
     }
 }
 
+    
+    
+    
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

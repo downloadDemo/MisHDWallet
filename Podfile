@@ -19,7 +19,7 @@ target 'TaiYiToken' do
    pod 'CWLateralSlide', '~> 1.6.1'
    #TableCell左右自定义滑动
    pod 'MGSwipeTableCell'
-   
+   #pod 'UMengAnalytics-NO-IDFA'#无IDFA版SDK（请根据需要选择其中一个）
   # use_frameworks!
    #pod 'Charts'
    pod 'PYSearch'

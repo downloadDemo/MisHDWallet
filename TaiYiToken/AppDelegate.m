@@ -28,9 +28,11 @@
     LaunchIntroductionView *launch = [LaunchIntroductionView sharedWithImages:@[@"launch0",@"launch1",@"launch2",@"launch3"]];
     launch.currentColor = [UIColor backBlueColorA];
     launch.nomalColor = [UIColor textLightGrayColor];
+    //查找之后发现苹果在ios7之后提供了一个新的通知类型：UIApplicationUserDidTakeScreenshotNotification，这个通知会告知注册了此通知的对象已经发生了截屏事件，然后我们就可以在这个事件中实现自己的逻辑。
     
     return YES;
 }
+    
 
 
 - (void)applicationWillResignActive:(UIApplication *)application {

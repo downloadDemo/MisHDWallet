@@ -29,6 +29,7 @@
 		0415BDAB2131BC850022DEB7 /* YYKlineMaskView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0415BD922131BC850022DEB7 /* YYKlineMaskView.m */; };
 		0415BDAC2131BC850022DEB7 /* YYKlineVolumeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0415BD952131BC850022DEB7 /* YYKlineVolumeView.m */; };
 		0415BDBE213586C70022DEB7 /* ethers.framework in Resources */ = {isa = PBXBuildFile; fileRef = 0415BDBD213586C70022DEB7 /* ethers.framework */; };
+		840B1E9C216AF39500700700 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 840B1E9B216AF39500700700 /* Social.framework */; };
 		8414300A215A12C60079EFEC /* LaunchIntroductionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84143008215A12C60079EFEC /* LaunchIntroductionView.m */; };
 		84143011215B117B0079EFEC /* EOSAccountKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 84143010215B117B0079EFEC /* EOSAccountKey.m */; };
 		84143014215B278D0079EFEC /* SelectCurrencyTypeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84143013215B278D0079EFEC /* SelectCurrencyTypeVC.m */; };
@@ -244,6 +245,7 @@
 		0415BD962131BC850022DEB7 /* YYKlineVolumeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYKlineVolumeView.h; sourceTree = "<group>"; };
 		0415BD972131BC850022DEB7 /* YYStock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYStock.h; sourceTree = "<group>"; };
 		0415BDBD213586C70022DEB7 /* ethers.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ethers.framework; sourceTree = "<group>"; };
+		840B1E9B216AF39500700700 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		84143008215A12C60079EFEC /* LaunchIntroductionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchIntroductionView.m; sourceTree = "<group>"; };
 		84143009215A12C60079EFEC /* LaunchIntroductionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchIntroductionView.h; sourceTree = "<group>"; };
 		8414300C215A1DD20079EFEC /* ImportHDWalletVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImportHDWalletVC.h; sourceTree = "<group>"; };
@@ -548,6 +550,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				840B1E9C216AF39500700700 /* Social.framework in Frameworks */,
 				842FEE0A213D22860075716E /* AVFoundation.framework in Frameworks */,
 				847BC60C21355613000B02AC /* libPods-TaiYiToken.a in Frameworks */,
 				847BC60B21355289000B02AC /* libstdc++.tbd in Frameworks */,
@@ -831,6 +834,7 @@
 		6AC5FF18C18AADA88B0CA162 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				840B1E9B216AF39500700700 /* Social.framework */,
 				842FEE09213D22850075716E /* AVFoundation.framework */,
 				0415BDBD213586C70022DEB7 /* ethers.framework */,
 				847BC60A21355288000B02AC /* libstdc++.tbd */,

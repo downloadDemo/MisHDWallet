@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1DB46971FF0ADB15B7781FA2FE209233"
+               BlueprintIdentifier = "B5FD5EA49BEA4376BFECF76776236A1B"
                BlueprintName = "secp256k1_ios"
                ReferencedContainer = "container:Pods.xcodeproj"
                BuildableName = "libsecp256k1_ios.a">

@@ -18,6 +18,10 @@
 #import "MarketDetailTextViewCell.h"
 #import "WebVC.h"
 @interface MarketDetailVC ()<UIScrollViewDelegate,UIScrollViewAccessibilityDelegate,YYStockDataSource,UITableViewDelegate,UITableViewDataSource>
+@property (nonatomic, strong) id observer;
+@property(nonatomic,strong)UIView *showView;
+@property(nonatomic,strong)UIImageView *showImageView;
+@property(nonatomic,strong)UIButton *cancelbtn;
 /*** 上方行情基础信息，K线图选择按钮  ***/
 @property(nonatomic,strong)UIScrollView *scrollView;
 @property(nonatomic,strong)UIView *bridgeContentView;
@@ -47,6 +51,12 @@
 -(void)viewWillAppear:(BOOL)animated{
     self.navigationController.navigationBar.hidden = YES;
     self.navigationController.hidesBottomBarWhenPushed = YES;
+    self.observer = [[NSNotificationCenter defaultCenter] addObserverForName:UIApplicationUserDidTakeScreenshotNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
+        // executes after screenshot
+        NSLog(@"截屏");
+        [self userDidTakeScreenshot];
+    }];
+
 }
 -(void)viewWillDisappear:(BOOL)animated{
     //离开页面时 存储自选
@@ -67,11 +77,163 @@
     [[NSUserDefaults standardUserDefaults] setObject:_mysymbol forKey:@"MySymbol"];
     self.navigationController.navigationBar.hidden = NO;
     self.navigationController.hidesBottomBarWhenPushed = NO;
-   
+    if (self.observer) {
+        [[NSNotificationCenter defaultCenter] removeObserver:self.observer];
+        self.observer = nil;
+    }
 }
 - (void)popAction{
     [self.navigationController popViewControllerAnimated:YES];
 }
+/******************************************* 截图分享 ************************************************/
+
+//截屏响应
+- (void)userDidTakeScreenshot{
+    NSLog(@"检测到截屏");
+    //人为截屏, 模拟用户截屏行为, 获取所截图片
+    UIImage *image = [self imageWithScreenshot];
+    UIImage *resultimage = [self generateShareImageWithMasterImage:image];
+    
+    _showView = [UIView new];
+    _showView.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:_showView];
+    [_showView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(0);
+        make.left.equalTo(20);
+        make.right.equalTo(-20);
+        make.height.equalTo(ScreenHeight - 120);
+    }];
+    _showImageView = [UIImageView new];
+    _showImageView.contentMode = UIViewContentModeScaleToFill;
+    _showImageView.backgroundColor = [UIColor clearColor];
+    [_showImageView setImage:resultimage];
+    [_showView addSubview:_showImageView];
+    [_showImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(0);
+        make.left.equalTo(5);
+        make.right.equalTo(-5);
+        make.bottom.equalTo(-30);
+    }];
+    _cancelbtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_cancelbtn setImage:[UIImage imageNamed:@"IconOfflineCancel"] forState:UIControlStateNormal];
+    [_cancelbtn addTarget:self action:@selector(cancelShowView) forControlEvents:UIControlEventTouchUpInside];
+    [_showView addSubview:_cancelbtn];
+    [_cancelbtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.left.right.equalTo(0);
+        make.height.equalTo(30);
+    }];
+}
+-(void)cancelShowView{
+    [self.showView removeFromSuperview];
+}
+/**
+     *  返回截取到的图片
+     *
+     *  @return UIImage *
+     */
+- (UIImage *)imageWithScreenshot{
+        NSData *imageData = [self dataWithScreenshotInPNGFormat];
+        return [UIImage imageWithData:imageData];
+}
+    
+/**
+     *  截取当前屏幕
+     *
+     *  @return NSData *
+     */
+- (NSData *)dataWithScreenshotInPNGFormat{
+    CGSize imageSize = CGSizeZero;
+    UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
+    if (UIInterfaceOrientationIsPortrait(orientation))
+    imageSize = CGSizeMake([UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-140);
+    else
+    imageSize = CGSizeMake([UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width);
+    
+    UIGraphicsBeginImageContextWithOptions(imageSize, NO, 0);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    for (UIWindow *window in [[UIApplication sharedApplication] windows])
+    {
+        CGContextSaveGState(context);
+        CGContextTranslateCTM(context, window.center.x, window.center.y-15);
+        CGContextConcatCTM(context, window.transform);
+        CGContextTranslateCTM(context, -window.bounds.size.width * window.layer.anchorPoint.x, -window.bounds.size.height * window.layer.anchorPoint.y);
+        if (orientation == UIInterfaceOrientationLandscapeLeft)
+        {
+            CGContextRotateCTM(context, M_PI_2);
+            CGContextTranslateCTM(context, 0, -imageSize.width);
+        }
+        else if (orientation == UIInterfaceOrientationLandscapeRight)
+        {
+            CGContextRotateCTM(context, -M_PI_2);
+            CGContextTranslateCTM(context, -imageSize.height, 0);
+        } else if (orientation == UIInterfaceOrientationPortraitUpsideDown) {
+            CGContextRotateCTM(context, M_PI);
+            CGContextTranslateCTM(context, -imageSize.width, -imageSize.height);
+        }
+        if ([window respondsToSelector:@selector(drawViewHierarchyInRect:afterScreenUpdates:)])
+        {
+            [window drawViewHierarchyInRect:window.bounds afterScreenUpdates:YES];
+        }
+        else
+        {
+            [window.layer renderInContext:context];
+        }
+        CGContextRestoreGState(context);
+    }
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return UIImagePNGRepresentation(image);
+}
+- (UIImage *)screenShotWithSize:(CGSize)size{
+    UIImage* image = nil;
+    /*
+     *UIGraphicsBeginImageContextWithOptions有三个参数
+     *size    bitmap上下文的大小，就是生成图片的size
+     *opaque  是否不透明，当指定为YES的时候图片的质量会比较好
+     *scale   缩放比例，指定为0.0表示使用手机主屏幕的缩放比例
+     */
+    UIGraphicsBeginImageContextWithOptions(size, YES, 0.5);
+    
+    [self.view.layer renderInContext: UIGraphicsGetCurrentContext()];
+    image = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    if (image != nil) {
+        return image;
+    }else {
+        return nil;
+    }
+}
+/*
+     masterImage  主图片，生成的图片的宽度为masterImage的宽度
+     slaveImage   从图片，拼接在masterImage的下面
+   */
+- (UIImage *)generateShareImageWithMasterImage:(UIImage *)masterImage {
+    //appiosdownload
+    UIImage *topImage = [UIImage imageNamed:@"appiosdownload"];
+    CGSize size;
+    size.width = masterImage.size.width;
+    size.height = masterImage.size.height + masterImage.size.width/topImage.size.width * topImage.size.height;
+    
+    UIGraphicsBeginImageContextWithOptions(size, YES, 0.0);
+    
+    
+    //Draw masterImage
+    [topImage drawInRect:CGRectMake(0, -3, masterImage.size.width, masterImage.size.width/topImage.size.width * topImage.size.height + 5)];
+    
+    //Draw slaveImage
+    [masterImage drawInRect:CGRectMake(0, masterImage.size.width/topImage.size.width * topImage.size.height, masterImage.size.width, masterImage.size.height)];
+    
+    UIImage *resultImage = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    return resultImage;
+}
+
+    
+    
 /******************************************* 上方数据视图 ************************************************/
 -(void)initHead{
     //头部背景
