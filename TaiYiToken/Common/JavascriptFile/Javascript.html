@@ -192,7 +192,33 @@
             }, 0);
     })
                                  
-                         
+        //****************   EOS
+      bridge.registerHandler('EOStransaction', function(data, responseCallback){
+                  setTimeout(function () {
+     
+                  const ct = Eos.createTransaction("sjbxsicdic");
+                  
+                  responseCallback('0,' + ct.toString());
+                  }, 0);
+    })
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
 		document.body.appendChild(document.createElement('br'))
                                  
 		var callbackButton = document.getElementById('buttons').appendChild(document.createElement('button'))

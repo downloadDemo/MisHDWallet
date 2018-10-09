@@ -11,7 +11,7 @@
 @interface JavascriptWebViewController : UIViewController
 @property WebViewJavascriptBridge* bridge;
 //************************************************
-
+- (void)EOStransaction:(id)sender callback: (void (^)(id response))callback;
 
 
 

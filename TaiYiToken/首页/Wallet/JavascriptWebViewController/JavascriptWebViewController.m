@@ -68,7 +68,19 @@
 }
 //******************************************************************
 
-
+//EOStransaction
+    
+- (void)EOStransaction:(id)sender callback: (void (^)(id response))callback{
+       
+        [self.bridge callHandler:@"EOStransaction" data:@"01939394734394839abd" responseCallback:^(id response) {
+            NSLog(@"EOStransaction: %@", response);
+            
+        }];
+    }
+    
+    
+    
+    
 //******************************************************************
 
 
@@ -79,7 +91,7 @@
     id data = @{ @"greetingFromObjC": @"Hi there, JS!" };
     [self.bridge callHandler:@"testJavascriptHandler" data:data responseCallback:^(id response) {
         NSLog(@"testJavascriptHandler responded: %@", response);
-       
+        
     }];
 }
 //生成私钥privateKeyGen

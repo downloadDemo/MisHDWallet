@@ -20,8 +20,8 @@ target 'TaiYiToken' do
    #TableCell左右自定义滑动
    pod 'MGSwipeTableCell'
    #pod 'UMengAnalytics-NO-IDFA'#无IDFA版SDK（请根据需要选择其中一个）
-  # use_frameworks!
-   #pod 'Charts'
+   #pod 'Toast', '~> 4.0.0' #页面提示
+
    pod 'PYSearch'
    pod 'secp256k1_ios'
    

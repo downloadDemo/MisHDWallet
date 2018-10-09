@@ -66,7 +66,7 @@
  */
 #import <Foundation/Foundation.h>
 #import <Social/Social.h>
-
+#import <JavaScriptCore/JavaScriptCore.h>
 /**
  *  导入自定义文件
  */
@@ -82,7 +82,7 @@
 #import "NSString+Extention.h"
 #import "NSObject+Extension.h"
 #import "MissionWallet.h"
-#import "RequestUrlConstant.h"
+
 /**
  *  导入第三方库文件
  */
@@ -93,7 +93,7 @@
 #import "SGQRCode.h"
 #import "PYSearch.h"
 #import "MJExtension.h"
-
+#import <EosFramework/EosFramework.h>
 /*
  椭圆算法 由私钥生成公钥
  */

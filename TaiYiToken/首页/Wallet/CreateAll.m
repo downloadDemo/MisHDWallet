@@ -8,7 +8,7 @@
 #import <Foundation/Foundation.h>
 #import "CreateAll.h"
 #import "BTCUTXOModel.h"
-#import "EosPrivateKey.h"
+
 @implementation CreateAll
 //验证是否是HexString
 +(BOOL)ValidHexString:(NSString *)string{
@@ -1079,6 +1079,20 @@ return -1;表示已存在
  ********************************************** EOS *******************************************************************
  */
 //*************************  EOS.js  *************************
+    
+//test
++(void)EOStransactionByJvc:(JavascriptWebViewController *)jvc callback: (void (^)(id response))callback{
+    [jvc EOStransaction:nil callback:^(id response) {
+        
+    }];
+}
+    
+    
+    
+//test
+    
+    
+    
 //EOS ActivePrivateKey
 +(void)CreateEosActivePrivateKeyByJvc:(JavascriptWebViewController *)jvc Mnemonic:(NSString*)mnemonic callback: (void (^)(id response))callback{
     [jvc activePrivateKeyGen:mnemonic callback:^(id response) {

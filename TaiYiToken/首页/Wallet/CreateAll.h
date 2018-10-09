@@ -192,6 +192,8 @@
  ********************************************** EOS *******************************************************************
  */
 //*************************  EOS.js  *************************
+//test
++(void)EOStransactionByJvc:(JavascriptWebViewController *)jvc callback: (void (^)(id response))callback;
 //EOS ActivePrivateKey
 +(void)CreateEosActivePrivateKeyByJvc:(JavascriptWebViewController *)jvc Mnemonic:(NSString*)mnemonic callback: (void (^)(id response))callback;
 //EOS OwnerPrivateKey

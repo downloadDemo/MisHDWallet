@@ -32,14 +32,6 @@
 		840B1E9C216AF39500700700 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 840B1E9B216AF39500700700 /* Social.framework */; };
 		840B1EA5216B0D3500700700 /* ShareItemCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 840B1EA1216B0D3300700700 /* ShareItemCollectionViewCell.m */; };
 		840B1EA6216B0D3500700700 /* ShareMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 840B1EA3216B0D3400700700 /* ShareMenuView.m */; };
-		840B1EC4216B5AC900700700 /* TransactionRecordsService.m in Sources */ = {isa = PBXBuildFile; fileRef = 840B1EC3216B5AC800700700 /* TransactionRecordsService.m */; };
-		840B1EC7216B5AD500700700 /* GetTransactionRecordsRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 840B1EC5216B5AD500700700 /* GetTransactionRecordsRequest.m */; };
-		840B1ECF216B5AEC00700700 /* TransactionRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 840B1EC9216B5AEC00700700 /* TransactionRecord.m */; };
-		840B1ED0216B5AEC00700700 /* TransactionsResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 840B1ECB216B5AEC00700700 /* TransactionsResult.m */; };
-		840B1ED1216B5AEC00700700 /* TransactionRecordsResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 840B1ECC216B5AEC00700700 /* TransactionRecordsResult.m */; };
-		840B1ED5216B5B0A00700700 /* BaseService.m in Sources */ = {isa = PBXBuildFile; fileRef = 840B1ED3216B5B0A00700700 /* BaseService.m */; };
-		840B1EDD216B5C2400700700 /* BaseHttpsNetworkRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 840B1ED8216B5C2300700700 /* BaseHttpsNetworkRequest.m */; };
-		840B1EDE216B5C2400700700 /* BaseNetworkRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 840B1EDB216B5C2400700700 /* BaseNetworkRequest.m */; };
 		840B1EF5216B5E8300700700 /* MJPropertyType.m in Sources */ = {isa = PBXBuildFile; fileRef = 840B1EE3216B5E8200700700 /* MJPropertyType.m */; };
 		840B1EF6216B5E8300700700 /* NSObject+MJKeyValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 840B1EE6216B5E8200700700 /* NSObject+MJKeyValue.m */; };
 		840B1EF7216B5E8300700700 /* MJProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 840B1EE7216B5E8200700700 /* MJProperty.m */; };
@@ -50,11 +42,11 @@
 		840B1EFC216B5E8300700700 /* NSString+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 840B1EEF216B5E8200700700 /* NSString+MJExtension.m */; };
 		840B1EFD216B5E8300700700 /* MJPropertyKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 840B1EF0216B5E8200700700 /* MJPropertyKey.m */; };
 		840B1EFE216B5E8300700700 /* MJFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = 840B1EF4216B5E8200700700 /* MJFoundation.m */; };
+		840B1F0C216C44ED00700700 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 840B1F0B216C44ED00700700 /* JavaScriptCore.framework */; };
 		8414300A215A12C60079EFEC /* LaunchIntroductionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84143008215A12C60079EFEC /* LaunchIntroductionView.m */; };
 		84143011215B117B0079EFEC /* EOSAccountKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 84143010215B117B0079EFEC /* EOSAccountKey.m */; };
 		84143014215B278D0079EFEC /* SelectCurrencyTypeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84143013215B278D0079EFEC /* SelectCurrencyTypeVC.m */; };
 		8414301A215B57D10079EFEC /* ImportHDWalletVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84143019215B57D00079EFEC /* ImportHDWalletVC.m */; };
-		8414301E215C70E70079EFEC /* EosPrivateKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 8414301C215C70E60079EFEC /* EosPrivateKey.m */; };
 		84143021215C71060079EFEC /* sha2.c in Sources */ = {isa = PBXBuildFile; fileRef = 84143020215C71060079EFEC /* sha2.c */; };
 		84143024215C71170079EFEC /* uECC.c in Sources */ = {isa = PBXBuildFile; fileRef = 84143022215C71160079EFEC /* uECC.c */; };
 		84143028215C71400079EFEC /* rmd160.c in Sources */ = {isa = PBXBuildFile; fileRef = 84143026215C713F0079EFEC /* rmd160.c */; };
@@ -132,6 +124,7 @@
 		8460C7B02136A446002E4B2F /* YYLineDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8460C7AB2136A446002E4B2F /* YYLineDataModel.m */; };
 		8460C7B12136A446002E4B2F /* YYTimeLineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8460C7AD2136A446002E4B2F /* YYTimeLineModel.m */; };
 		8460C7B22136A446002E4B2F /* YYFiveRecordModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8460C7AF2136A446002E4B2F /* YYFiveRecordModel.m */; };
+		8467F925216C8C32004ACE70 /* EosFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8467F924216C8C31004ACE70 /* EosFramework.framework */; };
 		84748845212AAAD70077AC0F /* VerifyMnemonicVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84748844212AAAD70077AC0F /* VerifyMnemonicVC.m */; };
 		84748848212BC2EC0077AC0F /* UserInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84748847212BC2EC0077AC0F /* UserInfoVC.m */; };
 		847BC6092133E001000B02AC /* MissionWallet.m in Sources */ = {isa = PBXBuildFile; fileRef = 847BC6082133E001000B02AC /* MissionWallet.m */; };
@@ -270,23 +263,6 @@
 		840B1EA2216B0D3300700700 /* ShareMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareMenuView.h; sourceTree = "<group>"; };
 		840B1EA3216B0D3400700700 /* ShareMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareMenuView.m; sourceTree = "<group>"; };
 		840B1EA4216B0D3400700700 /* ShareItemCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareItemCollectionViewCell.h; sourceTree = "<group>"; };
-		840B1EC2216B5AC800700700 /* TransactionRecordsService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransactionRecordsService.h; sourceTree = "<group>"; };
-		840B1EC3216B5AC800700700 /* TransactionRecordsService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransactionRecordsService.m; sourceTree = "<group>"; };
-		840B1EC5216B5AD500700700 /* GetTransactionRecordsRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetTransactionRecordsRequest.m; sourceTree = "<group>"; };
-		840B1EC6216B5AD500700700 /* GetTransactionRecordsRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetTransactionRecordsRequest.h; sourceTree = "<group>"; };
-		840B1EC9216B5AEC00700700 /* TransactionRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransactionRecord.m; sourceTree = "<group>"; };
-		840B1ECA216B5AEC00700700 /* TransactionRecordsResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransactionRecordsResult.h; sourceTree = "<group>"; };
-		840B1ECB216B5AEC00700700 /* TransactionsResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransactionsResult.m; sourceTree = "<group>"; };
-		840B1ECC216B5AEC00700700 /* TransactionRecordsResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransactionRecordsResult.m; sourceTree = "<group>"; };
-		840B1ECD216B5AEC00700700 /* TransactionRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransactionRecord.h; sourceTree = "<group>"; };
-		840B1ECE216B5AEC00700700 /* TransactionsResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransactionsResult.h; sourceTree = "<group>"; };
-		840B1ED3216B5B0A00700700 /* BaseService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseService.m; sourceTree = "<group>"; };
-		840B1ED4216B5B0A00700700 /* BaseService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseService.h; sourceTree = "<group>"; };
-		840B1ED6216B5BA100700700 /* RequestUrlConstant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RequestUrlConstant.h; sourceTree = "<group>"; };
-		840B1ED8216B5C2300700700 /* BaseHttpsNetworkRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseHttpsNetworkRequest.m; sourceTree = "<group>"; };
-		840B1ED9216B5C2300700700 /* BaseHttpsNetworkRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseHttpsNetworkRequest.h; sourceTree = "<group>"; };
-		840B1EDB216B5C2400700700 /* BaseNetworkRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseNetworkRequest.m; sourceTree = "<group>"; };
-		840B1EDC216B5C2400700700 /* BaseNetworkRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseNetworkRequest.h; sourceTree = "<group>"; };
 		840B1EE0216B5E8200700700 /* MJPropertyKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPropertyKey.h; sourceTree = "<group>"; };
 		840B1EE1216B5E8200700700 /* NSObject+MJClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MJClass.h"; sourceTree = "<group>"; };
 		840B1EE2216B5E8200700700 /* NSString+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MJExtension.h"; sourceTree = "<group>"; };
@@ -308,6 +284,7 @@
 		840B1EF2216B5E8200700700 /* NSObject+MJKeyValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MJKeyValue.h"; sourceTree = "<group>"; };
 		840B1EF3216B5E8200700700 /* NSObject+MJCoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MJCoding.h"; sourceTree = "<group>"; };
 		840B1EF4216B5E8200700700 /* MJFoundation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJFoundation.m; sourceTree = "<group>"; };
+		840B1F0B216C44ED00700700 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		84143008215A12C60079EFEC /* LaunchIntroductionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchIntroductionView.m; sourceTree = "<group>"; };
 		84143009215A12C60079EFEC /* LaunchIntroductionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchIntroductionView.h; sourceTree = "<group>"; };
 		8414300C215A1DD20079EFEC /* ImportHDWalletVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImportHDWalletVC.h; sourceTree = "<group>"; };
@@ -316,8 +293,6 @@
 		84143012215B278D0079EFEC /* SelectCurrencyTypeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectCurrencyTypeVC.h; sourceTree = "<group>"; };
 		84143013215B278D0079EFEC /* SelectCurrencyTypeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectCurrencyTypeVC.m; sourceTree = "<group>"; };
 		84143019215B57D00079EFEC /* ImportHDWalletVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportHDWalletVC.m; sourceTree = "<group>"; };
-		8414301C215C70E60079EFEC /* EosPrivateKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EosPrivateKey.m; sourceTree = "<group>"; };
-		8414301D215C70E70079EFEC /* EosPrivateKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EosPrivateKey.h; sourceTree = "<group>"; };
 		8414301F215C71060079EFEC /* sha2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sha2.h; sourceTree = "<group>"; };
 		84143020215C71060079EFEC /* sha2.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.objc; fileEncoding = 4; path = sha2.c; sourceTree = "<group>"; };
 		84143022215C71160079EFEC /* uECC.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.objc; fileEncoding = 4; path = uECC.c; sourceTree = "<group>"; };
@@ -477,6 +452,7 @@
 		8460C7AD2136A446002E4B2F /* YYTimeLineModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYTimeLineModel.m; sourceTree = "<group>"; };
 		8460C7AE2136A446002E4B2F /* YYLineDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYLineDataModel.h; sourceTree = "<group>"; };
 		8460C7AF2136A446002E4B2F /* YYFiveRecordModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYFiveRecordModel.m; sourceTree = "<group>"; };
+		8467F924216C8C31004ACE70 /* EosFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = EosFramework.framework; sourceTree = "<group>"; };
 		84748843212AAAD70077AC0F /* VerifyMnemonicVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VerifyMnemonicVC.h; sourceTree = "<group>"; };
 		84748844212AAAD70077AC0F /* VerifyMnemonicVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VerifyMnemonicVC.m; sourceTree = "<group>"; };
 		84748846212BC2EC0077AC0F /* UserInfoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserInfoVC.h; sourceTree = "<group>"; };
@@ -612,12 +588,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				840B1F0C216C44ED00700700 /* JavaScriptCore.framework in Frameworks */,
 				840B1E9C216AF39500700700 /* Social.framework in Frameworks */,
 				842FEE0A213D22860075716E /* AVFoundation.framework in Frameworks */,
 				847BC60C21355613000B02AC /* libPods-TaiYiToken.a in Frameworks */,
 				847BC60B21355289000B02AC /* libstdc++.tbd in Frameworks */,
 				84C0DF33212D4F1E00BCC91D /* libiconv.tbd in Frameworks */,
 				84C8E7DA212A976800627445 /* Foundation.framework in Frameworks */,
+				8467F925216C8C32004ACE70 /* EosFramework.framework in Frameworks */,
 				84C8E7D8212A976100627445 /* UIKit.framework in Frameworks */,
 				84C8E7D6212A975B00627445 /* CoreGraphics.framework in Frameworks */,
 			);
@@ -896,6 +874,8 @@
 		6AC5FF18C18AADA88B0CA162 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8467F924216C8C31004ACE70 /* EosFramework.framework */,
+				840B1F0B216C44ED00700700 /* JavaScriptCore.framework */,
 				840B1E9B216AF39500700700 /* Social.framework */,
 				842FEE09213D22850075716E /* AVFoundation.framework */,
 				0415BDBD213586C70022DEB7 /* ethers.framework */,
@@ -918,62 +898,6 @@
 				840B1EA3216B0D3400700700 /* ShareMenuView.m */,
 			);
 			path = shareView;
-			sourceTree = "<group>";
-		};
-		840B1EC1216B5AA200700700 /* EOS Ref */ = {
-			isa = PBXGroup;
-			children = (
-				840B1ED6216B5BA100700700 /* RequestUrlConstant.h */,
-				840B1ED7216B5C2300700700 /* BaseHttpsNetworkRequest */,
-				840B1EDA216B5C2400700700 /* BaseNetworkRequest */,
-				840B1ED2216B5B0A00700700 /* BaseService */,
-				840B1EC8216B5AEC00700700 /* Model */,
-				840B1EC6216B5AD500700700 /* GetTransactionRecordsRequest.h */,
-				840B1EC5216B5AD500700700 /* GetTransactionRecordsRequest.m */,
-				840B1EC2216B5AC800700700 /* TransactionRecordsService.h */,
-				840B1EC3216B5AC800700700 /* TransactionRecordsService.m */,
-			);
-			path = "EOS Ref";
-			sourceTree = "<group>";
-		};
-		840B1EC8216B5AEC00700700 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				840B1ECA216B5AEC00700700 /* TransactionRecordsResult.h */,
-				840B1ECC216B5AEC00700700 /* TransactionRecordsResult.m */,
-				840B1ECD216B5AEC00700700 /* TransactionRecord.h */,
-				840B1EC9216B5AEC00700700 /* TransactionRecord.m */,
-				840B1ECE216B5AEC00700700 /* TransactionsResult.h */,
-				840B1ECB216B5AEC00700700 /* TransactionsResult.m */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		840B1ED2216B5B0A00700700 /* BaseService */ = {
-			isa = PBXGroup;
-			children = (
-				840B1ED4216B5B0A00700700 /* BaseService.h */,
-				840B1ED3216B5B0A00700700 /* BaseService.m */,
-			);
-			path = BaseService;
-			sourceTree = "<group>";
-		};
-		840B1ED7216B5C2300700700 /* BaseHttpsNetworkRequest */ = {
-			isa = PBXGroup;
-			children = (
-				840B1ED9216B5C2300700700 /* BaseHttpsNetworkRequest.h */,
-				840B1ED8216B5C2300700700 /* BaseHttpsNetworkRequest.m */,
-			);
-			path = BaseHttpsNetworkRequest;
-			sourceTree = "<group>";
-		};
-		840B1EDA216B5C2400700700 /* BaseNetworkRequest */ = {
-			isa = PBXGroup;
-			children = (
-				840B1EDC216B5C2400700700 /* BaseNetworkRequest.h */,
-				840B1EDB216B5C2400700700 /* BaseNetworkRequest.m */,
-			);
-			path = BaseNetworkRequest;
 			sourceTree = "<group>";
 		};
 		840B1EDF216B5E8200700700 /* MJExtension */ = {
@@ -1032,8 +956,6 @@
 				84143023215C71170079EFEC /* uECC.h */,
 				84143020215C71060079EFEC /* sha2.c */,
 				8414301F215C71060079EFEC /* sha2.h */,
-				8414301D215C70E70079EFEC /* EosPrivateKey.h */,
-				8414301C215C70E60079EFEC /* EosPrivateKey.m */,
 			);
 			path = EOS;
 			sourceTree = "<group>";
@@ -1274,7 +1196,6 @@
 			isa = PBXGroup;
 			children = (
 				840B1EDF216B5E8200700700 /* MJExtension */,
-				840B1EC1216B5AA200700700 /* EOS Ref */,
 				8414301B215C70D20079EFEC /* EOS */,
 				84143007215A12AD0079EFEC /* 启动引导页 */,
 				8484F3882159BA09005992B1 /* JavascriptFile */,
@@ -1970,13 +1891,11 @@
 				848180BB2123C72A0007DCF9 /* ContainerViewController.m in Sources */,
 				842FEE76213FBFF90075716E /* AnnounceView.m in Sources */,
 				842FEE48213E38510075716E /* MySwitch.m in Sources */,
-				840B1ECF216B5AEC00700700 /* TransactionRecord.m in Sources */,
 				842FEE8621411D1A0075716E /* ControlBtnsView.m in Sources */,
 				843EC9EC212122A7002D5C2A /* NetManager.m in Sources */,
 				84B8D5332150C54C00286631 /* TransactionRecordDetailVC.m in Sources */,
 				84E3052F215F69A9008ABC6C /* ExportPasswordHintVC.m in Sources */,
 				843EC9DD21212271002D5C2A /* UIImage+BaseToImage.m in Sources */,
-				840B1ED0216B5AEC00700700 /* TransactionsResult.m in Sources */,
 				8414300A215A12C60079EFEC /* LaunchIntroductionView.m in Sources */,
 				84D0E42621211AAB004E65AD /* ViewController.m in Sources */,
 				840B1EF9216B5E8300700700 /* MJExtensionConst.m in Sources */,
@@ -1997,7 +1916,6 @@
 				84C0DF30212CFF9100BCC91D /* NSMutableData+Bitcoin.m in Sources */,
 				840B1EF5216B5E8300700700 /* MJPropertyType.m in Sources */,
 				842FEE7E2141106A0075716E /* ImportWalletSwitchVC.m in Sources */,
-				840B1ED5216B5B0A00700700 /* BaseService.m in Sources */,
 				0415BD9A2131BC850022DEB7 /* YYTopBarView.m in Sources */,
 				8460C7B12136A446002E4B2F /* YYTimeLineModel.m in Sources */,
 				843ECA3921216320002D5C2A /* UIView+frameAdjust.m in Sources */,
@@ -2046,9 +1964,7 @@
 				8460C7B22136A446002E4B2F /* YYFiveRecordModel.m in Sources */,
 				0415BDA72131BC850022DEB7 /* YYStockViewMaskView.m in Sources */,
 				84143014215B278D0079EFEC /* SelectCurrencyTypeVC.m in Sources */,
-				840B1ED1216B5AEC00700700 /* TransactionRecordsResult.m in Sources */,
 				8484F3942159BA3A005992B1 /* QuoteLocalHtmlTool.m in Sources */,
-				840B1EC4216B5AC900700700 /* TransactionRecordsService.m in Sources */,
 				842FEE9B214A5E330075716E /* TransactionVC.m in Sources */,
 				84B0A9602122C184002EFA0A /* UIImage+Gradient.m in Sources */,
 				84C0DF2A212CFF7700BCC91D /* NSString+Bitcoin.m in Sources */,
@@ -2074,7 +1990,6 @@
 				840B1EF6216B5E8300700700 /* NSObject+MJKeyValue.m in Sources */,
 				8484F3802159B9F1005992B1 /* WKWebViewJavascriptBridge.m in Sources */,
 				842FEE4F213E52590075716E /* WalletManagerCell.m in Sources */,
-				840B1EC7216B5AD500700700 /* GetTransactionRecordsRequest.m in Sources */,
 				0415BDA32131BC850022DEB7 /* YYTimeLineView.m in Sources */,
 				8484F3952159BA3A005992B1 /* JavascriptWebViewController.m in Sources */,
 				0415BD9B2131BC850022DEB7 /* YYStock.m in Sources */,
@@ -2092,10 +2007,8 @@
 				84D0E42321211AAB004E65AD /* AppDelegate.m in Sources */,
 				847BC6092133E001000B02AC /* MissionWallet.m in Sources */,
 				8460C7B02136A446002E4B2F /* YYLineDataModel.m in Sources */,
-				840B1EDE216B5C2400700700 /* BaseNetworkRequest.m in Sources */,
 				842FEE67213F7EB00075716E /* ExportPrivateKeyOrMnemonicVC.m in Sources */,
 				84B0A95A2122B87B002EFA0A /* UIColor+PGHex.m in Sources */,
-				840B1EDD216B5C2400700700 /* BaseHttpsNetworkRequest.m in Sources */,
 				842FEE5B213E89940075716E /* ExportKeyStoreVC.m in Sources */,
 				84B8D52E214FA6EF00286631 /* ETHTransactionRecordModel.m in Sources */,
 				0415BD9D2131BC850022DEB7 /* YYVolumePositionModel.m in Sources */,
@@ -2120,7 +2033,6 @@
 				842FEE79213FCFCA0075716E /* AddBTCAddressCell.m in Sources */,
 				843EC9DB21212271002D5C2A /* UIScrollView+Refresh.m in Sources */,
 				843ECA25212162FB002D5C2A /* UIColor+AppConfigColor.m in Sources */,
-				8414301E215C70E70079EFEC /* EosPrivateKey.m in Sources */,
 				842FEE2B213D27470075716E /* SGWebView.m in Sources */,
 				8414301A215B57D10079EFEC /* ImportHDWalletVC.m in Sources */,
 				843ECA2D212162FB002D5C2A /* UIImage+ExFoundation.m in Sources */,

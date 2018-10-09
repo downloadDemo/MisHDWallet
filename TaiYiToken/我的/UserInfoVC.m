@@ -11,7 +11,7 @@
 #import "ImageTextCell.h"
 #import "AccountConfigVC.h"
 #import "JavascriptWebViewController.h"
-#import "EosPrivateKey.h"
+
 @interface UserInfoVC ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong)UserInfoHeadView *headView;
 @property(nonatomic)UITableView *tableView;
@@ -86,22 +86,26 @@
     _jvc = [JavascriptWebViewController new];
     [_jvc viewDidLoad];
    
-    NSString *str = @"once crawl machine nuclear wall firm holiday dismiss common fall note frozen";
-    NSString *seed = [CreateAll CreateSeedByMnemonic:str Password:nil];
-   
-    NSString *eosPriOwner = [CreateAll CreateEOSPrivateKeyBySeed:seed Index:0];
-    
-    [CreateAll isValidPrivateJvc:_jvc PrivateKey:eosPriOwner callback:^(id response) {
-        NSString *str = [(NSString *)response componentsSeparatedByString:@","].lastObject;
-        if ([str isEqualToString:@"true"]) {
-            [CreateAll EOSPrivateKeyToPublicKeyJvc:self.jvc PrivateKey:eosPriOwner callback:^(id response) {
-                NSLog(@"pub = %@",response);
-            }];
-        }else{
-            //Error
-        }
-       
+    [CreateAll EOStransactionByJvc:_jvc callback:^(id response) {
+        NSLog(@"response = %@",response);
     }];
+//    NSString *str = @"once crawl machine nuclear wall firm holiday dismiss common fall note frozen";
+//    NSString *seed = [CreateAll CreateSeedByMnemonic:str Password:nil];
+//
+//    NSString *eosPriOwner = [CreateAll CreateEOSPrivateKeyBySeed:seed Index:0];
+    
+    
+//    [CreateAll isValidPrivateJvc:_jvc PrivateKey:eosPriOwner callback:^(id response) {
+//        NSString *str = [(NSString *)response componentsSeparatedByString:@","].lastObject;
+//        if ([str isEqualToString:@"true"]) {
+//            [CreateAll EOSPrivateKeyToPublicKeyJvc:self.jvc PrivateKey:eosPriOwner callback:^(id response) {
+//                NSLog(@"pub = %@",response);
+//            }];
+//        }else{
+//            //Error
+//        }
+//
+//    }];
 
 }
 
